@@ -17,6 +17,8 @@ What are the goals of this project?
 
 [Issues (Issues are used to track todos, bugs, feature requests, and more)](https://github.com/VFPX/HelpFile/issues)
 
+[Setup.iss: Inno Setup Compiler source file, including dv_foxhelp.chm](https://github.com/VFPX/Inno_Setup_SRC)
+
 ----------
 
 **History:**
@@ -26,13 +28,14 @@ What are the goals of this project?
 	- All pages: VFPX URL links updated to GitHub in footers
 	- VFPX Page: URL links updated to GitHub
 	- VFPX Inno Setup script: URL links updated to GitHub
+	- Inno Setup files
 
 ----------
 
 * June 12, 2014 Version 1.07
 	- All pages:
 		- Removed: Javascript about Language management
-		- Page Footer: mention "Enable Javascript for use this Help file" in red, if Javascript isn't enabled.
+		- Page Footer: mention "Enable Javascript for use this Help file" in red, if Javascript isn't enabled
 	- Added in aLink Keywords:
 		- ADD OBJECT to "DEFINE CLASS Command - ADD OBJECT Clause"
 		- IMPLEMENTS to "DEFINE CLASS Command - IMPLEMENTS Clause"
