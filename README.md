@@ -13,7 +13,7 @@ What are the goals of this project?
 
 2) Allow the VFP Community to further enhance the Help file moving forward, adding missing content for VFP 9 SP2 and Sedna, making necessary corrections to existing examples, and repairing additional things missing in the index (like the SYS() functions).
 
-[Download VFP9SP2 Help file Setup - VFPX edition version 1.08](https://github.com/VFPX/HelpFile/setup/dv_foxhelp_vfp9sp2_v1.08.exe.zip)
+[Download VFP9SP2 Help file Setup - VFPX edition version 1.08](https://github.com/VFPX/HelpFile/raw/master/setup/dv_foxhelp_vfp9sp2_v1.08.exe.zip)
 
 [Issues (Issues are used to track todos, bugs, feature requests, and more)](https://github.com/VFPX/HelpFile/issues)
 
