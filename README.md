@@ -17,7 +17,7 @@ What are the goals of this project?
 
 [Issues (Issues are used to track todos, bugs, feature requests, and more)](https://github.com/VFPX/HelpFile/issues)
 
-[Setup.iss: Inno Setup Compiler source file, including dv_foxhelp.chm](https://github.com/VFPX/Inno_Setup_SRC)
+[Setup.iss: Inno Setup Compiler source file, including dv_foxhelp.chm](https://github.com/VFPX/HelpFile/tree/master/Inno_Setup_Source)
 
 ----------
 
