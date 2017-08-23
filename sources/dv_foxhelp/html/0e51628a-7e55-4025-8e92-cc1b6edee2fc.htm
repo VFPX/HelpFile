@@ -1,0 +1,240 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>XMLAdapter Class</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">XMLAdapter Class</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>XMLAdapter</b> is a "two-way" class. You can import XML and its contained schema to create tables, or you can create and generate XML from tables. </p>
+    <p>An <b>XMLAdapter</b> object stores object references to XML Schema and Document Object Model (DOM) nodes. It does not store actual XML schema information or content. An <b>XMLAdapter</b> object contains a <b>Tables</b> collection that contains one or more <b>XMLTable</b> objects and describes XML as Visual FoxPro cursors along with any relational information. Each <b>XMLTable</b> object can also contain a child <b>XMLTable</b>, and, at most, a <b>Fields</b> collection with one or more <b>XMLField</b> objects.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>The <b>XMLAdapter</b> class requires Microsoft XML Core Services (MSXML) 4.0 Service Pack 1 (SP1) or later.</p>
+    </td></tr></table></div>
+    <p>Using the <b>XMLAdapter</b> class, you can perform the following tasks:  </p>
+    <ul><li>
+        <p>Interpret the following schema formats when you use the <b>XMLAdapter</b> <b>LoadXML</b> and <b>Attach</b> methods.:  </p>
+        <ul><li>
+            <p>W3C XML Schemas (XS), W3C XML Schemas (XS) as used with .NET DataSets and SQL-XML</p>
+          </li><li>
+            <p>Microsoft XML Data Reduced Schema (XDR) as implemented by SQL-XML</p>
+          </li><li>
+            <p>ADO Recordset Schemas </p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>The <b>XMLAdapter</b> <b>LoadXML</b> method might not correctly interpret other XML schema formats as produced by other products.</p>
+            </td></tr></table></div>
+          </li></ul>
+      </li><li>
+        <p>Retrieve XML and its associated schema from an XML source. <b>XMLAdapter</b> factors the contained schema into an XMLTable and its corresponding <b>XMLField</b> objects using the <b>XMLAdapter</b> <b>LoadXML</b> or <b>Attach</b> methods. </p>
+      </li><li>
+        <p>Create a cursor based on the schema and populate it with data represented by an <b>XMLTable</b> object when you use the <b>XMLTable</b> <b>ToCursor</b> method.</p>
+      </li><li>
+        <p>Represent changes from a .NET DiffGram to local or remote tables when you use the <b>XMLTable</b> <b>ApplyDiffgram</b> method.</p>
+      </li><li>
+        <p>Add one or more <b>XMLTable</b> objects to the <b>XMLAdapter</b> <b>Tables</b> collection or specify that the <b>XMLAdapter</b> <b>LoadXML</b>, <b>Attach</b>, or <b>AddTableSchema</b> methods perform this for you.</p>
+      </li><li>
+        <p>Use the <b>XMLAdapter</b> <b>ToXML</b> method to generate an XML document in W3C XML Schema format from one or more cursors or tables referenced by the <b>XMLAdapter</b> object.</p>
+      </li></ul>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+XMLAdapter</pre></td></tr></table></span></div></div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>If you use an <b>XMLAdapter</b> object to convert XDR schema to XSD schema, you must change the <b>XMLAdapter</b> <b>XMLNamespace</b> property; otherwise, the XML parser cannot reload the XML. The following example illustrates this scenario:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>TEXT TO cXML NOSHOW
+&lt;xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+   xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+   xmlns:rs='urn:schemas-microsoft-com:rowset'
+   xmlns:z='#RowsetSchema'&gt;
+&lt;s:Schema id='RowsetSchema'&gt;
+   &lt;s:ElementType name='row' content='eltOnly'&gt;
+      &lt;s:AttributeType name='xmlfield' rs:number='1' 
+         rs:writeunknown='true' rs:nullable='true'&gt;
+   &lt;s:datatype dt:type='number' rs:dbtype='currency' dt:maxLength='8'
+      rs:scale='4' rs:precision='6' /&gt;
+&lt;/s:AttributeType&gt;
+      &lt;s:extends type='rs:rowbase'/&gt;
+   &lt;/s:ElementType&gt;
+&lt;/s:Schema&gt;
+&lt;rs:data&gt;
+   &lt;z:row xmlfield='12.12'/&gt;
+&lt;/rs:data&gt;
+&lt;/xml&gt;
+ENDTEXT
+CLOSE DATABASES ALL
+CLEAR
+LOCAL oXMLAdapter as XMLAdapter
+oXMLAdapter = NEWOBJECT('XMLAdapter') 
+oXMLadapter.LoadXML(cXML) 
+IF oXMLAdapter.Tables.Item(1).Fields.Item(1).DataType &lt;&gt; "Y" THEN
+   ? 'Failed'
+ELSE
+   oXMLAdapter.Tables.Item(1).ToCursor()
+   oXMLAdapter.XMLNamespace=""
+   oXMLAdapter.ReleaseXML(.F.) 
+   oXMLAdapter.XMLSchemaLocation='c:\myxmlfile.xsd'
+   oXMLAdapter.ToXML('c:\myxmlfile.xml',,.T.) 
+   oXMLadapter2 = NEWOBJECT('xmladapter') 
+   oXMLAdapter2.XMLSchemaLocation='c:\myxmlfile.xsd'
+   oXMLAdapter2.LoadXML('c:\myxmlfile.xml',.T.,.T.) 
+ENDIF</pre></td></tr></table></span></div>
+      <p>When the schema is missing or not available, you can specify a schema that Visual FoxPro can use by setting the <b>XMLAdapter</b> <b>XMLSchemaLocation</b> property. You must specify this property before calling <b>LoadXML</b>. When Visual FoxPro executes <b>LoadXML</b>, Visual FoxPro looks for the schema in the following order:  </p>
+      <ul><li>
+          <p>Inline schema</p>
+        </li><li>
+          <p>External schema as specified in the XML document</p>
+        </li><li>
+          <p>Schema as specified by the <b>XMLSchemaLocation</b> property</p>
+        </li></ul>
+      <p>The following code creates an <b>XMLAdapter</b> object with a <b>Tables</b> collection that remains empty until you load valid XML into the <b>XMLAdapter</b> object:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oMyAdapter=CREATEOBJECT("xmladapter")</pre></td></tr></table></span></div>
+      <p>The XML and XML schema data you retrieve using the <b>XMLAdapter</b> <b>LoadXML</b> method remains in memory until they are replaced by a subsequent call to <b>LoadXML</b> or when they are specifically released when you call the <b>XMLAdapter</b> <b>ReleaseXML</b> method.</p>
+      <p>
+        <b>Nested Tables</b>   The following table describes how<b> XMLAdapter</b> treats nested tables as either individual tables or as a whole table depending on the XML data source.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              XML data source
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>ADO.NET DataSet</p>
+          </td>
+          <td>
+            <p>
+              <b>XMLAdapter</b> considers each nested table as a separate table, which you can convert to a Visual FoxPro cursor. When the XML schema is analyzed, the <b>XMLAdapter</b> <b>LoadXML</b> and <b>Attach</b> methods create an individual <b>XMLTable</b> object for each nested table and adds it to the <b>Tables</b> collection. You can then use the <b>XMLTable</b> <b>ToCursor</b>, <b>ChangesToCursor</b>, and <b>ApplyDiffgram</b> methods to obtain data for each table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SQL XML</p>
+          </td>
+          <td>
+            <p>
+              <b>XMLAdapter</b> considers each nested table as inseparable from the parent table. When data is retrieved, the final result of a join operation between those tables is represented as a single result. If multiple levels of nesting exist, such as a child table containing a child table and so on, this single result contains data from a join operation between all tables in the hierarchy. </p>
+            <p>The <b>XMLAdapter</b> <b>LoadXML</b> and <b>Attach</b> methods create <b>XMLTable</b> objects for all tables. However, only the <b>XMLTable</b> object for the top-level parent table is added to the <b>Tables</b> collection. This <b>XMLTable</b> object represents the parent table and provides access to the single and final result from the join operation through the <b>XMLTable</b> <b>ToCursor</b> method. <b>XMLTable</b> objects for child tables are linked to their parents through the <b>ChildTable</b> and <b>ParentTable</b> properties. However, no way exists to obtain data from individual tables in the chain.</p>
+          </td>
+        </tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5f4dbe0b-44e1-4697-b933-cbfa2039d844.htm">XMLAdapter Object Properties, Methods, and Events</a></span><br /><span class="linkTerms"><a href="/html/7856580c-a8f2-4f45-8bbc-29f69a3ab203.htm">Tables Collection (XMLAdapter)</a></span><br /><span class="linkTerms"><a href="/html/1270863b-32b1-4bbc-a9c2-175a07db9c3b.htm">XMLTable Class</a></span><br /><span class="linkTerms"><a href="/html/c97862bb-5613-436f-92c0-62629db5f799.htm">Fields Collection (XMLTable)</a></span><br /><span class="linkTerms"><a href="/html/62180c49-1670-4df3-8cb6-62847cbc1813.htm">XMLField Class</a></span><br /><span class="linkTerms"><a href="/html/951acf37-9025-495e-8390-b97a07378937.htm">LoadXML Method</a></span><br /><span class="linkTerms"><a href="/html/675dc0b7-93f1-4204-833e-6d494b834d52.htm">Attach Method (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/d933f759-0e84-4dc8-a015-f3218b4eb097.htm">ToCursor Method</a></span><br /><span class="linkTerms"><a href="/html/c3d6f5f8-1c5d-4324-bf64-ded2ff6ae51d.htm">ReleaseXML Method</a></span><br /><span class="linkTerms"><a href="/html/aa802a1e-03f3-42ff-bc97-8e2e8cd61ce2.htm">ApplyDiffgram Method</a></span><br /><span class="linkTerms"><a href="/html/97d57b8a-d935-4f1d-84cf-8510db8acbdb.htm">XMLSchemaLocation Property</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/42cd01c1-54f0-40ac-b7f4-ef91d4211dfd.htm">Objects, Collections, and Classes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="XMLAdapter Class">
+<param name="Alink Name" value="vfp.50001148">
+<param name="ALink Name" value="XMLAdapter">
+</OBJECT>

@@ -1,0 +1,172 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Managing Updates by Using Views</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Managing Updates by Using Views</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can use the update conflict management technology built into Visual FoxPro views to handle multiuser access to data. Views control what is sent to the base tables underlying the view by using the WhereType property. You can set this property for both local and remote views. The WhereType property provides four settings:  </p>
+    <ul><li>
+        <p>DB_KEY</p>
+      </li><li>
+        <p>DB_KEYANDUPDATABLE</p>
+      </li><li>
+        <p>DB_KEYANDMODIFIED (the default)</p>
+      </li><li>
+        <p>DB_KEYANDTIMESTAMP</p>
+      </li></ul>
+    <p>By choosing one of these four settings, you control how Visual FoxPro builds the WHERE clause for the SQL Update statement sent to the view's base tables. You can choose the setting you want using the <a href="/html/6c9c3a56-c339-440d-b60b-43f0fb7da50b.htm">Update Criteria</a> tab of the View Designer, or you can use <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> to set the WhereType for a view definition. To change the WhereType setting for an active view cursor, use <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            To...
+          </th>
+          <th>
+            Choose this SQL WHERE option...
+          </th>
+        </tr><tr>
+        <td>
+          <p>Have the update fail if a key field has been changed in the source table</p>
+        </td>
+        <td>
+          <p>Key fields only</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Have the update fail if any of the fields marked as updatable have been changed on the remote table</p>
+        </td>
+        <td>
+          <p>Key and updatable fields</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Have the update fail if any fields you change locally have been changed on the source table</p>
+        </td>
+        <td>
+          <p>Key and modified fields</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Have the update fail if the timestamp of the record on the remote table has changed since you first retrieved it (only available if the remote table has a timestamp column)</p>
+        </td>
+        <td>
+          <p>Key and timestamp</p>
+        </td>
+      </tr></table></div>
+    <p>For example, suppose you have a simple remote view based on the Customer table that includes seven fields: <code>cust_id</code>, <code>company</code>, <code>phone</code>, <code>fax</code>, <code>contact</code>, <code>title</code>, and <code>timestamp</code>. The primary key for your view is <code>cust_id</code>.</p>
+    <p>You've made only two fields updatable: <code>contact_name</code> and <code>contact_title</code>. You want the user to be able to change the company contact and their title from the view. However, if other facts about the company change, such as the company address, you want the changes to go through a coordinator who'll identify the impact of the changes on your company, such as whether the sales region for the customer will change. Now that your view has been set up to send updates, you can choose the WhereType according to your preferences.</p>
+    <p>Now suppose that you change the name in the <code>contact</code> field for a customer, but you don't change the value in the other updatable field, <code>title</code>. Given this example, the following section discusses how the WhereType setting would impact the WHERE clause that Visual FoxPro builds to send the new contact name to the base tables.</p>
+  <h1 class="heading">Comparing the Key Field Only</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The least restrictive update uses the DB_KEY setting. The WHERE Clause used to update remote tables consists of only the primary key field specified with the KeyField or KeyFieldList property. Unless the value in the primary key field has been changed or deleted in the base table since you retrieved the record, the update goes through.</p>
+      <p>In the case of the previous example, Visual FoxPro would prepare an update statement with a WHERE clause that compares the value in the <code>cust_id</code> field against the <code>cust_id</code> field in the base table row:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>WHERE OLDVAL(customer.cust_id) = CURVAL(customer_remote_view.cust_id)</pre></td></tr></table></span></div>
+      <p>When the update statement is sent to the base table, only the base table's key field is verified.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">The key field in your view is compared against its base table counterpart.</caption></caption></b><br></br></div><img src="../local/Local_-313126632_afd17001.gif" alt="FoxProKeyFieldBaseTableCompared graphic"></img>
+    </div><h1 class="heading">Comparing the Key Field and Fields Modified in the View</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The DB_KEYANDMODIFIED setting, the default, is slightly more restrictive than DB_KEY. DB_KEYANDMODIFIED compares only the key field and any updatable fields you've modified in the view against their base table counterparts. If you modify a field in the view, but the field isn't updatable, the fields are not compared to the base table data.</p>
+      <p>The WHERE clause used to update base tables consists of the primary fields specified with the KeyFieldList property and any other fields that are modified in the view. In the case of the previous example, Visual FoxPro would prepare an update statement that compares the values in the <code>cust_id</code> field because it is the key field, and the <code>contact</code> field because the contact name has been changed. Even though the <code>title</code> field is updatable, <code>title</code> is not included in the update statement because we haven't modified it.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">The key and modified fields in your view are compared against their base table counterparts.</caption></caption></b><br></br></div><img src="../local/Local_-313126629_afd17002.gif" alt="FoxProKeyModifiedFields graphic"></img>
+    </div><h1 class="heading">Comparing the Key Field and All Updatable Fields</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The DB_KEYANDUPDATABLE setting compares the key field and any updatable fields (whether modified or not) in your view against their base table counterparts. If the field is updatable, even if you haven't changed it in the view, if anyone else has changed that field in the base table, the update fails.</p>
+      <p>The WHERE clause used to update base tables consists of the primary fields specified with the Key Field or KeyFieldList property and any other fields that are updatable. In the case of the example, Visual FoxPro would prepare an update statement that compares the values in the <code>cust_id</code>, <code>contact</code>, and <code>title</code> fields against the same fields in the base table row.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">All the updatable fields in your view are compared against their base table counterparts.</caption></caption></b><br></br></div><img src="../local/Local_-313126630_afd17003.gif" alt="Viewed Fields Compared graphic"></img>
+    </div><h1 class="heading">Comparing the Timestamp for All Fields in the Base Table Record</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>The DB_KEYANDTIMESTAMP is the most restrictive type of update, and is only available if the base table has a timestamp column. Visual FoxPro compares the current timestamp on the base table record against the timestamp at the time the data was fetched into the view. If any field in the base table's record has changed, even if it's not a field you're trying to change, or even a field in your view, the update fails.</p>
+      <p>In the case of the example, Visual FoxPro prepares an update statement that compares the values in the <code>cust_id</code> field and the value in the <code>timestamp</code> field against those fields in the base table row.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">The timestamp for your view's record is compared against the timestamp on the base table record.</caption></caption></b><br></br></div><img src="../local/Local_-313126627_afd17004.gif" alt="FoxProTimeStampBaseTableCompared graphic"></img>
+      <p>In order to successfully update data using the DB_KEYANDTIMESTAMP setting with a multi-table view, you must include the timestamp field in your view for each table that is updatable. For example, if you have three tables in a view and want to update only two of them, and you choose the DB_KEYANDTIMESTAMP setting, you must bring down the timestamp fields from the two updatable tables into your result set. You can also use logical values in the CompareMemo property to determine whether memo fields are included in conflict detection.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/6c9c3a56-c339-440d-b60b-43f0fb7da50b.htm">Update Criteria Tab, View Designer</a></span><br /><span class="linkTerms"><a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/a8993d34-e40b-4411-9df3-48d58bd3f0f4.htm">Managing Conflicts When Updating Data</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c3ac4a1d-4c23-40ba-8715-e9ce9438cf62.htm">Updating Data</a></span><br /><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Managing Updates by Using Views">
+</OBJECT>

@@ -1,0 +1,269 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Varchar Field Type</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Varchar Field Type</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>To include alphanumeric text in fields without including additional padding with spaces or truncating trailing spaces, use the <b>Varchar</b> type. Alphanumeric text can contain letters, numbers, spaces, symbols, and punctuation. The <b>Varchar</b> type also provides a convenient method for mapping SQL Server Varchar types to corresponding Visual FoxPro data types.</p>
+    <p>To prevent data in <b>Varchar</b> fields from being translated across code pages, use the <b>Varchar (Binary)</b> type. </p>
+    <p>The <b>Varchar</b> and <b>Varchar (Binary)</b> field types are similar to the <b>Character</b> data and <b>Character (Binary)</b> field type in that you can store text information that is not used in mathematical calculations, such as names, addresses, and numbers. When storing <b>Varchar</b> and <b>Varchar (Binary)</b> values in variables, they are treated as <b>Character</b> types.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>To create a <b>Varchar (Binary)</b> field in a table, use the <b>NOCPTRANS</b> option in the SQL <b>CREATE TABLE</b> and <b>CREATE CURSOR</b> commands or select it in the Fields tab in the Table Designer.</p>
+    </td></tr></table></div>
+    <p>The <b>Varchar</b> and <b>Varchar (Binary)</b> field types have priority over the <b>Character</b> type when performing <b>UNION</b> and concatenation operations between these types. For example, suppose you have <b>Varchar </b>(X) and <b>Character </b>(Y) fields with X representing the length of character value stored in the <b>Varchar</b> field and Y representing the length of the <b>Character</b> field. When performing concatenation operations, the result is a <b>Varchar</b> field with a character value length of X+Y. </p>
+    <p>When performing concatenation operations between <b>Varchar (Binary) </b>(X) and <b>Character (Binary) </b>(Y), the result is <b>Varchar (Binary) </b>(X+Y). For Visual FoxPro functions that return <b>Character</b> values, if at least one parameter is a <b>Varchar</b> or <b>Varchar (Binary)</b> field in a table or cursor, the return type is <b>Varchar</b>. For more information about data type conversion and precedence in <b>UNION</b> operations, see <a href="/html/822ef7c0-0c8e-43b8-ba98-5a4246a94c59.htm">Considerations for SQL SELECT Statements</a>.</p>
+    <p>Index keys based on <b>Varchar</b> and <b>Varchar (Binary)</b> fields or expressions are padded with spaces from the right of the value to the maximum length of the field. Therefore, <b>LIKE</b> clauses in SQL join and filter conditions with a <b>Varchar</b> or <b>Varchar (Binary)</b> field can be only partially Rushmore-optimized. For more information, see <a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a>.</p>
+  <h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Support for Varchar and Varchar (Binary) Types</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>The <b>Varchar</b> and <b>Varchar (Binary)</b> field types are supported for database containers (.dbc), free tables, cursors, and local and remote views. For example, you can select these types for a field on the Fields tab in the Table Designer. Tables can contain multiple <b>Varchar</b> and <b>Varchar (Binary)</b> fields. You can specify default and null values for <b>Varchar</b> and <b>Varchar (Binary)</b> fields. <b>Varchar</b> and <b>Varchar (Binary)</b> fields support field validation. </p>
+      <p>The following table lists language that contains functionality affected by the <b>Varchar</b> and <b>Varchar (Binary)</b> field types.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <td>
+            <p>
+              <a href="/html/c576b477-4cf5-4ad4-a115-6963867dd548.htm">AFIELDS( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/3c5a454a-67ec-48a8-8290-18dd0e8a97ea.htm">ALTER TABLE - SQL Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/c426861f-e5ef-44ae-96a6-8dbc7a4a2ad5.htm">APPEND FROM Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/31ed53ed-3264-4de0-9d9e-8e225589d5a7.htm">COPY STRUCTURE EXTENDED Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e5cc1f14-402f-43b7-8066-af695c60e183.htm">COPY TO Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/203ecbbd-12ae-4caa-94b6-d3077eb685ba.htm">CREATE CURSOR - SQL Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/1225275c-e888-49f8-aa8c-ce66673fe761.htm">CREATE FROM Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/b14e5d95-5b1c-4cfa-a5ac-4093ea6211e0.htm">CREATE TABLE - SQL Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/42160b03-2714-4ca5-abdf-581bd3fc7abe.htm">CursorSchema Property</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/b53b14fa-c1b0-4c29-82b1-3149adf53073.htm">CURSORTOXML( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/ededf873-d538-48fa-92bc-4942d740b434.htm">DataType Property</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e1c96289-3368-4546-84ce-8b1bd6163e43.htm">Format Property</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/577a19a4-7b14-4192-9c6d-951a918ab149.htm">MaxLength Property</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/1547a42a-e88f-4549-a82c-231a921ec689.htm">InputMask Property</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/23b309b9-92ce-410c-9dd1-227c7f59c047.htm">SET ENGINEBEHAVIOR Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/7d2d6409-f972-4452-9c6d-91ac5c9a2a5e.htm">SET ANSI Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/5ac68f23-c330-42c4-a4a3-c38f7278b22a.htm">SET EXACT Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/887e0f56-7ff2-4877-89ff-9bbccde7f2d6.htm">XMLTOCURSOR( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr></table></div>
+      <p>For more specifications about the <b>Varchar</b> and <b>Varchar (Binary)</b> types, see <a href="/html/67c1d841-7fa8-4e98-afaf-e4b167a52447.htm">Visual FoxPro Data and Field Types</a>.</p>
+      <p>The following example clears the main Visual FoxPro window using the <b>CLEAR</b> command and creates a cursor with two fields named myVarCharField with <b>Varchar</b> type and myCharField with <b>Character</b> type using the SQL <b>CREATE CURSOR</b> command. For each SQL <b>INSERT</b> statement, the <b>INSERT</b> command inserts a row into the cursor containing character expressions of increasing length into each field. <b>BROWSE</b> displays the cursor, and <b>GO TOP</b> positions the record pointer at the first record. The <b>DO WHILE</b> loop displays the number of characters in each field for each row using the <b>LEN( )</b> function until the last record in the table is reached. </p>
+      <p>You can type the example in a program (.prg) file and run it from the Command window using the <a href="/html/c4dda428-55f2-4610-9d0f-bccc53023a41.htm">DO Command</a>.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+CREATE CURSOR myCursor (myVarCharField V(10), myCharField C(10))
+INSERT INTO myCursor (myVarCharField, myCharField) VALUES ("a", "a")
+INSERT INTO myCursor (myVarCharField, myCharField) VALUES ("aa", "aa")
+INSERT INTO myCursor (myVarCharField, myCharField) VALUES ("aaa", "aaa")
+INSERT INTO myCursor (myVarCharField, myCharField) VALUES ("aaaa", "aaaa")
+BROWSE
+GO TOP
+DO WHILE !EOF()
+   ? "# VarChar characters: ", LEN(myVarCharField), ; 
+      ", # Char characters:      ", LEN(myCharField)
+   ? 
+   SKIP
+ENDDO</pre></td></tr></table></span></div>
+      <p>For more information about the commands and functions used in this example, see <a href="/html/b89737d7-7dac-455e-9088-fa0ec6c93b98.htm">CLEAR Commands</a>, <a href="/html/203ecbbd-12ae-4caa-94b6-d3077eb685ba.htm">CREATE CURSOR - SQL Command</a>, <a href="/html/f9d15b20-eb9d-4c37-8d4a-d9d02c01eb56.htm">INSERT - SQL Command</a>, <a href="/html/8f9cae61-2a9a-4893-8325-40426b907de8.htm">BROWSE Command</a>, <u>GO</u><a href="/html/21117980-58f1-47b0-9384-05e0172f7af7.htm">GOTO Command</a>, <a href="/html/e32603d6-0fe2-4149-a8c8-6db8d4cee78f.htm">DO WHILE ... ENDDO Command</a>, <a href="/html/38fef51a-a5df-46fc-9555-af334efc1dba.htm">EOF( ) Function</a>, and <a href="/html/1c473072-7070-489e-83b6-a35c8a4c4a42.htm">SKIP Command</a>.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/25531062-a27e-47b0-b753-f5ecec809a19.htm">How to: Choose Data Types</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/fb20c7af-703d-4f05-9c7c-b59fa31a9eda.htm">Fields Tab, Table Designer</a></span><br /><span class="linkTerms"><a href="/html/60997025-521f-49d7-8ad6-5c934c543666.htm">DISPLAY STRUCTURE Command</a></span><br /><span class="linkTerms"><a href="/html/7e83da43-86c1-4b0d-a00d-ea412382331f.htm">TYPE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/b05ef476-980c-492f-81f5-1be0eb7ef8d9.htm">VARTYPE( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b353259f-ae44-4c20-9b4c-53741595d66c.htm">Data and Field Types</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Varchar Field Type">
+</OBJECT>

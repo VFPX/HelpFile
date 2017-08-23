@@ -1,0 +1,158 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Implement Strong Typing for Class, Object, and Variable Code</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Implement Strong Typing for Class, Object, and Variable Code</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>To gain more control over your code, make coding easier and less vulnerable to errors, and make IntelliSense functionality available for visual objects, class references, ActiveX controls, COM servers, and user-defined code elements, use strong typing. OLEPUBLIC type libraries also use strong typing.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Visual FoxPro is not a strongly typed language and does not require that you declare variables with a specific data types. Visual FoxPro does not enforce strong typing at design time or run time.</p>
+    </td></tr></table></div>
+    <p>For more information, see <span class="linkTerms"><a href="/html/9b705514-22d6-4c6d-8c3c-41320e671180.htm">IntelliSense Support in Visual FoxPro</a></span>.</p>
+  <h3 class="procedureSubHeading">To implement strong typing</h3><div class="subSection"><ul><li>
+        
+          <p>For objects, method parameters, and values, use the <b>AS</b> clause in the <b>DEFINE CLASS</b> command.</p>
+        
+      </li></ul>
+      
+        <p>-OR-  </p>
+        <ul><li>
+            <p>For parameter and variable declarations, use the <b>AS</b> clause in following commands: </p>
+            <ul><li>
+                <p>
+                  <span class="linkTerms"><a href="/html/40babd3f-2eee-4faa-a6c9-44d9f9cba8e2.htm">FUNCTION Command</a></span>
+                </p>
+              </li><li>
+                <p>
+                  <span class="linkTerms"><a href="/html/b40ba3d5-4c7b-4a57-b121-c2a05457f061.htm">LOCAL Command</a></span>
+                </p>
+              </li><li>
+                <p>
+                  <span class="linkTerms"><a href="/html/d5706737-02da-40c2-8758-394927d980f0.htm">LPARAMETERS Command</a></span>
+                </p>
+              </li><li>
+                <p>
+                  <span class="linkTerms"><a href="/html/1318a43b-98c9-4dea-95ee-e7a8d958f7ba.htm">PARAMETERS Command</a></span>
+                </p>
+              </li><li>
+                <p>
+                  <span class="linkTerms"><a href="/html/69946d16-1eab-400c-9813-0a0230b0a230.htm">PROCEDURE Command</a></span>
+                </p>
+              </li><li>
+                <p>
+                  <span class="linkTerms"><a href="/html/684369d5-737d-4d42-b018-12f34634cbbc.htm">PUBLIC Command</a></span>
+                </p>
+              </li></ul>
+          </li></ul>
+        <p>When you use the <b>AS</b> clause in code, IntelliSense displays a drop-down list of available types, including types from the following sources:  </p>
+        <ul><li>
+            <p>Visual FoxPro object base classes.</p>
+          </li><li>
+            <p>Visual FoxPro data types.</p>
+          </li></ul>
+        <p>The following example uses the <b>AS</b> clause in the <b>DEFINE CLASS</b> command to implement strong typing for the custom OLEPUBLIC class and the method MyMethod:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS MyClass1 AS Custom OLEPUBLIC
+   FUNCTION MyMethod (MyParam1 AS integer, MyParam2 AS string) AS integer
+      RETURN MyParam1 
+   ENDFUNCTION
+ENDDEFINE</pre></td></tr></table></span></div>
+        <p>The following example uses the <b>AS</b> clause in the <b>LOCAL</b>, <b>PUBLIC</b>, <b>LPARAMETERS</b>, <b>PARAMETERS</b>, and <b>FUNCTION</b> commands to implement strong typing:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL oExcel AS "excel.application"
+oExcel = CREATEOBJECT("excel.application")
+oExcel.   &amp;&amp; Displays a list of members.
+PUBLIC ARRAY MyArray[2] AS _form OF ffc\_base
+LPARAMETERS MyParam1 AS String OF _Base.vcx
+PARAMETERS MyParam1 AS Custom OF MyBase.vcx
+FUNCTION MyFunction AS Custom</pre></td></tr></table></span></div>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/1aca0e8a-9e0b-4e00-a434-0bbc081f328d.htm">How to: Create Classes and Subclasses</a></span><br /><span class="linkTerms"><a href="/html/5a02a7f1-54c4-427f-8e96-a9d50f84e180.htm">How to: Modify Classes</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/501e2002-afdd-4a21-874c-02431ef46a56.htm">Considerations for Creating Classes</a></span><br /><span class="linkTerms"><a href="/html/7f106091-a2c8-42aa-a8b5-dbeecb1f9502.htm">Working with Classes in Visual FoxPro</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Implement Strong Typing for Class, Object, and Variable Code">
+</OBJECT>

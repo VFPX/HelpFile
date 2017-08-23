@@ -1,0 +1,148 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Create Forms with Local and Remote Data</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Create Forms with Local and Remote Data</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can create forms that can be easily switched between using local data and data that is stored remotely (for example, on a database server). This allows you to create a prototype application using local or test data, then switch to remote or live data without substantial changes to your forms.</p>
+    <p>For example, if your Visual FoxPro application is a front end for a large customer table stored on a database server, you can create a local .dbf file that contains a small but representative sampling of the data. You can then create, test, and debug your forms based on this small set of data. When you're ready to distribute your application, you can link your form to the large data set.</p>
+    <p>The key to being able to switch between local and remote data is to make sure that you use views instead of directly linking your form (and its controls) to a table. To access remote data, you must use a view in any event. Therefore, to facilitate switching between local and remote data, create a view for the local data as well. When you create the form, you can add both views to its data environment, then switch between them as needed.</p>
+  <h3 class="procedureSubHeading">To create a form that can switch between local and remote data</h3><div class="subSection"><ol><li>
+        
+          <p>Create two views of the data, one that points to the remote data, and another that points to the local data.</p>
+        
+      </li><li>
+        
+          <p>Create a new form.</p>
+        
+      </li><li>
+        
+          <p>Open the <span class="linkTerms"><a href="/html/35e6ce25-9da0-4754-90e2-f5c70aaa6d79.htm">Data Environment Designer</a></span> for the form, and then add both views.</p>
+        
+      </li><li>
+        
+          <p>Right-click the <b>Data Environment Designer</b>, and then choose <b>Properties</b>.</p>
+        
+      </li><li>
+        
+          <p>In the <span class="linkTerms"><a href="/html/9e1a457b-616b-4cfb-b1ab-ce8208cc0793.htm">Properties Window (Visual FoxPro)</a></span>, set the <span class="linkTerms"><a href="/html/89579449-d82b-421b-b8bc-aaa2efed0a87.htm">Alias Property</a></span> for both cursors to the same name.</p>
+        
+      </li><li>
+        
+          <p>Set the data environment's <span class="linkTerms"><a href="/html/461681df-7c0e-48ff-8b24-505c8bd72f4c.htm">OpenViews Property</a></span> to either <b>1</b> — <b>Local Only</b> or <b>2</b> <b>—</b> <b>Remote Only</b>, depending on which view you wanted to use when running the form. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Because you are using the same alias for both views, do not choose <b>0</b> — <b>Local and Remote</b> (the default).</p>
+          </td></tr></table></div>
+        
+      </li><li>
+        
+          <p>On the form, add the controls you need and set their <a href="/html/76c0d810-a6e4-4076-aa91-0763a6dfe03b.htm">ControlSource</a> properties to the appropriate fields in the view. Because both views have the same alias, the controls will respond automatically to whichever view is active when the form is run.</p>
+        
+      </li></ol>
+      
+        <p>After the form is created, you can switch the views alias by changing the data environment's OpenViews property. You can do this in the Data Environment while using the <span class="linkTerms"><a href="/html/4c6826b0-d49e-4f97-b18c-4670533600c7.htm">Form Designer</a></span>. Alternatively, you can write code and attach it to an event, which is useful if you want to switch views at run time. For example, you could put this code in the form's <a href="/html/1cec317f-4e12-4c47-9c00-40bf91099ef9.htm">Activate</a> event:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.DataEnvironment.OpenViews = 2 &amp;&amp; Use remote view</pre></td></tr></table></span></div>
+        <p>If you create a form that can be switched between local and remote data, you must also design your navigation code to accommodate both views, particularly if you are designing forms with one-to-many relationships. For example, if your form only accesses a local table or view, you might use code such as the following in a Next command button to move to the next record in a cursor:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SKIP 1
+THISFORM.Refresh()</pre></td></tr></table></span></div>
+        <p>However, this code is inefficient when you're navigating in a remote view, because it assumes that the cursor contains all the data required by the form. As a rule, you want to minimize the amount of data that you download from the remote data source.</p>
+        <p>The solution is to use a parameterized view. For example, the definition for a view used to edit customer information could be:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * FROM CUSTOMERS WHERE ;
+ CUSTOMERS.COMPANY_NAME = ?pCompanyName</pre></td></tr></table></span></div>
+        <p>When the form runs, it can prompt the user for a customer name using a dialog box or by allowing the user to enter a name in a text box. The code for a Display button would then be similar to the following:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>pCompanyName = THISFORM.txtCompanyName.Value
+REQUERY("customer")
+THISFORM.Refresh()</pre></td></tr></table></span></div>
+        <p>For more information, see <span class="linkTerms"><a href="/html/028ab955-0e39-459e-a26c-bdd39c0fb0b4.htm">How to: Create Parameterized Views</a></span>.</p>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/baabc928-bb0c-4546-999a-2ed55a9ea4a9.htm">How to: Set the Design Area for a Form</a></span><br /><span class="linkTerms"><a href="/html/5755b452-d4e8-40dd-8672-30546e2467be.htm">How to: Set Form Templates</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/35e6ce25-9da0-4754-90e2-f5c70aaa6d79.htm">Data Environment Designer</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/23c31bf8-0736-493d-9d21-3fd54abc309c.htm">Working with Forms</a></span><br /><span class="linkTerms"><a href="/html/adb21354-5dde-4f55-b92a-df0c53810385.htm">Creating Forms</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Create Forms with Local and Remote Data">
+</OBJECT>

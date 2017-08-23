@@ -1,0 +1,203 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>CALCULATE Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">CALCULATE Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Performs financial and statistical operations on fields in a table or on expressions involving fields.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+CALCULATE <span class="parameter">eExpressionList</span> [<span class="parameter">Scope</span>] [FOR <span class="parameter">lExpression1</span>] [WHILE <span class="parameter">lExpression2</span>]
+   [TO <span class="parameter">VarList</span> | TO ARRAY <span class="parameter">ArrayName</span>] [NOOPTIMIZE] 
+   [IN <span class="parameter">nWorkArea</span> | <span class="parameter">cTableAlias</span>]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">eExpressionList</span>
+        </span></dt><dd>
+          <p>Specifies the expressions that can contain any combination of the following functions:</p>
+          <p>AVG(<span class="parameter">nExpression</span>)   </p>
+          <p>CNT( ) or COUNT( )   </p>
+          <p>MAX(<span class="parameter">eExpression</span>)   </p>
+          <p>MIN(<span class="parameter">eExpression</span>)   </p>
+          <p>NPV(<span class="parameter">nExpression1</span>, <span class="parameter">nExpression2</span> [, <span class="parameter">nExpression3</span>])   </p>
+          <p>STD(<span class="parameter">nExpression</span>)   </p>
+          <p>SUM(<span class="parameter">nExpression</span>)   </p>
+          <p>VAR(<span class="parameter">nExpression</span>)   </p>
+          <p>Functions in the expression list <span class="parameter">eExpressionList</span> are separated by commas. These functions are specific to CALCULATE and are described in detail later in this section. They should not be confused with similarly named independent functions. For example, CALCULATE MIN( ) is not the same as MIN( ). </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">Scope</span>
+        </span></dt><dd>
+          <p>Specifies a range of records used in the calculation. Only the records that fall within the range of records are included in the calculation. The scope clauses are: ALL, NEXT <span class="parameter">nRecords</span>, RECORD <span class="parameter">nRecordNumber</span>, and REST. For more information, see <span class="linkTerms"><a href="/html/c8d51e13-0119-4fc5-a0df-b6a9ab7997bb.htm">Scope Clauses</a></span>. Commands that include <span class="parameter">Scope</span> operate only on the table in the active work area.</p>
+          <p>The default scope for CALCULATE is ALL records. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FOR <span class="parameter">lExpression1</span></span></dt><dd>
+          <p>Specifies that only the records that satisfy the logical condition <span class="parameter">lExpression1</span> are included in the calculation. Including a FOR clause conditionally includes records in the calculation, filtering out undesired records.</p>
+          <p>Rushmore Query Optimization optimizes a CALCULATE ... FOR query if <span class="parameter">lExpression1</span> is an optimizable expression. For best performance, use an optimizable expression in the FOR clause. For information on Rushmore optimizable expressions, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WHILE <span class="parameter">lExpression2</span></span></dt><dd>
+          <p>Specifies a condition whereby records are included in the calculation as long as the logical expression <span class="parameter">lExpression2</span> evaluates to true (.T.).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TO <span class="parameter">VarList</span></span></dt><dd>
+          <p>Specifies one or more variables to which the results of the calculation are stored. If a variable you specify does not exist, Visual FoxPro automatically creates the variable with the name you specify.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TO ARRAY <span class="parameter">ArrayName</span></span></dt><dd>
+          <p>Specifies an array name to which the results of the calculation can be stored. If the array name you specify does not exist, Visual FoxPro automatically creates an array with the name you specify. If the array exists and is not large enough to contain all the results of the calculation, Visual FoxPro automatically increases the size of the array to accommodate the information. If an existing array is larger than necessary, additional elements are left unchanged. Results are stored to the array elements in the order they are specified in the CALCULATE command.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOOPTIMIZE </span></dt><dd>
+          <p>Disables Rushmore optimization of CALCULATE. For more information, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">AVG( <span class="parameter">nExpression</span>) </span></dt><dd>
+          <p>Computes the arithmetic mean of <span class="parameter">nExpression</span>. Only records meeting the <span class="parameter">Scope</span> and/or optional FOR or WHILE conditions are included in the result.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CNT( ) or COUNT( ) </span></dt><dd>
+          <p>Returns the number of records in the table. Only records meeting the <span class="parameter">Scope</span> and/or optional FOR or WHILE conditions are included in the result.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MAX( <span class="parameter">eExpression</span>) </span></dt><dd>
+          <p>Returns the highest or latest value of <span class="parameter">eExpression</span>. Within the MAX( ) clause, you can specify any character, date, datetime, numeric, float, integer, double, or currency field, or any expression using fields of these types. Only records meeting the <span class="parameter">Scope</span> and/or optional FOR or WHILE conditions are included in the result.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MIN( <span class="parameter">eExpression</span>) </span></dt><dd>
+          <p>Returns the lowest or earliest value of <span class="parameter">eExpression</span>. Any character, date, datetime, numeric, float, integer, double, or currency field, or any valid expression using fields of these types, can be included in <span class="parameter">eExpression</span>. Only records meeting the <span class="parameter">Scope</span> and/or optional FOR or WHILE conditions are included in the result.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NPV( <span class="parameter">nExpression1</span>, <span class="parameter">nExpression2</span>[, <span class="parameter">nExpression3</span>]) </span></dt><dd>
+          <p>Computes the net present value of a series of future cash flows discounted at a constant periodic interest rate.</p>
+          <p>
+            <span class="parameter">nExpression1</span> specifies the interest rate expressed as a decimal value.   </p>
+          <p>
+            <span class="parameter">nExpression2</span> specifies a field, field expression, or a numeric expression representing a series of cash flows. Each cash flow can be either positive or negative. In cases where <span class="parameter">nExpression2</span> is a field, the value for each record in the field is considered a cash flow.   </p>
+          <p>
+            <span class="parameter">nExpression3</span> specifies an optional initial investment. If the initial investment is not included, then the initial investment is assumed to occur at the end of the first period. This initial investment is the first record in the field and is negative to represent a cash outflow.   </p>
+          <p>Only records meeting the <span class="parameter">Scope</span> and/or optional FOR or WHILE conditions are included in the result. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">STD( <span class="parameter">nExpression</span>) </span></dt><dd>
+          <p>Computes the standard deviation of <span class="parameter">nExpression</span>. The standard deviation measures the degree to which the values of fields or expressions involving fields differ from the average of all the values. The smaller the standard deviation, the less the values vary from the average. Only records meeting the <span class="parameter">Scope</span> and/or optional FOR or WHILE conditions are included in the result.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SUM( <span class="parameter">nExpression</span>) </span></dt><dd>
+          <p>Totals the values of <span class="parameter">nExpression</span>. Only records meeting the <span class="parameter">Scope</span> and/or optional FOR or WHILE conditions are included in the result.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">VAR( <span class="parameter">nExpression</span>) </span></dt><dd>
+          <p>Computes the variance from the average of <span class="parameter">nExpression</span>. The variance is the standard deviation squared. The smaller the variance, the less the values vary from the average. Only records meeting the <span class="parameter">Scope</span> and/or optional FOR or WHILE conditions are included in the result.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN <span class="parameter">nWorkArea</span>| <span class="parameter">cTableAlias</span></span></dt><dd>
+          <p>Specifies the workarea or table alias affected by the CALCULATE command. Use this clause to specify a workarea or a table outside the current work area.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Records containing the null value are not included in the operations that CALCULATE performs.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE orders  &amp;&amp; Open Orders table
+SET TALK ON
+CLEAR
+CALCULATE AVG(order_amt), MIN(order_amt), MAX(order_amt)
+CALCULATE STD(order_amt), VAR(order_amt) TO gnStd, gnVar</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/29757d6c-b9ba-4e23-a040-47f5c68216a5.htm">AVERAGE Command</a></span><br /><span class="linkTerms"><a href="/html/f945ce5c-ffd1-4fc2-af1c-f45df2f501e7.htm">COUNT Command</a></span><br /><span class="linkTerms"><a href="/html/17270153-1977-40bc-9f17-ab0132b20e90.htm">DIMENSION Command</a></span><br /><span class="linkTerms"><a href="/html/c54b8649-9b26-4915-bee8-5fa0e7980746.htm">FV( ) Function</a></span><br /><span class="linkTerms"><a href="/html/beb3b4e1-1953-49c9-9302-bed3d1251d9a.htm">MAX( ) Function</a></span><br /><span class="linkTerms"><a href="/html/e8b6141a-899d-4d11-9ccb-30868c64a3b1.htm">MIN( ) Function</a></span><br /><span class="linkTerms"><a href="/html/253e9cb8-2f8a-4c7b-b010-20b9bedffd22.htm">PAYMENT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/4fc400fe-adaf-4204-a371-eddb04eca8c3.htm">PV( ) Function</a></span><br /><span class="linkTerms"><a href="/html/43ec1243-8e69-4a88-b89e-752207d91947.htm">SUM Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="CALCULATE Command">
+<param name="ALink Name" value="CALCULATE">
+</OBJECT>

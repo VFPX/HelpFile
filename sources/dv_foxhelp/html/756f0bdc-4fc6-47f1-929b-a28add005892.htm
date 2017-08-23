@@ -1,0 +1,122 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Application Creation with Accuracy and Data Integrity</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Application Creation with Accuracy and Data Integrity</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can combine the power of Visual FoxPro data validation rules and stored procedures with the data source's data validation rules and stored procedures to build client/server applications that protect data integrity.</p>
+  <h1 class="heading">Maintaining Data Integrity</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can create local versions of remote server validation rules to provide friendly messages to the user; for example, provide messages about updates that would not be allowed when sent to the remote server because the data entered had violated some server relational integrity or data validation rule.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Using Visual FoxPro Rules on a Remote or Offline View</h3><div class="subSection" xmlns="">
+          <p>You can create field- and record-level rules on remote and offline views to validate data entered locally before the data is sent to the remote data source. Because the purpose of these view rules is to prevent sending data to the data source that will be rejected by the server's data integrity rules, you want to replicate the data source's rules in the rules you create for your remote view. You use the <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> function to create rules for views.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>You can create a local validation rule on a remote view that calls a stored procedure on a remote server and sends the value you want to validate to the server as a parameter. However, using a stored procedure on a remote adds to processing time during data entry.</p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Using Server Rules</h3><div class="subSection" xmlns="">
+          <p>You can choose to rely on the rules established on the server for data validation. If an error occurs, your error handling routine can call the <a href="/html/cf8d9a30-f8dc-4181-bebd-1181c3554308.htm">AERROR( )</a> function to obtain information, including the error message number, the text of the remote error message, and the connection handle associated with the error.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Using Server Triggers</h3><div class="subSection" xmlns="">
+          <p>Though you can create Visual FoxPro triggers on local tables, you can't create them on views. You can, however, use triggers on the remote data source. Server triggers can be used to process secondary data updates, such as cascading updates or deletes. Using server triggers to process secondary updates is more efficient than sending multiple commands to the remote server from your Visual FoxPro application.</p>
+        </div>
+    </sections></div><h1 class="heading">Protecting Against Data Loss</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Both Visual FoxPro and most remote data sources provide transaction-logging capabilities to protect against data loss. For more information, see <a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a>.</p>
+      <p>You can use Visual FoxPro transactions for local prototypes and for processing local data. Use server transactions for remote data updates, inserts, and deletes. For more information, see <a href="/html/ea88b84a-e912-4f11-b6d0-b8ab7f38052a.htm">Optimizing Client/Server Performance</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/e1386aa7-a4c6-4cf0-a2b4-d401d2dbfbaa.htm">Rapid Application Development</a></span><br /><span class="linkTerms"><a href="/html/15da0b53-4063-4b42-a51e-3433dec7e62d.htm">Selecting the Right Methods</a></span><br /><span class="linkTerms"><a href="/html/18ecc89e-698e-4e1a-bfc2-04a19a99d2a5.htm">Data Location on the Optimal Platform</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/a37e7f36-02a2-491a-a64d-705244d0cb97.htm">Application Architecture</a></span><br /><span class="linkTerms"><a href="/html/7a4c60ae-5309-4014-87ec-08ce277eede4.htm">Planning Client/Server Applications</a></span><br /><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Application Creation with Accuracy and Data Integrity">
+</OBJECT>

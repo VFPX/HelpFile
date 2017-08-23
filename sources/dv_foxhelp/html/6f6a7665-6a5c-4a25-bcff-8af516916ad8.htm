@@ -1,0 +1,139 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>VFP9T.DLL Run-Time Library</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">VFP9T.DLL Run-Time Library</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The multithreaded Visual FoxPro run-time library, VFP9T.dll, helps eliminate the blocking issues associated with the Visual FoxPro run-time library, VFP9R.dll. With the multithreaded Visual FoxPro run-time library, you can deploy in-process servers without blocking of code execution. This run-time library is located in the ..\Program Files\Common Files\Microsoft Shared\VFP directory.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Because the multithreaded Visual FoxPro run-time library is a lightweight run-time library designed only for in-process servers, many commands and functions related to visual and user input features have been disabled. </p>
+      <p>Because no blocking occurs in the multithreaded Visual FoxPro run-time library, an object executing an unusually long procedure, such as printing out a report, won't prevent other objects from executing quick rapid routines. For example, with the Visual FoxPro run-time library, an object that executes a 1 second database query routine may have to wait 15 minutes for an object printing a long, complex report. If you build with the multithreaded Visual FoxPro run-time library, you won't have the same bottleneck. </p>
+      <p>In addition to addressing blocking issues, implementing Apartment-model threading in the multithreaded Visual FoxPro run-time library also eliminates conflicts in accessing global data from multiple threads by giving each apartment its own copy of global data. The multithreaded Visual FoxPro run-time library uses thread local storage to give each class instance its own set of data. This means that a variable you declare PUBLIC is global only to the thread; each thread has an instance of the variable. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Read/write properties of the Application object such as AutoYield are global to the project.</p>
+      </td></tr></table></div>
+      <p>Visual FoxPro makes it possible for the same multithreaded Visual FoxPro run-time library to be deployed with multiple, concurrently called in-process .dll automation servers whether they are in same process/thread or not. The original Visual FoxPro run-time library creates a renamed copy of the library for each in-process .dll server running in the same process.</p>
+      <p>Visual FoxPro offers a Session Class, which you should use for OLEPUBLIC server classes. As with forms, the DataSession property makes it possible for you to create a private data session for your object upon instantiation. The advantage of the Session class is that it uses much less memory than a form. The multithreaded Visual FoxPro run-time library automatically protects globals and user data through thread local storage, but this only applies between apartments (threads). Objects on the same thread instantiated from the same .dll are able to access each other's data. The Session class aids in data protection within the thread.</p>
+      <p>Since the multithreaded Visual FoxPro run-time library is designed for use only with in-process servers, it has been scaled down in size. Many user interface commands and functions have been eliminated including older FoxPro 2.x READ and @...Get/Say support. In addition, some of the designers such as Table Designer and Report Designer, which exist in the main Visual FoxPro run-time library, have also been removed. The multithreaded Visual FoxPro run-time library still supports visual classes such as forms. </p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/b15cf6c1-12ff-4c34-92c9-9b65d508025d.htm">VFP9R.DLL Run-Time Library</a></span><br /><span class="linkTerms"><a href="/html/bbfb45cd-34ee-4040-a861-ae5a340db003.htm">Visual FoxPro Run-Time Libraries</a></span><br /><span class="linkTerms"><a href="/html/8d75ba95-f669-4091-9f80-8368ded51b29.htm">Selecting Process Types</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/8c6a3e61-311d-48bd-a6cf-628e3f37f193.htm">Server Design Considerations and Limitations</a></span><br /><span class="linkTerms"><a href="/html/2d8cb3e1-df20-4304-8326-d3d469002652.htm">Interoperability and the Internet</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="VFP9T.DLL Run-Time Library">
+</OBJECT>

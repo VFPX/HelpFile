@@ -1,0 +1,209 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Environment Manager Task Pane</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Environment Manager Task Pane</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The Environment Manager is a tool you can use to manage and organize environment settings for reusable development needs such as at a specific client or project level. For example, you might have multiple projects for a specific client that all use the same form template (e.g., one with the client's logo) and environment settings (e.g., data paths). The Environment Manager lets you create environment sets which are packages of settings you can apply at any time. These settings include <a href="/html/1334aa6b-38e0-4fcd-a174-3c4f5c964155.htm">SET commands</a>, <a href="/html/5755b452-d4e8-40dd-8672-30546e2467be.htm">Form and Formset templates</a>, and <a href="/html/d6eb451b-e277-401c-bb8f-5669acf4ddc8.htm">Field class mappings</a>.</p>
+    <p>To access the Environment Manager Task Pane, select <b>Task Pane</b> from the <b>Tools</b> menu to bring up the <b>Task Pane Manager</b>. Choose the Environment Manager Task Pane from the Task Panes drop-down list box at the top.</p>
+    <p>The Environment Manager Task Pane itself is simply a shell with a link that opens the actual Environment Manager tool. To open the tool, simply click on the <b>Manage Environment</b> link. This Task Pane also lists available Environment Sets and their associated projects. When you select a project, the Environment Set will be applied before the project opens.</p>
+    <p>The Environment Manager tool is also a stand-alone application and can be run outside of the <b>Task Pane Manager</b>. To run the Environment Manager as a separate application, execute the following command from the Command window.</p>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO HOME() + ENVMGR.APP</pre></td></tr></table></span></div>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>The Environment Manager stores its Environment Sets in a table named Envmgr.dbf, which is stored in your user data directory (see <a href="/html/7266f399-d690-4dbb-82e8-9fa1429b013e.htm">HOME(7)</a>).</p>
+    </td></tr></table></div>
+  <h1 class="heading">Working with Environment Sets</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can manage and apply your Environment Sets as follows:</p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Environment Set List</b>
+        </span></dt><dd>
+          <p>Lists all the Environment Sets available for use. </p>
+          <p>When you launch the Environment Manager, your current settings are displayed in a reserved set named <b>&lt;current&gt;</b>. This is used when you click <b>New</b> to create a new set. </p>
+          <p>The <b>&lt;default field mapping&gt;</b> set is another reserved set that is used to store your original Field Mapping settings stored in the <b>Options</b> dialog box. If you have applied an Environment Set with custom mappings, you can later reset to your defaults by selecting this reserved set and clicking the <b>Set</b> button.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>New</b>
+        </span></dt><dd>
+          <p>Creates a new Environment Set. Once your new set appears in the list, you should rename it.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Copy</b>
+        </span></dt><dd>
+          <p>Creates a new Environment Set based on the one selected in the Environment Set List.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Remove</b>
+        </span></dt><dd>
+          <p>Deletes the selected Environment Set.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Set</b>
+        </span></dt><dd>
+          <p>Applies the settings defined in your Environment Set to current Visual FoxPro environment.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Name</b>
+        </span></dt><dd>
+          <p>Lets you specify a friendly name for your Environment Set.</p>
+        </dd></dl>
+    </div><h1 class="heading">Default Directory/Path</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The Default Directory/Path page lets you specify settings for your Environment Set that relate to file locations.</p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Default Directory</b>
+        </span></dt><dd>
+          <p>Specifies the default directory to use when the Environment Set is applied. This is equivalent to using the <span class="linkTerms"><a href="/html/1580eb95-e52b-49e7-9cd2-a48e8a71011c.htm">CD | CHDIR Command</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Path</b>
+        </span></dt><dd>
+          <p>Specifies a list of search paths to use when the Environment Set is set. This is equivalent to using the <span class="linkTerms"><a href="/html/047f2e74-3552-43b7-a18d-ee2c7dd2db6e.htm">SET PATH Command</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Directory</b>
+        </span></dt><dd>
+          <p>Lets you change the path selected in the Path list.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Add Path</b>
+        </span></dt><dd>
+          <p>Adds a new path to the Path list.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Copy</b>
+        </span></dt><dd>
+          <p>Adds a new path to the Path list based on the selected one.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Remove</b>
+        </span></dt><dd>
+          <p>Removes the selected path from the Path list.</p>
+        </dd></dl>
+    </div><h1 class="heading">Environment Settings</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The Default Directory/Path page lets you specify settings for your Environment Set that relate to file locations.</p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Setting table</b>
+        </span></dt><dd>
+          <p>Lets you specify values for common SET commands you want applied when the Environment Set is set.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>You can add additional items that appear in this table by editing Envmgr.dbf, which is stored in your user data directory (see <a href="/html/7266f399-d690-4dbb-82e8-9fa1429b013e.htm">HOME(7)</a>).</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Resource file</b>
+        </span></dt><dd>
+          <p>Specifies the resource file to use when the Environment Set is set. This is equivalent to using the <span class="linkTerms"><a href="/html/f72d6803-87f3-489e-bd9b-77614651fcd3.htm">SET RESOURCE Command</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Run script before environment is set</b>
+        </span></dt><dd>
+          <p>A script of Visual FoxPro commands that is executed prior to the settings in Environment Set being applied.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Run script after environment is set and project is loaded</b>
+        </span></dt><dd>
+          <p>A script of Visual FoxPro commands that is executed after the Environment Set is applied.</p>
+        </dd></dl>
+    </div><h1 class="heading">Field Mapping</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>The Field Mapping page lets you specify settings for your Environment Set that relate to control classes used for mapping fields when you drag and drop a field from the <b>Data Environment</b> or <b>Database Designer</b> to a form or container. For more information, see <span class="linkTerms"><a href="/html/e2823379-acf1-468d-ae03-e2da7d33a5cc.htm">Field Mapping Tab, Options Dialog Box</a></span> and <span class="linkTerms"><a href="/html/d6eb451b-e277-401c-bb8f-5669acf4ddc8.htm">How to: Create Controls by Dragging and Dropping Fields or Tables</a></span>. You can restore your original Field Mapping settings by selecting <b>&lt;default field mapping&gt;</b> and clicking the <b>Set</b> button.</p>
+    </div><h1 class="heading">Forms</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>The Forms page lets you specify settings for your Environment Set that relate to form and formset templates that are used when creating a new form or formset. For more information, see <span class="linkTerms"><a href="/html/c08c05e1-8570-457e-aa13-342da4c470fb.htm">Forms Tab, Options Dialog Box</a></span>.</p>
+    </div><h1 class="heading">Associated Projects</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>The Associated Projects page lets you specify projects in which the Environment Set is applied when the project is opened from the Environment Manager Task Pane. The Task Pane lists all of your custom Environment Sets along with their associated projects.</p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Projects table</b>
+        </span></dt><dd>
+          <p>Lists projects associated with the selected Environment Set.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Add</b>
+        </span></dt><dd>
+          <p>Adds a project to the set.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Remove</b>
+        </span></dt><dd>
+          <p>Removes a project from the set.</p>
+        </dd></dl>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/1f25f5d2-f67a-4a67-adeb-68d72300a31e.htm">Task Pane Manager</a></span><br /><span class="linkTerms"><a href="/html/1334aa6b-38e0-4fcd-a174-3c4f5c964155.htm">SET Command Overview</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Environment Manager Task Pane">
+<param name="Alink Name" value="vfp.1231202">
+</OBJECT>

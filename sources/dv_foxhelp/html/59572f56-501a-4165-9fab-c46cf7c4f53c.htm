@@ -1,0 +1,257 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Customize the Open Dialog Box Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Customize the Open Dialog Box Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File:</b> ...\Samples\Solution\OLE\Commdlog.scx</p>
+    <p>This sample demonstrates how you can customize the appearance and behavior of the Open dialog box as exposed through the Common Dialog control.</p>
+    <p>To specify the behavior of the Open dialog box, you can set the Flags property of the Common Dialog control to the sum of specific flag values. The following table lists the possible individual values you can use.</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Value
+          </th>
+          <th>
+            Description
+          </th>
+        </tr><tr>
+        <td>
+          <p>1</p>
+        </td>
+        <td>
+          <p>Causes the <b>read-only</b> check box to be initially checked when the dialog box is created. This flag also indicates the state of the <b>read-only</b> check box when the dialog box is closed.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>2</p>
+        </td>
+        <td>
+          <p>Causes the <b>Save As</b> dialog box to generate a message box if the selected file already exists. The user must confirm whether to overwrite the file.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>4</p>
+        </td>
+        <td>
+          <p>Hides the <b>read-only</b> check box.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>8</p>
+        </td>
+        <td>
+          <p>Forces the dialog box to set the current directory to what it was when the dialog box was opened.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>16</p>
+        </td>
+        <td>
+          <p>Causes the dialog box to display the Help button. </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>256</p>
+        </td>
+        <td>
+          <p>Specifies that the common dialog box makes it possible for invalid characters in the returned file name.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>512</p>
+        </td>
+        <td>
+          <p>Specifies that the <b>File Name</b> list box makes it possible for multiple selections. The user can select more than one file at run time by pressing the SHIFT key and using the UP ARROW and DOWN ARROW keys to select the desired files. When this is done, the File Name property returns a string containing the names of all selected files. The names in the string are delimited by spaces.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>1024</p>
+        </td>
+        <td>
+          <p>Indicates that the extension of the returned file name is different from the extension specified by the DefaultExt property. This flag isn't set if the DefaultExt property is Null, if the extensions match, or if the file has no extension. This flag value can be checked upon closing the dialog box.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>2048</p>
+        </td>
+        <td>
+          <p>Specifies that the user can enter only valid paths. If this flag is set and the user enters an invalid path, a warning message is displayed.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>4096</p>
+        </td>
+        <td>
+          <p>Specifies that the user can enter only names of existing files in the File Name text box. If this flag is set and the user enters an invalid file name, a warning is displayed. This flag automatically sets the <b>2048</b> flag.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>8192</p>
+        </td>
+        <td>
+          <p>Specifies that the dialog box prompts the user to create a file that doesn't currently exist. This flag automatically sets the <b>4096</b> and <b>2048</b> flags.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>16384</p>
+        </td>
+        <td>
+          <p>Specifies that sharing violation errors will be ignored.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>32768</p>
+        </td>
+        <td>
+          <p>Specifies using the Windows Explorer <b>Open A File</b> dialog box template.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>524288</p>
+        </td>
+        <td>
+          <p>Use the Explorer <b>Open A File</b> dialog box template.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>1048576</p>
+        </td>
+        <td>
+          <p>Do not dereference shell links (also known as shortcuts). By default, choosing a shell link causes it to be dereferenced by the shell.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>1048576</p>
+        </td>
+        <td>
+          <p>Do not dereference shortcuts (shell links). By default, choosing a shortcut causes it to be dereferenced by the shell.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>2097152</p>
+        </td>
+        <td>
+          <p>Makes it possible for the user to use long file names.</p>
+        </td>
+      </tr></table></div>
+    <p>The following code in the <b>Click</b> event of cmdFiles checks the values of the various check boxes on the form and sets the Flags property of the Common Dialog control.</p>
+  <h1 class="heading">Set the Read-only Check Box Flag</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF !thisform.chkRead.Value
+   m.nFlags = m.nFlags + 4
+ENDIF</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Set the Multiple Files Flag</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF thisform.chkMulti.Value
+   m.nFlags = m.nFlags + 512
+ENDIF</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Set the Help Button Flag</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF thisform.chkHelp.Value
+   m.nFlags = m.nFlags + 16
+ENDIF</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Set the Enforce File Existence Flag</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF thisform.chkMulti.Value
+   m.nFlags = m.nFlags + 4096
+ENDIF</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Set the Flags Property of the Common Dialog Control</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.oleCommDlog.Flags = m.nFlags</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Set the Filter Property of the Common Dialog Control</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>You can use the Filter property of the Common Dialog control to specify what files a user is allowed to choose. </p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.oleCommDlog.Filter = "All files" + ;
+   "(*.*)|*.*|Text (*.txt)|*.txt" + ;
+   "|Pictures(*.bmp;*.ico)|*.bmp;*.ico"</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/348fec52-e48a-489f-86fb-0b0ac888ba69.htm">Solution Samples</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/d6ccbddd-bf6c-4e56-9455-f4be6f57a201.htm">ActiveX Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Customize the Open Dialog Box Sample">
+<param name="Alink Name" value="vfp.1231583">
+</OBJECT>

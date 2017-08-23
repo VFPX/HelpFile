@@ -1,0 +1,139 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Object Reference Creation</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Object Reference Creation</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Instead of making a copy of an object, you can create a reference to the object. A reference takes less memory than an additional object, can easily be passed between procedures, and can aid in writing generic code.</p>
+  <h1 class="heading">Returning a Reference to an Object</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Sometimes, you might want to manipulate an object by means of one or more references to the object. For example, the following program defines a class, creates an object based on the class, and returns a reference to the object:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*--NEWINV.PRG
+*--Returns a reference to a new invoice form.
+frmInv = CREATEOBJECT("InvoiceForm")
+RETURN frmInv
+ 
+DEFINE CLASS InvoiceForm AS FORM
+   ADD OBJECT txtCompany AS TEXTBOX
+   * code to set properties, add other objects, and so on
+ENDDEFINE</pre></td></tr></table></span></div>
+      <p>The following program establishes a reference to the object created in Newinv.prg. The reference variable can be manipulated in exactly the same way as the object variable can:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frmInvoice = NewInv() &amp;&amp; store the object reference to a variable
+frmInvoice.SHOW</pre></td></tr></table></span></div>
+      <p>You can also create a reference to an object on a form, as in the following example:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>txtCustName = frmInvoice.txtCompany
+txtCustName.Value = "Fox User"</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>Once you've created an object, you can use the DISPLAY OBJECTS command to display the object's class hierarchy, property settings, contained objects, and available methods and events. You can fill an array with the properties (not the property settings), events, methods, and contained objects of an object with the AMEMBERS() function.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Releasing Objects and References from Memory</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>If a reference to an object exists, releasing the object does not clear the object from memory. For example, the following command releases <code>frmInvoice</code>, the original object:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>RELEASE frmInvoice</pre></td></tr></table></span></div>
+      <p>However, because a reference to an object belonging to <code>frmInvoice</code> still exists, the object is not released from memory until <code>txtCustName</code> is released with the following command:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>RELEASE txtCustName</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Checking to See if an Object Exists</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can use the TYPE( ), ISNULL( ), and VARTYPE( ) functions to determine if an object exists. For example, the following lines of code check to see whether an object named <code>oConnection</code> exists:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF TYPE("oConnection") = "O" AND NOT ISNULL(oConnection)
+   * Object exists
+ELSE
+   * Object does not exist
+ENDIF</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>ISNULL() is necessary because .NULL. is stored to the form object variable when a user closes a form, but the type of the variable remains "O".</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/b2836c9a-fc0b-4915-a6b7-3dc1a0cee1c5.htm">Object and Member Arrays</a></span><br /><span class="linkTerms"><a href="/html/c14a3aa9-633f-42c6-be59-a8639add7f13.htm">DISPLAY OBJECTS Command</a></span><br /><span class="linkTerms"><a href="/html/c14e9ae4-cabe-4cbb-a803-753d492e8128.htm">AMEMBERS( ) Function</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/2509e004-ed1a-4e07-801a-30fe35abba10.htm">Defining a Grid Control</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/925ef3b8-48dc-4ea1-9112-a7afc2d9161e.htm">Object-Oriented Programming</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Object Reference Creation">
+</OBJECT>

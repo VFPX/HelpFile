@@ -1,0 +1,180 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Access XML Web Services</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Access XML Web Services</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Support for XML Web services in Visual FoxPro provided by the Microsoft SOAP Toolkit make it possible for you to access XML Web services from the Web. The extensions provided by the SOAP Toolkit 3.0 provide access to XML Web services using the Toolkit's SoapClient object. This high-level late-binding access architecture makes it possible for you to call an XML Web service method directly using only a few lines of simple object code. </p>
+    <p>The <b>WSHandler</b> foundation class, which is included with the _WS3Client.vcx class library in the ...\Ffc folder, is the XML Web service class used for all Visual FoxPro XML Web service calls.</p>
+  <h1 class="heading">Registering XML Web Services</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Before using an XML Web service in your application, you must register it in Visual FoxPro. You can then select the XML Web service in the Visual FoxPro Toolbox and use operation or method calls from that XML Web service to return results. When calling the XML Web service, you can set the results to a property of a specified control, such as the <b>TextBox</b> <b>Value</b> property.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>You do not have to register an XML Web service to access it; however, registering an XML Web service makes it possible for Visual FoxPro to provide IntelliSense for the XML Web service methods and their parameters.</p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To register an XML Web service</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Tools</b> menu, click <b>Task Pane</b>.</p>
+            
+          </li><li>
+            
+              <p>On the Task Pane Manager toolbar, click <b>More Panes</b>, and then click <b>XML Web Services</b>.</p>
+            
+          </li><li>
+            
+              <p>In the XML Web Services pane, click <b>Register an XML Web Service</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Visual FoxPro XML Web Services Registration</b> dialog box, type the Web Services Description Language (WSDL) URL for the XML Web service, and then click <b>Register</b>.</p>
+            
+          </li></ol></div>
+      <p>You also can open the <b>Visual FoxPro XML Web Services Registration</b> dialog box programmatically as shown in the following code: </p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO (_wizard) WITH "project",,"Web","IntelliSense"</pre></td></tr></table></span></div>
+      <p>For more information about the settings you need to configure, see <span class="linkTerms"><a href="/html/db0b5e63-a648-45e1-a7a6-28fcfe76aab4.htm">Visual FoxPro XML Web Services Registration Dialog Box</a></span>.</p>
+    </div><h1 class="heading">Calling XML Web Services</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>After you register an XML Web service in Visual FoxPro, you can call and bind the XML Web service to a control or object on a form You can then process results from the XML Web service in your application. You can call and bind XML Web services using the XML Web Service Builder or in code. The builder provides extensive binding capabilities without your having to write code. For more information, see <span class="linkTerms"><a href="/html/7035aaa4-1552-4ffa-b9f8-fd2ccb7a8e9c.htm">XML Web Service Builder</a></span>.</p>
+      <p>The following steps illustrate how to call the XML Web service in your program using code.</p>
+      <h3 class="procedureSubHeading">To call an XML Web service using code</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Tools</b> menu, click <b>Toolbox</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Toolbox</b>, click <b>My XML Web Services</b>.</p>
+            
+          </li><li>
+            
+              <p>Open an editing window to the location in your program or code where you want to call the XML Web service.</p>
+            
+          </li><li>
+            
+              <p>Drag and drop the XML Web service in the editing window.  </p>
+              <p>The code for the XML Web service appears in the editing window. </p>
+            
+          </li></ol></div>
+      <p>You can also type the characters, ws, in the editing window. The <b>Select</b> dialog box appears so that you can select an XML Web service and any additional options and insert code for the XML Web service in the editing window. For more information, see <span class="linkTerms"><a href="/html/085d5bb9-d703-4c9f-a020-f59e788b968c.htm">Select Dialog Box (Visual FoxPro)</a></span>.</p>
+      <p>You can use IntelliSense to see the available methods and parameters for the XML Web service. For example, IntelliSense displays a list of methods available for the XML Web service when you type the following line of code in the editing window:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? YourXMLWebService.</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Make sure to replace <span class="parameter">MyXMLWebService</span> with the XML Web service object provided in the code.</p>
+      </td></tr></table></div>
+      <p>You can select a method and continue typing as follows to specify parameters for the method:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? MyXMLWebService.WSMethod(</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Replace <span class="parameter">WSMethod</span> with the XML Web service method you select.</p>
+      </td></tr></table></div>
+      <p>IntelliSense displays the possible parameters and the return type for that method. </p>
+      <p>You can also port the code for the XML Web service to another computer that does not have the XML Web service registered. Visual FoxPro can detect that the XML Web service is not registered and prompts you to register it. If you do not want to register the XML Web service, you can remove the line that contains the WSDL reference, for example:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* __VFPWSDef__: lofoxtypes=http://mywebserver/foxws/foxtypes.wsdl</pre></td></tr></table></span></div>
+      <p>For more details about accessing XML Web services using high and low-level calls, see the SOAP Toolkit 3.0 documentation.</p>
+    </div><h1 class="heading">Binding XML Web Services to Controls</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can bind an XML Web service to a control or object on a Visual FoxPro form and assign the results of the XML Web service to properties of the control or object.</p>
+      <h3 class="procedureSubHeading">To bind an XML Web service to a control</h3><div class="subSection"><ol><li>
+            
+              <p>Create a new or open an existing form or class. </p>
+            
+          </li><li>
+            
+              <p>On the <b>Tools</b> menu, click <b>Toolbox</b>.</p>
+            
+          </li><li>
+            
+              <p>Under <b>My XML Web Services</b> in the <b>Toolbox</b>, drag and drop the <b>Generic Handler</b> control or the registered XML Web to a form or class. </p>
+              <p>The XML Web Service Builder appears so that you can bind the XML Web service to controls or objects on the form. If the builder does not appear, right-click the XML Web service control and select Builder. </p>
+            
+          </li></ol></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/7035aaa4-1552-4ffa-b9f8-fd2ccb7a8e9c.htm">XML Web Service Builder</a></span>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>It is recommended that you save a newly created form before dropping an XML Web service because the builder needs to access controls on the form using the container path.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/6629ab4c-3af6-4771-b8af-e147765fd69d.htm">Walkthrough: Creating XML Web Services with Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/aef117ce-3886-4aa1-8fad-468b0926ad03.htm">How to: Distribute XML Web Services</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/def33e21-a8ce-418e-9a0e-15688acfc830.htm">XML Web Services in Visual FoxPro</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Access XML Web Services">
+</OBJECT>

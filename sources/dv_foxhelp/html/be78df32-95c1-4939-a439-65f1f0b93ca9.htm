@@ -1,0 +1,242 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>EXPORT Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">EXPORT Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Copies data from a Visual FoxPro table to a file in a different format.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+EXPORT TO <span class="parameter">FileName</span> [TYPE] 
+   DIF | MOD | SYLK | WK1 | WKS | WR1 | WRK | XLS | XL5 
+   [FIELDS <span class="parameter">FieldList</span>] [<span class="parameter">Scope</span>] [FOR <span class="parameter">lExpression1</span>] [WHILE <span class="parameter">lExpression2</span>]
+   [NOOPTIMIZE] [AS <span class="parameter">nCodePage</span>]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">FileName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the file to which Visual FoxPro exports data. If you do not include an extension with the file name, the default extension for the specified file type is assigned.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TYPE </span></dt><dd>
+          <p>Specifies the type of file to be created. The TYPE keyword is optional, but you must specify one of the following file types.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  File type
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>DIF</p>
+              </td>
+              <td>
+                <p>Each field from a Visual FoxPro table becomes a vector (column) and each record becomes a tuple (row) in a DIF (Data Interchange Format) file, used by VisiCalc. The new file name is assigned a .DIF extension if an extension isn't included in <span class="parameter">FileName</span>.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>MOD</p>
+              </td>
+              <td>
+                <p>Use the MOD clause to export to a file in Microsoft Multiplan version 4.01 MOD format. The new file name is assigned a .MOD extension if you don't include an extension in <span class="parameter">FileName</span>.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SYLK</p>
+              </td>
+              <td>
+                <p>A Symbolic Link interchange format (used by Microsoft Multiplan) in which each field from a Visual FoxPro table becomes a column in the spreadsheet and each record becomes a row. By default, SYLK file names have no extension.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>WK1</p>
+              </td>
+              <td>
+                <p>Include this option to create a Lotus 1-2-3 spreadsheet from a Visual FoxPro table. A .WK1 extension is assigned to the spreadsheet file name for use with Lotus 1-2-3 revision 2.x. Each field from the table becomes a column in the new spreadsheet, and each record in the table becomes a spreadsheet row.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>WKS</p>
+              </td>
+              <td>
+                <p>Include this option to create a Lotus 1-2-3 spreadsheet from a Visual FoxPro table. A .WKS extension is assigned to the spreadsheet file name for use with Lotus 1-2-3 revision 1-A. Each field from the table becomes a column in the new spreadsheet, and each record becomes a row in the spreadsheet.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>WR1</p>
+              </td>
+              <td>
+                <p>Include this option to create a Lotus Symphony spreadsheet from a Visual FoxPro table. A .WR1 extension is assigned to the spreadsheet for use with Symphony version 1.01. Each field from the table becomes a column in the new spreadsheet, and each record in the table becomes a row in the spreadsheet.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>WRK</p>
+              </td>
+              <td>
+                <p>Include this option to create a Lotus Symphony spreadsheet from a Visual FoxPro table. A .WRK extension is assigned to the spreadsheet file name for use with Symphony version 1.10. Each field from the table becomes a column in the new spreadsheet, and each record in the table becomes a row in the spreadsheet.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>XLS</p>
+              </td>
+              <td>
+                <p>Include this option to create a Microsoft Excel worksheet from a Visual FoxPro table. Each field in the selected table becomes a column in the worksheet, and each table record becomes a row. An .xls file name extension is assigned to the newly created worksheet file unless you specify a different extension. You can export a maximum of 65,535 rows, which includes one row reserved for the field header.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>XL5</p>
+              </td>
+              <td>
+                <p>Include this option to create a Microsoft Excel version 5.0 worksheet file from a Visual FoxPro table. Each field from the currently selected table becomes a column in the spreadsheet and each record becomes a row. An .xls extension is assigned to the new worksheet if you do not include a file extension. You can export a maximum of 65,535 rows, which includes one row reserved for the field header.</p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS <span class="parameter">FieldList</span></span></dt><dd>
+          <p>Specifies which fields are copied to the new file. If you omit the FIELDS clause, all fields are copied to the new file. Memo and general fields are not copied to the new file even if their names are included in the field list.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">Scope</span>
+        </span></dt><dd>
+          <p>Specifies a range of records to copy to the new file. <span class="parameter">Scope</span> Specifies a range of records to copy to the new file. Only the records that fall within the range are copied to the new file. The scope clauses are: ALL, NEXT <span class="parameter">nRecords</span>, RECORD <span class="parameter">nRecordNumber</span>, and REST. </p>
+          <p>For more information on scope clauses, see the <span class="linkTerms"><a href="/html/c8d51e13-0119-4fc5-a0df-b6a9ab7997bb.htm">Scope Clauses</a></span> online topic. Commands that include <span class="parameter">Scope</span> operate only on the table in the active work area.   </p>
+          <p>The default scope for EXPORT is all records. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FOR <span class="parameter">lExpression1</span></span></dt><dd>
+          <p>Specifies that only records that satisfy the logical condition <span class="parameter">lExpression1</span> are copied to the new file. Using this argument makes it possible for you to filter out undesired records.</p>
+          <p>Rushmore Query Optimization optimizes an EXPORT ... FOR <span class="parameter">lExpression1</span> command if <span class="parameter">lExpression1</span> is an optimizable expression. For best performance, use an optimizable expression in the FOR clause.    </p>
+          <p>For more information, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WHILE <span class="parameter">lExpression2</span></span></dt><dd>
+          <p>Specifies a condition whereby records are copied to the new file for as long as the logical expression <span class="parameter">lExpression2</span> evaluates to true (.T.).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOOPTIMIZE </span></dt><dd>
+          <p>Disables Rushmore Query Optimization of EXPORT.</p>
+          <p>For more information, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">AS <span class="parameter">nCodePage</span></span></dt><dd>
+          <p>Specifies the code page for the file EXPORT creates. Visual FoxPro copies the contents of the currently selected table, and, as it copies the data, automatically converts the data to the code page you specify for the new file. If possible, Visual FoxPro marks the newly created file with the code page you specify.</p>
+          <p>If you specify a value for <span class="parameter">nCodePage</span> that is not supported, Visual FoxPro generates an error message. You can use GETCP( ) for <span class="parameter">nCodePage</span> to display the Code Page dialog box, making it possible for you to specify a code page for the file Visual FoxPro creates.   </p>
+          <p>If you omit AS <span class="parameter">nCodePage</span>, no code page conversion occurs. If possible, Visual FoxPro marks the newly created file with the code page of the table from which the data is copied.   </p>
+          <p>If <span class="parameter">nCodePage</span> is 0, no code page conversion occurs and the newly created file is not marked with a code page. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Use EXPORT to use Visual FoxPro data in other software packages.</p>
+      <p>If the table you are exporting from is indexed, the new file is created in the indexed order.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/c426861f-e5ef-44ae-96a6-8dbc7a4a2ad5.htm">APPEND FROM Command</a></span><br /><span class="linkTerms"><a href="/html/e5cc1f14-402f-43b7-8066-af695c60e183.htm">COPY TO Command</a></span><br /><span class="linkTerms"><a href="/html/7b4a0531-66e1-4df9-828e-8450a761a9db.htm">GETCP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/33f7a0ab-d6ea-499e-9531-fe9635ab6357.htm">IMPORT Command</a></span><br /><span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="EXPORT Command">
+<param name="ALink Name" value="EXPORT">
+</OBJECT>

@@ -1,0 +1,618 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Creating Table Navigation Buttons</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Creating Table Navigation Buttons</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>A common feature of many applications is a series of navigation buttons that allow users to move through a table. These typically include buttons to move the record pointer to the next or prior record in the table, as well as to the top or bottom record in the table.</p>
+  <h1 class="heading">Designing the Navigation Buttons</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Each of the buttons will have some characteristics and functionality in common, so it is a good idea to create a navigation button class. Then the individual buttons can easily derive this common appearance and functionality. This parent class is the <code>Navbutton</code> class defined later in this section.</p>
+      <p>Once the parent class is defined, the following subclasses define the functionality and appearance specific to each of the four navigation buttons: <code>navTop, navPrior, navNext, navBottom.</code></p>
+      <p>Finally, a container class, <code>vcr</code>, is created and each of the navigation buttons is added to the container class. The container can be added to a form or a toolbar to provide table navigation functionality.</p>
+    </div><h1 class="heading">NAVBUTTON Class Definition</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>To create <code>Navbutton</code>, save the following six class definitions (<code>Navbutton</code>, <code>navTop</code>, <code>navBottom</code>, <code>navPrior</code>, <code>navNext</code>, and <code>vcr</code>) to a program file such as Navclass.prg.</p>
+      <div class="labelheading"><b>Definition of the Generic Navigation Commandbutton Class</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>DEFINE CLASS Navbutton AS</code>
+            </p>
+            <p>
+              <code>COMMANDBUTTON</code>
+            </p>
+            <p>
+            </p>
+            <p>
+              <code>  Height = 25</code>
+            </p>
+            <p>
+              <code>  Width = 25</code>
+            </p>
+            <p>
+              <code>  TableAlias = ""</code>
+            </p>
+            <p>
+            </p>
+          </td>
+          <td>
+            <p>Define the parent class of the navigation buttons. Give the class some dimensions.</p>
+            <p>Include a custom property, <code>TableAlias</code>, to hold the name of the alias to navigate through.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>PROCEDURE Click</code>
+            </p>
+            <p>
+              <code>  IF NOT EMPTY(This.TableAlias)</code>
+            </p>
+            <p>
+              <code>   SELECT (This.TableAlias)</code>
+            </p>
+            <p>
+              <code>  ENDIF</code>
+            </p>
+            <p>
+              <code>ENDPROC</code>
+            </p>
+          </td>
+          <td>
+            <p>If <code>TableAlias</code> has been set, this parent class procedure selects the alias before the actual navigation code in the subclasses is executed. Otherwise, assume that the user wants to navigate through the table in the currently selected work area.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>PROCEDURE RefreshForm</code>
+            </p>
+            <p>
+              <code>  _SCREEN.ActiveForm.Refresh</code>
+            </p>
+            <p>
+              <code>ENDPROC</code>
+            </p>
+          </td>
+          <td>
+            <p>Using _SCREEN.ActiveForm.Refresh instead of THISFORM.Refresh allows you to add the class to a form or a toolbar and have it function equally well.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>ENDDEFINE</code>
+            </p>
+          </td>
+          <td>
+            <p>End the class definition.</p>
+          </td>
+        </tr></table></div>
+      <p>The specific navigation buttons are all based on the <code>Navbutton</code> class. The following code defines the Top button for the set of navigation buttons. The remaining three navigation buttons are defined in the following table. The four class definitions are similar, so only the first one has extensive comments.</p>
+      <div class="labelheading"><b>Definition of the Top Navigation Button Class</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>DEFINE CLASS navTop AS Navbutton</code>
+            </p>
+            <p>
+              <code>  Caption = "|&lt;"</code>
+            </p>
+          </td>
+          <td>
+            <p>Define the Top navigation button class and set the <a href="/html/066f6a98-132a-448b-9fae-c4f67cd9b75e.htm">Caption property</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>PROCEDURE Click</code>
+            </p>
+          </td>
+          <td>
+            <p>Create method code to be executed when the <a href="/html/514e4b37-03df-482c-9c9f-df2873f48aee.htm">Click event</a> for the control occurs.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>  DODEFAULT( )</code>
+            </p>
+            <p>
+            </p>
+            <p>
+            </p>
+            <p>
+            </p>
+            <p>
+              <code>  GO TOP</code>
+            </p>
+            <p>
+            </p>
+            <p>
+            </p>
+            <p>
+              <code>  THIS.RefreshForm</code>
+            </p>
+          </td>
+          <td>
+            <p>Call the Click event code in the parent class, <code>Navbutton</code>, so that the appropriate alias can be selected if the TableAlias property has been set. Include the code to set the record pointer to the first record in the table: GO TOP. Call the RefreshForm method in the parent class. It is not necessary to use the <a href="/html/060ee886-18bc-41dd-b12d-27fc7669b9b8.htm">scope resolution operator</a> (::) in this case because there is no method in the subclass with the same name as the method in the parent class. On the other hand, both the parent and the subclass have method code for the Click event.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>ENDPROC</code>
+            </p>
+          </td>
+          <td>
+            <p>End the Click procedure.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>ENDDEFINE</code>
+            </p>
+          </td>
+          <td>
+            <p>End the class definition.</p>
+          </td>
+        </tr></table></div>
+      <p>The other navigation buttons have similar class definitions.</p>
+      <div class="labelheading"><b>Definition of the Other Navigation Button Classes</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>DEFINE CLASS navNext AS Navbutton</code>
+            </p>
+            <p>
+              <code>  Caption = "&gt;"</code>
+            </p>
+          </td>
+          <td>
+            <p>Define the Next navigation button class and set the <a href="/html/066f6a98-132a-448b-9fae-c4f67cd9b75e.htm">Caption property</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>PROCEDURE Click</code>
+            </p>
+            <p>
+              <code>  DODEFAULT( )</code>
+            </p>
+            <p>
+              <code>  SKIP 1</code>
+            </p>
+            <p>
+              <code>  IF EOF( )</code>
+            </p>
+            <p>
+              <code>   GO BOTTOM</code>
+            </p>
+            <p>
+              <code>  ENDIF</code>
+            </p>
+            <p>
+              <code>  THIS.RefreshForm</code>
+            </p>
+            <p>
+              <code>ENDPROC</code>
+            </p>
+            <p>
+              <code>ENDDEFINE</code>
+            </p>
+          </td>
+          <td>
+            <p> Include the code to set the record pointer to the next record in the table. End the class definition.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>DEFINE CLASS navPrior AS Navbutton</code>
+            </p>
+            <p>
+              <code>  Caption = "&lt;"</code>
+            </p>
+          </td>
+          <td>
+            <p>Define the Prior navigation button class and set the Caption property.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>PROCEDURE Click</code>
+            </p>
+            <p>
+              <code>  DODEFAULT( )</code>
+            </p>
+            <p>
+              <code>  SKIP –1</code>
+            </p>
+            <p>
+              <code>  IF BOF( )</code>
+            </p>
+            <p>
+              <code>   GO TOP</code>
+            </p>
+            <p>
+              <code>  ENDIF</code>
+            </p>
+            <p>
+              <code>  THIS.RefreshForm</code>
+            </p>
+            <p>
+              <code>ENDPROC</code>
+            </p>
+            <p>
+              <code>ENDDEFINE</code>
+            </p>
+          </td>
+          <td>
+            <p> Include the code to set the record pointer to the previous record in the table. End the class definition.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>DEFINE CLASS navBottom AS</code>
+            </p>
+            <p>
+              <code>Navbutton</code>
+            </p>
+            <p>
+              <code>  Caption = "&gt;|"</code>
+            </p>
+          </td>
+          <td>
+            <p>Define the Bottom navigation button class and set the Caption property.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>PROCEDURE Click</code>
+            </p>
+            <p>
+              <code>  DODEFAULT( )</code>
+            </p>
+            <p>
+              <code>  GO BOTTOM</code>
+            </p>
+            <p>
+              <code>  THIS.RefreshForm</code>
+            </p>
+            <p>
+              <code>ENDPROC</code>
+            </p>
+            <p>
+              <code>ENDDEFINE</code>
+            </p>
+          </td>
+          <td>
+            <p> Include the code to set the record pointer to the bottom record in the table. End the class definition.</p>
+          </td>
+        </tr></table></div>
+      <p>The following class definition contains all four navigation buttons so that they can be added as a unit to a form. The class also includes a method to set the TableAlias property of the buttons.</p>
+      <div class="labelheading"><b>Definition of a Table Navigation Control Class</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>DEFINE CLASS vcr AS CONTAINER</code>
+            </p>
+            <p>
+              <code>   Height = 25</code>
+            </p>
+            <p>
+              <code>   Width = 100</code>
+            </p>
+            <p>
+              <code>   Left = 3</code>
+            </p>
+            <p>
+              <code>   Top = 3</code>
+            </p>
+          </td>
+          <td>
+            <p>Begin the class definition. The <a href="/html/b53e65b9-abd2-499f-992a-bc67bd5f192c.htm">Height property</a> is set to the same height as the command buttons it will contain. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   ADD OBJECT cmdTop AS navTop ;</code>
+            </p>
+            <p>
+              <code>      WITH Left = 0</code>
+            </p>
+            <p>
+              <code>   ADD OBJECT cmdPrior AS navPrior ;</code>
+            </p>
+            <p>
+              <code>      WITH Left = 25</code>
+            </p>
+            <p>
+              <code>   ADD OBJECT cmdNext AS navNext ;</code>
+            </p>
+            <p>
+              <code>      WITH Left = 50</code>
+            </p>
+            <p>
+              <code>   ADD OBJECT cmdBot AS navBottom ;</code>
+            </p>
+            <p>
+              <code>      WITH Left = 75</code>
+            </p>
+          </td>
+          <td>
+            <p>Add the navigation buttons.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>PROCEDURE SetTable(cTableAlias)</code>
+            </p>
+            <p>
+              <code>   IF TYPE("cTableAlias") = 'C'</code>
+            </p>
+            <p>
+              <code>      THIS.cmdTop.TableAlias = ;</code>
+            </p>
+            <p>
+              <code>         cTableAlias</code>
+            </p>
+            <p>
+              <code>      THIS.cmdPrior.TableAlias = ;</code>
+            </p>
+            <p>
+              <code>         cTableAlias</code>
+            </p>
+            <p>
+              <code>      THIS.cmdNext.TableAlias = ;</code>
+            </p>
+            <p>
+              <code>         cTableAlias</code>
+            </p>
+            <p>
+              <code>      THIS.cmdBot.TableAlias = ;</code>
+            </p>
+            <p>
+              <code>         cTableAlias</code>
+            </p>
+            <p>
+              <code>   ENDIF</code>
+            </p>
+            <p>
+              <code>ENDPROC</code>
+            </p>
+          </td>
+          <td>
+            <p>This method is used to set the TableAlias property of the buttons. TableAlias is defined in the parent class <code>Navbutton</code>. You could also use the <a href="/html/fc538204-ae5c-4caf-b513-478cc72a9d08.htm">SetAll method</a> to set this property:<code>IF TYPE ("cTableAlias") = 'C'</code> <code>This.SetAll("TableAlias", "cTableAlias")ENDIF</code> However, this would cause an error if an object were ever added to the class that did not have a TableAlias property.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>ENDDEFINE</code>
+            </p>
+          </td>
+          <td>
+            <p>End class definition.</p>
+          </td>
+        </tr></table></div>
+      <p>Once you have defined the class, you can subclass it or add it to a form.</p>
+    </div><h1 class="heading">Creating a Subclass Based on the New Class</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can also create subclasses based on <code>vcr</code> that have additional buttons such as Search, Edit, Save, and Quit. For example, <code>vcr2</code> includes a Quit button:</p>
+      <div class="labelheading"><b>Definition of a Table Navigation Control Subclass</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>DEFINE CLASS vcr2 AS vcr</code>
+            </p>
+            <p>
+              <code>ADD OBJECT cmdQuit AS</code>
+            </p>
+            <p>
+              <code>COMMANDBUTTON WITH ;</code>
+            </p>
+            <p>
+              <code>   Caption = "Quit",;</code>
+            </p>
+            <p>
+              <code>   Height = 25, ;</code>
+            </p>
+            <p>
+              <code>   Width = 50</code>
+            </p>
+            <p>
+              <code>Width = THIS.Width + THIS.cmdQuit.Width</code>
+            </p>
+            <p>
+              <code>cmdQuit.Left = THIS.Width - ; </code>
+            </p>
+            <p>
+              <code>   THIS.cmdQuit.Width</code>
+            </p>
+            <p>
+            </p>
+            <p>
+            </p>
+          </td>
+          <td>
+            <p>Define a class based on <code>vcr</code> and add a command button to it. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>PROCEDURE cmdQuit.CLICK</code>
+            </p>
+            <p>
+              <code>   RELEASE THISFORM</code>
+            </p>
+            <p>
+              <code>ENDPROC</code>
+            </p>
+            <p>
+            </p>
+          </td>
+          <td>
+            <p>When the user clicks <code>cmdQuit</code>, this code releases the form.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>ENDDEFINE</code>
+            </p>
+          </td>
+          <td>
+            <p>End class definition.</p>
+          </td>
+        </tr></table></div>
+      <p>
+        <code>Vcr2</code> has everything that <code>vcr</code> does, plus the new command button, and you don't have to rewrite any of the existing code.</p>
+    </div><h1 class="heading">Changes to VCR Reflected in the Subclass</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Because of inheritance, changes to the parent class are reflected in all subclasses based on the parent. For example, you could let the user know that the bottom of the table has been reached by changing the <code>IF EOF( )</code> statement in <code>navNext.Click</code> to the following:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF EOF( )
+   GO BOTTOM
+   SET MESSAGE TO "Bottom of the table"
+ELSE
+   SET MESSAGE TO
+ENDIF</pre></td></tr></table></span></div>
+      <p>You could let the user know that the top of the table has been reached by changing the <code>IF BOF( )</code> statement in <code>navPrior.Click</code> to the following:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF BOF()
+   GO TOP
+   SET MESSAGE TO "Top of the table"
+ELSE
+   SET MESSAGE TO
+ENDIF</pre></td></tr></table></span></div>
+      <p>If these changes are made to the <code>navNext</code> and <code>navPrior</code> classes, they will also apply automatically to the appropriate buttons in <code>vcr</code> and <code>vcr2.</code></p>
+    </div><h1 class="heading">Adding VCR to a Form Class</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>Once <code>vcr</code> is defined as a control, the control can be added in the definition of a container. For example, the following code added to Navclass.prg defines a form with added navigation buttons:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS NavForm AS Form
+   ADD OBJECT oVCR AS vcr
+ENDDEFINE</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Running the Form Containing VCR</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>Once the form subclass is defined, you can display it by loading the class definition, creating an object based on the subclass and calling the <b>Show</b> method for the form:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET PROCEDURE TO navclass ADDITIVE
+frmTest = CREATEOBJECT("navform")
+frmTest.Show</pre></td></tr></table></span></div>
+      <p>If you don't call the SetTable method of <code>oVCR (</code>the VCR object in <code>NavForm)</code> when the user clicks the navigation buttons, the record pointer moves in the table in the currently selected work area. You can call the SetTable method to specify what table to move through.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frmTest.oVCR.SetTable("customer")</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>When the user closes the form, <code>frmTest</code> is set to a null value (.NULL.). To release the object variable from memory, use the RELEASE command. Object variables created in program files are released from memory when the program is completed.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/066f6a98-132a-448b-9fae-c4f67cd9b75e.htm">Caption Property (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/b53e65b9-abd2-499f-992a-bc67bd5f192c.htm">Height Property</a></span><br /><span class="linkTerms"><a href="/html/fc538204-ae5c-4caf-b513-478cc72a9d08.htm">SetAll Method</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/2509e004-ed1a-4e07-801a-30fe35abba10.htm">Defining a Grid Control</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/925ef3b8-48dc-4ea1-9112-a7afc2d9161e.htm">Object-Oriented Programming</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Creating Table Navigation Buttons">
+</OBJECT>

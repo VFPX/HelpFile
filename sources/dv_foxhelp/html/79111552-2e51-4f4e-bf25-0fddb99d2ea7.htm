@@ -1,0 +1,203 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Make Controls Easier to Use</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Make Controls Easier to Use</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can make the application user interface easier to understand and use by creating access keys, setting tab order, displaying ToolTip text and deactivating selected controls.</p>
+  <h1 class="heading">Creating Access Keys</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can create access keys so that users can choose a control from anywhere in the form by pressing ALT and the key.</p>
+      <h3 class="procedureSubHeading">To specify an access key for a control</h3><div class="subSection"><ul><li>
+            
+              <p>In the <b>Caption</b> property for the control, precede the desired letter with a backslash (\) followed immediately by a left angle bracket (&lt;).</p>
+            
+          </li></ul>
+          
+            <p>For more information, see <span class="linkTerms"><a href="/html/066f6a98-132a-448b-9fae-c4f67cd9b75e.htm">Caption Property (Visual FoxPro)</a></span>.</p>
+          
+        </div>
+      <p>For example, the following setting for the <b>Caption</b> property of a command button creates an access key using the letter "O":</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Caption = "\&lt;Open"</pre></td></tr></table></span></div>
+      <p>The user can choose the command button anywhere in the form by pressing ALT+O.</p>
+      <h3 class="procedureSubHeading">To specify an access key for a text box or edit box</h3><div class="subSection"><ol><li>
+            
+              <p>Create a label containing a backslash (\) and a left angle bracket (&lt;) preceding the desired letter, for example, <code>C\&lt;ustomer</code>.</p>
+            
+          </li><li>
+            
+              <p>Make sure the label is the control in the tab order immediately preceding the text box or edit box you want to receive the focus.</p>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Setting Tab Order for Controls</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The default tab order of controls on your form is set to the order in which you added the controls to the form. You can reset the tab order so that the user can traverse controls in a more logical order.</p>
+      <h3 class="procedureSubHeading">To change tab order for controls</h3><div class="subSection"><ol><li>
+            
+              <p>Open the form in the <b>Form Designer</b>.</p>
+            
+          </li><li>
+            
+              <p>On the <b>View</b> menu, point to <b>Tab Order</b>, and click <b>Assign Interactively</b>.</p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+                <p>You can also click <b>Set Tab Order</b> on the Form Designer toolbar. To set the tab order using a list, click <b>Assign by List</b>.</p>
+              </td></tr></table></div>
+            
+          </li><li>
+            
+              <p>Double-click the numbered box next to the control you want to have the initial focus when the form opens.</p>
+            
+          </li><li>
+            
+              <p>Click the numbered box next to the other controls in the order you want them to be tabbed to.</p>
+            
+          </li><li>
+            
+              <p>When you are finished, click anywhere outside the numbered boxes..</p>
+            
+          </li></ol></div>
+      <p>You also can set the default method to assign tab order using a list by setting the Tab ordering option on the Forms tab in the <span class="linkTerms"><a href="/html/a8286b0c-6b2c-4b8d-8e16-7db8dbda2a1f.htm">Options Dialog Box (Visual FoxPro)</a></span>.</p>
+      <p>You can set the selection order for the option and command buttons within a control group. To move to a control group with the keyboard, a user tabs to the first button in the control group and then uses the arrow keys to select other buttons in the group.</p>
+      <h3 class="procedureSubHeading">To change the selection order of buttons within a control group</h3><div class="subSection"><ol><li>
+            
+              <p>In the <span class="linkTerms"><a href="/html/9e1a457b-616b-4cfb-b1ab-ce8208cc0793.htm">Properties Window (Visual FoxPro)</a></span>, select the group in the <b>Object</b> list. A thick border indicates that the group is in edit mode.</p>
+            
+          </li><li>
+            
+              <p>Select the <b>Form Designer</b> window.</p>
+            
+          </li><li>
+            
+              <p>From the <b>View</b> menu, choose <b>Tab Order</b>.</p>
+            
+          </li><li>
+            
+              <p>Set the selection order as you would the tab order for controls.</p>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Setting ToolTip Text</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Each control has a <span class="linkTerms"><a href="/html/9d437667-66ed-40ef-b324-eb5852ffb086.htm">ToolTipText Property</a></span> that makes it possible for you to specify the text displayed when the user pauses the mouse pointer over the control. Tips are especially useful for buttons with icons instead of text.</p>
+      <h3 class="procedureSubHeading">To specify ToolTip text</h3><div class="subSection"><ul><li>
+            
+              <p>In the <span class="linkTerms"><a href="/html/9e1a457b-616b-4cfb-b1ab-ce8208cc0793.htm">Properties Window (Visual FoxPro)</a></span>, select the <b>ToolTipText</b> property and type the desired text.</p>
+            
+          </li></ul></div>
+      <p>The form's <span class="linkTerms"><a href="/html/7607750c-5cb0-4b9b-96b8-ffbf8887a253.htm">ShowTips Property</a></span> determines whether ToolTip text is displayed.</p>
+    </div><h1 class="heading">Changing the Mouse Pointer Display</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>You can provide visual clues about the different states your application might be in by changing how the mouse pointer displays.</p>
+      <h3 class="procedureSubHeading">To change the mouse pointer display</h3><div class="subSection"><ul><li>
+            
+              <p>Create a method that changes the mouse pointer to a different state.</p>
+            
+          </li></ul></div>
+      <p>For example, in the tsBaseForm class of the Tasmanian Traders sample application, a WaitMode method changes the mouse pointer to the default wait state cursor. Before running any code that might take a while to process, the Tasmanian Traders application passes a value of true (.T.) to the WaitMode method to change the pointer and let the user know that processing is going on. After the processing is completed, a call to WaitMode with false (.F.) restores the default mouse pointer.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* WaitMode Method of tsBaseForm class
+LPARAMETERS tlWaitMode
+lnMousePointer = IIF(tlWaitMode, MOUSE_HOURGLASS, MOUSE_DEFAULT)
+THISFORM.MousePointer = lnMousePointer
+THISFORM.SetAll('MousePointer', lnMousePointer)</pre></td></tr></table></span></div>
+      <ul><li>
+          <p>If you want to change the mouse pointer to something other than one of the default pointers, set the <b>MousePointer</b> property to 99 - Custom and set the <b>MouseIcon</b> property to your own cursor (.cur) or icon (.ico) file. For more information, see <span class="linkTerms"><a href="/html/65ebf8dc-5fa3-4dde-8283-ab5a613c87dd.htm">MousePointer Property</a></span> and <span class="linkTerms"><a href="/html/3718abe1-8993-4f74-82be-a69e417fd16f.htm">MouseIcon Property</a></span>.</p>
+        </li></ul>
+    </div><h1 class="heading">Activating and Disabling Controls</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>You can activate or disable controls if they are not available under certain conditions.</p>
+      <h3 class="procedureSubHeading">To activate or disable a control</h3><div class="subSection"><ul><li>
+            
+              <p>Set the <b>Enabled</b> property for the control to False (.F.).</p>
+            
+          </li></ul></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/9a192728-f031-4ce5-8df2-5deef9789892.htm">Enabled Property (Visual FoxPro)</a></span>.</p>
+      <p>You can activate or disable individual option buttons or command buttons in a group by setting the <b>Enabled</b> property for each button to True (.T.) or False (.F.). You also can disable or enable all the buttons in a group by setting the Enabled property of the group, as in the following line of code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frmForm1.cmgCommandGroup1.Enabled = .T.</pre></td></tr></table></span></div>
+      <p>When you set the <b>Enabled</b> property of an option button group or a command button group to false (.F.), all the buttons in the group are disabled, but will not be displayed with the disabled <b>ForeColor</b> and <b>BackColor</b>. Setting the Enabled property of the group does not change the Enabled property of the individual buttons in the group. This makes it possible for you to disable a group of buttons with some of the buttons already disabled. When you enable the group, buttons that were originally disabled remain disabled.</p>
+      <p>If you want to disable all the buttons in a group so that they appear disabled, and if you do not want to preserve information about which buttons were originally disabled or enabled, you can use the <span class="linkTerms"><a href="/html/fc538204-ae5c-4caf-b513-478cc72a9d08.htm">SetAll Method</a></span> of the group, like this:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frmForm1.opgOptionGroup1.SetAll("Enabled", .F.)</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/f0007f96-1266-418a-9304-51a8811ba630.htm">How to: Display Controls in Grid Columns</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/8c34daa5-67bf-498e-8cda-0e762a14c788.htm">Controls for Extending Forms</a></span><br /><span class="linkTerms"><a href="/html/066f6a98-132a-448b-9fae-c4f67cd9b75e.htm">Caption Property (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/9e1a457b-616b-4cfb-b1ab-ce8208cc0793.htm">Properties Window (Visual FoxPro)</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/119e15f3-d59f-4ebc-8b75-98d1d4fbbdad.htm">Controls and Objects Created in Earlier Versions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b9032965-6941-41d2-8ff9-87c609673907.htm">Using Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Make Controls Easier to Use">
+</OBJECT>

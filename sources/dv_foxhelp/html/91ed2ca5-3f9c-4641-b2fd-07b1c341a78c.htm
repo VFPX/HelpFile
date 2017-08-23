@@ -1,0 +1,227 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Project Object Architecture</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Project Object Architecture</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>A Visual FoxPro <b>Project</b> object exposes the IDispatch interface so that Automation clients, ActiveX controls, and other COM objects can access the project object through standard OLE interfaces. When manipulating projects, errors that might occur are OLE errors because a <b>Project</b> object exposes the IDispatch interface.</p>
+  <h1 class="heading">Project Events</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The following sections describe events and the order in which they occur when projects are created, modified, closed, built, and so on.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Creating a New Project</h3><div class="subSection" xmlns="">
+          <p>The following events occur when you execute <b>CREATE PROJECT</b>, create a new project from the <b>File</b> menu, or click the <b>New</b> button on the standard toolbar to create a new project:  </p>
+          <ol><li>
+              <p>The Project object is created.</p>
+            </li><li>
+              <p>The ProjectHook object instantiates.</p>
+            </li><li>
+              <p>The Init event for the ProjectHook object occurs. If the Init event returns true (.T.), the default, the project is created and the project is displayed in the Project Manager. </p>
+              <p>If the Init event returns false (.F.), the project isn't created, the project and ProjectHook objects are released, and the Project Manager isn't displayed. </p>
+            </li></ol>
+        </div>
+      <h3 class="subHeading" xmlns="">Modifying an Existing Project</h3><div class="subSection" xmlns="">
+          <p>The following events occur when you execute MODIFY PROJECT, modify an existing project from the <b>File</b> menu, or click the <b>Open</b> button on the standard toolbar to open an existing or create a new project:  </p>
+          <ol><li>
+              <p>The project object is created. The project object obtains its values from the project's .pjx file.</p>
+            </li><li>
+              <p>The ProjectHook object is instantiated.</p>
+            </li><li>
+              <p>The Init event for the ProjectHook object occurs. If the Init event returns true (.T.) (the default), the project is opened for modification in the Project Manager. </p>
+              <p>If the Init event returns false (.F.), the project isn't opened for modification, the project and ProjectHook objects are released, and the Project Manager isn't displayed. </p>
+            </li></ol>
+        </div>
+      <h3 class="subHeading" xmlns="">Closing a Project</h3><div class="subSection" xmlns="">
+          <p>The following events occur when an open project is closed:  </p>
+          <ol><li>
+              <p>The ProjectHook Destroy event occurs and the ProjectHook object is released.</p>
+            </li><li>
+              <p>The Project object is released.</p>
+            </li></ol>
+        </div>
+      <h3 class="subHeading" xmlns="">Issuing BUILD APP, BUILD DLL, or BUILD EXE</h3><div class="subSection" xmlns="">
+          <p>The following events occur when BUILD APP, BUILD DLL, or BUILD EXE is issued:  </p>
+          <ol><li>
+              <p>The project object is created. The project object obtains its values from the project's .pjx file.</p>
+            </li><li>
+              <p>The ProjectHook object is instantiated.</p>
+            </li><li>
+              <p>The Init event for the ProjectHook object occurs. If the Init event returns true (.T.), the default, the ProjectHook BeforeBuild event occurs. If NODEFAULT is included in the BeforeBuild event, the .app, .dll, or .exe isn't built. Otherwise, the build process continues. </p>
+              <p>If any files are added to the project during the build process, the ProjectHook QueryAddFile event occurs before each file is added. If NODEFAULT is included in the QueryAddFile event, a file isn't added to the project. Otherwise, the file is added to the project. When the .app, .dll, or .exe is successfully built, the ProjectHook AfterBuild event occurs, and then the ProjectHook Destroy event occurs.  </p>
+              <p>If the Init event returns false (.F.), the app, .dll, or .exe isn't built, and the project and ProjectHook objects are released. </p>
+            </li></ol>
+        </div>
+      <h3 class="subHeading" xmlns="">Issuing BUILD PROJECT</h3><div class="subSection" xmlns="">
+          <p>The following events occur when BUILD PROJECT with the FROM clause is issued. If the FROM clause is omitted, the events occur in the order described above when BUILD APP, BUILD DLL, or BUILD EXE is issued.  </p>
+          <ol><li>
+              <p>The project object is created. The project object obtains its values from the project's .pjx file.</p>
+            </li><li>
+              <p>The ProjectHook object is instantiated.</p>
+            </li><li>
+              <p>The Init event for the ProjectHook object occurs. If the Init event returns true (.T.), the default, the files specified in the FROM clause are added individually to the project. The ProjectHook QueryAddFile event occurs before each file is added to the project. If NODEFAULT is included in the QueryAddFile event, the file isn't added to the project. Otherwise, the file is added to the project. </p>
+              <p>The ProjectHook BeforeBuild event then occurs. If NODEFAULT is included in the BeforeBuild event, the project isn't built. Otherwise, the project is built.  </p>
+            </li><li>
+              <p>When the project build is complete, the ProjectHook AfterBuild event occurs, and then the ProjectHook Destroy event occurs. </p>
+              <p>If the ProjectHook Init event returns false (.F.), the project isn't built. The project and ProjectHook objects are released and a new .pjx file isn't created. </p>
+            </li></ol>
+        </div>
+      <h3 class="subHeading" xmlns="">Using a Drag and Drop Operation</h3><div class="subSection" xmlns="">
+          <p>The following events occur when you drag a file or a set of files over the outline section (treeview) of the Project Manager:  </p>
+          <ol><li>
+              <p>When the mouse pointer is positioned over the outline section of the Project Manager, the ProjectHook OLEDragOver event occurs with the <span class="parameter">nState</span> parameter set to 0 (DRAG_ENTER in Foxpro.h). The OLEDragOver event then occurs repeatedly with the<span class="parameter"> nState</span> parameter set to 2 (DRAG_OVER in Foxpro.h). If the mouse pointer moves outside of the outline section of the Project Manager, the OLEDragOver event occurs with the <span class="parameter">nState</span> parameter set to 1 (DRAG_LEAVE in Foxpro.h).</p>
+            </li><li>
+              <p>The ProjectHook OLEDragDrop event occurs if you release the mouse button while the mouse pointer is positioned over the outline section of the Project Manager. By default, Visual FoxPro adds each file dropped on the Project Manager to the project. The ProjectHook QueryAddFile event occurs before each file is added to the project.</p>
+            </li></ol>
+        </div>
+      <h3 class="subHeading" xmlns="">Adding a File with the Add Button</h3><div class="subSection" xmlns="">
+          <p>The following events occur when you add a file to a project by clicking the <b>Add</b> button in the Project Manager:  </p>
+          <ol><li>
+              <p>The <b>Open</b> dialog box appears.</p>
+            </li><li>
+              <p>If you select a file and choose <b>OK</b>, a file object is created for the file you select.</p>
+            </li><li>
+              <p>The ProjectHook QueryAddFile event occurs and the name of the file object is passed to the event. If NODEFAULT is included in the QueryAddFile event, the file isn't added to the project. Otherwise, the file is added to the project.</p>
+            </li></ol>
+        </div>
+      <h3 class="subHeading" xmlns="">Adding a File with the New Button</h3><div class="subSection" xmlns="">
+          <p>The following events occur when you add a new file to a project by clicking the <b>New</b> button in the Project Manager:  </p>
+          <ol><li>
+              <p>The appropriate designer or editor for the file is displayed.</p>
+            </li><li>
+              <p>When the new file is saved, the <b>Save As</b> dialog box is displayed. Clicking <b>Save</b> creates a file object for the new file.</p>
+            </li><li>
+              <p>The ProjectHook QueryAddFile event occurs and the name of the file object is passed to the event. If NODEFAULT is included in the QueryAddFile event, the file isn't added to the project. Otherwise, the file is added to the project.</p>
+            </li></ol>
+        </div>
+      <h3 class="subHeading" xmlns="">Modifying a File with the Modify Button</h3><div class="subSection" xmlns="">
+          <p>The following events occur when you modify a file in a project by clicking the <b>Modify</b> button in the Project Manager:  </p>
+          <ol><li>
+              <p>The ProjectHook QueryModifyFile event occurs before the appropriate designer or editor for the file is displayed.</p>
+            </li><li>
+              <p>The file object for the file to modify is passed as a parameter to the QueryModifyFile event. If NODEFAULT is included in the QueryModifyFile event, the appropriate designer or editor for the file isn't displayed and the file isn't modified. Otherwise, the file is opened in the appropriate designer or editor for modification.</p>
+            </li></ol>
+        </div>
+      <h3 class="subHeading" xmlns="">Removing a File with the Remove Button</h3><div class="subSection" xmlns="">
+          <p>The following events occur when you remove a file in a project by clicking the <b>Remove</b> button in the Project Manager:  </p>
+          <ol><li>
+              <p>The ProjectHook QueryRemoveFile event occurs.</p>
+            </li><li>
+              <p>The file object for the file to be removed is passed as a parameter to the QueryRemoveFile event. If NODEFAULT is included in the QueryRemoveFile event, the file isn't removed from the project. Otherwise, the file is removed from the project.</p>
+            </li></ol>
+        </div>
+      <h3 class="subHeading" xmlns="">Executing a File with the Run Button</h3><div class="subSection" xmlns="">
+          <p>The following events occur when you execute a file in a project by clicking the <b>Run</b> button in the Project Manager:  </p>
+          <ol><li>
+              <p>The ProjectHook QueryRunFile event occurs.</p>
+            </li><li>
+              <p>The file object for the file to be executed is passed as a parameter to the QueryRunFile event. If NODEFAULT is included in the QueryRunFile event, the file isn't executed. Otherwise, the file is executed.</p>
+            </li></ol>
+        </div>
+      <h3 class="subHeading" xmlns="">Rebuilding a Project or Building a File with the Build Button</h3><div class="subSection" xmlns="">
+          <p>The following events occur when you rebuild the project or build an .app, .dll, or .exe from a project by clicking the <b>Build</b> button in the Project Manager:  </p>
+          <ol><li>
+              <p>The <b>Build Options</b> dialog box is displayed.</p>
+            </li><li>
+              <p>You can choose <b>Rebuild Project</b>, <b>Build Application</b>, <b>Build Executable</b>, or <b>Build COM DLL</b>, and specify additional build options. If you click <b>Cancel</b>, the build doesn't occur.</p>
+            </li><li>
+              <p>The ProjectHook BeforeBuild event occurs if you click <b>OK</b>, and the build process begins.</p>
+            </li><li>
+              <p>When the build is completed, the ProjectHook AfterBuild event occurs.</p>
+            </li></ol>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/785cd0a3-babd-438c-9260-dd4e8e13687c.htm">Project Manager Hooks</a></span><br /><span class="linkTerms"><a href="/html/4bd75946-b302-41be-ab6a-25f09ed083ae.htm">Project Object Hierarchy</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/fc448e19-8529-443d-9dba-99dcde0341c0.htm">Extending Projects in Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/64f18886-1426-46e6-8667-b0b5a497b24b.htm">Working with Projects</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Project Object Architecture">
+</OBJECT>

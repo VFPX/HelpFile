@@ -1,0 +1,129 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Procedural Error Handling</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Procedural Error Handling</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can detect and handle errors in a single or multiple lines of code by using the <b>ON ERROR</b> command and specifying any valid command or expression. However, you typically use the <b>DO</b> command to specify an error-handling procedure or program. Typically, you use <b>ON ERROR</b> as the overall error handler in your application for those errors that more local error handlers, such as <b>Error</b> events and <b>TRY...CATCH...FINALLY</b>, do not handle. </p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>For example, suppose you have the following invalid line of code in a program (.prg) file:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>qxy</pre></td></tr></table></span></div>
+      <p>When you run the program, Visual FoxPro displays the appropriate error message, "Unrecognized command verb." However, you can create an <b>ON ERROR</b> routine to detect this invalid command and run a procedure or program that handles this error. The following lines of code precede the invalid command with the <b>ON ERROR</b> command, which includes the <b>ERROR( )</b> function and display the results using the <b>?</b> command:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ON ERROR ?ERROR()
+qxy</pre></td></tr></table></span></div>
+      <p>When these lines of code run, the <b>ON ERROR</b> command detects the error and displays the error number returned by the <b>ERROR( )</b> function for the error message, "Unrecognized command verb", in the active output window instead of the error message itself.</p>
+      <p>In its basic form, the following code illustrates an <b>ON ERROR</b> routine:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL lcOldOnError
+lcOldOnError = ON("ERROR") &amp;&amp; Save default error handler.
+* Call ON ERROR with an error procedure. 
+ON ERROR DO ErrHandler WITH ERROR(), MESSAGE() 
+* Insert code that error handling routine applies to.
+* Reset original error handler.
+ON ERROR &amp;lcOldOnError
+PROCEDURE ErrHandler
+   LOCAL aErrInfo[1]
+   AERROR(aErrInfo)
+   DO CASE
+      CASE aErrInfo[1] = <i>ErrorNum</i> &amp;&amp; Specify appropriate error number.
+         * Display appropriate message and insert code to fix error.
+      OTHERWISE
+         * Display generic message. 
+ENDPROC</pre></td></tr></table></span></div>
+      <p>For more information, see <a href="/html/833fefcd-01e7-423b-998e-611a14e7c163.htm">ON ERROR Command</a>. You can also include other error handlers, such as <b>TRY...CATCH...FINALLY</b> in procedural code.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/ae5f6da1-8aa7-450f-905c-60d5cd0a5c3c.htm">Debugging and Error-Handling Language</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/220ead6b-fd59-49d7-94e3-6270a91e6807.htm">Structured Error Handling</a></span><br /><span class="linkTerms"><a href="/html/2904a3c2-10ce-41cb-b031-ee3600dacc96.htm">Class and Object Error Handling</a></span><br /><span class="linkTerms"><a href="/html/9b4782b2-1bcc-4774-b66f-2bb15381d587.htm">Handling Run-Time Errors</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Procedural Error Handling">
+</OBJECT>

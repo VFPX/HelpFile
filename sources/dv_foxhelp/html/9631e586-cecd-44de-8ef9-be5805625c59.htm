@@ -1,0 +1,619 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>ReportListener XML Foundation Class</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">ReportListener XML Foundation Class</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>XmlListener provides the Report Output Application's default implementation of <b>ListenerType</b> 4 (XML output).  Its properties include numerous settings you can use to adjust the VFP Report XML Schema to tune its output for different purposes.  For example, if you send your report output XML to another application, for import into a database, you may not need the output from Page Header and Page Footer bands in your report.  These portions of the report render at intervals based on the physical size of the original report layout page, and may not relate directly to rows of data in the report.</p>
+    <p>VFP Report XML includes data describing the original report or label file layout information (the frx or lbx table) as well as the run-time <b>REPORT FORM</b> command settings, printer instructions, open tables and relationships.  This section of the XML structure is known as the <i>VFP-RDL</i>, or Visual FoxPro Report Definition Language. The schema elements for these items are different from the elements generated for the run-time expressions, lines, and other report layout controls as the Report Engine renders each record during a <b>REPORT FORM</b> command.</p>
+    <p>For full information on the VFP Reporting XML Schema, see <span class="linkTerms"><a href="/html/85f74bc8-b2a7-4ef5-8f2d-cd381c33331f.htm">Using VFP Report Output XML</a></span>.</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            
+              <b>Category</b>
+            
+          </th>
+          <th>
+            
+              <b>Reporting</b>
+            
+          </th>
+        </tr><tr>
+        <td>
+          <p>Default Catalog</p>
+        </td>
+        <td>
+          <p>Visual FoxPro Catalog\Foundation Classes\Output\Report Listeners</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Class</p>
+        </td>
+        <td>
+          <p>XmlListener</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Base Class</p>
+        </td>
+        <td>
+          <p>ReportListener</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Class Library</p>
+        </td>
+        <td>
+          <p>_REPORTLISTENER.vcx</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Parent Class</p>
+        </td>
+        <td>
+          <p>UtilityReportListener (<span class="linkTerms"><a href="/html/44825f28-3205-4229-aaef-155113b16d4c.htm">ReportListener Utility and File-handling Foundation Class</a></span>)</p>
+        </td>
+      </tr></table></div>
+  <h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>XmlListener and Report Continuation</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>XmlListener respects the <b>NOPAGEEJECT</b> keyword on <b>REPORT FORM</b> commands executed in a sequence, so a single VFP Report XML document can include details about multiple report runs.</p>
+      <p>The native <b>NOPAGEEJECT</b> keyword is only available from within programs (it has no effect when you issue a <b>REPORT FORM</b> command in the Command window).  You can use the XmlListener's noPageEject property, rather than the standard keyword, if you want to try this capability out interactively.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Important </th></tr><tr><td>
+        <p>You must observe the same constraints when applying continuation to XML generation as you would use when printing.  You are responsible to issue a final <b>REPORT FORM</b> without a <b>NOPAGEEJECT</b> clause to tell XmlListener to stop writing to the file, just as you would need the final <b>REPORT FORM</b> command to close the print queue.  However, if you forget to do this, the Destroy method of the class will end the output job and close the file.</p>
+      </td></tr></table></div>
+      <p>XmlListener handles the <b>REPORT FORM</b> command's <b>RANGE</b> clause.  However, in report documents containing multiple reports through use of the continuation feature, it only handles <b>RANGE</b> if you do not also use the <b>NORESET</b> clause.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>XmlListener's XML Generation Process</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>XmlListener uses a mix of techniques to provide its XML results. The Visual FoxPro <b>XMLAdapter</b> class provides the portion of the schema that describes FRX and report run-time metadata (the VFP-RDL).  It also uses MSXML objects directly to enhance the VFP-RDL nodes. The class generates the data portion of the schema using a "raw" output process that sends data to a file using Visual FoxPro's low-level file functions, and taking full advantage of other native string-handling capabilities to handle normal encoding chores.  </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>You can recompile the class to adjust the MSXML objects XmlListener uses, and you can also opt to use MSXML objects consistently rather than the "raw" method it uses by default to provide the data portions of the output.  Using MSXML objects throughout the processing can facilitate some scenarios in which your report output requires specialized encoding of binary data.  To adjust the generation process, change the defined values in XmlListener's header file, REPORTLISTENERS.H.  The default values are shown below:</p>
+      </td></tr></table></div>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE OUTPUTXML_RAW             0
+#DEFINE OUTPUTXML_DOM             1
+#DEFINE XMLOUTPUT      OUTPUTXML_RAW
+#DEFINE OUTPUTXML_DOMDOCUMENTOBJECT ;
+  "Msxml2.FreeThreadedDOMDocument.4.0"
+#DEFINE OUTPUTXML_DOMFREETHREADED_DOCUMENTOBJECT ;
+  "Msxml2.FreeThreadedDOMDocument.4.0"
+#DEFINE OUTPUTXML_XSLT_PROCESSOROBJECT ;
+  "Msxml2.XSLTemplate.4.0"</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2)" tabindex="0"><img id="sectionToggle2" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>XmlListener and XSLT</span></h1><div id="sectionSection2" class="section" name="collapseableSection" style="display: none;">
+      <p>Once you have generated an XML document, you often have to move it from one format to another.  XmlListener provides facilities for Extensible Stylesheet Language Transformations (XSLT). You can load XSLT documents and request that XmlListener supply the final result of your chosen transformation, rather than its native VFP Report XML schema document.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle3)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle3)" tabindex="0"><img id="sectionToggle3" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>XmlListener and its Configuration Table</span></h1><div id="sectionSection3" class="section" name="collapseableSection" style="display: none;">
+      <p>Like its superclass, UtilityReportListener, XmlListener leverages the same configuration table structure as the Report Output Application.  It reserves a range of values in the OBJTYPE (1100 through 1199) as a way to look up XML node names for various reporting elements.  Using the configuration structure to store node names is a way of localizing the XML elements for readability.  For example, the default value of <code>PH </code>as a node name for Page Header bands might not be intuitive to a developer not working in English, or the developer might prefer a less terse notation.  Because XmlListener can read your preferred values at run time, the VFP Report Xml schema should be regarded as a structural model; the actual node names at run time might be different.  </p>
+      <p>XmlListener stores this information in the configuration table according to the scheme you see in the following table.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Field</b>
+              
+            </th>
+            <th>
+              
+                <b>Usage</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>OBJTYPE</p>
+          </td>
+          <td>
+            <p>Stores the original FRX table OBJTYPE value for the type of band or layout object the XML element describes, plus an offset of 1100.  For example, a Picture layout control in an FRX has the OBJTYPE 17, so a record storing the XML node name for a Picture layout control has the value 1117.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJCODE</p>
+          </td>
+          <td>
+            <p>Has the same value as a record of the same type in the FRX.  For example, a record storing the XML node name for a Detail Footer band has the same OBJCODE as a DetailFooter band record in the FRX.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJNAME</p>
+          </td>
+          <td>
+            <p>Not used by XmlListener</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJVALUE</p>
+          </td>
+          <td>
+            <p>Stores the node name.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJINFO</p>
+          </td>
+          <td>
+            <p>Stores a descriptive value for the type of FRX record.  For example, <code>Detail Footer Band nodename .</code></p>
+          </td>
+        </tr></table></div>
+      <p>If XMLListener is the subclass of UtilityReportListener that generates the configuration table at run time, or if it cannot find its required records in the pre-existing configuration table, it will include appropriate records for all the elements it needs.  It also adds the specialized index keys it requires to the configuration table, if needed.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>XmlListener adds the public following properties and methods to its parent class, UtilityReportListener.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Properties and methods</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>applyUserTransform Property</p>
+          </td>
+          <td>
+            <p>Indicates whether XMLListener should automatically apply a user-defined XSLT transform at the conclusion of a report run. </p>
+            <p>
+              <b>Default </b>
+              <code>.F.</code>
+            </p>
+            <p>
+              <b>Remarks:</b>  When you set this property to <code>.T.</code>, the associated assign method checks to see if you have already filled the xsltProcessorUser property with an appropriate processor object.  If not, it runs an internal method, getDefaultUserXslt, to load the xsltProcessorUser property.  This internal method provides a hook for subclasses to supply their preferred XSLT document for use without requiring an external load procedure.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>applyXslt Method</p>
+          </td>
+          <td>
+            <p>Provides generic facilities for applying XSLT to XML.</p>
+            <p>
+              <b>Syntax:</b> <code>applyXslt (vSource, vProcessor [, vParamCollection]) </code></p>
+            <p>
+              <b>Return Values:</b> <code>cXmlResult</code></p>
+            <p>
+              <b>Parameters:</b>
+            </p>
+            <p>
+              <span class="parameter">vSource</span> can be the name of a file holding the source XML document, a string holding the XML document, or a DOM document object.</p>
+            <p>
+              <span class="parameter">vProcessor</span> can be the name of a file holding the XSLT processor document, a string holding the XSLT document, or an XSLT processor object.</p>
+            <p>
+              <span class="parameter">vParamCollection</span> is an optional object of Collection type.  If it is available, this method adds the members of the collection to the XSLT processor instance as global parameters before applying the XSLT transformation to the source document.  It uses the collection keys as parameter names, and the corresponding collection values as parameter values.</p>
+            <p>XmlListener provides a property, xsltParameters, you can use to hold the collection you build to hold these parameters between calls.</p>
+            <p>
+              <b>Remarks:</b> Both the XML source and XSLT processor object types are defined in REPORTLISTENERS.H.  You can edit this header file and recompile the class to choose different processing objects.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>contAttr Property</p>
+          </td>
+          <td>
+            <p>Supplies the name of the attribute used to show continuation type for a layout object that can span bands or pages.</p>
+            <p>
+              <b>Default </b>
+              <code>"c"</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>currentDocument Property</p>
+          </td>
+          <td>
+            <p>Holds information about the XML document for which output is currently being generated during a report run.</p>
+            <p>
+              <b>Default </b>
+              <code>.NULL.</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>heightAttr Property</p>
+          </td>
+          <td>
+            <p>Supplies the name of the XML attribute used to show height for a layout object.</p>
+            <p>
+              <b>Default </b>
+              <code>"h"</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>idAttribute Property</p>
+          </td>
+          <td>
+            <p>Supplies the name of the XML attribute used to provide the FRX record number for a layout object or page number of a formatting band (column or page) object.</p>
+            <p>
+              <b>Default </b>
+              <code>"id"</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>idrefAttribute Property</p>
+          </td>
+          <td>
+            <p>Supplies the name of the XML attribute used to provide the current page for a layout object or FRX record number of a formatting band (column or page) object. </p>
+            <p>
+              <b>Default </b>
+              <code>"idref"</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>includeBandsWithNoObjects Property</p>
+          </td>
+          <td>
+            <p>Indicates whether band-level information for bands with no contents should be included in the XML.</p>
+            <p>
+              <b>Default </b>
+              <code>.F.</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>includeBreaksInData Property</p>
+          </td>
+          <td>
+            <p>Determines whether formatting bands (page and columns) should be included in output and, if so, using what structure.</p>
+            <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                  <th>
+                    Value
+                  </th>
+                  <th>
+                    Meaning
+                  </th>
+                </tr><tr>
+                <td>
+                  <p>0</p>
+                </td>
+                <td>
+                  <p>Provide page band nodes positioned along with other bands in the datastream, wherever they happen to occur</p>
+                </td>
+              </tr><tr>
+                <td>
+                  <p>1</p>
+                </td>
+                <td>
+                  <p>No pagebreak info, no page header and footer info</p>
+                </td>
+              </tr><tr>
+                <td>
+                  <p>2</p>
+                </td>
+                <td>
+                  <p>Provide collection of pages with page headers and footers data</p>
+                </td>
+              </tr></table></div>
+            <p>
+              <b>Default </b>
+              <code>0</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>includeDataSourcesInVfpRdl Property</p>
+          </td>
+          <td>
+            <p>Indicates whether information about the source tables, relations, indexes, etc. should be included in the VFPRDL metadata section of the report XML. </p>
+            <p>
+              <b>Default </b>
+              <code>.F.</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>includeFormattingInLayoutObjects Property</p>
+          </td>
+          <td>
+            <p>Indicates whether formatting information such as positioning attributes should be included in the report XML.</p>
+            <p>
+              <b>Default </b>
+              <code>.F.</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>leftAttr Property</p>
+          </td>
+          <td>
+            <p>Supplies the name of the XML attribute used to show leftmost position for a layout object. </p>
+            <p>
+              <b>Default </b>
+              <code>"l"</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>noPageEject Property</p>
+          </td>
+          <td>
+            <p>Indicates whether the XML Listener should consider the current report run to be continued. Can be used without NOPAGEEJECT on the REPORT FORM command.</p>
+            <p>
+              <b>Default </b>
+              <code>.F.</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>resetDocument Method</p>
+          </td>
+          <td>
+            <p>Resets the XML document after a report run.</p>
+            <p>
+              <b>Syntax:</b> <code>resetDocument()</code></p>
+            <p>
+              <b>Return Values:</b> none</p>
+            <p>
+              <b>Parameters: </b>
+              <span class="parameter">none</span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>topAttr Property</p>
+          </td>
+          <td>
+            <p>Supplies the name of the XML attribute used to show topmost position for a layout object.</p>
+            <p>
+              <b>Default </b>
+              <code>"t"</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>verifyNCName Method</p>
+          </td>
+          <td>
+            <p>Provides generic method to validate strings as XML-standard <i>NCNames</i>.</p>
+            <p>
+              <b>Syntax:</b> <code>verifyNCName ( cName )</code></p>
+            <p>
+              <b>Return Values: </b>
+              <code>lValid</code>
+            </p>
+            <p>
+              <b>Parameters: </b>
+            </p>
+            <p>
+              <span class="parameter">cName</span> is the string you are checking for validity as an NCName value.</p>
+            <p>
+              <b>Remarks:</b> In XML, an NCName or non-colonized name is a legal value for either the namespace or the non-prefixed (local) name of a node.  For example, in the node name <code>xsl:template</code>, both <code>xsl</code> and <code>template</code> are NCNames.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>widthAttr Property</p>
+          </td>
+          <td>
+            <p>Supplies the name of the XML attribute used to show width for a layout object.</p>
+            <p>
+              <b>Default </b>
+              <code>"w"</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>xmlMode Property</p>
+          </td>
+          <td>
+            <p>Determines what parts of the VFP Report XML schema are included in output.</p>
+            <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                  <th>
+                    Value
+                  </th>
+                  <th>
+                    Meaning
+                  </th>
+                </tr><tr>
+                <td>
+                  <p>0</p>
+                </td>
+                <td>
+                  <p>Data only</p>
+                </td>
+              </tr><tr>
+                <td>
+                  <p>1</p>
+                </td>
+                <td>
+                  <p>VFP-RDL only</p>
+                </td>
+              </tr><tr>
+                <td>
+                  <p>2</p>
+                </td>
+                <td>
+                  <p>Data and VFP-RDL</p>
+                </td>
+              </tr></table></div>
+            <p>
+              <b>Default </b>
+              <code>2</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>xsltParameters Property</p>
+          </td>
+          <td>
+            <p>Holds an optional parameter collection passed to the ApplyXSLT method when XmlListener automatically applies a user XSLT transformation at the conclusion of a report run. </p>
+            <p>
+              <b>Default </b>
+              <code>.NULL.</code>
+            </p>
+            <p>
+              <b>Remarks:</b> The code example in <span class="linkTerms"><a href="/html/5f0a1dab-ce24-4c87-ac2e-cb9e631d0115.htm">ReportListener HTML Foundation Class</a></span> uses xsltParameters explicitly, to set <code>numberPrecision</code>, one parameter of its default transformation. The class's code sets several other parameters of the default HTML transformation using xsltParameters.  If you create xsltParameters as a collection object yourself, as shown in that example, the HtmlListener class will use this object, adding any required keys and values after checking to see if they already exist. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>xsltProcessorRdl Property</p>
+          </td>
+          <td>
+            <p>Holds a Report Definition Language (RDL) -specific processor object.</p>
+            <p>
+              <b>Default </b>
+              <code>.NULL.</code>
+            </p>
+            <p>
+              <b>Remarks:</b> Reserved for future use.  You can load an XSLT processor object to this property using the same techniques as described for the xslProcessorUser property.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>xsltProcessorUser Property</p>
+          </td>
+          <td>
+            <p>Holds a user-definable processor object which, if filled and available at the end of a run, can be used automatically by XML Listener to transform the raw XML document to requirements. </p>
+            <p>
+              <b>Default </b>
+              <code>.NULL.</code>
+            </p>
+            <p>
+              <b>Remarks: </b>To change this document, you have several options:</p>
+            <ul><li>
+                <p>Store a filename to the property, as shown in the example below.  </p>
+              </li><li>
+                <p>Store an XSLT document contained in a string variable to the property.</p>
+              </li><li>
+                <p>Store an XSLT processor object, with its stylesheet already loaded, to the property.  The appropriate object types are defined in XmlListener's header file, <code>REPORTLISTENERS.H</code>.</p>
+              </li></ul>
+            <p>If you store the document as a string or a filename, XmlListener creates the processor object for you, and loads the stylesheet.</p>
+          </td>
+        </tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">In this example, the code tunes XmlListener's properties to suit a particular data transfer scenario (a customer list being transferred between a Visual FoxPro application and a CRM application hosted in a different environment).  </p>
+        <p xmlns="">The code provides the object's xsltProcessUser property with a suitable XSLT transformation document, using one of the three methods described in the table above for loading the processor object.  It instructs the object to apply the XSLT transformation automatically after the report run.  It then runs the report.  The resulting XSLT fits the requirements of the CRM application and can be imported without further change. </p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oXml = NEWOBJECT("XmlListener","_REPORTLISTENER")
+WITH oXml
+  .xmlMode = 0 &amp;&amp; data only, 
+               &amp;&amp; no RDL is needed for this 
+               &amp;&amp; particular transform
+  .xsltProcessorUser = "Customer.xslt"
+  .applyUserTransform = .T.
+ENDWITH  
+REPORT FORM Customer OBJECT oXml
+MODIFY FILE (oXml.TargetFileName)</pre></td></tr></table></span></div>
+    <comments xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+      
+    </comments>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><span class="linkTerms"><a href="/html/44825f28-3205-4229-aaef-155113b16d4c.htm">ReportListener Utility and File-handling Foundation Class</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/005682e4-5892-4e65-bcc3-2b64213e3fcc.htm">Guidelines for Using Visual FoxPro Foundation Classes</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/8e6bfe13-c83f-4c73-9037-689fbdb7c7db.htm">Report Output Application</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="ReportListener XML Foundation Class">
+</OBJECT>

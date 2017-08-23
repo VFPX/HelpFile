@@ -1,0 +1,211 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Specify an Alternate Report Event Handler Table</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Specify an Alternate Report Event Handler Table</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Reportbuilder.app contains an internal lookup table that defines whether certain report object / builder event combinations are ignored or directed to specific classes for handling.</p>
+    <p>See <span class="linkTerms"><a href="/html/91d5dbf6-5294-468e-8ed6-b195d62603e5.htm">Report Builder Event Handler Registry Table</a></span> for detailed information on the required structure of the lookup table.</p>
+    <p>Reportbuilder.app has a mechanism that allows you to specify alternate event handler lookup tables so that you can completely customize how the report builder responds to events in the Report or Label Designer.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Important </th></tr><tr><td>
+      <p>Unlike the settings in the Visual FoxPro <span class="linkTerms"><a href="/html/a8286b0c-6b2c-4b8d-8e16-7db8dbda2a1f.htm">Options Dialog Box (Visual FoxPro)</a></span>, this preference setting does not persist between Visual FoxPro sessions.</p>
+    </td></tr></table></div>
+  <h1 class="heading">Setting the Event Registry Table using the Options Dialog</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The <span class="linkTerms"><a href="/html/4ba558b6-55fc-4af4-86c9-dbcd225ce6fa.htm">Report Builder Options Dialog Box (Report Builder)</a></span> includes the ability to specify which event handler lookup table the report builder uses.</p>
+      <p>The <b>Current registry table</b> text box displays the filename of the lookup table that the report builder is using. If the builder is using the table built-in to the application, this will read "internal lookup table." </p>
+      <h3 class="procedureSubHeading">To specify an alternate lookup table</h3><div class="subSection"><ol><li>
+            
+              <p>Open the Report Builder <b>Options</b> dialog box. See <span class="linkTerms"><a href="/html/96ae951e-8a2f-4ef6-979c-8e4f92664a3e.htm">How to: Display the Report Builder Options Dialog Box</a></span> for detailed steps describing how to display the dialog box.</p>
+            
+          </li><li>
+            
+              <p>Select <b>Use alternate lookup table</b>.</p>
+            
+          </li><li>
+            
+              <p>Click the ellipsis (<b>…</b>) to display the <b>File Open</b> dialog box.</p>
+            
+          </li><li>
+            
+              <p>Select the desired table, and click <b>OK</b>.</p>
+            
+          </li><li>
+            
+              <p>Select <b>Close</b> to dismiss the options dialog box.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To revert to using the internal lookup table</h3><div class="subSection"><ol><li>
+            
+              <p>Open the Report Builder <b>Options</b> dialog box. See <span class="linkTerms"><a href="/html/96ae951e-8a2f-4ef6-979c-8e4f92664a3e.htm">How to: Display the Report Builder Options Dialog Box</a></span> for detailed steps describing how to display the dialog box.</p>
+            
+          </li><li>
+            
+              <p>Select <b>Use internal lookup table</b>.</p>
+            
+          </li><li>
+            
+              <p>Select <b>Close</b> to dismiss the options dialog box.</p>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Setting the Event Registry Table using Command-line parameters</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can use the report builder's command-line parameters to set the lookup table that it uses to locate builder event handler classes.</p>
+      <h3 class="procedureSubHeading">To select an alternate lookup table</h3><div class="subSection"><ol><li>
+            
+              <p>Open the Command window.</p>
+            
+          </li><li>
+            
+              <p>Type one of the following commands: </p>
+              <ul><li>
+                  <p>
+                    <code>DO (HOME() + "reportbuilder.app") WITH 3, cFilename</code>
+                  </p>
+                </li><li>
+                  <p>
+                    <code>* OR:</code>
+                  </p>
+                </li><li>
+                  <p>
+                    <code>DO (_REPORTBUILDER) WITH 3, cFilename</code>
+                  </p>
+                </li></ul>
+            
+          </li></ol></div>
+      <p>The <span class="parameter">cFilename</span> parameter must be a fully pathed file specification of a table (.dbf) file that contains the required fields. For more information on the required table structure, see <span class="linkTerms"><a href="/html/91d5dbf6-5294-468e-8ed6-b195d62603e5.htm">Report Builder Event Handler Registry Table</a></span> .</p>
+      <p>You can use an asterisk to force the report builder to use its internal lookup table:</p>
+      <h3 class="procedureSubHeading">To force the use of the internal lookup table</h3><div class="subSection"><ol><li>
+            
+              <p>Open the Command window.</p>
+            
+          </li><li>
+            
+              <p>Type one of the following commands: </p>
+              <ul><li>
+                  <p>
+                    <code>DO (HOME() + "reportbuilder.app") WITH 3, "*"</code>
+                  </p>
+                </li><li>
+                  <p>
+                    <code>* OR:</code>
+                  </p>
+                </li><li>
+                  <p>
+                    <code>DO (_REPORTBUILDER) WITH 3, "*"</code>
+                  </p>
+                </li></ul>
+            
+          </li></ol></div>
+      <p>If you pass the report builder an empty string, the report builder will revert to default behavior, which is to look for a table named "reportbuilder.dbf" in the current PATH, and use it if found. If it isn't found, the report builder will use the internal lookup table.</p>
+      <h3 class="procedureSubHeading">To revert to default behavior </h3><div class="subSection"><ol><li>
+            
+              <p>Open the Command window.</p>
+            
+          </li><li>
+            
+              <p>Type one of the following commands: </p>
+              <ul><li>
+                  <p>
+                    <code>DO (HOME() + "reportbuilder.app") WITH 3, ""</code>
+                  </p>
+                </li><li>
+                  <p>
+                    <code>* OR:</code>
+                  </p>
+                </li><li>
+                  <p>
+                    <code>DO (_REPORTBUILDER) WITH 3, ""</code>
+                  </p>
+                </li></ul>
+            
+          </li></ol></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/7161b49c-792d-4b6c-8219-cbe780af3dae.htm">How to: Configure the Report Builder's Event Handling</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/4ba558b6-55fc-4af4-86c9-dbcd225ce6fa.htm">Report Builder Options Dialog Box (Report Builder)</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/dbc4b061-74ad-4780-89bf-0e5d461be849.htm">Extending Reports at Design Time</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Specify an Alternate Report Event Handler Table">
+</OBJECT>

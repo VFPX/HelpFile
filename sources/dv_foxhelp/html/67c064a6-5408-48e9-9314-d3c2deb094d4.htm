@@ -1,0 +1,120 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Update Table and Database Links</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Update Table and Database Links</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you move database (.dbc, .dct, and .dcx) files or a database table, the relative paths change and might break forward links and back links that Visual FoxPro uses to associate database and table files. You can reestablish links and update the relative path information to reflect the new file location. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>If you want to open a table without reestablishing links for all tables in the database, use the <b>USE</b> command. Visual FoxPro displays the <b>Open</b> dialog box so you can locate the database that owns the table or delete the links. For more information, see <span class="linkTerms"><a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a></span>.</p>
+    </td></tr></table></div>
+    <p>You can also remove the database reference, or back link, from a table.</p>
+  <h3 class="procedureSubHeading">To update links between a database and its tables</h3><div class="subSection"><ul><li>
+        
+          <p>Use the <b>VALIDATE DATABASE</b> command with the <b>RECOVER</b> clause </p>
+        
+      </li></ul></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>For more information, see <span class="linkTerms"><a href="/html/6e4ffcaf-bdbb-4d52-ba03-7828476a5e13.htm">VALIDATE DATABASE Command</a></span>.</p>
+      <p>For example, the following code opens a database named MyDatabase and displays dialog boxes to help you locate those tables that are not in the locations stored by the database:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE MyDatabase
+VALIDATE DATABASE RECOVER</pre></td></tr></table></span></div>
+      <h3 class="procedureSubHeading">To remove the back link from a table</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <b>FREE TABLE</b> command. </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+                <p>Do not use <b>FREE TABLE</b> to remove a table from a database if the database exists on disk; use <b>REMOVE TABLE</b> instead. If the database exists on disk, <b>FREE TABLE</b> might render the database unusable. </p>
+              </td></tr></table></div>
+            
+          </li></ul></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/46250c4e-cc12-4b61-a352-1cb33c2d2eb0.htm">FREE TABLE Command</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/39d22441-50a5-4d96-bfba-4bce7e6c71b6.htm">How to: Remove a Table from a Database</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/ea7bf414-5b08-4f08-855c-9ba67d09398f.htm">Databases in Visual FoxPro</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/f69c91ac-86af-4f78-9f04-5b7464635a8c.htm">Creating Databases</a></span><br /><span class="linkTerms"><a href="/html/62869817-db20-4de6-b483-c12e179594e3.htm">Working with Items in Databases</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Update Table and Database Links">
+</OBJECT>

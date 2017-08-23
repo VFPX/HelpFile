@@ -1,0 +1,218 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>User Input in Combo Boxes</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">User Input in Combo Boxes</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The combo box control has the functionality of a list box and a text box. There are two styles for a combo box: Drop-down combo and Drop-down list. Specify which one you want by changing the <a href="/html/21a57d42-ae88-432c-8240-72f185a5d56c.htm">Style</a> property of the control. Drop-down lists are discussed in <a href="/html/ccc655cb-3b49-42a2-a87c-43ce0a462c95.htm">Controls for Displaying Lists</a>.</p>
+  <h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Drop-Down Combo Box</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>A user can click the button on a drop-down combo box to see a list of choices or enter a new item directly in the box beside the button. The default Style property of a combo box is 0 — Dropdown Combo.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Adding User Items to Drop-Down Combo Box Lists</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>To add the new user value to the drop-down combo box, you can use the following line of code in the method associated with the <a href="/html/862db396-f508-4212-81ef-15b21313b8a3.htm">Valid event</a> of the combo box:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THIS.AddItem(THIS.Text)</pre></td></tr></table></span></div>
+      <p>Before adding an item, however, it would be a good idea to check to make sure that the value is not already in the combo box drop-down:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>lItemExists = .F. &amp;&amp; assume the value isn't in the list.
+FOR i = 1 to THIS.ListCount
+   IF THIS.List(i) = THIS.Text
+      lItemExists = .T.
+      EXIT
+   ENDIF
+ENDFOR
+IF !lItemExists
+   THIS.AddItem(THIS.Text)
+ENDIF</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2)" tabindex="0"><img id="sectionToggle2" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Common Combo Box Properties</span></h1><div id="sectionSection2" class="section" name="collapseableSection" style="display: none;">
+      <p>The following combo box properties are commonly set at design time.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Property
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/76c0d810-a6e4-4076-aa91-0763a6dfe03b.htm">ControlSource</a>
+            </p>
+          </td>
+          <td>
+            <p>Specifies the table field where the value that the user chooses or enters is stored.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9413b009-a90b-417a-9940-928a573a7490.htm">DisplayCount</a>
+            </p>
+          </td>
+          <td>
+            <p>Specifies the maximum number of items displayed in the list.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/1547a42a-e88f-4549-a82c-231a921ec689.htm">InputMask</a>
+            </p>
+          </td>
+          <td>
+            <p>For drop-down combo boxes, specifies the type of values that can be typed in.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/d12c1771-921c-4d5e-8beb-ee0aed3d55f3.htm">IncrementalSearch</a>
+            </p>
+          </td>
+          <td>
+            <p>Specifies whether the control tries to match an item in the list as the user types each letter.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/490d957f-926a-4b4c-a265-e3ad5f679f1b.htm">RowSource</a>
+            </p>
+          </td>
+          <td>
+            <p>Specifies the source of the items in the combo box.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/ffd39712-9ea4-42a5-bd92-9a4073f5a6b4.htm">RowSourceType</a>
+            </p>
+          </td>
+          <td>
+            <p>Specifies the type of the source for the combo box. The RowSourceType values for a combo box are the same as for a List.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/21a57d42-ae88-432c-8240-72f185a5d56c.htm">Style</a>
+            </p>
+          </td>
+          <td>
+            <p>Specifies whether the combo box is a drop-down combo or a drop-down list.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/3a1c30da-397f-467e-b131-e8c2e642a305.htm">Controls for Accepting Input</a></span><br /><span class="linkTerms"><a href="/html/10b56cf0-55bf-4242-88f2-481e6a013d16.htm">ComboBox Control</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b9032965-6941-41d2-8ff9-87c609673907.htm">Using Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="User Input in Combo Boxes">
+</OBJECT>

@@ -1,0 +1,217 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Using GDI+ in Reports</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Using GDI+ in Reports</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro 9's <i>object-assisted</i> reporting mode leverages Microsoft Windows GDI+ to render to output devices. GDI+ offers new opportunities for high-quality, extensible output, and also mandates some changes in native output behavior.  This topic describes some aspects of creating output associated with use of GDI+.</p>
+  <h1 class="heading">GDI+ Features in Visual FoxPro Object-Assisted Output</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When you use Visual FoxPro's object-assisted reporting mode, output is rendered by a ReportListener-derived object.  The following table lists ways in which ReportListener's features and native behavior are affected by GDI+.</p>
+      <dl><dt><span class="nonLinkTerms">Device-independent and resolution-independent rendering</span></dt><dd>
+          <p>GDI+ provides a <i>graphics</i> object, an extra layer of abstraction beyond the <i>device context</i> of GDI.  The graphics object is capable of rendering output identically to disparate devices such as screens and printers.  </p>
+          <p>You can expect a high degree of consistency between preview and print output in Visual FoxPro's object-assisted reporting mode.  The graphics object's methods for laying out text and graphics are resolution-independent, so Visual FoxPro can render pages to printers at different resolutions, according to the capabilities of each printer.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Because Visual FoxPro respects the print resolutions available on each printer, you may see some changed behavior in reports with saved printer environments.  If the printer setup with which the report was saved during report design had a different resolution than the printer you specify when running the report, the page may not scale properly on the page.  In Visual FoxPro 9, you can override printer setup instructions with explicit instructions in a separate field, including explicit instructions to use a particular print resolution regardless of printer (assuming the printer supports the resolution you set).  However, in most cases, you have no need to do so; simply removing the printer environment from the report provides better results.  </p>
+          </td></tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>In Visual FoxPro 9, unlike previous versions, the printer environment is not saved to the report or label definition by default. For more information about using override settings for printer environments, see <span class="linkTerms"><a href="/html/e62ce8ab-f156-45d2-a0b9-11562e5dbcef.htm">Understanding and Extending Report Structure</a></span>.  For more information about printer environments in reports, see <span class="linkTerms"><a href="/html/2712d154-f13d-4a24-835a-a76a78fd6566.htm">How to: Save the Printer Environment for Reports</a></span>.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">Differences in kerning and text widths from output in earlier versions</span></dt><dd>
+          <p>GDI+'s device- and resolution- independent methods of drawing text ensure that a specific string will fit into the same rectangular space in a layout when it is rendered on different devices.  However, the algorithms in GDI+ that measure strings, handle kerning (or spacing) of individual letters in strings, and align strings in the layout rectangle are significantly different from the Report Engine's original algorithms used for this purpose.</p>
+          <p>If you have defined the width for expressions very exactly in an existing report, in some cases the same data will no longer fit. You may be able to widen the expressions appropriately by adding just a few pixels. You can use the Report Builder's Size and position in layout options convenient for this purpose.  For more information, see <span class="linkTerms"><a href="/html/3e0cd17a-2919-4469-a8c5-0250aab47b68.htm">General Tab, Report Control Properties Dialog Box (Report Builder)</a></span>.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>As in earlier versions of Visual FoxPro, numeric expressions that do not fit in their assigned layout rectangle are represented by asterisks in report output, to avoid providing a number that looks correct but is actually truncated.  If you see asterisks in an expression when you switch a report to object-assisted mode, and if you think that the number should fit into the space, check to see if it has a picture template assigned.  All versions of Visual FoxPro use the picture template to determine how much space the number needs for display.  If you used a template such as <code>99,999.99</code>, for example, your output may display as asterisks even if the actual number has fewer digits.  To ensure that the output displays properly in object-assisted mode, you can widen the layout element enough to display <code>99,999.99</code> with the element's designated font attributes.  However, if the picture template has more digits than your anticipated data results, you may only need to remove a digit from the template.  For more information, see <span class="linkTerms"><a href="/html/1f84a128-0157-472f-863b-0ed5f69d2dc5.htm">Format Expressions for Field Controls</a></span>.</p>
+          </td></tr></table></div>
+          <p>When strings do not fit in their assigned layout rectangle, GDI+ provides a way to let the user know that the entire output is not displayed.  The ReportListener class takes advantage of this GDI+ feature for output that does not represent numbers, with its <i>StringTrimming</i> options, described in the next section.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Visual FoxPro's Report System, in all versions, ignores the layout rectangle when displaying calculated fields that have picture templates.  As a result, the differences between object-assisted output and backward-compatible output described here do not apply to calculated fields.  For example, a field set to <b>Sum</b> and given a picture template of <code>999,999,999</code> in a layout rectangle that is too small to fit all the characters in the template will display its full text; it will not be truncated.  For more information, see <span class="linkTerms"><a href="/html/d27928a8-ce83-473d-9f1f-a7dc62e3db85.htm">How to: Perform Calculations in Field Controls</a></span> and <span class="linkTerms"><a href="/html/1f84a128-0157-472f-863b-0ed5f69d2dc5.htm">Format Expressions for Field Controls</a></span>.  </p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">StringTrimming Options</span></dt><dd>
+          <p>GDI+ provides multiple ways for you to handle text that does not fit in its assigned layout rectangle.  The ReportListener class exposes its various options as described in the table below.  When you are designing a report or label, the Report Builder allows you to pick from these options in the <b>Report Control Properties</b> dialog box.  For additional information about selecting one of the available options while designing a report, see <span class="linkTerms"><a href="/html/fd02a498-76dd-4c6e-9018-59625c070754.htm">Format Tab, Report Control Properties Dialog Box (Report Builder)</a></span>.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Value</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>StringTrimming Type</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>Not specified, default will be used.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>
+                  <span class="parameter">StringTrimmingCharacter</span>
+                </p>
+                <p>Trims strings that do not fit at the nearest character.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>
+                  <span class="parameter">StringTrimmingWord</span>
+                </p>
+                <p>Trims strings that do not fit at the nearest word.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>3</p>
+              </td>
+              <td>
+                <p>
+                  <span class="parameter">StringTrimmingEllipsisCharacter</span>
+                </p>
+                <p>Trims strings that do not fit at the nearest character and adds an ellipsis (<b>…</b>).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>
+                  <span class="parameter">StringTrimmingEllipsisWord</span> (Visual FoxPro default)</p>
+                <p>Trims strings that do not fit at the nearest word and adds an ellipsis (<b>…</b>).</p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p> Trimming the string based on the word rather than character level most closely emulates the trimming behavior of Visual FoxPro when it runs reports and is not in object-assisted mode.  Adding the ellipsis allows users to see when some content is missing.  Because GDI+ requires slightly more space for text expressions than GDI did, this setting allows you to check older reports for expressions that require widening for GDI+ rendering to handle their contents.</p>
+                </td></tr></table></div>
+              </td>
+            </tr><tr>
+              <td>
+                <p>5</p>
+              </td>
+              <td>
+                <p>
+                  <span class="parameter">StringTrimmingEllipsisPath</span>
+                </p>
+                <p>Replaces an inner portion of strings that do not fit with an ellipsis (<b>…</b>).  </p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>This value is useful for path- and file- names.  For example, the string <code>C:\PROGRAM FILES\MICROSOFT VISUAL FOXPRO 9\REPORTOUTPUT.APP </code>can render as <code>C:\PROGRAM FILES\</code>…<code>\REPORTOUTPUT.APP</code>.</p>
+                </td></tr></table></div>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DynamicLineHeight feature</span></dt><dd>
+          <p>GDI+ line spacing is the default method of handling line spacing for ReportListener objects that render multi-line text.  GDI+ line spacing allows for a more polished appearance, faster performance, and fewer pages for the same report content than the Report Engine's original line-spacing algorithms.  However, GDI+ line spacing changes the amount of space your text takes up in the layout when you compare the rendered results to previous versions of Visual FoxPro. </p>
+          <p>ReportListener's rendering strategy for text spanning multiple lines changes according to the value of its DynamicLineHeight property.  This value determines whether the ReportListener uses GDI+ standard (dynamic) line spacing according to font characteristics, or the backward-compatible fixed line spacing used by Visual FoxPro when it runs reports and labels but is not in object-assisted mode.  For more information, see <span class="linkTerms"><a href="/html/4b995974-861e-43c2-b285-daee41a65738.htm">DynamicLineHeight Property</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">Availability of output page images</span></dt><dd>
+          <p>When an application renders to a particular drawing surface using GDI+, GDI+ provides methods to save the contents of the drawing surface to various image file types. Visual FoxPro exposes this capability in the ReportListener's OutputPage method.  For more information, see <span class="linkTerms"><a href="/html/10e876bb-83c2-4309-8adf-cdd9f565d658.htm">OutputPage Method</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">Availability of transparency values in color settings</span></dt><dd>
+          <p>GDI+ specifies colors using ARGB (alpha or transparency, red, green, and blue) components.  Visual FoxPro report and label definition files do not have a way of storing the transparency value, so colors stored in .frx and .lbx tables are always completely opaque or transparent.  However, Visual FoxPro exposes the transparency values to ReportListener code at run time, in the EvaluateContents event.  You can use this event dynamically set text and text background colors to different degrees of transparency, and cause blends to occur in overlaid, semi-transparent layout elements.  For more information, see <span class="linkTerms"><a href="/html/89a8e39e-b39f-483d-bcda-74dffe42667c.htm">EvaluateContents Event</a></span>.</p>
+        </dd></dl>
+    </div><h1 class="heading">Using GDI+ in User Code during Report Runs</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Your code can take advantage of GDI+ capabilities in reports.  Visual FoxPro 9 ships with a suite of wrapper classes for the GDI+ API to facilitate your use of these features.  For more information, see <span class="linkTerms"><a href="/html/a8a60a3e-43d2-4f80-bdd0-89f5f68578ae.htm">GDI Plus API Wrapper Foundation Classes</a></span>.</p>
+      <p>Your use of GDI+ during a report run takes one of two forms:</p>
+      <ul><li>
+          <p>You use GDI+ to render to the drawing surface the ReportListener uses for native output.  In this scenario, you can dynamically place new output elements or alter existing ones directly into the running report.  The ReportListener class exposes a handle to its own graphics object, during a report run, for this purpose.  For more information, see <span class="linkTerms"><a href="/html/a3ed8bfc-a6a2-4c87-840d-a1fcaa3a2e3c.htm">GDIPlusGraphics Property</a></span>.  As explained in that topic, and as shown in the topic's sample code, to use the native ReportListener's graphics object, you must use functions based in the same file copy of GDIPLUS.DLL that the product uses in native code. To ensure that you use the correct copy of GDIPLUS.DLL, use the syntax <b>IN GDIPLUS.DLL</b> with no explicit path in your <b>DECLARE DLL</b> statements. For more information, see <span class="linkTerms"><a href="/html/cf399321-e5e8-4b53-bc78-a30494d80204.htm">DECLARE - DLL Command</a></span>.</p>
+        </li><li>
+          <p>You supply the ReportListener object with a handle to a separate graphics object, and ask it to draw an output page to this additional graphics object.  In this scenario, you do not accomplish your goal by temporarily assigning a different handle to the ReportListener's GDIPlusGraphics property; for safety reasons, that handle is read-only.  Instead, you supply the ReportListener with the additional handle as one of the parameters to the OutputPage method.  The ReportListener's GDIPlusGraphics handle, and the native output stream, remain undisturbed by this process. For more information, see <span class="linkTerms"><a href="/html/10e876bb-83c2-4309-8adf-cdd9f565d658.htm">OutputPage Method</a></span>.</p>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5d6e4527-8b6f-4f39-a670-c3397eff3bfd.htm">SET REPORTBEHAVIOR Command</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/223a5d97-3d68-4e70-8bde-9c15b8f9ce62.htm">Understanding Visual FoxPro Object-Assisted Reporting</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Using GDI+ in Reports">
+</OBJECT>

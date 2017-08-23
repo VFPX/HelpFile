@@ -1,0 +1,165 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Use API Functions That Require Pointers to Arrays Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Use API Functions That Require Pointers to Arrays Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File:</b> ...\Samples\Solution\Winapi\Syscolor.scx</p>
+    <p>This example uses two Windows API functions to first get the system color settings (GetSysColor) and then to reset the system colors to new values (SetSysColors). Two of the three arguments required by SetSysColors are pointers to native C arrays.</p>
+  <h1 class="heading">GetSysColor</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The GetSysColor function accepts an integer parameter, a number between 0 and 18, and returns a DWORD (32-bit unsigned integer) indicating the current color setting.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DWORD GetSysColor(
+    int <i>nIndex</i>    // display element
+   );   </pre></td></tr></table></span></div>
+      <p>nIndex is a value representing an area of the interface, as defined in the following list:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#define COLOR_SCROLLBAR         0
+#define COLOR_BACKGROUND        1
+#define COLOR_ACTIVECAPTION     2
+#define COLOR_INACTIVECAPTION   3
+#define COLOR_MENU              4
+#define COLOR_WINDOW            5
+#define COLOR_WINDOWFRAME       6
+#define COLOR_MENUTEXT          7
+#define COLOR_WINDOWTEXT        8
+#define COLOR_CAPTIONTEXT       9
+#define COLOR_ACTIVEBORDER      10
+#define COLOR_INACTIVEBORDER    11
+#define COLOR_APPWORKSPACE      12
+#define COLOR_HIGHLIGHT         13
+#define COLOR_HIGHLIGHTTEXT     14
+#define COLOR_BTNFACE           15
+#define COLOR_BTNSHADOW         16
+#define COLOR_GRAYTEXT          17
+#define COLOR_BTNTEXT           18
+#define COLOR_INACTIVECAPTIONTEXT 19
+#define COLOR_BTNHIGHLIGHT      20
+#if(WINVER &gt;= 0x0400)
+#define COLOR_3DDKSHADOW        21
+#define COLOR_3DLIGHT           22
+#define COLOR_INFOTEXT          23
+#define COLOR_INFOBK            24
+#define COLOR_DESKTOP           COLOR_BACKGROUND
+#define COLOR_3DFACE            COLOR_BTNFACE
+#define COLOR_3DSHADOW          COLOR_BTNSHADOW
+#define COLOR_3DHIGHLIGHT       COLOR_BTNHIGHLIGHT
+#define COLOR_3DHILIGHT         COLOR_BTNHIGHLIGHT
+#define COLOR_BTNHILIGHT        COLOR_BTNHIGHLIGHT
+#endif /* WINVER &gt;= 0x0400 */</pre></td></tr></table></span></div>
+    </div><h1 class="heading">SetSysColors</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The <b>SetSysColors</b> function requires three arguments: the number of elements in two arrays and the addresses of the two arrays.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BOOL WINAPI SetSysColors(
+    int <i>cElements</i>,                  // number of elements to change 
+    CONST INT *<i>lpaElements</i>,         // address of array of elements 
+    CONST COLORREF *<i>lpaRgbValues</i>    // address of array of RGB values  
+   );   </pre></td></tr></table></span></div>
+    </div><h1 class="heading">Calling SetSysColors in Visual FoxPro</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The following code is extracted from cmdSetSysColors.Click:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DECLARE INTEGER SetSysColors IN win32api INTEGER, STRING, STRING</pre></td></tr></table></span></div>
+      <p>Construct the elements of the first array in a character variable.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>cElements = ""
+FOR i = 0 TO 18
+   cElements = cElements + THISFORM.DecToHex(i)
+ENDFOR</pre></td></tr></table></span></div>
+      <p>Construct the elements of the second array in a character variable. The cursor that is scanned was filled with GetSysColor values in the Init of the form.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>cColors = ""
+SCAN
+   cColors = cColors + THISFORM.DecToHex(INT(color))
+ENDSCAN
+=SetSysColors(18,cElements,cColors)</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/737d5d95-4687-4fc9-b094-54a46836ce8c.htm">Use API Functions that Require a STRUCT Sample</a></span><br /><span class="linkTerms"><a href="/html/348fec52-e48a-489f-86fb-0b0ac888ba69.htm">Solution Samples</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/4027920a-132e-49bb-8624-2e30c8082a3f.htm">Windows API Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Use API Functions That Require Pointers to Arrays Sample">
+<param name="Alink Name" value="vfp.1231531">
+</OBJECT>

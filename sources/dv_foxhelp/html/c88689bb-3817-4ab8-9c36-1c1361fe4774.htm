@@ -1,0 +1,147 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Sharing Connections for Remote Data</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Sharing Connections for Remote Data</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro makes it possible for you to share a connection handle for a remote data connection. Sharing a connection handle can be desirable when you want to manage SQL Server connections and server resources better by reducing the number of connections.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>By default, Visual FoxPro creates a new connection handle each time a remote data connection is created. However, when specified, Visual FoxPro can use an existing connection and associate the new statement with it. This creates a new statement handle and Visual FoxPro handle; however, the associated connection handle is the same.</p>
+      <p>There are three types of handles associated with a remote data connection. The following table describes these handles.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Handle type
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>Connection handle (ODBC HDBC)</p>
+          </td>
+          <td>
+            <p>A unique integer assigned to a connection.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Statement handle (ODBC HSTMP)</p>
+          </td>
+          <td>
+            <p>A unique integer assigned to a statement. </p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>More than one HSTMP statement handle can be associated with a HDBC connection handle.</p>
+            </td></tr></table></div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Visual FoxPro connection handle</p>
+          </td>
+          <td>
+            <p>A unique integer assigned by Visual FoxPro to a unique statement handle.</p>
+          </td>
+        </tr></table></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Shared Connections for Remote Views</h3><div class="subSection" xmlns="">
+          <p>A remote view can use a shared connection handle by including the <b>SHARE</b> keyword in the <b>CREATE SQL VIEW</b> command. If a shared connection is available, Visual FoxPro uses it to create a new statement handle and Visual FoxPro connection handle. If a shared connection is unavailable, Visual FoxPro creates a new, shared connection that other views can use.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Shared Connections for SQL Pass-Through</h3><div class="subSection" xmlns="">
+          <p>You can create a new connection that can be shared by including the <span class="parameter">lShared</span> parameter in the <b>SQLSTRINGCONNECT( )</b> command. The <b>SQLSTRINGCONNECT( )</b> command always creates a new connection, statement, and Visual FoxPro connection handle.</p>
+          <p>Including the <span class="parameter">lShared</span> parameter in the <b>SQLCONNECT( )</b> command also creates a new connection that can be shared; however, including the <span class="parameter">nStatementHandle</span> parameter causes <b>SQLCONNECT( )</b> to use a currently shared connection and creates only a new statement handle and Visual FoxPro connection handle.</p>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/7a2c187e-f76a-4c89-a0bb-5899a04d558a.htm">How to: Share Connections for Multiple Remote Views</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/55b8c0e7-d39b-476f-a5cc-980719b36d4e.htm">SQLCONNECT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/9a4d380b-b3a4-450a-b414-5a7724e7fec0.htm">SQLSTRINGCONNECT( ) Function</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/e8002d17-fe9a-4235-98af-cd587a7b9499.htm">Managing Connections with SQL Pass-Through</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c9d098df-6241-45d2-9d81-1f49ad9b3641.htm">Using SQL Pass-Through Technology</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Sharing Connections for Remote Data">
+</OBJECT>

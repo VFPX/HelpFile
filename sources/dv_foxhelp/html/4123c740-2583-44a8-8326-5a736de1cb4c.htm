@@ -1,0 +1,375 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>FoxIs, a Visual FoxPro Internet Server</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">FoxIs, a Visual FoxPro Internet Server</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>FoxIs, located in the Visual FoxPro ...\Samples\Servers\Foxisapi\FoxIs directory, illustrates creating an out-of-process .exe or in-process .dll with ISAPI functionality that can be accessed from within Visual FoxPro as a stand-alone program, from Automation clients, and from a Web browser. Changes you make to its classes can enhance the Automation server, no matter how it is run.</p>
+  <h3 class="procedureSubHeading">To open the FoxIs sample project</h3><div class="subSection"><ul><li>
+        
+          <p>Type the following in the <b>Command</b> window: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>MODIFY PROJECT (HOME(2) + 'servers\foxisapi\foxis\foxis')</pre></td></tr></table></span></div>
+        
+      </li></ul></div><h1 class="heading">Running the FoxIs Sample</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can run the FoxIs sample four different ways. When you are trying out the code, it's a good idea to go run the sample in this order:</p>
+    </div><h1 class="heading">Running from Within Visual FoxPro</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>To run the FoxIs sample from within Visual FoxPro, run the following code in the Command window.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET DEFAULT TO (HOME(2) + 'servers\foxisapi\foxis\')
+SET CLASSLIB TO employee
+ox = CREATEOBJECT('employee')
+ox.show</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Running as an Independent Executable</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can build the sample into an executable file with the following line of code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BUILD EXE foxis FROM foxis</pre></td></tr></table></span></div>
+      <p>The compiled file, FOXIS.EXE, is a Windows program that can be added to the Windows Start menu, started from the Windows Explorer, and so on.</p>
+    </div><h1 class="heading">Running as an Automation server</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Once the FoxIs sample has been compiled into a .exe or a .dll, it is registered as an Automation server in the Windows registry. You can create an object based on the employee class from any OLE controller, for example Excel, Visual Basic, and Visual FoxPro:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ox = CREATEOBJECT('foxis.employee')
+ox.SHOW</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Running from a Web Browser</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>You can even run the FoxIs sample from a Web browser, which could be on another machine such as a 286 running MS-DOS, a Unix machine, a Macintosh, or a Personal Digital Assistant.</p>
+    </div><h1 class="heading">System Requirements for Internet Use</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>To run the FoxIs sample from a Web browser, you must be running:  </p>
+      <ul><li>
+          <p>Windows 98 or Windows 2000 or later.</p>
+        </li><li>
+          <p>An ISAPI-compatible Web server, such as the Microsoft Personal Web Server for Windows 98 or Microsoft Internet Information Services (IIS). IIS comes with Windows 2000 and later and can be downloaded from www.microsoft.com; Personal Web Server also can be downloaded from www.microsoft.com.</p>
+        </li></ul>
+      <p>If you're using Windows 2000 or later, you need to run the DCOMCNFG utility to configure DCOM to give rights to the IIS service to instantiate OLE objects.</p>
+      <h3 class="procedureSubHeading">To configure Windows 2000 or later DCOM</h3><div class="subSection"><ol><li>
+            
+              <p>At the <b>Command</b> prompt, type <b>DCOMCNFG</b> and press <b>Enter</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Applications</b> tab, select the name of the Automation server. When you build the server, the application is "employee" by default.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Default Security</b> tab of the <b>Distributed COM Configuration Properties</b> dialog box, choose <b>Edit Default</b> for each area: <b>Default Access Permissions</b>, <b>Default Launch Permissions</b>, and <b>Default Configuration Permissions</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Registry Value Permissions</b> dialog box for each area, choose <b>Add</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Add Names</b> box of the <b>Add Users and Groups</b> dialog box, type your WWW server's name and your login user name.  </p>
+              <p>You can see the server's name in the Microsoft Internet Service Manager Properties window. If your machine name is MINE, the following line in the <b>Add Names</b> box sets up a default user:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>\MINE\IUSR_MINE</pre></td></tr></table></span></div>
+              <p>If your machine name is MINE and you log in as HOMER, the following line in the Add Names box sets up permissions for you when you login:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>\MINE\HOMER</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Setting Up the FoxIs Sample for Internet Access</h1><div id="sectionSection6" class="seeAlsoNoToggleSection">
+      <p>To set up the FoxIs sample, you need to create a .exe or .dll from the FoxIs project, and then copy the file to your Inetsvr\Scripts directory.</p>
+      <h3 class="procedureSubHeading">To set up the FoxIs Sample</h3><div class="subSection"><ol><li>
+            
+              <p>Open the FOXIS project.</p>
+            
+          </li><li>
+            
+              <p>Choose the <b>Build</b> button, and then choose <b>Build COM DLL</b>.</p>
+            
+          </li><li>
+            
+              <p>Copy Foxisapi.dll to your Inetsrv\Scripts folder.</p>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Preliminary Testing</h1><div id="sectionSection7" class="seeAlsoNoToggleSection">
+      <p>You can test the FoxIs sample application at various levels to see if you are configured correctly.</p>
+      <h3 class="procedureSubHeading">To see if the code works</h3><div class="subSection"><ol><li>
+            
+              <p>From the <b>Program</b> menu choose <b>Do</b>.</p>
+            
+          </li><li>
+            
+              <p>Select Main.prg in the Visual FoxPro Samples\Servers\Foxisapi folder.</p>
+            
+          </li><li>
+            
+              <p>Choose <b>Do</b>.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To see if the .EXE works</h3><div class="subSection"><ol><li>
+            
+              <p>From the Visual FoxPro Command window, issue the following command: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BUILD EXE Foxis.exe FROM foxis</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Double-click Foxis.exe in the <b>Windows Explorer</b>.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To see if the FoxIs Automation server works</h3><div class="subSection"><ul><li>
+            
+              <p>Run the following commands: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OX= CREATEOBJECT('FOXIS.EMPLOYEE')
+OX.Show    &amp;&amp; See if it works as a ISAPI Automation server
+?OX.Startup( )  &amp;&amp; See if it returns html</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>It is much easier to debug Automation servers from an Automation controller (such as Visual FoxPro) before instantiating it in FoxIs.</p>
+    </div><h1 class="heading">Set up the HTML page</h1><div id="sectionSection8" class="seeAlsoNoToggleSection">
+      <p>To get things started, you need an HTML page that contains a reference to a URL. For example, take the following code and put it in the Wwwroot\default.htm file.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;a HREF="/scripts/foxisapi.dll/FoxIS.employee.startup"&gt; &lt;i&gt;VFP ISAPI AUTOMATION SERVER DEMO PAGE&lt;/i&gt; &lt;/a&gt; </pre></td></tr></table></span></div>
+      <p>Then use a browser (which can be on the same machine) and connect to YourMachineName. For example, if your machine name was "myMachine," then type "myMachine" as the URL to go to. This would bring up the Default.htm page on the server named "myMachine"</p>
+      <p>A CreateObject("foxis.employee") is initiated and the Startup method is invoked on the object, which returns a generated HTML page. If the ISAPI Automation server hasn't been built yet, then the Foxisapi.dll returns an HTML error page.</p>
+      <p>Then use your Web browser to access the href above. If you get an error HTML page that says "Foxisapi error", then you know the DLL is being loaded and is working. </p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre> &lt;FORM ACTION = "/scripts/foxisapi.dll/foxis.employee.cmd"&gt;
+&lt;INPUT NAME="Cmd" VALUE = "Reset"&gt;
+&lt;INPUT TYPE="submit" VALUE="Dos Command"&gt;
+&lt;/FORM&gt;</pre></td></tr></table></span></div>
+      <p>You can actually put in any valid MS-DOS command and it will be executed on the server machine. If the command is "Reset" (default), then it will make the ISAPI Automation server release the first instance as well as it's own, thus releasing the ISAPI Automation server completely.</p>
+      <p>In addition, you can evaluate any Visual FoxPro expression. However, if the Visual FoxPro expression displays a modal interface, as the MESSAGEBOX( ) function does, the Automation server will hang waiting for a response that cannot be provided. However, for an in-process .dll, the modal interface is automatically managed and the Automation server won't hang.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;FORM ACTION = "/scripts/foxisapi.dll/foxis.employee.cmd?FOXCMD"&gt;
+&lt;INPUT NAME="Cmd"&gt;
+&lt;INPUT TYPE="submit" VALUE="Fox Expression"&gt;
+like "today is "+ cdow(date()) or 45 * 3 or SYS(2004)
+&lt;/FORM&gt;</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Debugging the Server</h1><div id="sectionSection9" class="seeAlsoNoToggleSection">
+      <p>A Windows NT service has no Desktop, therefore no user interface will appear on the server machine. This means you should debug your server applications before deploying them.</p>
+      <h3 class="procedureSubHeading">To trace through Foxisapi.dll with Visual C++ 5.0</h3><div class="subSection"><ol><li>
+            
+              <p>Open Foxisapi.mak.</p>
+            
+          </li><li>
+            
+              <p>Remove the comment mark from the following line in HttpExtensionProc: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>//   _asm int 3</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Rebuild the project.</p>
+            
+          </li><li>
+            
+              <p>Start MSDEV with the process id (PID) of Inetinfo.exe. You can get the process id in the Windows Task Manager.</p>
+            
+          </li></ol></div>
+      <p>This process applies to Windows 2000 or later.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>When debugging, you don't have to shut down the Web server to change the Automation server. You can just terminate the out-of-process component by sending a reset value to the cmd method, as described above, or by using the Win32 SDK tools TLIST, KILL, PVIEW, or the Task Manager in Windows 2000 or later.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">The ISForm Class</h1><div id="sectionSection10" class="seeAlsoNoToggleSection">
+      <p>The "engine" of the sample is the ISForm class in Isapi.vcx.</p>
+    </div><h1 class="heading">Entry Points into the ISForm Class</h1><div id="sectionSection11" class="seeAlsoNoToggleSection">
+      <p>The following methods can be called from the Web browser, by way of Foxisapi.dll, to return HTML pages.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Method
+            </th>
+            <th>
+              Returns
+            </th>
+          </tr><tr>
+          <td>
+            <p>Cmd</p>
+          </td>
+          <td>
+            <p>Evaluation of a Visual FoxPro expression or the results of a MS-DOS command.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DoSave</p>
+          </td>
+          <td>
+            <p>Saves the user changes to the data and returns the employee HTML page.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Skipit</p>
+          </td>
+          <td>
+            <p>The employee information for the specified employee in the table. Skipit takes cookie information passed in as a parameter from the Web browser, checks the cookies table to find the previous record number, and moves the record pointer forward or backward relative to the record number stored in the cookies table. The new record number is written back to the cookies table and the GenHTML method is called.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Startup</p>
+          </td>
+          <td>
+            <p>The employee information for the first employee in the table. Startup creates a new cookie id for the user and sends it back as a hidden input area in the HTML.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Keeping the Server Active</h1><div id="sectionSection12" class="seeAlsoNoToggleSection">
+      <p>Normally, for each request from a Web client, the Automation server is instantiated, generates an HTML page, and is released with the Release( ) call in CallObject( ) in Foxisapi.cpp. This means the entire Visual FoxPro runtime will start up and shut down for each request.</p>
+      <p>If the ISAPI Automation server is registered as Multi-Use, and the Release( ) is not called, then the first request will start up the server but subsequent requests will use the same instance of the server, making performance much better. Code in Foxisapi.dll and in the Load, Cmd, DoSave, Startup, and Skipit methods of the ISForm manage keeping the same instance of the server active.</p>
+    </div><h1 class="heading">Variables in the DLL</h1><div id="sectionSection13" class="seeAlsoNoToggleSection">
+      <p>Two variables are declared: pdispObj and pdispDoRelease. When the server is initially created, pdispObj is the dispatch handle to the OLE object. The pdispDoRelease variable is set to the same value as pdispObj and passed <i>by reference</i> as a parameter to the method of the ISForm server that was requested by the Web browser. Code in the Visual FoxPro ISForm Automation server can change the value of pdispDoRelease.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>For more information about this sample, see the comments in the code in ISForm and Foxisapi.cpp.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">The Form Load Event</h1><div id="sectionSection14" class="seeAlsoNoToggleSection">
+      <p>When the ISForm is created, code in the Load event creates two public variables, <i>gpInstance</i> and <i>gpDisp</i>. The first time the ISForm server is loaded, the gpInstance variable is set to 1. Subsequent instances increment this variable. When an instance is released, gpInstance is decremented.</p>
+    </div><h1 class="heading">The Entry Point Methods</h1><div id="sectionSection15" class="seeAlsoNoToggleSection">
+      <p>When a method (Cmd, DoSave, Skipit, or Startup) of the ISForm is invoked through Foxisapi.dll, the .dll passes a dispatch pointer by reference as a parameter to the method.</p>
+      <p>The first time the server is run, the instance count is set to 1 and the dispatch pointer is stored to the global variable. Then value 0 is stored to the dispatch pointer.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF m.gnInstance = 1 
+   IF TYPE('pDisp') $ 'NI' 
+      gpDisp = m.pDisp
+      pDisp = 0
+   ENDIF
+ENDIF</pre></td></tr></table></span></div>
+      <p>At this point, two variables point to the same dispatch pointer value: gpDisp in the ISForm Automation server and pdispObj in Foxisapi.dll. The value of pdispDoRelease in the .dll is 0, as changed in the ISForm Automation server.</p>
+      <p>Subsequent times the server is called the instance count in incremented, a new pdispObj is generated in the .dll, stored to pdispDoRelease, and passed by reference to the requested method. Because the gnInstance value is not 1, the gpDisp variable is not changed. From this point on, gpDisp in the Automation server holds a different value than pdispObj and pdispDoRelease in the .dll. </p>
+    </div><h1 class="heading">Releasing the Server</h1><div id="sectionSection16" class="seeAlsoNoToggleSection">
+      <p>To force a release, pdispDoRelease cannot be 0 and must be a different value than pdispObject. The following HTML text sends a value to the server that affects a release:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre> &lt;FORM ACTION = "/scripts/foxisapi.dll/foxis.employee.cmd"&gt;
+&lt;INPUT NAME="Cmd" VALUE = "Reset"&gt;
+&lt;INPUT TYPE="submit" VALUE="Dos Command"&gt;
+&lt;/FORM&gt;</pre></td></tr></table></span></div>
+      <p>The following code in the cmd method sets the pdispDoRelease value to the dispatch value of the first instance.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CASE 'RESET'$upper(m.p1)
+   m.pDisp= m.gpDisp</pre></td></tr></table></span></div>
+      <p>Code in the .dll will now release the current instance and the original instance that has been kept in existence to prevent the Visual FoxPro runtime from having to be reloaded each time the server was called.</p>
+    </div><h1 class="heading">Sending HTML Back to the Client</h1><div id="sectionSection17" class="seeAlsoNoToggleSection">
+      <p>The GenHTML method of the ISForm class is called from each of the entry point methods. The HTML returned from the GenHTML method is returned to the Web browser through Internet Information Services.</p>
+      <p>If the mode parameter passed to the GenHTML method is not "FORM," the GenHTML method simply looks up the value in a table and sends back preformatted HTML.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF m.mode != 'FORM'
+   =SEEK(m.mode,'html')
+   rv = html.html
+  RETURN m.rv
+ENDIF</pre></td></tr></table></span></div>
+      <p>If the mode parameter is "FORM," code in GenHTML identifies each of the labels and textboxes on the form, sorts them in top to bottom and left-to-right order, evaluates the Captions and ControlSources of the controls, and uses Visual FoxPro's text merge capabilities to construct the appropriate HTML text to approximate the display of the form.</p>
+      <p>If you add additional labels and text boxes to the form, they are automatically displayed in the generated HTML.</p>
+    </div><h1 class="heading">Creating and Using Cookies</h1><div id="sectionSection18" class="seeAlsoNoToggleSection">
+      <p>As a Web server, this application can be hit dozens of times by various clients, and we need to keep track of the user state. In this case, we only track the current record number for that user. We could present the user with a login screen, and use the username as a key for the cookie, but instead we generate a cookie value in the MakeCookie method and pass it as a hidden value in the HTML sent back to the user. Each time the user chooses to go to a different record, we can read the cookie value from the HTTP string sent to the .dll, locate the cookie in the Cookies table, find the current record number and move the record number relative to this number.</p>
+      <p>The following property and methods are used in the cookie manipulation process:  </p>
+      <ul><li>
+          <p>Cookie property</p>
+        </li><li>
+          <p>GetCookie method</p>
+        </li><li>
+          <p>MakeCookie method</p>
+        </li><li>
+          <p>WriteCookieInfo method</p>
+        </li></ul>
+    </div><h1 class="heading">Error Handling</h1><div id="sectionSection19" class="seeAlsoNoToggleSection">
+      <p>If an error occurs, code in the Error event of the ISForm class calls the GenHTML method with a parameter of "ERROR." GenHTML reads the pre-formatted HTML text for errors and returns it to the Error event code. The Error event code substitutes error information for placeholders in the HTML:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>   LOCAL rv
+   rv = THIS.GenHTML('ERROR')
+   rv = strtran(m.rv,'%METHOD%',m.cMethod)
+   rv = strtran(m.rv,'%ERRORNO%',STR(m.nError,4))
+   rv = strtran(m.rv,'%ERRORMSG%',Message(1))
+   rv = strtran(m.rv,'%LINENO%',STR(m.nLine,4))
+   THIS.ErrorHTML = m.rv</pre></td></tr></table></span></div>
+      <p>When the ErrorHTML property isn't empty, GenHTML sends the value of ErrorHTML back to the client.</p>
+    </div><h1 class="heading">Tables Used in the FoxIs Sample</h1><div id="sectionSection20" class="seeAlsoNoToggleSection">
+      <p>In addition to the employee table used for data entry and display, the FoxIs sample uses the following tables.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Table
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>HTML</p>
+          </td>
+          <td>
+            <p>Holds HTML text to be sent back to the Web browser as a header for FoxCMD and DosCMD evaluations or in case of an error.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Cookies</p>
+          </td>
+          <td>
+            <p>Keeps track of record numbers for various Web browsers. The unique cookie field value is passed as a hidden value in HTML text sent to a particular user.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/348fec52-e48a-489f-86fb-0b0ac888ba69.htm">Solution Samples</a></span><br /><span class="linkTerms"><a href="/html/ec045b1f-99ee-4553-a5b3-04b9fe0f865a.htm">FoxISAPI Automation Server Samples</a></span><br /><span class="linkTerms"><a href="/html/b57f1b38-a4df-4612-bd81-d20f1135986f.htm">FoxWeb, a Simplified Visual FoxPro Internet Automation Server</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="FoxIs, a Visual FoxPro Internet Server">
+</OBJECT>

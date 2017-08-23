@@ -1,0 +1,225 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Detect Updating Conflicts</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Detect Updating Conflicts</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>During data update operations, especially in shared environments, you might want to determine which fields have changed or what the original or the current values are in changed fields. Visual FoxPro buffering and the <a href="/html/d52447bd-56d6-423f-80cf-ce73008bd2ea.htm">GETFLDSTATE( )</a>, <a href="/html/b79871b2-7c70-440e-b4e4-fae81f7d5c40.htm">GETNEXTMODIFIED( )</a>, <a href="/html/fa81be19-03be-4e02-8af1-74f8c521b766.htm">OLDVAL( )</a> and <a href="/html/d4dc65e0-a039-40ac-8df4-508a60a77228.htm">CURVAL( )</a> functions, enable you to determine which field has changed, find the changed data, and compare the current, original, and edited values so you can decide how to handle an error or conflict.</p>
+  <h3 class="procedureSubHeading">To detect a change in a field</h3><div class="subSection"><ul><li>
+        
+          <p>After an update operation, use the <a href="/html/d52447bd-56d6-423f-80cf-ce73008bd2ea.htm">GETFLDSTATE( )</a> function.</p>
+        
+      </li></ul></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>GETFLDSTATE( ) works on unbuffered data; however, this function is even more effective when you've enabled record buffering. For instance, use GETFLDSTATE( ) in the code of a Skip button on a form. When you move the record pointer, Visual FoxPro checks the status of all fields in the record as in the following example:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>lModified = .F.
+FOR nFieldNum = 1 TO FCOUNT( ) &amp;&amp; Check all fields 
+   if GETFLDSTATE(nFieldNum) = 2  &amp;&amp; Modified
+      lModified = .T.
+      EXIT &amp;&amp; Insert update/Save routine here.
+   ENDIF &amp;&amp; See the next example
+ENDFOR</pre></td></tr></table></span></div>
+      <h3 class="procedureSubHeading">To detect and locate a changed record in buffered data</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <a href="/html/b79871b2-7c70-440e-b4e4-fae81f7d5c40.htm">GETNEXTMODIFIED( )</a> function.</p>
+            
+          </li></ul></div>
+      <p>GETNEXTMODIFIED( ), with zero as a parameter, finds the first modified record. If another user makes changes to the buffered table, any changes encountered by a <a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( )</a> command in your buffer will cause conflicts. You can evaluate the conflicting values and resolve them using the <a href="/html/d4dc65e0-a039-40ac-8df4-508a60a77228.htm">CURVAL( )</a>, <a href="/html/fa81be19-03be-4e02-8af1-74f8c521b766.htm">OLDVAL( )</a>, and <a href="/html/09f87252-c201-4402-93f0-b204468955ef.htm">MESSAGEBOX( )</a> functions. CURVAL( ) returns the current value of the record on disk, while OLDVAL( ) returns the value of the record at the time it was buffered.</p>
+      <h3 class="procedureSubHeading">To determine the original value of a buffered field</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <a href="/html/fa81be19-03be-4e02-8af1-74f8c521b766.htm">OLDVAL( )</a> function.</p>
+            
+          </li></ul></div>
+      <p>OLDVAL( ) returns the value of a buffered field.</p>
+      <h3 class="procedureSubHeading">To determine the current value of a buffered field on disk</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <a href="/html/d4dc65e0-a039-40ac-8df4-508a60a77228.htm">CURVAL( )</a> function.</p>
+            
+          </li></ul></div>
+      <p>CURVAL( ) returns the current value on disk of a buffered field before any edits were performed.</p>
+      <p>You can create an error-handling procedure that compares the current and original values, enabling you to determine whether to commit the current change or to accept an earlier change to data in a shared environment.</p>
+      <p>The following example uses GETNEXTMODIFIED( ), CURVAL( ), and OLDVAL( ) to provide the user with an informed choice in an update operation. This example continues from detection of the first modified record and might be contained in an Update or Save button on a form.</p>
+      <div class="labelheading"><b>Click Event Code for an Update or Save Button</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comment
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>   nCurRec = GETNEXTMODIFIED(nCurRec)</code>
+            </p>
+            <p>
+              <code>   DO WHILE nCurRec &lt;&gt; 0</code>
+            </p>
+            <p>
+              <code>   GO nCurRec</code>
+            </p>
+            <p>
+              <code>   RLOCK( )</code>
+            </p>
+          </td>
+          <td>
+            <p>Loop through buffer. Lock the modified record.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   FOR nField = 1 TO FCOUNT(cAlias)   </code>
+            </p>
+            <p>
+              <code>      cField = FIELD(nField)</code>
+            </p>
+            <p>
+              <code>      IF OLDVAL(cField) &lt;&gt; CURVAL(cField)</code>
+            </p>
+            <p>
+              <code>         nResult = MESSAGEBOX("Data was ;</code>
+            </p>
+            <p>
+              <code>            changed by another user. ;</code>
+            </p>
+            <p>
+              <code>            Keep changes?", 4+48+0, ;</code>
+            </p>
+            <p>
+              <code>            "Modified Record")</code>
+            </p>
+          </td>
+          <td>
+            <p>Look for conflict. Compare the original value to the current value on the disk, and then ask the user what to do about the conflict.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>         IF nResult = 7   </code>
+            </p>
+            <p>
+              <code>            TABLEREVERT(.F.)   </code>
+            </p>
+            <p>
+              <code>            UNLOCK RECORD nCurRec   </code>
+            </p>
+            <p>
+              <code>         ENDIF</code>
+            </p>
+            <p>
+              <code>      ENDIF</code>
+            </p>
+            <p>
+              <code>   ENDFOR</code>
+            </p>
+            <p>
+              <code>   nCurRec = GETNEXTMODIFIED(nCurRec)</code>
+            </p>
+            <p>
+              <code>ENDDO</code>
+            </p>
+          </td>
+          <td>
+            <p>If the user selects "No," revert this record, and then remove the lock. Find the next modified record.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>TABLEUPDATE(.T., .T.)   </code>
+            </p>
+          </td>
+          <td>
+            <p>Force update to all records.</p>
+          </td>
+        </tr></table></div>
+      <p>You can use the CompareMemo property to control when memo fields are used to detect update conflicts. This view and cursor property determines whether memo fields (types M or G) are included in the update WHERE clause. The default setting, True (.T.), means that memo fields are included in the WHERE clause. If you set this property to False (.F), memo fields don't participate in the update WHERE clause, regardless of the settings of UpdateType.</p>
+      <p>Optimistic conflict detection on Memo fields is disabled when CompareMemo is set to False. For conflict detection on memo values, set CompareMemo to True (.T.).</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/d52447bd-56d6-423f-80cf-ce73008bd2ea.htm">GETFLDSTATE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/b79871b2-7c70-440e-b4e4-fae81f7d5c40.htm">GETNEXTMODIFIED( ) Function</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/a8993d34-e40b-4411-9df3-48d58bd3f0f4.htm">Managing Conflicts When Updating Data</a></span><br /><span class="linkTerms"><a href="/html/3b456fd8-70f4-4a04-bc2d-18b17da0f414.htm">Managing Updates by Using Views</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Detect Updating Conflicts">
+</OBJECT>

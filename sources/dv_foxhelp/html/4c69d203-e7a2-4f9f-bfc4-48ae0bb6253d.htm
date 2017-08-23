@@ -1,0 +1,384 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Choose the Type of Data for a List or Combo Box</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Choose the Type of Data for a List or Combo Box</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you want to populate a <b>ListBox</b> or <b>ComboBox</b> control with items or values, set the control's <b>RowSource</b> property to specify the source of items or values to fill the control and set the <b>RowSourceType</b> property to identify the source type, such as an array or table. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>It is recommended that you set the <b>RowSourceType</b> property before setting <b>RowSource</b> to determine the source that can be used. To ensure that the control displays the most recent items or values, use the <b>Requery</b> method in the <b>Init</b> method, for example, <code>This.Requery()</code>.</p>
+    </td></tr></table></div>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>When you set the <b>RowSource</b> property in code, you must enclose the value with quotation marks (""). </p>
+    </td></tr></table></div>
+    <p>When the <b>ColumnCount</b> property is set to 0 or 1, the control displays the first item or value only in a single column. Otherwise, the control displays each item or value in a column up to the number of columns specified by <b>ColumnCount</b>. You might also need to set the <b>ColumnWidths</b> property to expand the width of the control so the items or values within display properly.</p>
+    <p>This topic contains examples that illustrate ways you can set <b>RowSourceType</b> and <b>RowSource</b> depending on the source of values you choose. The following is a list displaying the source types available:  </p>
+    <ul><li>
+        <p>
+          <a href="#dgtskchoosingtypeofdataforlistorcomboboxanchor1">No Source Type</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtskchoosingtypeofdataforlistorcomboboxanchor2">Value Source Type</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtskchoosingtypeofdataforlistorcomboboxanchor3">Alias Source Type</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtskchoosingtypeofdataforlistorcomboboxanchor4">SQL Statement Source Type</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtskchoosingtypeofdataforlistorcomboboxanchor5">Query Source Type</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtskchoosingtypeofdataforlistorcomboboxanchor6">Array Source Type</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtskchoosingtypeofdataforlistorcomboboxanchor7">Fields Source Type</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtskchoosingtypeofdataforlistorcomboboxanchor8">Files Source Type</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtskchoosingtypeofdataforlistorcomboboxanchor9">Field Structure Source Type</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtskchoosingtypeofdataforlistorcomboboxanchor10">Pop-Up Source Type</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtskchoosingtypeofdataforlistorcomboboxanchor11">Collection Source Type</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtskchoosingtypeofdataforlistorcomboboxanchor13">Different Source Types</a>
+        </p>
+      </li></ul>
+    <p>For details about source types, the sources you can specify, and how <b>ColumnCount</b> affects population of the control for each source type, see <span class="linkTerms"><a href="/html/ffd39712-9ea4-42a5-bd92-9a4073f5a6b4.htm">RowSourceType Property</a></span> and <span class="linkTerms"><a href="/html/490d957f-926a-4b4c-a265-e3ad5f679f1b.htm">RowSource Property</a></span>. </p>
+    <p>For more information, Visual FoxPro provides the following samples that use the <b>RowSourceType</b> and <b>RowSource</b> properties:  </p>
+    <ul><li>
+        <p>
+          <span class="linkTerms"><a href="/html/5534fe9f-7a82-4673-8abd-e806a80e1638.htm">Add New Items to a Combo Box Sample</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="/html/ad0e4ac3-9ad0-4d5d-ba90-c7f717e1880c.htm">Allow Users to Choose List Values Sample</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="/html/ceef4ee0-0b13-498a-ad2b-33c095d86724.htm">Move Items Between List Boxes Sample</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="/html/0f581c1b-869b-480f-837e-81243ba4136d.htm">Open Multiple Files Interactively Sample</a></span>
+        </p>
+      </li></ul>
+  <a name="dgtskchoosingtypeofdataforlistorcomboboxanchor1"></a><h1 class="heading">No Source Type</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can populate a list box or combo box without specifying a source or source type.</p>
+      <h3 class="procedureSubHeading">To populate the control without specifying a source</h3><div class="subSection"><ol><li>
+            
+              <p>Set <b>RowSourceType</b> to 0 (None). </p>
+              <p>None is the default setting and does not populate the control automatically.  </p>
+            
+          </li><li>
+            
+              <p>Use the <b>AddItem</b> method, <b>AddListItem</b> method, <b>List</b> property, or <b>ListItem</b> property to add values or items to the control. </p>
+            
+          </li></ol></div>
+      <p>For example, the following lines of code set <b>RowSourceType</b> to 0 to indicate no source type and uses the <b>AddItem</b> method to add three items to the list box lstMyListBox on the form frmForm1:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frmForm1.lstMyListBox.RowSourceType = 0
+frmForm1.lstMyListBox.AddItem("First Item")
+frmForm1.lstMyListBox.AddItem("Second Item")
+frmForm1.lstMyListBox.AddItem("Third Item")</pre></td></tr></table></span></div>
+      <p>The list box displays the items, "First Item", "Second Item", and "Third Item". For more information, see <span class="linkTerms"><a href="/html/4348ea2d-25ca-4306-a129-28bd0287ec3a.htm">AddItem Method (Visual FoxPro)</a></span>, <span class="linkTerms"><a href="/html/317977bd-c3b4-4bce-8cfd-f376f6f3d4bf.htm">AddListItem Method</a></span>, <span class="linkTerms"><a href="/html/a1d6a6ef-aca6-4624-9be9-012697f29b2c.htm">List Property</a></span>, and <span class="linkTerms"><a href="/html/4684309c-c0ed-48f6-8476-3d0603b0b69b.htm">ListItem Property</a></span>.</p>
+      <p>To remove items from the list, use the <b>RemoveItem</b> method. For example, the following line of code removes the second item, "Second Item", from the list box:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frmForm1.lstMyListBox.RemoveItem(2)</pre></td></tr></table></span></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/995c88c6-f440-450a-a8a0-3cb639aa3414.htm">RemoveItem Method</a></span>. </p>
+    </div><a name="dgtskchoosingtypeofdataforlistorcomboboxanchor2"></a><h1 class="heading">Value Source Type</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can populate a list box or combo box with a list of individual values. </p>
+      <h3 class="procedureSubHeading">To populate the control with a list of individual values</h3><div class="subSection"><ol><li>
+            
+              <p>Set <b>RowSourceType</b> to 1 (Value).</p>
+            
+          </li><li>
+            
+              <p>Set <b>RowSource</b> by specifying the values in a comma-delimited list, using no spaces between the values and the commas. </p>
+            
+          </li></ol></div>
+      <p>For example, the following lines of code set <b>RowSourceType</b> to 1 to indicate that the source is a comma-delimited list of values and specifies a comma-delimited list in quotation marks ("") for <b>RowSource</b>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Form1.lstMyList.RowSourceType = 1
+Form1.lstMyList.RowSource = "one,two,three,four"</pre></td></tr></table></span></div>
+    </div><a name="dgtskchoosingtypeofdataforlistorcomboboxanchor3"></a><h1 class="heading">Alias Source Type</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can populate a list box or combo box with values from one or more fields in an open table by specifying the table's alias.</p>
+      <h3 class="procedureSubHeading">To populate the control with values from one or more fields using a table alias</h3><div class="subSection"><ol><li>
+            
+              <p>Set <b>RowSourceType</b> to 2 (Table alias).</p>
+            
+          </li><li>
+            
+              <p>Set <b>RowSource</b> by specifying a table alias.</p>
+            
+          </li></ol></div>
+      <p>For example, the following lines of code set <b>RowSourcetype</b> to 2 to indicate that the source is a table identified by the table alias, Customers, and specifies "Customers" as the table alias for <b>RowSource</b>:</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>Make sure the table is opened first before the code executes.</p>
+      </td></tr></table></div>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE (HOME(2)+"Northwind\Northwind")
+Form1.lstMyList.RowSourceType = 2
+Form1.lstMyList.RowSource = "Customers"</pre></td></tr></table></span></div>
+      <p>The <b>ColumnCount</b> property determines the number of fields from which values are used to populate the control. When <b>ColumnCount</b> set to 0 or 1, the control displays values from the first field in the table. When <b>ColumnCount</b> set to a value greater than 1, the control displays values from fields in the table up to the number specified by <b>ColumnCount</b>. For example, if <b>ColumnCount</b> is set to 3, the control displays values from the first three fields in the table. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>When <b>RowSourceType</b> is 2 (Table alias) or 6 (Fields), the table record pointer moves to the record containing the value that the user chooses in the list.</p>
+      </td></tr></table></div>
+    </div><a name="dgtskchoosingtypeofdataforlistorcomboboxanchor4"></a><h1 class="heading">SQL Statement Source Type</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>You can populate a list box or combo box with values a cursor or table created by a SQL statement, such as <b>SQL SELECT</b>.</p>
+      <h3 class="procedureSubHeading">To populate the control with values from a SQL statement</h3><div class="subSection"><ol><li>
+            
+              <p>Set <b>RowSourceType</b> to 3 (SQL statement).</p>
+            
+          </li><li>
+            
+              <p>Set <b>RowSource</b> by specifying a SQL <b>SELE</b><b>CT</b> statement.</p>
+            
+          </li></ol></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>By default in Visual FoxPro, SQL <b>SELECT</b> statements without <b>INTO</b> clauses display the resulting cursor immediately in a browse window. For more information, see <span class="linkTerms"><a href="/html/25d92e4a-4a6b-4d9b-80a2-f00e2ae9f8f8.htm">Browse Window</a></span>. It is suggested that you include an <b>INTO CURSOR</b> clause in your SQL <b>SELECT</b> statement to avoid displaying the browse window.</p>
+      </td></tr></table></div>
+      <p>For example, the following lines of code set <b>RowSourceType</b> to 3 to indicate that the source is a cursor or table created from a SQL statement and specifies a SQL <b>SELECT</b> statement for <b>RowSource</b> that selects all fields and all records from the Customers table, located in the sample Northwind database in the directory, ..\Samples\Northwind, into a cursor named myCursor:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE (HOME(2)+"Northwind\Northwind")
+Form1.lstMyList.RowSourceType = 3
+Form1.lstMyList.RowSource = "SELECT * FROM Customers INTO CURSOR myCursor"</pre></td></tr></table></span></div>
+      <p>For more information about SQL <b>SELECT</b> statements, see <span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span>.</p>
+    </div><a name="dgtskchoosingtypeofdataforlistorcomboboxanchor5"></a><h1 class="heading">Query Source Type</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>You can populate a list box or combo box with results from a query that you created using the Query Designer and saved in a query (.qpr) file. For more information about queries, see <span class="linkTerms"><a href="/html/d9f7a435-663d-4523-9511-c847be4311ca.htm">Query and View Designers</a></span> and <span class="linkTerms"><a href="/html/f5b2d063-c8c2-4ada-bf3a-b599409cb41c.htm">How to: Create Queries (Visual FoxPro)</a></span>.</p>
+      <h3 class="procedureSubHeading">To populate the control with values from a query</h3><div class="subSection"><ol><li>
+            
+              <p>Set <b>RowSourceType</b> to 4 (Query file).</p>
+            
+          </li><li>
+            
+              <p>Set <b>RowSource</b> by specifying the name of a .qpr file, including a path if needed. </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>Make sure to include the .qpr file name extension. However, if you do not specify a file extension, Visual FoxPro assumes the file extension is .qpr.</p>
+              </td></tr></table></div>
+            
+          </li></ol></div>
+      <p>For example, the following lines of code set <b>RowSourceType</b> to 4 to indicate that the source is a .qpr file and specifies the name of a .qpr file for <b>RowSource</b>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Form1.lstMyList.RowSourceType = 4
+Form1.lstMyList.RowSource = "MyQuery.qpr"</pre></td></tr></table></span></div>
+    </div><a name="dgtskchoosingtypeofdataforlistorcomboboxanchor6"></a><h1 class="heading">Array Source Type</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>You can populate a list box or combo box with items or values stored in an array. You use an array created elsewhere in your application or create an array property of the form or form set to specify for <b>RowSource</b>. For more information about arrays, see <span class="linkTerms"><a href="/html/e58df646-1f73-4cfb-9793-1b86f76e919a.htm">Arrays</a></span>. For more information about creating array properties, see <span class="linkTerms"><a href="/html/adb21354-5dde-4f55-b92a-df0c53810385.htm">Creating Forms</a></span>.</p>
+      <h3 class="procedureSubHeading">To populate the control from an array</h3><div class="subSection"><ol><li>
+            
+              <p>Set <b>RowSourceType</b> to 5 (Array).</p>
+            
+          </li><li>
+            
+              <p>Set <b>RowSource</b> by specifying the name of the array.</p>
+            
+          </li></ol></div>
+      <p>For example, the following lines of code create an array with 10 elements, store values in the array, set <b>RowSourceType</b> to 5 to indicate the source is an array, and specifies the name of the array for <b>RowSource</b>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DIMENSION gaMyArray(10)
+FOR gnCount = 1 to 10  
+   STORE gnCount TO gaMyArray(gnCount)
+NEXT 
+Form1.lstMyList.RowSourceType = 5
+Form1.lstMyList.RowSource = "gaMyArray"</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The <b>RowSource</b> setting is evaluated by Visual FoxPro as needed in your application and is not confined only to the method in which you set <b>RowSource</b>. You need to keep this scope in mind. </p>
+      </td></tr></table></div>
+      <p>For example, if you create a local array in a method, that array is scoped to the method and will not be available in all cases when Visual FoxPro needs to evaluate the property setting. If you set the <b>RowSource </b>to an array property of a form or form set, you need to reference the property relative to the control, not relative to the method in which you set the property. As an example, suppose you have a form array property named arrayProp and the following lines of code in the form's <b>Init</b> event. The first line of code produces an error while the second line does not:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THIS.lst1.RowSource = "THIS.arrayprop"   
+THIS.lst1.RowSource = "THISFORM.arrayprop" </pre></td></tr></table></span></div>
+    </div><a name="dgtskchoosingtypeofdataforlistorcomboboxanchor7"></a><h1 class="heading">Fields Source Type</h1><div id="sectionSection6" class="seeAlsoNoToggleSection">
+      <p>You can populate a list box or combo box with values from fields from a single table. Unlike when <b>RowSourceType</b> is set to 2 (Table alias), setting <b>RowSourceType</b> to 6 (Fields) makes it possible to display fields independent of their actual positions in the table.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>If you want to populate the control with fields from multiple tables, set <b>RowSourceType</b> to 3 and specify a SQL <b>SELECT</b> statement for <b>RowSource</b>.</p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To populate the control from fields from a single table</h3><div class="subSection"><ol><li>
+            
+              <p>Set <b>RowSourceType</b> to 6 (Fields).</p>
+            
+          </li><li>
+            
+              <p>Set <b>RowSource</b> by specifying a field or a comma-delimited list of fields. </p>
+              <p>If the table is open, you can specify <b>RowSource</b> in the following ways:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Form1.lstMyList.RowSource = field1
+Form1.lstMyList.RowSource = field2, field3, ...</pre></td></tr></table></span></div>
+              <p>If the table is not open, precede the field or list of fields with a table alias and a period (.), for example:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Form1.lstMyList.RowSource = TableAlias.field1
+Form1.lstMyList.RowSource = TableAlias.field1, field3, field2, ...</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+      <p>For example, the following lines of code open a table, set <b>RowSourceType</b> to 6 to indicate that the source type is fields, and specify fields from the Products table in the Northwind database, located in the directory ..\Samples\Northwind, for <b>RowSource</b>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE (HOME(2)+"Northwind\Northwind")
+USE Products
+Form1.lstMyList.RowSourceType = 6
+Form1.lstMyList.RowSource = "productname, productid"</pre></td></tr></table></span></div>
+      <p>The following lines of code specify fields from the Customers table, which is not open, for <b>RowSource</b>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE (HOME(2)+"Northwind\Northwind")
+Form1.lstMyList.RowSourceType = 6
+Form1.lstMyList.RowSource = "Customers.companyname, customerid"</pre></td></tr></table></span></div>
+    </div><a name="dgtskchoosingtypeofdataforlistorcomboboxanchor8"></a><h1 class="heading">Files Source Type</h1><div id="sectionSection7" class="seeAlsoNoToggleSection">
+      <p>You can populate a list box or combo box with the names of files from the current directory. The list also contains options for you to choose a different drive and directory to display file names from.</p>
+      <h3 class="procedureSubHeading">To populate the control with file names from a directory</h3><div class="subSection"><ol><li>
+            
+              <p>Set <b>RowSourceType</b> to 7 (Files).</p>
+            
+          </li><li>
+            
+              <p>Set <b>RowSource</b> by specifying a file skeleton or mask, such as *.* or *.fileExt.</p>
+            
+          </li></ol></div>
+      <p>For example, the following lines of code set <b>RowSourceType</b> to 7 to indicate that the source type is files and specifies a file skeleton for <b>RowSource</b>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Form1.lstMyList.RowSourceType = 7
+Form1.lstMyList.RowSource = "*.*"</pre></td></tr></table></span></div>
+    </div><a name="dgtskchoosingtypeofdataforlistorcomboboxanchor9"></a><h1 class="heading">Field Structure Source Type</h1><div id="sectionSection8" class="seeAlsoNoToggleSection">
+      <p>You can populate a list box or combo box with the names of fields in a table. Displaying a list of field names is useful when the user wants to search a particular field for values or to organize those fields in the table.</p>
+      <h3 class="procedureSubHeading">To populate the control with field names from a table</h3><div class="subSection"><ol><li>
+            
+              <p>Set <b>RowSourceType</b> to 8 (Field structure).</p>
+            
+          </li><li>
+            
+              <p>Set <b>RowSource</b> by specifying a table name or table alias.</p>
+            
+          </li></ol></div>
+      <p>For example, the following lines of code set <b>RowSourceType</b> to 8 to indicate that the source type is a field structure of a table and specifies a table name for <b>RowSource</b>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Form1.lstMyList.RowSourceType = 8
+Form1.lstMyList.RowSource = "Customers"</pre></td></tr></table></span></div>
+    </div><a name="dgtskchoosingtypeofdataforlistorcomboboxanchor10"></a><h1 class="heading">Pop-Up Source Type</h1><div id="sectionSection9" class="seeAlsoNoToggleSection">
+      <p>Included for backward compatibility, <b>RowSourceType</b> set to 9 (Pop-up) made it possible to populate a list box or combo box from a previously defined pop-up or menu.</p>
+      <h3 class="procedureSubHeading">To populate the control with a pop-up menu</h3><div class="subSection"><ul><li>
+            
+              <p>Set <b>RowSourceType</b> to 9 (Pop-up).</p>
+            
+          </li></ul></div>
+    </div><a name="dgtskchoosingtypeofdataforlistorcomboboxanchor11"></a><h1 class="heading">Collection Source Type</h1><div id="sectionSection10" class="seeAlsoNoToggleSection">
+      <p>You can populate a list box or combo box with members and property values of objects in a collection, or <b>Collection</b> object.</p>
+      <h3 class="procedureSubHeading">To populate the control with collection members</h3><div class="subSection"><ol><li>
+            
+              <p>Set <b>RowSourceType</b> to 10 (Collection).</p>
+            
+          </li><li>
+            
+              <p>Set <b>RowSource</b> by specifying the name of a collection.</p>
+            
+          </li></ol></div>
+      <p>For example, the following lines of code create a collection and two forms, adds the forms and three strings to the collection, sets <b>RowSourceType</b> to 10 to indicate that source type is a <b>Collection</b> object, and specifies the collection name and properties of objects in the collection for <b>RowSource</b>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>colMyCollection=CREATEOBJECT("Collection")
+frm1=CREATEOBJECT("Form")
+frm2=CREATEOBJECT("Form")
+colMyCollection.Add(frm1)
+colMyCollection.Add(frm2)
+colMyCollection.Add("Item 1")
+colMyCollection.Add("Item 2")
+colMyCollection.Add("Item 3")
+Form1.lstMyList.RowSourceType = 10
+Form1.lstMyList.RowSource = "colMyCollection, Caption, Name"</pre></td></tr></table></span></div>
+    </div><a name="dgtskchoosingtypeofdataforlistorcomboboxanchor13"></a><h1 class="heading">Different Source Types</h1><div id="sectionSection11" class="seeAlsoNoToggleSection">
+      <p>You can populate a list box or combo box with items and values from different sources. </p>
+      <h3 class="procedureSubHeading">To populate a control from different sources</h3><div class="subSection"><ul><li>
+            
+              <p>See <span class="linkTerms"><a href="/html/18f0e686-0c9f-4801-8e3b-e03d52f2ce3f.htm">Fill a List with Values from Different Sources Sample</a></span>.</p>
+            
+          </li></ul></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/ccc655cb-3b49-42a2-a87c-43ce0a462c95.htm">Controls for Displaying Lists</a></span><br /><span class="linkTerms"><a href="/html/119e15f3-d59f-4ebc-8b75-98d1d4fbbdad.htm">Controls and Objects Created in Earlier Versions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Choose the Type of Data for a List or Combo Box">
+</OBJECT>

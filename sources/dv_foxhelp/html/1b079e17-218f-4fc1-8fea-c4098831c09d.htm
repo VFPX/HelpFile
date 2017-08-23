@@ -1,0 +1,283 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Converting Between XML and Visual FoxPro Data</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Converting Between XML and Visual FoxPro Data</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can exchange data more easily with other applications by converting Visual FoxPro data to XML format. Visual FoxPro includes the following functions so you can convert data between XML and Visual FoxPro format:
+</p>
+    <ul><li>
+        <p>
+          <a href="/html/b53b14fa-c1b0-4c29-82b1-3149adf53073.htm">CURSORTOXML( ) Function</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="/html/887e0f56-7ff2-4877-89ff-9bbccde7f2d6.htm">XMLTOCURSOR( ) Function</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="/html/646e7dbb-d5e9-4017-b8a2-cb3625a818cb.htm">XMLUPDATEGRAM( ) Function</a>
+        </p>
+      </li></ul>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>You must have the Microsoft XML Core Services (MSXML) parser installed before you can use the Visual FoxPro XML functions.</p>
+    </td></tr></table></div>
+    <p>The following sections discuss considerations when converting between XML and Visual FoxPro data:
+</p>
+    <ul><li>
+        <p>
+          <a href="#foconconvertingbetweenxmlvisualfoxprodataanchor1">Processing XML Data in Variables or Strings Instead of Files</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#foconconvertingbetweenxmlvisualfoxprodataanchor2">XML String Conversion</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#foconconvertingbetweenxmlvisualfoxprodataanchor3">Importing and Exporting XML Using Schemas</a>
+        </p>
+      </li></ul>
+    <p>You can override the internal functionality of the <b>CURSORTOXML( )</b>, <b>XMLTOCURSOR( )</b>, and <b>XMLUPDATEGRAM( )</b> functions by referencing a COM component using the <b>VFPXMLProgID</b> property. For more information, see <a href="/html/7d8b6741-f850-4cda-bd5a-a5f5ee6e334a.htm">VFPXMLProgID Property</a>. </p>
+    <p>Visual FoxPro supports hierarchically formatted XML for XML DiffGram and .NET Framework ADO.NET DataSet formats by providing the <b>XMLAdapter</b>, <b>XMLTable</b>, and <b>XMLField</b> classes. For more information, see <a href="/html/eb5f9e49-00fe-4827-8608-dfe12e3f6d5e.htm">XML Functionality Using XMLAdapters</a>.</p>
+  <a name="foconconvertingbetweenxmlvisualfoxprodataanchor1"></a><h1 class="heading">Processing XML Data in Variables or Strings Instead of Files</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>
+        <b>XMLTOCURSOR( )</b> processes data differently from a variable or string than from a file. When converting XML to a cursor, the method used to pass XML to the function affects how double-byte character sets (DBCS) characters in the XML are handled. DBCS characters are interpreted correctly when using a file for XMLSource. However, if you need to use a memory variable or string, you can force interpretation to DBCS by using the following code in <b>XMLTOCURSOR( )</b>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>STRCONV(<i>string</i>,11)</pre></td></tr></table></span></div>
+      <p>The following example opens the Visual FoxPro sample Customer table located in the Visual FoxPro ..\Samples\Data\ directory and converts the data in the Customer table and saves the data in the table to a memory variable, lcXML, as XML:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+CLOSE DATABASES ALL
+USE HOME()+'samples\data\customer'
+CURSORTOXML('customer','lcXML',1,48,5,"","","") </pre></td></tr></table></span></div>
+      <p>The following line inserts incorrect characters in the resulting cursor:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>XMLTOCURSOR(lcXML,"curCustomerList",4)</pre></td></tr></table></span></div>
+      <p>The following line uses the <b>STRCONV( ) </b>function and converts the XML to DBCS data correctly, opens a browse window for the table:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>XMLTOCURSOR(STRCONV(lcXML,11),"curCustomerList",4) 
+BROWSE</pre></td></tr></table></span></div>
+    </div><a name="foconconvertingbetweenxmlvisualfoxprodataanchor2"></a><h1 class="heading">XML String Conversion</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>
+        <b>XMLTOCURSOR( )</b> does not perform automatic conversions of XML strings, for example, from ANSI to UTF-8. This might occur when reading an XML string from a file. To perform a conversion, use the <b>STRCONV( )</b> function. </p>
+      <p>The following example demonstrates the parse error that occurs when Visual FoxPro encounters the first ASCII character:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASE ALL
+USE HOME(2)+"\data\customer"
+CURSORTOXML("customer","lcXML",1,32)
+STRTOFILE(lcXML,"customer.xml")
+XMLTOCURSOR("customer.xml","curCustomer",512)
+RETURN</pre></td></tr></table></span></div>
+      <p>You can prevent the parse error generated by converting the string to UTF-8 when the XML is written or when it is written to the file. The following example converts the string to UTF-8 as it is being written to the file by using the <b>STRCONV( )</b> function with the <b>STRTOFILE( )</b> function:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASE ALL
+USE HOME(2)+"\data\customer"
+CURSORTOXML("customer","lcXML",1,32)
+STRTOFILE(STRCONV(lcXML,9),"customer.xml")
+XMLTOCURSOR("customer.xml","curCustomer",512)
+RETURN</pre></td></tr></table></span></div>
+      <p>In the example, you can use a value of 48 for the <i>nFlag</i> parameter in the <b>STRCONV( )</b> function to create the XML encoded as UTF-8. However, this does not work for XML provided from an external source or with XML that is not generated with the <b>CURSORTOXML( )</b> function.</p>
+      <p>For more information, see <a href="/html/e2b743ac-dec7-43ae-82db-ba6fa1e2cbd9.htm">STRCONV( ) Function</a>. </p>
+    </div><a name="foconconvertingbetweenxmlvisualfoxprodataanchor3"></a><h1 class="heading">Importing and Exporting XML Using Schemas</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When you import XML using the <b>XMLTOCURSOR( )</b> function, Visual FoxPro uses an external or internal schema, if available, to determine the cursor or table structure before making a single pass to convert the data. When no schema is provided, Visual FoxPro makes two passes through the XML data: the first pass determines the data structure in the best possible way and the second to perform the conversion. The XML must generally conform to a format that can be interpreted as a table in addition to being well-formed. Well-formed XML that is not easily deconstructed into a table format will fail to import.</p>
+      <p>The following is an example of XSD schema generated by the Visual FoxPro <b>CURSORTOXML( )</b> function:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;?xml version = "1.0" encoding="Windows-1252" standalone="yes"?&gt;
+&lt;xsd:schema id="VFPSchema" targetNamespace="http://microsoft.com" xmlns="http://microsoft.com" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" elementFormDefault="qualified"&gt;
+   &lt;xsd:element name="atxm"&gt;
+      &lt;xsd:complexType&gt;
+         &lt;xsd:all&gt;
+            &lt;xsd:element name="ikey" minOccurs="0" type="xsd:int"/&gt;
+            &lt;xsd:element name="nc00" minOccurs="0"&gt;
+               &lt;xsd:simpleType&gt;
+                  &lt;xsd:restriction base="xsd:decimal"&gt;
+                     &lt;xsd:precision value="10"/&gt;
+                     &lt;xsd:scale value="4"/&gt;
+                  &lt;/xsd:restriction&gt;
+               &lt;/xsd:simpleType&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:element name="mc03" minOccurs="0"&gt;
+               &lt;xsd:simpleType&gt;
+                  &lt;xsd:restriction base="xsd:string"&gt;
+                     &lt;xsd:maxLength value="2147483647"/&gt;
+                  &lt;/xsd:restriction&gt;
+               &lt;/xsd:simpleType&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:element name="cc04" minOccurs="0"&gt;
+               &lt;xsd:simpleType&gt;
+                  &lt;xsd:restriction base="xsd:string"&gt;
+                     &lt;xsd:maxLength value="128"/&gt;
+                  &lt;/xsd:restriction&gt;
+               &lt;/xsd:simpleType&gt;
+            &lt;/xsd:element&gt;
+            &lt;xsd:element name="lc05" minOccurs="0" type="xsd:boolean"/&gt;
+            &lt;xsd:element name="fc06" minOccurs="0" type="xsd:double"/&gt;
+            &lt;xsd:element name="yc07" minOccurs="0" type="xsd:decimal"/&gt;
+            &lt;xsd:element name="ic08" minOccurs="0" type="xsd:int"/&gt;
+            &lt;xsd:element name="bc09" minOccurs="0" type="xsd:double"/&gt;
+            &lt;xsd:element name="dc10" minOccurs="0" type="xsd:date"/&gt;
+            &lt;xsd:element name="tc11" minOccurs="0" 
+type="xsd:timeInstant"/&gt;
+            &lt;xsd:element name="ts12" minOccurs="0"&gt;
+               &lt;xsd:simpleType&gt;
+                  &lt;xsd:restriction base="xsd:binary"&gt;
+                     &lt;xsd:encoding value="base64"/&gt;
+                  &lt;/xsd:restriction&gt;
+               &lt;/xsd:simpleType&gt;
+            &lt;/xsd:element&gt;
+         &lt;/xsd:all&gt;
+      &lt;/xsd:complexType&gt;
+   &lt;/xsd:element&gt;
+   &lt;xsd:element name="VFPData" msdata:lsDataSet="true"&gt;
+      &lt;xsd:complexType&gt;
+         &lt;xsd:choice maxOccurs="unbounded"&gt;
+            &lt;xsd:element ref="atxm"/&gt;
+         &lt;/xsd:choice&gt;
+      &lt;/xsd:complexType&gt;
+   &lt;/xsd:element&gt;
+&lt;/xsd:schema&gt;</pre></td></tr></table></span></div>
+      <p>Currently, Visual FoxPro exports XML in the following formats:
+</p>
+      <ul><li>
+          <p>
+            <b>Element-centric   </b>Each field in a resulting or source cursor or table is represented by a sub-element of the top-level element.
+</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;?xml version="1.0" encoding="Windows-1252" standalone="yes" ?&gt;
+&lt;!-- Note targetNamespace in root (VfpData) element. If set to default (""), xmlns attrib is not written --&gt;
+&lt;VfpData xmlns="http://www.microsoft.com"&gt;
+   &lt;alltypesxm&gt;
+      &lt;ikey&gt;2&lt;/ikey&gt; 
+      &lt;nc00&gt;1.1111&lt;/nc00&gt; 
+      &lt;mc03&gt;H1111111111111111111&lt;/mc03&gt; 
+      &lt;cc04&gt;H111111111111111111&lt;/cc04&gt; 
+      &lt;lc05&gt;true&lt;/lc05&gt; 
+      &lt;fc06&gt;-1111000&lt;/fc06&gt; 
+      &lt;yc07&gt;-111111111.1111&lt;/yc07&gt; 
+      &lt;ic08&gt;-11111111&lt;/ic08&gt; 
+      &lt;bc09&gt;-111111111111.1&lt;/bc09&gt; 
+      &lt;dc10&gt;1999-03-02T08:00:00&lt;/dc10&gt; 
+      &lt;tc11&gt;1999-03-02T09:01:01&lt;/tc11&gt; 
+      &lt;ts12&gt;AAAAAAAAAr8=&lt;/ts12&gt;
+   &lt;/alltypesxm&gt;
+&lt;/VfpData&gt;</pre></td></tr></table></span></div>
+        </li><li>
+          <p>
+            <b>Attribute-centric</b>   The cursor is identified by the keyword "VFPData" and each field in a resulting or source cursor or table is represented by an attribute of the VFPData element. 
+</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;?xml version="1.0" encoding="Windows-1252" ?&gt;
+&lt;!-- Note targetNamespace in root element --&gt;
+&lt;VFPData xmlns="http://www.microsoft.com"&gt;
+   &lt;atxm_attr ikey="2" nc00="12345.1111" 
+      mc03="H1111111111111111111" cc04="H111111111111111111" lc05="1" 
+      fc06="-1111000.0000" yc07="-111111111.1111" ic08="-11111111" 
+      bc09="-111111111111.100000" dc10="1999-03-02" 
+      tc11="1999-03-02T01:01:01" ts12="AAAAAAAAAr0=" /&gt; 
+   &lt;atxm_attr ikey="3" nc00="2.1111" mc03="H2222222222222222222"
+      cc04="H222222222222222222" lc05="1" fc06="22220000.0000"
+      yc07="2222222222.2222" ic08="222222222"
+      bc09="222222222222.2200000" 
+      tc11="2000-10-03T02:02:02" ts12="AAAAAAAAAr8=" /&gt; 
+&lt;/VFPData&gt;</pre></td></tr></table></span></div>
+        </li><li>
+          <p>
+            <b>Raw</b>   Each row in a resulting or source cursor or table is represented by an XML element with the generic identifier "<i>row", </i>and each column value is mapped to an attribute of the <i>row</i> element where the attribute name is equal to the column name. This format is identical to Attribute-centric except for "row" as the name of the top-level element.
+</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;?xml version="1.0"?&gt;
+&lt;!-- Note no targetNamespace in root element --&gt;
+&lt;VFPData&gt;
+   &lt;row CustomerID="CACTU" CompanyName="Cactus Comidas para llevar"
+      ContactName="Patricio Simpson" ContactTitle="Sales Agent"
+      Address="Cerrito 333" City="Buenos Aires" PostalCode="1010"
+      Country="Argentina" Phone="(1) 135-5555" Fax="(1) 135-4892"/&gt; 
+&lt;/VFPData&gt;</pre></td></tr></table></span></div>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/f2cb85b7-b158-4eff-9ca8-57ffebca5d9e.htm">Visual FoxPro and XML Schema Data Type Mapping</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/ded6a107-d264-4c03-bbe7-4e88d9675d79.htm">XML Data in Visual FoxPro</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/7e2c4e3b-06c8-4825-a30f-9be7b1e9e898.htm">Importing and Exporting Data</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Converting Between XML and Visual FoxPro Data">
+</OBJECT>

@@ -1,0 +1,162 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Selecting a Run-Time Library</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Selecting a Run-Time Library</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You might have an application need, such as an Internet Server Application in the <a href="/html/ec045b1f-99ee-4553-a5b3-04b9fe0f865a.htm">FoxIsap server sample</a>, where you want to instantiate a form to use in mapping to equivalent HTML. The impact of eliminating a number of non-critical features by using the multithreaded Visual FoxPro run-time library will improve overall performance of your multithreaded server applications.</p>
+    <p>A common misconception about server choice is that an application will automatically scale well just by building the .dll to use the new run time. You can often do this, but you should also consider issues involving use of Visual FoxPro API calls, scalability, reentrancy, and resource contention.</p>
+  <h1 class="heading">Using Visual FoxPro API Calls</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When using Visual FoxPro FLL or standard Windows DLL libraries that make Visual FoxPro API calls, there are some issues you need to be aware of when designing your servers. The Visual FoxPro API does not readily determine to which project (.dll) a particular call belongs. So, there is a potential, although rare, for an API call to be made against the wrong project (.dll - thread local storage). This may occur if your FLL/DLL library creates an instance from a different Visual FoxPro .dll server before making its API call. There are several possible solutions if your server should experience this problem:
+</p>
+      <ul><li>
+          <p>Create a separate copy of the multithreaded Visual FoxPro run-time library file, and place the copy in the same folder as your .dll server. The server will always search first in your server folder before attempting to locate files in the Windows System folder or folder of your client process. By having its own run-time library servicing it, a server will not experience potential conflicts from other .dlls (assuming these other .dlls are not in the same folder). Since this behavior (automatic copying/renaming of run time) occurs by default with the main Visual FoxPro run time, the above API issues only manifest themselves in the mulithreaded Visual FoxPro run-time library.</p>
+        </li><li>
+          <p>Limit your application to a single .dll server. If you are using several .dll servers (projects), there may be potential for API conflicts. Remember that a project can contain many OLEPUBLICs, so you don't need to have a separate project for each OLEPUBLIC. Be aware that on shared computer servers, its possible that people may install other Visual FoxPro COM servers, which could potentially conflict with yours if running concurrently.</p>
+        </li></ul>
+    </div><h1 class="heading">Scalability Issues</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The multithreaded run time in Visual FoxPro allows for very scalable Visual FoxPro in-process servers. Though scalability of your servers will be handled automatically by the run time, certain tight code loops may not allow thread switching to occur as frequently. For example, a very tight DO WHILE loop may cause this. If you experience scalability problems, you can include code such as the following example which forces the processor to switch threads:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DECLARE Sleep IN Win32API INTEGER   
+SLEEP(0)</pre></td></tr></table></span></div>
+      <p>Though you can use multithreading on a single-processor machine, consider that this may not provide quite the results you expect. For example, on a single-processor machine, multithreading results in a perceived performance improvement only with a mix of long and short tasks. Multithreaded method calls, as described in this example, may appear to be slower.</p>
+      <img src="../local/Local_-1845227056_avtcm100.gif" alt="FoxPro Method Calls"></img>
+      <p>In the example, method A and method B are called at the same time. In a single-threaded component, the requests are serialized, so that B doesn't begin until A has finished. With multithreading, the two active threads duel for the processor's attention.</p>
+      <p>Not only does the perceived average completion time increase, but more processor time is spent switching between threads.</p>
+      <p>The problem is that method A and method B take about the same amount of time. </p>
+      <p>For example, if method B required only three time slices to complete, the user of the system would perceive a huge improvement in the responsiveness of method B — and only a slight degradation in the time required to execute method A.</p>
+      <p>The scenarios in which multithreading shows to best advantage are those in which most threads spend a substantial percentage of the time blocked — for example, waiting for file I/O — so that other threads can be executing code at any given time.</p>
+      <p>If you are considering an application on a single-processor machine with characteristics that provide minimal thread blocking, you may want to consider using the main Visual FoxPro run-time library. On multiprocessor machines and in most other applications, you should consider using the multithreaded Visual FoxPro run-time library for .dll servers.</p>
+    </div><h1 class="heading">Reentrancy</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>In the apartment model, reentrancy refers to the following sequence of events: 
+</p>
+      <ol><li>
+          <p>An apartment's thread of execution enters an object's code, because a property or method has been invoked.</p>
+        </li><li>
+          <p>While the thread is in the property or method, another thread invokes a property or method of the object, and Automation serializes this request — that is, it queues the request until the thread that owns the object's apartment finishes the member it's currently executing.</p>
+        </li><li>
+          <p>Before the thread reaches the end of the member, it executes code that yields control of the processor.</p>
+        </li><li>
+          <p>Automation tells the thread to begin executing the serialized request, so that the thread reenters the object's code.</p>
+        </li></ol>
+      <p>The new request may be for the member the thread was already executing — in which case the thread enters the member a second time — or it may be for another member. If the second member doesn't yield, it will finish processing before the first member. If it changes module-level data the first member was using, the result may be unfortunate.</p>
+      <p>By serializing property and method calls for each apartment, Automation protects you from reentrancy — unless your code yields control of the processor. Ways in which your code can yield control of the processor include: 
+</p>
+      <ul><li>
+          <p>Calling DoEvents.</p>
+        </li><li>
+          <p>Invoking the properties or methods of an object on another thread, or in another process. Setting the Application.AutoYield property to false (.F.) will suspend processing of intermittent events between lines of code executing.</p>
+        </li><li>
+          <p>Invoking a cross-thread or cross-process method from within a method.</p>
+        </li></ul>
+      <p>Unless you've carefully written all of an object's code so that it doesn't matter whether two members are executing at the same time, you should not include code that yields control of the processor.</p>
+    </div><h1 class="heading">Resource Contention</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>The multithreaded Visual FoxPro run-time library will protect objects from accessing each other's application data. This includes both declared and intrinsic environment globals. Some resources present potential problems of contention, including:
+</p>
+      <ul><li>
+          <p>Files</p>
+        </li><li>
+          <p>Registry</p>
+        </li><li>
+          <p>Data</p>
+        </li></ul>
+      <p>File I/O presents resource contentions that can be easily handled through code since file management is handled through the operating system. When using a file, your server can open (and lock) a file so that other objects see that the file is in use. A properly written server can handle this scenario by waiting for the file to become available, or otherwise gracefully handle the error. Files can also be opened shared in which case your server should be aware that other objects can potentially change values.</p>
+      <p>A common scenario is presented with INI files in which different objects can read or write values. The process of reading and then writing a value to an INI file requires two steps. So, there is a potential that the value read by one client is not necessarily the same one it overwrites later if another client alters it first, producing a need for conflict resolution.</p>
+      <p>As do INI files, the Registry stores settings, which can be accessed by multiple clients. Your applications should use common Windows API routines to access the Registry. Again, your server design should reflect that a potential exists for Registry key values to change between the time the key is read and the time it's written. The Windows API routines work to avoid the necessity for conflict resolution.</p>
+      <p>Data is a tricky resource to handle. Fortunately, the rich Visual FoxPro language available in the run-times provides all the information and functionality necessary to handle resource contention issues. For more information on handling shared data, see <a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/ec045b1f-99ee-4553-a5b3-04b9fe0f865a.htm">FoxISAPI Automation Server Samples</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/0fb84e4f-be70-480b-9047-5dd69be056bd.htm">Controlling Call Blocking</a></span><br /><span class="linkTerms"><a href="/html/c3f20e0d-0160-48e0-abb7-3737d2d4af2b.htm">Language Supported in Run-Time Libraries</a></span><br /><span class="linkTerms"><a href="/html/bbfb45cd-34ee-4040-a861-ae5a340db003.htm">Visual FoxPro Run-Time Libraries</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/7e1c2940-d069-448e-9d71-bf153706c904.htm">Automation Server Programming Notes</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/8c6a3e61-311d-48bd-a6cf-628e3f37f193.htm">Server Design Considerations and Limitations</a></span><br /><span class="linkTerms"><a href="/html/2d8cb3e1-df20-4304-8326-d3d469002652.htm">Interoperability and the Internet</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Selecting a Run-Time Library">
+</OBJECT>

@@ -1,0 +1,114 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Control Transactions Manually</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Control Transactions Manually</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>If you want to control transactions manually, you can set the Transactions property to 2, or DB_TRANSMANUAL. With manual transaction handling, Visual FoxPro automatically begins a transaction for you when you issue the first data-writing SQL statement, but you must submit the Visual FoxPro SQLCOMMIT( ) or SQLROLLBACK( ) functions to end the transaction. For the <b>CursorAdapter</b> object, you can set the <b>UseTransactions</b> property to false (.F.) and the <b>CursorAdapter</b> does not use transactions to send <b>Insert</b>, <b>Update</b>, or <b>Delete</b> commands.</p>
+  <h3 class="procedureSubHeading">To use manual transaction mode</h3><div class="subSection"><ol><li>
+        
+          <p>Use the <span class="linkTerms"><a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( ) Function</a></span> to set the Transactions property on the connection to 2 or DB_TRANSMANUAL. </p>
+          <p>-or- </p>
+        
+      </li><li>
+        
+          <p>Use the <span class="linkTerms"><a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( ) Function</a></span> to set the Transactions property on the active connection to 2 or DB_TRANSMANUAL.</p>
+        
+      </li></ol>
+      
+        <p>Transaction processing is handled manually through <span class="linkTerms"><a href="/html/3e65e927-58a3-4e71-9e88-3f07de1dee0e.htm">SQLCOMMIT( ) Function</a></span> <span class="linkTerms"><a href="/html/3e65e927-58a3-4e71-9e88-3f07de1dee0e.htm">SQLCOMMIT( ) Function</a></span>and <span class="linkTerms"><a href="/html/f71640f4-d839-4545-be11-de5d1adf9c2c.htm">SQLROLLBACK( ) Function</a></span>.</p>
+        <p>After committing or rolling back the prior transaction, Visual FoxPro automatically begins a new transaction when you issue the next data-writing SQL statement. For more information about transactions, see <span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span>.</p>
+        <p>Visual FoxPro supports transactions nested up to five levels for local data. A single level of transaction support is built into SQL pass-through.</p>
+        <p>If your server supports multiple levels of transactions, you can use SQL pass-through to manage transaction levels explicitly. Explicit transaction management is complex, however, because it can be difficult to control the interaction between the built-in transaction and the timing of remote server transactions. For more information on explicit transaction management, see your ODBC documentation.</p>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/0403e96e-c37d-489b-ba6b-4dc2944042a9.htm">How to: Use Automatic Transaction Mode</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/17f92659-05d5-4877-ab43-b6151a0e35c1.htm">UseTransactions Property</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/88be1b78-a093-4161-9c95-f00ff6dfd4db.htm">Working with Remote Data Using SQL Pass-Through</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c9d098df-6241-45d2-9d81-1f49ad9b3641.htm">Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/7a4c60ae-5309-4014-87ec-08ce277eede4.htm">Planning Client/Server Applications</a></span><br /><span class="linkTerms"><a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a></span><br /><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Control Transactions Manually">
+</OBJECT>

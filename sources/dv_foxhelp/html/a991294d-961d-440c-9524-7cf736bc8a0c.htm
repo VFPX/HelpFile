@@ -1,0 +1,242 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>AFONT( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">AFONT( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Places information about available fonts, such as their names, into an array.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>You can also use <b>AFONT( )</b> to determine available font sizes or if a font is scalable. To display a dialog box containing available fonts, font sizes, and styles, use the <b>GETFONT( )</b> function. For more information, see <span class="linkTerms"><a href="/html/53a11bb9-6a3b-4539-a343-ffd75ae45dbe.htm">GETFONT( ) Function</a></span>.</p>
+    </td></tr></table></div>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+AFONT(<span class="parameter">ArrayName</span> [, <span class="parameter">cFontName</span> [, <span class="parameter">nFontSize</span> | <span class="parameter">nFontCharSet</span> [, <span class="parameter">nFlags</span>]]])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">ArrayName</span>
+        </span></dt><dd>
+          <p>Specifies the variable array into which the names of available fonts are placed. If the array is not large enough to contain all the fonts, Visual FoxPro automatically increases the size of the array. If you specify an existing two-dimensional array, Visual FoxPro changes the array to a one-dimensional array.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cFontName</span>
+        </span></dt><dd>
+          <p>Specifies a font for which information is placed into the array.</p>
+          <p>If the font you specify supports only discrete font sizes (8-point, 10-point, ...), the font sizes are stored to the array, and <b>AFONT( )</b> returns True (.T.). If the font you specify in <span class="parameter">cFontName</span> is scalable (supports fractional font size values), the array has a single element containing –1, and <b>AFONT( )</b> returns True (.T.).   </p>
+          <p>If the font you specify is not available, the array is not created, and <b>AFONT( )</b> returns False (.F.). </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nFontSize</span>
+        </span></dt><dd>
+          <p>Specifies a size for the font specified in <span class="parameter">cFontName</span>.</p>
+          <p>If the font size <span class="parameter">nFontSize</span> is available for the font specified in <span class="parameter">cFontName,</span> the array has a single element containing a True (.T.) value, and <b>AFONT( )</b> returns True (.T.). If the font size is not available for the specified font, the array is not created, and <b>AFONT( )</b> returns False (.F.). </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nFontCharSet</span>
+        </span></dt><dd>
+          <p>Specifies a character set for the font specified in <span class="parameter">cFontName</span>. If the font character set specified is available for the font specified in <span class="parameter">cFontName</span>, the array has a single element containing a True (.T.) value, and <b>AFONT( )</b> returns True (.T.). If the font character set is not available for the specified font, the array is not created, and <b>AFONT( )</b> returns False (.F.).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nFlags</span>
+        </span></dt><dd>
+          <p>Controls whether the third parameter passed is treated as the font size or font character set. </p>
+          <p>The following table describes behavior for various <span class="parameter">nFlags</span> values specified.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nFlags</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>Omitted or 0 for the first bit</p>
+              </td>
+              <td>
+                <p>Third parameter is treated as a font size value.</p>
+                <p>If third parameter is -1, array is updated with all available font sizes for the font specified in <span class="parameter">cFontName</span> for nonproportional fonts, such as MS Sans Serif, and <b>AFONT( )</b> returns True (.T.). This behavior in Visual FoxPro 8.0 and later is equivalent to passing only the first two parameters.</p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>In versions prior to Visual FoxPro 8.0, if you specified any negative or positive font size for a non-proportional font, <b>AFONT( )</b> returned False (.F.). </p>
+                </td></tr></table></div>
+                <p>If the third parameter passed is 0, for nonproportional fonts, <b>AFONT( )</b> returns False (.F.) for Visual FoxPro 8.0 and later. However, the behavior for proportional fonts such as TrueType or OpenType (Arial) has not changed.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>Third parameter is treated as a font character set. Array is populated with character sets available for the specified font.</p>
+                <p>If the third parameter passed is -1, array is updated with all available font character sets for the font specified in <span class="parameter">cFontName</span>.</p>
+              </td>
+            </tr></table></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Logical data type. <b>AFONT( )</b> returns True (.T.) if array is successfully created. Otherwise, <b>AFONT( )</b> returns False (.F.).</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>If only <span class="parameter">ArrayName</span> was passed in versions earlier than Visual FoxPro 8.0, the array populated in <b>AFONT( )</b> included extra fonts that were really part of a single font family. For example, the array might have included the following Arial fonts under Visual FoxPro 7.0:  </p>
+      <ul><li>
+          <p>Arial</p>
+        </li><li>
+          <p>Arial Baltic</p>
+        </li><li>
+          <p>Arial Black</p>
+        </li><li>
+          <p>Arial CE</p>
+        </li><li>
+          <p>Arial CYR</p>
+        </li><li>
+          <p>Arial Greek</p>
+        </li><li>
+          <p>Arial Narrow</p>
+        </li><li>
+          <p>Arial Tur</p>
+        </li></ul>
+      <p>Many of these fonts are not included in a standard Font Picker dialog box such as the <b>GETFONT( )</b> function. In this version of Visual FoxPro, the array in <b>AFONT( )</b> excludes these extra fonts. For example, the array only includes the following fonts:  </p>
+      <ul><li>
+          <p>Arial</p>
+        </li><li>
+          <p>Arial Baltic</p>
+        </li><li>
+          <p>Arial Black</p>
+        </li></ul>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example uses <b>AFONT( )</b> to create an array containing the names of all available fonts. The name of each font is displayed, along with an example of the font. If there are more than 10 fonts installed, only the first 10 are displayed.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+=AFONT(gaFontArray)  &amp;&amp; Array containS font names.
+gnNumFonts = ALEN(gaFontArray)  &amp;&amp; Number of fonts
+IF gnNumFonts &gt; 10
+   gnNumFonts = 10  &amp;&amp; Display first 10 fonts.
+ENDIF
+FOR nCount = 1 TO gnNumFonts
+   ? ALLTRIM(gaFontArray(nCount))  &amp;&amp; Display font name.
+   ?? '  This is an example of ' ;
+      + ALLTRIM(gaFontArray(nCount)) FONT gaFontArray(nCount), 8
+ENDFOR</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/0bf76093-2fb2-41ce-9734-315bd80fe95a.htm">FONTMETRIC( ) Function</a></span><br /><span class="linkTerms"><a href="/html/e99cd703-3505-48ee-b287-f880e95e2675.htm">SYSMETRIC( ) Function</a></span><br /><span class="linkTerms"><a href="/html/38aed48f-bbb6-46e6-a6fe-b5e98bdb3e6e.htm">WFONT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/bcfa88b6-7230-485e-be91-2a0381312422.htm">TXTWIDTH( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="AFONT( ) Function">
+<param name="ALink Name" value="AFONT">
+</OBJECT>

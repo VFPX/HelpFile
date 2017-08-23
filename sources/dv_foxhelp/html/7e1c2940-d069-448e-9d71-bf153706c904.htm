@@ -1,0 +1,157 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Automation Server Programming Notes</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Automation Server Programming Notes</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>To find additional information on writing automation servers, see the topics for the following areas.</p>
+  <h1 class="heading">Application Objects</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>An <b>Application</b> object is not exposed in an Automation server type library, therefore you cannot access the <b>Application</b> object <b>DoCmd</b> and <b>Eval</b> methods. However, you can expose the <b>Application</b> object by creating a custom property and setting its value to the <b>Application</b> object, or you can provide a method that accesses the <b>Application</b> object. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Read/write properties of the <b>Application</b> object, such as <b>AutoYield</b>, are global to the project. Therefore, make sure multithreaded servers do not assume that the values of these settings are protected across threads.</p>
+      </td></tr></table></div>
+      <p>For more information, see <a href="/html/394305f5-b155-4606-be86-de326849c4a1.htm">Application Object</a>.</p>
+    </div><h1 class="heading">Automation Server Samples</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>This version of Visual FoxPro includes two sample ISAPI Automation servers, FoxWeb and FoxIS. These samples manage the return of selected Visual FoxPro records as HTML to an Internet browser. For more information about these samples, see <a href="/html/ec045b1f-99ee-4553-a5b3-04b9fe0f865a.htm">FoxISAPI Automation Server Samples</a>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>FoxISAPI included in Visual FoxPro includes improvements designed specifically for use with new multithreaded DLL Servers. DLL Servers that are run through FoxISAPI should not use the built-in Pool Manager.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Configuration Files</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>In Visual FoxPro, only configuration files, Config.fpw, bound inside EXE or DLL servers will be used during run-time initialization. The configuration file stores critical settings that are set at the time Visual FoxPro starts up, both at product and run time. Prior to Visual FoxPro 6.0, the Config.fpw file could exist as a separate file or bound into the application (.app, .exe or .dll). If a Config.fpw file is found bound within an application, it is used. Otherwise, Visual FoxPro searches along normal paths for a separate Config.fpw file.</p>
+      <p>You will still get full functionality with normal distributed .app and .exe applications.</p>
+      <p>For more information, see <a href="/html/e4da0efc-19ca-4eb4-a1b7-c5f7d60a4d9c.htm">How to: Set Configuration Options at Startup</a>.</p>
+    </div><h1 class="heading">Codepage Handling</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Codepages are supported in all servers and are specific to a particular project (.dll). You can set the default codepage in the Config.fpw file; however, it is set only at run-time initialization. The codepage is global across all projects. Also, all objects using a particular instance of the run time share the same codepage. </p>
+      <p>Each server has its own Config.fpw with a different codepage setting. Visual FoxPro prevents changing this setting once the run time has been launched because multiple .dll servers can potentially change the default codepage for a run time. Therefore, once a codepage is set, it is permanent until the run time is released. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>Users who need servers with each having a unique codepage can place those servers, along with a copy of the VFP9T.dll run-time library, in a unique folder. A server will always default to using a run-time library stored in its folder. For more information, see <a href="/html/6f6a7665-6a5c-4a25-bcff-8af516916ad8.htm">VFP9T.DLL Run-Time Library</a>.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Special Language Considerations</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>When working with automation servers, be aware of the functionality for following commands because their behavior differs slightly from normal product operations:
+</p>
+      <ul><li>
+          <p>
+            <b>SET PROCEDURE</b> command
+</p>
+          <p>This command is unique to each individual thread because it is stored in thread local storage. However, Visual FoxPro implicitly performs a <b>SET PROCEDURE</b> to the entire server by default when you instantiate an .exe or .dll COM server. 
+</p>
+          <p>For example:
+</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? SET("PROCEDURE")
+C:\VFP\MYSERVER.DLL</pre></td></tr></table></span></div>
+          <p>This makes it possible for you to access any procedure stored in the server. If an existing object on the thread calls <b>SET PROCEDURE</b>, the procedure path is reset to nothing. However, a new object created on the same thread will automatically reset the procedure path to the entire server once again.
+</p>
+        </li><li>
+          <p>
+            <b>SET CLASS</b> command
+</p>
+          <p>This command works similarly to <b>SET PROCEDURE</b>. Its value is held in thread local storage; however, it is initialized to the entire set of class libraries in your .exe or .dll server. 
+</p>
+          <p>For example:
+</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? SET("CLASS")
+C:\VFP\myClass.VCX ALIA</pre></td></tr></table></span></div>
+        </li><li>
+          <p>
+            <b>CD</b>, <b>CHDIR</b>, and <b>SET DEFAULT </b>commands
+</p>
+          <p>These commands change the default directory of the entire process, so they affect all threads that are part of the process. Instead of using <b>CD</b>, <b>CHDIR</b>, and <b>SET DEFAULT</b>, use the <a href="/html/047f2e74-3552-43b7-a18d-ee2c7dd2db6e.htm">SET PATH command</a>.
+</p>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/b1ca676d-68a8-4ebe-aa68-ce6ac2083c59.htm">How to: Create Automation Servers</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/b84cd0dc-bfc6-44be-9d5d-2d60fee32bfd.htm">Selecting a Run-Time Library</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/0e1a350d-8fa7-4231-9e8f-3ac6d8b120fa.htm">Working with Automation Servers</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Automation Server Programming Notes">
+</OBJECT>

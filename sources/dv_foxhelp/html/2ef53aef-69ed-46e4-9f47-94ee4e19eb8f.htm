@@ -1,0 +1,1142 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>DBGETPROP( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">DBGETPROP( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Retrieves the value of a property for the current database or for fields, named connections, tables, or views in the current database.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>You must open the database before you can retrieve its properties or those of its connections, tables, views, or fields. However, you do not need to open a table or view before retrieving its properties.</p>
+    </td></tr></table></div>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+DBGETPROP(<span class="parameter">cName</span>, <span class="parameter">cType</span>, <span class="parameter">cProperty</span>)</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the current open database or the field, named connection, table, or view in the current open database for which <b>DBGETPROP( )</b> returns information.</p>
+          <p>To return information about a field in a table or a view, preface the name of the field with the name of the table or view containing the field. For example, to return information about the <code>custid</code> field in the <code>customer</code> table, specify the following for <span class="parameter">cName</span>:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>customer.custid</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cType</span>
+        </span></dt><dd>
+          <p>Specifies whether <span class="parameter">cName</span> is the current database, or a field, named connection, table, or view in the current database. The following table lists the values for <span class="parameter">cType</span>.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cType</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>CONNECTION</p>
+              </td>
+              <td>
+                <p>
+                  <span class="parameter">cName</span> is a named connection in the current database.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DATABASE</p>
+              </td>
+              <td>
+                <p>
+                  <span class="parameter">cName</span> is the current database.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FIELD</p>
+              </td>
+              <td>
+                <p>
+                  <span class="parameter">cName</span> is a field in the current database.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>TABLE</p>
+              </td>
+              <td>
+                <p>
+                  <span class="parameter">cName</span> is a table in the current database.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>VIEW</p>
+              </td>
+              <td>
+                <p>
+                  <span class="parameter">cName</span> is a view in the current database.</p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cProperty</span>
+        </span></dt><dd>
+          <p>Specifies the name of the property for which <b>DBGETPROP( )</b> returns information.</p>
+          <p>The following tables list the values you can specify for <span class="parameter">cProperty</span>, the return value types, and descriptions of each property. Each description includes the read and write privileges for each property. If a property is read-only, its value cannot be changed with <b>DBSETPROP( )</b>.    </p>
+          <p>
+            <b>Connection properties</b>
+          </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cProperty</span>
+                  
+                </th>
+                <th>
+                  Type
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>Asynchronous</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>The connection mode. (Default) False (.F.) specifies a synchronous connection. True (.T.) specifies an asynchronous connection.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>BatchMode</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>The batch-processing mode. (Default) True (.T.) specifies the connection that operates in batch mode.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Comment</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The text of the connection comment.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ConnectString</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The login connection string.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ConnectTimeout</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The connection timeout interval in seconds. The default is 0 (wait indefinitely).</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Database</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The name of the server database specified with the DATABASE clause in the CREATE CONNECTION command or in the Connection Designer.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DataSource</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The name of the data source as defined in the Odbc.ini file.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DisconnectRollback</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Specifies if a pending transaction is committed or rolled back when SQLDISCONNECT( ) is called for the last connection handle.</p>
+                <p>The default is false (.F.), indicating that a pending transaction is committed when SQLDISCONNECT( ) is called for the last connection handle.</p>
+                <p>Specify true (.T.) to roll back a pending transaction when SQLDISCONNECT( ) is called for the last connection handle.</p>
+                <p>Connections with automatic transaction processing are not affected by this setting.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DispLogin</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>Contains a numeric value that determines when the ODBC Login dialog box is displayed. DispLogin may assume the following values:</p>
+                <p>1 or DB_PROMPTCOMPLETE (from Foxpro.h). 1 is the default.</p>
+                <p>2 or DB_PROMPTALWAYS (from Foxpro.h).</p>
+                <p>3 or DB_PROMPTNEVER (from Foxpro.h).</p>
+                <p>If 1 or DB_PROMPTCOMPLETE is specified, Microsoft Visual FoxPro displays the ODBC Login dialog box only if any required information is missing.</p>
+                <p>If 2 or DB_PROMPTALWAYS is specified, the ODBC Login dialog box is always displayed, allowing you to change settings before connecting.</p>
+                <p>If 3 or DB_PROMPTNEVER is specified, the ODBC Login dialog box is not displayed and Visual FoxPro generates an error if the required login information is not available.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DispWarnings</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Contains a logical value that determines if non-trappable warnings from the remote table, ODBC, or Visual FoxPro are displayed. (Default) True (.T.) specifies that non-trappable errors are displayed.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>IdleTimeout</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The idle timeout interval in minutes. Timeout is checked no more than once per minute, therefore it is possible that active connections might deactivate one or two minutes later after the specified time interval has elapsed. The default value is 0 (wait indefinitely).</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>PacketSize</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The size of the network packet used by the connection. Adjusting this value can improve performance. The default value is 4096 bytes (4K).</p>
+                <p>Read/write</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>PassWord</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The connection password.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>QueryTimeout</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The query timeout interval in seconds. The default value is 0 (wait indefinitely).</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Transactions</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>Contains a numeric value that determines how the connection manages transactions on the remote table. Transactions may assume the following values:</p>
+                <p>1 or DB_TRANSAUTO (from Foxpro.h). 1 is the default. Transaction processing for the remote table is handled automatically.</p>
+                <p>2 or DB_TRANSMANUAL (from Foxpro.h). Transaction processing is handled manually through <a href="/html/3e65e927-58a3-4e71-9e88-3f07de1dee0e.htm">SQLCOMMIT( )</a> and <a href="/html/f71640f4-d839-4545-be11-de5d1adf9c2c.htm">SQLROLLBACK( )</a>.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>UserId</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The user identification.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>WaitTime</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The amount of time in milliseconds that elapses before Visual FoxPro checks whether the SQL statement has completed executing. The default is 100 milliseconds.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr></table></div>
+          <p>
+            <b>Database properties</b>
+          </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cProperty</span>
+                  
+                </th>
+                <th>
+                  Type
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>Comment</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The text of the database comment.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DBCEventFileName</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>Relative path and filename of external program file containing DBC Events code.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DBCEvents</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Enabled state of DBC Events. Set to True (.T.) to enable.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Version</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The database version number.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr></table></div>
+          <p>
+            <b>Field properties for tables</b>
+          </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cProperty</span>
+                  
+                </th>
+                <th>
+                  Type
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>Caption</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The field caption. If an equal sign (=) precedes the value of this property, Visual FoxPro evaluates the value as an expression. Otherwise, it is treated as a string literal.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Comment</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The text of the field comment.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DefaultValue</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The field default value.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DisplayClass</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>Name of the class used for field mapping.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DisplayClassLibrary</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>Path to the class library specified with the <b>DisplayClass</b> property.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Format</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The field display format. See the <a href="/html/e1c96289-3368-4546-84ce-8b1bd6163e43.htm">Format Property</a> for a list of format settings.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>InputMask</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The field input format. See the <a href="/html/1547a42a-e88f-4549-a82c-231a921ec689.htm">InputMask Property</a> for a list of input mask settings.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>RuleExpression</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The field rule expression.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>RuleText</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The field rule error text.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr></table></div>
+          <p>
+            <b>Field properties for views</b>
+          </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cProperty</span>
+                  
+                </th>
+                <th>
+                  Type
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>Caption</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The field caption. If an equal sign (=) precedes the value of this property, Visual FoxPro evaluates the value as an expression. Otherwise, it is treated as a string literal.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Comment</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The text of the field comment.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DataType</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The data type for a field in a view. Initially set to the data type for the field in the data source.</p>
+                <p>To specify a different data type for a field with <b>DBSETPROP( )</b>, use the syntax for creating fields in <a href="/html/b14e5d95-5b1c-4cfa-a5ac-4093ea6211e0.htm">CREATE TABLE – SQL</a>.</p>
+                <p>For example, to change the data type of an integer field named iCost in a table named Mytable to numeric type with width 4 and 2 decimal places, use</p>
+                <p>DBSETPROP('mytable.icost', 'field', ; 'DataType', 'N(4,2)')</p>
+                <p>You can also include the NOCPTRANS clause to prevent translation of character and memo fields to a different code page. </p>
+                <p>Read/write for remote views.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DisplayClass</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>Name of the class used for field mapping.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DisplayClassLibrary</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>Path to the class library specified with the <b>DisplayClass</b> property.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DefaultValue</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The field default value.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>KeyField</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Contains True (.T.) if the field is specified in an index key expression; otherwise, contains False (.F.).</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>RuleExpression</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The field rule expression.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>RuleText</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The field rule error text.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Updatable</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Contains True (.T.) if the field can be updated; otherwise, contains False (.F.).</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>UpdateName</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The name of the field used when data in the field is updated to the remote table. By default, the remote table field name.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr></table></div>
+          <p>
+            <b>Table properties</b>
+          </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cProperty</span>
+                  
+                </th>
+                <th>
+                  Type
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>Comment</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The text of the table comment.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DeleteTrigger</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The Delete trigger expression.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>InsertTrigger</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The Insert trigger expression.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Path</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The relative path with respect to the DBC to the table including the name of the file.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>PrimaryKey</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The tag name of the primary key.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>RuleExpression</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The row rule expression.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>RuleText</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The row rule error text.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>UpdateTrigger</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The Update trigger expression.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr></table></div>
+          <p>
+            <b>View properties</b>
+          </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cProperty</span>
+                  
+                </th>
+                <th>
+                  Type
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>AllowSimultaneousFetch</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Applies when using remote views, a shared connection, and to cursors created using ODBC. </p>
+                <p>AllowSimultaneousFetch contains True (.T.) when similarly configured cursors sharing the connection are permitted to fetch rows simultaneously. </p>
+                <p>Otherwise, AllowSimultaneousFetch contains False (.F.) when fetching rows simultaneously is not permitted.</p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>This property is available in Visual FoxPro 8.0 and later. Views created in Visual FoxPro 8.0 and later are not compatible with earlier versions. Calling the <b>VALIDATE DATABASE</b> command in a version prior to Visual FoxPro 8.0 on a database container with remote views created or modified in Visual FoxPro 8.0 and later generate an error. Calling the <code>VALIDATE DATABASE RECOVER</code> in a version prior to Visual FoxPro 8.0 removes the <b>AllowSimultaneousFetch</b> property from any such views.</p>
+                </td></tr></table></div>
+              </td>
+            </tr><tr>
+              <td>
+                <p>BatchUpdateCount</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The number of update statements sent to the back end for views. 1 is the default. Adjusting this value can greatly increase update performance.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Comment</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The text of the view comment.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>CompareMemo</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Contains true (.T.) (default) if memo fields (of type Memo, General, or Picture, or, for remote views, type Timestamp) are included in the WHERE clause for updates; otherwise, contains false (.F.).</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ConnectName</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The named connection used when the view is opened.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FetchAsNeeded</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>If True (.T.), data is fetched only when needed, such as when record pointer moves to a row that has not been fetched.</p>
+                <p>If False (.F.), additional data is fetched during idle time. (Default)</p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>FetchAsNeeded does not apply when progressive fetching is disabled (FetchSize is -1).</p>
+                </td></tr></table></div>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FetchMemo</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Contains true (.T.) (default) if memo and general fields are fetched with the view results; otherwise, contains false (.F.).</p>
+                <p>Use the <span class="linkTerms"><a href="/html/ced130cd-4cf4-4787-b337-18a2214b7ac7.htm">ISMEMOFETCHED( ) Function</a></span> to determine if the memo field has been fetched.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FetchSize</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>Contains the number of records fetched at a time from the remote tables. The default is 100 records. Setting FetchSize to –1 retrieves the complete result set, limited by the MaxRecords setting.</p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>Progressive fetching holds the connection until all rows are retrieved. Use caution coding with FetchSize if ShareConnection is True (.T.).</p>
+                </td></tr></table></div>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>MaxRecords</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The maximum number of records fetched when result sets are returned. The default is – 1 (all rows are returned). A value of 0 specifies that the view is executed but no results are fetched.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Offline</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Contains true (.T.) if the view is an offline view. </p>
+                <p>Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ParameterList</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The WHERE clause parameters. The format for the parameters is ''<span class="parameter">ParameterName1</span>, '<span class="parameter">Type1</span>'; <span class="parameter">ParameterName2</span>, '<span class="parameter">Type2</span>'; ...'' where <span class="parameter">Type</span> is a one of the following characters specifying the parameter type:</p>
+                <p>C – Character  D – Date  T – DateTime  N – Numeric  F – Floating  B – Double  I – Integer  Y – Currency  L - Logical</p>
+                <p>For example, ''MyParam1, 'C' '' specifies a single character type parameter named MyParam1.</p>
+                <p>For more information about creating parameterized views, see <a href="/html/028ab955-0e39-459e-a26c-bdd39c0fb0b4.htm">How to: Create Parameterized Views</a><span class="parameter">.</span></p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Prepared</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Contains True (.T.) if SQL statements are prepared for subsequent <b>REQUERY( )</b> function calls. <b>REQUERY( )</b> is used to retrieve data again for a SQL view. See <a href="/html/5103290a-daf3-4a43-8481-e50f54ef5f8d.htm">SQLPREPARE( )</a> for additional information about preparing SQL statements. The default is false (.F.).</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>RuleExpression</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The row rule expression.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>RuleText</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The rule text expression displayed when an error occurs when data is edited in a Browse or Edit window.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SendUpdates</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Contains true (.T.) if a SQL update query is sent to update remote tables; otherwise, contains false (.F.) (default).</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ShareConnection</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Contains true (.T.) if the view can share its connection handle with other connections; otherwise, contains false (.F.).</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SourceType</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The view source. SourceType may assume the following values: 1 - The view uses local tables.</p>
+                <p>2 - The view uses remote tables.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The SQL statement executed when the view is opened.</p>
+                <p>Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Tables</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>A comma-delimited list of the names of the tables.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>UpdateType</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The update type. Valid values are: 1 or DB_UPDATE (from Foxpro.h). The old data is updated with the new data (default).</p>
+                <p>2 or DB_DELETEINSERT (from Foxpro.h). The old data is deleted and the new data is inserted.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>UseMemoSize</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The minimum size (in bytes) for which result columns are returned in memo fields. For example, if the width of a column result is greater than the value of UseMemoSize, the column result is stored in a memo field. UseMemoSize may vary from 1 to 255; the default value is 255.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>WhereType</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The WHERE clause for updates to remote tables. WhereType may assume the following values: 1 or DB_KEY (from Foxpro.h). The WHERE clause used to update remote tables consists of only the primary fields specified with the <b>KeyFieldList</b> property.</p>
+                <p>2 or DB_KEYANDUPDATABLE (from Foxpro.h). The WHERE clause used to update remote tables consists of the primary fields specified with the <b>KeyFieldList</b> property and any updatable fields.</p>
+                <p>3 or DB_KEYANDMODIFIED (from Foxpro.h) (default). The WHERE clause used to update remote tables consists of the primary fields specified with the <b>KeyFieldList</b> property and any other fields that are modified.</p>
+                <p>4 or DB_KEYANDTIMESTAMP (from Foxpro.h). The WHERE clause used to update remote tables consists of the primary fields specified with the <b>KeyFieldList</b> property and a comparison of the time stamps.</p>
+                <p>For more information about the <b>WhereType</b> property, see <a href="/html/3b456fd8-70f4-4a04-bc2d-18b17da0f414.htm">Managing Updates by Using Views</a>.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr></table></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Character, Numeric, or Logical data type. <b>DBGETPROP( )</b> returns the value for the specified property.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>For more information about setting property values, see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( ) Function</a>.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example displays the name of the primary key field for the <code>customer</code> table. It then displays the field comments for the <code>cust_id</code> field in the <code>customer</code> table. If there are no comments for the field, a message is displayed indicating there are no field comments. To add comments, see the example for <b>DBSETPROP( )</b>.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+CLEAR
+OPEN DATABASE (HOME(2) + 'Data\testdata')
+* Displays the primary key field
+cResults = DBGETPROP("customer", "Table", "PrimaryKey")
+=MESSAGEBOX(cResults)   &amp;&amp; Displays    'cust_id'
+* Displays comments for the field 'cust_id'
+cResults = DBGETPROP("customer.cust_id", "Field", "Comment")
+IF LEN(ALLTRIM(cResults)) = 0
+   =MESSAGEBOX("No Comment for this field." + CHR(13) + ;
+     CHR (13) + "Use DBSETPROP( ) to add comments.")
+ELSE
+   =MESSAGEBOX("Cust_id field comments: " + cRESULTS)
+ENDIF</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/00312970-64d1-4f0f-a539-9687382bdcd9.htm">ADD TABLE Command</a></span><br /><span class="linkTerms"><a href="/html/2f558c81-0cfb-408d-88c1-21bd328373ce.htm">CREATE CONNECTION Command</a></span><br /><span class="linkTerms"><a href="/html/64ff85c1-0480-419d-97f5-b6d1195d1a3e.htm">CREATE DATABASE Command</a></span><br /><span class="linkTerms"><a href="/html/2a22b360-882b-4bc9-ab9d-b89be1e56dd1.htm">CREATE SQL VIEW Command</a></span><br /><span class="linkTerms"><a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/d78424c2-8d6a-4c63-b505-5bd74ee0a4c0.htm">DISPLAY DATABASE Command</a></span><br /><span class="linkTerms"><a href="/html/ced130cd-4cf4-4787-b337-18a2214b7ac7.htm">ISMEMOFETCHED( ) Function</a></span><br /><span class="linkTerms"><a href="/html/480d0ed1-6798-41e1-a26f-ec23549d4f79.htm">LIST DATABASE Command</a></span><br /><span class="linkTerms"><a href="/html/76334a6e-9da7-421c-a1c2-853160177832.htm">RENAME CONNECTION Command</a></span><br /><span class="linkTerms"><a href="/html/3e65e927-58a3-4e71-9e88-3f07de1dee0e.htm">SQLCOMMIT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/f71640f4-d839-4545-be11-de5d1adf9c2c.htm">SQLROLLBACK( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="DBGETPROP( ) Function">
+<param name="ALink Name" value="DBGETPROP">
+</OBJECT>

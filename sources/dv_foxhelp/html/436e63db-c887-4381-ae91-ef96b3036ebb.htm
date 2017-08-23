@@ -1,0 +1,287 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>_WOpenP( ) API Library Routine</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">_WOpenP( ) API Library Routine</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Creates a new window at the positions specified by the <span class="parameter">top</span>, <span class="parameter">left</span>, <span class="parameter">bottom,</span> and <span class="parameter">right</span> parameters.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+WHANDLE _WOpenP(int top, int left, int bottom, int right, int flag, 
+         int scheme_num, Scheme FAR *scheme, char FAR *bord)
+int top;                     /* Top coordinate in pixels. */
+int left;                     /* Left coordinate in pixels. */
+int bottom;                  /* Bottom coordinate in pixels. */
+int right;                     /* Right coordinate in pixels. */
+int flag;                     /* Attributes. */
+int scheme_num;            /* Color scheme. */
+Scheme FAR *scheme;      /* Points to color scheme to use. */
+char FAR *bord;            /* Border type. */</pre></td></tr></table></span></div></div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The window positions may be off the screen. Additional memory is allocated to hold the off-screen image of this window.</p>
+      <p>The <span class="parameter">flag</span> parameter determines the attributes for this window. The <span class="parameter">flag</span> may be one or more of the flag values in the table below. You can combine multiple flag values using the C | or + operator. Typical window borders are defined in PRO_EXT.H.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <span class="parameter">flag</span> Value
+            </th>
+            <th>
+              Window attribute
+            </th>
+          </tr><tr>
+          <td>
+            <p>WCURSOR</p>
+          </td>
+          <td>
+            <p>The insertion point may be displayed in this window.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ZOOM</p>
+          </td>
+          <td>
+            <p>The user may zoom the window.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ADJ</p>
+          </td>
+          <td>
+            <p>The user may adjust the size of the window.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>CLOSE</p>
+          </td>
+          <td>
+            <p>The user may close the window.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>MOVE</p>
+          </td>
+          <td>
+            <p>The user may move the window.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>AUTOSCROLL</p>
+          </td>
+          <td>
+            <p>The window scrolls when output rolls off the bottom line.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>WEVENT</p>
+          </td>
+          <td>
+            <p>The window receives, activates, and deactivates events.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SHADOW</p>
+          </td>
+          <td>
+            <p>The window casts a shadow.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>WMODAL</p>
+          </td>
+          <td>
+            <p>The user can't send this window to the back.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>WMINIMIZE</p>
+          </td>
+          <td>
+            <p>The user can minimize this window.</p>
+          </td>
+        </tr></table></div>
+      <p>The <span class="parameter">scheme_num</span> may be any valid color scheme number, or – 1 to indicate that the <span class="parameter">scheme</span> parameter points to the color scheme to use.</p>
+      <p>For more information on how to create an API library and integrate it with Visual FoxPro, see <a href="/html/566a1828-db5f-432f-8940-c4dd53c08920.htm">Accessing the Visual FoxPro API</a>.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    
+      
+        <p>The following example creates windows using a number of different color schemes and borders. In particular, note the custom color scheme.</p>
+      
+      <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+        <h3 class="subHeading" xmlns="">Visual FoxPro Code</h3><div class="subSection" xmlns="">
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET LIBRARY TO WOPENP</pre></td></tr></table></span></div>
+          </div>
+        <h3 class="subHeading" xmlns="">C Code</h3><div class="subSection" xmlns="">
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#include &lt;pro_ext.h&gt;
+FAR Example(ParamBlk FAR *parm)
+{
+   WHANDLE wh;
+   char customScheme[12] =
+   {
+      BLACK_ON      | WHITE,
+      RED_ON      | BLACK      | BLINK,
+      WHITE_ON      | WHITE      | BRIGHT,
+      CYAN_ON      | BLUE      | BRIGHT,
+      GREEN_ON      | BROWN,
+      BROWN_ON      | BROWN      | BRIGHT,
+      MAGENTA_ON   | MAGENTA   | BRIGHT,
+      RED_ON      | MAGENTA   | BRIGHT | BLINK,
+      BROWN_ON      | GREEN      | BRIGHT,
+      BLACK_ON      | CYAN,
+      BLUE_ON      | CYAN,
+   };
+   _Execute("WAIT WINDOW 'Press any key to see a window \
+      in WINDOW_SCHEME with WO_DOUBLEBOX border'");
+   wh = _WOpenP(10, 10, 160, 320, WEVENT | CLOSE, WINDOW_SCHEME,
+      (Scheme FAR *)0, WO_DOUBLEBOX);
+   _WShow(wh);
+   _Execute("WAIT WINDOW 'Press any key to see a window \
+      in ALERT_SCHEME with WO_SINGLEBOX border'");
+   _WClose(wh);
+   wh = _WOpenP(10, 10, 160, 320, WEVENT | CLOSE, ALERT_SCHEME,
+      (Scheme FAR *)0, WO_SINGLEBOX);
+   _WShow(wh);
+   _Execute("WAIT WINDOW 'Press any key to see a window \
+      in WINDOW_SCHEME with WO_PANELBORDER border'");
+   _WClose(wh);
+   wh = _WOpenP(10, 10, 160, 320, WEVENT | CLOSE, WINDOW_SCHEME,
+      (Scheme FAR *)0, WO_PANELBORDER);
+   _WShow(wh);
+   _Execute("WAIT WINDOW 'Press any key to see a window \
+      in a custom scheme with WO_SYSTEMBORDER border'");
+   _WClose(wh);
+   wh = _WOpenP(10,10,160,320,WEVENT | CLOSE,-1,customScheme,
+      WO_SYSTEMBORDER);
+   _WShow(wh);
+}
+FoxInfo myFoxInfo[] = {
+   {"ONLOAD", Example, CALLONLOAD, ""},
+};
+FoxTable _FoxTable = {
+   (FoxTable FAR *) 0, sizeof(myFoxInfo)/sizeof(FoxInfo), myFoxInfo
+};</pre></td></tr></table></span></div>
+          </div>
+      </sections>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/0c8a02ac-b0ab-45b7-828d-3f329328a932.htm">_WClose( ) API Library Routine</a></span><br /><span class="linkTerms"><a href="/html/5da1c2d3-7c2a-49e4-a3fc-64fbc32f0194.htm">_WSelect( ) API Library Routine</a></span><br /><span class="linkTerms"><a href="/html/abd9db93-175b-4d0f-a6fc-01cddf5f9050.htm">_WSetTitle( ) API Library Routine</a></span><br /><span class="linkTerms"><a href="/html/da495e81-c8d5-4433-9429-5aa6f004c1c9.htm">_WShow( ) API Library Routine</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/8c8b7a75-75ae-4a31-95ce-5b1ea7fc7a7d.htm">API Library Construction</a></span><br /><span class="linkTerms"><a href="/html/566a1828-db5f-432f-8940-c4dd53c08920.htm">Accessing the Visual FoxPro API</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="_WOpenP( ) API Library Routine">
+<param name="ALink Name" value="_WOpenP( )">
+</OBJECT>

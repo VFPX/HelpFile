@@ -1,0 +1,172 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Optimizing Forms and Controls</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Optimizing Forms and Controls</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can make significant improvements to the forms and controls in your application by optimizing their performance. </p>
+    <p>For example, by using a data environment for a form or report, opening tables can be much faster than executing <a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE</a>, <a href="/html/f88b697b-c89f-4343-b9f9-4ecda6fe95ac.htm">SET ORDER</a>, and <a href="/html/dd0c045b-9749-405d-9d60-0169bede1b3d.htm">SET RELATION</a> commands in the form <a href="/html/e99e2d06-97eb-4d29-8a03-43bc90ef44ca.htm">Load event</a>. When you use the data environment, Visual FoxPro uses low-level engine calls to open the tables and set up the indexes and relations.</p>
+  <h1 class="heading">Limiting the Number of Forms in a Form Set</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Use form sets only when it is necessary to have a group of forms share a private data session. When you use a form set, Visual FoxPro creates instances of all forms and all controls on all forms in the form set, even though the first form in the form set is the only one being displayed. This can be time consuming, and is unnecessary if the forms don't have to share a private data session. Instead, you should execute <a href="/html/a727f12a-4d9f-45ca-aa01-c1bea7de9749.htm">DO FORM</a> for other forms when they're needed.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If you do use a form set, you will gain some performance when you access the forms in the form set because the forms will already be loaded but not visible.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Dynamically Loading Page Controls on a Page Frame</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Page frames, like form sets, load all the controls for each page when the page frame is loaded, which can cause a noticeable delay when the page frame is loaded. Instead, you can dynamically load page controls, as needed, by creating a class out of the controls on each page, then loading them as the page is activated.</p>
+      <p>The following steps outline how to dynamically load page controls:</p>
+      <ol><li>
+          <p>Design your form as usual including all controls on all pages.</p>
+        </li><li>
+          <p>When your design is complete, go to the second page of your page frame, and save the controls as a class.</p>
+        </li><li>
+          <p>Open the class you created to make sure the controls are still properly laid out.</p>
+        </li><li>
+          <p>Repeat Steps 2 and 3 for the third and subsequent pages of the page frame.</p>
+        </li><li>
+          <p>In the <a href="/html/1cec317f-4e12-4c47-9c00-40bf91099ef9.htm">Activate</a> event of the second and subsequent pages of the page frame, add objects and make them visible. </p>
+          <p>For example, if your controls class is named <code>cnrpage1</code>, you would add the following code:  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF THIS.ControlCount = 0
+   THIS.AddObject("cnrpage1","cnrpage1")
+   THIS.cnrpage1.Visible = .T.
+ENDIF</pre></td></tr></table></span></div>
+        </li></ol>
+    </div><h1 class="heading">Dynamically Binding Controls to Data</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can reduce the load time for a form that contains many data-bound controls if you delay the binding of those controls until needed.</p>
+      <p>The following steps describe the process for binding controls to data dynamically:</p>
+      <ol><li>
+          <p>Put the tables and views for your form in the data environment so that they open when the form loads. </p>
+        </li><li>
+          <p>For each bound control, add code to its <a href="/html/594fd8f7-16d6-494e-b0af-83acb62abfd6.htm">GotFocus</a> event code that binds the control to the data value when the control receives focus.</p>
+          <p>For example, the following code binds a <b>ComboBox</b> control to the <code>customer.company</code> field: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Check to see if the control has been bound yet.
+IF THIS.RecordSource = ""
+   * Set the record source to the right value
+   * and set the record source type to "fields"
+   THIS.RecordSource = "customer.company"
+   THIS.RecordSourceType = 6
+   THIS.Refresh
+ENDIF</pre></td></tr></table></span></div>
+        </li></ol>
+    </div><h1 class="heading">Delaying Screen Refresh</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>If you must make several changes to the screen, for example, to change the values of several controls at once, you can reduce the overall time required to update the screen by delaying screen refresh until all changes are done. </p>
+      <p>For example, suppose that you want to make controls visible or invisible, change control colors, or move records in bound controls. It is recommended that you delay painting those controls until after completing changes to controls.</p>
+      <p>The following steps outline the process for delaying screen refresh:</p>
+      <ol><li>
+          <p>Set the form's <a href="/html/7f503344-0b5e-413e-b6d6-29ed2b708591.htm">LockScreen</a> property to True (.T.).</p>
+        </li><li>
+          <p>Update the controls as required.</p>
+        </li><li>
+          <p>Call the form's <a href="/html/05da5a09-23ab-46c7-b05a-e37f9666da02.htm">Refresh</a> method.</p>
+        </li><li>
+          <p>Set the form's <b>LockScreen</b> property to False (.T.).</p>
+        </li></ol>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>This technique does not provide an increase in performance when updating single controls. </p>
+      </td></tr></table></div>
+      <p>For example, the following code changes the display properties of several properties at once, moves to a new record, and only then refreshes the screen with new information. If <b>LockScreen</b> is not set to True, each of these operations repaint the affected controls individually and reduces performance of the update operation:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.LockScreen = .T.
+THISFORM.MyButton.Caption = "Save"
+THISFORM.MyGrid.BackColor = RGB (255, 0, 0) &amp;&amp; Red
+SKIP IN customers
+SKIP IN orders
+THISFORM.Refresh
+THISFORM.LockScreen = .F.</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Reducing Code in Frequently-Used Methods</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>Because the <a href="/html/05da5a09-23ab-46c7-b05a-e37f9666da02.htm">Refresh</a> method and <a href="/html/6ee6ca4f-4ec6-47ad-9791-40762cf58cd1.htm">Paint</a> event are called frequently, you can improve performance in forms by reducing the amount of code in these methods. Similarly, to speed the load time for a form, you could move code from the <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init</a> event to a less frequently used event such as <a href="/html/1cec317f-4e12-4c47-9c00-40bf91099ef9.htm">Activate</a>, <a href="/html/514e4b37-03df-482c-9c9f-df2873f48aee.htm">Click</a>, and <a href="/html/594fd8f7-16d6-494e-b0af-83acb62abfd6.htm">GotFocus</a>. Then, you use a property on the control (such as <a href="/html/f24f9df4-5aef-425f-bca2-55666908c3eb.htm">Tag</a> or a custom property) to keep track of whether the control has already run code that only needs to be run once.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/3f3c7751-db8b-43ad-9da6-7daa3f8eb8b5.htm">Optimizing Applications</a></span><br /><span class="linkTerms"><a href="/html/c43a1e26-abb8-486a-9e59-a8c188a882cc.htm">Optimizing Your System</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Optimizing Forms and Controls">
+</OBJECT>

@@ -1,0 +1,134 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Verifying Data Passed to Procedures and Functions</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Verifying Data Passed to Procedures and Functions</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When passing data or "arguments" to parameters in procedures and functions, it is recommended that you verify that the data that procedures and functions receive is as expected. You can use the <b>TYPE( )</b> and <b>PARAMETERS( )</b> functions to verify the type and number of arguments passed to procedures and functions.</p>
+  <h1 class="heading">Verifying Data Type Passed to Parameters</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can use the <b>TYPE( )</b> function to verify that data passed to parameters has the correct type. In the following example, the function accepts a date value through the parameter <code>dDate</code>. The function returns a date that is 14 days later than the date that was passed:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>FUNCTION plus2weeks( dDate )
+   PARAMETERS dDate
+   RETURN dDate + 14
+ENDFUNC</pre></td></tr></table></span></div>
+      <p>The parameter in the function requires a value with <b>Date</b> type. The following version of the function includes code that uses the <b>TYPE( )</b> function to make sure that the passed value has the correct type:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>FUNCTION plus2weeks( dDate )
+   IF TYPE("dDate") = "D"
+      RETURN dDate + 14
+   ELSE
+      MESSAGEBOX( "Function requires a date value." )
+      RETURN { - - }      &amp;&amp; Return an empty date.
+   ENDIF
+ENDFUNC</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Verifying the Correct Number of Arguments</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>When a program passes more arguments than the procedure or function expects, Visual FoxPro generates an error message. When a program passes fewer arguments than the procedure or function expects, the remaining parameters are initialized to False (.F.).</p>
+      <p>For example, suppose you include two parameters in a procedure definition, but you call the procedure with three arguments, Visual FoxPro generates an error message. However, if you call the procedure with only one argument, the remaining parameter is initialized to False (.F.). However, there is no way to know whether the argument for the last parameter was truly omitted or merely evaluated to .F. Therefore, the following example code uses the <b>PARAMETERS( )</b> function to check for the appropriate number of arguments:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>FUNCTION SaveValue( cStoreTo, cNewVal, lIsInTable )
+   IF PARAMETERS( ) &lt; 3
+      MESSAGEBOX( "Too few parameters passed." )
+      RETURN .F.
+   ENDIF
+   IF lIsInTable
+      REPLACE (cStoreTo) WITH (cNewVal)
+   ELSE
+      &amp;cStoreTo = cNewVal
+   ENDIF
+   RETURN .T.
+ENDFUNC</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/864b609a-6e86-41d8-a04f-ccb1da701f7a.htm">How to: Create Procedures and Functions</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/6ac4f04d-e703-4950-97d7-5abeac62e50a.htm">Parameters in Procedures and Functions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/a6d6b28b-6366-406f-a7ea-3df9d870a770.htm">Working with Procedures and Functions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Verifying Data Passed to Procedures and Functions">
+</OBJECT>

@@ -1,0 +1,283 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Defining a Grid Control</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Defining a Grid Control</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>A grid contains columns, which in turn can contain headers and any other control. The default control contained in a column is a text box, so that the default functionality of the grid approximates a Browse window. However, the underlying architecture of the grid opens it up to endless extensibility.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The following example creates a form that contains a Grid object with two columns. The second column contains a check box to display the values in a logical field in a table.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Grid control with a check box in one column</caption></caption></b><br></br></div><img src="../local/Local_-309566664_afd03015.gif" alt="FoxProGridExample screenshot"></img>
+      <div class="labelheading"><b>Definition of a Grid Class with a Check Box in a Grid Column</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>DEFINE CLASS grdProducts AS Grid</code>
+            </p>
+            <p>
+              <code>   Left = 24</code>
+            </p>
+            <p>
+              <code>   Top = 10</code>
+            </p>
+            <p>
+              <code>   Width = 295</code>
+            </p>
+            <p>
+              <code>   Height = 210</code>
+            </p>
+            <p>
+              <code>   Visible = .T.</code>
+            </p>
+            <p>
+              <code>   RowHeight = 28</code>
+            </p>
+            <p>
+              <code>   ColumnCount = 2</code>
+            </p>
+          </td>
+          <td>
+            <p>Start the class definition and set properties that determine the grid appearance. When you set the ColumnCount property to 2, you add two columns to the grid. Each column contains a header with the name Header1. In addition, each column has an independent group of properties that determines its appearance and behavior.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>Column1.ControlSource ="prod_name"</code>
+            </p>
+            <p>
+              <code>Column2.ControlSource ="discontinu"</code>
+            </p>
+          </td>
+          <td>
+            <p>When you set the ControlSource of a column, the column displays that field's values for all the records in the table.<code>Discontinu</code> is a logical field.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>Column2.Sparse = .F.</code>
+            </p>
+          </td>
+          <td>
+            <p>Column2 will contain the check box. Set the column's <a href="/html/70651ce4-7f13-40d4-8186-d64742bd865e.htm">Sparse property</a> to .F. so that the check box will be visible in all rows, not just in the selected cell.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>Procedure Init</code>
+            </p>
+            <p>
+              <code>   THIS.Column1.Width = 175</code>
+            </p>
+            <p>
+              <code>   THIS.Column2.Width = 68</code>
+            </p>
+            <p>
+              <code>   THIS.Column1.Header1.Caption = ;</code>
+            </p>
+            <p>
+              <code>      "Product Name"</code>
+            </p>
+            <p>
+              <code>   THIS.Column2.Header1.Caption = ;</code>
+            </p>
+            <p>
+              <code>      "Discontinued"</code>
+            </p>
+            <p>
+            </p>
+            <p>
+              <code>   THIS.Column2.AddObject("chk1", ;</code>
+            </p>
+            <p>
+              <code>      "checkbox")</code>
+            </p>
+            <p>
+              <code>   THIS.Column2.CurrentControl = ;</code>
+            </p>
+            <p>
+              <code>      "chk1"</code>
+            </p>
+            <p>
+              <code>   THIS.Column2.chk1.Visible = .T.</code>
+            </p>
+            <p>
+              <code>   THIS.Column2.chk1.Caption = ""</code>
+            </p>
+            <p>
+              <code>ENDPROC</code>
+            </p>
+          </td>
+          <td>
+            <p>Set column widths and header captions. The <a href="/html/1f5a8276-1fdd-4782-9539-eb8454cd68a4.htm">AddObject method</a> allows you to add an object to a container — in this case, a check box named <code>chk1</code>. Set the <a href="/html/cae2143c-f8ed-4ab4-afb1-034a3ab92571.htm">CurrentControl</a> of the column to the check box so that the check box will be displayed. Make sure that the check box is visible. Set the caption to an empty string so that the default caption "chk1" won't be displayed.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>ENDDEFINE</code>
+            </p>
+          </td>
+          <td>
+            <p>End of the class definition.</p>
+          </td>
+        </tr></table></div>
+      <p>The following class definition is the form that contains the grid. Both class definitions can be included in the same program file.</p>
+      <div class="labelheading"><b>Definition of a Form Class that Contains the Grid Class</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>DEFINE CLASS GridForm AS FORM</code>
+            </p>
+            <p>
+              <code>   Width = 330</code>
+            </p>
+            <p>
+              <code>   Height = 250</code>
+            </p>
+            <p>
+              <code>   Caption = "Grid Example"</code>
+            </p>
+            <p>
+              <code>   ADD OBJECT grid1 AS grdProducts</code>
+            </p>
+          </td>
+          <td>
+            <p>Create a form class and add an object, based on the grid class, to it.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>PROCEDURE Destroy</code>
+            </p>
+            <p>
+              <code>   CLEAR EVENTS</code>
+            </p>
+            <p>
+              <code>ENDPROC</code>
+            </p>
+            <p>
+            </p>
+            <p>
+              <code>ENDDEFINE</code>
+            </p>
+          </td>
+          <td>
+            <p>The program that creates an object based on this class will use <a href="/html/2fdcf4ef-7183-4c3a-b7c4-aab2254b5127.htm">READ EVENTS</a>. Including CLEAR EVENTS in the <a href="/html/7976dadc-90c8-438b-bd89-3ddc123a3db5.htm">Destroy event</a> of the form allows the program to finish running when the user closes the form. End of the class definition.</p>
+          </td>
+        </tr></table></div>
+      <p>The following program opens the table with the fields to be displayed in the grid columns, creates an object based on the GridForm class, and issues the READ EVENTS command:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASE
+OPEN DATABASE (HOME(2) + "data\testdata.dbc")
+USE products
+frmTest= CREATEOBJECT("GridForm")
+frmTest.Show
+READ EVENTS</pre></td></tr></table></span></div>
+      <p>This program can be included in the same file with the class definitions if it comes at the beginning of the file. You could also use the SET PROCEDURE TO command to specify the program with the class definitions and include this code in a separate program.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/1aca0e8a-9e0b-4e00-a434-0bbc081f328d.htm">How to: Create Classes and Subclasses</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/25d92e4a-4a6b-4d9b-80a2-f00e2ae9f8f8.htm">Browse Window</a></span><br /><span class="linkTerms"><a href="/html/70651ce4-7f13-40d4-8186-d64742bd865e.htm">Sparse Property</a></span><br /><span class="linkTerms"><a href="/html/1f5a8276-1fdd-4782-9539-eb8454cd68a4.htm">AddObject Method</a></span><br /><span class="linkTerms"><a href="/html/cae2143c-f8ed-4ab4-afb1-034a3ab92571.htm">SYS(18) - Current Control</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/1965dff9-670b-4aa1-bbb0-b8fca7841eae.htm">Creating Table Navigation Buttons</a></span><br /><span class="linkTerms"><a href="/html/4e7850a9-ea47-499b-9d5a-16feeaec4395.htm">Object Reference Creation</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/925ef3b8-48dc-4ea1-9112-a7afc2d9161e.htm">Object-Oriented Programming</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Defining a Grid Control">
+</OBJECT>

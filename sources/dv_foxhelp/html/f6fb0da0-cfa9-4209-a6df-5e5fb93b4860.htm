@@ -1,0 +1,154 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Automation Servers in Visual FoxPro</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Automation Servers in Visual FoxPro</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can create, build, distribute, and access Automation servers in Visual FoxPro. </p>
+  <h1 class="heading">Creating Automation Servers</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can create Automation servers as OLE public user-defined classes in program (.prg) files or visual class library (.vcx) files. You can have as many OLE public classes as you want in an application project. </p>
+    </div><h1 class="heading">Building Automation Servers</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>After you create an Automation server, you can build it as an out-of-process or an in-process component. An out-of-process component is an executable (.exe) file that runs in its own process. An in-process component is a dynamic-link library (.dll) file that runs in the same process address space as the client that calls it. Communication between a client application and an out-of-process server is called cross-process communication. </p>
+      <p>When you build an Automation server as an executable (.exe) file, you do not lose any functionality of normal executable files. You can run the executable file, provide a user interface, and any other functionality available for an application. In addition, you increase the extensibility of your application by making it possible for other applications use the functionality you provide in the Automation server.</p>
+      <p>When building Automation servers, consider the following:   </p>
+      <ul><li>
+          <p>In-process servers can be faster because there is no inter-process communication overhead. </p>
+        </li><li>
+          <p>Out-of-process servers can be deployed remotely while in-process servers cannot. </p>
+        </li><li>
+          <p>An in-process server and the client share a process address space; therefore, any serious error in the in-process server terminates the client. Errors in an out-of-process server terminates only the server.</p>
+        </li></ul>
+      <p>Building an Automation server creates three files:  </p>
+      <ul><li>
+          <p>An .exe or .dll file.</p>
+        </li><li>
+          <p>A type library (.tlb) file. </p>
+          <p>The type library file is a binary file that lists all the published classes in your Automation server, along with their properties, methods, and events. OLE object browsers read this information and present it in a readable interface. For more information, see <a href="/html/cc9005eb-405c-45ee-b535-52677f848225.htm">Binding Type Libraries</a>. </p>
+        </li><li>
+          <p>A registry (.vbr) file </p>
+          <p>The registry file lists the global unique IDs (GUID) for the classes in your server.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>A .vbr registry file is the same as a .reg registry file except that the .vbr file does not include hard-coded paths.</p>
+          </td></tr></table></div>
+        </li></ul>
+    </div><h1 class="heading">Distributing Visual FoxPro Automation Servers</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When you distribute an Automation server (.dll), you must include the following files:</p>
+      <ul><li>
+          <p>VFP<span class="parameter">VersionNumber</span>R.dll or VFP<span class="parameter">VersionNumber</span>T.dll, where <span class="parameter">VersionNumber</span> represents the version number of this release of Visual FoxPro.</p>
+        </li><li>
+          <p>VFP<span class="parameter">VersionNumber</span>RENU.dll</p>
+        </li><li>
+          <p>GDIPlus.dll</p>
+        </li><li>
+          <p>MSVCR70.dll</p>
+        </li></ul>
+      <p>If you are distributing an Automation server as an executable (.exe) file, see <span class="linkTerms"><a href="/html/5f169eb2-ac64-4836-bd67-6572f33d8624.htm">Preparation for Distributing Applications</a></span>. For more information about run-time libraries, see <a href="/html/b15cf6c1-12ff-4c34-92c9-9b65d508025d.htm">VFP9R.DLL Run-Time Library</a> and <a href="/html/6f6a7665-6a5c-4a25-bcff-8af516916ad8.htm">VFP9T.DLL Run-Time Library</a>. </p>
+    </div><h1 class="heading">Accessing Visual FoxPro Automation Servers</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Any application that can create Automation objects can create objects based on your Automation server, set properties that are not HIDDEN or PROTECTED, and call methods. For example, assuming that your server is named <code>foxole</code> and contains a class named <code>person</code> with a GetName method, the following code could be run in Visual FoxPro:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oTest = CREATEOBJECT("foxole.person")
+cName = oTest.GetName()</pre></td></tr></table></span></div>
+      <p>Similar code could be run in Microsoft Excel or Visual Basic:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Set oTest = CreateObject("foxole.person")
+cName$ = oTest.GetName()</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Handling Errors in Visual FoxPro Automation Servers</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>The only interaction with the objects provided by an Automation server is through the methods and properties of the exposed classes. When a client application calls a method of an object, and an error occurs in the Automation server, the method either returns an error value or raises an error in the client application.</p>
+      <p>The client application decides whether to alert the user or proceed with another execution path. The Automation server itself never interacts with the user. This allows the location of the Automation server to be transparent to the client application. The Automation server can be local, running on the user's computer, or you can use the Remote Automation feature of Visual FoxPro to run it on a network server.</p>
+      <p>When a Visual FoxPro Automation server generates an error, the Automation server sets the COM ErrorInfo object using IErrorInfo and cancels out of the current method. The Automation client can either release the Visual FoxPro Automation server or, if the client has access to the COM ErrorInfo object, handle the exception based on that information. For more information, see <a href="/html/ed25b763-b565-4d57-b3d2-f7c5b37834d9.htm">_ErrorInfo( ) API Library Routine</a>.</p>
+      <p>The COMRETURNERROR( ) function handles errors that occur on an Automation server. You can use COMRETURNERROR( ) in the Error method, to populate the COM exception structure with information that Automation clients can use to determine the source of Automation server errors. For more information, see <a href="/html/92f175d6-95d9-4333-8dd4-4d00969d56a6.htm">COMRETURNERROR( ) Function</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/b1ca676d-68a8-4ebe-aa68-ce6ac2083c59.htm">How to: Create Automation Servers</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/0e1a350d-8fa7-4231-9e8f-3ac6d8b120fa.htm">Working with Automation Servers</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Automation Servers in Visual FoxPro">
+</OBJECT>

@@ -1,0 +1,171 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SQL Server Upsizing Process Completion</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SQL Server Upsizing Process Completion</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can now take additional steps, both on your server and in your Visual FoxPro application, to ensure your application and data are secure and functioning properly.</p>
+    <p>You can also use the information in this section when you build an application from remote views rather than by upsizing. Regardless of how you created remote tables, you take certain steps to ensure the server and client are prepared to work together in your client/server application.</p>
+  <h1 class="heading">SQL Server Steps</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can complete the upsizing process on your server by:  </p>
+      <ul><li>
+          <p>Making sure the tables you want to edit from Visual FoxPro are updatable.</p>
+        </li><li>
+          <p>Setting permissions on the database so that users can access the objects they need.</p>
+        </li><li>
+          <p>Protecting your work by making your new database recoverable, in case it's damaged or lost.</p>
+        </li></ul>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Adding Unique Indexes for Updatability</h3><div class="subSection" xmlns="">
+          <p>A remote table should have a unique index to be updatable in Visual FoxPro. The SQL Server Upsizing Wizard can export an existing unique index, but it doesn't create one where none exists. Make sure that tables you want to edit from Visual FoxPro are updatable.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Setting Permissions</h3><div class="subSection" xmlns="">
+          <p>The new SQL Server database and its objects receive a set of default permissions from the SQL Server. Set permissions on the remote database so that your users have access to the objects they need.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Database Logon Permissions</h3><div class="subSection" xmlns="">
+          <p>The default permissions of a new database make it accessible only to system administrators and the database owner.</p>
+          <p>You can add new users and groups by using the SQL Server Security Manager or the system procedures <code>sp_adduser</code> and <code>sp_addgroup</code>.</p>
+          <p>For more information on adding users and groups, see SQL Server Security Manager Help and the documentation of the system procedures <code>sp_adduser</code> and <code>sp_addgroup</code> in the <i>Microsoft SQL Server Transact-SQL Reference.</i></p>
+        </div>
+      <h3 class="subHeading" xmlns="">Object Permissions</h3><div class="subSection" xmlns="">
+          <p>All objects created by the Visual FoxPro-to-SQL Server Upsizing Wizard, including tables, triggers, and defaults, are accessible initially only to the database owner and system administrators. This is true whether you upsized to a new or existing database. If you overwrite existing objects, you also overwrite all object permissions.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Ensuring Recoverability</h3><div class="subSection" xmlns="">
+          <p>Protect your work by making your new database recoverable in case it's damaged or lost.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Dumping the Master Database</h3><div class="subSection" xmlns="">
+          <p>When a database is created on a SQL Server, new records are added to the system tables in the Master database. Dumping the Master database also provides you with a backup copy, including all the latest changes.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Scheduling Backups</h3><div class="subSection" xmlns="">
+          <p>Schedule regular backups of your database, so you can restore your database from this backup copy in the event of a serious problem.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Device Mirroring</h3><div class="subSection" xmlns="">
+          <p>Mirroring a device continuously duplicates the information from one SQL Server device to another. In the event that one device fails, the other contains an up-to-date copy of all transactions.</p>
+          <p>If you anticipate that many changes will be made to a database between backups and you can't afford to lose those changes, consider device mirroring. Device mirroring is most effective when the devices are located on separate disks, as both devices might be lost if they're on the same disk and the disk fails.</p>
+        </div>
+    </sections></div><h1 class="heading">Visual FoxPro Client Steps</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Once you've transferred objects from Visual FoxPro to a SQL Server, you probably need to modify code in the original Visual FoxPro database so that it functions properly with the new SQL Server database.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Optimizing Views</h3><div class="subSection" xmlns="">
+          <p>Views created by the SQL Server Upsizing Wizard aren't parameterized and therefore are not optimized. For most efficient processing, add parameters to views created by the SQL Server Upsizing Wizard to download just the data you need. For information on adding a parameter to a view, see <a href="/html/028ab955-0e39-459e-a26c-bdd39c0fb0b4.htm">How to: Create Parameterized Views</a>.</p>
+          <p>SQL Server doesn't support some Visual FoxPro functions. If the remote view created by the SQL Server Upsizing Wizard uses functions that couldn't be mapped to Transact-SQL functions, the view will not work. For more information on mapping Visual FoxPro expressions to Transact-SQL expressions, see <span class="linkTerms"><a href="/html/ce33a00c-5adf-46f9-a4ee-07c8a91e1d83.htm">Mapping Visual FoxPro Databases to SQL Server Databases</a></span>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Creating Stored Procedures and Triggers</h3><div class="subSection" xmlns="">
+          <p>The SQL Server Upsizing Wizard doesn't upsize Visual FoxPro stored procedures and triggers. If you want to create SQL Server stored procedures or triggers, you can use Transact-SQL on the server or use SQL pass-through in Visual FoxPro. For more information on using Transact-SQL, see your SQL Server documentation. For information on using SQL pass-through, see <a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Comparing Event Order</h3><div class="subSection" xmlns="">
+          <p>In Visual FoxPro, some events occur in a different order, depending on whether your application is using SQL Server data or Visual FoxPro data. These differences might require changes to your code.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Default Values</h3><div class="subSection" xmlns="">
+          <p>Visual FoxPro default field values appear when you begin editing a new record. Default values generated by SQL Server defaults appear only after a record has been inserted. You need to change any code that depends on having values before the record is committed, such as the code for lookups.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Validation Rules</h3><div class="subSection" xmlns="">
+          <p>In Visual FoxPro, field validation occurs when the focus leaves a field. When you edit SQL Server data in attached tables, triggers and rules aren't fired until you leave the record. You might need to modify any record validation rules that rely on field validation occurring when a field is exited.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Handling Unconverted Expressions</h3><div class="subSection" xmlns="">
+          <p>The upsizing report indicates whether each Visual FoxPro table validation rule, field validation rule, and default expression was successfully converted. If a default expression or validation rule was not translated, you should rewrite it in Transact-SQL.</p>
+          <p>You can also perform validation at the form level in Visual FoxPro. However, if server data is then modified without using a particular form, the validation will not be applied and invalid data might be entered.</p>
+          <p>For more information, see <span class="linkTerms"><a href="/html/607ab194-ce6b-4b0a-be4f-3f0d93ff760b.htm">How the SQL Server Upsizing Wizard Works</a></span>. For more information about Transact-SQL functions, see your SQL Server documentation.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Record Locking</h3><div class="subSection" xmlns="">
+          <p>Visual FoxPro uses optimistic locking internally when accessing tables on a SQL server. Optimistic locking means that the row is locked only when the edited value is committed and the update process occurs — usually a very brief interval.</p>
+          <p>Optimistic locking is used rather than pessimistic locking on SQL Server because pessimistic locking on SQL Server is provided by page locking, potentially locking many records at a time. While page locking prevents other users from making changes to the same record you're editing, it can also prevent users from accessing many other records in the same (locked) page. Optimistic locking provides the best multiuser access for a Visual FoxPro client/server application.</p>
+          <p>You can optimize updates and control how update conflicts are handled with the SQL WhereType property. For more information on controlling update conflicts, see <a href="/html/a8993d34-e40b-4411-9df3-48d58bd3f0f4.htm">Managing Conflicts When Updating Data</a>.</p>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="#dgconsqlserverupsizingprocesscompletion">SQL Server Upsizing Process Completion</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/d2bf8742-0693-4ffb-af77-ae8ea8ec126a.htm">Database Creation with Upsizing Wizards</a></span><br /><span class="linkTerms"><a href="/html/11f7d8ea-0e20-4e00-bcc6-357972354a40.htm">SQL Server Upsizing Wizard Preparation</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a></span><br /><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SQL Server Upsizing Process Completion">
+</OBJECT>

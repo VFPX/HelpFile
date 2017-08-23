@@ -1,0 +1,176 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SET FIELDS Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SET FIELDS Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Specifies which fields in a table can be accessed. There are two versions of the syntax.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SET FIELDS ON | OFF | LOCAL | GLOBAL</pre></td></tr></table></span><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SET FIELDS TO [[<span class="parameter">FieldName1</span> [, <span class="parameter">FieldName2</span> ...]]
+    | ALL [LIKE <span class="parameter">Skeleton</span> | EXCEPT <span class="parameter">Skeleton</span>]]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">ON </span></dt><dd>
+          <p>Specifies that only the fields in the field list can be accessed.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">OFF </span></dt><dd>
+          <p>(Default) Specifies that all the fields in the current table can be accessed.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">LOCAL </span></dt><dd>
+          <p>Specifies that only the fields in the current work area listed in the fields list can be accessed.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">GLOBAL </span></dt><dd>
+          <p>Specifies that all fields in the field list, including fields in other work areas, can be accessed.</p>
+          <p>SET FIELDS GLOBAL lets you access fields in other work areas without issuing SET COMPATIBLE TO DB4. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TO [ <span class="parameter">FieldName1</span>[, <span class="parameter">FieldName2</span>...]] </span></dt><dd>
+          <p>Specifies the names of fields that can be accessed in the current table. You must include an alias with the field name in the following cases:</p>
+          <ul><li>
+              <p>When the field is in a table that is open in a work area other than the currently selected work area.</p>
+            </li><li>
+              <p>When the field names are the same in two or more tables.</p>
+            </li></ul>
+          <p>You can include fields from tables that are open in other work areas if the fields are prefaced with their table aliases. However, these fields cannot be accessed unless you issue SET FIELDS GLOBAL or SET COMPATIBLE DB4.   </p>
+          <p>The field list can contain statements for creating calculated fields. A calculated field contains read-only data created with an expression. This expression can take any form, but it must be a valid FoxPro expression. Calculated fields cannot be accessed unless you issue SET FIELDS GLOBAL or SET COMPATIBLE DB4.   </p>
+          <p>The format of the statement you use to create a calculated field is:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;calculated field name&gt; = &lt;expr&gt;</pre></td></tr></table></span></div>
+          <p>This example creates a calculated field called LOCATION:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+USE customer
+SET FIELDS TO LOCATION = ALLTRIM(city) + ', ' + state</pre></td></tr></table></span></div>
+          <p>CITY and STATE are the names of fields from the selected table. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ALL </span></dt><dd>
+          <p>Allows access to all the fields in the current table.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ALL LIKE <span class="parameter">Skeleton</span>| EXCEPT <span class="parameter">Skeleton</span></span></dt><dd>
+          <p>You can selectively access fields by including the LIKE or EXCEPT clause or both. If you include LIKE <span class="parameter">Skeleton</span>, you can access fields that match <span class="parameter">Skeleton</span>. If you include EXCEPT <span class="parameter">Skeleton</span>, you can access all fields except those that match <span class="parameter">Skeleton</span>.</p>
+          <p>The skeleton <span class="parameter">Skeleton</span> supports wildcards such as * and ?. For example, to access fields that begin with the letters A and P, issue the following:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET FIELDS TO ALL LIKE A*,P*</pre></td></tr></table></span></div>
+          <p>The LIKE clause can be combined with the EXCEPT clause:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET FIELDS TO ALL LIKE A*,P* EXCEPT PARTNO*</pre></td></tr></table></span></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>SET FIELDS TO is additive — issuing SET FIELDS TO with a field list adds the specified fields to those that are currently accessible.</p>
+      <p>Issuing SET FIELDS TO implicitly performs SET FIELDS ON. Issue SET FIELDS TO without including either a field list or ALL to remove all fields from the field list for the current table.</p>
+      <p>SET FIELDS is scoped to the current data session.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/b1f6cce2-4c60-41b0-88e8-60d6cabb7068.htm">SET FILTER Command</a></span><br /><span class="linkTerms"><a href="/html/650419ee-d0c5-439a-b452-87b694f1024e.htm">SET DATASESSION Command</a></span><br /><span class="linkTerms"><a href="/html/8c7e7c9d-337c-434d-ba96-ea6796b454bb.htm">SET COMPATIBLE Command</a></span><br /><span class="linkTerms"><a href="/html/1334aa6b-38e0-4fcd-a174-3c4f5c964155.htm">SET Command Overview</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SET FIELDS Command">
+<param name="ALink Name" value="SET FIELDS">
+</OBJECT>

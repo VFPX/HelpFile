@@ -1,0 +1,144 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Set Controlling Indexes</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Set Controlling Indexes</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>A table can have many index files open simultaneously; however, only one master, or controlling, index file or tag specifies the order in which Visual FoxPro displays or accesses the table. Also, certain commands, such as the <b>SEEK</b> command, use the controlling index file or tag to search for records. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>You cannot select binary indexes as controlling indexes. Visual FoxPro does not support the <b>SET ORDER</b> command when setting to a binary index tag. If you attempt to set order to a binary tag, Visual FoxPro generates an error, and the current order remains at its prior setting. Records in the table are displayed and accessed in record number order and not in an indexed order. Therefore, Visual FoxPro does not support <b>SEEK</b> operations for binary indexes.</p>
+    </td></tr></table></div>
+    <p>After you create one or more indexes for a table, you need to assign a controlling index for organizing records in your table. You can designate an index tag in a compound index (.cdx) file or a standalone index (.idx) file as the controlling index tag or file. When changes are made to the table, all open .idx and .cdx files are updated. </p>
+    <p>You can select a controlling index using the Visual FoxPro IDE or language. </p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <h3 class="procedureSubHeading">To designate a controlling index</h3><div class="subSection"><ol><li>
+            
+              <p>Open the browse window for your table.</p>
+            
+          </li><li>
+            
+              <p>On the <b>Table</b> menu, choose <b>Properties</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Index order</b> box of the <b>Work Area Properties</b> dialog box, select the index you want to use.</p>
+            
+          </li><li>
+            
+              <p>Choose <b>OK</b>.</p>
+            
+          </li></ol></div>
+      <p>The browse window displays records in the order that the index specifies. </p>
+      <h3 class="procedureSubHeading">To set controlling indexes programmatically</h3><div class="subSection"><ul><li>
+            
+              <p>Choose one of the following:</p>
+              <ul><li>
+                  <p>To set the controlling index for a table, use the <b>SET ORDER</b> command.</p>
+                  <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+                    <p>When opening a table using the <b>USE</b> command, including the <b>ORDER</b> clause in performs the same function as <b>SET ORDER</b>. </p>
+                  </td></tr></table></div>
+                  <p>You do not need to use <b>SET ORDER</b> for running queries.</p>
+                </li><li>
+                  <p>To set the controlling index for the currently open table, use the <b>SET INDEX</b> command.  </p>
+                  <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+                    <p>When opening a table using the <b>USE</b> command, including the <b>INDEX</b> clause in performs the same function as <b>SET INDEX</b>.</p>
+                  </td></tr></table></div>
+                </li></ul>
+            
+          </li></ul></div>
+      <p>For example, suppose an index with the tag name Country is created for the Customer table in the Visual FoxPro sample database, TestData. The following code uses the <b>SET ORDER</b> command to specify Country as the controlling index for displaying the records in the table when you open the table. The <b>BROWSE</b> command opens a browse window and displays the records by country name:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE (HOME(2) + 'Data\TestData')
+SET ORDER TO Country
+BROWSE</pre></td></tr></table></span></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/f88b697b-c89f-4343-b9f9-4ecda6fe95ac.htm">SET ORDER Command</a></span>, <span class="linkTerms"><a href="/html/b0166019-d7d2-4322-8a7f-d3986987a71e.htm">SET INDEX Command</a></span>, <span class="linkTerms"><a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a></span>, and <span class="linkTerms"><a href="/html/8f9cae61-2a9a-4893-8325-40426b907de8.htm">BROWSE Command</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/1225f38b-2ed5-499e-b2c7-71b741bbe758.htm">How to: Create Indexes (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/5872e018-fe81-4365-9643-0ef0f610f798.htm">How to: Select Indexes at Run Time</a></span><br /><span class="linkTerms"><a href="/html/26fcf23f-a277-4cdf-806e-1a49cff93621.htm">How to: Display Records in Descending Order</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Set Controlling Indexes">
+</OBJECT>

@@ -1,0 +1,177 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Select Indexes at Run Time</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Select Indexes at Run Time</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can provide the capability for users to organize records interactively when they click a column header in a grid on a form. For example, suppose you want to permit application users to organize records in a grid on a form by clicking the column header they want to organize records by. To provide this capability, include the <b>SET ORDER</b> command to change the order of records in a form at run time. </p>
+  <h3 class="procedureSubHeading">To organize records interactively on a form</h3><div class="subSection"><ol><li>
+        
+          <p>Create a form with a <b>Grid</b> control. </p>
+        
+      </li><li>
+        
+          <p>Set the grid's <b>ColumnCount</b> property to the number of fields you want to display in the grid.</p>
+        
+      </li><li>
+        
+          <p>For the header of each column in the grid, insert code that includes the <b>SET ORDER</b> command in the header's <b>Click</b> event that performs the following tasks: </p>
+          <ul><li>
+              <p>Sets the record order to an index key based on the column.</p>
+            </li><li>
+              <p>Refreshes the form.</p>
+            </li></ul>
+        
+      </li></ol>
+      
+        <p>For example, suppose you created a form based on the Customer table in the Visual FoxPro sample database, TestData, with a grid containing four columns: Company, Contact, Postal_Code, and Phone. The grid appears sorted alphabetically first because the records in that table were entered alphabetically. However, you can then make it possible for the user to view the grid ordered by contact name or postal code by inserting the code that uses the <b>SET ORDER</b> command in the <b>Click</b> event of each column header. </p>
+        <p>The following table describes sample code you can include in the <b>Click</b> event.</p>
+        <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+              <th>
+                Code
+              </th>
+              <th>
+                Comment
+              </th>
+            </tr><tr>
+            <td>
+              <p>
+                <code>SET ORDER TO Company</code>
+              </p>
+              <p>
+                <code>GO TOP</code>
+              </p>
+              <p>
+                <code>THISFORM.Refresh</code>
+              </p>
+            </td>
+            <td>
+              <p>In the Company header <b>Click</b> event code, reorder the grid using the Company index key and refresh the form to display records in order by company name.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>
+                <code>SET ORDER TO Contact</code>
+              </p>
+              <p>
+                <code>GO TOP</code>
+              </p>
+              <p>
+                <code>THISFORM.Refresh</code>
+              </p>
+            </td>
+            <td>
+              <p>In the Contact header <b>Click</b> event code, reorder the grid by the Contact index key and refresh the form to display records in order by contact name.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>
+                <code>SET ORDER TO</code>
+              </p>
+              <p>
+                <code>PostalCode</code>
+              </p>
+              <p>
+                <code>GO TOP</code>
+              </p>
+              <p>
+                <code>THISFORM.Refresh</code>
+              </p>
+            </td>
+            <td>
+              <p>In the Postal_Code header <b>Click</b> event code, reorder the grid by the PostalCode index key and refresh the form to display records in order by postal code.</p>
+            </td>
+          </tr></table></div>
+        <p>In the example, when the form is first displayed, the grid appears in alphabetical order by company. When the user clicks the header of the Contact column, Visual FoxPro displays the records in the grid in alphabetical order by contact name. If the user clicks the Postal_Code column header, the grid is resorted and displayed in order by postal code. </p>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/f88b697b-c89f-4343-b9f9-4ecda6fe95ac.htm">SET ORDER Command</a></span><br /><span class="linkTerms"><a href="/html/0212bad2-48a3-49ae-98de-c71ba3af0ede.htm">Grid Control</a></span><br /><span class="linkTerms"><a href="/html/9b9270cb-27c5-470b-b889-5910309ef707.htm">ColumnCount Property (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/514e4b37-03df-482c-9c9f-df2873f48aee.htm">Click Event</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Select Indexes at Run Time">
+</OBJECT>

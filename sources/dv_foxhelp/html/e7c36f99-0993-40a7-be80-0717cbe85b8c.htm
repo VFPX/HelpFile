@@ -1,0 +1,736 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Using Rushmore Query Optimization to Speed Data Access</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Using Rushmore Query Optimization to Speed Data Access</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>To help you optimize the performance of your applications, Visual FoxPro includes Rushmore Query Optimization data access technology. Using Rushmore technology, you can run certain complex table operations hundreds or even thousands of times faster than without it.</p>
+  <h1 class="heading">Understanding Rushmore Query Optimization Technology</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Rushmore Query Optimization technology is a data access technique that uses standard Visual FoxPro indexes to optimize access to data. You can use Rushmore with any Visual FoxPro index, including FoxPro 1.x (.idx) indexes, compact (.idx) indexes, and compound (.cdx) indexes.</p>
+      <p>Both .cdx and compact .idx indexes use a compression technique that produces indexes as small as one-sixth the size of uncompressed old-format indexes. Visual FoxPro can process a compressed index faster because it requires less disk access, and because more of the index can be buffered in memory. Although Rushmore Query Optimization, like other file access techniques, benefits from the smaller size of compact indexes, it also functions very well with indexes in older formats.</p>
+      <p>When Visual FoxPro processes very large tables on computers with only the minimum amount of RAM, Rushmore might not find sufficient memory to operate. In that case, Visual FoxPro might display a warning message ("Not enough memory for optimization"). Although your program will function correctly and not lose any data, the query will not benefit from Rushmore optimization.</p>
+      <p>In its simplest form, Rushmore speeds the performance of single-table commands using FOR clauses that specify sets of records in terms of existing indexes. Also, Rushmore can speed the operation of certain commands such as <a href="/html/dd60dab3-c995-47b1-9efb-761750fc9492.htm">LOCATE</a> and <a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX</a>. For a complete list of optimizable commands, see the next section, "Using Rushmore Query Optimization with Tables."</p>
+      <p>Visual FoxPro SQL commands use Rushmore as a basic tool in multi-table query optimization, using existing indexes and even creating new ad-hoc indexes to speed queries.</p>
+    </div><h1 class="heading">Using Rushmore Query Optimization with Tables</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Use Rushmore to optimize data access according to the number of tables involved. When you access single tables, you can take advantage of Rushmore anywhere that a FOR clause appears. When you access multiple tables, SELECT - SQL queries supersede all Rushmore optimizations. In an SQL command, Visual FoxPro decides what is needed to optimize a query and does the work for you. You don't need to open tables or indexes. If SQL decides it needs indexes, it creates temporary indexes for its own use.</p>
+      <h3 class="procedureSubHeading">To use Rushmore Query Optimization</h3><div class="subSection"><ol><li>
+            
+              <p>To access data from a single table, use a FOR clause in a command such as <a href="/html/29757d6c-b9ba-4e23-a040-47f5c68216a5.htm">AVERAGE</a>, <a href="/html/8f9cae61-2a9a-4893-8325-40426b907de8.htm">BROWSE</a>, or <a href="/html/dd60dab3-c995-47b1-9efb-761750fc9492.htm">LOCATE</a>, or use SQL commands to update tables. For a complete list of commands that use the FOR clause, refer to the table below. </p>
+              <p>-or- </p>
+            
+          </li><li>
+            
+              <p>To access data from more than one table, use the <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL</a>, <a href="/html/f31dbf64-3691-4ab0-a6b0-7ed1b3a42208.htm">DELETE - SQL</a>, and <a href="/html/56137e46-cad2-4473-8e8e-367d2ca63334.htm">UPDATE - SQL</a> commands.</p>
+            
+          </li></ol></div>
+      <p>The following table lists commands that use FOR clauses. Rushmore is designed so that its speed is proportional to the number of records retrieved.</p>
+      <div class="labelheading"><b>Potentially Optimizable Commands with FOR Clauses</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <td>
+            <p>
+              <a href="/html/29757d6c-b9ba-4e23-a040-47f5c68216a5.htm">AVERAGE</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/8b44de23-12a4-4c9c-a95d-202b6bc06352.htm">BLANK</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/8f9cae61-2a9a-4893-8325-40426b907de8.htm">BROWSE</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/4f6a1667-7ede-46e8-9b65-62a05f9182de.htm">CALCULATE</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/cffc4866-c609-426f-95a5-e45587122aa8.htm">CHANGE</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e5cc1f14-402f-43b7-8066-af695c60e183.htm">COPY TO</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/977adad9-d33e-4f01-8f63-244fd066d832.htm">COPY TO ARRAY</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/f945ce5c-ffd1-4fc2-af1c-f45df2f501e7.htm">COUNT</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9c5000b8-3c35-4690-b7b8-07299f84b794.htm">DELETE</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/b524a1c7-d4df-4312-b0f0-472297c73752.htm">DISPLAY</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/83b52869-8201-4d60-a6b5-35bcd8e1c12f.htm">EDIT</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/be78df32-95c1-4939-a439-65f1f0b93ca9.htm">EXPORT TO</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/5c9ba5f1-59c9-484c-af3b-eb35e2838313.htm">JOIN WITH</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/3876aeab-209d-42b0-9ebd-033284c74adb.htm">LABEL</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/13d21965-8877-4f61-a6bd-ee17f3230d45.htm">LIST</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/dd60dab3-c995-47b1-9efb-761750fc9492.htm">LOCATE</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e4f80973-79dc-4fd7-b716-805050b9c752.htm">RECALL</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/7f52db34-68fc-4f9e-abca-fa3f7f02ca19.htm">REPLACE</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/61301302-7a72-464d-8178-bcc1be294ef3.htm">REPLACE FROM ARRAY</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/c61f2d7e-2317-477e-9bf9-fa900c1bcac9.htm">SCAN</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/456fe115-d38a-4e98-b040-4a00308d9e5a.htm">SET DELETED</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/b1f6cce2-4c60-41b0-88e8-60d6cabb7068.htm">SET FILTER</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/d8533965-e970-443b-adbd-405e40fc4c44.htm">SORT TO</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/43ec1243-8e69-4a88-b89e-752207d91947.htm">SUM</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/73211892-f96e-4c1e-abcb-41b5b2ed32ba.htm">TOTAL TO</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr></table></div>
+      <p>If you use a scope clause in addition to an optimizable FOR clause expression, the scope must be set to ALL or REST to take advantage of Rushmore. The NEXT or RECORD scope clauses disable Rushmore. Because the default scope is ALL for most commands, Rushmore works when you omit the scope clause.</p>
+      <p>Rushmore can use any open indexes except for filtered and UNIQUE indexes.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>For optimal performance, don't set the order of the table.</p>
+      </td></tr></table></div>
+      <p>Creating index or tags automatically sets the order. If you want to take maximum advantage of Rushmore with a large data set that must be in a specific order, issue <a href="/html/f88b697b-c89f-4343-b9f9-4ecda6fe95ac.htm">SET ORDER TO</a> to turn off index control, then use the <a href="/html/d8533965-e970-443b-adbd-405e40fc4c44.htm">SORT</a> command.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Indexing Effectively for Rushmore Query Optimization</h3><div class="subSection" xmlns="">
+          <p>Rushmore cannot take advantage of all indexes. If you use a FOR clause in the <a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX</a> command, Rushmore cannot use the index for optimization. For example, because it contains a FOR clause, this statement cannot be optimized, <code>INDEX ON ORDNUM FOR DISCOUNT &gt; 10 TAG ORDDISC</code>. </p>
+          <p>Similarly, Rushmore cannot use an index created with a NOT <span class="parameter">condition</span>. For example, the this expression can be optimized, <code>INDEX ON DELETED() TAG DEL</code>,<code><b> </b></code>But this one cannot, <code>INDEX ON NOT DELETED() TAG NOTDEL</code>.</p>
+          <p>In the special case that you want to exclude delete records from a query, using an index, as in the first example earlier, will speed up operations when you've set SET DELETED to ON.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Rushmore Optimization and Code Pages</h3><div class="subSection" xmlns="">
+          <p>Visual FoxPro does not use existing character indexes for tables created with a non-current code page. Instead, Visual FoxPro builds temporary indexes to ensure correct results. This can result in non-optimization of SQL or other commands. To prevent this, ensure that the current Visual FoxPro code page returned by <span class="linkTerms"><a href="/html/29cbf933-0095-40be-a8a4-a9330e7a2523.htm">CPCURRENT( ) Function</a></span> matches the table's code page returned by <span class="linkTerms"><a href="/html/4bccff52-cbec-495f-aa32-bfadb6b1b3f6.htm">CPDBF( ) Function</a></span>. This requires either changing the current Visual FoxPro code page, or changing the table's code page. For information about specifying the current Visual FoxPro code page, see <span class="linkTerms"><a href="/html/01f8b1a1-72f4-4df7-8f60-e8b9b8c8d08c.htm">Understanding Code Pages in Visual FoxPro</a></span>. For information about specifying the code page for a table, see <span class="linkTerms"><a href="/html/fa3154e4-d0a5-45c0-82b7-1640fad1ffdf.htm">How to: Specify the Code Page of a .dbf File</a></span>. If you cannot change either the Visual FoxPro codepage or the table codepage to match, you can force optimization to work as it did in Visual FoxPro 8 and prior versions using the <span class="linkTerms"><a href="/html/23b309b9-92ce-410c-9dd1-227c7f59c047.htm">SET ENGINEBEHAVIOR Command</a></span> with either 80 or 70 as a parameter.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Operating Without Rushmore Query Optimization</h3><div class="subSection" xmlns="">
+          <p>Data retrieval operations proceed without Rushmore optimization in the following situations:  </p>
+          <ul><li>
+              <p>When Rushmore cannot optimize the FOR clause expressions in a potentially optimizable command.</p>
+            </li><li>
+              <p>When a command that might benefit from Rushmore contains a WHILE clause.</p>
+            </li><li>
+              <p>When memory is low. Data retrieval continues, but is not optimized.</p>
+            </li></ul>
+        </div>
+    </sections></div><h1 class="heading">Disabling Rushmore Query Optimization</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Though you rarely want to, you can disable Rushmore. When you issue a command that uses Rushmore, Visual FoxPro immediately determines which records match the FOR clause expression. These records are then manipulated by the command.</p>
+      <p>If a potentially optimizable command modifies the index key in the FOR clause, the recordset on which Rushmore is operating can become outdated. In this case, you can disable Rushmore to ensure that you have the most current information from the table.</p>
+      <h3 class="procedureSubHeading">To disable Rushmore for an individual command</h3><div class="subSection"><ul><li>
+            
+              <p>Use the NOOPTIMIZE clause. </p>
+              <p>For example, this <a href="/html/dd60dab3-c995-47b1-9efb-761750fc9492.htm">LOCATE</a> command is not optimized:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCATE FOR DueDate &lt; {^1998-01-01} NOOPTIMIZE</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>You can globally disable or enable Rushmore for all commands that benefit from Rushmore, with the <a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE</a> command.</p>
+      <h3 class="procedureSubHeading">To disable Rushmore globally</h3><div class="subSection"><ul><li>
+            
+              <p>Use the following code: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET OPTIMIZE OFF</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <h3 class="procedureSubHeading">To enable Rushmore globally</h3><div class="subSection"><ul><li>
+            
+              <p>Use the following code: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET OPTIMIZE ON</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>The default setting of Rushmore optimization is ON.</p>
+    </div><h1 class="heading">Optimizing Rushmore Expressions</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Rushmore technology depends on the presence of a basic optimizable expression in a FOR clause or in an SQL WHERE clause. A basic optimizable expression can form an entire expression or can appear as part of an expression. You can also combine basic expressions to form a complex optimizable expression.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Creating Basic Optimizable Expressions</h3><div class="subSection" xmlns="">
+          <p>A basic optimizable expression takes one of the two following forms:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>
+            <i>eIndex relOp eExp</i>
+          </pre></td></tr></table></span></div>
+          <p>-or-</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>
+            <i>eExpr relOp eIndex</i>
+          </pre></td></tr></table></span></div>
+          <p>A basic optimizable expression has the following characteristics:  </p>
+          <ul><li>
+              <p>
+                <span class="parameter">eIndex</span> exactly matches the expression on which an index is constructed.</p>
+            </li><li>
+              <p>
+                <span class="parameter">eExpr</span> is any expression and can include variables and fields from other unrelated tables.</p>
+            </li><li>
+              <p>
+                <span class="parameter">relOp</span> is one of the following relational operators: &lt;, &gt;, =, &lt;=, &gt;=, &lt;&gt;, #, ==, or !=. You can also use the <a href="/html/dce94348-85af-42bb-a1c1-7c7c8982861e.htm">ISNULL( )</a>, <a href="/html/e2e037eb-727e-47b7-8528-006644120bf0.htm">BETWEEN( )</a>, or <a href="/html/b955d46c-7d65-49bf-9927-360c93951f46.htm">INLIST( )</a> functions (or their SQL equivalents such as IS NULL, and so on).</p>
+            </li></ul>
+          <p>You can use BETWEEN( ) or INLIST( ) in the following two forms:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BETWEEN(eIndex, eExpr, eExpr)</pre></td></tr></table></span></div>
+          <p>-or-</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>INLIST(eIndex, eExpr [, eExpr, eExpr, ...])</pre></td></tr></table></span></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>ISBLANK() and EMPTY() are not optimizable by Rushmore.</p>
+          </td></tr></table></div>
+          <p>If you create the indexes <code>firstname</code>, <code>custno</code>, <code>UPPER(lastname)</code>, and <code>hiredate</code>, each of the following expressions is optimizable:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>firstname = "Fred"
+custno &gt;= 1000
+UPPER(lastname) = "SMITH"
+hiredate &lt; {^1997-12-30}</pre></td></tr></table></span></div>
+          <p>An optimizable expression can contain variables and functions that evaluate to a specific value. For example, using the index <code>addr</code>, if you issue the command <code>STORE </code>"<code>WASHINGTON AVENUE</code>"<code> TO cVar</code>, then the following statements are also basic optimizable expressions:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ADDR = cVar
+ADDR = SUBSTR(cVar,8,3)</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Understanding When Queries Are Optimized</h3><div class="subSection" xmlns="">
+          <p>It is important to understand when queries will be optimized and when they will not. Visual FoxPro optimizes search conditions by looking for an exact match between the left side of a filter expression and an index key expression. Therefore, Rushmore can optimize an expression only if you search against the exact expression used in an index.</p>
+          <p>For example, imagine that you've just created a table and are adding the first index using a command such as the following:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE CUSTOMERS
+INDEX ON UPPER(cu_name) TAG name</pre></td></tr></table></span></div>
+          <p>The following command is not optimizable, because the search condition is based on the field <code>cu_name</code> only, not on an expression that is indexed:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * FROM customers WHERE cu_name ="ACME"</pre></td></tr></table></span></div>
+          <p>Instead, you should create an optimizable expression using a command such as the following, in which the expression for which you are searching exactly matches an indexed expression:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * FROM customers WHERE UPPER(cu_name) = "ACME"</pre></td></tr></table></span></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>To determine the level of Rushmore optimization being used, call <a href="/html/400a0198-cac5-4abd-8e2d-79564a75742d.htm">SYS(3054)</a>.</p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Combining Basic Optimizable Expressions</h3><div class="subSection" xmlns="">
+          <p>You can combine simple or complex expressions based on the FOR clause or WHERE clause to increase data retrieval speed, if the FOR expressions have the characteristics of basic optimizable expressions.</p>
+          <p>Basic expressions might be optimizable. You can combine basic expressions using the AND, OR, and NOT logical operators to form a complex FOR clause expression that might also be optimizable. An expression created with a combination of optimizable basic expressions is fully optimizable. If one or more of the basic expressions are not optimizable, the complex expression might be partially optimizable or not optimizable at all.</p>
+          <p>A set of rules determines if an expression composed of basic optimizable or non-optimizable expressions is fully optimizable, partially optimizable, or not optimizable. The following table summarizes Rushmore query optimization rules.</p>
+          <div class="labelheading"><b>Combining Basic Expressions</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Basic Expression
+                </th>
+                <th>
+                  Operator
+                </th>
+                <th>
+                  Basic Expression
+                </th>
+                <th>
+                  Query Result
+                </th>
+              </tr><tr>
+              <td>
+                <p>Optimizable</p>
+              </td>
+              <td>
+                <p>AND</p>
+              </td>
+              <td>
+                <p>Optimizable</p>
+              </td>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Optimizable</p>
+              </td>
+              <td>
+                <p>OR</p>
+              </td>
+              <td>
+                <p>Optimizable</p>
+              </td>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Optimizable</p>
+              </td>
+              <td>
+                <p>AND</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Optimizable</p>
+              </td>
+              <td>
+                <p>OR</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>AND</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>OR</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>—</p>
+              </td>
+              <td>
+                <p>NOT</p>
+              </td>
+              <td>
+                <p>Optimizable</p>
+              </td>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>—</p>
+              </td>
+              <td>
+                <p>NOT</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+            </tr></table></div>
+          <p>You can use the AND operator to combine two optimizable expressions into one fully optimizable expression:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>FIRSTNAME = "FRED" AND HIREDATE &lt; {^1997-12-30}      &amp;&amp; Optimizable</pre></td></tr></table></span></div>
+          <p>In this example, the OR operator combines a basic optimizable expression with an expression that is not optimizable to create an expression that is not optimizable:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>FIRSTNAME = "FRED" OR "S" $ LASTNAME      &amp;&amp; Not optimizable</pre></td></tr></table></span></div>
+          <p>Using the NOT operator on an optimizable expression creates a fully optimizable expression:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>NOT FIRSTNAME = "FRED"      &amp;&amp; Fully optimizable</pre></td></tr></table></span></div>
+          <p>You can also use parentheses to group combinations of basic expressions.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Combining Complex Expressions</h3><div class="subSection" xmlns="">
+          <p>Just as you can combine basic expressions, you can combine complex expressions to create a more complex expression that is fully optimizable, partially optimizable, or not optimizable. You can then combine these more complex expressions to create expressions that again might be fully or partially optimizable, or not optimizable at all. The following table describes the results of combining these complex expressions. These rules also apply to expressions grouped with parentheses.</p>
+          <div class="labelheading"><b>Combining Complex Expressions</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Expression
+                </th>
+                <th>
+                  Operator
+                </th>
+                <th>
+                  Expression
+                </th>
+                <th>
+                  Result
+                </th>
+              </tr><tr>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+              <td>
+                <p>AND</p>
+              </td>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+              <td>
+                <p>OR</p>
+              </td>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+              <td>
+                <p>AND</p>
+              </td>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+              <td>
+                <p>OR</p>
+              </td>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+              <td>
+                <p>AND</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+              <td>
+                <p>OR</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>—</p>
+              </td>
+              <td>
+                <p>NOT</p>
+              </td>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+              <td>
+                <p>Fully Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+              <td>
+                <p>AND</p>
+              </td>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+              <td>
+                <p>OR</p>
+              </td>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+              <td>
+                <p>AND</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+              <td>
+                <p>OR</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>—</p>
+              </td>
+              <td>
+                <p>NOT</p>
+              </td>
+              <td>
+                <p>Partially Optimizable</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>AND</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>OR</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>—</p>
+              </td>
+              <td>
+                <p>NOT</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+              <td>
+                <p>Not Optimizable</p>
+              </td>
+            </tr></table></div>
+          <p>You can combine fully optimizable expressions with the OR operator to create one expression that is also fully optimizable:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Fully-optimizable expression
+(FIRSTNAME = "FRED" AND HIREDATE &lt; {^1997-12-30}) ;
+   OR (LASTNAME = "" AND HIREDATE &gt; {^1996-12-30})</pre></td></tr></table></span></div>
+          <p>To create partially optimizable expressions, combine a fully optimizable expression with an expression that is not optimizable. In the following example, the AND operator is used to combine the expressions:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Partially-optimizable expression
+(FIRSTNAME = "FRED" AND HIREDATE &lt; {^1997-12-30}) ;
+   AND "S" $ LASTNAME</pre></td></tr></table></span></div>
+          <p>Partially optimizable expressions can be combined to create one expression that is also partially optimizable:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Partially-optimizable expression
+(FIRSTNAME = "FRED" AND "S" $ LASTNAME) ;
+   OR (FIRSTNAME = "DAVE" AND "T" $ LASTNAME)</pre></td></tr></table></span></div>
+          <p>Combining expressions that are not optimizable creates an expression that is also not optimizable:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Expression that is not optimizable
+("FRED" $ FIRSTNAME OR "S" $ LASTNAME) ;   
+   OR ("MAIN" $ STREET OR "AVE" $ STREET)
+</pre></td></tr></table></span></div>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/dd60dab3-c995-47b1-9efb-761750fc9492.htm">LOCATE Command</a></span><br /><span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/3f3c7751-db8b-43ad-9da6-7daa3f8eb8b5.htm">Optimizing Applications</a></span><br /><span class="linkTerms"><a href="/html/c43a1e26-abb8-486a-9e59-a8c188a882cc.htm">Optimizing Your System</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Using Rushmore Query Optimization to Speed Data Access">
+</OBJECT>

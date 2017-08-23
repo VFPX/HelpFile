@@ -1,0 +1,392 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Walkthrough: Creating XML Web Services with Visual FoxPro</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Walkthrough: Creating XML Web Services with Visual FoxPro</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>XML Web services are the fundamental building blocks for distributed computing on the Internet. An XML Web service is an object or class that is deployed on the Internet and that you can access programmatically through typical method calls. XML Web services provide functionality and access to data between platforms and across diverse connections. The most important aspect of XML Web services is that because of how they use HTTP and SOAP, functionality is available through firewalls. You can call an XML Web service regardless of the platform you are running because HTTP and SOAP operate independently from your computer platform. In some cases, this can provide functionality that was unavailable under distributed COM.</p>
+    <p>You can create XML Web services or access them on the Web from wherever they are published. You can use Visual FoxPro to create an XML Web service, or you can use Visual FoxPro to access an XML Web service created in other programming languages. </p>
+    <p>This walkthrough explains how to create a COM Server and publish it as an XML Web service. Additionally, it guides you through using your newly created XML Web service. The XML Web service provides a list of customers from a table where the customers meet a certain requirement. The list is sent as an XML string that is then placed into a cursor using the <b>XMLAdapter</b> class.</p>
+    <p>This walkthrough contains the following sections:</p>
+    <ul><li>
+        <p>
+          <span class="linkTerms"><a href="#fowlkwalkthroughcreatingwebserviceswithvisualfoxproanchor1">Prerequisites</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#fowlkwalkthroughcreatingwebserviceswithvisualfoxproanchor3">Internet Information Services</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#fowlkwalkthroughcreatingwebserviceswithvisualfoxproanchor4">Creating a COM Server</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#fowlkwalkthroughcreatingwebserviceswithvisualfoxproanchor5">Creating and Publishing an XML Web Service</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#fowlkwalkthroughcreatingwebserviceswithvisualfoxproanchor6">Testing an XML Web Service</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#fowlkwalkthroughcreatingwebserviceswithvisualfoxproanchor7">Using an XML Web Service</a></span>
+        </p>
+      </li></ul>
+  <h1 class="heading"><span onclick="ExpandCollapse(prerequisitesToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(prerequisitesToggle)" tabindex="0"><img id="prerequisitesToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Prerequisites</span></h1><div id="prerequisitesSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>This walkthrough requires the following:</p>
+      <ul><li>
+          <p>Microsoft Internet Information Services (IIS)</p>
+        </li><li>
+          <p>SOAP </p>
+        </li><li>
+          <p>Visual FoxPro COM Servers</p>
+        </li></ul>
+      <p>SOAP is automatically installed when you install Visual FoxPro. IIS is an optional component for Windows 2000 and is automatically installed on Windows 2000 Server. IIS serves your XML Web services from your virtual directory to users on the Internet. Its virtual directory references the location on your hard disk where you place your XML Web services. You use Visual FoxPro to create COM objects. After your COM objects are created, you can then use the Visual FoxPro XML Web Service builder to publish them to your virtual directory.</p>
+    
+  </div><a name="fowlkwalkthroughcreatingwebserviceswithvisualfoxproanchor3"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Internet Information Services</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>IIS provides the reference to the location of your XML Web service to users accessing it from the Internet. To publish an XML Web service, you must create a virtual directory in IIS that contains the necessary Web Services Description Language (.wsdl) files. These files are created by the Web Service Wizard from your COM component.</p>
+      <h3 class="procedureSubHeading">To create a virtual directory</h3><div class="subSection"><ol><li>
+            
+              <p>In the main Visual FoxPro directory ..\Program Files\Microsoft Visual FoxPro <i>VersionNumber</i>, create a folder named Web Services.</p>
+            
+          </li><li>
+            
+              <p>In the Windows Control Panel, double-click <b>Administrative Tools</b>, and then double-click <b>Internet Information Services</b>.  </p>
+              <p>The Internet Information Services window opens, displaying a tree control on the left that displays a list of Internet information services on your computer. </p>
+            
+          </li><li>
+            
+              <p>Right-click the <b>Default Web Site</b> node.</p>
+            
+          </li><li>
+            
+              <p>Click <b>New</b>, and then click <b>Virtual Directory</b> to open the Virtual Directory Creation Wizard.</p>
+            
+          </li><li>
+            
+              <p>Follow the instructions in the wizard, and specify the Web Services folder that you created in step 1 as your virtual directory. </p>
+              <p>This virtual directory references the Web Services folder where you will store all the XML Web service files you create. </p>
+            
+          </li></ol></div>
+    </div><a name="fowlkwalkthroughcreatingwebserviceswithvisualfoxproanchor4"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Creating a COM Server</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>Because an XML Web service is a dynamic-link Library (.dll) or executable (.exe) file, you must use a COM Server as the basis for your XML Web service. A COM Server in Visual FoxPro is a file with a .dll or .exe extension, containing a custom class based on the <b>Session</b> object. The custom class is specified as OLEPUBLIC when it is defined. This exposes functionality that can be used and reused by other applications through automation.</p>
+      <p>For this COM Server example, you create a custom class that reports some basic information. You write a program that creates a class with one method, compile the project containing it into a COM Server, and then publish it as an XML Web service.</p>
+      <h3 class="procedureSubHeading">To create a COM Server</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>File</b> menu in Visual FoxPro, click <b>New</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>New</b> dialog box, click <b>Project</b>, and then click <b>New file</b>. Save the project as <b>myWServ1</b>. </p>
+            
+          </li><li>
+            
+              <p>In the <b>All</b> tab of Project Manager, expand <b>Code</b>, click <b>Programs</b>, and then click <b>New</b>.</p>
+            
+          </li><li>
+            
+              <p>Copy the following code into the Editing window. </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS ShowCustomers AS Session OLEPUBLIC
+   PROCEDURE CustomersInGermany AS String
+      LOCAL loXMLAdapter AS XMLAdapter
+      LOCAL lcXMLCustomers AS String
+      loXMLAdapter = CREATEOBJECT("XMLAdapter")
+      
+      OPEN DATABASE "C:\Program Files\Microsoft Visual FoxPro 9\" ;
+         + "Samples\Northwind\northwind.dbc"
+      USE customers
+      SELECT * ;
+         FROM customers ;
+         WHERE country LIKE "Germany%" ;
+         INTO CURSOR curCustomers
+      loXMLAdapter.AddTableSchema("curCustomers")
+      loXMLAdapter.UTF8Encoded = .T.
+      loXMLAdapter.ToXML("lcXMLCustomers")
+      CLOSE DATABASES ALL
+      RETURN lcXMLCustomers
+   ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+              <p>This program defines one class, ShowCustomers, that has one method, CustomersInGermany. </p>
+            
+          </li><li>
+            
+              <p>On the <b>File</b> menu, click <b>Save</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Save As</b> dialog box, name the program myWServ1, and click <b>Save</b>.</p>
+            
+          </li><li>
+            
+              <p>Close the Editing window.</p>
+            
+          </li><li>
+            
+              <p>In Project Manager, click <b>Build</b>.</p>
+            
+          </li><li>
+            
+              <p>Select <b>Multi-threaded COM server (dll)</b>, and click <b>OK</b>. In the <b>Save As</b> dialog locate the Web Services directory you created under the main Visual FoxPro directory. Save the DLL as myWServ1.dll into the Web Services directory.</p>
+            
+          </li></ol>
+          
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>If the DLL is saved in a directory that IIS/SOAP cannot access, the calls to the WebService result in the SOAP error "Class not registered."</p>
+            </td></tr></table></div>
+          
+        </div>
+      <p>Visual FoxPro now compiles the file myWServ1 into a COM Server called myWServ1.dll. You can now publish it as an XML Web service.</p>
+    </div><a name="fowlkwalkthroughcreatingwebserviceswithvisualfoxproanchor5"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2)" tabindex="0"><img id="sectionToggle2" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Creating and Publishing an XML Web Service</span></h1><div id="sectionSection2" class="section" name="collapseableSection" style="display: none;">
+      <p>From the myWServ1.dll file, created in the previous procedure, a new Web Services Description Language (.wsdl) file is generated when you publish the XML Web service. The .wsdl file is an XML file that describes the XML Web service and the classes it contains.</p>
+      <p>To add the components necessary to turn your COM Server into an XML Web service, you must compile the COM Server as an XML Web service. After you specify the settings in the Web Services Publisher, Visual FoxPro creates the SOAP files necessary to turn your COM Server into an XML Web service, publishes them in your virtual directory, and registers your new XML Web service in IntelliSense.</p>
+      <h3 class="procedureSubHeading">To compile and publish an XML Web service</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Tools</b> menu, click <b>Task Pane</b>. </p>
+            
+          </li><li>
+            
+              <p>In the <b>Task Pane Manager</b>, click <b>XML Web Services</b>. </p>
+            
+          </li><li>
+            
+              <p>Under <b>XML Web Service Tools</b>, select <b>Publish Your XML Web Service</b>. </p>
+            
+          </li><li>
+            
+              <p>If the file <b>myWServ1.dll</b> is not listed in the <b>COM Server</b> field, click the <b>ellipsis </b>(<b>...</b>) button, and select <b>myWServ1.dll</b>.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Advanced</b> to display the <b>Visual FoxPro XML Web Services Publisher</b> dialog box.</p>
+            
+          </li><li>
+            
+              <p>Make sure the <b>Listener URI</b> box displays your virtual directory. If it does not, click the <b>ellipsis</b> (<b>...</b>) button, and select your virtual directory.</p>
+            
+          </li><li>
+            
+              <p>Click the <b>Methods</b> tab, and make sure that <b>CustomersInGermany</b> is selected.</p>
+            
+          </li><li>
+            
+              <p>Click the <b>Namespaces</b> table, replace <b>tempuri.org</b> with your domain in all fields, and click <b>OK</b>.  </p>
+              <p>If you do not have your own domain, you can leave <b>tempuri.org</b> for this example. </p>
+            
+          </li><li>
+            
+              <p>Click <b>OK</b> to close the <b>Visual FoxPro XML Web Services Publisher</b> dialog box.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Generate</b>.  </p>
+              <p>Visual FoxPro generates the XML Web service files. After it is finishes, the <b>XML Web Services Publishing Results</b> dialog box appears, displaying a list of files generated, .wsdl file, ISAPI or ASP listener, and whether the file was generated properly. </p>
+            
+          </li></ol></div>
+      <p>At this point, you have created and published your XML Web service. Anyone who has access to the virtual directory you established earlier can use HTTP to access the XML Web service you published.</p>
+    </div><a name="fowlkwalkthroughcreatingwebserviceswithvisualfoxproanchor6"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle3)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle3)" tabindex="0"><img id="sectionToggle3" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Testing an XML Web Service</span></h1><div id="sectionSection3" class="section" name="collapseableSection" style="display: none;">
+      <p>After you have published your new XML Web service, you should test it to make sure it is working correctly. Visual FoxPro provides a mechanism to test XML Web services that is available in the XML Web Service pane in Task Pane Manager. The test mechanism displays any results returned from the XML Web service, XML schemas used, error feedback.</p>
+      <h3 class="procedureSubHeading">To test a XML Web service</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Tools</b> menu in Visual FoxPro, click <b>Task Pane</b>. </p>
+            
+          </li><li>
+            
+              <p>In Task Pane Manager, click <b>XML Web Services</b>.</p>
+            
+          </li><li>
+            
+              <p>Under <b>Explore an XML Web Service</b>, click <b>ShowCustomers</b> in the <b>Service Name</b> box.</p>
+            
+          </li><li>
+            
+              <p>In the <b>The following methods are supported by this XML web service</b> box, click <b>CustomersInGermany</b>.  </p>
+              <p>This box lists all the available methods on the XML Web service. </p>
+            
+          </li><li>
+            
+              <p>Click <b>Test this XML Web Service</b>.</p>
+            
+          </li></ol></div>
+      <p>If testing is successful, the Web Service Test Results window appears. It displays the results from the XML Web service, and you can view the .wsdl file associated with the XML Web service. If there is an error in testing, the Web Service Test Results window displays information on the error.</p>
+    </div><a name="fowlkwalkthroughcreatingwebserviceswithvisualfoxproanchor7"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle4)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle4)" tabindex="0"><img id="sectionToggle4" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Using an XML Web Service</span></h1><div id="sectionSection4" class="section" name="collapseableSection" style="display: none;">
+      <p>You use an XML Web service the same way you would any COM Server: to expose functionality of one application to another. In the following procedure, you create a program (.prg) file to access your XML Web service and use the Toolbox to add the required code that references the XML Web service properly.</p>
+      <h3 class="procedureSubHeading">To use an XML Web service</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>File</b> menu in Visual FoxPro, click <b>New</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>New</b> dialog box, select <b>Project</b>, and click <b>New file</b>. Save the project as <b>wsTest</b>. </p>
+            
+          </li><li>
+            
+              <p>On the <b>All</b> tab of Project Manager, expand <b>Code</b>, select <b>Programs</b>, and then click <b>New</b>On the <b>Tools</b> menu, click <b>Toolbox</b>.</p>
+            
+          </li><li>
+            
+              <p>In the Toolbox, click the <b>My XML Web Services</b>.</p>
+            
+          </li><li>
+            
+              <p>Click and drag the <b>ShowCustomers</b> XML Web service from the Toolbox to the Editing window.  </p>
+              <p>This adds the proper code to your XML Web service. </p>
+            
+          </li><li>
+            
+              <p>In the Editing window, below the line that reads, "Call your XML Web service here," insert the following code. </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL lcXML, lcAlias AS String
+LOCAL loXMLAdapter AS XMLAdapter
+lcXML = loShowCustomers.CustomersInGermany
+loXMLAdapter = CREATEOBJECT("XMLAdapter")
+loXMLAdapter.LoadXML(lcXML)
+lcAlias = loXMLAdapter.Tables.Item(1).Alias
+loXMLAdapter.Tables.Item(1).ToCursor()
+SELECT(lcAlias)
+BROWSE
+CLOSE DATABASES ALL</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>On the <b>File</b> menu, click <b>Save</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Save As</b> dialog box, name the program <b>WebServiceTest</b>, and click <b>Save</b>.</p>
+            
+          </li><li>
+            
+              <p>Close the Editing window.</p>
+            
+          </li><li>
+            
+              <p>In Project Manager, select the <b>WebServiceTest</b> program file, and click <b>Run</b>. </p>
+              <p>A browse window appears with all the customers from Germany selected in the Northwind database. This cursor was populated from XML provided from your XML Web service using the <b>XMLAdapter</b> class. </p>
+            
+          </li></ol></div>
+      <p>For more information on Web Services, see <span class="linkTerms"><a href="/html/c34e0455-513d-4623-99b2-ab2034292ae9.htm">Web Services and Components</a></span>. For more information on COM Servers, see <span class="linkTerms"><a href="/html/b1ca676d-68a8-4ebe-aa68-ce6ac2083c59.htm">How to: Create Automation Servers</a></span>.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1690045a-ff3b-4707-8da8-f5b01ac684f0.htm">Walkthroughs</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Walkthrough: Creating XML Web Services with Visual FoxPro">
+</OBJECT>

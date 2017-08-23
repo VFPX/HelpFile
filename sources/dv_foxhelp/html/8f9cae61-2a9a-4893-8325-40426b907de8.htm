@@ -1,0 +1,543 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>BROWSE Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">BROWSE Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Opens the Browse window and displays records from the current or selected table.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+BROWSE [FIELDS <span class="parameter">FieldList</span>] [FONT <span class="parameter">cFontName</span> [, <span class="parameter">nFontSize</span> [, <span class="parameter">nFontCharSet</span>]]] 
+   [STYLE <span class="parameter">cFontStyle</span>] [FOR <span class="parameter">lExpression1</span> [REST]] [FORMAT] 
+   [FREEZE <span class="parameter">FieldName</span>] [KEY <span class="parameter">eExpression1</span> [, <span class="parameter">eExpression2</span>]] [LAST | NOINIT]
+   [LOCK <span class="parameter">nNumberOfFields</span>] [LPARTITION] [NAME <span class="parameter">ObjectName</span>] [NOAPPEND]
+   [NOCAPTIONS] [NODELETE] [NOEDIT | NOMODIFY] [NOLGRID] [NORGRID] 
+   [NOLINK] [NOMENU] [NOOPTIMIZE] [NOREFRESH] [NORMAL] [NOWAIT] 
+   [PARTITION <span class="parameter">nColumnNumber</span> [LEDIT] [REDIT]]
+   [PREFERENCE <span class="parameter">PreferenceName</span>] [SAVE] [TIMEOUT <span class="parameter">nSeconds</span>] 
+   [TITLE <span class="parameter">cTitleText</span>] [VALID [:F] <span class="parameter">lExpression2</span> [ERROR <span class="parameter">cMessageText</span>]]
+   [WHEN <span class="parameter">lExpression3</span>] [WIDTH <span class="parameter">nFieldWidth</span>] [WINDOW <span class="parameter">WindowName1</span>]
+   [IN [WINDOW] <span class="parameter">WindowName2</span> | IN SCREEN] [COLOR SCHEME <span class="parameter">nSchemeNumber</span>]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">FIELDS <span class="parameter">FieldList</span></span></dt><dd>
+          <p>Specifies the fields that appear in the Browse window. The fields are displayed in the order specified in <span class="parameter">FieldList</span>. You can include fields from other related tables in the field list. When you include a field from a related table, preface the field name with its table alias and a period.</p>
+          <p>If you omit FIELDS, all the fields in the table are displayed in the order they appear in the table structure. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FONT <span class="parameter">cFontName</span>[, <span class="parameter">nFontSize</span> [, <span class="parameter">nFontCharSet</span>]] </span></dt><dd>
+          <p>Specifies the Browse window's font and font size. The character expression <span class="parameter">cFontName</span> specifies the name of the font, and the numeric expression <span class="parameter">nFontSize</span> specifies the font size. You can specify a language script with <span class="parameter">nFontCharSet</span>. See the <span class="linkTerms"><a href="/html/53a11bb9-6a3b-4539-a343-ffd75ae45dbe.htm">GETFONT( ) Function</a></span> for a list of available language script values.</p>
+          <p>For example, the following clause specifies 16-point Courier font for the fields displayed in a Browse window:  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>FONT 'Courier',16 </pre></td></tr></table></span></div>
+          <p>If you include the FONT clause but omit the font size <span class="parameter">nFontSize</span>, a 10-point font is used in the Browse window. If you omit the FONT clause, 8-point MS Sans Serif is used.   </p>
+          <p>If the font you specify is not available, a font with similar font characteristics is substituted. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">STYLE <span class="parameter">cFontStyle</span></span></dt><dd>
+          <p>Specifies the Browse window's font style. If you omit the STYLE clause, the Normal font style is used</p>
+          <p>If the font style you specify is not available, a font style with similar characteristics is substituted or the Normal font style is used.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Character</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Font style</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>B</p>
+              </td>
+              <td>
+                <p>Bold</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>I</p>
+              </td>
+              <td>
+                <p>Italic</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>Normal</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>O</p>
+              </td>
+              <td>
+                <p>Outline</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Q</p>
+              </td>
+              <td>
+                <p>Opaque</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>S</p>
+              </td>
+              <td>
+                <p>Shadow</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>Strikeout</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>T</p>
+              </td>
+              <td>
+                <p>Transparent</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>U</p>
+              </td>
+              <td>
+                <p>Underline</p>
+              </td>
+            </tr></table></div>
+          <p>You can include more than one character to specify a combination of font styles. The following example opens a Browse window and uses an underlined font:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE customer  &amp;&amp; Open customer table
+IF _WINDOWS
+   BROWSE FIELDS contact FONT 'System', 15  STYLE 'NU'
+ENDIF
+IF _MAC
+   BROWSE FIELDS contact FONT 'Geneva', 14  STYLE 'NU'
+ENDIF</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FOR <span class="parameter">lExpression1</span></span></dt><dd>
+          <p>Specifies a condition whereby only records for which <span class="parameter">lExpression1</span> is true are displayed in the Browse window.</p>
+          <p>Rushmore Query Optimization optimizes a query specified with a BROWSE FOR if <span class="parameter">lExpression1</span> is an optimizable expression. For best performance, use an optimizable expression in the FOR clause. For information on Rushmore optimizable expressions, see <a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE</a> and <a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a>.   </p>
+          <p>Include FOR to move the record pointer to the first record meeting the condition. Include REST to keep the record pointer at its current position. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">REST </span></dt><dd>
+          <p>Prevents the record pointer from being moved from its current position to the top of the table when a Browse window is opened with the FOR clause. Otherwise, BROWSE positions the record pointer at the top of the table by default.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FORMAT </span></dt><dd>
+          <p>Specifies the use of a format file to control the display and data-entry format in a Browse window. The format file must first be opened with SET FORMAT. The following information is extracted from the format file and applied to the Browse window:</p>
+          <ul><li>
+              <p>The list of fields to browse</p>
+            </li><li>
+              <p>All VALID clauses</p>
+            </li><li>
+              <p>All WHEN clauses</p>
+            </li><li>
+              <p>All RANGE clauses</p>
+            </li><li>
+              <p>Field sizes (as specified in PICTURE clauses)</p>
+            </li><li>
+              <p>All SAY expressions (included as calculated BROWSE fields)</p>
+            </li></ul>
+          <p>The following example uses a format file to validate data entered into a Browse window. Positions specified with @ ... GET are ignored.   </p>
+          <p>The first line creates a BROWSE field (<code>cust_id</code>) that is 5 characters wide and allows the entry of letters and digits only. The second line creates a BROWSE field (<code>company</code>) that cannot contain a blank value and can contain a maximum of 20 alphabetic characters.   </p>
+          <p>The third line creates a BROWSE field (<code>contact</code>) into which you enter data only when the field is blank.   </p>
+          <p>Here are the contents of the Custentr.fmt format file, which is used to validate data entered into the <code>customer</code> table:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>@ 3,0 GET cust_id PICTURE 'NNNNN'
+@ 3,0 GET company VALID company != SPACE(40) ;
+   PICTURE 'AAAAAAAAAAAAAAAAAAAA'
+@ 3,0 GET contact WHEN contact = SPACE(40)
+* This is the program that uses the format file
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE customer  &amp;&amp; Open customer table
+SET FORMAT TO custentr.fmt
+BROWSE FORMAT</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FREEZE <span class="parameter">FieldName</span></span></dt><dd>
+          <p>Permits changes to be made to only one field in the Browse window. You specify this field with <span class="parameter">FieldName</span>. The remaining fields are displayed but cannot be edited.  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE customer  &amp;&amp; Open customer table
+BROWSE FIELDS phone :H = 'Phone Number:' , ;
+   company :H = 'Company:' ;
+   FREEZE phone</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">KEY <span class="parameter">eExpression1</span>[, <span class="parameter">eExpression2</span>] </span></dt><dd>
+          <p>Limits the scope of records that are displayed in the Browse window. With KEY you can specify an index key value (<span class="parameter">eExpression1</span>) or a range of key values (<span class="parameter">eExpression1</span>, <span class="parameter">eExpression2</span>) for the records that are displayed in the Browse window. The table you browse must be indexed, and the index key value or values included in the KEY clause must be the same data type as the index expression of the master index file or tag.</p>
+          <p>For example, the <code>customer</code> table includes a character field containing postal codes. If the table is indexed on the postal code field, you can specify a range of postal codes in the KEY clause.   </p>
+          <p>In the following example, only records with postal codes falling within the range of 10,000 to 30,000 are displayed in the Browse window:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE customer  &amp;&amp; Open customer table
+SET ORDER TO postalcode
+BROWSE KEY '10000', '30000'</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">LAST | NOINIT </span></dt><dd>
+          <p>Saves any configuration changes made to the appearance of a Browse window. The changes are saved in the FoxUser.dbf file and can include changes to the field list, the size of each field, and the location and size of the Browse window.</p>
+          <p>If you issue BROWSE with the LAST or NOINIT clause, the Browse window opens in the same configuration that was last saved in the FoxUser.dbf file if SET RESOURCE is ON. This restores the Browse window configuration created with the last BROWSE command. If the last BROWSE issued in the Command window included a long list of clauses, issue BROWSE with the LAST or NOINIT option to avoid having to retype the command. For more information on the FoxUser resource file, see <a href="/html/f72d6803-87f3-489e-bd9b-77614651fcd3.htm">SET RESOURCE</a>.   </p>
+          <p>If the last Browse window was opened with a BROWSE that included a PREFERENCE clause, BROWSE LAST won't restore the preference.   </p>
+          <p>Any Browse window configuration changes you make in the current session aren't saved if you exit BROWSE by pressing CTRL+Q.   </p>
+          <p>The LAST and NOINIT clauses are identical; NOINIT provides dBASE compatibility. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">LOCK <span class="parameter">nNumberOfFields</span></span></dt><dd>
+          <p>Specifies either a positive number, which indicates the number of fields that you can see in the left partition of the Browse window without tabbing or scrolling, or a negative number, which indicates the number of fields that remain locked in the Browse window when tabbing to the right. </p>
+          <p>The left partition sizes automatically to display the number of fields you specify with <span class="parameter">nNumberOfFields</span>. A column separator line, which appears 1 pixel wider than the line separating the other columns, indicates the area where the locked columns end and the normal columns begin. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">LPARTITION </span></dt><dd>
+          <p>Specifies that the cursor is placed in the first field in the left Browse window partition. By default, the cursor is placed in the first field in the right partition when the Browse window is opened.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NAME <span class="parameter">ObjectName</span></span></dt><dd>
+          <p>Creates an object reference for the Browse window, allowing you to manipulate the Browse window with object-oriented properties available for the Grid control. For additional information about object-oriented programming in Visual FoxPro, see, <a href="/html/925ef3b8-48dc-4ea1-9112-a7afc2d9161e.htm">Object-Oriented Programming</a>. For additional information about the Grid control properties that you can specify for a Browse window created with the NAME clause, see <a href="/html/0212bad2-48a3-49ae-98de-c71ba3af0ede.htm">Grid Control</a>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOAPPEND </span></dt><dd>
+          <p>Prevents the user from adding records to the table by pressing CTRL+Y or by choosing <b>Append Record</b> from the <b>Table</b> menu.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Including NOAPPEND doesn't prevent you from appending a record from within a routine (created with VALID, WHEN, or ON KEY LABEL) while in the Browse window.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOCAPTIONS </span></dt><dd>
+          <p>Specifies to always use the field name of a table or view for the column headers, even when the database contains a friendly caption for the table field. This clause applies only to tables or views in a database.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NODELETE </span></dt><dd>
+          <p>Prevents records from being marked for deletion from within a Browse window. By default, a record can be marked for deletion by pressing CTRL+T, choosing <b>Toggle Delete</b> from the <b>Table</b> menu, or by clicking in the leftmost column of the record to be deleted.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOEDIT | NOMODIFY </span></dt><dd>
+          <p>Prevents a user from modifying the table. NOEDIT and NOMODIFY are identical. If you include either clause, you can browse or search the table, but you cannot edit it. However, you can append and delete records.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOLGRID </span></dt><dd>
+          <p>Removes the field gridlines in the left partition of the Browse window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NORGRID </span></dt><dd>
+          <p>Removes the field gridlines in the right partition of the Browse window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOLINK </span></dt><dd>
+          <p>Unlinks the partitions in a Browse window. By default, the left and right partitions of the Browse window are linked together so that when you scroll through one partition, the other partition scrolls.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOMENU </span></dt><dd>
+          <p>Removes the Table menu title from the system menu bar, preventing access to the Browse menu.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOOPTIMIZE </span></dt><dd>
+          <p>Disables Rushmore Query Optimization of BROWSE. For more information, see <a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE</a> and <a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOREFRESH </span></dt><dd>
+          <p>Prevents the Browse window from being refreshed. Browse windows are refreshed at the rate determined by SET REFRESH. NOREFRESH is useful with read-only files and improves performance.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NORMAL </span></dt><dd>
+          <p>Opens the Browse window with its normal default settings, such as its colors, size, position, title, and control options (GROW, FLOAT, ZOOM, and so on). If you omit NORMAL, and the current output window is a user-defined window with its own settings, the Browse window assumes those user-defined settings also.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOWAIT </span></dt><dd>
+          <p>Continues program execution immediately after the Browse window is opened. The program doesn't wait for the Browse window to be closed but continues executing on the program line immediately following the program line containing BROWSE NOWAIT. If you omit NOWAIT when BROWSE is issued from within a program, a Browse window is opened and program execution pauses until the Browse window is closed.</p>
+          <p>NOWAIT is available only from within a program. Including NOWAIT when issuing BROWSE from the Command window has no effect. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">PARTITION <span class="parameter">nColumnNumber</span></span></dt><dd>
+          <p>Splits a Browse window into left and right partitions with <span class="parameter">nColumnNumber</span> specifying the column number of the split bar. For example, if <span class="parameter">nColumnNumber</span> is 20, the split bar is placed in column 20 of the Browse window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">LEDIT </span></dt><dd>
+          <p>Specifies that the left partition of the Browse window appear in Edit mode.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">REDIT </span></dt><dd>
+          <p>Specifies that the right partition of the Browse window appear in Edit mode. This example opens a Browse window with the split bar placed in column 20 and the right partition open in Edit mode.</p>
+          <p>Include both keywords to open both partitions in Edit mode.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE customer  &amp;&amp; Open customer table
+BROWSE PARTITION 20 REDIT</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">PREFERENCE <span class="parameter">PreferenceName</span></span></dt><dd>
+          <p>Saves a Browse window's attributes and options for later use. Unlike LAST, which restores the Browse window as it appeared in the previous session, PREFERENCE saves a Browse window's attributes indefinitely in the FoxUser.dbf resource file. Preferences can be retrieved at any time.</p>
+          <p>Issuing BROWSE with the specified preference name for the first time creates an entry in the FoxUser.dbf file that saves the Browse window configuration. Issuing BROWSE later with the same preference name restores the Browse window to that preference state. When the Browse window is closed, the preference is updated.   </p>
+          <p>Preference names can be up to 10 characters long, must begin with a letter or an underscore, and can contain any combination of letters, numbers and underscores.   </p>
+          <p>Once you have a preference the way you like it, you can prevent it from being changed. Close the Browse window, issue SET RESOURCE OFF, open the FoxUser.dbf file as a table, and change the record containing the preference to read-only by changing the value of the logical field READONLY to true (.T.).   </p>
+          <p>For more information about the FoxUser.dbf resource file, see <a href="/html/f72d6803-87f3-489e-bd9b-77614651fcd3.htm">SET RESOURCE</a>.   </p>
+          <p>If you exit a Browse window by pressing CTRL+Q, no Browse window changes are saved to the resource file. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SAVE </span></dt><dd>
+          <p>Keeps the Browse window and any of its memo field text-editing windows active and visible (open). You can then return to the Browse window after cycling through other open windows with the keyboard or the mouse.</p>
+          <p>SAVE is available only from within a program. SAVE has no effect when included with BROWSE in the Command window because BROWSE SAVE is always the default in the interactive mode. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TIMEOUT <span class="parameter">nSeconds</span></span></dt><dd>
+          <p>Specifies how long a Browse window waits for input. The numeric expression <span class="parameter">nSeconds</span> specifies how many seconds can elapse without any input before the Browse window automatically closes.</p>
+          <p>TIMEOUT is available only from within a program; it has no effect when you issue BROWSE from the Command window. In the following example, the Browse window is closed if no input occurs in 10 seconds.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE WINDOW wBrowse FROM 1,1 TO 24,40 ;
+   CLOSE ;
+   GROW ;
+   COLOR SCHEME 10
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE customer  &amp;&amp; Open customer table
+BROWSE WINDOW wBrowse ;
+   FIELDS phone :H = 'Phone Number:' , ;
+   company :H = 'Company:' ;
+   TIMEOUT 10
+RELEASE WINDOW wBrowse</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TITLE <span class="parameter">cTitleText</span></span></dt><dd>
+          <p>Overrides the default table name or alias that appears in the Browse window title bar with the title you specify with <span class="parameter">cTitleText</span>. Otherwise, the name or alias of the table being browsed appears in the title bar.</p>
+          <p>If you issue BROWSE WINDOW to place the Browse window in a user-defined window, the Browse window's title replaces the user-defined window's title.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE customer  &amp;&amp; Open customer table
+BROWSE;
+   TITLE 'My Browse Window' ;
+   FIELDS phone :H = 'Phone Number' , ;
+   company :H = 'Company:'</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">VALID <span class="parameter">lExpression2</span></span></dt><dd>
+          <p>Performs record-level validation in a Browse window. The VALID clause is executed only if a change is made to the record and you attempt to move the cursor to another record. The VALID clause is not executed if the only change is to a memo field.</p>
+          <p>If VALID returns a value that is true (.T.), the user can move the cursor to another record. If VALID returns a false value (.F.), the cursor remains in the current field and Visual FoxPro generates an error message. If VALID returns 0, the cursor remains in the current field, and an error message isn't displayed.   </p>
+          <p>The VALID clause shouldn't be confused with the verify option (:V), which enables field-level validation. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">:F </span></dt><dd>
+          <p>Forces the VALID clause to execute before the user moves the cursor to the next record. In this case, VALID is executed even if the record isn't changed.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ERROR <span class="parameter">cMessageText</span></span></dt><dd>
+          <p>Specifies an error message that overrides the system default error message. Visual FoxPro displays <span class="parameter">cMessageText</span> when VALID returns false (.F.).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WHEN <span class="parameter">lExpression3</span></span></dt><dd>
+          <p>Evaluates a condition when the user moves the cursor to another record. If <span class="parameter">lExpression3</span> evaluates to true (.T.), the user can modify the record moved to. If <span class="parameter">lExpression3</span> evaluates to false (.F.) or 0, the record the user moves to becomes read-only and cannot be modified.</p>
+          <p>The WHEN clause isn't executed when another window is activated. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WIDTH <span class="parameter">nFieldWidth</span></span></dt><dd>
+          <p>Limits the number of characters displayed for all fields in a Browse window to <span class="parameter">nFieldWidth</span>. The contents of a field can be scrolled horizontally using the LEFT ARROW and RIGHT ARROW keys or the horizontal scroll bar. Including the WIDTH clause doesn't change the size of fields in the table; it alters only the way the fields are displayed in the Browse window. If a width has been specified for an individual field with the FIELDS clause, it overrides the width specified with the WIDTH clause for that field.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WINDOW <span class="parameter">WindowName1</span></span></dt><dd>
+          <p>Specifies a user-defined window whose characteristics the Browse window assumes. For example, if the user-defined window is created with the FLOAT clause, the Browse window can be moved. The specified window doesn't have to be active or visible, but it must be defined.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN [WINDOW] <span class="parameter">WindowName2</span></span></dt><dd>
+          <p>Specifies the parent window within which the Browse window is opened. The Browse window doesn't assume the characteristics of the parent window. A Browse window activated inside a parent window cannot be moved outside the parent window. If the parent window is moved, the Browse window moves with it.</p>
+          <p>To access the Browse window, the parent window must first be defined with DEFINE WINDOW and must be active and visible. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN SCREEN </span></dt><dd>
+          <p>Explicitly places a Browse window on the main Visual FoxPro window when a user-defined window is active.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">COLOR SCHEME <span class="parameter">nSchemeNumber</span></span></dt><dd>
+          <p>Specifies the number of a color scheme used for the Browse window's colors.</p>
+          <p>The Browse window assumes the color scheme established using the Windows Color Control Panel. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>A Browse window allows you to view records in a table, edit those records, and append additional records. Visual FoxPro allows you to have several Browse windows open at the same time.</p>
+      <p>If you press ESC to exit a Browse window, changes made to the last field you modified are discarded. However, if you move to another record after modifying a field, your changes to the field are saved.</p>
+      <p>The field list can specify any combination of fields or calculated fields. The syntax of the field list is:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>FieldName1 
+   [:R] 
+   [:nColumnWidth]
+   [:V = lExpression1 [:F] [:E = cMessageText]]
+   [:P = cFormatCodes] 
+   [:B = eLowerBound, eUpperBound [:F]]
+   [:H = cHeadingText]
+   [:W = lExpression2]
+   [, FieldName2 [:R]...]</pre></td></tr></table></span></div>
+      <p>
+        <b>Calculated Fields</b>   The field list can contain statements for creating calculated fields. A calculated field contains read-only data created with an expression. The expression can take any form, but it must be a valid Visual FoxPro expression.</p>
+      <p>The format of the statement you use to create a calculated field is:</p>
+      <p>
+        <span class="parameter">CalculatedFieldName</span> = <span class="parameter">eExpression</span></p>
+      <p>The following example creates a calculated field called <code>location</code>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE customer  &amp;&amp; Open customer table
+BROWSE FIELDS location = ALLTRIM(city) + ', ' + country</pre></td></tr></table></span></div>
+      <p>
+        <code>city</code> and <code>country</code> are the names of fields from the currently selected table.</p>
+      <p>The FIELDS clause field list includes options that enable special handling of fields displayed in a Browse window:  </p>
+      <dl><dt><span class="nonLinkTerms">:R </span></dt><dd>
+          <p>Specifies that the field is read-only. The data it contains can be viewed but not edited.</p>
+        </dd></dl>
+      <p>In the following example, a Browse window is opened with the <code>cust_id</code> and <code>company</code> fields. The <code>cust_id</code> field is read-only and cannot be changed.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE customer  &amp;&amp; Open customer table
+BROWSE FIELDS cust_id:R, company</pre></td></tr></table></span></div>
+      <dl><dt><span class="nonLinkTerms">: <span class="parameter">nColumnWidth</span></span></dt><dd>
+          <p>Specifies the display size for a field in columns. The value of :<span class="parameter">nColumnWidth</span> doesn't affect the size of the field in the table; it only alters the way the field appears in the Browse window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">:V = <span class="parameter">lExpression1</span>[:F] [:E = <span class="parameter">cMessageText</span>] </span></dt><dd>
+          <p>Lets you perform field-level data validation within the Browse window. If <span class="parameter">lExpression1</span> evaluates to true (.T.) when you move the cursor from a field, the data input into the field is considered correct and the cursor moves to the next field.</p>
+          <p>If <span class="parameter">lExpression1</span> evaluates to false (.F.), the data input is considered incorrect, the cursor remains in the field and an error or exception is raised. If <span class="parameter">lExpression1</span> evaluates to 0, the data input is considered incorrect and the cursor remains in the field but no error message appears.   </p>
+          <p>The verify option is not executed for memo fields.   </p>
+          <p>By default, <span class="parameter">lExpression1</span> is evaluated only when the field is modified. To force verification, include the :F option.   </p>
+          <p>You can display your own error message by including the :E option described below. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">:F </span></dt><dd>
+          <p>Determines whether the expression in the verify option is evaluated when you move the cursor out of a field or another window is activated. If :F is not included, <span class="parameter">lExpression1</span> is evaluated only if changes are made to the field. If :F is included, <span class="parameter">lExpression1</span> is evaluated even if the field isn't modified.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">:E = <span class="parameter">cMessageText</span></span></dt><dd>
+          <p>If the validation expression :V = <span class="parameter">lExpression1</span> evaluates to true (.T), the cursor leaves the field normally. If the expression evaluates to false (.F.), the cursor remains in the field, and Visual FoxPro generates an error message.</p>
+          <p>If the error option (:E) is included, <span class="parameter">cMessageText</span> appears instead of the system error message. <span class="parameter">cMessageText</span> appears only if SET NOTIFY is ON. The bell is sounded if SET BELL is ON.   </p>
+          <p>If :V = <span class="parameter">lExpression1</span> evaluates to 0, no message appears and the cursor remains in the field being validated. This option lets you display your own error messages in validation routines.   </p>
+          <p>The following example opens the <code>products</code> table and displays the <code>product_id</code> and <code>prod_name</code> fields. The <code>product_id</code> field is a numeric field that will accept up to five numbers. For purposes of this example, we consider a <code>product_id</code> greater than 100 to be invalid.   </p>
+          <p>:V specifies the validation criteria. :F forces the validation check to be performed whether the data is changed or not. :E replaces the Visual FoxPro system error message with a user-defined error message. In Visual FoxPro, the error message appears in the status bar at the bottom of the main Visual FoxPro window.   </p>
+          <p>Press ESC to close the Browse window.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE products  &amp;&amp; Open products table
+IF _WINDOWS OR _MAC
+   SET STATUS BAR ON
+ENDIF
+USE products
+BROWSE FIELDS in_stock :V = in_stock &lt; 100 ;
+   :F ;
+   :E = 'The stock amount must be less than 100'</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">:P = <span class="parameter">cFormatCodes</span></span></dt><dd>
+          <p>If you include a FIELDS clause, you can also specify a picture option (:P) for each field in the list. The picture option lets you create a list of codes that controls the display and input of data for each field in a Browse window. <span class="parameter">cFormatCodes</span> is the list of codes.</p>
+          <p>The following example uses the picture option to allow only numeric data in a specific format to be entered in the <code>unit_price</code> field:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE products  &amp;&amp; Open products table
+BROWSE FIELDS unit_price :P = '99,999.99'</pre></td></tr></table></span></div>
+          <p>See the <a href="/html/e1c96289-3368-4546-84ce-8b1bd6163e43.htm">Format Property</a> and <a href="/html/1547a42a-e88f-4549-a82c-231a921ec689.htm">InputMask Property</a> properties for more information about picture option codes. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">:B = <span class="parameter">eLowerBound</span>, <span class="parameter">eUpperBound</span>[:F] </span></dt><dd>
+          <p>Specifies a set of boundaries between which data in a field must fall. The boundary expressions <span class="parameter">eLowerBound</span> and <span class="parameter">eUpperBound</span> must match the data type of the field. They cannot be user-defined functions. If the data entered doesn't fall between <span class="parameter">eLowerBound</span> and <span class="parameter">eUpperBound</span>, a system error message appears indicating the range within which the data must fall.</p>
+          <p>By default, the data you enter is checked against the boundary values only if you make a change to the contents of the field. To force checking against the boundary values, include the forced validation option (:F).   </p>
+          <p>The following example ensures that the value in the <code>in_stock</code> field falls between 1 and 100. Press ESC to close the Browse window.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE products  &amp;&amp; Open products table
+BROWSE FIELDS in_stock :B = 1, 100    :F</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">:H = <span class="parameter">cHeadingText</span></span></dt><dd>
+          <p>Replaces the default field names with your own headings, which you specify with <span class="parameter">cHeadingText</span>. By default, field names are used as the column headings in the Browse window.</p>
+          <p>The following example provides user-defined headings for the displayed fields.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE products  &amp;&amp; Open products table
+BROWSE FIELDS prod_name :H = 'Product Name:', ;
+   unit_price :H = 'Price per Unit:'</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">:W = <span class="parameter">lExpression2</span></span></dt><dd>
+          <p>Determines whether the cursor can be moved to a field. If <span class="parameter">lExpression2</span> evaluates to false (.F.), moving the cursor to the field is prohibited. If <span class="parameter">lExpression2</span> evaluates to true (.T.), the cursor can be moved to the field. User-defined functions are supported in <span class="parameter">lExpression2</span>.</p>
+          <p>If moving the cursor to all fields is prohibited, the current record is marked read-only. This occurs only when every field contains a WHEN clause that evaluates to false. </p>
+        </dd></dl>
+      <p>
+        <b>SET SKIP Support</b>   SET SKIP lets you establish a one-to-many relationship between two tables. For each record in the parent table, there can be multiple related records in the child table. If you create a one-to-many relationship, you may use BROWSE to view records from both the parent and child tables.</p>
+      <p>The parent record appears once, along with the first matching record from the child table. Any subsequent matching records are displayed in the rows following the parent record and first matching child record. The fill character for repeated parent information depends on the current Browse window font.</p>
+      <p>If the record pointer is positioned on a parent record, you can move the pointer through the parent records in the Browse window by pressing CTRL+DOWN ARROW to move to the next parent record or CTRL+UP ARROW to move to the previous parent record. For more information on creating one-to-many relationships, see <span class="linkTerms"><a href="/html/7a6d0321-1bc1-4a4b-abb0-a9b346da80c6.htm">SET SKIP Command</a></span>.</p>
+      <p>The FIELDS clause field list contains records from both the parent and child tables. The names of fields are prefaced with their table alias (<code>orders</code> or <code>customer</code>) and a period.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE customer ORDER cust_id IN 0   &amp;&amp; Parent table
+USE orders ORDER cust_id IN 0  &amp;&amp; Child table
+SELECT customer     &amp;&amp; Back to parent work area
+SET RELATION TO cust_id INTO orders     &amp;&amp; Establish relationship
+SET SKIP TO orders  &amp;&amp; One-to-many relationship
+WAIT WINDOW 'Scroll to see shipping dates for each customer' NOWAIT
+BROWSE FIELDS customer.cust_id :H='Customer Number', ;
+   customer.city :H='Customer City', orders.shipped_on</pre></td></tr></table></span></div>
+      <p>
+        <b>Useful Functions</b>   Several Visual FoxPro functions return useful information about a Browse window.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Function</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/8b9bdc05-7904-4960-b658-f546d1480a74.htm">VARREAD( )</a>
+            </p>
+          </td>
+          <td>
+            <p>Returns the name of the field the cursor is in for the active Browse window.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/181492fc-bc18-458d-9c65-c8e258f383f7.htm">RECNO( )</a>
+            </p>
+          </td>
+          <td>
+            <p>Returns the record number of the selected record in the active Browse window.</p>
+          </td>
+        </tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/598ea740-5ccd-4623-ac4c-6edf3bebda04.htm">How to: Add Records to Tables</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/cffc4866-c609-426f-95a5-e45587122aa8.htm">CHANGE Command</a></span><br /><span class="linkTerms"><a href="/html/83b52869-8201-4d60-a6b5-35bcd8e1c12f.htm">EDIT Command</a></span><br /><span class="linkTerms"><a href="/html/0212bad2-48a3-49ae-98de-c71ba3af0ede.htm">Grid Control</a></span><br /><span class="linkTerms"><a href="/html/7a6d0321-1bc1-4a4b-abb0-a9b346da80c6.htm">SET SKIP Command</a></span><br /><span class="linkTerms"><a href="/html/f03aa39e-0e21-4db6-86eb-f65d2ba6d14b.htm">WTITLE( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="BROWSE Command">
+<param name="ALink Name" value="BROWSE">
+</OBJECT>

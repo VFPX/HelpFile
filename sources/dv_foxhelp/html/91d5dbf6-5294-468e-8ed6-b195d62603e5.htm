@@ -1,0 +1,613 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Report Builder Event Handler Registry Table</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Report Builder Event Handler Registry Table</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The default report builder application, ReportBuilder.App, contains an internal lookup table that assigns specific behavior to builder events.  The table defines whether certain object-event combinations are ignored or directed to specific classes for handling. </p>
+    <p>For more information on the event handling classes, see the source code to reportbuilder.app contained in the <span class="linkTerms"><a href="/html/9c12387d-6c8b-4fac-9da8-72d6ad2e0673.htm">XSource Folder</a></span> under the Visual FoxPro HOME() directory.</p>
+    <p>Because it is built-in to the application, this lookup table cannot be modified directly. ReportBuilder.App has a mechanism that allows you to copy the table out to disk so that you can adjust the default settings and even add your own handler classes to augment or replace the default ones.</p>
+    <p>See <span class="linkTerms"><a href="/html/7161b49c-792d-4b6c-8219-cbe780af3dae.htm">How to: Configure the Report Builder's Event Handling</a></span> for more information.</p>
+    <p>In this topic:</p>
+    <ul><li>
+        <p>
+          <span class="linkTerms"><a href="#TableStructure">The Event Handler Registry Table Structure</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#RecordTypes">Handler Class Types</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#LocatingAHandler">How the Report Builder processes events</a></span>
+        </p>
+      </li></ul>
+  <a name="TableStructure"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Table Structure</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>ReportBuilder.App uses an internal lookup table to determine which handler class to instantiate for a given combination of EventType and <i>report object</i> (as specified by the currently selected record in the FRX cursor, which could be a report control, a report band, or the report header record itself). The structure of this table is shown below:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Field Name
+            </th>
+            <th>
+              Type (size)
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>REC_TYPE</p>
+          </td>
+          <td>
+            <p>C (1)</p>
+          </td>
+          <td>
+            <p>Specifies the <span class="linkTerms"><a href="#RecordTypes">type of handler class</a></span> the record defines.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>HNDL_CLASS</p>
+          </td>
+          <td>
+            <p>C (35)</p>
+          </td>
+          <td>
+            <p>Specifies the class name.</p>
+            <p>The class will be instantiated using a <b>NEWOBJECT</b>() call that assumes the class library will be found in the Visual FoxPro <b>SET CLASSLIB</b> or <b>SET PATH</b>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>HNDL_LIB</p>
+          </td>
+          <td>
+            <p>C (50)</p>
+          </td>
+          <td>
+            <p>Specifies the class library.</p>
+            <p>This can be a visual (.vcx) or non-visual (.prg) class library.  </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>EVENTTYPE</p>
+          </td>
+          <td>
+            <p>I</p>
+          </td>
+          <td>
+            <p>Specifies the event type. Use a value of -1 for a "wild card" match.</p>
+            <p>See <span class="linkTerms"><a href="/html/3c88c403-7559-4001-9cae-3e2ad5f39090.htm">Understanding Report Builder Events</a></span> for a list of possible event types. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJTYPE,</p>
+            <p>OBJCODE</p>
+          </td>
+          <td>
+            <p>I,</p>
+            <p>I</p>
+          </td>
+          <td>
+            <p>Specifies the report control type. These fields are equivalent to the OBJTYPE and OBJCODE fields in the report layout source (.frx) tables.</p>
+            <p>Use a value of -1 for a "wild card" match.</p>
+            <p>See <span class="linkTerms"><a href="/html/b9fde125-b9df-4688-bae7-7ae28ebd99ee.htm">Table Structures of Table Files (.dbc, .frx, .lbx, .mnx, .pjx, .scx, .vcx)</a></span> for links to where the structure of report layout source (.frx) files are documented.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>NATIVE</p>
+          </td>
+          <td>
+            <p>L</p>
+          </td>
+          <td>
+            <p>Indicates "native behavior override". For this record's event type/report object combination, the native Designer behavior should be allowed to take place.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DEBUG</p>
+          </td>
+          <td>
+            <p>L</p>
+          </td>
+          <td>
+            <p>Indicates "debug handler override". For this record's event type/report object combination, a special "debug" user interface will be displayed instead of the handler class specified by HNDL_CLASS.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>FLTR_ORDR</p>
+          </td>
+          <td>
+            <p>C (1)</p>
+          </td>
+          <td>
+            <p>Defines the order in which Filter handlers are processed. For records of REC_TYPE="F" only.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>NOTES</p>
+          </td>
+          <td>
+            <p>C (50)</p>
+          </td>
+          <td>
+            <p>This field is not used by ReportBuilder.App, but it is displayed in the report builder's event handler registry table browser. (For more information, see <span class="linkTerms"><a href="/html/fae228fe-3f63-4d54-b7b0-ab19279caad8.htm">Event Handler Registry Dialog Box (Report Builder)</a></span>.)</p>
+          </td>
+        </tr></table></div>
+      <p>Any additional fields in this table are ignored by the report builder.</p>
+    </div><a name="RecordTypes"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Handler Class Types</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>Classes defined in the registry table can be one of several types:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Value
+            </th>
+            <th>
+              Type
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>H</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="#EventHandler">Event Handler</a></span>
+            </p>
+          </td>
+          <td>
+            <p>Indicates a handler class for a specific builder event / report object combination.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="#FilterHandler">Filter Handler</a></span>
+            </p>
+          </td>
+          <td>
+            <p>Indicates a handler class that will be invoked for every report builder event, and can prevent the event from being handled by the report builder. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="#ExitHandler">Exit Handler</a></span>
+            </p>
+          </td>
+          <td>
+            <p>Indicates a handler class that will be invoked after the event processing, but before the report builder returns control to the Designer, as a "clean up" process.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>G</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="#GetExpressionWrapper">GetExpression Wrapper</a></span>
+            </p>
+          </td>
+          <td>
+            <p>Indicates a class that will be invoked in place of the native GETEXPR dialog box in any report builder dialog box.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>E</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="#RuntimeExtensionEditor">Run-time Extension Editor</a></span>
+            </p>
+          </td>
+          <td>
+            <p>Indicates a class that will be invoked when the <b>Edit settings</b> command button is selected from the <b>Other</b> tab of the <a href="/html/685e30a1-6faa-4151-af5a-34f2502afe7a.htm">Report Control Properties Dialog</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>M</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="#MultiSelectTab">Multi-select dialog tab</a></span>
+            </p>
+          </td>
+          <td>
+            <p>Indicates a <span class="linkTerms"><a href="/html/83a4017f-483a-4c8f-b63c-e16a58e011af.htm">Page Object</a></span> class that will be automatically added to the pageframe in the <span class="linkTerms"><a href="/html/3496d4c5-858f-4784-a062-377e508f1596.htm">Multiple Selection Dialog Box (Report Builder)</a></span>.</p>
+          </td>
+        </tr></table></div>
+    </div><a name="EventHandler"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2)" tabindex="0"><img id="sectionToggle2" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Event Handler API</span></h1><div id="sectionSection2" class="section" name="collapseableSection" style="display: none;">
+      <p>Event Handler classes can be of any Visual FoxPro base class but must implement the <i>Event Handler API</i>. The Event Handler API has the following attributes:</p>
+      <ul><li>
+          <p>A method named Execute that accepts a single object reference parameter.</p>
+        </li></ul>
+      <p>What the class actually does in the <b>Execute( </b><span class="parameter">oEvent</span><b> )</b> method is not specified, although for Event Handler classes they probably will need to set the return flags:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS MyHandler AS Custom
+    PROCEDURE Execute( oEvent )
+        * You can alter oEvent.returnFlags to suit
+        oEvent.SetHandledByBuilder(.T. | .F. )
+        oEvent.SetReloadChanges( .T. | .F. )
+    ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+      <p>This method is passed a reference to an object representing the event that occurred. The handler should assign the appropriate ReturnFlags value to indicate what action the designer should take next when the builder terminates and returns control.</p>
+      <p>Event Handlers:</p>
+      <ul><li>
+          <p>Are identified by a <code>REC_TYPE</code> value of "H".</p>
+        </li><li>
+          <p>Are generally only instantiated for a specific designer builder event type and report object type combination.</p>
+        </li></ul>
+      <p>For more information on the properties and methods of the object reference passed to the handler class in the <code>Execute()</code> method, see <span class="linkTerms"><a href="/html/5d5c1654-26ac-453c-a892-01c24fce08de.htm">The Report Builder Event Class</a></span>.</p>
+    </div><a name="FilterHandler"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle3)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle3)" tabindex="0"><img id="sectionToggle3" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Filter Handler API</span></h1><div id="sectionSection3" class="section" name="collapseableSection" style="display: none;">
+      <p>Filter classes can be of any Visual FoxPro base class but must implement the <span class="linkTerms"><a href="#EventHandler">Event Handler API</a></span> (see above) plus one additional public property, <b>allowToContinue</b>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS MyFilter AS Custom
+    allowToContinue = .T.
+    PROCEDURE Execute( oEvent )
+        * decide whether or not to process the event
+        THIS.allowToContinue = .T.
+        * You can optionally alter oEvent.returnFlags to suit
+        oEvent.SetHandledByBuilder(.T. | .F. )
+        oEvent.SetReloadChanges( .T. | .F. )
+    ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+      <p>Filter Handler classes:</p>
+      <ul><li>
+          <p>Are identified by a <code>REC_TYPE</code> value of "F".</p>
+        </li><li>
+          <p>Are instantiated for every report builder event.</p>
+        </li><li>
+          <p>Are processed in the order indicated by the FLTR_ORDR field.</p>
+        </li><li>
+          <p>Can prevent further processing of the event by setting their AllowToContinue property to false (<code>.F.</code>)</p>
+        </li><li>
+          <p>Can apply pre-processing to the FRX cursor prior to the event being processed by an Event Handler class.</p>
+        </li></ul>
+    </div><a name="ExitHandler"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle4)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle4)" tabindex="0"><img id="sectionToggle4" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Exit Handlers</span></h1><div id="sectionSection4" class="section" name="collapseableSection" style="display: none;">
+      <p>Exit Handler classes must support the <span class="linkTerms"><a href="#EventHandler">Event Handler API</a></span>.</p>
+      <p>Exit Handler classes:</p>
+      <ul><li>
+          <p>Are identified by a <code>REC_TYPE</code> value of "X".</p>
+        </li><li>
+          <p>In general are a way of getting some code to run at clean-up time.</p>
+        </li><li>
+          <p>Are only processed if an Event Handler class was previously located and executed. If a Filter handler prevented further processing, then Exit handlers will not be processed.</p>
+        </li><li>
+          <p>Like all handler classes, they have the opportunity to alter the <code>oEvent.ReturnFlags</code> value but it is very bad practice to do so.</p>
+        </li></ul>
+    </div><a name="GetExpressionWrapper"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle5)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle5)" tabindex="0"><img id="sectionToggle5" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>GetExpression Wrapper API</span></h1><div id="sectionSection5" class="section" name="collapseableSection" style="display: none;">
+      <p>You can replace the implementation of the <b>GETEXPR</b> dialog box used in the report builder by registering a class of REC_TYPE="G" in the handler registry. The class must support the <b>GetExpression()</b> method as shown in this example:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS MyGetExpr AS Custom
+    PROCEDURE GetExpression( cDefExpr, cDataType, cCalledFrom, oEvent )
+        LOCAL cExpression
+        GETEXPR TO cExpression DEFAULT cDefExpr
+        RETURN cExpression
+    ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+      <p>Only one class may be registered as the default GetExpressionWrapper. If there are more than one record of <code>REC_TYPE</code>="G," only the first one located will be used by the report builder.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">The cCalledFrom parameter</h3><div class="subSection" xmlns="">
+          <p>The report builder passes the GetExpressionWrapper class a parameter indicating what type of expression is being edited. Possible values are:</p>
+          <ul><li>
+              <p>"PrintWhenExpression"</p>
+            </li><li>
+              <p>"FieldExpression"</p>
+            </li><li>
+              <p>"OleBoundField"</p>
+            </li><li>
+              <p>"OleBoundExpression"</p>
+            </li><li>
+              <p>"BandGroupOnExpression"</p>
+            </li><li>
+              <p>"VariableValueToStore"</p>
+            </li><li>
+              <p>"VariableInitialValue"</p>
+            </li></ul>
+        </div>
+    </sections></div><a name="RuntimeExtensionEditor"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle6)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle6)" tabindex="0"><img id="sectionToggle6" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Run-time Extension Editor API</span></h1><div id="sectionSection6" class="section" name="collapseableSection" style="display: none;">
+      <p>You can replace the implementation of the dialog box that appears when you click the <b>Edit settings</b> command button in the <b>Run-time extensions</b> group on the <b>Other</b> tab of the Report Builder by registering a class in the handler registry with a <code>REC_TYPE</code> of "E". The class must support the <span class="linkTerms"><a href="#EventHandler">Event Handler API</a></span>. If implementing a form class, then the form must be issued as a MODAL window.</p>
+      <p>A run-time extension editor classes should do the following in the Execute() method:</p>
+      <ul><li>
+          <p>Read the metadata XML from the STYLE field.</p>
+        </li><li>
+          <p>Present a user interface to allow the user to edit the metadata.</p>
+        </li><li>
+          <p>Save a valid XML fragment back into the STYLE field.</p>
+        </li><li>
+          <p>Unlike the other handler types shown above, it should not attempt to set the return flags. </p>
+        </li></ul>
+      <p>Only one class may be registered as the default RuntimeExtensionEditor. If there is more than one "E" record in the handler registry table, the first one found will be used.</p>
+    </div><a name="MultiSelectTab"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle7)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle7)" tabindex="0"><img id="sectionToggle7" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Adding tabs to the Multiple-selection dialog box</span></h1><div id="sectionSection7" class="section" name="collapseableSection" style="display: none;">
+      <p>You can add pages to the pageframe in the <span class="linkTerms"><a href="/html/3496d4c5-858f-4784-a062-377e508f1596.htm">Multiple Selection Dialog Box (Report Builder)</a></span> by registering a class in the handler registry with a <code>REC_TYPE</code> of "M".</p>
+      <p>The class must be derived from the <span class="linkTerms"><a href="/html/83a4017f-483a-4c8f-b63c-e16a58e011af.htm">Page Object</a></span>. If the page contains a <span class="linkTerms"><a href="/html/31b59b85-d92f-4a32-bc93-da8d637e2c3f.htm">Container Object</a></span> that implements <code>.LoadFromFrx()</code> and <code>.SaveToFrx()</code>, then these methods will be called automatically by the multiple-selection dialog at appropriate points:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS pagAlign AS page
+    Caption = "Alignment"
+    Name    = "pagAlign"
+    ADD OBJECT Panel1 AS panelAlign
+ENDDEFINE
+DEFINE CLASS panelAlign as Container
+    BorderWidth = 0
+    Width = 300
+    Height = 300
+    Event = null
+    frxCursor = null
+    ADD OBJECT Check1 AS Checkbox WITH ;
+        Caption = "Align to leftmost object", ;
+        Top = 100, Left = 50, Width = 150, Value=.F.
+    PROCEDURE LoadFromFrx()
+        * No initialization required
+        RETURN .T.
+    ENDPROC
+    PROCEDURE SaveToFrx()
+        IF THIS.Check1.Value
+            LOCAL curSel
+            curSel = SELECT()
+            SELECT MIN(hpos) AS hpos FROM frx ;
+                WHERE curpos AND objcode&lt;&gt;53 ;
+                INTO CURSOR query
+            newHpos = query.hpos
+            USE IN query
+            SELECT frx
+            SCAN FOR curpos AND RECNO()&gt;1
+                REPLACE hpos WITH m.newHpos
+            ENDSCAN
+            SELECT (m.curSel)
+        ENDIF
+        RETURN .T.
+    ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+      <p>This example adds a tab to the multiple-selection dialog with a single checkbox that, if checked, will set the horizontal position all selected objects to that of the left-most positioned object in the selection.</p>
+      <p>The container object may implement any of the following PEMs:</p>
+      <ul><li>
+          <p>The <code>LoadFromFrx()</code> method is called during the initialization of the form, and is a good place to read values from the frx cursor in order to initialize values of the controls in the container.</p>
+        </li><li>
+          <p>The <code>SaveToFrx()</code> method is called when the user clicks <b>OK</b>. Return <code>FALSE</code> if you wish to prevent the dialog from closing.</p>
+        </li><li>
+          <p>If defined, the <code>Event</code> property will be assigned a reference to the report builder's Event object. (See <span class="linkTerms"><a href="/html/5d5c1654-26ac-453c-a892-01c24fce08de.htm">The Report Builder Event Class</a></span> for more information.)</p>
+        </li><li>
+          <p>If defined, the <code>frxCursor</code> property will be assigned a reference to the Event object's frxCursor member object, for convenience. (See <span class="linkTerms"><a href="/html/5bd65ee4-c279-487d-8b31-03f081dd9844.htm">FRX Cursor Foundation Class</a></span> for more information.)</p>
+        </li></ul>
+      <p>There can be more than one record in the handler registry defined with  <code>REC_TYPE</code>="M,". Each page class will be loaded into the dialog box as a separate tab.</p>
+    </div><a name="LocatingAHandler"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle8)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle8)" tabindex="0"><img id="sectionToggle8" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>How the report builder processes events</span></h1><div id="sectionSection8" class="section" name="collapseableSection" style="display: none;">
+      <p>When the report builder is invoked, the Report Designer passes it an event type ID, with a copy of the FRX file open in a private data session. The report object that the event applies to is usually identified by the location of the record pointer in the FRX cursor. The report builder takes note of the OBJTYPE and OBJCODE values on the selected record, and then refers to the handler registry table.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <div class="subSection" xmlns="">
+        <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <h4 class="subHeading" xmlns="">1. All Filter Handlers are processed</h4><div class="subSection" xmlns="">
+              <p>The builder selects all records from the handler registry table with <code>REC_TYPE</code>="F", sorted by <code>FLTR_ORDR</code>, and instantiates each filter class in turn, invoking the <b>Execute()</b> method.</p>
+              <p>If the value of its <b>allowToContinue</b> property is true (<code>.T.</code>), then the next filter handler class is instantiated.</p>
+              <p>If the value of its <b>allowToContinue</b> property is false (<code>.F.</code>), then no further processing takes place - ReportBuilder.App sets Bit 0 on the ReturnFlags parameter to indicate to the designer that the builder event had been handled successfully.</p>
+              <p>Important:</p>
+              <ul><li>
+                  <p>The value specified in the <code>FLTR_ORDR</code> field is important, because a filter with a lower value (higher priority) can prevent futher processing, both by the next filter in line and also by an appropriate Event Handler class.</p>
+                </li><li>
+                  <p>Each Filter Handler gets an opportunity to set the event's return flags, but these will only be respected if the Filter sets its <b>allowToContinue</b> to false (<code>.F.</code>), because if processing continues, the successive Event Handler will assume it can set these flags as it wishes, possibly overriding any setting made by the Filter Handler.</p>
+                </li></ul>
+            </div>
+          <h4 class="subHeading" xmlns="">2. An appropriate Event Handler class is instantiated</h4><div class="subSection" xmlns="">
+              <p>The report builder next looks for a specific Event Handler class to instantiate and handle the event.</p>
+              <p>The Registry table allows for "wild card" matches, so that not every unique combination of builder event + report object needs to have a separate record. The builder uses selectively more general searches in the handler registry table for non-deleted records. </p>
+              <p>The builder will progressively generalize the searches, applying wild-card values until it finds a match:</p>
+              <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                    <th>
+                      Sequence
+                    </th>
+                    <th>
+                      REC_TYPE
+                    </th>
+                    <th>
+                      EVENTTYPE
+                    </th>
+                    <th>
+                      OBJTYPE
+                    </th>
+                    <th>
+                      OBJCODE
+                    </th>
+                  </tr><tr>
+                  <td>
+                    <p>1</p>
+                  </td>
+                  <td>
+                    <p>"H"</p>
+                  </td>
+                  <td>
+                    <p>(Exact)</p>
+                  </td>
+                  <td>
+                    <p>(Exact)</p>
+                  </td>
+                  <td>
+                    <p>(Exact)</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>2</p>
+                  </td>
+                  <td>
+                    <p>"H"</p>
+                  </td>
+                  <td>
+                    <p>(Exact)</p>
+                  </td>
+                  <td>
+                    <p>(Exact)</p>
+                  </td>
+                  <td>
+                    <p>-1</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>3</p>
+                  </td>
+                  <td>
+                    <p>"H"</p>
+                  </td>
+                  <td>
+                    <p>(Exact)</p>
+                  </td>
+                  <td>
+                    <p>-1</p>
+                  </td>
+                  <td>
+                    <p>-1</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>4</p>
+                  </td>
+                  <td>
+                    <p>"H"</p>
+                  </td>
+                  <td>
+                    <p>-1</p>
+                  </td>
+                  <td>
+                    <p>-1</p>
+                  </td>
+                  <td>
+                    <p>-1</p>
+                  </td>
+                </tr></table></div>
+              <p>If still no matching record is found, then the builder event will be ignored (both bits of the ReturnFlags parameter will be cleared) and control returned to the designer for the native Visual FoxPro behavior.</p>
+              <p>If a match is found, the class is instantiated and its <b>Execute()</b> method invoked.</p>
+            </div>
+          <h4 class="subHeading" xmlns="">3. All Exit Handlers are processed</h4><div class="subSection" xmlns="">
+              <p>Once the matching Event Handler has been executed, the report builder selects all records from the lookup table with <code>REC_TYPE</code>="X," sorted by <code>FLTR_ORDR</code>, and instantiates each class in turn, invoking the <b>Execute()</b> method.</p>
+            </div>
+        </sections></div>
+      <h3 class="subHeading" xmlns="">Concerning multiple selected objects</h3><div class="subSection" xmlns="">
+          <p>The default event handler registry table includes a record for a MultiSelectHandler registered to an <code>OBJTYPE</code> of 99. See <span class="linkTerms"><a href="/html/3496d4c5-858f-4784-a062-377e508f1596.htm">Multiple Selection Dialog Box (Report Builder)</a></span> for an example of a handler of multiple selections. </p>
+          <p>The builder detects when multiple report controls are selected in the layout and treats this case as a unique <code>OBJTYPE</code>:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>COUNT FOR curpos AND RECNO() &gt; 1 TO oEvent.SelectedObjectCount
+IF oEvent.SelectedObjectCount &gt; 1
+    oEvent.OBJTYPE = 99
+    oEvent.OBJCODE = 0
+ELSE
+    oEvent.OBJTYPE = frx.OBJTYPE
+    oEvent.OBJCODE = frx.OBJCODE
+ENDIF</pre></td></tr></table></span></div>
+          <p>In this way, a specific Event Handler class can be registered to handle multiple-selections.</p>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/ef9ad5e3-0660-463c-bb3e-573319abb5d8.htm">How to: Add Your Own Handler to the Report Builder's Registry</a></span><br /><span class="linkTerms"><a href="/html/7161b49c-792d-4b6c-8219-cbe780af3dae.htm">How to: Configure the Report Builder's Event Handling</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/fae228fe-3f63-4d54-b7b0-ab19279caad8.htm">Event Handler Registry Dialog Box (Report Builder)</a></span><br /><span class="linkTerms"><a href="/html/9cdc0aff-8ada-4fb3-9f55-eef0f3519d9f.htm">Report Band Properties Dialog Box (Report Builder)</a></span><br /><span class="linkTerms"><a href="/html/685e30a1-6faa-4151-af5a-34f2502afe7a.htm">Report Control Properties Dialog Box (Report Builder)</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/3c88c403-7559-4001-9cae-3e2ad5f39090.htm">Understanding Report Builder Events</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/dbc4b061-74ad-4780-89bf-0e5d461be849.htm">Extending Reports at Design Time</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Report Builder Event Handler Registry Table">
+</OBJECT>

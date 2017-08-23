@@ -1,0 +1,269 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>_TALLY System Variable</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">_TALLY System Variable</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Contains the number of records processed by the most recently executed table command.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+_TALLY = <span class="parameter">nRecords</span></pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nRecords</span>
+        </span></dt><dd>
+          <p>Contains a numeric value indicating the number of records processed by the most recently executed table command. When you start Visual FoxPro, <b>_TALLY</b> is set to zero (0).</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Certain table processing commands return information about their status while they execute. When such a command finishes executing, it displays the number of records processed if the <b>SET TALK</b> command is set to <b>ON</b>. If the command is executed against local views and tables, it stores this number to the <b>_TALLY</b> system variable.</p>
+      <p>The INSERT - SQL command changes _TALLY if a SQL SELECT command is used to specify the data to insert.</p>
+      <p>The following table lists the commands and functions that return status information and store the number of records processed in <b>_TALLY</b> only when executed against local tables and views.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <td>
+            <p>
+              <a href="/html/c426861f-e5ef-44ae-96a6-8dbc7a4a2ad5.htm">APPEND FROM Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/b515a6e4-392f-44e8-a48f-52054f2c8b72.htm">REINDEX Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/29757d6c-b9ba-4e23-a040-47f5c68216a5.htm">AVERAGE Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/7f52db34-68fc-4f9e-abca-fa3f7f02ca19.htm">REPLACE Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/4f6a1667-7ede-46e8-9b65-62a05f9182de.htm">CALCULATE Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/73805e2d-c331-4fd2-b4cb-18e9e53a81a7.htm">REQUERY( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/e5cc1f14-402f-43b7-8066-af695c60e183.htm">COPY TO Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f945ce5c-ffd1-4fc2-af1c-f45df2f501e7.htm">COUNT Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/43ec1243-8e69-4a88-b89e-752207d91947.htm">SUM Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9c5000b8-3c35-4690-b7b8-07299f84b794.htm">DELETE Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/d8533965-e970-443b-adbd-405e40fc4c44.htm">SORT Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f31dbf64-3691-4ab0-a6b0-7ed1b3a42208.htm">DELETE - SQL Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/73211892-f96e-4c1e-abcb-41b5b2ed32ba.htm">TOTAL Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/a2119ce4-980d-4682-8fc6-88b6caefa2f7.htm">UPDATE Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f9d15b20-eb9d-4c37-8d4a-d9d02c01eb56.htm">INSERT - SQL Command (Used with SELECT)</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/56137e46-cad2-4473-8e8e-367d2ca63334.htm">UPDATE – SQL Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/acbd9f3d-a745-4914-bdd8-b613dcd94bee.htm">PACK Command</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example returns the number of U.S. customers from a Customer table using the SQL <b>SELECT</b> command and stores the to <b>_TALLY</b> automatically. The <b>?</b> command displays the value stored in <b>_TALLY</b>.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * FROM customer ;
+   WHERE country = 'USA' ;
+   INTO CURSOR temp
+? _TALLY</pre></td></tr></table></span></div>
+    <comments xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">For more information, see <a href="/html/4718b6ad-af5e-4ced-8e93-7347259a92d5.htm">? | ?? Command</a>.</p>
+      
+    </comments>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/9049d9e4-9174-4ea3-8980-3171c48f6f9f.htm">SET TALK Command</a></span><br /><span class="linkTerms"><a href="/html/b6b23450-14ba-403a-86c4-bbcddeaa2c18.htm">System Variables</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="_TALLY System Variable">
+<param name="ALink Name" value="_TALLY">
+</OBJECT>

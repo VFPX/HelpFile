@@ -1,0 +1,137 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Optimizing ActiveX Controls</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Optimizing ActiveX Controls</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>If you use Automation or ActiveX controls in your application, you can fine-tune the application to get the best performance out of both ActiveX controls and Automation.</p>
+  <h1 class="heading">Using ActiveX Controls Efficiently</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>For best performance when using ActiveX controls in your forms, use the following suggestions:
+</p>
+      <ul><li>
+          <p>Start Automation servers in advance. Controls bound to general fields will generally perform better when the servers for those data types (like Microsoft Excel or Word) are already running on the client's machine.</p>
+        </li><li>
+          <p>Insert objects "As Icon." When you insert an ActiveX control into a field, insert it as an icon or placeholder rather than as an entire object. This reduces the amount of storage space required because Visual FoxPro stores a presentation image with the object, which can consume a lot of storage space. Inserting an object as an icon also increases performance for drawing the object.</p>
+        </li><li>
+          <p>Use image controls. If you want to display a bitmap (such as a company logo), image controls are much faster than OLEBound controls.</p>
+        </li><li>
+          <p>Use manual links whenever possible. Manual links to objects are faster because they avoid the notification time required for automatic links, and because the server doesn't need to be started to draw the object. If you don't need to update an object frequently, use manual links.</p>
+        </li></ul>
+    </div><h1 class="heading">Optimizing Automation Performance</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>If your application interacts with other applications, you can get the best performance using the following techniques.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Avoiding Multiple Instances of the Server</h3><div class="subSection" xmlns="">
+          <p>In some cases, Automation servers (such as Microsoft Excel) will always start a new instance, even if one is already running. To remedy this and improve performance, use the <a href="/html/f046afe9-7279-4409-a2b9-aca70936a273.htm">GetObject( )</a> function instead of <a href="/html/932a73fb-6354-402b-bbb2-08386d41fdae.htm">CreateObject( )</a>. For example, the following call will always use an existing instance, if it exists:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>x = GetObject(,"excel.Application")</pre></td></tr></table></span></div>
+          <p>In contrast, the following call creates a new instance:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>x = CreateObject("excel.Application")</pre></td></tr></table></span></div>
+          <p>If you call GetObject( ) but the server isn't already running, you will get error 1426. In that case, you can trap for the error and call CreateObject( ):</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ON ERROR DO oleErr WITH ERROR()
+x = GetObject(,"excel.application")
+ON ERROR  &amp;&amp; restore system error handler
+PROCEDURE oleErr
+PARAMETER mError
+IF mError = 1426 then
+ x = CreateObject("excel.application")
+ENDIF</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Referencing Objects Efficiently</h3><div class="subSection" xmlns="">
+          <p>Executing expressions that use objects within the Automation server can be expensive, particularly when evaluated multiple times. It is much faster to store objects' references to variables for reference.</p>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/a5eba8b0-679c-4d87-9ea2-b10b9fc6e48f.htm">Optimizing Applications in Multiuser Environments</a></span><br /><span class="linkTerms"><a href="/html/3d0d7c35-77c3-4930-8829-4d6e1da12359.htm">Optimizing Access to Remote Data</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/3f3c7751-db8b-43ad-9da6-7daa3f8eb8b5.htm">Optimizing Applications</a></span><br /><span class="linkTerms"><a href="/html/c43a1e26-abb8-486a-9e59-a8c188a882cc.htm">Optimizing Your System</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Optimizing ActiveX Controls">
+</OBJECT>

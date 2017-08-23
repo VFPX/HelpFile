@@ -1,0 +1,138 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Log Code Coverage</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Log Code Coverage</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									<a href="#codeExampleSection">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Later in the development process, you might want to refine your code for performance and ensure that you've adequately tested the code by logging code coverage information.</p>
+    <p>Code coverage gives you information about which lines of code have been executed and how long it took to execute them. This information can help you identify areas of code that aren't being executed and therefore aren't being tested, as well as areas of the code that you might want to fine tune for performance.</p>
+    <p>You can toggle code coverage on and off by clicking the Code Coverage toolbar button in the <span class="linkTerms"><a href="/html/b831ef40-4e26-44c0-8a49-6028b7a2ae92.htm">Debugger Window</a></span>. If you toggle code coverage on, the <span class="linkTerms"><a href="/html/80ff86ac-dceb-4581-a2f1-3b2de7436636.htm">Coverage Dialog Box</a></span> opens so that you can specify a file to save the coverage information to.</p>
+    <p>You can also toggle coverage logging on and off programmatically by using the <a href="/html/69db76fd-c964-46b4-b848-c81c02b0f08a.htm">SET COVERAGE TO</a> command. You could, for example, include the following command in your application just before a piece of code you want to investigate:</p>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET COVERAGE TO mylog.log</pre></td></tr></table></span></div>
+    <p>After the section of code you want to log coverage for, you could include the following command to set code coverage off:</p>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET COVERAGE TO</pre></td></tr></table></span></div>
+    <p>When you've specified a file for the coverage information, switch to the main Visual FoxPro window and run your program, form, or application. For every line of code that is executed, the following information is written to the log file:  </p>
+    <ul><li>
+        <p>How long in seconds the line took to execute.</p>
+      </li><li>
+        <p>The class, if any, that the code belongs to.</p>
+      </li><li>
+        <p>The method or procedure the line of code is in.</p>
+      </li><li>
+        <p>The number of the line of code.</p>
+      </li><li>
+        <p>The file that the code is in.</p>
+      </li><li>
+        <p>Call stack level in which the line of code executes.</p>
+      </li></ul>
+    <p>The easiest way to extract information from the log file is to convert it into a table so that you can set filters, run queries and reports, execute commands, and manipulate the table in other ways.</p>
+    <p>The <span class="linkTerms"><a href="/html/4dbd7912-7e50-4788-9e57-1087f9183d0a.htm">Coverage Profiler Application</a></span> creates a cursor from the data generated in coverage logging and uses this cursor in a window for easy analysis.</p>
+  <h1 class="heading">Example</h1><div id="codeExampleSection" class="section">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following program converts the text file created by the coverage log into a table:</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>cFileName = GETFILE('DBF')
+IF EMPTY(cFileName)
+   RETURN
+ENDIF
+CREATE TABLE (cFileName) ;
+   (duration n(7,3), ;
+   class c(30), ;
+   procedure c(60), ;
+   line i, ;
+   file c(100))
+   
+APPEND FROM GETFILE('log') TYPE DELIMITED</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/72d156ad-b43d-4756-9d00-231ccb2a28c0.htm">Output Display</a></span><br /><span class="linkTerms"><a href="/html/b831ef40-4e26-44c0-8a49-6028b7a2ae92.htm">Debugger Window</a></span><br /><span class="linkTerms"><a href="/html/80ff86ac-dceb-4581-a2f1-3b2de7436636.htm">Coverage Dialog Box</a></span><br /><span class="linkTerms"><a href="/html/69db76fd-c964-46b4-b848-c81c02b0f08a.htm">SET COVERAGE Command</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/9b4782b2-1bcc-4774-b66f-2bb15381d587.htm">Handling Run-Time Errors</a></span><br /><span class="linkTerms"><a href="/html/4dbd7912-7e50-4788-9e57-1087f9183d0a.htm">Coverage Profiler Application</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/44c896ae-cba9-4869-8a3f-908e5abde1b3.htm">Testing and Debugging Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Log Code Coverage">
+</OBJECT>

@@ -1,0 +1,290 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Build and Debug Libraries and ActiveX Controls</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Build and Debug Libraries and ActiveX Controls</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>After creating a project in Visual Studio, you can build and debug it. The following procedures are for Visual Studio 6.0. For the most recent information, read the documentation for version you are using.</p>
+  <h1 class="heading">Building the Project</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Before building your project, you need to establish the project settings. Some of the settings you make depend on whether you want to create a debug or release version of the control or library. As a rule, create debug versions of the program until you are satisfied that it works correctly, then create a release version.</p>
+      <h3 class="procedureSubHeading">To specify a debug or release version</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Build</b> menu, choose <b>Set Default Configuration.</b></p>
+            
+          </li><li>
+            
+              <p>Choose whether you're creating a debug or release version of the control.</p>
+            
+          </li><li>
+            
+              <p>Choose <b>OK</b>.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To establish project settings</h3><div class="subSection"><ol><li>
+            
+              <p>From the <b>Build</b> menu, choose <b>Settings</b>.</p>
+            
+          </li><li>
+            
+              <p>Under <b>Settings For</b>, choose whether you're creating a debug or release version of the program.</p>
+            
+          </li><li>
+            
+              <p>Click the <b>C/C++</b> tab and then make these settings: </p>
+              <ul><li>
+                  <p>In the <b>Category</b> list, choose <b>Code Generation</b>.</p>
+                </li><li>
+                  <p>In the <b>Calling Convention</b> list, choose <b>_fastcall</b>.</p>
+                </li><li>
+                  <p>In the <b>Use run-time library</b> list, choose <b>Multithreaded DLL</b>.</p>
+                </li></ul>
+            
+          </li><li>
+            
+              <p>Choose the <b>Link</b> tab and then in the <b>Object/Library Modules</b> text box, add one of the following libraries: </p>
+              <ul><li>
+                  <p>If you're building an .ocx, add <code>OCXAPI.LIB</code> from the Visual FoxPro API directory.</p>
+                </li><li>
+                  <p>If you're building an .fll, add <code>WINAPIMS.LIB</code> from the Visual FoxPro API directory.</p>
+                </li></ul>
+            
+          </li><li>
+            
+              <p>Unmark <b>Ignore all default libraries</b>.</p>
+            
+          </li><li>
+            
+              <p>Choose <b>OK</b>.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To make sure the compiler can find the necessary files</h3><div class="subSection"><ol><li>
+            
+              <p>From the <b>Tools</b> menu, choose <b>Options</b>.</p>
+            
+          </li><li>
+            
+              <p>Click the <b>Directories</b> tab.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Show directories for</b> list, choose <b>Include files</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Directories</b> toolbar, click the <b>Add</b> button.</p>
+            
+          </li><li>
+            
+              <p>Add the directory with Pro_ext.h.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Show directories for</b> list, choose <b>Library files</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Directories</b> toolbar, click the <b>Add</b> button.</p>
+            
+          </li><li>
+            
+              <p>Add the directory with Ocxapi.lib from the Visual FoxPro API directory (when creating a control) or add the Winapims.lib from the Visual FoxPro API directory (when creating an FLL)</p>
+            
+          </li><li>
+            
+              <p>In the <b>Options</b> dialog box, choose <b>OK</b>.</p>
+            
+          </li></ol></div>
+      <p>After you've specified the settings, you can compile and link your program.</p>
+      <h3 class="procedureSubHeading">To compile and link an .ocx file</h3><div class="subSection"><ul><li>
+            
+              <p>From the <b>Build </b>menu, choose <b>Build projname.ocx</b>.</p>
+            
+          </li></ul></div>
+      <p>When you compile and link the .ocx file, Visual C++ automatically registers the control on the computer on which it was built. If for any reason you must register the control manually, you can do so using the following procedure.</p>
+      <h3 class="procedureSubHeading">To register the ActiveX control</h3><div class="subSection"><ol><li>
+            
+              <p>From the <b>Tools</b> menu in the Microsoft Development Environment, choose <b>Register Control</b>. </p>
+              <p>-or- </p>
+            
+          </li><li>
+            
+              <p>Declare and call DLLRegisterServer( ) from your program.</p>
+            
+          </li></ol></div>
+      <p>Debugging an ActiveX control or FLL library in the context of a full Visual FoxPro application is more difficult than debugging it separately from the application. It's a good idea to create a simple test program to test the operation of your control or library.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Debugging with the Microsoft Development Environment</h3><div class="subSection" xmlns="">
+          <p>Microsoft Visual C++ version 4.0 and higher offers an integrated debugging environment that makes it easy to set break points and to step through your code. You can even run Visual FoxPro from Visual C++.</p>
+          <h3 class="procedureSubHeading">To start debugging with Microsoft Visual C++</h3><div class="subSection"><ol><li>
+                
+                  <p>From the <b>Build</b> menu, choose <b>Settings</b>.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>Project Settings</b> dialog box, click the <b>Debug</b> tab.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>Executable for debug session</b> text box, type the path and name of the Visual FoxPro executable (.exe) file. For example, you can type the following line with the appropriate substitution for the Visual FoxPro version number:  </p>
+                  <p>C:\Program Files\Microsoft Visual FoxPro <b>&lt;</b><b>versionNumber</b><b>&gt;\Vfp&lt;</b><b>versionNumber</b><b>&gt;.exe</b> </p>
+                
+              </li><li>
+                
+                  <p>Choose <b>OK</b>.</p>
+                
+              </li><li>
+                
+                  <p>Set a break point in your library.</p>
+                
+              </li><li>
+                
+                  <p>From the <b>Build</b> menu, choose <b>Debug</b>. Then, from the submenu choose <b>Go</b>.</p>
+                
+              </li><li>
+                
+                  <p>When Visual Studio displays a message that says, " VFP9.exe does not contain debugging information," choose <b>Yes</b> to continue.</p>
+                
+              </li></ol></div>
+          <p>For more information about debugging in Visual C++, see the Visual C++ documentation set.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Debugging with Other Debuggers</h3><div class="subSection" xmlns="">
+          <p>You should be able to debug a control or library with any debugger that correctly handles an INT 3 (<a href="/html/88aaa916-73ad-4314-b285-3dad3d916d1b.htm">_BreakPoint( )</a>) embedded in your program. You can use any debugger for symbolic debugging as long as it can do all of the following:  </p>
+          <ul><li>
+              <p>Make a symbol table from a map file.</p>
+            </li><li>
+              <p>Load the symbol table independent of the program.</p>
+            </li><li>
+              <p>Relocate the symbols to a new address.</p>
+            </li></ul>
+          <h3 class="procedureSubHeading">To debug a library</h3><div class="subSection"><ol><li>
+                
+                  <p>Add a <b>_BreakPoint( )</b> call to the routine at the point where debugging will begin.</p>
+                
+              </li><li>
+                
+                  <p>Build the control or library.</p>
+                
+              </li><li>
+                
+                  <p>Invoke your debugger.</p>
+                
+              </li><li>
+                
+                  <p>If your debugger supports symbols, load the symbol table for your library.</p>
+                
+              </li><li>
+                
+                  <p>Start Visual FoxPro.</p>
+                
+              </li><li>
+                
+                  <p>Call your library routine from Visual FoxPro.</p>
+                
+              </li><li>
+                
+                  <p>When the breakpoint is reached, make adjustments to the symbol base to align your symbols with the actual location where the library was loaded.</p>
+                
+              </li><li>
+                
+                  <p>Increment the instruction pointer (IP) register by 1 to skip over the INT 3 instruction.</p>
+                
+              </li><li>
+                
+                  <p>Continue debugging as with a normal program. </p>
+                  <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                    <p>Always remove any breakpoints specified in your debugger before you release your product.</p>
+                  </td></tr></table></div>
+                
+              </li></ol></div>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/36fee911-c687-49d9-875c-4dfa97a7594e.htm">How to: Manage Memory</a></span><br /><span class="linkTerms"><a href="/html/73c38886-0f6a-4f7b-a01e-af8727aa03ca.htm">How to: Return Values from ActiveX Controls and FLL Libraries</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/516c775c-a95b-418e-bd73-ed13bba66afd.htm">Access to Visual FoxPro Variables and Fields</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/566a1828-db5f-432f-8940-c4dd53c08920.htm">Accessing the Visual FoxPro API</a></span><br /><span class="linkTerms"><a href="/html/941bd4e8-58e8-4353-890d-91a96b8344c0.htm">Extending Visual FoxPro with External Libraries</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Build and Debug Libraries and ActiveX Controls">
+</OBJECT>

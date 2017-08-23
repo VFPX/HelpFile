@@ -1,0 +1,215 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Specify an Alternate Report Output Registry Table</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Specify an Alternate Report Output Registry Table</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The default Report Output Application supports a registry table in which you can specify the ReportListener-derived classes for different types of output results.  This topic describes mechanisms available to:</p>
+    <ul><li>
+        <p>Create a new registry table.</p>
+      </li><li>
+        <p>Tell the Report Output Application to use this table at run time.</p>
+      </li><li>
+        <p>Find out what registry table the Report Output Application is currently using.</p>
+      </li></ul>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Some of the code in this topic uses the _REPORTOUTPUT System variable to invoke ReportOutput.app.  _REPORTOUTPUT may contain the name of a different Report Output Application in your environment. In this case, substitute <code>HOME() + ReportOutput.app</code>, or similar code, to invoke the default Report Output Application.  Where the instructions designate the name and position of a custom registry table, substitute your preferred name and location.</p>
+    </td></tr></table></div>
+    <p>For more information about using the registry table with your own classes and output extensions, see <span class="linkTerms"><a href="/html/e99d0fbc-19c6-4418-9e7e-7e170e5cc975.htm">How to: Register Custom ReportListeners and Custom OutputTypes in the Report Output Registry Table</a></span>.</p>
+    <p>For more information about the format of the registry table, see <span class="linkTerms"><a href="/html/09b4791d-3a43-4bfa-b63e-f36aeec6f544.htm">Understanding the Report Output Application</a></span>.  </p>
+  <h1 class="heading">Creating a Report Output Registry Table</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can use either ReportOutput.app or a ReportListener Foundation Class to create the table, because they use the same configuration table format.  </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>These two methods may generate different sample and configuration records in the table, and they can potentially include different sets of indexes.  If you share a registry table between different reporting components, each component using the table verifies the contents of the table against its own requirements.  If necessary, each component is capable of adding its own records and indexes on-the-fly.</p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To create a new Report Output registry table using ReportOutput.app</h3><div class="subSection"><ol><li>
+            
+              <p>In the Command Window or in a program (.prg), use the following line of code:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* #DEFINE OUTPUTAPP_CONFIG_WRITE -100
+DO (_REPORTOUTPUT) WITH -100</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>The Report Output Application creates a table named OutputConfig.DBF, and associated memo (.fpt) and structure index (.cdx) files, in the same location as ReportOutput.App (normally, Visual FoxPro's main or <b>HOME()</b> directory).</p>
+            
+          </li><li>
+            
+              <p>The Report Output Application presents a <b>BROWSE</b> of this new table, so you can check the contents. The contents will include the records required by the ReportListener XML Foundation Class, plus some deleted records which serve as examples of different types of registry records</p>
+            
+          </li><li>
+            
+              <p>You see a deleted record for debugListener, the <span class="linkTerms"><a href="/html/4f9bb713-9055-4778-9649-a3cf64216b05.htm">ReportListener Debug Foundation Class</a></span>.  This record shows you what a ReportListener registry record looks like, according to the requirements of the Report Output Application. </p>
+            
+          </li><li>
+            
+              <p>You also see deleted records for two records with ObjType values of 1000.  This value is in the range reserved for use by utilityReportListener, the ReportListener Utility and File-handling Foundation Class.  One record shows you how to create a configuration record to set a class property and the other shows you how to create a configuration record to invoke a class method.  For more information about how this class and its descendents use configuration records, see <span class="linkTerms"><a href="/html/44825f28-3205-4229-aaef-155113b16d4c.htm">ReportListener Utility and File-handling Foundation Class</a></span>.</p>
+            
+          </li><li>
+            
+              <p>You can rename the three OutputConfig.* files and place them somewhere else on your disk for later use.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To create a new Report Output registry table using a ReportListener Foundation class</h3><div class="subSection"><ol><li>
+            
+              <p> Create an instance of the ReportListener Utility and File-handling Foundation Class, or any of the ReportListener Foundation Classes derived from it.  You can create an instance of this class using the class library (vcx) built into ReportOutput.app, or you can create an instance of the class using the copy of the class library available in Visual FoxPro's FFC folder.</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* "borrow" a copy directly from ReportOutput.App:
+#DEFINE CONFIG_REPORTLISTENER_CLASS "utilityReportListener"
+oRL = NEWOBJECT(CONFIG_REPORTLISTENER_CLASS, ;
+                "listener.vcx", ;
+                _REPORTOUTPUT)
+* - OR -
+* access the Foundation Class library directly:
+#DEFINE FFC_HOME HOME()+"FFC\"
+oRL = NEWOBJECT(CONFIG_REPORTLISTENER_CLASS, ;
+                FFC_HOME + "_reportListener.vcx")</pre></td></tr></table></span></div>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+                <p>All the ReportListener Foundation Classes providing file-based output, such as the ReportListener HTML Foundation Class, derive from ReportListener Utility and File-handling Foundation Class.  Some of these classes require a registry table.  Any class that requires a table checks for the availability of the table when you initialize it.  If the table is not available, it creates a copy of the table, in its default location, during initialization procedures.  For more information, see <span class="linkTerms"><a href="/html/44825f28-3205-4229-aaef-155113b16d4c.htm">ReportListener Utility and File-handling Foundation Class</a></span>.  </p>
+              </td></tr></table></div>
+            
+          </li><li>
+            
+              <p>Request a new configuration table from the ReportListener instance.  You can specify its name and location: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* if SAFETY is ON, prompt for overwrite if the file exists:
+oRL.createConfigTable("c:\temp\myconfig.dbf")
+*- OR -
+* use the second parameter to explicitly overwrite:
+oRL.createConfigTable("c:\temp\myconfig.dbf", .T.)</pre></td></tr></table></span></div>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+                <p>The classes respect the setting of <b>SAFETY</b> in your environment, in that they will prompt you to confirm an overwrite of the table if <b>SET SAFETY</b> is <b>ON</b> and if you do not specify the second parameter of the createConfigTable method as True (<code>.T.</code>).  For more information, see <span class="linkTerms"><a href="/html/ac143485-fc45-4348-93dd-bf7a1047f0aa.htm">SET SAFETY Command</a></span>.  If you decline to overwrite the table when prompted, the classes still take some actions; they investigate the table to ensure that required indexes are available and add any records they need to the table.  </p>
+              </td></tr></table></div>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Assigning your own Registry Table to the Report Output Application</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>In the last section, you saw that, to create a registry table, you can invoke ReportOutput.app using a negative number (<code>-100</code>) as the first parameter you send to the program.  ReportOutput.app understands negative values in this parameter as special instructions to perform maintenance chores, rather than instructions to perform its normal task of supplying ReportListener references.</p>
+      <p>ReportOutput.app reserves a second value, <code>-200</code>, to allow you to designate the name and location of your registry table, as shown below.</p>
+      <h3 class="procedureSubHeading">To designate your custom registry table for ReportOutput.app's use</h3><div class="subSection"><ul><li>
+            
+              <p>Execute the following line of code, substituting the name and path of your custom registry table:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* #DEFINE OUTPUTAPP_CONFIG_READ -200
+DO (_REPORTOUTPUT) WITH -200,"c:\temp\myconfig.dbf"</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+    </div><h1 class="heading">Verifying the Report Output Application's current Registry Table</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>At run time, ReportOutput.app maintains a reference collection of ReportListener object references.  For more information, see <span class="linkTerms"><a href="/html/2f70ca88-d15d-4b81-8b1a-c612a0c9ece6.htm">How to: Use the Report Output Application's Reference Collection</a></span>. ReportOutput.app uses a special member of this collection to hold the name of its registry table.  You can use the reference collection to find out what registry table is currently in use by the Report Output Application.  You can also verify the name of the current registry table by calling Report Output Application directly.</p>
+      <h3 class="procedureSubHeading">To verify the name of the current Report Output Application registry table using the reference collection</h3><div class="subSection"><ol><li>
+            
+              <p>If you have issued a <b>CLEAR ALL</b> statement or <b>RELEASE</b>d the reference collection public variable after the last time you successfully invoked the Report Output Application, or if you have not yet invoked it in this session of Visual FoxPro, the collection may not yet exist.  Verify that the collection exists and then check the value of the appropriate collection member</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE OUTPUTAPP_CONFIG_READ -200
+IF VARTYPE(_oReportOutput) = "O"
+  lcFile = _oReportOutput[TRANSFORM(OUTPUTAPP_CONFIG_READ)]
+ENDIF</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Examine the results you received in the variable <span class="parameter">lcFile</span>.  If it is a fully-qualified (pathed) filename, the Report Output Application is using a registry table on disk.  If <span class="parameter">lcfile</span> does not include a path, Report Output Application is using a registry table built into an application (.app or .exe).</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To verify the name of the current Report Output Application registry table by calling Report Output Application</h3><div class="subSection"><ol><li>
+            
+              <p>Initialize a variable to hold the name of the registry file</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL lcFile</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Call the Report Output Application with the special configuration value you used earlier, using the variable you initialized as its second parameter.  This is similar to how you call the Report Output Application to receive a reference to a ReportListener:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE OUTPUTAPP_CONFIG_READ -200
+DO (_REPORTOUTPUT) WITH OUTPUTAPP_CONFIG_READ, lcFile</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Examine the results you received in the variable <span class="parameter">lcFile</span>.  If it is a fully-qualified (pathed) filename, the Report Output Application is using a registry table on disk.  If <span class="parameter">lcfile</span> does not include a path, Report Output Application is using a registry table built into an application (.app or .exe).</p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>The reference collection is created automatically when you use this syntax.</p>
+              </td></tr></table></div>
+            
+          </li></ol></div>
+    </div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Specify an Alternate Report Output Registry Table">
+</OBJECT>

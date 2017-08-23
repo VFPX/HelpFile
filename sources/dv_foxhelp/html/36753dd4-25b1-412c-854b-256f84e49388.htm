@@ -1,0 +1,182 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>_REPORTOUTPUT System Variable</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">_REPORTOUTPUT System Variable</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Specifies the Visual FoxPro handler application providing ReportListener derived classes to be used with the <b>REPORT FORM</b> command, maintaining a registry of ReportListener derived classes for different output results.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+_REPORTOUTPUT = <span class="parameter">cProgramName</span></pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <p>
+        <span class="parameter">cProgramName</span>
+      </p>
+      <p>Specifies the name of an application or program that the Visual FoxPro Report System calls when a suitable <b>REPORT FORM</b> command occurs.</p>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The Visual FoxPro Report System invokes the application specified by this value when one of the following conditions occur:</p>
+      <ul><li>
+          <p>You invoke the <b>REPORT FORM</b> or <b>LABEL</b> command with an explicit <b>OBJECT TYPE</b> <span class="parameter">&lt;N&gt;</span> clause. The Report Engine passes the numeric value you use to the application named in <b>_REPORTOUTPUT</b>.</p>
+        </li><li>
+          <p>You invoke a <b>REPORT FORM</b> command after having used the command <code>SET REPORTBEHAVIOR 90</code>.  This setting indicates that you want to use object-assisted mode for all <b>REPORT FORM</b> or <b>LABEL</b> commands.  The Report Engine uses the other keywords on the output command (such as <b>TO PRINT</b> or <b>PREVIEW</b>) to establish the appropriate numeric value for the equivalent <b>OBJECT TYPE</b> <span class="parameter">&lt;N&gt;</span> clause.</p>
+        </li></ul>
+      <p>In both scenarios, the Report Engine also passes a variable to the application specified in <b>_REPORTOUTPUT</b>.  The application stores a reference to an appropriate ReportListener object to this variable.  In the subsequent report or label processing run, the Report Engine partners with this object to handle output rendering.</p>
+      <p>By default, <b>_REPORTOUTPUT</b> specifies the path and file name for the ReportOutput.app located in the main Visual FoxPro directory, as indicated by the <b>HOME()</b> function.</p>
+      <p>You can also specify a report output application using the <b>File Locations</b> tab in the <b>Options</b> dialog box.  For more information, see <span class="linkTerms"><a href="/html/dc7766d4-a171-474b-9184-7017f6a64ea9.htm">File Locations Tab, Options Dialog Box</a></span>.</p>
+      <p>When distributing applications, you may find it convenient to explicitly set <b>_REPORTOUTPUT</b> in the Visual FoxPro configuration file, Config.fpw.  You can also set the <b>_REPORTOUTPUT</b> value to the name of a program built into your application. For more information, see <span class="linkTerms"><a href="/html/8920ed3c-4d89-4fea-9cf0-1cc21395928a.htm">Including Report Files for Distribution</a></span> and <span class="linkTerms"><a href="/html/e4da0efc-19ca-4eb4-a1b7-c5f7d60a4d9c.htm">Setting Configuration Options at Startup</a></span>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If you use a <b>REPORT FORM</b> or <b>LABEL</b> command and include the <b>OBJECT TYPE</b><span class="parameter"> &lt;N&gt;</span> clause, or have previously used the command <code>SET REPORTBEHAVIOR 90</code>, without a valid value in <b>_REPORTOUTPUT</b>, Visual FoxPro generates an error.</p>
+      </td></tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(requirementsToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(requirementsToggle)" tabindex="0"><img id="requirementsToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Requirements</span></h1><div id="requirementsSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The application you specify with _REPORTOUTPUT must fulfill the following conditions:</p>
+      <ol><li>
+          <p>It must accept at least two parameters.  The Report Engine passes a numeric value, indicating the type of output required, as the first parameter.  The Report Engine passes a variable, to hold a reference to an appropriate ReportListener, as the second parameter.</p>
+        </li><li>
+          <p>It must store a NULL value (<code>.NULL.</code>) to the second parameter if it cannot understand the value in the first parameter, or does not have the ability to supply a reference to a ReportListener-derived object meeting the requirements of the first parameter.</p>
+        </li><li>
+          <p>It must be able to provide ReportListener-derived object references for (at minimum) numeric types matching the native ListenerType values supported by Visual FoxPro.  For more information, see <span class="linkTerms"><a href="/html/ad1bf074-a169-4fd4-b160-c39bdd8c8402.htm">ListenerType Property</a></span>. </p>
+        </li><li>
+          <p>If successful in obtaining a ReportListener object reference according to the numeric type requested by the ReportListener, it must store this reference to the second parameter.  It must also store the numeric type supplied by the Report Engine or calling application to this object's OutputType property. For more information, see <span class="linkTerms"><a href="/html/1886c1da-b3df-4833-a768-980bdd34a364.htm">OutputType Property (Visual FoxPro)</a></span>.</p>
+        </li><li>
+          <p>It must be modal, because it must provide an appropriate reference back to the Report Engine. If it provides any user interface elements, for example allowing the user to select an appropriate ReportListener from a list, this interface should be modal as well.</p>
+        </li></ol>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Recommendations</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>The following additional conditions are not required for an application to function as <b>_REPORTOUTPUT</b>.  However, fulfilling these conditions is highly recommended for any application in this capacity:</p>
+      <ol><li>
+          <p>The application should maintain some type of ReportListener registry, to allow users to specify classes they prefer to use for various types of output.</p>
+        </li><li>
+          <p>The application should bubble errors to the calling application in a manner that permits the caller to determine what action to take when the Report Output Application cannot meet its responsibilities.</p>
+        </li></ol>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example sets the value of the <b>_REPORTOUTPUT</b> system variable to the default Report Output application.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_REPORTOUTPUT = HOME() + "ReportOutput.app"</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/7266f399-d690-4dbb-82e8-9fa1429b013e.htm">HOME( ) Function</a></span><br /><span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/e4d499d5-c520-42eb-ab32-d2531e784e84.htm">Extending Report Output Functionality</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="_REPORTOUTPUT System Variable">
+</OBJECT>

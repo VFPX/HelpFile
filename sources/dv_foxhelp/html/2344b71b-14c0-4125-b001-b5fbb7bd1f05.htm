@@ -1,0 +1,311 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>TRY...CATCH...FINALLY Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">TRY...CATCH...FINALLY Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Provides a structure to handle errors and exceptions that can occur while running a block of code.  </p>
+    <p>For more information about structured error handling using the <b>TRY...CATCH...FINALLY</b> command, see <span class="linkTerms"><a href="/html/220ead6b-fd59-49d7-94e3-6270a91e6807.htm">Structured Error Handling</a></span>.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+TRY
+     [ <span class="parameter">tryCommands </span>] 
+[ CATCH [ TO <span class="parameter">VarName </span>] [ WHEN <span class="parameter">lExpression </span>] 
+     [ <span class="parameter">catchCommands </span>] ]
+[ THROW [ <span class="parameter">eUserExpression</span> ] ]
+[ EXIT ]
+[ FINALLY 
+     [ <span class="parameter">finallyCommands</span> ] ] 
+ENDTRY</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">TRY </span></dt><dd>
+          <p>Indicates the beginning of the <b>TRY...CATCH...FINALLY</b> structure.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[ <span class="parameter">tryCommands </span>] </span></dt><dd>
+          <p>Specifies statements where an error might occur. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[CATCH] </span></dt><dd>
+          <p>Indicates the beginning of a <b>CATCH</b> block, which handles the appropriate error. You can specify a <b>CATCH</b> statement without arguments, which evaluates to <code>CATCH WHEN .T.</code> (True). </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>If you want to have a <b>TRY...CATCH...FINALLY</b> structure that catches all errors, make sure you have a <b>CATCH</b> statement that always evaluates to True (.T.).</p>
+          </td></tr></table></div>
+          <p>You can specify any number of <b>CATCH</b> statements, including none.  </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[TO <span class="parameter">VarName</span>] </span></dt><dd>
+          <p>Specifies a memory variable and not an object reference that stores a reference to the <b>Exception</b> object created. <span class="parameter">VarName</span> can be only a simple memory variable, not an object property reference. </p>
+          <p>You can explicitly set <span class="parameter">VarName</span> to any value in the <b>TRY...CATCH...FINALLY</b> structure. The value does not change as long as another <b>CATCH</b> statement does not run, which resets <span class="parameter">VarName</span> to <b>NULL</b>.   </p>
+          <p>
+            <span class="parameter">VarName</span> can have local, public, or private scope, which depends on how the variable is declared. If <span class="parameter">VarName</span> has not been previously declared, it has private scope. The <b>Exception</b> object created has the same scope as <span class="parameter">VarName</span>. When <span class="parameter">VarName</span> goes out of scope, is released, or is reset, the <b>Exception</b> object is also released.    </p>
+          <p>When a <b>CATCH TO</b>  <span class="parameter">VarName</span> clause executes, Visual FoxPro always sets the <span class="parameter">VarName</span> to a new <b>Exception</b> object regardless of its previous setting, though <span class="parameter">VarName</span> retains its scope. Therefore, the contents of <span class="parameter">VarName</span> are always overwritten regardless of what it previously referenced.  </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[WHEN <span class="parameter">lExpression</span>] </span></dt><dd>
+          <p>Specifies an optional logical expression to evaluate when the program encounters the <b>CATCH</b> statement. The expression must evaluate to True (.T.) for the corresponding <span class="parameter">catchCommands</span> to run.</p>
+          <p>The argument for <span class="parameter">lExpression</span> can contain a reference to the <span class="parameter">VarName</span>  <b>Exception</b> object so that you can query the resulting error and handle it accordingly.</p>
+          <p>If a <b>WHEN</b> clause evaluates to False (.F.), Visual FoxPro releases the <b>Exception</b> object and resets the <span class="parameter">VarName</span> to <b>NULL</b>. You can test whether <span class="parameter">VarName</span> is set to a type or to <b>NULL</b> by using the <b>VARTYPE( )</b> function. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[ <span class="parameter">catchCommands </span>] ] </span></dt><dd>
+          <p>Specifies statements to run when the program encounters the corresponding <b>CATCH</b> statement. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[THROW [ <span class="parameter">eUserExpression </span>] ] </span></dt><dd>
+          <p>Creates a new <b>Exception</b> object to be caught by a <b>CATCH</b> statement. You can call <b>THROW</b> from any code block in a <b>TRY...CATCH...FINALLY</b> structure. However, you can use <b>THROW</b> anywhere in code where an error handler exists to catch the exception. You cannot call <b>THROW</b> from the Command window.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+            <p>Calling the <b>THROW</b> command outside the <b>TRY...CATCH...FINALLY</b> structure and without an appropriate error handler causes your program to quit. </p>
+          </td></tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Run-time applications should enclose a <b>THROW</b> command with an outer <b>TRY...CATCH...FINALLY</b> structure. Visual FoxPro disregards any <b>THROW</b> statements appearing in a <b>CATCH WHEN</b>  <span class="parameter">lExpression</span> clause.</p>
+          </td></tr></table></div>
+          <p>The <span class="parameter">eUserExpression</span> parameter specifies an expression of any type and sets the exception's <b>UserValue</b> property. You can pass an object of any type because the exception's <b>UserValue</b> property stores only the object reference.   </p>
+          <p>When you include <span class="parameter">eUserExpression</span> with the <b>THROW</b> clause, Visual FoxPro sets the exception's <b>ErrorNo</b> property value to 2071, which corresponds to the error, "User Thrown Error (Error 2071)".    </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You should pass a value for <span class="parameter">eUserExpression</span>, which sets the exception's <b>UserValue</b> property, so you can chain multiple <b>Exception</b> objects. For more information about chaining <b>Exception</b> objects, see the Example section.</p>
+          </td></tr></table></div>
+          <p>If you omit <span class="parameter">eUserExpression</span>, Visual FoxPro escalates the original <b>Exception</b> object, if it exists. If the <b>Exception</b> object does not exist, Visual FoxPro throws a new <b>Exception</b> object with an <b>ErrorNo</b> property value of 2071. If you omit <span class="parameter">eUserExpression</span>, and the <b>THROW</b> clause escalates the <b>Exception</b> object to an outer <b>TRY...CATCH</b> block, the outer <b>TRY...CATCH</b> block catches the same <b>Exception</b> object. Values returned by the <b>ERROR( )</b>, <b>MESSAGE( )</b>, and <b>AERROR( )</b> functions might not be reliable when used in a structured exception handler, so, you should use the <b>Exception</b> object instead.   </p>
+          <p>If an outer <b>TRY...CATCH</b> statement is in effect when <b>THROW</b> is called from a <b>CATCH</b> or <b>FINALLY</b> block, Visual FoxPro assigns <span class="parameter">VarName</span> in the <b>CATCH TO</b> clause to the object reference for the <b>Exception</b> object generated by the thrown exception. If no outer <b>TRY...CATCH</b> statement is in effect, Visual FoxPro escalates the exception to an <b>ON ERROR</b> or <b>Error</b> event, if one exists; otherwise, Visual FoxPro calls its system error handler.    </p>
+          <p>If you want to rethrow the original exception that was caught by the <b>CATCH TO</b>   <span class="parameter">VarName</span> clause, you can call <b>THROW</b> <span class="parameter">VarName</span> to rethrow the exception.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Rethrowing the original exception produces another new <b>Exception</b> object, at the outer <b>CATCH</b> statement, that has a <b>UserValue</b> property containing an object reference to the original exception. </p>
+          </td></tr></table></div>
+          <p>If <b>THROW</b> encounters an error when evaluating an expression, Visual FoxPro escalates the error in the usual way. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[EXIT] </span></dt><dd>
+          <p>Include in a <b>TRY</b>, <b>CATCH</b>, or <b>FINALLY</b> block to immediately stop processing code in a code block. </p>
+          <p>If <b>EXIT</b> appears in the <b>TRY</b> or <b>CATCH</b> block, the program resumes execution at the <b>FINALLY</b> statement, if one exists. If <b>EXIT</b> appears in the <b>FINALLY</b> block or if <b>FINALLY</b> does not exist, the program resumes execution immediately following the <b>ENDTRY</b> statement. </p>
+          <p>For more information, see <span class="linkTerms"><a href="/html/0227204b-0c58-4ac2-a623-a2ac828a1da2.htm">EXIT Command</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[ FINALLY </span></dt><dd>
+          <p>Indicates the beginning of the <b>FINALLY</b> block, which you use to clean up any resources allocated by the <b>TRY</b> block and always runs except when the <b>CANCEL</b> and <b>QUIT</b> commands are used. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[ <span class="parameter">finallyCommands </span>] </span></dt><dd>
+          <p>Specifies statements to run in the <b>FINALLY</b> block after either finding no errors in the <b>TRY</b> block or running statements in a <b>CATCH</b> block. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ENDTRY </span></dt><dd>
+          <p>Indicates the end of the <b>TRY...CATCH...FINALLY</b> structure. Each <b>TRY...CATCH...FINALLY</b> structure must end with an <b>ENDTRY</b> keyword. As with other Visual FoxPro control statements, you can add comments prefaced by double ampersand (&amp;&amp;) characters after this <b>ENDTRY</b>.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If you do not include the <b>ENDTRY</b> statement at the end of the <b>TRY...CATCH...FINALLY</b> structure, Visual FoxPro generates an error when you compile your code. Although you can still execute code with compile errors, you should not do so in this scenario because it causes Visual FoxPro to stop responding.</p>
+          </td></tr></table></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>You cannot explicitly transfer program execution to a <b>CATCH</b> or <b>FINALLY</b> code block.</p>
+      <p>Visual FoxPro determines scope for variables on a procedural, not block, basis. That is, variables declared in a <b>TRY</b> block are visible from a <b>FINALLY</b> block within the same <b>TRY...CATCH...FINALLY</b> structure. However, in a nested structure, variables that are declared in a <b>TRY</b>, <b>CATCH</b>, or <b>FINALLY</b> block have local scope.</p>
+      <p>You should not initialize variables or set up critical code inside the <b>TRY</b> block because the code is not guaranteed to run. If an error occurs at a particular line of code in the <b>TRY</b> block, all subsequent lines in the <b>TRY</b> block do not run.</p>
+      <p>Any errors that occur in an object's <b>Error</b> event must be handled by the object and are not escalated to an <b>ON ERROR</b> routine or <b>TRY...CATCH...FINALLY</b> handler. However, you can use a <b>TRY...CATCH...FINALLY</b> structure in the <b>Error</b> event to catch errors from an <b>Error</b> event. For more information, see <span class="linkTerms"><a href="/html/26998e17-648e-4196-a0f8-0683c30d2f45.htm">Error Event (Visual FoxPro)</a></span>.</p>
+      <p>Using the <b>COMRETURNERROR( )</b> function in a <b>CATCH</b> block ends all further processing and returns control of the program directly to the Component Object Model (COM) client. Therefore, if you have a <b>FINALLY</b> block, it does not run. For more information, see <span class="linkTerms"><a href="/html/92f175d6-95d9-4333-8dd4-4d00969d56a6.htm">COMRETURNERROR( ) Function</a></span>.</p>
+      <p>Avoid using the <b>SET TEXTMERGE</b> <b>TO</b> <b>MEMVAR</b> command within a <b>TRY...CATCH...FINALLY</b> structure because the memory variable will be lost if an error occurs in the statement. </p>
+      <p>To determine a course of action and the error handler in effect, use the <b>SYS(2410) - Error Handler</b> function in your <b>TRY...CATCH...FINALLY</b> code, for example, with a <b>DO CASE</b> structure, depending on the type of handler that handles the exception. For more information, see <span class="linkTerms"><a href="/html/8d1dfaa3-1f73-4925-9fd8-4a39e475c019.htm">SYS(2410) - Error Handler</a></span>.</p>
+      <p>You can use <b>TRY...CATCH...FINALLY</b> to handle errors that occur in menu and timer events and with commands such as <b>ON KEY LABEL</b> if the structure is properly wrapped. The following example illustrates how the <b>READ EVENTS</b> command retains control of the program within the <b>TRY...CATCH...FINALLY</b> structure so that you trap menu events. Error trapping is controlled by the position of <b>TRY...CATCH...FINALLY</b> on the call stack. </p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>TRY
+   DO myMenu.mpr
+   DO FORM myForm
+   myForm.AddObject("tm1","mytimer")
+   READ EVENTS
+CATCH TO oException
+   IF oException.ErrorNo = 1
+      STRTOFILE("Error occurred at: " + TRANSFORM(DATETIME());
+         + CHR(13),"C:\Errors.log",.T.)
+   ENDIF
+FINALLY
+   CLEAR EVENTS
+ENDTRY</pre></td></tr></table></span></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/2fdcf4ef-7183-4c3a-b7c4-aab2254b5127.htm">READ EVENTS Command</a></span> and <span class="linkTerms"><a href="/html/3b90dacf-2ab1-4457-b73a-70fbad80948c.htm">ON KEY LABEL Command</a></span>.</p>
+      <p>Visual FoxPro supports <b>Set Next Statement</b> debugging functionality only within a single code block. For example, when executing code in a <b>TRY</b> block, you can use <b>Set Next Statement</b> only to another line within the <b>TRY</b> block. You cannot jump to another line of code in a <b>CATCH</b> or <b>FINALLY</b> block. For more information, see <span class="linkTerms"><a href="/html/a5f620cd-ec86-4c2f-b6f1-0d9e822b6074.htm">Debugger Keyboard Shortcuts and Menus</a></span>.</p>
+      <p>Visual FoxPro generates the appropriate system messages under the following conditions:  </p>
+      <ul><li>
+          <p>A mismatch or error occurs with the <b>TRY...CATCH...FINALLY</b> structure.</p>
+        </li><li>
+          <p>An unhandled exception occurs.</p>
+        </li><li>
+          <p>A command that is not permitted for a specific block appears in a <b>TRY</b>, <b>CATCH</b>, or <b>FINALLY</b> block. For more information, see <span class="linkTerms"><a href="/html/220ead6b-fd59-49d7-94e3-6270a91e6807.htm">Structured Error Handling</a></span>.</p>
+        </li><li>
+          <p>A user-thrown error occurs.</p>
+        </li></ul>
+      <p>Similar to other error handling in Visual FoxPro, exceptions that occur in <b>TRY...CATCH...FINALLY</b> exception handlers set the <b>SET CONSOLE</b> command to <code>ON</code>. For more information, see <span class="linkTerms"><a href="/html/0af2ec5b-0e6b-45f5-9338-b2f4438144ec.htm">SET CONSOLE Command</a></span>.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    
+      
+        <p>The following example illustrates how to nest <b>TRY...CATCH</b> statements, use the <b>THROW</b> clause, and handle <b>Exception</b> objects.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL x AS Integer, y AS Integer, result AS Integer
+LOCAL oErr AS Exception, oErr1 AS Exception 
+TRY
+   x = 1
+   TRY 
+      USE nothing
+      GO TOP
+      y = nothing.col1
+   CATCH TO oErr 
+      oErr.UserValue = "Nested CATCH message: Unable to handle"
+      ?[: Nested Catch! (Unhandled: Throw oErr Object Up) ]  
+      ?[  Inner Exception Object: ]
+      ?[  Error: ] + STR(oErr.ErrorNo) 
+      ?[  LineNo: ] + STR(oErr.LineNo) 
+      ?[  Message: ] + oErr.Message 
+      ?[  Procedure: ] + oErr.Procedure 
+      ?[  Details: ] + oErr.Details 
+      ?[  StackLevel: ] + STR(oErr.StackLevel) 
+      ?[  LineContents: ] + oErr.LineContents
+      ?[  UserValue: ] + oErr.UserValue 
+      THROW oErr 
+   FINALLY
+      ?[: Nested FINALLY executed ] 
+      IF USED("nothing")   
+         USE IN nothing
+      ENDIF      
+   ENDTRY   
+   result = x-y
+CATCH TO oErr1
+   ?[: Outer CATCH! ]
+      ?[  Outer Exception Object: ] 
+      ?[  Error: ] + STR(oErr1.ErrorNo)
+      ?[  LineNo: ] + STR(oErr1.LineNo) 
+      ?[  Message: ] + oErr1.Message 
+      ?[  Procedure: ] + oErr1.Procedure 
+      ?[  Details: ] + oErr1.Details 
+      ?[  StackLevel: ] + STR(oErr1.StackLevel) 
+      ?[  LineContents: ] + oErr1.LineContents 
+      ?[  -&gt;UserValue becomes inner exception THROWn from nested TRY/CATCH ]
+      ?[     Error: ] + STR(oErr1.UserValue.ErrorNo)
+      ?[     Message: ] + oErr1.UserValue.Message 
+      ?[     Procedure: ] + oErr1.UserValue.Procedure 
+      ?[     Details: ] + oErr1.UserValue.Details 
+      ?[     StackLevel: ] + STR(oErr1.UserValue.StackLevel) 
+      ?[     LineContents: ] + oErr1.UserValue.LineContents 
+      ?[     UserValue: ] + oErr1.UserValue.UserValue 
+   result = 0   
+FINALLY
+   ?[: FINALLY statement executed ] 
+ENDTRY
+RETURN result</pre></td></tr></table></span></div>
+        <p>The following example shows how you might want to chain <b>Exception</b> objects:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>TRY
+   TRY
+      x=y      &amp;&amp; The y variable does not exist and causes an error.
+   CATCH TO oException2
+      THROW CREATEOBJECT("myException")
+   ENDTRY
+CATCH TO oException1
+ENDTRY
+? 2, oException2.ErrorNo, oException2.UserValue
+? 1, oException1.ErrorNo, oException1.UserValue.UserValue
+DEFINE CLASS myException AS Exception
+UserValue = "My custom error handler"
+PROCEDURE Init
+   STRTOFILE("An error occurred at: " + TRANSFORM(DATETIME());
+ + CHR(13),"c:\errs.log",.T.)
+ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+      
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/e819e843-2d98-4bf8-8680-8526733cb38b.htm">Exception Class (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/d6567028-3745-4894-87f2-ee16f0683de7.htm">UserValue Property</a></span><br /><span class="linkTerms"><a href="/html/b05ef476-980c-492f-81f5-1be0eb7ef8d9.htm">VARTYPE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/65a1552d-9004-42ad-a492-ad137bdf699c.htm">ErrorNo Property</a></span><br /><span class="linkTerms"><a href="/html/58436e37-9eca-4abf-a640-203da985b963.htm">ERROR( ) Function</a></span><br /><span class="linkTerms"><a href="/html/d7508b67-4d24-4ddd-ad92-6a1e17d19a98.htm">MESSAGE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/cf8d9a30-f8dc-4181-bebd-1181c3554308.htm">AERROR( ) Function</a></span><br /><span class="linkTerms"><a href="/html/082a9c16-94d6-4ff3-ad0c-82fcf2f5d351.htm">SYS(2018) - Error Message Parameter</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="TRY...CATCH...FINALLY Command">
+<param name="ALink Name" value="TRY...CATCH...FINALLY">
+</OBJECT>

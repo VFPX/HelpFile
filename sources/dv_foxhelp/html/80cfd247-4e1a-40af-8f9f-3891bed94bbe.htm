@@ -1,0 +1,179 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Visual FoxPro Index Files</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Visual FoxPro Index Files</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you create an index, you supply an expression, which can contain table field names, that specifies how table records should be organized. Visual FoxPro creates an index key for each record in the table based on the index expression and stores the index keys in an index file. The index file contains and maintains pointers to records in the table (.dbf) file and is organized according to the index key values. An index file is separate from but associated with a .dbf file.</p>
+    <p>Visual FoxPro supports the following types of index files: structural compound index (.cdx), nonstructural compound index (.cdx) files, and standalone index (.idx) files. The structural and nonstructural .cdx files can contain multiple indexes, which have names, or tags, that identify them, while the standalone .idx file contains only a single index. </p>
+    <p>The following diagram shows a .cdx file with three index names, or tags. Two of the index tags, emp_id and last_name, represent indexes based on single fields. The index tag, cntry_last, organizes records using a simple two-field index expression.</p>
+    <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">A .cdx file containing multiple tags that represent multiple ordering scenarios for records</caption></caption></b><br></br></div><img src="../local/Local_-309710502_afd07002.gif" alt="cdx Tags Order Scenarios"></img>
+    <p>The following table summarizes the index file types in Visual FoxPro, how they are named, the number of index keys they can contain, and the character limitations for each.</p>
+    <div class="labelheading"><b>Visual FoxPro Index File Types</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Index file type
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Contains 
+          </th>
+          <th>
+            Limits
+          </th>
+        </tr><tr>
+        <td>
+          <p>Structural compound index (.cdx) files</p>
+        </td>
+        <td>
+          <p>Opens and closes with the table automatically. </p>
+          <p>Uses same base name as the table file name. </p>
+        </td>
+        <td>
+          <p>Multiple index keys</p>
+        </td>
+        <td>
+          <p>240-character limit on evaluated expression</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Nonstructural compound index (.cdx) files</p>
+        </td>
+        <td>
+          <p>Must be opened explicitly. </p>
+          <p>Uses a name different from the base table name and is defined by the user. </p>
+        </td>
+        <td>
+          <p>Multiple index keys</p>
+        </td>
+        <td>
+          <p>240-character limit on evaluated expression</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Standalone index (.idx) files</p>
+        </td>
+        <td>
+          <p>Must be opened explicitly. </p>
+          <p>Uses a name different from the base table name and is defined by the user. </p>
+        </td>
+        <td>
+          <p>Single index key </p>
+        </td>
+        <td>
+          <p>100-character limit on evaluated expression</p>
+        </td>
+      </tr></table></div>
+  <h1 class="heading">Structural Compound Index Files</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When you create an index for a table, Visual FoxPro automatically creates a structural .cdx file to store the index. The term "structural" refers to the fact that Visual FoxPro treats the structural .cdx file as an intrinsic part of the table, opens and closes the structural .cdx file automatically when you open and close the table, and maintains the structural .cdx file automatically when you add, change, or delete table records. If a Visual FoxPro table has an index file associated with it, it is typically a structural .cdx file. A structural .cdx file always has the same base name as the table (.dbf) file name. </p>
+      <p>The structural .cdx file can contain multiple indexes in the same file. It is recommended that you use the structural .cdx file for indexes you frequently use and need to maintain on a regular basis, such as those used to organize records for daily viewing, data entry, Rushmore Query Optimization, or frequently printed reports.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>For a given table, Visual FoxPro stores primary and candidate indexes in the structural .cdx file associated with the table (.dbf) file. You cannot store primary and candidate indexes in other .cdx files, such as nonstructural .cdx files, nor is it possible to use standalone index (.idx) files for primary and candidate indexes because the index file should always open whenever the associated table is opened. </p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Nonstructural Compound Index Files</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Nonstructural .cdx files store multiple indexes that are not frequently used. You can use a nonstructural .cdx file when you want to create multiple indexes for a special purpose but do not want your application to maintain these indexes on a continuing basis. A nonstructural .cdx file always has a name that is different from the table (.dbf) file name and is defined by the user.</p>
+      <p>For example, suppose your application contains a special set of reports that analyzes data based on fields not normally indexed. You can create a nonstructural .cdx file containing the appropriate indexes, run the reports, and then delete the nonstructural .cdx file.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Unlike structural .cdx files that open automatically when the associated table is opened, you must open a nonstructural .cdx file explicitly using the <b>SET INDEX</b> command or the <b>USE</b> command with the <b>INDEX</b> clause. For more information, see <a href="/html/b0166019-d7d2-4322-8a7f-d3986987a71e.htm">SET INDEX Command</a> and <a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a>.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Standalone Index Files</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Available primarily for backward compatibility, a standalone .idx file stores a single index key that is temporary or less frequently used. You can use standalone (.idx) files as temporary indexes by creating or reindexing them immediately before you use them. A standalone .idx file always has a name that is different from the table (.dbf) file name and is defined by the user.</p>
+      <p>For example, suppose you have an index that you use only for quarterly or annual summary reports. Instead of including this index in the structural .cdx file, where it is maintained every time you use the table, you can create a standalone .idx file to store this index. You can create as many .idx files as you want for a particular table.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/1225f38b-2ed5-499e-b2c7-71b741bbe758.htm">How to: Create Indexes (Visual FoxPro)</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/fe911859-3235-4349-82c7-fa16a16d5527.htm">Visual FoxPro Index Types</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c591bd07-e952-4330-b59b-135f0bef2926.htm">File Structures</a></span><br /><span class="linkTerms"><a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Visual FoxPro Index Files">
+</OBJECT>

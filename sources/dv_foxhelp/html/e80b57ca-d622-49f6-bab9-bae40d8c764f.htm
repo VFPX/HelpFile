@@ -1,0 +1,134 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Optimizing International Applications</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Optimizing International Applications</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>If you are developing international applications, you might need to manage the collating sequence of your data for optimal performance. This section discusses:
+</p>
+    <ul><li>
+        <p>Using collating sequence efficiently.</p>
+      </li><li>
+        <p>Using <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL</a> with multiple collating sequences.</p>
+      </li></ul>
+  <h1 class="heading">Using Collating Sequence Efficiently</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>If your data does not include diacritical marks, such as accents () or umlauts (), you can improve performance by using the machine collating sequence because:
+</p>
+      <ul><li>
+          <p>Non-machine index keys are twice as large because they contain the diacritical information.</p>
+        </li><li>
+          <p>Non-machine collation uses many special rules for indexing characters to return proper results.</p>
+        </li></ul>
+      <p>Because the machine collate sequence is faster, it is usually preferred for joins and searching, while other collate sequences are perfect for ordering records.</p>
+      <p>When you create an index, Visual FoxPro uses the current collating sequence set by using the <a href="/html/77f8984a-1abf-4efc-b63f-bd1700a34c97.htm">SET COLLATE</a>, <a href="/html/b14e5d95-5b1c-4cfa-a5ac-4093ea6211e0.htm">CREATE TABLE - SQL</a>, <a href="/html/3c5a454a-67ec-48a8-8290-18dd0e8a97ea.htm">ALTER TABLE - SQL</a>, or <a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX</a> commands. For example, if you want to create two indexes with two collating sequences, you can use <b>SET COLLATE</b> and a sequence of commands such as the following:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET COLLATE TO "MACHINE"
+INDEX ON lastname TAG _lastname     &amp;&amp; Join or seek index.
+SET COLLATE TO "GENERAL"
+INDEX ON lastname TAG lastname  &amp;&amp; Sort index.</pre></td></tr></table></span></div>
+      <p>When you want to seek, select, or join on the field <code>lastname</code>, issue the command <code>SET COLLATE TO "MACHINE"</code> before performing the operation. Rushmore Query Optimization uses the index created in the machine collate sequence, and the search operation runs very quickly.</p>
+    </div><h1 class="heading">Using SQL SELECT with Multiple Collating Sequences</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>When you issue a <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL</a> command, Visual FoxPro uses the current collating sequence for searching and for the ORDER BY and GROUP BY clauses. If you want to search and sort using different collating sequences, you can split your SQL commands into two steps as follows:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Select records using one collating sequence.
+SET COLLATE TO "MACHINE"
+SELECT * FROM table INTO CURSOR temp1 ;
+  WHERE lname = "Mller"
+* Order records using a different collating sequence.
+SET COLLATE TO "GENERAL"
+SELECT * FROM temp1 INTO TABLE output ORDER BY lastname</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/3d0d7c35-77c3-4930-8829-4d6e1da12359.htm">Optimizing Access to Remote Data</a></span><br /><span class="linkTerms"><a href="/html/7d4ef115-f1dc-4d84-a1f5-0f74799936e2.htm">Optimizing ActiveX Controls</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/3f3c7751-db8b-43ad-9da6-7daa3f8eb8b5.htm">Optimizing Applications</a></span><br /><span class="linkTerms"><a href="/html/c43a1e26-abb8-486a-9e59-a8c188a882cc.htm">Optimizing Your System</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Optimizing International Applications">
+</OBJECT>

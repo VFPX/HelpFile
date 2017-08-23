@@ -1,0 +1,180 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Buffering Data</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Buffering Data</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>If you want to protect data during updates, use buffers. Visual FoxPro record and table buffering help you protect data update and data maintenance operations on single records and on multiple records of data in multiuser environments. Buffers can automatically test, lock, and release records or tables.</p>
+    <p>With buffering, you can easily detect and resolve conflicts in data update operations: the current record is copied to a memory or disk location managed by Visual FoxPro. Other users can then still access the original record simultaneously. When you move from the record or try to update the record programmatically, Visual FoxPro attempts to lock the record, verify that no other changes have been made by other users, and then write the changes. After you attempt to update data, you must also resolve conflicts that prevent the changes from being written to the original table.</p>
+  <h1 class="heading">Choosing a Buffering Method</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Before you enable buffering, evaluate the data environment to choose the buffering method and locking options that best suit the editing needs of your application, the record and table types and sizes, how the information is used and updated, and other factors. Once you enable buffering, it remains in effect until you disable buffering or close the table.</p>
+      <p>Visual FoxPro has two types of buffering: record and table.
+</p>
+      <ul><li>
+          <p>To access, modify, and write a single record at a time, choose record buffering.
+</p>
+          <p>Record buffering provides appropriate process validation with minimal impact on the data update operations of other users in a multiuser environment.
+</p>
+        </li><li>
+          <p>To buffer the updates to several records, choose table buffering.
+</p>
+          <p>Table buffering provides the most effective way to handle several records in one table or child records in a one-to-many relationship.
+</p>
+        </li><li>
+          <p>To provide maximum protection for existing data, use Visual FoxPro transactions.
+</p>
+          <p>You can use transactions alone, but you gain additional effectiveness by using transactions as wrappers for record or table buffering commands.
+</p>
+        </li></ul>
+    </div><h1 class="heading">Choosing a Locking Mode</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro provides buffering in two locking modes: pessimistic and optimistic. These choices determine when one or more records are locked, and how and when they're released.</p>
+    </div><h1 class="heading">Pessimistic Buffering</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Pessimistic buffering prevents other users in a multiuser environment from accessing a particular record or table while you're making changes to it. A pessimistic lock provides the most secure environment for changing individual records but it can slow user operations. This buffering mode is most similar to the standard locking mechanism in previous versions of FoxPro, with the added benefit of built-in data buffering.</p>
+    </div><h1 class="heading">Optimistic Buffering</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Optimistic buffering is an efficient way to update records because locks are only taken at the time the record is written, thus minimizing the time any single user monopolizes the system in a multiuser environment. When you use record or table buffering on views, Visual FoxPro imposes optimistic locking.</p>
+      <p>The value of the Buffering property, set with the <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a> function, determines the buffering and locking methods.</p>
+      <p>The following table summarizes valid values for the Buffering property.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              To enable
+            </th>
+            <th>
+              Use this value
+            </th>
+          </tr><tr>
+          <td>
+            <p>No buffering. The default value.</p>
+          </td>
+          <td>
+            <p>1</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Pessimistic record locks which lock record now, update when pointer moves or upon <a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( )</a>.</p>
+          </td>
+          <td>
+            <p>2</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Optimistic record locks which wait until pointer moves, and then lock and update.</p>
+          </td>
+          <td>
+            <p>3</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Pessimistic table locks which lock record now, update later upon TABLEUPDATE( ).</p>
+          </td>
+          <td>
+            <p>4</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Optimistic table lock which wait until TABLEUPDATE( ), and then lock and update edited records.</p>
+          </td>
+          <td>
+            <p>5</p>
+          </td>
+        </tr></table></div>
+      <p>The default value for Buffering is 1 for tables and 3 for views. If you use buffering to access remote data, the Buffering property is either 3, optimistic row buffering, or 5, optimistic table buffering. For more information on accessing data in remote tables, see <a href="/html/11c1bca1-5871-4d98-812f-2cacc479feee.htm">How to: Query Multiple Tables and Views</a>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Set MULTILOCKS to ON for all buffering modes above 1.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/58a84517-87fb-4a33-b330-1e2361b51f42.htm">How to: Enable Buffering</a></span><br /><span class="linkTerms"><a href="/html/8d95aef2-00d6-4a21-ba50-af1ba979eee7.htm">How to: Append and Delete Records in Table Buffers</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c3ac4a1d-4c23-40ba-8715-e9ce9438cf62.htm">Updating Data</a></span><br /><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><span class="linkTerms"><a href="/html/f3eff628-41b3-45cd-856d-2d97fd2fed05.htm">Controlling Access to Data</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Buffering Data">
+</OBJECT>

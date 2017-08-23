@@ -1,0 +1,318 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Play Multimedia Files Using MCI Commands Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Play Multimedia Files Using MCI Commands Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File:</b> ...\Samples\Solution\Forms\Mci_play.scx</p>
+    <p>This sample form uses the Media Control Interface (MCI) to play multimedia files and can play any visual or non-visual media that is installed on your system. However, the <b>GETFILE( )</b> function prompts for the most common media files of .avi, .wav, .mov, and .mid. To choose another file, select <b>All Files</b> and choose the desired file. To locate documentation for the MCI commands, see the MSDN Library.</p>
+    <p>The following three Windows API functions are declared in the Init event of the form:
+</p>
+    <ul><li>
+        <p>mciSendString</p>
+      </li><li>
+        <p>mciGetErrorString</p>
+      </li><li>
+        <p>SetWindowPos</p>
+      </li></ul>
+    <p>The DoMCI method of the form executes an MCI command that is passed in as a parameter.</p>
+  <h1 class="heading">Classes</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can open the form to see all the code necessary to run multimedia files, but the functionality has also been extracted into classes that you can easily incorporate into your own applications.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">VideoFrame Class</h3><div class="subSection" xmlns="">
+          <p>The VideoFrame class in the Visual FoxPro ...\Samples\Classes\Samples.vcx class library can be used to play a visual multimedia file, such as a Video for Windows file. The class makes it possible for you to position and size the video to be played, and then provides built-in methods to easily play the media file.</p>
+          <p>For an example of using this class, see Video.scx in the Visual FoxPro ...\Samples\Solution\Forms directory.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Property
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>AutoOpen</p>
+              </td>
+              <td>
+                <p>Specifies whether the video file should automatically open and display when the object is instantiated. The default value is true (.T.).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>AutoPlay</p>
+              </td>
+              <td>
+                <p>Specifies whether the video file should automatically play when it is opened. The default value is true (.T.).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>AutoRepeat</p>
+              </td>
+              <td>
+                <p>Specifies whether the video file will loop the video. Setting this to .T. will cause the video to play continuously. The default value is false (.F.).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ControlSource</p>
+              </td>
+              <td>
+                <p>Specifies a Field that contains the video file reference. If empty, the class expects a static file name to be in the VideoFile property.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>MCIalias</p>
+              </td>
+              <td>
+                <p>Specifies the alias to be used by MCI. If left empty, the alias defaults to the Name property of the class. Normally this can be left empty, but if the user wants to play the same video file twice at the same time, a different alias would need to be specified for each.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>VideoFile</p>
+              </td>
+              <td>
+                <p>Holds the name of a video file to play, for example: <code>"D:\...\Samples\Solution\FORMS\FOX.AVI"</code></p>
+              </td>
+            </tr></table></div>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Method
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>CloseVideo</p>
+              </td>
+              <td>
+                <p>Closes the video file and releases all resources associated with it.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DoMCI</p>
+              </td>
+              <td>
+                <p>Called by the other methods to execute MCI commands. It also can be called by a user to execute a specific MCI command.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>OpenVideo</p>
+              </td>
+              <td>
+                <p>Opens the video file and shows the first frame.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>PauseVideo</p>
+              </td>
+              <td>
+                <p>Pauses a playing video. The video can be restarted by using the PlayVideo method.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>PlayVideo</p>
+              </td>
+              <td>
+                <p>Plays the video file. The video file must be opened in the OpenVideo method before it can be played.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SetPosition</p>
+              </td>
+              <td>
+                <p>Makes it possible for the user to specify the position of the media file. It can be executed at any time after the video file has been opened. Valid values are "Start", "End", or a specific millisecond into the video.</p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Sound Player Class</h3><div class="subSection" xmlns="">
+          <p>This class is also contained in the ...\Samples\Classes\Samples.vcx class library. It can be used to play a non-visual multimedia file, such as a waveaudio file. The class makes it possible for you to specify the file to be played, and then provides built-in methods to easily play the media file.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Property
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>AutoOpen</p>
+              </td>
+              <td>
+                <p>Specifies whether the sound file should be automatically opened and displayed when the object is instantiated. The default value is true (.T.).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>AutoPlay</p>
+              </td>
+              <td>
+                <p>Specifies whether the sound file should be automatically played when it is opened. The default value is true (.T.).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>AutoRepeat</p>
+              </td>
+              <td>
+                <p>Specifies whether the sound file plays continuously. The default value is false (.F.).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ControlSource</p>
+              </td>
+              <td>
+                <p>Specifies the column that contains the sound file reference. If empty, the class expects a static file name to be in the SoundFile property.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>MCIAlias</p>
+              </td>
+              <td>
+                <p>Specifies the alias to be used by MCI. If left empty, the alias defaults to the Name property of the class. Normally this can be left empty, but if the user wants to play the same sound file twice at the same time, a different alias would need to be specified for each.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SoundFile</p>
+              </td>
+              <td>
+                <p>Holds the name of a sound file to play, for example: <code>"C:\WINDOWS\CHIMES.WAV"</code></p>
+              </td>
+            </tr></table></div>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Method
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>OpenSound</p>
+              </td>
+              <td>
+                <p>Opens the sound file.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>PlaySound</p>
+              </td>
+              <td>
+                <p>Plays the sound file. The file must be opened with the OpenSound method before it can be played.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>PauseSound</p>
+              </td>
+              <td>
+                <p>Pauses the playing of a sound file. Play can be contiued by calling the PlaySound method.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SetPosition</p>
+              </td>
+              <td>
+                <p>Makes it possible for the user to specify the position of the media file. It can be executed at any time after the file has been opened. Valid values are "Start", "End", or a specific millisecond into the sound.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>CloseSound</p>
+              </td>
+              <td>
+                <p>Closes the sound file and releases all resources associated with it.</p>
+              </td>
+            </tr></table></div>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/348fec52-e48a-489f-86fb-0b0ac888ba69.htm">Solution Samples</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/4027920a-132e-49bb-8624-2e30c8082a3f.htm">Windows API Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Play Multimedia Files Using MCI Commands Sample">
+<param name="Alink Name" value="vfp.1231572">
+</OBJECT>

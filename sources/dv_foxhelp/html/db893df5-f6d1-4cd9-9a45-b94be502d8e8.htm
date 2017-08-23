@@ -1,0 +1,162 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Add Document Properties to a Report</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Add Document Properties to a Report</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Report document properties enable you to include additional information in the report. Document properties are included as elements and attributes in XML and HTML output. You can use <b>ReportListener</b> object methods and events to access these properties. Also, you can access them during the post-processing of the output files.</p>
+    <p>For information about creating reports that output XML or HTML data, see <span class="linkTerms"><a href="/html/46ce7cb2-a620-447d-9314-1ebba6e3e271.htm">ReportListener Foundation Classes</a></span>.</p>
+    <dl><dt><span class="nonLinkTerms">Document Properties in XML Files</span></dt><dd>
+        <p>The XML report includes document properties such as <code>&lt;property&gt;</code> child elements of the report's <code>&lt;Run&gt;</code> element. For example, if you set the <b>Document.Title</b> property value to "Inventory Report" and the <b>Document.Author</b> property value to "Alfreds Futterkiste", your XML output file contains the following tags.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;Run&gt;
+&lt;property id="Document.Title"&gt;Inventory Report&lt;/property&gt;
+&lt;property id="Document.Author"&gt; Alfreds Futterkiste &lt;/property&gt;
+&lt;/Run&gt;</pre></td></tr></table></span></div>
+      </dd></dl><dl><dt><span class="nonLinkTerms">Document Properties in HTML Files</span></dt><dd>
+        <p>The HTML file includes document properties such as native HTML tag values if there is a corresponding HTML tag for the property. If there is no corresponding HTML element for the property, the <code>&lt;meta&gt;</code> tags in the <code>&lt;head&gt;</code> section of the HTML file include the value of the property. For example, if you set the <b>Document.Title</b> property value to "Inventory Report" and the <b>Document.Author</b> property value to "Alfreds Futterkiste", your HTML output file contains the following tags.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;head&gt;
+&lt;title&gt; Inventory Report &lt;/title&gt;
+&lt;meta name="author" content="Alfreds Futterkiste"&gt;
+&lt;/head&gt;</pre></td></tr></table></span></div>
+      </dd></dl>
+  <h3 class="procedureSubHeading">To edit default properties of a report</h3><div class="subSection"><ol><li>
+        
+          <p>On the <b>Report</b> menu, click <b>Properties</b>.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Report Properties</b> dialog box, click the <b>Document Properties</b> tab.</p>
+        
+      </li><li>
+        
+          <p>In the list of document properties, click the property you want to edit.</p>
+        
+      </li><li>
+        
+          <p>Click the <b>Edit</b> button to open the <span class="linkTerms"><a href="/html/585ebea6-d673-4bbd-acaf-12f36b60c977.htm">Expression Builder Dialog Box</a></span>.</p>
+        
+      </li><li>
+        
+          <p>Enter the expression that you want evaluated at run-time, and click <b>OK</b>. </p>
+          <p>This will store a value to the selected property.</p>
+          <p>The expression can be any Visual FoxPro expression or a Visual FoxPro command (for example,<b> DATETIME()</b>).<b> </b>For a description of the default properties, see <span class="linkTerms"><a href="/html/70d6af89-999a-4b33-bb5c-8279fc1a44ea.htm">Document Properties Tab, Report Properties Dialog Box (Report Builder)</a></span>.</p>
+          <p>
+          </p>
+        
+      </li></ol></div><h3 class="procedureSubHeading">To add custom properties to a report</h3><div class="subSection"><ol><li>
+        
+          <p>On the <b>Report</b> menu, click <b>Properties</b>.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Report Properties</b> dialog box, click the <b>Document Properties</b> tab.</p>
+        
+      </li><li>
+        
+          <p>Click the <b>Add</b> button to open the <span class="linkTerms"><a href="/html/5379e920-229c-4fc2-a666-468d3893b00a.htm">Add Property Dialog Box (Report Builder)</a></span>.<span class="linkTerms"><a href="/html/5379e920-229c-4fc2-a666-468d3893b00a.htm">Add Property Dialog Box (Report Builder)</a></span></p>
+        
+      </li><li>
+        
+          <p>Choose a property type and enter the property <b>Name</b> and <b>Value</b>. </p>
+          <p>The ellipsis button <b>(...)</b> beside the <b>Value</b> box opens the <b>Expression Builde</b>r dialog box. For a description of the properties types, see <span class="linkTerms"><a href="/html/5379e920-229c-4fc2-a666-468d3893b00a.htm">Add Property Dialog Box (Report Builder)</a></span>.</p>
+        
+      </li></ol></div><h3 class="procedureSubHeading">To delete report properties</h3><div class="subSection"><ul><li>
+        
+          <p>Select the property you want to delete, and click <b>Clear</b>.</p>
+        
+      </li></ul>
+      
+        <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+          <p>Clicking <b>Clear</b> deletes the property and the value. If you only want to clear the value, click <b>Edit</b> and delete the value in the <b>Expression Builder</b>.</p>
+        </td></tr></table></div>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/46e99caf-fe50-4d55-aa78-e37cffeca2d1.htm">Guide to Reporting Improvements</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/46ce7cb2-a620-447d-9314-1ebba6e3e271.htm">ReportListener Foundation Classes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Add Document Properties to a Report">
+</OBJECT>

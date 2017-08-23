@@ -1,0 +1,184 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Configure the Report Builder's Event Handling</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Configure the Report Builder's Event Handling</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The Report Builder can be set to respond to events in the Report Designer in a number of different ways. It can:</p>
+    <ul><li>
+        <p>Use a lookup table mapping Report Designer events with specific handler classes. This is the default handle mode.</p>
+      </li><li>
+        <p>Use a "debug" handler class for all events.</p>
+      </li><li>
+        <p>Notify you of each event as it occurs with a MESSAGEBOX() alert containing information about the parameters that would be passed to the builder. The Report Designer then processes the event as if the builder were not active.</p>
+      </li><li>
+        <p>Ignore the events completely.</p>
+      </li></ul>
+    <p>This setting is adjusted from the Report Builder's <b>Options</b> dialog box, or by using the Report Builder's command-line parameters.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Important </th></tr><tr><td>
+      <p>Unlike the settings in the Visual FoxPro <span class="linkTerms"><a href="/html/a8286b0c-6b2c-4b8d-8e16-7db8dbda2a1f.htm">Options Dialog Box (Visual FoxPro)</a></span>, this preference setting does not persist between Visual FoxPro sessions.</p>
+    </td></tr></table></div>
+  <h1 class="heading">Setting the builder's Event Handling mode using the Options dialog</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>See <span class="linkTerms"><a href="/html/96ae951e-8a2f-4ef6-979c-8e4f92664a3e.htm">How to: Display the Report Builder Options Dialog Box</a></span> for detailed steps describing how to display this dialog box.</p>
+      <h3 class="procedureSubHeading">To use the event handler lookup table (default)</h3><div class="subSection"><ol><li>
+            
+              <p>Open the Report Builder <b>Options</b> dialog box.</p>
+            
+          </li><li>
+            
+              <p>Set the <b>Report Designer event handling</b> option to <b>Search for a handler class in the handler registry table.</b></p>
+            
+          </li><li>
+            
+              <p>Select <b>Close</b> to dismiss the dialog box.</p>
+            
+          </li></ol></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/3ae94a82-7396-4e6b-b6ff-57ec8541f366.htm">How to: Specify an Alternate Report Event Handler Table</a></span>.</p>
+      <h3 class="procedureSubHeading">To use the Debug Event handler class</h3><div class="subSection"><ol><li>
+            
+              <p>Open the Report Builder <b>Options</b> dialog box.</p>
+            
+          </li><li>
+            
+              <p>Set the <b>Report Designer event handling</b> option to <b>Use the debug handler for all events</b>.</p>
+            
+          </li><li>
+            
+              <p>Select <b>Close</b> to dismiss the dialog box.</p>
+            
+          </li></ol></div>
+      <p>See <span class="linkTerms"><a href="/html/5b771281-798a-43c3-9f0c-d172b368079c.htm">Report Builder Debug Event Dialog Box (Report Builder)</a></span> for more information.</p>
+      <h3 class="procedureSubHeading">To signify each event with a MESSAGEBOX() alert</h3><div class="subSection"><ol><li>
+            
+              <p>Open the Report Builder <b>Options</b> dialog box.</p>
+            
+          </li><li>
+            
+              <p>Set the <b>Report Designer event handling</b> option to <b>Use the event inspector for all events</b>.</p>
+            
+          </li><li>
+            
+              <p>Select <b>Close</b> to dismiss the dialog box.</p>
+            
+          </li></ol></div>
+      <p>In this mode, the report builder alerts you to the event occurring, but does not handle the event, passing it back to the Report Designer for normal handling. </p>
+      <h3 class="procedureSubHeading">To ignore all report builder events</h3><div class="subSection"><ol><li>
+            
+              <p>Open the Report Builder <b>Options</b> dialog box.</p>
+            
+          </li><li>
+            
+              <p>Set the <b>Report Designer event handling</b> option to <b>Ignore builder events completely</b>.</p>
+            
+          </li><li>
+            
+              <p>Select <b>Close</b> to dismiss the dialog box.</p>
+            
+          </li></ol></div>
+      <p>The Report or Label Designer will respond to the event normally as though _<b>REPORTBUILDER</b> were empty. See <span class="linkTerms"><a href="/html/66161092-cda2-4d9f-868c-26beaffa0841.htm">_REPORTBUILDER System Variable</a></span> for more information.</p>
+    </div><h1 class="heading">Setting the builder's Event Handling mode using the command-line</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The Report Builder also exposes this setting via a command-line parameter:</p>
+      <h3 class="procedureSubHeading">To set the event handle mode from the Command Window</h3><div class="subSection"><ul><li>
+            
+              <p>Type the following command:</p>
+              <p>
+                <code>DO (_REPORTBUILDER) WITH 4, iHandleMode</code>
+              </p>
+              <p>- OR - </p>
+              <p>
+                <code>DO (HOME()+"reportbuilder.app") WITH 4, iHandleMode</code>
+              </p>
+            
+          </li></ul></div>
+      <p>The <span class="parameter">iHandleMode</span> must be an integer from 1 to 4, representing the four possible event handling modes described above.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/4ba558b6-55fc-4af4-86c9-dbcd225ce6fa.htm">Report Builder Options Dialog Box (Report Builder)</a></span><br /><span class="linkTerms"><a href="/html/91d5dbf6-5294-468e-8ed6-b195d62603e5.htm">Report Builder Event Handler Registry Table</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/dbc4b061-74ad-4780-89bf-0e5d461be849.htm">Extending Reports at Design Time</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Configure the Report Builder's Event Handling">
+</OBJECT>

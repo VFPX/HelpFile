@@ -1,0 +1,146 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Form Acceleration</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Form Acceleration</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you design a form based primarily on server data, take a minimalist approach for the best performance. Determine the data and functionality needed, and delay asking the server for this data and functionality until requested by the user. Requesting data from the server uses processing time and creates network traffic. To request less data in your forms:
+</p>
+    <ul><li>
+        <p>Request as few records as possible. For example, use a filter or query to limit the size of the record set. Make sure that the server can process any restrictions you use.</p>
+      </li><li>
+        <p>Use as few remote fields as possible in views underlying your forms.</p>
+      </li><li>
+        <p>Use as few forms that access remote views as possible in your form set. When you open a form set, all the forms in the form set are opened and populated with data as applicable. By limiting the number of forms in your form set, especially those that must connect to a server and retrieve remote data, you shorten the time the form set takes to load.</p>
+      </li><li>
+        <p>Use fewer bound controls that access remote data. Each combo box, list box, and grid that's bound to a remote table or query requires a separate query to the server when the form is opened. Avoid controls containing totals, or list boxes and combo boxes that have large row sources.</p>
+      </li><li>
+        <p>If users need to compare multiple sets of data, consider storing the data returned by the server in temporary local tables. Provide a form in which the user can use the previously stored data, or execute a new query.</p>
+      </li></ul>
+  <h1 class="heading">Storing Lookup Tables Locally</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Often, an application contains several forms that use the same remote table. If the data in the table doesn't change frequently, you can speed up form loading and reduce server load using one of the following techniques:
+</p>
+      <ul><li>
+          <p>Store tables that never change and aren't too large (such as the names and abbreviations of the regions or states in your country) in the local Visual FoxPro application database. If the table is joined in queries or views with remote tables, you should also keep a copy of it on the server to avoid joining local and remote data.</p>
+        </li><li>
+          <p>Store tables that rarely change (such as a list of company buildings) both on the server and in the local application database. Provide a way for the user to download the table when the data does change.</p>
+        </li><li>
+          <p>Store tables that change occasionally but not daily (such as a list of employees in a small company or department) both on the server and in the local application database. Your application should automatically refresh the local version each time it starts. This method uses extra time when the application starts, but speeds up queries when the application is running.</p>
+        </li></ul>
+    </div><h1 class="heading">Displaying Fields Only On Request</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Display fields that take a long time to retrieve data from the server, such as Memo or General fields, only when requested. You can use the following techniques:
+</p>
+      <ul><li>
+          <p>If your form is based on a view, place Memo or General fields off screen on another form page. Add a label to the form, such as "Page down to see notes and pictures," that informs the user how to display the information. Set the FetchMemo property on the view or cursor to false (.F.), so that Visual FoxPro doesn't retrieve Memo or General fields until they're displayed on screen.</p>
+        </li><li>
+          <p>Set the <a href="/html/206a9044-c88a-490b-910a-344c4760a14c.htm">Visible</a> property to false (.F.) for controls bound to Memo or General fields. Add a toggle button or command button that sets the property to true (.T.), so that the user can choose to view the contents of these controls.</p>
+        </li><li>
+          <p>Display the most important fields on a main form, and provide a button labeled "More Information" that opens another form containing other fields. Base the second form on a view that's parameterized by the primary key field on the main form. For example, suppose you have a main form based on a view whose SQL SELECT statement includes the following code:
+</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT customer_id, company_name, address, city, region, country
+FROM customers</pre></td></tr></table></span></div>
+          <p>In the preceding form, <code>cust_id</code> is bound to <code>thisform.txtCust_id</code>. You could base the second form on the following view, which is used only when the user chooses the "More Information" button:
+</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT orders.order_id, orders.order_date, orders.shipper_id, ;
+   employee.emp_id, employee.last_name, employee.first_name ;
+FROM orders, employee ;
+WHERE orders.cust_id = ?THISFORM.txtCust_id ;
+AND orders.employee_id = employees.emp_id</pre></td></tr></table></span></div>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/16427f5e-812b-4462-a2f2-1d9e3c9a4ee0.htm">Query and View Acceleration</a></span><br /><span class="linkTerms"><a href="/html/8768af89-384b-40e3-b5fc-f59552f674ef.htm">Performance Improvement on Updates and Deletes</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ea88b84a-e912-4f11-b6d0-b8ab7f38052a.htm">Optimizing Client/Server Performance</a></span><br /><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Form Acceleration">
+</OBJECT>

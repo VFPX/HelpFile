@@ -1,0 +1,398 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Varbinary Data Type</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Varbinary Data Type</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>To store binary values or literals of fixed length without padding by additional zero (0) bytes or truncating trailing 0 bytes, use the <b>Varbinary</b> data type. To store binary data with indeterminate length, use the <b>Blob</b> data type instead. For more information, see <a href="/html/8159234d-9dfb-44a9-a220-036eb36b1d72.htm">Blob Data Type</a>.</p>
+    <p>Binary literals begin with a prefix, 0h, followed by a string of hexadecimal numbers and are not enclosed with quotation marks (""), unlike character strings. The following list includes examples of binary literals:
+</p>
+    <ul><li>
+        <p>0h202020</p>
+      </li><li>
+        <p>0h6ABCDEF</p>
+      </li><li>
+        <p>0h (empty binary literal)</p>
+      </li></ul>
+    <p>Binary literals are limited to 255 encoded bytes. <b>Varbinary</b> fields are limited to 254 encoded bytes. </p>
+    <p>When performing comparison or concatenation operations, such as =, !=, ==, &gt;, &gt;=, &lt;=, +, and -, the results vary depending on the operation and order of types in the operation. When you concatenate two binary values, the result is a binary value. When you concatenate variables of <b>Varbinary</b> (Q) type with <b>Varchar</b> (V) or <b>Character</b> (C) type, the result has the data type of the first item in the concatenation list. For example: </p>
+    <p>V + Q = V</p>
+    <p>Q + V = Q</p>
+    <p>When you compare between <b>Varbinary</b> and <b>Character</b> types, the type on the left side of the comparison expression governs the operation. For example, suppose a comparison expression such as the following is binary-based:</p>
+    <p>Q = V</p>
+    <p>Visual FoxPro evaluates these values on a byte for byte basis, and the result is the same as performing <code>CAST(V AS Q(n) = Q</code>.</p>
+    <p>Suppose the following comparison expression is character-based:</p>
+    <p>V = Q</p>
+    <p>Visual FoxPro evaluates these values as if they were character strings, and the result is the same as performing <code>CAST(Q AS V(n) = V</code>.</p>
+    <p>Index keys based on <b>Varbinary</b> fields or expressions are padded with zeros from the right of the value to the maximum length of the field. For example, the values 0hAA, 0hAA00, and 0hAA000 have the same index key of 0hAA0000. The default collation sequence for index keys based on binary expressions is MACHINE. No other collation sequences are permitted. For more information, see <a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a> and <a href="/html/210ac6a4-8d8c-409d-bc12-c02a332cfea9.htm">Index Creation Based on Expressions</a>.</p>
+  <h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Support for Varbinary Data Type</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>The <b>Varbinary</b> type is supported for database containers (.dbc), free tables, cursors, and views. For example, you can select this type for a field on the Fields tab in the Table Designer. Tables can contain multiple <b>Varbinary</b> fields. You can specify default and null values for <b>Varbinary</b> fields. <b>Varbinary</b> fields support field validation.</p>
+      <p>No code page translation is performed for data with <b>Varbinary</b> type.</p>
+      <p>The following clauses and functions do not support <b>Varbinary</b> data types:
+</p>
+      <ul><li>
+          <p>
+            <b>LIKE</b> in join and filter conditions for SQL statements</p>
+        </li><li>
+          <p>
+            <a href="/html/a0bde543-772f-4047-aafd-cbd63fcc85ce.htm">LIKE( ) Function</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/80b182be-527c-4162-9f0f-8d9acb8bbfe3.htm">LIKEC( ) Function</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/c3b28578-7b4f-487f-9192-fb619ff83ad6.htm">BINTOC( ) Function</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/82f05d74-808b-43d4-8973-dd5e73e45a6f.htm">BITLSHIFT( ) Function</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/946ff2f5-7140-4f1a-8fc7-05a74c1aa2d2.htm">BITRSHIFT( ) Function</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/b1758fd8-354c-452d-a5f9-ca81292eb71e.htm">CTOBIN( ) Function</a>
+          </p>
+        </li></ul>
+      <p>The following functions remove leading or trailing zero bytes from binary values:
+</p>
+      <ul><li>
+          <p>
+            <a href="/html/767f9fa5-5271-4fe2-baf8-332cf8d15fb5.htm">ALLTRIM( ) Function</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/6f2653be-ab4a-4f23-8d54-97fd733aca09.htm">LTRIM( ) Function</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/b457b31b-dd86-4436-bd09-ddfae22c13db.htm">RTRIM( ) Function</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/c6552ab0-6cbf-4843-a745-fdaafeced24c.htm">TRIM( ) Function</a>
+          </p>
+        </li></ul>
+      <p>The following table lists language that contains functionality affected by the <b>Varbinary</b> data type.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <td>
+            <p>
+              <u>?</u>
+              <a href="/html/4718b6ad-af5e-4ced-8e93-7347259a92d5.htm">?? Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/c576b477-4cf5-4ad4-a115-6963867dd548.htm">AFIELDS( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/9105b2f8-0648-4fad-8d59-a2dbd9859d8e.htm">ALINES( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/3c5a454a-67ec-48a8-8290-18dd0e8a97ea.htm">ALTER TABLE - SQL Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/c426861f-e5ef-44ae-96a6-8dbc7a4a2ad5.htm">APPEND FROM Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e03290b3-e96a-421c-8efa-f9b1691b09cb.htm">BITAND( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/c3c6ff91-a5c0-47a8-b979-cb9020f13d5a.htm">BITCLEAR( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/9881350f-b6bb-4a73-9772-95d448de5397.htm">BITNOT( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/09ff58b4-463e-424e-b3a6-b49349ec84a7.htm">BITOR( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/0279f322-82f1-4687-82ac-a0d772f25e72.htm">BITSET( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/55285ec7-91ce-480f-ae2b-c3c41c36032e.htm">BITTEST( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/b7858458-a38e-492c-b8b6-0d6c42324fb6.htm">BITXOR( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/31ed53ed-3264-4de0-9d9e-8e225589d5a7.htm">COPY STRUCTURE EXTENDED Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e5cc1f14-402f-43b7-8066-af695c60e183.htm">COPY TO Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/203ecbbd-12ae-4caa-94b6-d3077eb685ba.htm">CREATE CURSOR - SQL Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/1225275c-e888-49f8-aa8c-ce66673fe761.htm">CREATE FROM Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/b14e5d95-5b1c-4cfa-a5ac-4093ea6211e0.htm">CREATE TABLE - SQL Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/42160b03-2714-4ca5-abdf-581bd3fc7abe.htm">CursorSchema Property</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/b53b14fa-c1b0-4c29-82b1-3149adf53073.htm">CURSORTOXML( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/ededf873-d538-48fa-92bc-4942d740b434.htm">DataType Property</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/714bd634-6f29-4024-856b-7b669f0a4350.htm">EMPTY( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e1c96289-3368-4546-84ce-8b1bd6163e43.htm">Format Property</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/1547a42a-e88f-4549-a82c-231a921ec689.htm">InputMask Property</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/17571b10-3976-427f-bc75-b96713cfbe7f.htm">ISBLANK( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/13d21965-8877-4f61-a6bd-ee17f3230d45.htm">LIST Commands</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/61cfc3cf-a81d-47bc-ac59-0e58165aef81.htm">MLINE( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/23b309b9-92ce-410c-9dd1-227c7f59c047.htm">SET ENGINEBEHAVIOR Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/7d2d6409-f972-4452-9c6d-91ac5c9a2a5e.htm">SET ANSI Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/5ac68f23-c330-42c4-a4a3-c38f7278b22a.htm">SET EXACT Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/a13cde28-affa-4bec-96ab-a4370da9b3b6.htm">TRANSFORM( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/887e0f56-7ff2-4877-89ff-9bbccde7f2d6.htm">XMLTOCURSOR( ) Function</a>
+            </p>
+          </td>
+        </tr></table></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Values with <b>Varbinary</b> type are not compatible with the binary expressions produced by the <b>BINTOC( )</b> function or used by the <b>CTOBIN( )</b> function. String functions that usually return strings, such as the <b>SUBSTR( )</b> function, now return binary values when passed binary values. </p>
+      </td></tr></table></div>
+      <p>For more specifications about the <b>Varbinary</b> data type, see <a href="/html/67c1d841-7fa8-4e98-afaf-e4b167a52447.htm">Visual FoxPro Data and Field Types</a>. </p>
+      <p>The following example clears the main Visual FoxPro window using the <b>CLEAR</b> command and creates a cursor with a field named myVarbinaryField with <b>Varbinary</b> type using the SQL <b>CREATE CURSOR</b> command. For each SQL <b>INSERT</b> statement, the <b>INSERT</b> command inserts a row into the cursor containing a binary literal in the myVarbinary field. <b>GO TOP</b> positions the record pointer at the first record. The <b>DO WHILE</b> loop displays the number of characters in the field for each row using the <b>LEN( )</b> function until the last record in the table is reached. </p>
+      <p>You can type the example in a program (.prg) file and run it from the Command window using the <a href="/html/c4dda428-55f2-4610-9d0f-bccc53023a41.htm">DO Command</a>.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+CREATE CURSOR myCursor (myVarbinaryField Q(10))
+INSERT INTO myCursor (myVarbinaryField) VALUES (0h616161202020)
+INSERT INTO myCursor (myVarbinaryField) VALUES (0hABCDEF)
+INSERT INTO myCursor (myVarbinaryField) VALUES (0h)
+GO TOP
+DO WHILE !EOF()
+   ? "# Varbinary characters: ", LEN(myVarbinaryField)
+   ? 
+   SKIP
+ENDDO</pre></td></tr></table></span></div>
+      <p>For more information about the commands and functions used in this example, see <a href="/html/b89737d7-7dac-455e-9088-fa0ec6c93b98.htm">CLEAR Commands</a>, <a href="/html/203ecbbd-12ae-4caa-94b6-d3077eb685ba.htm">CREATE CURSOR - SQL Command</a>, <a href="/html/f9d15b20-eb9d-4c37-8d4a-d9d02c01eb56.htm">INSERT - SQL Command</a>, <a href="/html/8f9cae61-2a9a-4893-8325-40426b907de8.htm">BROWSE Command</a>, <u>GO</u><a href="/html/21117980-58f1-47b0-9384-05e0172f7af7.htm">GOTO Command</a>, <a href="/html/e32603d6-0fe2-4149-a8c8-6db8d4cee78f.htm">DO WHILE ... ENDDO Command</a>, <a href="/html/38fef51a-a5df-46fc-9555-af334efc1dba.htm">EOF( ) Function</a>, and <a href="/html/1c473072-7070-489e-83b6-a35c8a4c4a42.htm">SKIP Command</a>.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/25531062-a27e-47b0-b753-f5ecec809a19.htm">How to: Choose Data Types</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/fb20c7af-703d-4f05-9c7c-b59fa31a9eda.htm">Fields Tab, Table Designer</a></span><br /><span class="linkTerms"><a href="/html/31f9c8c3-414e-4930-aa7f-2239f07b19e6.htm">String and Value Comparison in Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/7e83da43-86c1-4b0d-a00d-ea412382331f.htm">TYPE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/b05ef476-980c-492f-81f5-1be0eb7ef8d9.htm">VARTYPE( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b353259f-ae44-4c20-9b4c-53741595d66c.htm">Data and Field Types</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Varbinary Data Type">
+</OBJECT>

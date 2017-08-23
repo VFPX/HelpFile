@@ -1,0 +1,210 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Specify and Distribute ReportBuilder.App</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Specify and Distribute ReportBuilder.App</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you write and distribute Visual FoxPro applications, you may choose to give your users the ability to customize some or all of your application's report layouts. The report builder and report protection features in Visual FoxPro 9.0 makes this a safer and controlled solution for your application.</p>
+    <p>In this topic, you will learn how to redistribute the default Report Builder application in two ways: </p>
+    <ul><li>
+        <p>Distribute the Report Builder as a separate file alongside your own application, and ensure that Visual FoxPro is directed to the location of the reportbuilder.app file at run time.</p>
+      </li><li>
+        <p>Build the Report Builder source files directly into your own application.</p>
+      </li></ul>
+  <h1 class="heading">Redistributing ReportBuilder.App with Your Application</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>By default, if ReportBuilder.App exists in the same directory as the Visual FoxPro run-time files, then _REPORTBUILDER will contain the fully-qualified path and filename. One solution is to ensure that the setup program used to distribute your application places ReportBuilder.App in the same directory as the run-time files. Alternatively, you can distribute ReportBuilder.App in the same directory as your application, providing you explicitly set _REPORTBUILDER to point to your copy of the ReportBuilder.App file. </p>
+      <h3 class="procedureSubHeading">To make sure the Visual FoxPro run-time environment can find your distributed copy of ReportBuilder.App</h3><div class="subSection"><ul><li>
+            
+              <p>In the main program of your application, use code similar to the following:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Get the application's home directory:
+cHomeDir = CURDIR()  &amp;&amp; use whatever method you prefer
+* Set the system variable to use the fully-qualified path:
+_REPORTBUILDER = m.cHomeDir+"ReportBuilder.App"
+:</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>You could also use a line in CONFIG.FPW:</p>
+      <p>
+        <code>_REPORTBUILDER=&lt;path&gt;\ReportBuilder.App</code>
+      </p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Considerations</h3><div class="subSection" xmlns="">
+          <p>If you distribute ReportBuilder.App in this way, you will not be able to specify an alternative report event handler registry table that is built-in to your application's APP file. This is because the code running inside ReportBuilder.App cannot use any files built in to other applications (.app or .exe files). </p>
+        </div>
+    </sections></div><h1 class="heading">Integrating the Report Builder Source into Your Project</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Instead of distributing the compiled application, you may choose to incorporate the source code of the report builder directly into your application's project.</p>
+      <h3 class="procedureSubHeading">To integrate the report builder source into your application</h3><div class="subSection"><ol><li>
+            
+              <p>Unpack the xsource.zip file found in the Tools\xsource\ folder under the Visual FoxPro home directory.</p>
+            
+          </li><li>
+            
+              <p>In the main program of your application, use code similar to the following:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Ensure the report builder source is pulled into the project:
+EXTERNAL PROCEDURE frxbuilder.prg
+* Set the system variable to use the local source version:
+_REPORTBUILDER = "frxbuilder.prg"
+:</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Rebuild your project.</p>
+              <p>The report builder source code and event handler lookup table will be added to your project and compiled in to your application.</p>
+            
+          </li></ol></div>
+      <p>Rather than use the original version of the event handler lookup table, frxbuilder.dbf, you may wish to customize it. Be careful - your project is referencing your master copy of the report builder source. You may prefer to remove the frxbuilder.dbf file from your project, and replace it with a customized copy local to your application's source tree.</p>
+      <p>You do not have to keep the default name for this table. If you wish, you can tell the report builder to use an alternatively named table instead:</p>
+      <h3 class="procedureSubHeading">To specify an alternate event handler registry table</h3><div class="subSection"><ul><li>
+            
+              <p>In the setup portion of the main program of your application, use code similar to the following:</p>
+              <p>
+                <code>do frxBuilder with 3, "mylookup.dbf"</code>
+              </p>
+            
+          </li></ul></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Shared Source Files</h3><div class="subSection" xmlns="">
+          <p>ReportBuilder.App and ReportPreview.App have the following source files in common:</p>
+          <ul><li>
+              <p>frxControls.vcx</p>
+            </li><li>
+              <p>frxCommon.prg</p>
+            </li><li>
+              <p>grabber.gif</p>
+            </li><li>
+              <p>wwrite.ico</p>
+            </li><li>
+              <p>foxpro_reporting.h</p>
+            </li></ul>
+          <p>The Project Manager creates only one reference to each of these files in your application's project, depending on the order of the EXTERNAL statements in your main program.</p>
+        </div>
+    </sections></div><h1 class="heading">Considerations for Report Builder Help</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Report Builder Application dialog boxes are supplied with help information in the Visual FoxPro help file, associated with the <span class="linkTerms"><a href="/html/f08a4ff8-712c-4de7-ae95-137bb2b49582.htm">HelpContextID Property (Visual FoxPro)</a></span> of various interface elements.  The Visual FoxPro help file cannot be redistributed with your application. For information, see <span class="linkTerms"><a href="/html/8b4b3584-e28e-498c-8c24-eb87968540dc.htm">Distributable and Restricted Visual FoxPro Features and Files</a></span>.</p>
+      <p>When you distribute Report Builder Application or its components, and if you provide help files for your applications, you can choose one of the following strategies:</p>
+      <ul><li>
+          <p>Create help topics using the appropriate context IDs in your help file, matching the context IDs the Report Builder uses.  Check the help ID constants defined in FRXBUILDER.H for the correct context IDs to use.</p>
+        </li><li>
+          <p>Do not create help topics with these context IDs.  When the user presses the <b>F1</b> key or uses a <b>Help</b> button, your help file will appear with your top-level topic showing.</p>
+        </li><li>
+          <p>Change the constants defined in FRXBUILDER.H in the Report Builder source to use one or more different context IDs, and create a topic or multiple topics in your help file to match the context IDs you use. You will need to recompile ReportBuilder.App from the source code in order for this change to take effect.</p>
+        </li></ul>
+      <h3 class="procedureSubHeading">To specify different help context ID values for Report Builder Application components</h3><div class="subSection"><ol><li>
+            
+              <p>Modify the help context id constants defined in FRXBUILDER.H and save your changes.</p>
+            
+          </li><li>
+            
+              <p>Recompile the Report Builder Application, or recompile your application if you are building in the Report Builder components to your application. </p>
+            
+          </li></ol></div>
+      <p>When you distribute Report Builder Application or its components, and if you do not provide a help file for your application, you have the following options:</p>
+      <ul><li>
+          <p>Distribute ReportBuilder.app or its components as-is.  When they determine that <code>SET("HELP") = "OFF"</code>, ReportBuilder components disable the <b>Help</b> button.</p>
+        </li><li>
+          <p>Adjust an associated constant in the frxbuilder.h file to remove the <b>Help</b> button. </p>
+        </li></ul>
+      <h3 class="procedureSubHeading">To remove the Help button from Report Builder Application interface elements</h3><div class="subSection"><ol><li>
+            
+              <p>Locate the frxbuilder.h file in the Report Builder Application source. </p>
+            
+          </li><li>
+            
+              <p>Change the value of the <code>SHOW_HELP_BUTTON_ON_HANDLER_FORMS constant </code>to False (<code>.F.</code>).</p>
+            
+          </li><li>
+            
+              <p>Recompile the Report Builder Application, or recompile your application if you are building in the Report Builder components to your application. </p>
+            
+          </li></ol></div>
+      <p>For more information about using the Visual FoxPro help system in applications, see <span class="linkTerms"><a href="/html/e585df4a-168b-4bdd-b8ad-abf9f8f3bf01.htm">SET TOPIC ID Command</a></span> and <span class="linkTerms"><a href="/html/51dd6e52-8ff3-41d5-987f-09dc8cf806eb.htm">SET HELP Command</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/3ae94a82-7396-4e6b-b6ff-57ec8541f366.htm">How to: Specify an Alternate Report Event Handler Table</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/66161092-cda2-4d9f-868c-26beaffa0841.htm">_REPORTBUILDER System Variable</a></span><br /><span class="linkTerms"><a href="/html/8920ed3c-4d89-4fea-9cf0-1cc21395928a.htm">Including Report Files for Distribution</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/7ec199a1-d019-4c84-ae60-ab285c76c06f.htm">Application Distribution Process</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/d10a7fd6-5348-4797-b3c8-95ca03fbc7e2.htm">Configuring Help Files for Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Specify and Distribute ReportBuilder.App">
+</OBJECT>

@@ -1,0 +1,126 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Bind, Raise, Unbind, and Retrieve Events Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Bind, Raise, Unbind, and Retrieve Events Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File: </b>...\Samples\Solution\Toledo\FrmEvents.scx</p>
+    <p>This sample demonstrates binding events, raising events programmatically, unbinding events, and retrieving events for <b>_SCREEN</b> system variable, or the main Visual FoxPro window. In the sample, you can manually raise a bound event for <b>_SCREEN</b> by selecting an event from the combo box or invoke the same events and their respective handlers by using the mouse. </p>
+    <p>For more information about <b>_SCREEN</b>, see <a href="/html/4dfb3855-616a-4ff5-b87e-4a1b8ba3eba4.htm">_SCREEN System Variable</a>.</p>
+  <h1 class="heading">Binding Events</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>To respond to Visual FoxPro events, use the <b>BINDEVENT( )</b> function. In this sample, the <b>BINDEVENT( )</b> function is called in the custom InitBindEvent method and binds several <b>_SCREEN</b> events to the form's methods. When one of the <b>_SCREEN</b> events fires, the associated handler method is called:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BINDEVENT(_SCREEN,"Resize",ThisForm,"screenresize")
+BINDEVENT(_SCREEN,"Mousedown",ThisForm,"screenmousedown")
+BINDEVENT(_SCREEN,"Mouseup",ThisForm,"screenmouseup")
+BINDEVENT(_SCREEN,"Rightclick",ThisForm,"screenrightclick")
+BINDEVENT(_SCREEN,"Dblclick",ThisForm,"screendblclick")</pre></td></tr></table></span></div>
+      <p>For more information, see <a href="/html/e0aaf535-c606-44bd-b7c1-7d0341331d8f.htm">BINDEVENT() Function</a> and <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init Event</a>.</p>
+    </div><h1 class="heading">Raising Events Programmatically</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>To raise events programmatically, use the <b>RAISEEVENT( )</b> function. In this sample, when the combo box is selected, the <b>InteractiveChange</b> event uses the returned value to programmatically raise the specified event.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>RAISEEVENT(_SCREEN,this.Value) </pre></td></tr></table></span></div>
+      <p>For more information, see <a href="/html/297f42e9-e402-4a4f-abad-15f180508f2a.htm">RAISEEVENT() Function</a> and <a href="/html/f320bc9d-4e0e-47cf-974c-4c4882240ddb.htm">InteractiveChange Event</a>.</p>
+    </div><h1 class="heading">Unbinding Events</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>To unbind event handlers, use the <b>UNBINDEVENTS( ) </b>function. In this sample, the custom UnbindHandlers method unbinds events for <b>_SCREEN</b>.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>UNBINDEVENTS(_SCREEN)</pre></td></tr></table></span></div>
+      <p>For more information, see <a href="/html/b64acd53-4196-48ce-9ab3-8da9dc8ed49a.htm">UNBINDEVENTS() Function</a>.</p>
+    </div><h1 class="heading">Retrieve Event Bindings</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>To retrieve existing event bindings into an array, use the <b>AEVENTS( )</b> function. In this sample, the custom ScreenDblClick method, which is bound to the <b>_SCREEN</b> <b>DblClick</b> event, uses the <b>AEVENTS( )</b> function to report the number of event bindings:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>AEVENTS(laEvents,Thisform)</pre></td></tr></table></span></div>
+      <p>For more information, see <a href="/html/d8025938-9dc6-4091-840b-2770396946c8.htm">AEVENTS() Function</a>, and <a href="/html/0d62ca75-b19c-4100-850e-ea8a33601b1e.htm">DblClick Event</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/d0d1eaf7-9399-4b84-a073-42239bdafdbb.htm">Event Binding for Visual FoxPro Objects</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/cc41129c-e406-40c1-a6fe-6fffaf315d78.htm">Programming Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Bind, Raise, Unbind, and Retrieve Events Sample">
+<param name="Alink Name" value="vfp.1231680">
+</OBJECT>

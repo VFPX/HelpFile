@@ -1,0 +1,281 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>APPEND FROM ARRAY Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">APPEND FROM ARRAY Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Adds one record to the currently selected table for each row in an array and fills each record with data from the corresponding array row.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+APPEND FROM ARRAY <span class="parameter">ArrayName</span> [FOR <span class="parameter">lExpression</span>] 
+   [FIELDS <span class="parameter">FieldList</span> | FIELDS LIKE <span class="parameter">Skeleton</span> | FIELDS EXCEPT <span class="parameter">Skeleton</span>]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">ArrayName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the array that contains the data to be copied to the new records. New records are added to the table until all rows in the array are appended.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FOR <span class="parameter">lExpression</span></span></dt><dd>
+          <p>Specifies a condition for appending records from the array. <span class="parameter">lExpression</span> must contain the name of a target field in its conditional expression.</p>
+          <p>Before a row of the array is appended to a record in the table, the array element corresponding to the target field specified in <span class="parameter">lExpression</span> is checked to determine whether that array element meets the condition in <span class="parameter">lExpression</span>. If the array element satisfies the condition, a record is appended.   </p>
+          <p>If the array element does not satisfy the condition, the array row is not appended and the next row in the array is checked to determine whether it meets the condition. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS <span class="parameter">FieldList</span></span></dt><dd>
+          <p>Specifies that only the fields in <span class="parameter">FieldList</span> are updated from the array. The first field in the list is updated with the contents of the first element in the array, the second field is updated from the second element, and so on.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS LIKE <span class="parameter">Skeleton</span></span></dt><dd>
+          <p>Specifies that fields that match the field skeleton <span class="parameter">Skeleton</span> are updated from the array.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS EXCEPT <span class="parameter">Skeleton</span></span></dt><dd>
+          <p>Specifies that all fields except those that match the field skeleton <span class="parameter">Skeleton</span> are updated from the array.</p>
+          <p>The field skeleton <span class="parameter">Skeleton</span> supports wildcards. For example, to specify that all fields that begin with the letters A and P are updated from the array, use the following:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>APPEND FROM ARRAY aMyArray FIELDS LIKE A*,P*</pre></td></tr></table></span></div>
+          <p>The <b>LIKE</b> clause can be combined with the EXCEPT clause:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>APPEND FROM ARRAY aMyArray FIELDS LIKE A*,P* EXCEPT PARTNO*</pre></td></tr></table></span></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>
+        <b>Memo</b>, <b>General</b>, and <b>Blob</b> fields are ignored in <b>APPEND FROM ARRAY</b>. </p>
+      <p>When a table is open for shared use, <b>APPEND FROM ARRAY</b> locks the table header while records are being added.</p>
+      <p>If the array is one-dimensional, <b>APPEND FROM ARRAY</b> adds one record to the table. The contents of the first array element fill the first field of the newly added record, the contents of the second element of the array fill the second field of the record, and so on.</p>
+      <p>If the one-dimensional array has more elements than the table has fields, the additional elements are ignored. If the table has more fields than the array has elements, the additional fields are initialized to the default empty value. Here are the default empty values for each field type:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Field type
+            </th>
+            <th>
+              Default value
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <b>Character</b>
+            </p>
+          </td>
+          <td>
+            <p>Spaces</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Currency</b>
+            </p>
+          </td>
+          <td>
+            <p>0</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Date</b>
+            </p>
+          </td>
+          <td>
+            <p>Empty Date (e.g. CTOD(""))</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>DateTime</b>
+            </p>
+          </td>
+          <td>
+            <p>Empty DateTime (e.g. CTOT(""))</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Double</b>
+            </p>
+          </td>
+          <td>
+            <p>0</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Float</b>
+            </p>
+          </td>
+          <td>
+            <p>0</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Integer</b>
+            </p>
+          </td>
+          <td>
+            <p>0</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Logical</b>
+            </p>
+          </td>
+          <td>
+            <p>False (.F.)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Memo</b>
+            </p>
+          </td>
+          <td>
+            <p>Empty (no contents)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Numeric</b>
+            </p>
+          </td>
+          <td>
+            <p>0</p>
+          </td>
+        </tr></table></div>
+      <p>If the array is two-dimensional, <b>APPEND FROM ARRAY</b> adds a new record to the table for each row in the array. For example, if the array has four rows, four new records are appended to the table.</p>
+      <p>The contents of the first array column fill the first field of the newly added records, the second array column fills the second field of the new records, and so on. For example, if the array has four rows and three columns, elements from the first array column fill the first field in each of the four new records appended to the table.</p>
+      <p>If the two-dimensional array has more columns than the table has fields, the additional columns are ignored. If the table has more fields than the array has columns, the additional fields are initialized to empty values.</p>
+      <p>
+        <b>APPEND FROM ARRAY</b> can fill a field even if the corresponding array element's data type does not match the field's data type an provided that the array element data is compatible with the data type of the corresponding field. If the data is not compatible, the field is initialized to an empty value. </p>
+      <p>If the target table uses autoincrementing, APPEND FROM ARRAY fails if <a href="/html/1cff1135-a24f-46e7-bcb2-2271d4b8c133.htm">SET AUTOINCERROR</a> is ON, unless the FIELDS option is used to omit the AUTOINC column. Setting AUTOINCERROR to OFF or turning off autoincrementing in the target table by using <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a> allows the APPEND FROM ARRAY to succeed. The target table's autoincrementing field or fields are incremented according to the values specified, and the values in source table are not applied.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">This example creates a table and then uses <b>APPEND FROM ARRAY</b> to append a record to the new table.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL ARRAY aNewRec(3)
+* Create the table
+CREATE TABLE Test FREE  (Object C(10), Color C(16), SqFt n(6,2))
+SCATTER TO aNewRec BLANK  &amp;&amp; Create a new array from the table
+aNewRec[1]="Box"         &amp;&amp; Fill the array
+aNewRec[2]="Red"
+aNewRec[3]=12.5
+APPEND FROM ARRAY aNewRec   &amp;&amp; Add record containing array contents
+          &amp;&amp; to the table</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/7210015f-dc18-451e-97d7-c1c3b86d5a2a.htm">APPEND Command</a></span><br /><span class="linkTerms"><a href="/html/977adad9-d33e-4f01-8f63-244fd066d832.htm">COPY TO ARRAY Command</a></span><br /><span class="linkTerms"><a href="/html/17270153-1977-40bc-9f17-ab0132b20e90.htm">DIMENSION Command</a></span><br /><span class="linkTerms"><a href="/html/059d1397-f71d-4cd7-9d0e-1d443155bc95.htm">GATHER Command</a></span><br /><span class="linkTerms"><a href="/html/e5d1e608-a184-4cfb-8a06-f83ab8a6c50c.htm">SCATTER Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="APPEND FROM ARRAY Command">
+<param name="ALink Name" value="APPEND FROM ARRAY">
+</OBJECT>

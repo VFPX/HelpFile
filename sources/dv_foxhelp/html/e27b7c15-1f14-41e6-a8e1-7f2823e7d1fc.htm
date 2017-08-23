@@ -1,0 +1,493 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Walkthrough: Retrieving Data from Different Data Sources</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Walkthrough: Retrieving Data from Different Data Sources</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can retrieve data using various data source connection types. You can then create Visual FoxPro cursors or cursor adapters using the retrieved data. Cursor adapters can retrieve data from a wider range of data sources than is possible with conventional cursors.</p>
+    <p>This walkthrough explains how to build a data environment for a Visual FoxPro form by configuring a data source and, if needed, a connection type that applies to all cursor adapters in the data environment using the DataEnvironment Builder. You can then create cursors in the data environment that have specific properties for accessing data using the CursorAdapter Builder.</p>
+    <p>This walkthrough contains the following sections:</p>
+    <ul><li>
+        <p>
+          <span class="linkTerms"><a href="#fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor5">Prerequisites</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor2">Opening the Data Environment for a Form</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor1">Setting Data Source Types and Data Sources</a></span>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor3">Retrieving Data for Cursor Adapters</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor4">Using the Cursor Adapter on the Form</a>
+        </p>
+      </li></ul>
+    <p>For more information cursor adapters, see <span class="linkTerms"><a href="/html/5bf4efc5-39e7-4fc9-b785-876d4315486f.htm">Data Access Management Using CursorAdapters</a></span>, <span class="linkTerms"><a href="/html/3cd87ac7-582c-43b9-b1f7-006a9a5c7508.htm">CursorAdapter Class</a></span>, <span class="linkTerms"><a href="/html/910189bb-7ac3-4fdd-8d87-cb862cff6a8a.htm">DataEnvironment Builder</a></span>, and <span class="linkTerms"><a href="/html/2178d9de-1085-4e49-af7f-c0b4053fb592.htm">CursorAdapter Builder</a></span>.</p>
+  <h1 class="heading"><span onclick="ExpandCollapse(prerequisitesToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(prerequisitesToggle)" tabindex="0"><img id="prerequisitesToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Prerequisites</span></h1><div id="prerequisitesSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>This walkthrough requires the following:  </p>
+      <ul><li>
+          <p>Data sources using the following connection types: </p>
+          <ul><li>
+              <p>Native   </p>
+              <p>Use the Northwind sample database included with Visual FoxPro and located in the ...\Samples\Northwind directory.</p>
+            </li><li>
+              <p>ODBC or ADO   </p>
+              <p>Set up access to a local or remote SQL server (SQL Server 7 or 2000) with the Northwind database installed.</p>
+            </li><li>
+              <p>XML   </p>
+              <p>Use the GetCustomers.XML DataSet file included with Visual FoxPro and located in the ...\Samples\Solution\Toledo directory.</p>
+            </li></ul>
+        </li><li>
+          <p>A Visual FoxPro form based on the FrmSolution class included with the Solution.vcx class library, which is located in the ...\Samples\Solution folder. A form based on the FrmSolution class appears similar to the forms used in the Solution samples.</p>
+        </li></ul>
+      <p>You can create a form based on the FrmSolution class by creating a category in the Toolbox, adding the FrmSolution class to the Toolbox, and creating a form based on that class.</p>
+      <h3 class="procedureSubHeading">To create the form used in this walkthrough</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Tools</b> menu, click <b>Toolbox</b>.</p>
+            
+          </li><li>
+            
+              <p>Right-click the <b>Toolbox</b>, and click <b>Add Category</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Category name</b> box type a category name. </p>
+              <p>The category you created appears in the Toolbox. </p>
+            
+          </li><li>
+            
+              <p>In the <b>Toolbox</b>, right-click the category, and click <b>Add Class Library</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Add Class Library</b> dialog box, click the <b>ellipsis</b> (...) button, browse to the ...\Samples\Solution folder, and select Solution.vcx. </p>
+              <p>The classes in the Solution.vcx class library appear in the category you created in the Toolbox. </p>
+            
+          </li><li>
+            
+              <p>In the <b>Toolbox</b>, right-click <b>frmsolution (SOLUTION)</b>, and click <b>Create Form</b>.</p>
+            
+          </li></ol></div>
+    
+  </div><a name="fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor2"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Opening the Data Environment for a Form</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>When you create a form, Visual FoxPro creates a <b>DataEnvironment</b> object as a container for <b>Cursor</b>, <b>CursorAdapter</b>, and <b>Relation</b> objects that are associated with the form, a form set, or a report. You need to open and set the form's data environment to the appropriate data source type and data source to retrieve data from.</p>
+      <p>Before you select the data source type and data source from which to retrieve data, open the form's data environment.</p>
+      <h3 class="procedureSubHeading">To open the form's data environment </h3><div class="subSection"><ol><li>
+            
+              <p>Open the form.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Form Designer</b>, right-click the form, and click <b>DataEnvironment</b> to open the data environment. </p>
+              <p>For a form with an empty data environment, the <b>Open</b> dialog box appears. </p>
+            
+          </li><li>
+            
+              <p>In the <b>Open</b> dialog box, click <b>Cancel</b>.</p>
+            
+          </li><li>
+            
+              <p>To open the Data Environment Builder, right-click the <b>Data Environment</b> surface, and click <b>Builder</b>. </p>
+              <p>The DataEnvironment Builder opens and displays the following tabs: <b>Data Source</b> and <b>Cursors</b>. </p>
+            
+          </li></ol></div>
+      <p>For more information about <b>DataEnvironment</b> objects, see <a href="/html/19f2a679-bbf3-4343-9ad8-fd20824e8198.htm">DataEnvironment Object</a>.</p>
+    </div><a name="fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor1"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Setting Data Source Types and Data Sources</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>Set the data source type and configure the appropriate data source that you want to retrieve data by from setting options on the Data Source tab in the DataEnvironment Builder.</p>
+      <h3 class="procedureSubHeading">To select the data source type for the form's data environment</h3><div class="subSection"><ol><li>
+            
+              <p>In the <b>DataEnvironment Builder</b>, click the <b>Data Source</b> tab.</p>
+            
+          </li><li>
+            
+              <p>On the <b>Data Source</b> tab, select the appropriate data source type: ADO, Native, ODBC, or XML.</p>
+            
+          </li></ol>
+          
+            <p>Depending on your selection, the appropriate options appear. The following procedures demonstrate how to set the data environment to native Visual FoxPro tables, ODBC, ADO, and XML.</p>
+          
+        </div>
+      <p>For more information, see <a href="/html/70551a33-601a-4f83-9df5-5d19bd396321.htm">Data Source Tab, DataEnvironment Builder</a>.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Specifying Native Visual FoxPro Data Sources</h3><div class="subSection" xmlns="">
+          <p>To specify native Visual FoxPro data sources, use the following procedure:</p>
+          <h3 class="procedureSubHeading">To use native Visual FoxPro tables</h3><div class="subSection"><ol><li>
+                
+                  <p>After selecting <b>Native</b> on the <b>Data Source</b> tab, click the <b>ellipsis</b> (...) button to the right of the <b>Database</b> box</p>
+                
+              </li><li>
+                
+                  <p>Browse to the ...\Samples directory and select the Northwind database.</p>
+                
+              </li></ol></div>
+          <p>To continue this walkthrough, see <a href="#fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor3">Retrieving Data for Cursor Adapters</a>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Specifying Data Sources Using ODBC</h3><div class="subSection" xmlns="">
+          <p>To specify ODBC data sources, use the following procedure:</p>
+          <h3 class="procedureSubHeading">To use ODBC data sources</h3><div class="subSection"><ol><li>
+                
+                  <p>After selecting <b>ODBC</b> in the <b>Data Source</b> tab, click <b>Use connection string</b>.</p>
+                
+              </li><li>
+                
+                  <p>Type the connection string to connect to the Northwind database on your local or remote SQL Server. For example: </p>
+                  <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Driver={Sql Server};Server=localhost;Database=Northwind;Int Security=yes;</pre></td></tr></table></span></div>
+                  <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                    <p>You must have access to a local or remote SQL Server (SQL Server 7 or 2000) with the Northwind database installed. If your SQL Server is not local, you can change the value of the <code>Server=</code> parameter in the connection string to the name of the remote server.</p>
+                  </td></tr></table></div>
+                
+              </li><li>
+                
+                  <p>Click <b>Test Connection</b> to test the connection.</p>
+                
+              </li></ol></div>
+          <p>If the connection is successful, you can continue and retrieve data from the data source.</p>
+          <p>To continue this walkthrough, see <a href="#fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor3">Retrieving Data for Cursor Adapters</a>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Specifying Data Sources Using ADO</h3><div class="subSection" xmlns="">
+          <p>To use ADO data sources, use the following procedure:</p>
+          <h3 class="procedureSubHeading">To use ADO data sources</h3><div class="subSection"><ol><li>
+                
+                  <p>After selecting <b>ADO</b> on the <b>Data Source</b> tab, click <b>Use connection string</b>.</p>
+                
+              </li><li>
+                
+                  <p>Type the connection string to connect to the Northwind database on your local or remote SQL Server. For example: </p>
+                  <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Provider=SQLOLEDB.1;Integrated Security=SSPI;Initial Catalog=Northwind;Data Source=localhost</pre></td></tr></table></span></div>
+                  <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                    <p>You must have access to a local or remote SQL Server (SQL Server 7 or 2000) with the Northwind database installed. If your SQL Server is not local, you can change the value of the <code>Data Source=</code> parameter in the connection string to the name of the remote server.</p>
+                  </td></tr></table></div>
+                
+              </li><li>
+                
+                  <p>Click <b>Test Connection</b> to test the connection. </p>
+                  <p>If the connection is successful, you can continue and retrieve data from the data source. </p>
+                
+              </li></ol></div>
+          <p>If you want to construct a connection string instead of typing one on the <b>Data Source</b> tab, click <b>Build</b> to open the <b>Data Link Properties</b> dialog box in the Visual FoxPro OLE DB Provider. For more information, see <a href="/html/862c1c77-c7de-46a1-9a29-60311e7c17d5.htm">OLE DB Provider for Visual FoxPro</a>.</p>
+          <p>To continue this walkthrough, see <a href="#fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor3">Retrieving Data for Cursor Adapters</a>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Specifying XML Data Sources</h3><div class="subSection" xmlns="">
+          <p>In this walkthrough, the method for creating cursor adapters from XML demonstrates only one example of how you can access an XML data source, more specifically, an XML DataSet file generated from ADO.NET. Actual code can vary depending on your specific needs.</p>
+          <h3 class="procedureSubHeading">To use XML data sources</h3><div class="subSection"><ul><li>
+                
+                  <p>After selecting <b>XML</b> on the <b>Data Source</b> tab, click the <b>Cursors</b> tab.</p>
+                
+              </li></ul></div>
+          <p>You can also use cursor adapters with cursors generated from XML with XML adapters or <b>XMLAdapter</b> objects. You can use this combination to access more advanced features of the design-time environment and to bind controls on a form to fields in the cursor adapter. The XML adapter performs the actual work at run time.</p>
+          <p>When you create a cursor adapter from XML, you can use the CursorAdapter Builder to set the CursorAdapter properties. However, you need to create an <b>XMLAdapter</b> object to load the XML into its <b>Tables</b> collection. After creating the XML adapter, you can load an XML file into the XML adapter, set the <b>Select</b> command of the cursor adapter to the desired <b>XMLTable</b> object reference in the <b>XMLAdapter</b> <b>Tables</b> collection, and then call the <b>CursorAdapter</b> <b>CursorFill</b> method to populate the cursor with XML data.</p>
+          <p>To continue this walkthrough, see <a href="#fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor3">Retrieving Data for Cursor Adapters</a>.</p>
+          <p>For more information about how cursor adapters work with XML adapters, see the <a href="/html/5f11e3b6-3281-4067-9d7e-e4a62a4c523d.htm">Create a Cursor from an XML DataSet Sample</a> as an example of how to access an XML file and generate XML DiffGrams and <a href="/html/eb5f9e49-00fe-4827-8608-dfe12e3f6d5e.htm">XML Functionality Using XMLAdapters</a>.</p>
+          <p>For more information about XML adapters and cursor adapters, see <a href="/html/0e51628a-7e55-4025-8e92-cc1b6edee2fc.htm">XMLAdapter Class</a> and <a href="/html/3cd87ac7-582c-43b9-b1f7-006a9a5c7508.htm">CursorAdapter Class</a>.</p>
+        </div>
+    </sections></div><a name="fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor3"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2)" tabindex="0"><img id="sectionToggle2" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Retrieving Data for Cursor Adapters</span></h1><div id="sectionSection2" class="section" name="collapseableSection" style="display: none;">
+      <p>After setting the form's data environment in the DataEnvironment Builder to data source you want to use, create <b>CursorAdapter</b> objects in the form's data environment to retrieve data from the data source. You can create <b>CursorAdapter</b> objects by setting options on the <b>Cursors</b> tab of the CursorAdapter Builder.</p>
+      <h3 class="procedureSubHeading">To create a new cursor adapter</h3><div class="subSection"><ol><li>
+            
+              <p>In the DataEnvironment Builder, click the <b>Cursors</b> tab to make it visible.</p>
+            
+          </li><li>
+            
+              <p>On the <b>Cursors</b> tab, click <b>New</b> to open the CursorAdapter Builder.</p>
+            
+          </li></ol></div>
+      <p>The CursorAdapter Builder appears, displays the <b>Properties</b>, <b>Data Access</b>, and <b>Auto-Update</b> tabs, and creates a new cursor adapter named Cursor1.</p>
+      <p>For more information, see <a href="/html/061524cc-69ae-465b-b73f-25be0685938d.htm">Cursors Tab, DataEnvironment Builder</a>.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Setting Properties for Cursor Adapters</h3><div class="subSection" xmlns="">
+          <p>Set properties for a new cursor adapter by editing settings in the <b>Properties</b> tab of the CursorAdapter Builder.</p>
+          <h3 class="procedureSubHeading">To set properties for a new cursor adapter</h3><div class="subSection"><ol><li>
+                
+                  <p>In the CursorAdapter Builder, click the <b>Properties</b> tab to make it visible if not already visible.</p>
+                
+              </li><li>
+                
+                  <p>On the <b>Properties</b> tab, edit the name for Cursor1 if you want; rename the cursor adapter alias to Customer. </p>
+                  <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                    <p>Usually, you type the name and alias you want for the cursor adapter.</p>
+                  </td></tr></table></div>
+                
+              </li><li>
+                
+                  <p>Click <b>Use DataEnvironment data source</b> to use the data source previously set for the form's data environment.</p>
+                
+              </li></ol></div>
+          <p>For more information, see <a href="/html/a448caa7-66bb-486b-8349-12d70ef29d7f.htm">Properties Tab, CursorAdapter Builder</a>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Specifying How Cursor Adapters Retrieve Data</h3><div class="subSection" xmlns="">
+          <p>After creating a new cursor adapter, specify how the cursor adapter retrieves data from the data source by setting options in the <b>Data Access</b> tab of the CursorAdapter Builder.</p>
+          <p>If you are using the Native, ODBC, or ADO data source type, use the following instructions for constructing the <b>Select</b> command to retrieve data from the data source. If you are using the XML data source type, follow the instructions for specifying a well-formed XML file that contains schema.</p>
+          <h3 class="procedureSubHeading">To construct the Select command for data sources using Native, ODBC, and ADO</h3><div class="subSection"><ol><li>
+                
+                  <p>In the CursorAdapter Builder, click the <b>Data Access</b> tab to make it visible.</p>
+                
+              </li><li>
+                
+                  <p>On the <b>Data Access</b> tab, click <b>Build</b> to open the <b>Select Command Builder</b> dialog box.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>Select Command Builder</b> dialog box, select the CUSTOMERS table in the <b>Table</b> list. </p>
+                  <p>The fields that the CUSTOMERS table contains appear in the list on the left side of the <b>Select Command Builder</b> dialog box. </p>
+                
+              </li><li>
+                
+                  <p>In the list on the left, click CUSTOMERS.* to include the CUSTOMERS table and all its fields in the <b>Select</b> command. </p>
+                  <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                    <p>Usually, if you want to select individual fields in the table for the <b>Select</b> command, click <i>tableName</i>.<i>fieldName</i> to add each field separately to the list of selected fields appearing on the right side of the <b>Select Command Builder</b> dialog box.</p>
+                  </td></tr></table></div>
+                
+              </li><li>
+                
+                  <p>Click the single right arrow (<b>&gt;</b>) to add CUSTOMERS.* to the list of selected fields, and then click <b>OK</b>. </p>
+                  <p>The constructed <b>Select</b> command appears in the <b>Select command</b> box, and the schema for the cursor adapter appears in the <b>Schema</b> box. </p>
+                
+              </li></ol></div>
+          <p>You can set additional options for data retrieval. However, this walkthrough uses the default settings for these options.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>In this walkthrough, buffer mode for the cursor adapter is set to optimistic row buffering by default on the <b>Data Access</b> tab for Native, ODBC, and ADO data source types. Therefore, when you make changes in a grid row on the form and move to another row, those changes are sent to the Customer.dbf table in the data source through the appropriate connection type. For more information about buffer modes, see <a href="/html/d03d6ffa-d842-4157-84aa-f3acbb95b416.htm">BufferModeOverride Property</a>.</p>
+          </td></tr></table></div>
+          <p>For more information about additional options you can set, see <a href="/html/a861bd67-b732-4e94-b3c9-ef2afc18422f.htm">Data Access Tab, CursorAdapter Builder</a>.</p>
+          <h3 class="procedureSubHeading">To specify an XML file for XML data sources</h3><div class="subSection"><ol><li>
+                
+                  <p>In the CursorAdapter Builder, click the <b>Data Access</b> tab to make it visible.</p>
+                
+              </li><li>
+                
+                  <p>On the <b>Data Access</b> tab, click <b>Build</b> located above the <b>Schema</b> box to display the <b>Open</b> dialog box.</p>
+                
+              </li><li>
+                
+                  <p>Browse to the ...\Samples\Solution\Toledo\ folder, and select the GetCustomers.XML file. </p>
+                  <p>The schema for the cursor adapter appears in the <b>Schema</b> box. </p>
+                
+              </li><li>
+                
+                  <p>In the <b>Buffer mode override</b> box, select <b>Optimistic table buffering</b>. </p>
+                  <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                    <p>In this walkthrough, buffer mode for the cursor adapter is set to optimistic table buffering on the <b>Data Access</b> tab for XML data source types to make it possible for the XML adapter to create XML DiffGrams. For more information about buffer mode settings, see <a href="/html/d03d6ffa-d842-4157-84aa-f3acbb95b416.htm">BufferModeOverride Property</a>.</p>
+                  </td></tr></table></div>
+                
+              </li><li>
+                
+                  <p>Click <b>OK</b> to close the CursorAdapter Builder, and then click <b>OK</b> again to close the DataEnvironment Builder. </p>
+                  <p>The new cursor adapter, now named <code>Customer</code>, appears in the Data Environment for the form and contains all the fields from the GetCustomer.xml file. </p>
+                
+              </li></ol></div>
+          <p>You can set additional options for data retrieval. However, except for the buffer mode setting for the cursor created by the cursor adapter in the XML example, this walkthrough uses the default settings for these options. For more information about these options, see <a href="/html/a861bd67-b732-4e94-b3c9-ef2afc18422f.htm">Data Access Tab, CursorAdapter Builder</a>.</p>
+          <p>To continue with the XML example, see <a href="#fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor4">Using the Cursor Adapter on the Form</a>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Configuring Updating for Cursor Adapters</h3><div class="subSection" xmlns="">
+          <p>After constructing the <b>Select</b> command for the cursor adapter to retrieve data, you can specify how the cursor adapter performs updates to the data source by setting options on the <b>Auto-Update</b> tab of the CursorAdapter Builder.</p>
+          <h3 class="procedureSubHeading">To configure how the cursor adapter updates the data source</h3><div class="subSection"><ol><li>
+                
+                  <p>In the CursorAdapter Builder, click the <b>Auto-Update</b> tab.</p>
+                
+              </li><li>
+                
+                  <p>On the <b>Auto-Update</b> tab, select the <b>Auto-update</b> check box. </p>
+                  <p>Selecting the <b>Auto-update</b> check box populates the field list on the <b>Auto-Update</b> tab with fields that you selected on the <b>Data Access</b> tab and enables automatic updating for specified fields. </p>
+                
+              </li><li>
+                
+                  <p>Select the <b>Update all fields</b> check box to designate all fields from the specified table for automatic updating. </p>
+                  <p>A check mark appears in the automatic updating column, indicated by a pencil symbol, for each field in the field list.  </p>
+                
+              </li><li>
+                
+                  <p>Select the check box in the key field column, indicated by a key symbol, for the CUSTOMERID field to designate it as the primary key field.</p>
+                
+              </li><li>
+                
+                  <p>Clear the check box in the automatic updating column for the CUSTOMERID field to prevent it from being modified as the primary key. </p>
+                
+              </li><li>
+                
+                  <p>Click <b>OK</b> to close the CursorAdapter Builder, and then click <b>OK</b> again to close the DataEnvironment Builder. </p>
+                  <p>The new cursor adapter, now named <code>Customer</code>, appears in the Data Environment for the form and contains all the fields from the Customer table as specified. </p>
+                
+              </li></ol></div>
+          <p>You can set additional options for how the cursor adapter updates the data source. However, this walkthrough uses the default settings for these options.</p>
+          <p>For more information, see <a href="/html/25903771-0aa3-4bdf-8171-ba2c4cd1303d.htm">Auto-Update Tab, CursorAdapter Builder</a>.</p>
+        </div>
+    </sections></div><a name="fowlkwalkthroughretrievingdatafromdifferentdatasourcesanchor4"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle3)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle3)" tabindex="0"><img id="sectionToggle3" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Using the Cursor Adapter on the Form</span></h1><div id="sectionSection3" class="section" name="collapseableSection" style="display: none;">
+      <p>After creating the cursor adapter in the form's data environment, you can drop the cursor adapter on the form to create a grid.</p>
+      <h3 class="procedureSubHeading">To create a grid using the created cursor adapter</h3><div class="subSection"><ol><li>
+            
+              <p>In the form's data environment, click and drag the <code>Customer</code> cursor adapter to the form to create a grid. </p>
+              <p>If you are using the XML data source type, type the following code in the form's <b>Init</b> event to create and configure the <b>XMLAdapter</b> object:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL oXMLAdapter as XMLAdapter
+DODEFAULT()
+ThisForm.AddProperty('oXMLAdapter',CREATEOBJECT('XMLAdapter'))
+WITH ThisForm.oXMLAdapter
+   .LoadXml(ThisForm.cRunPath+'getcustomers.xml',.T.)
+ENDWITH
+ThisForm.DataEnvironment.cursor1.SelectCmd="ThisForm.oXMLAdapter.Tables.Item(1)"
+ThisForm.DataEnvironment.cursor1.CursorFill()
+GO TOP
+ThisForm.BindControls = .T.
+ThisForm.grdCustomer.AutoFit()</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>In the Properties window, set the form's <b>BindControls</b> property to False (.F.).</p>
+            
+          </li><li>
+            
+              <p>Save the form in the ...\Samples\Solution\Toledo folder.</p>
+            
+          </li><li>
+            
+              <p>On the Visual FoxPro toolbar, click the <b>Run</b> (!) button to run the form.</p>
+            
+          </li></ol></div>
+      <p>The form appears and displays a grid that contains the following:  </p>
+      <ul><li>
+          <p>Native, ODBC, and ADO data source types: Data from the fields in the CUSTOMER table. </p>
+        </li><li>
+          <p>XML data source type: Data loaded from the XML DataSet, GetCustomer.xml.  </p>
+          <p>When using XML adapters with cursor adapters, you can generate XML DiffGrams using the XML adapter created. For example, the following code creates an XML DiffGram string in a local variable called <code>lcXML</code>:  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL lcXML, llIncludeBefore, llChangesOnly, llIsFile, lcSchemaLocation
+WITH ThisForm.oXMLAdapter
+...* Release XML document but preserve schema.
+....ReleaseXML(.F.)   
+....UTF8Encoded = .T.    &amp;&amp; Indicates international characters.
+....IsDiffgram = .T.       &amp;&amp; Generate XML DiffGram.
+...llIncludeBefore = .T. &amp;&amp; Include &lt;diffgram:before&gt; format.
+...llChangesOnly = .T.   &amp;&amp; Generate only changes made.
+...llIsFile = .F.        &amp;&amp; Sample XML is a stream.
+...lcSchemaLocation = "" &amp;&amp; Sample schema is inline.
+....ToXML("lcXML",lcSchemaLocation,llIsFile,llIncludeBefore,llChangesOnly)
+ENDWITH</pre></td></tr></table></span></div>
+        </li></ul>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/2d68a487-bf11-4bc0-871f-3cdd7a3f658e.htm">Manage Data Access Using CursorAdapters Sample</a></span><br /><span class="linkTerms"><a href="/html/c41d9ad6-2476-4023-81a4-d80619800f2f.htm">Load and Generate XML Using the XMLAdapter Class Sample</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1690045a-ff3b-4707-8da8-f5b01ac684f0.htm">Walkthroughs</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Walkthrough: Retrieving Data from Different Data Sources">
+</OBJECT>

@@ -1,0 +1,183 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>BLANK Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">BLANK Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Clears data from the specified fields in the current record or from all fields in the current record when issued without additional arguments.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+BLANK [FIELDS <span class="parameter">FieldList</span>] [DEFAULT [AUTOINC]] [<span class="parameter">Scope</span>] [FOR <span class="parameter">lExpression1</span>] 
+   [WHILE <span class="parameter">lExpression2</span>] [NOOPTIMIZE] [IN <span class="parameter">nWorkArea</span> | <span class="parameter">cTableAlias</span>]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">[FIELDS <span class="parameter">FieldList</span>] </span></dt><dd>
+          <p>Clears only the fields you specify with <span class="parameter">FieldList</span>. If you omit the <b>FIELDS</b> clause, all fields in a record are cleared by default. Any field you specify in an unselected work area must be prefaced with the alias of the work area.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p><b>BLANK</b> does not clear field data of a record in another related work area if the record pointer is at the end of the file in the current work area. The record pointer must be on a record in the current work area in order for <b>BLANK</b> to act on the fields in the related record.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[DEFAULT [AUTOINC]] </span></dt><dd>
+          <p>Initializes specified fields to their default values as specified with the DEFAULT clause for tables that belong to a database and cursors. If no fields are specified, the default values of all fields in the current record are initialized. <b>DEFAULT</b> does not apply to free tables. </p>
+          <p>The <b>AUTOINC</b> keyword specifies to include all automatically incrementing fields. If you omit <b>AUTOINC</b>, the automatically incrementing fields are left intact with their original values.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Performing updates to automatically incrementing fields requires locking the table header. If you call the <b>BLANK</b> command with the DEFAULT AUTOINC clause with the table file opened in shared mode, is unlocked, and the <b>SET</b> <b>MULTILOCKS</b> command is set to <code>OFF</code>, Visual FoxPro generates an error.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">Scope</span>
+        </span></dt><dd>
+          <p>Specifies a range of records to clear. The default scope for <b>BLANK</b> is the current record (NEXT 1). Only the records that fall within the range are cleared. </p>
+          <p>The scope clauses are: <b>ALL</b>, <b>NEXT</b> <span class="parameter">nRecords</span>, <b>RECORD</b> <span class="parameter">nRecordNumber</span>, and <b>REST</b>.</p>
+          <p>Commands that include the <span class="parameter">Scope</span> parameter operate only on the table in the active work area.   </p>
+          <p>For more information on scope clauses, see <span class="linkTerms"><a href="/html/c8d51e13-0119-4fc5-a0df-b6a9ab7997bb.htm">Scope Clauses</a></span>.  </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FOR <span class="parameter">lExpression1</span></span></dt><dd>
+          <p>Clears field data in records for which <span class="parameter">lExpression1</span> evaluates to True (.T.). Rushmore Query Optimization optimizes <b>BLANK</b> <b>FOR</b> if <span class="parameter">lExpression1</span> is an optimizable expression. A discussion of Rushmore Query Optimization appears in <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WHILE <span class="parameter">lExpression2</span></span></dt><dd>
+          <p>Specifies a condition whereby field data in records is cleared as long as the logical expression <span class="parameter">lExpression2</span> evaluates to True (.T.).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOOPTIMIZE </span></dt><dd>
+          <p>Prevents Rushmore optimization of <b>BLANK</b>. For more information see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN <span class="parameter">nWorkArea</span>| <span class="parameter">cTableAlias</span></span></dt><dd>
+          <p>Specifies the work area or table alias affected by the <b>BLANK</b> command. Use this clause to specify a work area or a table outside the current work area.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>To determine if a field in a record is blank, use <b>ISBLANK( )</b>.</p>
+      <p>To add a new blank record to the end of a table, use <b>APPEND</b> <b>BLANK</b>. </p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example opens the <code>customer</code> table in the <code>testdata</code> database. The contents of the first record are displayed. <b>SCATTER</b> is used to save the contents of the record to an array. The record is cleared with <b>BLANK</b>, and the contents of the record are displayed again. <b>GATHER</b> is used to restore the original record contents, and the restored record contents are displayed again.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE customer  &amp;&amp; Open customer table
+CLEAR
+DISPLAY  &amp;&amp; Displays the current record
+SCATTER TO gaCustomer  &amp;&amp; Create array with record contents
+BLANK  &amp;&amp; Clear the record
+DISPLAY  &amp;&amp; Displays the blank record 
+GATHER FROM gaCustomer  &amp;&amp; Restore original record contents
+DISPLAY  &amp;&amp; Display the restored record</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/7210015f-dc18-451e-97d7-c1c3b86d5a2a.htm">APPEND Command</a></span><br /><span class="linkTerms"><a href="/html/714bd634-6f29-4024-856b-7b669f0a4350.htm">EMPTY( ) Function</a></span><br /><span class="linkTerms"><a href="/html/17571b10-3976-427f-bc75-b96713cfbe7f.htm">ISBLANK( ) Function</a></span><br /><span class="linkTerms"><a href="/html/7f52db34-68fc-4f9e-abca-fa3f7f02ca19.htm">REPLACE Command (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="BLANK Command">
+<param name="ALink Name" value="BLANK">
+</OBJECT>

@@ -1,0 +1,767 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>LOADPICTURE( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+    </script>
+    <script src="../local/SplitScreen.js">
+    </script>
+    <script src="../local/Dropdown.js">
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">LOADPICTURE( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+		  </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+<p class="vfpx">This topic was completely updated by the VFPX community.</p>
+		
+    <p>Creates an object reference for a bitmap, icon, or Windows meta file.</p>
+	<div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+LOADPICTURE([<span class="parameter">cFileName</span>])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cFileName</span>
+        </span></dt><dd>
+          <p>Specifies the image file on disk for which an object is created. <br>
+<br>The following image types are supported:</P><br>
+          <div class="labelheading"><b>Supported Image Types</b></div>
+		  <div class="tableSection">
+		    <table width="100%" cellspacing="2" cellpadding="5">
+			  <tr>
+                <th>
+                  Image Type Groups
+                </th>
+                <th>
+                  Filename Extensions
+                </th>
+              </tr>
+			  <tr>
+                <td>
+                  <p>bitmaps</p>
+                </td>
+                <td>
+                  <p>.bmp, .jpg, .jpeg, .jpe, .jfif, .gif, .giff, .gfa</p>
+                </td>
+              </tr>
+			  <tr>
+                <td>
+                  <p>icons</p>
+                </td>
+                <td>
+                  <p>.ico</p>
+                </td>
+              </tr>
+			  <tr>
+                <td>
+                  <p>windows metafiles</p>
+                </td>
+                <td>
+                  <p>.wmf</p>
+                </td>
+              </tr>
+			  <tr>
+                <td>
+                  <p>windows enhanced metafiles</p>
+                </td>
+                <td>
+                  <p>.emf</p>
+                </td>
+              </tr>
+			  <tr>
+                <td>
+                  <p>cursor</p>
+                </td>
+                <td>
+                  <p>.cur</p>
+                </td>
+              </tr>
+			</table>
+		  </div>
+		  
+		  <br><p>The following restrictions (tested with VFP 9 SP2 and OlePro32.dll Version 6.0.6002.18005) exist:</P><br>
+		  
+          <div class="labelheading"><b>Known Limitations</b></div>
+		  <div class="tableSection">
+		    <table width="100%" cellspacing="2" cellpadding="5">
+			  <tr>
+                <th>
+                  Image Type Groups
+                </th>
+                <th>
+                  Restrictions & Issues
+                </th>
+              </tr>
+			  <tr>
+                <td>
+                  <p>bitmaps</p>
+                </td>
+                <td>
+                  <p>Loading these <b>.tif</b> and <b>.png</b> formats will cause an OLE error.</p>
+                </td>
+              </tr>
+			  <tr>
+                <td>
+                  <p>icons</p>
+                </td>
+                <td>
+                  <p>Icons are allowed with sizes up to 128x128 and must not have more than 256 colors. Even if there is more than one icon stored in the icon file, always only the smallest icon gets displayed. The icon file may contain much more icons - even with more colors and larger sizes - as long as there is at least one that complies with the rules above, then no exception is thrown.</p>
+                </td>
+              </tr>
+			  <tr>
+                <td>
+                  <p>cursor</p>
+                </td>
+                <td>
+                  <p>Cursor files must not have more than 1K of file size, otherwise an OLE error is generated. Cursor files containing 16 color cursors can be loaded flawlessly, but only monochrome output is supported. Loading an animated cursor (.ani) causes an OLE error to be raised.</p>
+                </td>
+              </tr>
+			</table>
+		  </div>
+		  
+		  
+		  <br>
+		  <b>Null Picture Support</b>
+<p>If <span class="parameter">cFileName</span> is omitted, the "null picture" is returned.<br> 
+		  You can include GETPICT( ) as <span class="parameter">cFileName</span> to display the Open dialog from which you can choose a bitmap file.</p>
+		  
+        </dd>
+	  </dl>
+	  
+	  
+	  
+	  
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1>
+  <div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Object</p>
+  <p><b>LOADPICTURE() function</b> returns a <b>Picture type COM object reference</b> that can be assigned to ActiveX controls and VFP’s Image object’s <b>PictureVal property</b>. 
+  However, the real primary interface <b>iPicture</b> only can be retrieved using code like this:<br>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th>&nbsp;</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2">
+	<pre>oIPicture = GETINTERFACE(LOADPICTURE(GETPICT()), "iPicture")</pre></td></tr></table></span></div>
+</p>
+  
+  </div>
+  
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0">
+  <img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1>
+  <div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+  
+  <p>Picture objects provide a language-neutral abstraction for bitmaps, icons, and metafiles. 
+  As with the standard font object, the system provides a standard implementation of the picture object. 
+  Its primary interfaces are <b>iPicture</b> and <b>iPictureDisp</b>. 
+  A picture object is created with <b>OleCreatePictureIndirect</b> and supports both the <b>iPicture</b> and the <b>iPictureDisp</b> interfaces. 
+  The OLE-provided picture object implements the complete semantics of the <b>iPicture</b> and <b>iPictureDisp</b> interfaces. 
+  In other words, there’s no need to use another interface than <b>iPicture</b>!</p>
+  
+ <p><b>LOADPICTURE( ) Function</b> internally wraps the <b>OleCreatePictureIndirect() function</b> implemented in <b>OleAut32.dll</b>. 
+ Thus, all you can read about that function (above and online) is also true for VFP’s <b>LOADPICTURE() function</b>. 
+ <b>LOADPICTURE( ) Function</b> was added to VFP’s vocabulary to make it easier to load images with COM interfaces that many presentation properties of ActiveX controls require for their settings. 
+ For example, the ActiveX Outline control has a <b>PictureOpen property</b> that requires a COM object image reference for its setting.</p>
+  
+  <p>The COM object returned by <b>LOADPICTURE( ) Function</b> hides its primary interface <b>iPicture</b>. 
+  In contrast to the reference returnd by <b>LOADPICTURE( ) Function</b>, the OLE-image’s primary <b>iPicture</b> interface is the only fully functional one.
+  In other words, only <b>iPitcure</b> can be used in VFP programms without generating any OLE errors. 
+  Because <b>iPicture</b> is a superset of Picture it may be, better, it should be used everywhere instead of the one returnd by <b>LOADPICTURE( ) Function</b>!<br> 
+  Example #1 in the examples section below proves that it makes no difference which OLE image interface gets assigned to a <b>oIMAGE.PICTUREVAL property.</b></p>
+  
+  <p>The IID of the <b>iPicture</b> interface is defined as “{7BF80980-BF32-101A-8BBB-00AA00300CAB}”. <br>
+  
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th>The following two lines of code both create a null picture OLE image object:</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2">
+	<pre>oIPicture1 = GETINTERFACE(LOADPICTURE(), "iPicture") 
+oIPicture2 = CREATEOBJECTEX("StdPicture","","{7BF80980-BF32-101A-8BBB-00AA00300CAB}")</pre></td></tr></table></span></div>
+  </p>
+  </div>
+  
+  <br>
+  
+  <h1 class="heading"><span onclick="ExpandCollapse(InterfaceToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(InterfaceToggle)" tabindex="0">
+  <img id="InterfaceToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Interface Members</span></h1>
+  <div id="InterfaceSection" class="section" name="collapseableSection" style="display: none;">
+<p>The following table summarizes the PEMs <b>iPicture</b> interface.</P><br>
+		  
+          <div class="labelheading"><b>iPicture Interface Members</b></div>
+		  <div class="tableSection">
+		    <table width="100%" cellspacing="2" cellpadding="5">
+			  <tr>
+                <th>PEM</th>
+                <th>Name</th>
+                <th>Used for</th>
+                <th>ValueType</th>
+                <th>Read/Writable</th>
+              </tr>
+			  <tr>
+                <td><p>property</p></td>
+                <td><p>Attributes</p></td>
+                <td><p>The current set of the picture's bit attributes.</p></td>
+                <td><p>DWORD (int)</p></td>
+                <td><p>readonly</p></td>
+              </tr>
+			  <tr>
+                <td><p>property</p></td>
+                <td><p>CurDC</p></td>
+                <td><p>The current device context into which this picture is selected.</p></td>
+                <td><p>HDC (long)</p></td>
+                <td><p>readonly</p></td>
+              </tr>
+			  <tr>
+                <td><p>property</p></td>
+                <td><p>Handle</p></td>
+                <td><p>Handle to the picture managed within this picture object.</p></td>
+                <td><p>OLE_Handle (int)</p></td>
+                <td><p>readonly</p></td>
+              </tr>
+			  <tr>
+                <td><p>property</p></td>
+                <td><p>Height</p></td>
+                <td><p>The current height of the picture in the picture object.</p></td>
+                <td><p>OLE_XSIZE_HIMETRIC (long)</p></td>
+                <td><p>readonly</p></td>
+              </tr>
+			  <tr>
+                <td><p>property</p></td>
+                <td><p>hPal</p></td>
+                <td><p>The current palette of the picture (if any).</p></td>
+                <td><p>OLE_Handle (int)</p></td>
+                <td><p>read/writable</p></td>
+              </tr>
+			  <tr>
+                <td><p>property</p></td>
+                <td><p>KeepOriginalFormat</p></td>
+                <td><p>The current value of the picture object's KeepOriginalFormat property.</p></td>
+                <td><p>Bool</p></td>
+                <td><p>read/writable</p></td>
+              </tr>
+			  <tr>
+                <td><p>property</p></td>
+                <td><p>Type</p></td>
+                <td><p>The current type of the picture.</p></td>
+                <td><p>Short (int)</p></td>
+                <td><p>readonly</p></td>
+              </tr>
+			  <tr>
+                <td><p>property</p></td>
+                <td><p>Width</p></td>
+                <td><p>The current width of the picture in the picture object.</p></td>
+                <td><p>OLE_XSIZE_HIMETRIC (long)</p></td>
+                <td><p>readonly</p></td>
+              </tr>
+			  <tr>
+                <td><p>method</p></td>
+                <td><p>PictureChanged()</p></td>
+                <td><p>Notifies the picture object that its picture resource changed.</p></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+			  <tr>
+                <td><p>method</p></td>
+                <td><p>Render()</p></td>
+                <td><p>Draws the specified portion of the picture onto the specified device context, positioned at the specified location.</p></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+			  <tr>
+                <td><p>method</p></td>
+                <td><p>SaveAsFile()</p></td>
+                <td><p>Saves the picture's data into a stream in the same format that it would save itself into a file.</p></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+			  <tr>
+                <td><p>method</p></td>
+                <td><p>SelectPicture()</p></td>
+                <td><p>Selects a bitmap picture into a given device context, returning the device context in which the picture was previously selected as well as the picture's handle.</p></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+			  </table>
+		  </div>
+<br>
+<p>The <b>Attributes property</b> is said to hold the picture’s bit attributes. Actually, there are only two, which can be set alone, or additive. The following table lists both possible values:</p>
+<br>		  
+          <div class="labelheading"><b>iPicture.Attributes Enumeration</b></div>
+		  <div class="tableSection">
+		    <table width="100%" cellspacing="2" cellpadding="5">
+			  <tr>
+                <th>Constant</th>
+                <th>Description</th>
+                <th>Value</th>
+              </tr>		  
+			  <tr>
+                <td><p>PICTURE_SCALABLE</p></td>
+                <td><p>The picture object is scalable, such that it can be redrawn with a different size than was used to create the picture originally. Metafile-based pictures are considered scalable; icon and bitmap pictures, while they can be scaled, do not express this attribute because both involve bitmap stretching instead of true scaling.</p></td>
+                <td><p>1</p></td>
+              </tr>
+			  <tr>
+                <td><p>PICTURE_TRANSPARENT</p></td>
+                <td><p>The picture object contains an image that has transparent areas, such that drawing the picture will not necessarily fill in all the spaces in the rectangle it occupies. Metafile and icon pictures have this attribute; bitmap pictures do not.</p></td>
+                <td><p>2</p></td>
+              </tr>
+			  </table>
+		  </div>
+<br>
+<p>The following table lists all possible values of the <b>iPicture.Type property</b>:</p>
+<br>		  
+          <div class="labelheading"><b>iPicture.Type Property Values</b></div>
+		  <div class="tableSection">
+		    <table width="100%" cellspacing="2" cellpadding="5">
+			  <tr>
+                <th>Constant</th>
+                <th>Description</th>
+                <th>Value</th>
+              </tr>		  
+			  <tr>
+                <td><p>PICTYPE_UNINITIALIZED</p></td>
+                <td><p>The picture object is currently uninitialized. <b>This value is never be returned within VFP</b>.</p></td>
+                <td><p>-1</p></td>
+              </tr>
+			  <tr>
+                <td><p>PICTYPE_NONE</p></td>
+                <td><p>A new picture object is to be created without an initialized state. <b>This value is returned from VFP if LoadPicture() is used without a parameter</b>.</p></td>
+                <td><p>0</p></td>
+              </tr>
+			  <tr>
+                <td><p>PICTYPE_BITMAP</p></td>
+                <td><p>The picture type is a bitmap.</p></td>
+                <td><p>1</p></td>
+              </tr>
+			  <tr>
+                <td><p>PICTYPE_METAFILE</p></td>
+                <td><p>The picture type is a metafile.</p></td>
+                <td><p>2</p></td>
+              </tr>
+			  <tr>
+                <td><p>PICTYPE_ICON</p></td>
+                <td><p>The picture type is an icon.</p></td>
+                <td><p>3</p></td>
+              </tr>
+			  <tr>
+                <td><p>PICTYPE_ENHMETAFILE</p></td>
+                <td><p>The picture type is an enhanced metafile.</p></td>
+                <td><p>4</p></td>
+              </tr>
+			  </table>
+		  </div>
+<br>
+<p>The most interesting method of the COM image object’s <b>iPicture interface</b> is <b>render()</b> which also works flawlessly only when called on the <b>iPicture interface</b>.  
+The following table summarises the parameters of the <b>render() method</b>:</p>
+<br>
+         <div class="labelheading"><b>Render() Parameter Galore</b></div>
+		  <div class="tableSection">
+		    <table width="100%" cellspacing="2" cellpadding="5">
+			  <tr>
+                <th>Parameter</th>
+                <th>Used for</th>
+                <th>Scale Unit</th>
+              </tr>		  
+			  <tr>
+                <td><p>hdc</p></td>
+                <td><p>A handle of the device context on which to render the image.</p></td>
+                <td><p></p></td>
+              </tr>
+			  <tr>
+                <td><p>x</p></td>
+                <td><p>The horizontal coordinate in hdc at which to place the rendered image (X-position of upper left corner of output rectangle).</p></td>
+                <td><p>pixel</p></td>
+              </tr>
+			  <tr>
+                <td><p>y</p></td>
+                <td><p>The vertical coordinate in hdc at which to place the rendered image (X-position of upper left corner of output rectangle).</p></td>
+                <td><p>pixel</p></td>
+              </tr>
+			  <tr>
+                <td><p>cx</p></td>
+                <td><p>The horizontal dimension (width) of the destination rectangle (with of output rectangle).</p></td>
+                <td><p>pixel</p></td>
+              </tr>
+			  <tr>
+                <td><p>cy</p></td>
+                <td><p>The vertical dimension (height) of the destination rectangle (height  of output rectangle).</p></td>
+                <td><p>pixel</p></td>
+              </tr>
+			  <tr>
+                <td><p>xSrc</p></td>
+                <td><p>The horizontal offset in the source picture from which to start copying.</p></td>
+                <td><p>HiMetric</p></td>
+              </tr>
+			  <tr>
+                <td><p>ySrc</p></td>
+                <td><p>The vertical offset in the source picture from which to start copying.</p></td>
+                <td><p>HiMetric</p></td>
+              </tr>
+			  <tr>
+                <td><p>cxSrc</p></td>
+                <td><p>The horizontal extent to copy from the source picture (width of image source’s clipping region AND direction of readout).</p></td>
+                <td><p>HiMetric</p></td>
+              </tr>
+			  <tr>
+                <td><p>cySrc</p></td>
+                <td><p>The vertical extent to copy from the source picture (height of image source’s clipping region AND direction of readout).</p></td>
+                <td><p>HiMetric</p></td>
+              </tr>
+			  <tr>
+                <td><p>lprcWBounds</p></td>
+                <td><p>If <b>hdc</b> is a metafile device context, the <b>lprcWBounds  parameter</b> points to a <b>RECTL structure</b> specifying the bounding rectangle in the underlying metafile. 
+				The rectangle structure contains the window extent and window origin. 
+				These values are useful for drawing metafiles. 
+				The rectangle indicated by lprcBounds is nested inside this <b>lprcWBounds rectangle</b>; 
+				they are in the same coordinate space. 
+				If <b>hdcDraw</b> is not a metafile device context, <b>lprcWBounds</b> will be NULL. 
+				If <b>hdcDraw</b> is a metafile device context, <b>lprcWBounds</b> cannot be NULL!</p></td>
+                <td><p></p></td>
+              </tr>
+			  </table>
+			  
+			  <p>The method returns standard values like E_FAIL, E_INVALIDARG and E_OUTOFMEMORY, as well as S_OK, E_POINTER and CTL_E_INVALIDPROPERTYVALUE. These values are described on MSDN.</p>
+		  </div>
+ 
+   </div>
+ 
+  <h1 class="heading"><span onclick="ExpandCollapse(ApplicationsToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(ApplicationsToggle)" tabindex="0">
+  <img id="ApplicationsToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Applications</span></h1>
+  <div id="ApplicationsSection" class="section" name="collapseableSection" style="display: none;">
+<p>The render function has plenty of parameters. Some of them passing in pixel values, others HiMetric values.<br> 
+<b>Example #3</b> has some useful conversions as well as other supporting functions and definitions.<br> 
+To figure out how <b>render()</b> works try the VFP code below; type it in line by line into VFP’s command window:<br>
+</P>
+	<div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0">
+	<tr><th>Direct input into VFP’s command window</th>
+	<th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2">
+		<pre>
+* locate an image with round about 100 x 100 pixels
+goPic = LOADPICTURE(GETPICT())
+gIP = GETINTERFACE(m.goPic, "iPicture")
+goForm = CREATEOBJECT("Form")
+goForm.Show()
+* declare access to the _client_area_ of a window
+DECLARE Integer GetDC IN USER32 integer HWnd
+* hDC should be <> 0 (otherwise that's an error)!
+hDC = GetDC(goForm.HWnd)
+* render your image directly onto form's client area
+gIP.Render(m.hDC,0,0,100,100,0,gIP.Height,gIP.Width,- gIP.Height,NULL)
+* declare release function
+DECLARE Integer ReleaseDC IN USER32 integer HWnd, integer hDC
+* next line should print 1 on the form's background >> "Okay"
+? ReleaseDC(m.goForm.HWnd, m.hDC)
+* declare access to the _whole_ window
+DECLARE Integer GetWindowDC IN USER32 integer HWnd
+* hDC now references form's caption an border areas as well!
+hDC = GetWindowDC(goForm.HWnd)
+* render out partially overwriting form's border and caption
+gIP.Render(m.hDC,0,0,100,100,0,gIP.Height,gIP.Width,- gIP.Height,NULL)
+* never forget to free an allocated device context
+? ReleaseDC(m.goForm.HWnd, m.hDC)
+		</pre></td></tr></table></span></div>
+ 
+ <p><b>iPicture.Render()</b> qualifies for painting on otherwise unreachable form regions, like the TitleBar or WindowBorders. 
+ Another interesting application for direct rendering stems from the fact that no VFP object reference is necessary for painting. 
+ The <b>render() method</b> solely uses a common windows handle. Thus, one can render on any known device context.<br>
+ If one encounters the so-called hourglass problem, working with a COM-based image can be the preferred workaround. 
+ The hourglass mouse cursor gets displayed by the operation system during lengthy disk accesses. 
+ Sometimes VFP does not reset the hourglass mouse cursor correctly. 
+ Thus, the user still sees the “busy working” icon although VFP already is idle, as long she doesn’t touch the mouse. 
+ Most often these disk accesses stem from refreshing pictures loaded into native Image-Objects using the <b>Image.Picture property</b>.
+ Storing a COM memory-based object to the Image-Object’s <b>.PictureVal property</b> instead, never causes any disk access. 
+ Thus, no more hourglass mouse cursor will appear after a refresh!
+</p>
+ 
+ </div>
+ 
+   <h1 class="heading"><span onclick="ExpandCollapse(DrawbackToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(DrawbackToggle)" tabindex="0">
+  <img id="DrawbackToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Drawback</span></h1>
+  <div id="DrawbackSection" class="section" name="collapseableSection" style="display: none;">
+ 
+ <p><b>iPicture.Render()</b> does its work outside of - and unnoticed by – the VFP engine itself. 
+ That’s why VFP has no idea of what was painted “between the lines”. 
+ Each time VFP refreshes the form’s area (we’ve just rendered our picture onto), will clear out our image. 
+ To make rendered output persistent measures have to be taken against VFP wiping it out! </p>
+ <p>There is another BUG one has to be aware of, when employing the hourglass workaround described above!<br> 
+ To see what happens, try the following code:</p>
+ 	<div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0">
+	<tr><th>Direct input into VFP’s command window</th>
+	<th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2">
+		<pre>
+LOCAL lnLoop, oComPic1, oComPic2
+oComPic1 = LOADPICTURE(GETFILE())
+oComPic2 = LOADPICTURE(GETFILE())
+TRY
+	_Screen.Addobject("oImage","IMAGE")
+CATCH
+FINALLY
+	_Screen.oImage.Visible = .T.
+ENDTRY
+FOR lnLoop = 1 to 100
+	_Screen.oImage.PictureVal = m.oComPic1
+	_Screen.oImage.PictureVal = m.oComPic2
+NEXT 
+*//
+*\\ whereas the next loop will break somewhere down the road:
+FOR lnLoop = 1 to 100
+	_Screen.oImage.PictureVal = m.oComPic1
+	_Screen.oImage.PictureVal = m.oComPic1
+	_Screen.oImage.PictureVal = m.oComPic1
+	_Screen.oImage.PictureVal = m.oComPic2
+NEXT	
+		</pre></td></tr></table></span></div>
+ <p>One can see, that the first loop executes flawlessly, the second one breaks after only a few loops with a “Property value is invalid” error message! 
+ This bug is hard to track and occurs only in cases when someone tries to assign the same COM-reference more than once in a row! 
+ The workaround for this is to keep track which COM-reference is actually assigned to the Image’s PictureVal property. 
+ Never ever then reassign the same reference a second time (overwriting the first one with a copy of itself)! 
+ BTW: It doesn’t matter what interface you are using. 
+ The error seems to stem from VFP’s Image class instance.</p>
+ 
+ 
+  </div>
+  <h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0">
+  <img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Examples</span></h1>
+  <div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+  
+  
+<p>The following example shows that both interfaces (<b>Picture</b> and <b>IPicture</b>) of a COM image instance can be assigned to VFP’s <b>Image.PictureVal property</b>:</p>
+    <div class="code"><span codeLanguage="other">
+	<table width="100%" cellspacing="0" cellpadding="0">
+	<tr><th>Example #1</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2">
+<pre>PUBLIC goPic AS Object, goIPic AS Object
+goPic = LOADPICTURE(GETPICT())
+goIPic = GETINTERFACE(m.goPic, "iPicture")
+_SCREEN.AddObject("oPic1","IMAGE")
+_SCREEN.AddObject("oPic2","IMAGE")
+WITH _SCREEN.oPic1
+	.VISIBLE = .T.
+	.PICTUREVAL = m.goPic && "Picture"-Interface
+ENDWITH
+WITH _SCREEN.oPic2
+	.LEFT = 110
+	.VISIBLE = .T.
+	.PICTUREVAL = m.goIPic && "IPicture"-Interface
+ENDWITH
+HIDE WINDOWS ALL
+WAIT WINDOW "Press any key..."
+_SCREEN.RemoveObject("oPic1")
+_SCREEN.RemoveObject("oPic2")
+STORE NULL TO goPic, goIPic
+CLEAR
+SHOW WINDOWS ALL</pre></td></tr></table></span></div>
+ 
+<p>The following example shows how to query the <b>iPicture interface</b> of a COM image instance. 
+Intentionally, there are no Try…Catch…Endtry sections in this demo code, so that OLE errors may occur. 
+You have to run the code snippet multiple times with different image types to see them.</p>
+    <div class="code"><span codeLanguage="other">
+	<table width="100%" cellspacing="0" cellpadding="0">
+	<tr><th>Example #2</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2">
+<pre>goPic = LOADPICTURE(GETPICT())
+IF VARTYPE(m.goPic) == "O"
+	goIPic = GETINTERFACE(m.goPic, "iPicture")
+	IF VARTYPE(m.goIPic) == "O"
+		CLEAR && just some informal output:
+		WITH m.goIPic
+			?
+			? "Properties of 'IPicture'-Interface:"
+			? "Attributes"		,.Attributes
+			*\\ next line will fail if an ICOn loaded
+			? "CurDC"	,.CurDC
+			? "Handle"	,.Handle
+			? "Height"	,.Height
+			*\\ next line will fail if an ICOn loaded
+			? "hPal"	,.hPal
+			? "KeepOriginalFormat",.KeepOriginalFormat
+			? "Type"	,.Type
+			? "Width"	,.Width
+			?
+		ENDWITH
+	ENDIF
+ENDIF
+</pre></td></tr></table></span></div>
+<p>The following code is a collection of supporting functions and declarations that come in handy while programming OLE image objects.</p>
+    <div class="code"><span codeLanguage="other">
+	<table width="100%" cellspacing="0" cellpadding="0">
+	<tr><th>Example #3</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2">
+<pre>
+* Supporting Functions & DEFINEs
+#DEFINE INCH2MILLIMETER 25.4 && 1 Inch = 25.4 millimeters
+#DEFINE INCH2HIMETRICS (INCH2MILLIMETER * 100) && 1 HIMETRIC = 0.01
+FUNCTION PXL2HIME(tnPixel AS Integer) AS Integer
+	* Pixel to HiMetric conversion
+	LOCAL lnPixelsOnOneHiMetricUnit AS Integer
+	lnPixelsOnOneHiMetricUnit = INCH2HIMETRICS / GetDPI()
+RETURN ROUND(lnPixelsOnOneHiMetricUnit * m.tnPixel, 0)
+ENDFUNC
+FUNCTION HIME2PXL(tnHimetric AS Integer) AS Integer
+	* HiMetric to Pixel conversion
+	LOCAL lnPixelsOnOneHiMetricUnit AS Integer
+	lnPixelsOnOneHiMetricUnit = INCH2HIMETRICS / GetDPI()
+RETURN ROUND(m.tnHimetric / m.lnPixelsOnOneHiMetricUnit, 0)
+ENDFUNC
+FUNCTION GetDPI(tnHDC AS Integer) AS Integer
+      * retrieve dots per inch resolution 
+      * for VFP's _SCREEN device context
+	DECLARE Integer GetDeviceCaps IN GDI32 integer hdc, integer nIndex
+	DECLARE Integer GetWindowDC IN USER32 integer HWnd
+	DECLARE Integer ReleaseDC IN USER32 integer HWnd, integer hDC
+	* For simplicity, we assume X- and Y- dimensions 
+      * using the same DPI resolution.
+	#DEFINE LOGPIXELSX 88 && Logical pixels/inch in X	
+      #DEFINE LOGPIXELSY 90 && Logical pixels/inch in Y
+	* Get VFP's _Screen-hDC to calculate resolution:
+	LOCAL lhDC AS Integer, lnDPI AS Integer
+	STORE 0 TO lhDC, lnDPI
+	lhDC = GetWindowDC(_Screen.HWnd)
+	IF NOT m.lhDC = 0
+		lnDPI = GetDeviceCaps(m.lhDC, LOGPIXELSX)
+	ELSE
+		lnDPI = 96 && default to 96 DPI
+	ENDIF
+	* Free device context
+	= ReleaseDC(_Screen.HWnd, m.lhDC)
+RETURN m.lnDPI
+ENDFUNC
+FUNCTION GetCanvas(tnHWND AS Integer, tlChild AS Boolean) AS Integer
+	* Retrieve hDC (handle DeviceContext) of window handle
+	* tlChild = TRUE  := Use GetDC()
+	* tlChild = FALSE := Use GetWindowDC()
+	DECLARE Integer GetDC IN USER32 integer HWnd
+	DECLARE Integer GetWindowDC IN USER32 integer HWnd
+	LOCAL lnHDC AS Integer
+	IF m.tlChild
+		lnHDC = GetDC(m.tnHWND)
+	ELSE
+		lnHDC = GetWindowDC(m.tnHWND)
+	ENDIF
+RETURN m.lnHDC
+ENDFUNC
+FUNCTION ReleaseCanvas(tnHWND AS Integer, tnHDC AS Integer) AS Integer
+	* Releases a borrowed hDC
+	DECLARE Integer ReleaseDC IN USER32 integer HWnd, integer hDC
+RETURN ReleaseDC(m.tnHWND, m.tnHDC)
+ENDFUNC
+* The following function is not bullert-proof, as it fails on forms with scrollbars (oForm.Scrollbars > 0)
+FUNCTION GetChildAreaCanvas(tnhWnd AS Integer) AS Integer
+	* VFP ‘TopLevelForms’ (oForm.ShowWindow = 2) have
+	* a secondary window inside the outer one.
+	* This is also true for forms showing scrollbars!
+	LOCAL lnVfpHANDLE AS Integer, lnClienthWnd AS Integer, lnHDC AS Integer
+	* Convert the given Windows hWnd to an internal VFP WHANDLE
+	lnVfpHANDLE = SYS(2326, m.tnhWnd)
+	* Retrieve the Windows hWnd for a client window 
+	* (WCLIENTWINDOW) of a specified Visual FoxPro parent window
+	lnClienthWnd = SYS(2325, m.lnVfpHANDLE)
+	* Check if there is a WCLIENTWINDOW
+	IF lnClienthWnd = lnVfpHANDLE
+		* No such WCLIENTWINDOW, return child’s client area
+		lnHDC = GetCanvas(m.tnhWnd, .T.)	
+	ELSE
+		* There IS a WCLIENTWINDOW!
+		* Get the device context handle for the 
+		* whole client area of that window:
+		lnHDC = GetCanvas(lnClienthWnd)
+	ENDIF
+RETURN m.lnHDC
+ENDFUNC
+</pre></td></tr></table></span></div>
+  </div>
+  
+  <h1 class="heading">
+  <span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0">
+  <img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1>
+  <div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;">
+  <h4 class="subHeading">Reference</h4>
+  <span class="linkTerms"><a href="/html/bb1badc1-71eb-41d8-ab05-643ef068c9b1.htm">GETPICT( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/15b40ac6-50fc-4a30-8c5f-b26151a5286c.htm">SAVEPICTURE( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/3de62792-34eb-49e3-8009-2921654c94c7.htm">Picture Property (Visual FoxPro)</a></span><br />
+  <h4 class="subHeading">Other Resources</h4>
+  <span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="LOADPICTURE( ) Function">
+<param name="ALink Name" value="LOADPICTURE">
+</OBJECT>

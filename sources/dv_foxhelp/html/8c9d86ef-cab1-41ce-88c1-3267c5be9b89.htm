@@ -1,0 +1,173 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>LOCFILE( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">LOCFILE( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Locates a file on disk and returns the file name with its path.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+LOCFILE(<span class="parameter">cFileName</span> [, <span class="parameter">cFileExtensions</span>] [, <span class="parameter">cFileNameCaption</span>])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cFileName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the file to locate. If <span class="parameter">cFileName</span> includes only a file name, LOCFILE( ) searches the Visual FoxPro default directory or folder first. If the file is not found in the default directory or folder, the Microsoft Visual FoxPro path is then searched. Use SET PATH to specify the Visual FoxPro path.</p>
+          <p>If <span class="parameter">cFileName</span> includes a path and a file name, the specified location is searched. If the file cannot be found in the specified location, LOCFILE( ) searches the Visual FoxPro default directory or folder and then the Visual FoxPro path.   </p>
+          <p>If the file is located, LOCFILE( ) returns the file name and path. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cFileExtensions</span>
+        </span></dt><dd>
+          <p>Specifies file extensions for the file to locate. If the file name you specify with <span class="parameter">cFileName</span> does not include an extension, Visual FoxPro applies the file extensions listed in <span class="parameter">cFileExtensions</span> to the file name and searches for the file again.</p>
+          <p>
+            <span class="parameter">cFileExtensions</span> also specifies the file name extensions of the files displayed in the Open dialog box when the file you specified cannot be located.   </p>
+          <p>
+            <span class="parameter">cFileExtensions</span> can take a variety of forms:   </p>
+          <ul><li>
+              <p>If <span class="parameter">cFileExtensions</span> contains a single extension (for example, PRG), only files with that extension are displayed.</p>
+            </li><li>
+              <p>
+                <span class="parameter">cFileExtensions</span> can also contain wildcards (* and ?). All files with extensions that meet the wildcard criteria are displayed. For example, if <span class="parameter">cFileExtensions</span> is ?X?, all files with the extension .fxp, .exe, or .txt are displayed.</p>
+            </li><li>
+              <p>In Visual FoxPro for Windows, <span class="parameter">cFileExtensions</span> can contain a file description followed by a file extension or a list of file extensions separated with commas. The file description appears in the Files of Type list box. Separate the file description from the file extension or list of file extensions with a colon (:). Separate multiple file descriptions and their file extensions with a semicolon (;). </p>
+              <p>For example, if <span class="parameter">cFileExtensions</span> is "Text:TXT" the file description "Text" appears in the Files of Type list box and all files with a .txt extension are displayed.  </p>
+              <p>If <span class="parameter">cFileExtensions</span> is "Tables:DBF; Files:TXT,BAK" the file descriptions "Tables" and "Files" appear in the Files of Type list box. When "Tables" is chosen from the Files of Type list box, all files with a .dbf extension are displayed. When "Files" is chosen from the Files of Type list box, all files with .txt and .bak extensions are displayed. </p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cFileNameCaption</span>
+        </span></dt><dd>
+          <p>Specifies the text you want to use to prompt the user. The text appears to the left of the textbox in which you enter the file name. If omitted, "File name:" is displayed.</p>
+        </dd></dl>
+      <p>For a list of Visual FoxPro file extensions and corresponding creator types, see the <a href="/html/71acd830-031d-40ee-bc2b-a8d9452d0efc.htm">File Extensions and File Types</a> online topic.</p>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Character</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The Open dialog box is displayed if the file cannot be located in the default directory or folder, the Visual FoxPro path, or a specified location. The Open dialog box can be used to locate the file. When a file is chosen from the Open dialog box, the file name is returned with the file's path.</p>
+      <p>If you exit the Open dialog box by choosing Cancel, pressing ESC, or choosing Close from the Control menu, Visual FoxPro generates an error message and LOCFILE( ) does not return a value.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/c1c9d5dd-b00e-43bf-93ee-a8f211ca08af.htm">FILE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/346cabaf-aa41-47b2-955d-3b16db3815e2.htm">GETFILE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/bb1badc1-71eb-41d8-ab05-643ef068c9b1.htm">GETPICT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/c862df37-c791-4bd7-8b8f-539a7b7835f9.htm">PUTFILE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/047f2e74-3552-43b7-a18d-ee2c7dd2db6e.htm">SET PATH Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="LOCFILE( ) Function">
+<param name="ALink Name" value="LOCFILE">
+</OBJECT>

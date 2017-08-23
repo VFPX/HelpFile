@@ -1,0 +1,210 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Speeding Up Data Retrieval</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Speeding Up Data Retrieval</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can speed up data retrieval by managing the number of rows fetched during progressive fetching, controlling fetch size, and by using delayed Memo fetching.</p>
+    <p>You can also use the UseMemoSize view property to return character fields as memo fields and then turn FetchMemo off to enable your application to selectively fetch those character fields converted to memo fields.</p>
+  <h1 class="heading">Using Progressive Fetching</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When you query a remote data source, Visual FoxPro retrieves complete rows of data and builds a Visual FoxPro cursor. To speed retrieval of remote data, Visual FoxPro employs progressive fetching of view cursors and cursors created asynchronously with SQL pass-through. Rather than requiring you or your application to wait while an entire data set is retrieved, Visual FoxPro executes a query and fetches only a small subset of the result set rows into the local cursor. The size of this subset is 100 rows by default.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Synchronous SQL pass-through statements don't employ progressive fetching. The entire result set requested by a <a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( )</a> statement is retrieved before control is returned to your application.</p>
+      </td></tr></table></div>
+      <p>As Visual FoxPro retrieves additional rows of data, the local cursor contains increasingly more of the queried data. Since rows are retrieved at different times from the data source, the information in the rows isn't automatically current. If your connection is operating in asynchronous mode, Visual FoxPro returns control to you or your program as soon as it fetches the first subset of data. During idle time, Visual FoxPro performs a background fetch of the remaining rows in the queried data, one subset at a time, into the local cursor. This scenario allows you to use the already fetched data in the cursor without having to wait for the rest of the data.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Increasing the number of rows fetched improves performance, but decreases the responsiveness of the user interface. Decreasing the number of rows fetched has the inverse effect.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Fetching Data On Demand</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can disable progressive fetching and fetch rows only on an as-needed basis by using the FetchAsNeeded database and view cursor property. This can result in more efficient data retrieval for remote views or views retrieving extremely large results sets.</p>
+      <p>The FetchAsNeeded property is set by default to false (.F.), which means that progressive fetching is employed by default. When you set the FetchAsNeeded property to true (.T.), rows are fetched only when needed. When the FetchAsNeeded property is set to true, you cannot perform an update until you either complete the fetch, call the <a href="/html/cbf45d9e-8551-4954-8014-b60b3d31179c.htm">SQLCANCEL( )</a> function on the current connection handle, or close the view.</p>
+      <p>If you want to see the impact of using the FetchAsNeeded property, set the FetchAsNeeded property on a view retrieving a large result set to .T. and then open a browse window on the view and scroll down. The status bar is updated to show the number of rows retrieved as you move through the browse window.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Controlling Cursor Fetching</h3><div class="subSection" xmlns="">
+          <p>If you want to fetch the entire cursor, you can issue the <a href="/html/21117980-58f1-47b0-9384-05e0172f7af7.htm">GOTO BOTTOM</a> command, or any command requiring access to the entire data set.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>While you can use the GOTO BOTTOM command to fetch the entire cursor, it's often more efficient to build a parameterized view that fetches only a single row at a time and requeries as the user changes records. For more information on building high-performance views, see <a href="/html/515161b6-f2e8-423a-affa-8f87854b114a.htm">How to: Optimize View Performance</a>.</p>
+          </td></tr></table></div>
+          <p>Programs don't provide idle loop processing. To fetch view cursors programmatically, use the GO <i>nRecordNumber</i> or GOTO BOTTOM commands. To fetch cursors created with SQL pass-through in asynchronous mode, call the SQL pass-through asynchronous function once for each row subset.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Canceling a SQLEXEC( ) Statement</h3><div class="subSection" xmlns="">
+          <p>You can use the <a href="/html/cbf45d9e-8551-4954-8014-b60b3d31179c.htm">SQLCANCEL( )</a> function to cancel a <a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( )</a> statement or a view at any time. However, if the server has completed building the remote result set and Visual FoxPro has begun fetching the remote result set into a local cursor, the SQLCANCEL( ) function cancels the SQLEXEC( ) statement and leaves the local cursor. If you want to delete the local cursor you can issue the <a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE</a> command, which closes the cursor and cancels the fetch.</p>
+          <p>The USE command will not cancel a SQLEXEC( )statement if the statement hasn't yet created a local cursor. To determine whether Visual FoxPro has created a local cursor, you can call the <a href="/html/63bc032f-edf9-45ba-a43f-d8bfbc75a80d.htm">USED( )</a> function.</p>
+        </div>
+    </sections></div><h1 class="heading">Controlling Fetch Size</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You control the number of rows fetched at one time by your application from a remote server by setting the FetchSize property on your view. The FetchSize property specifies how many records are fetched into the local cursor from the remote server at one time, through progressive fetching or asynchronous SQL pass-through calls. The default value is 100 rows.</p>
+      <h3 class="procedureSubHeading">To control the number of records fetched at one time into a view</h3><div class="subSection"><ol><li>
+            
+              <p>In the <a href="/html/d9f7a435-663d-4523-9511-c847be4311ca.htm">View Designer</a>, choose <b>Advanced Options</b> from the <b>Query</b> menu. In the <b>Data Fetching</b> area of the <a href="/html/8664ed33-9375-4c52-8829-613498d2b8eb.htm">Advanced Options</a> dialog box, use the spinner to set a value for <b>Number of Records to Fetch at a time</b>.
+</p>
+              <p>-or-
+</p>
+            
+          </li><li>
+            
+              <p>Set the FetchSize property with the <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> function to set the view definition's fetch size.
+</p>
+              <p>-or-
+</p>
+            
+          </li><li>
+            
+              <p>Set the FetchSize property with the <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a> function to set the active view cursor's fetch size.
+</p>
+              <p>For example, the following code sets the view definition to progressively fetch 50 rows at a time into <code>Customer_remote_view</code>:
+</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? DBSETPROP('Customer_remote_view', 'View', 'FetchSize', 50)</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Using Delayed Memo Fetching</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>A well-designed application frequently uses delayed Memo fetching to speed downloading of result sets that contain Memo or General fields. Delayed Memo fetching means that Memo and General field contents are not automatically downloaded when you download a result set. Instead, the rest of the fields in the row are quickly downloaded, and Memo and General field contents aren't fetched until you request them by opening the Memo or General field. Delayed Memo fetching provides the fastest downloading of rows, and allows Memo or General field contents, which can be quite large, to be fetched only if needed by the user.</p>
+      <p>For example, your form might include a General field that displays a picture. To speed performance, you can use delayed Memo fetching to prevent downloading of the picture until the user chooses a "Preview" button on your form. The code behind the "Preview" button then fetches the General field and displays it on the form.</p>
+      <p>To control delayed Memo fetching, you use the FetchMemo property on your view or cursor. The FetchMemo property specifies whether to fetch the contents of the Memo or General fields when the row is downloaded. The default value is true (.T.), which means that Memo and General fields are downloaded automatically. If your data contains large amounts of Memo or General field data, you might notice increased performance when you set the FetchMemo property to false (.F.).</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The view must be updatable to allow delayed Memo fetching to work, because Visual FoxPro uses the key field values established by the update properties to locate the source row on the server when it retrieves the Memo or General field. For information on making a view updatable, see <a href="/html/bb470e80-7893-4ca8-91bf-613c5f3eabb6.htm">How to: Update Data in a View</a>.</p>
+      </td></tr></table></div>
+      <p>Use <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> to set the FetchMemo property on a view, and <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a> to set the FetchMemo property on a cursor.</p>
+    </div><h1 class="heading">Optimizing Data Fetching Performance</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>You can use the following recommendations for setting connection and view properties to optimize data fetching. The PacketSize property on your connection has the greatest influence on performance. Also, you can optimize fetch performance using synchronous connections.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Object
+            </th>
+            <th>
+              Property
+            </th>
+            <th>
+              Setting
+            </th>
+          </tr><tr>
+          <td>
+            <p>Connection </p>
+          </td>
+          <td>
+            <p>PacketSize</p>
+          </td>
+          <td>
+            <p>4K to 12K1</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Connection </p>
+          </td>
+          <td>
+            <p>Asynchronous2</p>
+          </td>
+          <td>
+            <p>.F.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>View</p>
+          </td>
+          <td>
+            <p>FetchSize3</p>
+          </td>
+          <td>
+            <p>maximum</p>
+          </td>
+        </tr></table></div>
+      <p>1. Set a higher value for rows containing more data; you should experiment to find the best value.
+2. Use synchronous connections to increase performance up to 50%, unless you want to be able to cancel SQL statements while executing on the server.
+3. The effect of FetchSize is highly dependent on the record size of the fetched result set. In synchronous mode, it does not significantly impact performance, so set it as needed for SQL pass-through asynchronous processing view progressive fetching. FetchSize, if reduced, provides significantly better responsiveness while progressively fetching a view, but slows down the fetch speed. If increased, it increases view fetch performance.</p>
+      <p>Actual performance depends greatly on your system configuration and application requirements. </p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/f9f24def-0e38-4024-9d38-252340b3fae9.htm">Optimizing Connections</a></span><br /><span class="linkTerms"><a href="/html/16427f5e-812b-4462-a2f2-1d9e3c9a4ee0.htm">Query and View Acceleration</a></span><br /><span class="linkTerms"><a href="/html/37be2d46-457e-4555-a10a-a7a530dc1ffe.htm">Form Acceleration</a></span><br /><span class="linkTerms"><a href="/html/8768af89-384b-40e3-b5fc-f59552f674ef.htm">Performance Improvement on Updates and Deletes</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ea88b84a-e912-4f11-b6d0-b8ab7f38052a.htm">Optimizing Client/Server Performance</a></span><br /><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Speeding Up Data Retrieval">
+</OBJECT>

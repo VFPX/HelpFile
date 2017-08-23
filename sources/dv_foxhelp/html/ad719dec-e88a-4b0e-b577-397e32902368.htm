@@ -1,0 +1,125 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Create Triggers</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Create Triggers</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can create triggers using the Table Designer or the <b>CREATE TRIGGER</b> command. For each table, you can create one trigger for each of the three events: INSERT, UPDATE, and DELETE. A table can have a maximum of three triggers at any one time. </p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <h3 class="procedureSubHeading">To create a trigger</h3><div class="subSection"><ul><li>
+            
+              <p>In the <b>Table</b> tab of the <span class="linkTerms"><a href="/html/f027d3c4-d79d-435e-abb5-787d0f0d7939.htm">Table Designer (Visual FoxPro)</a></span>, enter the trigger expression or the name of a stored procedure containing the trigger expression in the <b>Insert trigger</b>, <b>Update trigger</b>, or <b>Delete trigger</b> box. </p>
+              <p>-or- </p>
+            
+          </li><li>
+            
+              <p>Use the <span class="linkTerms"><a href="/html/049df271-42ff-47e3-93e2-d6ea50227c4b.htm">CREATE TRIGGER Command</a></span>.</p>
+            
+          </li></ul>
+          
+          
+        </div>
+      <p>For example, perhaps each time Tasmanian Traders sells an item, they want to compare the remaining <code>Units_in_stock</code> against the <code>Reorder_level</code> and be notified if they need to reorder that item. You can create an Update trigger on the <code>products</code> table to accomplish this. Every time a product is sold, the Update trigger will fire and the <code>Units_in_stock </code>fieldwill be updated to reflect the remaining items in stock.</p>
+      <p>To create the trigger, you can specify <code>updProductsTrigger( )</code> as your Update trigger for the <code>products</code> table. You can add a field to <code>products</code>, named <code>reorder_amount</code>, which stores the amount you want to order each time you reorder the item, and create a <code>reorder</code> table with the fields: <code>product_id</code> and <code>reorder_amount</code>. You can then add this code to your stored procedure:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PROCEDURE updProductsTrigger
+   IF (units_in_stock+units_on_order) &lt;= reorder_level
+   INSERT INTO Reorder VALUES(Products.product_id, ;
+    Products.reorder_amount)
+   ENDIF   
+ENDPROC</pre></td></tr></table></span></div>
+      <p>You can create similar triggers for an insert or delete event by using the FOR INSERT or FOR DELETE clause, respectively, instead of the FOR UPDATE clause. If you attempt to create a trigger that already exists for a particular event and table while <span class="linkTerms"><a href="/html/ac143485-fc45-4348-93dd-bf7a1047f0aa.htm">SET SAFETY Command</a></span> is on, Visual FoxPro prompts you to confirm overwriting the existing trigger.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>When a trigger is called, the Alias is always that of the cursor being updated, regardless of the Alias selected in the code that caused the trigger to fire.</p>
+      </td></tr></table></div>
+      <p>Visual FoxPro includes the Referential Integrity Builder to generate triggers and stored procedures that enforce Referential Integrity (RI) rules for your database. For more information on using the RI Builder, see <span class="linkTerms"><a href="/html/50c4141c-d439-482e-835d-df3dbcb0a0cd.htm">Referential Integrity Builder</a></span> and <span class="linkTerms"><a href="/html/6b6883f7-0524-4441-8493-4ec4cc42b315.htm">How to: Build Referential Integrity Between Tables</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/d3d7a9a6-8856-4718-8b36-c20f9eace9b6.htm">How to: Edit Table Structure</a></span><br /><span class="linkTerms"><a href="/html/e96552c9-0507-4c13-bb81-4cd73d141116.htm">How to: Modify Triggers (Visual FoxPro)</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/068a2421-21b1-4651-a8ab-fa8207c0357e.htm">Trigger Usage</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/e72c1fd6-0b60-4dbd-9000-0ffecfb637fa.htm">Working with Tables (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Create Triggers">
+</OBJECT>

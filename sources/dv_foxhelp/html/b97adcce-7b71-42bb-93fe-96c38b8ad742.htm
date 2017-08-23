@@ -1,0 +1,256 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Creating Drag-and-Drop Controls</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Creating Drag-and-Drop Controls</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you design Visual FoxPro applications, you can drag text, files, and objects from the <a href="/html/11b7b53b-d188-4c4f-b023-611c35ac17ab.htm">Component Gallery</a>, <a href="/html/93e1d13b-c029-47eb-b140-c119ff44f10d.htm">Project Manager</a>, the <a href="/html/316676c8-1232-4756-b385-fa7af6528835.htm">Database Designer</a>, and the <a href="/html/35e6ce25-9da0-4754-90e2-f5c70aaa6d79.htm">Data Environment Designer</a> to desired locations on forms and reports. The drag-and-drop features in Visual FoxPro make it possible for you to extend this ability to the user at run time.</p>
+    <p>This drag-and-drop capability extends to multiple-form operations. The user can drag text, files, and controls anywhere on the screen, including other forms.</p>
+    <p>Two types of drag-and-drop functionality are supported in Visual FoxPro: OLE drag-and-drop and control drag-and-drop. OLE drag-and-drop makes it possible for you to move data between other applications that support OLE drag-and-drop (such as Visual FoxPro, Visual Basic, the Windows Explorer, Microsoft Word and Excel, and so on). In a distributed Visual FoxPro application, you can move data between controls in the application, or between controls and other Window applications that support OLE drag-and-drop.</p>
+    <p>Control drag-and-drop makes it possible for you to drag Visual FoxPro controls within your Visual FoxPro applications. Control drag-and-drop is also supported in earlier versions of Visual FoxPro. As the user drags a control, Visual FoxPro provides a gray outline that is the same size as the object and moves with the mouse pointer. You can override this default behavior by specifying a cursor file (.cur) for the <a href="/html/106af12f-4468-4368-b744-59093a560d8e.htm">DragIcon property</a> of a control.</p>
+    <p>This section describes control drag-and-drop. For more information about OLE drag-and-drop, see <a href="/html/7752548b-993c-4d2b-bece-561bd479eaf5.htm">OLE Drag-and-Drop</a>.</p>
+    <p>To see examples of control drag-and-drop, run <b>Solution.app</b> in the Visual FoxPro ...\Samples\Solution directory. In the tree view, click <b>Controls</b>, and then click <b>General</b>.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Dragging a control at run time does not change its location automatically. You can do this, but you must program the relocation yourself, as described in the section, "Causing Control Movement in a Drag-and-Drop Operation." Often, dragging is used only to indicate that some action should be performed; the control retains its original position after the user releases the mouse button.</p>
+    </td></tr></table></div>
+    <p>You can specify both the meaning of a drag operation and how to initiate dragging (if at all) for any given control by using the following drag-and-drop properties, events, and method.</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            To
+          </th>
+          <th>
+            Use this feature
+          </th>
+        </tr><tr>
+        <td>
+          <p>Enable automatic or manual dragging of a control.</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/7618f1b1-1858-497c-9fdb-0111f03f1193.htm">DragMode property</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Specify what icon is displayed when the control is dragged.</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/106af12f-4468-4368-b744-59093a560d8e.htm">DragIcon property</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Recognize when a control is dropped onto the object.</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/64c3d85a-9463-4f12-b26f-0a60251948ca.htm">DragDrop event</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Recognize when a control is dragged over the object.</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/3c594b93-a3e0-49c0-a5ae-fef7f4257110.htm">DragOver event</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Start or stop manual dragging.</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/6e735544-d025-4b58-a4bb-646244b3cdd9.htm">Drag method</a>
+          </p>
+        </td>
+      </tr></table></div>
+    <p>All visual controls can be dragged at run time and all controls share the properties listed in the preceding table. Forms recognize the DragDrop and DragOver events, but they do not have DragMode and DragIcon properties.</p>
+  <h1 class="heading">Enabling Automatic Drag Mode</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>To make it possible for the user to drag a control whenever the user clicks the control, set its <a href="/html/7618f1b1-1858-497c-9fdb-0111f03f1193.htm">DragMode property</a> to 1. This enables automatic dragging of the control. When you set dragging to Automatic, dragging is always on.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>While an automatic drag operation is taking place, the control being dragged does not recognize other mouse events.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Responding When the User Drops the Object</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>When the user releases the mouse button after dragging a control, Visual FoxPro generates a <a href="/html/64c3d85a-9463-4f12-b26f-0a60251948ca.htm">DragDrop event</a>. You can respond to this event in many ways. You can relocate the control at the new location (indicated by the last position of the gray outline). Remember that the control does not move automatically to the new location.</p>
+      <p>Two terms are important when discussing drag-and-drop operations —
+			<i>source</i> and <i>target</i>.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Term
+            </th>
+            <th>
+              Meaning
+            </th>
+          </tr><tr>
+          <td>
+            <p>Source</p>
+          </td>
+          <td>
+            <p>The control being dragged.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Target</p>
+          </td>
+          <td>
+            <p>The object onto which the user drops the control. This object, which can be a form or control, recognizes the DragDrop event.</p>
+          </td>
+        </tr></table></div>
+      <p>A control becomes the target if the mouse position is within its borders when the button is released. A form is the target if the pointer is in a blank portion of the form.</p>
+      <p>The DragDrop event receives three parameters: <i>oSource</i>, <i>nXCoord</i>, and <i>nYCoord</i>. The parameter <i>oSource</i> is a reference to the control that was dropped onto the target. The parameters <i>nXCoord</i> and <i>nYCoord</i> contain the horizontal and vertical coordinates, respectively, of the mouse pointer within the target.</p>
+      <p>Because <i>oSource</i> is an object, you use it just as you would a control — you can refer to its properties or call one of its methods. For example, the following statements in the code associated with the DragDrop event checks to see whether the user has dropped a control on itself:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LPARAMETERS oSource, nXCoord, nYCoord
+IF oSource.Name != THIS.Name
+   * Take some action.
+ELSE
+   * Control was dropped on itself.
+   * Take some other action.
+ENDIF</pre></td></tr></table></span></div>
+      <p>All possible control types for <i>oSource</i> have a <a href="/html/206a9044-c88a-490b-910a-344c4760a14c.htm">Visible property</a>. Therefore, you can make a control invisible when it is dropped on a certain part of a form or on another control. The following line in the code associated with the DragDrop event of an <a href="/html/44714f1e-837b-410a-80d0-d34d7654f4e4.htm">Image control</a> causes a dragged control to disappear when it is dropped on the image:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LPARAMETERS oSource, nXCoord, nYCoord
+oSource.Visible = .F.</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Indicating Valid Drop Zones</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When you enable drag-and-drop functionality, you can help your users by including visual clues about where a user can and cannot drop a control. The best way to do this is to change the <a href="/html/106af12f-4468-4368-b744-59093a560d8e.htm">DragIcon</a> of the source in the code associated with the <a href="/html/3c594b93-a3e0-49c0-a5ae-fef7f4257110.htm">DragOver event</a>.</p>
+      <p>The following code in the DragOver event of a control indicates to a user that the control is not a valid drop target. In this example, <code>cOldIcon</code> is a user-defined property of the form.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LPARAMETERS oSource, nXCoord, nYCoord, nState
+DO CASE
+   CASE nState = 0 &amp;&amp; Enter
+      THISFORM.cOldIcon = oSource.DragIcon
+      oSource.DragIcon = "NODROP01.CUR"
+   CASE nState = 1 &amp;&amp; Leave
+      oSource.DragIcon = THISFORM.cOldIcon
+ENDCASE</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Controlling When Dragging Starts or Stops</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro has a setting of Manual for the <a href="/html/7618f1b1-1858-497c-9fdb-0111f03f1193.htm">DragMode property</a> that gives you more control than the Automatic setting. The Manual setting makes it possible for you to specify when a control can and cannot be dragged. (When DragMode is set to Automatic, the control can always be dragged as long as the setting is n'ot changed.)</p>
+      <p>For instance, you might want to enable dragging in response to MouseDown and MouseUp events, or in response to a keyboard or menu command. The Manual setting also makes it possible for you to recognize a MouseDown event before dragging starts, so that you can record the mouse position.</p>
+      <p>To enable dragging from code, leave DragMode in its default setting (0 - Manual). Then use the <a href="/html/6e735544-d025-4b58-a4bb-646244b3cdd9.htm">Drag method</a> whenever you want to begin or stop dragging an object.</p>
+      <p>If <i>nAction</i> is 1, the Drag method initiates dragging of the control. If <i>nAction</i> is 2, the control is dropped, causing a DragDrop event. The value 0 for <i>nAction</i> cancels the drag. The effect is similar to giving the value 2, except that no DragDrop event occurs.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>To enable a drag and drop operation from a list box, the best place to call the Drag method is in the code associated with the MouseMove event of the source list box, after determining that the mouse button is down. For an example, see Lmover.scx in the Visual FoxPro ...\Samples\Solution\Controls\Lists directory.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Causing Control Movement in a Drag-and-Drop Operation</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>You might want the source control to change position after the user releases the mouse button. To make a control move to the new mouse location, use the <a href="/html/30d6550d-0cd9-4138-b374-1081c68e7f0d.htm">Move method</a>. For example, the following code in the DragDrop event of a form moves the control that is dragged to the location of the drop:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LPARAMETERS oSource, nXCoord, nYCoord
+oSource.Move(nXCoord, nYCoord)</pre></td></tr></table></span></div>
+      <p>This code might not produce precisely the effects you want, because the upper-left corner of the control is positioned at the mouse location. The following code positions the center of the control at the mouse location:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LPARAMETERS oSource, nXCoord, nYCoord
+oSource.Move ((nXCoord – oSource.Width / 2), ;
+   (nYCoord – oSource.Height / 2))</pre></td></tr></table></span></div>
+      <p>The code works best when the <a href="/html/106af12f-4468-4368-b744-59093a560d8e.htm">DragIcon property</a> is set to a value other than the default (the gray rectangle). When the gray rectangle is being used, the user normally wants the control to move precisely into the final position of the gray rectangle. To do this, record the initial mouse position within the source control. Then use this position as an offset when the control is moved. For an example, see Ddrop.scx in the Visual FoxPro...\Samples\Solution\Forms directory.</p>
+      <h3 class="procedureSubHeading">To record the initial mouse position</h3><div class="subSection"><ol><li>
+            
+              <p>Specify manual dragging of the control.</p>
+            
+          </li><li>
+            
+              <p>Declare two form-level variables, n<code>DragX</code> and n<code>DragY</code>.</p>
+            
+          </li><li>
+            
+              <p>Turn on dragging when a <a href="/html/978c1996-f612-4854-8352-96cdd7c9e0d5.htm">MouseDown event</a> occurs. Also, store the value of <i>nXCoord</i> and <i>nYCoord</i> in the form-level variables in this event.</p>
+            
+          </li><li>
+            
+              <p>Turn dragging off when the <a href="/html/52d2deb6-4513-44e9-b7dd-c6383a3167c8.htm">MouseUp event</a> occurs.</p>
+            
+          </li></ol></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/e156ec74-ed66-4950-904f-65c4bf8c5022.htm">How to: Implement Intrinsic and Manual OLE Drag-and-Drop Modes</a></span><br /><span class="linkTerms"><a href="/html/094e93c4-9db9-47fc-8c23-77fb54d91810.htm">Allow Users to Drag and Drop Controls Sample</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/7752548b-993c-4d2b-bece-561bd479eaf5.htm">OLE Drag-and-Drop</a></span><br /><span class="linkTerms"><a href="/html/3ae23a84-48ec-4e05-b9b2-680ceea7db94.htm">Design-Time OLE Drag-and-Drop Support</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b9032965-6941-41d2-8ff9-87c609673907.htm">Using Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Creating Drag-and-Drop Controls">
+</OBJECT>

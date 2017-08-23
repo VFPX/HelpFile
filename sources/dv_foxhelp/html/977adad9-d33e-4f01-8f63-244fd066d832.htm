@@ -1,0 +1,186 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>COPY TO ARRAY Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">COPY TO ARRAY Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Copies data from the currently selected table to an array.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+COPY TO ARRAY <span class="parameter">ArrayName</span>   
+   [FIELDS <span class="parameter">FieldList</span> | FIELDS LIKE <span class="parameter">Skeleton</span> | FIELDS EXCEPT <span class="parameter">Skeleton</span>]
+   [<span class="parameter">Scope</span>] [FOR <span class="parameter">lExpression1</span>] [WHILE <span class="parameter">lExpression2</span>] [NOOPTIMIZE]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">ArrayName</span>
+        </span></dt><dd>
+          <p>Specifies the array to which data from the table is copied.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS <span class="parameter">FieldList</span></span></dt><dd>
+          <p>Specifies that only the fields specified in <span class="parameter">FieldList</span> are copied to the array. If you omit FIELDS <span class="parameter">FieldList</span>, all fields are copied to the array if the array has enough columns.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS LIKE <span class="parameter">Skeleton</span></span></dt><dd>
+          <p>Specifies that fields that match the field skeleton <span class="parameter">Skeleton</span> are copied to the array.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS EXCEPT <span class="parameter">Skeleton</span></span></dt><dd>
+          <p>Specifies that all fields except those that match the field skeleton <span class="parameter">Skeleton</span> are copied to the array.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">Scope</span>
+        </span></dt><dd>
+          <p>Specifies a range of records copied to the array. Only the records within the range are copied. The scope clauses are: <b>ALL</b>, <b>NEXT</b> <span class="parameter">nRecords</span>, <b>RECORD</b> <span class="parameter">nRecordNumber</span>, and <b>REST</b>. For more information on scope clauses, see the <span class="linkTerms"><a href="/html/c8d51e13-0119-4fc5-a0df-b6a9ab7997bb.htm">Scope Clauses</a></span> online topic.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FOR <span class="parameter">lExpression1</span></span></dt><dd>
+          <p>Specifies that only the records that satisfy the logical condition <span class="parameter">lExpression1</span> are copied to the array. To conditionally copy records to the array, include the <b>FOR</b> clause to filter out undesired records.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WHILE <span class="parameter">lExpression2</span></span></dt><dd>
+          <p>Specifies a condition where records are copied to the array while the logical expression <span class="parameter">lExpression2</span> evaluates to True (.T.).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOOPTIMIZE </span></dt><dd>
+          <p>Disables Rushmore Query Optimization of COPY TO ARRAY. For more information, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Rushmore optimizes a <b>COPY TO ARRAY</b> query that includes <b>FOR</b> <span class="parameter">lExpression1</span> if <span class="parameter">lExpression1</span> is an optimizable expression. For the best performance, use an optimizable expression in the <b>FOR</b> clause. For information on Rushmore optimizable expressions, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>.</p>
+      <p>
+        <b>COPY TO ARRAY</b> and <b>SCATTER</b> are similar. <b>COPY TO ARRAY</b> copies multiple records to an array, while <b>SCATTER</b> copies just one record into an array or a set of memory variables. Both <b>COPY TO ARRAY</b> and <b>SCATTER</b> create a new array if an array with the name you specify does not exist.</p>
+      <p>To copy a single record to an array, you can specify a one-dimensional array. The one-dimensional array you specify should have the same number of elements as fields in the table, not counting memo fields. Memo and Blob fields are ignored in <b>COPY TO ARRAY</b>.</p>
+      <p>If you specify a one-dimensional array, the first field of a record is stored to the first element of the array, the second field is stored to the second element of the array, and so on. If the one-dimensional array has more elements than the table has fields, any remaining elements remain unchanged. If the array has fewer elements than the table has fields, any remaining fields are ignored.</p>
+      <p>To copy multiple records or an entire table to an array, specify a two-dimensional array. The number of rows in the array is the number of records the array can hold, and the number of columns in the array is the number of fields the array can hold.</p>
+      <p>Each record is stored in one row of the array, and each field of the record is stored in one column of the array. For each record, the first field is stored to the first column of the array, the second field is stored to the second column of the array, and so on. If the array has more columns than the table has fields, any remaining columns aren't changed. If the array has fewer columns than the table has fields, any remaining fields aren't stored to the array.</p>
+      <p>Each successive row in the array is filled with the contents of the next record in the table. If the array has more rows than the table has records, any remaining rows aren't changed. If the array has fewer rows than the table has records, any remaining records aren't stored to the array.</p>
+      <p>Data can be copied from arrays to new table records with <b>APPEND FROM ARRAY</b>. Data can also be copied from either an array or a set of memory variables to records in a table with <b>GATHER</b>.</p>
+      <p>The field skeleton <span class="parameter">Skeleton</span> supports wildcards. For example, to specify that all fields that begin with the letters A and P are copied to the array, use the following:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>COPY TO ARRAY aMyArray FIELDS LIKE A*,P*</pre></td></tr></table></span></div>
+      <p>The LIKE clause can be combined with the EXCEPT clause:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>COPY TO ARRAY aMyArray FIELDS LIKE A*,P* EXCEPT PARTNO*</pre></td></tr></table></span></div>
+      <p>Turning on autoincrementing has no effect on the <b>COPY TO ARRAY</b> command. Only the record values are copied to the array.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">In the following example, the <code>Customer</code> table is opened. A two-dimensional array is then created and the first three records from <code>Customer</code> are copied to the array. <b>DISPLAY MEMORY</b> shows the data stored in the array.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\testdata')
+USE Customer  &amp;&amp; Opens Customer table.
+DIMENSION gaTemp(3,10)
+COPY NEXT 3 TO ARRAY gaTemp
+DISPLAY MEMORY LIKE gaTemp</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5b11bd53-12f9-4727-9ae3-f5a7d3d21274.htm">APPEND FROM ARRAY Command</a></span><br /><span class="linkTerms"><a href="/html/446153cb-5971-4802-bc0b-ebaf1baf687e.htm">DECLARE Command</a></span><br /><span class="linkTerms"><a href="/html/17270153-1977-40bc-9f17-ab0132b20e90.htm">DIMENSION Command</a></span><br /><span class="linkTerms"><a href="/html/059d1397-f71d-4cd7-9d0e-1d443155bc95.htm">GATHER Command</a></span><br /><span class="linkTerms"><a href="/html/684369d5-737d-4d42-b018-12f34634cbbc.htm">PUBLIC Command</a></span><br /><span class="linkTerms"><a href="/html/e5d1e608-a184-4cfb-8a06-f83ab8a6c50c.htm">SCATTER Command</a></span><br /><span class="linkTerms"><a href="/html/83e12c56-2348-45d4-aab2-6fbb17743d37.htm">STORE Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="COPY TO ARRAY Command">
+<param name="ALink Name" value="COPY TO ARRAY">
+</OBJECT>

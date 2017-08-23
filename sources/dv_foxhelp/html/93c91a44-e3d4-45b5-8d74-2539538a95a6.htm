@@ -1,0 +1,161 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Organize Query Results</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Organize Query Results</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>With the output of your query defined, you can now organize the records that appear in your results by ordering and grouping on the output fields. If you want, you can also filter the groups that appear in your results.</p>
+  <h1 class="heading">Ordering Query Results</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Ordering determines the order in which records or rows will be sorted when they appear in the output of your query. For example, you could sort records by State and then by City, or sort them in ascending order based on the outstanding account balance.</p>
+      <p>Use the Order By tab to set the sort order for your query. The sort order determines the order in which rows or records will appear in your query output.</p>
+      <p>First select the fields you want to use from the Selected Fields box and move them to the Ordering Criteria box. Then arrange the fields in the order you want them to appear in the query results.</p>
+      <h3 class="procedureSubHeading">To set ordering criteria</h3><div class="subSection"><ol><li>
+            
+              <p>In the <b>Selected fields</b> box, select a field name.</p>
+            
+          </li><li>
+            
+              <p>Choose <b>Add</b>.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To remove ordering criteria</h3><div class="subSection"><ol><li>
+            
+              <p>Select one or more fields that you want to remove.</p>
+            
+          </li><li>
+            
+              <p>Choose <b>Remove</b>.</p>
+            
+          </li></ol></div>
+      <p>The order in which fields appear in the Ordering criteria box determines the order of importance when the query results are sorted. The first field determines the primary sort order.</p>
+      <p>For example, if the first field in the Ordering criteria box is <code>Customer.region</code> and the second field in the Ordering criteria box is <code>Customer.city</code>, the results will be ordered by <code>Customer.region</code>. If more than one record in the customer table has the same <code>region</code> field value, these records are additionally ordered by <code>Customer.city</code>.</p>
+      <p>To adjust the importance of a sort order field, use the button to the left of the field to drag the field to the desired location in the Ordering criteria box.</p>
+      <p>You can sort in ascending or descending order by setting the buttons in the Order options area. Each order field appears in the Output fields box on the Filter tab with an up arrow or down arrow next to it, indicating whether the sort on that field is to be made in ascending or descending order.</p>
+    </div><h1 class="heading">Grouping Query Results</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Grouping consolidates or gathers similar records into one record so you can perform calculations based on groups of records. For example, you might want to find the sum of all orders to a specific region. Instead of looking at all the records individually, you can group all the records from the same region into one record, and get the sum of all the orders from that region. To control how records are grouped, use the Group By tab in the Query Designer.</p>
+      <p>Grouping is most useful when used in conjunction with an aggregate function, such as SUM, COUNT, AVG, and so on.</p>
+      <p>For example, suppose you want to see the total dollar amount of orders for each customer ID number in your orders table. You need to group all the order records for a given customer ID into one record, and find the sum of the order amounts.</p>
+      <p>You first use the Fields tab to add the expression SUM(Orders.order_net) to the output of your query, then use the Group By tab to group the results by customer ID number. The results show total net orders for each customer:</p>
+      <h3 class="procedureSubHeading">To set grouping options</h3><div class="subSection"><ol><li>
+            
+              <p>In the <b>Fields</b> tab, type the expression in the <b>Functions and expressions</b> box. </p>
+              <p>-or-  </p>
+              <p>Choose the dialog button to use the <b>Expression Builder</b> to enter an expression in the <b>Functions and expressions</b> box. </p>
+            
+          </li><li>
+            
+              <p>Choose the <b>Add</b> button to place the expression in the <b>Selected fields</b> box.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Group By</b> tab, add the expression to group results by.</p>
+            
+          </li></ol></div>
+      <p>You can also set a filter on the grouped results.</p>
+    </div><h1 class="heading">Selecting the Groups You Want</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>To set a filter on grouped or consolidated records rather than on individual records, choose Having on the Group By tab. You can use a field name, an aggregate function on a field name, or another expression in the Field Name box.</p>
+      <p>Building on the previous example, you could use the query that shows total sales by customer number, then use the Having button to restrict the output to customers having more than $50,000 in net orders:</p>
+      <h3 class="procedureSubHeading">To set a Having option on a group</h3><div class="subSection"><ol><li>
+            
+              <p>In the <b>Group By</b> tab, choose <b>Having</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Having</b> dialog box, select a function and field name in the Field Name field.</p>
+            
+          </li><li>
+            
+              <p>Choose <b>OK</b>.</p>
+            
+          </li></ol></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/dfbd3c17-6f2d-448c-9abb-392df0623b3d.htm">How to: Define Query Results</a></span><br /><span class="linkTerms"><a href="/html/b0a290f6-5c73-4cbc-a4e0-cb1078d1553f.htm">How to: Run Queries (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/b88036cd-3320-4ef0-aea1-985a34ab5c2a.htm">How to: Customize Queries</a></span><br /><span class="linkTerms"><a href="/html/11c1bca1-5871-4d98-812f-2cacc479feee.htm">How to: Query Multiple Tables and Views</a></span><br /><span class="linkTerms"><a href="/html/bb470e80-7893-4ca8-91bf-613c5f3eabb6.htm">How to: Update Data in a View</a></span><br /><span class="linkTerms"><a href="/html/f5b2d063-c8c2-4ada-bf3a-b599409cb41c.htm">How to: Create Queries (Visual FoxPro)</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/cf658adc-be9b-4004-8bfd-875466ab2718.htm">Order By Tab, Query and View Designers</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ccb3a0ad-7fe4-4267-ba42-aa9918ed1f21.htm">Working with Queries</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Organize Query Results">
+</OBJECT>

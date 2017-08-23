@@ -1,0 +1,117 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Query and View Acceleration</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Query and View Acceleration</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can improve query and view performance by adding indexes, optimizing local and remote processing, and optimizing parameter expressions.</p>
+  <h1 class="heading">Adding Indexes to Remote Tables</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Remote indexes can make queries significantly faster. Multiple-table queries are faster if the tables are indexed on the joining fields. Having indexes on fields that are included in a query's WHERE clause can also improve performance.</p>
+      <p>Clustered indexes provide the best performance. On SQL Server, each table can have one clustered index. The <a href="/html/764204c0-ce75-416c-965a-00c57810e1a4.htm">SQL Server Upsizing Wizard</a> automatically creates clustered indexes on tables that had a primary key in Visual FoxPro.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>While indexes on table fields used in queries can speed processing, indexes on result sets can slow performance. Use indexes on result sets with care.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Optimizing Local and Remote Processing</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>If you need to process a combination of local and remote data, create a remote view that combines all remote data in a single view. You can then join the remote view with the local data in a local view. Because Visual FoxPro fetches both views completely before joining and filtering the combined view, it's important to limit the size of the view result set.</p>
+      <p>You gain speed in remote processing by limiting the remote view result set to the minimum amount of data needed by your application. When you retrieve less data into a remote result set, you minimize the time required to download remote data into your local query or view cursor.</p>
+    </div><h1 class="heading">Optimizing Parameterized Views</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can speed data retrieval during <a href="/html/73805e2d-c331-4fd2-b4cb-18e9e53a81a7.htm">REQUERY( )</a> operations on an open, parameterized view by compiling the view before it's executed. To precompile or "prepare" a view, set the Prepared property on the view to true (.T.).</p>
+    </div><h1 class="heading">Optimizing Parameter Expressions</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>View and SQL pass-through parameters are Visual FoxPro expressions and are evaluated in Visual FoxPro before being sent to the remote server. Evaluation time for the expression is important, because it lengthens the query execution time.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/0bfcf4ac-c66d-4085-9740-0fbfe1c74718.htm">Speeding Up Data Retrieval</a></span><br /><span class="linkTerms"><a href="/html/37be2d46-457e-4555-a10a-a7a530dc1ffe.htm">Form Acceleration</a></span><br /><span class="linkTerms"><a href="/html/8768af89-384b-40e3-b5fc-f59552f674ef.htm">Performance Improvement on Updates and Deletes</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ea88b84a-e912-4f11-b6d0-b8ab7f38052a.htm">Optimizing Client/Server Performance</a></span><br /><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Query and View Acceleration">
+</OBJECT>

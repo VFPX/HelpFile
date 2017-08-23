@@ -1,0 +1,289 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Creating a Custom Preview Container</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Creating a Custom Preview Container</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Describes how to replace the default preview container with your own custom component that can provide report preview functionality throughout your application automatically when you SET REPORTBEHAVIOR 90.</p>
+  <h1 class="heading"><span onclick="ExpandCollapse(prerequisitesToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(prerequisitesToggle)" tabindex="0"><img id="prerequisitesToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Prerequisites</span></h1><div id="prerequisitesSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>
+        <span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span>
+      </p>
+      <p>
+        <span class="linkTerms"><a href="/html/66975043-814c-4886-901c-53d3924ca1bb.htm">The Preview Container API</a></span>
+      </p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>The Simplest Preview</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>The simplest possible preview example does not use the Preview Container API at all, but uses methods of the <b>ReportListener</b> object to demonstrate the essential mechanism behind the API.</p>
+      <p>The following commands set up a target <b>Shape</b> object, run a report in object-assisted mode, and use the methods of the <b>ReportListener</b> object to display the first page of the report on the target shape:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Set up a target for the preview rendering:
+_SCREEN.AddObject("canvas","Shape")
+_SCREEN.canvas.Width  = 250
+_SCREEN.canvas.Height = 300
+* Create a base ReportListener and buffer the entire report:
+rl = NEWOBJECT("ReportListener")
+rl.ListenerType = 3  &amp;&amp; Buffer all pages, do not preview automatically
+* Process the report:
+REPORT FORM (_SAMPLES+"\solution\reports\colors.frx") OBJECT rl
+* Render page 1 to the target:
+rl.OutputPage( 1, _SCREEN.canvas, 2 )</pre></td></tr></table></span></div>
+      <p>After executing these statements in the Command Window, you will see a thumbnail-size image of the report rendered on the surface of the screen.</p>
+      <p>Things to note:</p>
+      <ul><li>
+          <p>The third parameter passed to the <b>ReportListener</b>'s OutputPage() method is 2, which indicates that the target handle passed in the second parameter is a Visual FoxPro object reference - the <b>Shape</b> control.</p>
+        </li><li>
+          <p>The <b>Shape</b> object did not have to be visible in order for the report to display.</p>
+        </li><li>
+          <p>Either a <b>Container</b> or a <b>Shape</b> control can be used as the target.</p>
+        </li><li>
+          <p>Dragging the command window over the preview erases it from the screen, because when the screen receives a paint message, it repaints itself with no knowledge of the preview rendering.</p>
+        </li></ul>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Implementing a Simple Preview Container</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>The next step is to encapsulate the process described above into a class that implements the preview container API, allowing you to re-use the previewing logic.</p>
+      <p>The following example program, simplepreview.prg, contains a class definition which also uses a <b>Shape</b> object as the render target, this time on a form class that implements the preview container API:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*-----------------------------------------
+* simplepreview.prg
+*-----------------------------------------
+DEFINE CLASS SimplePreview AS Form
+    Caption     = "Click for next page"
+    ListenerRef = .NULL.
+    PageNo      = 1
+    AllowOutput = .F.
+    ADD OBJECT Canvas AS Shape WITH ;
+        Top = 12, Left = 8, ;
+        Height = 252, Width = 209, ;
+        Name = "Canvas"
+    PROCEDURE Canvas.Click
+        WITH THISFORM
+            IF .PageNo &lt; .ListenerRef.OutputPageCount
+                .PageNo = .PageNo + 1
+                .Refresh()
+            ENDIF
+        ENDWITH
+    ENDPROC
+    PROCEDURE SetReport
+        LPARAMETER oListenerRef
+        THIS.ListenerRef = oListenerRef
+    ENDPROC
+    PROCEDURE QueryUnload
+        IF NOT ISNULL( THIS.ListenerRef )
+            THIS.ListenerRef.OnPreviewClose(.F.)
+            THIS.ListenerRef = .NULL.
+        ENDIF
+        THIS.Hide()
+        NODEFAULT
+    ENDPROC
+    PROCEDURE Paint
+        IF NOT ISNULL( THIS.ListenerRef )
+            THIS.ListenerRef.OutputPage( THIS.PageNo, THIS.Canvas, 2 )
+        ENDIF
+    ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+      <p>This class implements the two methods of the preview container API by explicitly defining a <b>SetReport()</b> method; and by being derived from the Form base class, which already has an appropriate <b>Show()</b> method.</p>
+      <p>Things to note:</p>
+      <ul><li>
+          <p>This class resolves the repainting issues of the previous example by adding code to the form's <b>Paint()</b> event to ensure that the preview image is redrawn when required.</p>
+        </li><li>
+          <p>The <b>Reportlistener</b> object will call <b>SetReport()</b>, passing a reference to itself when it requires the preview container to perform basic non-report-specific initialization. <b>SetReport()</b> will also be called with null (<code>.NULL.</code>) when its <b>OnPreviewClose()</b> method is invoked.</p>
+        </li><li>
+          <p>The code in the <b>QueryUnload()</b> event informs the report listener that you have finished viewing the report, and then nulls out the reference to the report listener object to avoid a dead-lock condition that would prevent the form from closing.</p>
+        </li><li>
+          <p>The code in the <b>Shape.Click()</b> method uses the report listener's <b>OutputPageCount</b> property to ensure that the preview does not request a page that does not exist.</p>
+        </li></ul>
+      <p>The following code demonstrates how to re-use a preview container component, by instantiating the SimplePreview class and assigning it to the <b>PreviewContainer</b> property of a <b>ReportListener</b> object. Try in the Command Window:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>pc = NEWOBJECT("SimplePreview", "simplepreview.prg")
+rl = NEWOBJECT("ReportListener")
+rl.ListenerType     = 1 &amp;&amp; Buffer all pages, use preview container
+rl.PreviewContainer = pc
+REPORT FORM (_SAMPLES+"\solution\reports\colors.frx") OBJECT rl
+REPORT FORM (HOME()+"Tools\Filespec\60frx2.frx") OBJECT rl</pre></td></tr></table></span></div>
+      <p>After running this code, you will observe that the SimplePreview form is displayed automatically. This is because the report listener object invoked the <b>PreviewContainer.Show()</b> method after the report has completed processing.</p>
+      <p>If you change the last line of the example above to include the <code>NOWAIT</code> clause, you will observe that the preview form is no longer modal when it is displayed. The report listener object recognizes the <code>NOWAIT</code> clause and invokes <b>Show(0)</b> instead of <b>Show(1)</b>.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Hide or Release?</h3><div class="subSection" xmlns="">
+          <ul><li>
+              <p>In SimplePreview.prg above, the <b>QueryUnload()</b> event suppresses default behavior with <b>NODEFAULT</b> and manually hides the form by calling <b>Hide()</b>. </p>
+            </li></ul>
+          <p>This is for two reasons:</p>
+          <ul><li>
+              <p>There is an outstanding reference to the form held by the report listener PreviewContainer property which means that, without additional code, the form won't close and release when you click the close box. The close box will disable and the form will stay visible.</p>
+            </li><li>
+              <p>The <b>Hide()</b> allows the preview container to be re-used in successive report previews, as the previous example code shows.</p>
+            </li></ul>
+          <p>If you do not wish your custom preview container to stay available for further report previews with the report listener, you can modify the <b>QueryUnload</b> method as shown below:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>    PROCEDURE QueryUnload
+        IF NOT ISNULL( THIS.ListenerRef )
+            THIS.ListenerRef.PreviewContainer = .NULL.
+            THIS.ListenerRef.OnPreviewClose(.F.)
+            THIS.ListenerRef = .NULL.
+        ENDIF
+    ENDPROC</pre></td></tr></table></span></div>
+          <p>This alternative implementation results in the preview container being discarded after one report preview. Try the steps above again in the Command Window with the revised preview container class, and you will see that only the first preview uses SimplePreview. The second report run reverts to the default preview container because the <b>ReportListener</b> object detects that it no longer has a reference in its <b>PreviewContainer</b> property and requests a new one via <b>_REPORTPREVIEW</b>.</p>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2)" tabindex="0"><img id="sectionToggle2" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Scaling and Printing</span></h1><div id="sectionSection2" class="section" name="collapseableSection" style="display: none;">
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Scaling</h3><div class="subSection" xmlns="">
+          <p>In the previous example, the dimensions of the rendered preview page are dictated solely by the size of the Shape control. If you change the <b>Width</b> of the Shape to be twice its current size, then you will observe that the preview images is similarly distorted.</p>
+          <p>You can obtain additional information about the report layout from the <b>ReportListener</b> reference in order to scale the page representation appropriately. Add the following method code to the class definition above:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>    PROCEDURE Show
+        LPARAMETER iMode
+        IF NOT ISNULL( THIS.ListenerRef )
+            LOCAL nWidthInches, nHeightInches
+            nWidthInches  = THIS.ListenerRef.GetPageWidth()/960
+            nHeightInches = THIS.ListenerRef.GetPageHeight()/960
+            * Assume: Scale by 50% on a 96 DPI screen:
+            THIS.Canvas.Height = INT( nHeightInches * 96 * 0.5 )
+            THIS.Canvas.Width  = INT( nWidthInches * 96 * 0.5 )
+        ENDIF
+        DODEFAULT( iMode )
+    ENDPROC</pre></td></tr></table></span></div>
+          <p>This is the appropriate place for this code because the <b>ReportListener</b> instance is guaranteed to invoke the preview container's <b>Show()</b> method at a point where the <b>GetPageHeight()</b> and <b>GetPageWidth()</b> methods will return correct values for the report being previewed. The <b>SetReport()</b> method will be called before accurate information is available.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Printing</h3><div class="subSection" xmlns="">
+          <p>You can specify that the report be printed by passing a parameter of <code>.T.</code> to the report listener's <b>OnPreviewClose()</b> method as the form is closed.</p>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle3)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle3)" tabindex="0"><img id="sectionToggle3" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Setting as Default</span></h1><div id="sectionSection3" class="section" name="collapseableSection" style="display: none;">
+      <p>You can replace the default preview container used by object-assisted reporting preview in Visual FoxPro by adding the following lines to the top of the program containing the SimplePreview class definition introduced earlier in this topic:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*-----------------------------------------
+* Add to the top  of simplepreview.prg
+*-----------------------------------------
+LPARAMETER loPreviewContainerRef
+* parameter is passed by reference
+loPreviewContainerRef = CREATEOBJECT("SimplePreview")
+RETURN
+DEFINE CLASS SimplePreview AS Form
+...</pre></td></tr></table></span></div>
+      <p>This program is now suitable for assigning to _REPORTPREVIEW, specifying the preview container to be returned to Visual FoxPro whenever one is requested by a <b>ReportListener</b> object performing a <b>REPORT… PREVIEW</b> in object-assisted mode.</p>
+      <p>You can test it out in the Command Window:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_REPORTPREVIEW = "simplepreview.prg"
+SET REPORTBEHAVIOR 90
+REPORT FORM (HOME()+"Tools\Filespec\60frx2.frx") preview</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(nextStepsToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(nextStepsToggle)" tabindex="0"><img id="nextStepsToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Next Steps</span></h1><div id="nextStepsSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>See <span class="linkTerms"><a href="/html/9f96f0e9-9b5d-423d-be13-3c905e963681.htm">Leveraging the Default Preview Container</a></span></p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span><br /><span class="linkTerms"><a href="/html/36753dd4-25b1-412c-854b-256f84e49388.htm">_REPORTOUTPUT System Variable</a></span><br /><span class="linkTerms"><a href="/html/7e0ce0ab-435d-480c-9729-534c0c5a7a4c.htm">_REPORTPREVIEW System Variable</a></span><br /><span class="linkTerms"><a href="/html/10e876bb-83c2-4309-8adf-cdd9f565d658.htm">OutputPage Method</a></span><br /><span class="linkTerms"><a href="/html/31b59b85-d92f-4a32-bc93-da8d637e2c3f.htm">Container Object</a></span><br /><span class="linkTerms"><a href="/html/a3626580-d9a5-4d73-a490-9128e812d340.htm">Shape Control</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Creating a Custom Preview Container">
+</OBJECT>

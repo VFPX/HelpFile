@@ -1,0 +1,125 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Print Product Orders By Quarter Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Print Product Orders By Quarter Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File:</b> ...\Samples\Solution\Reports\Ordgraph.scx</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>This sample illustrates generating and printing graphs on the fly. Visual FoxPro makes it possible for you to add graphs to forms as either OleControls or OleBoundControls. The latter representing a graph, which is bound to data using a General field. </p>
+      <p>If you intend to use the Visual FoxPro report writer to print graphs, you need to use General fields to store the graphs. The easiest way to create a new graph in a General field is to use the APPEND GENERAL command, for example:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>APPEND GENERAL graphfield CLASS "msgraph"</pre></td></tr></table></span></div>
+      <p>The example above will create a graph in a General field, however, it will not contain your data. The DATA clause actually passes data to the graph.</p>
+      <p>The following code loops through records already containing data and constructs a string to pass to the graph with APPEND GENERAL .... DATA:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SCAN NEXT m.totrecs
+   m.cData = ""+TAB+m.f2+TAB+m.f3+TAB+m.f4+CRLF+;
+      EVAL(fields(1))+ TAB + ;
+      ALLTRIM(STR(EVAL(field(2))))+ TAB +;
+      ALLTRIM(STR(EVAL(field(3))))+ TAB + ;
+      ALLTRIM(STR(EVAL(field(4))))
+   m.cDetails = ;
+f2+"-" +ALLTRIM(STR(EVAL(FIELD(2)))) ;
+      + CRLF + f3+"-" +ALLTRIM(STR(EVAL(FIELD(3)))) ;
+      + CRLF + f4+" - "+ALLTRIM(STR(EVAL(FIELD(4)))) +CRLF
+   INSERT INTO prodsales ;
+VALUES(SalesData.prod_name,tmpgrph.graph,m.cDetails)
+   APPEND GENERAL prodsales.sales DATA m.cData
+ENDSCAN</pre></td></tr></table></span></div>
+      <p>Once you have a table or cursor containing a General field with your graphs, you can then print it to a Visual FoxPro report using the REPORT FORM command. You cannot include an ActiveX control in a report.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/9248d95c-cd1e-4504-86d7-cb8a83e4ec19.htm">Create Record Bound Graphs Sample</a></span><br /><span class="linkTerms"><a href="/html/348fec52-e48a-489f-86fb-0b0ac888ba69.htm">Solution Samples</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/57cfe57d-6094-4f6b-82c8-139a2f132449.htm">Reports Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Print Product Orders By Quarter Sample">
+<param name="Alink Name" value="vfp.1231587">
+</OBJECT>

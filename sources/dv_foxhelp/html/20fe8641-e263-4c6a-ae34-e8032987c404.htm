@@ -1,0 +1,123 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Control the Event Loop</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Control the Event Loop</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>After setting up the environment and displaying the initial user interface, your application needs to establish an event loop so it can detect and respond to user interaction. When the user quits the application, your application must provide a way to end the event loop.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>You need to establish a way to exit the event loop before you start it. Make sure the application user interface has a mechanism, for example, a Quit button or Exit menu command, to end the event loop.</p>
+    </td></tr></table></div>
+  <h3 class="procedureSubHeading">To establish the event loop</h3><div class="subSection"><ul><li>
+        
+          <p>In the main file for your application, include the <b>READ EVENTS</b> command.</p>
+        
+      </li></ul></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The <b>READ EVENTS</b> command causes Visual FoxPro to begin processing user events such as mouse clicks and keystrokes. For more information, see <span class="linkTerms"><a href="/html/2fdcf4ef-7183-4c3a-b7c4-aab2254b5127.htm">READ EVENTS Command</a></span>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If you do not include the <b>READ EVENTS</b> command, your application returns to the operating system after running. It is important to place the <b>READ EVENTS</b> command correctly in your main file because all processing in the main file is suspended from the time it executes the <b>READ EVENTS</b> command until it executes a subsequent <b>CLEAR EVENTS</b> command. For example, you might call the <b>READ EVENTS</b> command as the last command in an initialization procedure and after initializing the environment and displaying the user interface.</p>
+      </td></tr></table></div>
+      <p>After the event loop begins, the application runs under the control of the user interface element that last displayed. For example, suppose you include only the following command in the main file:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO FORM STARTUP.SCX</pre></td></tr></table></span></div>
+      <p>The application displays the form Startup.scx. Within the development environment, your application might run properly in the Command window. However, if you run the application from a menu or screen, the application appears briefly, then quits.</p>
+      <h3 class="procedureSubHeading">To end the event loop</h3><div class="subSection"><ul><li>
+            
+              <p>Call the <b>CLEAR EVENTS</b> command using a menu command or button on a form.</p>
+            
+          </li></ul></div>
+      <p>The <b>CLEAR EVENTS</b> command suspends the event processing and returns control to the program that called the <b>READ EVENTS</b> command.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Typically, you call the <b>CLEAR EVENTS</b> command from a menu or a button in a form. The main program file should not call <b>CLEAR EVENTS</b> directly.</p>
+      </td></tr></table></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/b89737d7-7dac-455e-9088-fa0ec6c93b98.htm">CLEAR Commands</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/48601210-e705-468b-bd07-9b02f9259475.htm">Configuring an Application</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Control the Event Loop">
+</OBJECT>

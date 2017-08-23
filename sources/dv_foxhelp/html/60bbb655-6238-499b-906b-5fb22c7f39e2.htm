@@ -1,0 +1,467 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Walkthrough: Creating Applications with Visual FoxPro</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Walkthrough: Creating Applications with Visual FoxPro</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can use Visual FoxPro to create simple programs or more complex enterprise level applications, servers, and XML Web services. You can use tools to create programs or manually write them. When you compile Visual FoxPro programs, you can compile them as application (.app) files for running in a Visual FoxPro environment or as executable (.exe) or dynamic-link library (.dll) files that you can call from anywhere in a Microsoft Windows environment.</p>
+    <p>The following sections in this walkthrough explain how to create a simple program and use it as the basis for an application:</p>
+    <ul><li>
+        <p>
+          <a href="#fowlkwalkthroughcreatingapplicationswithvisualfoxproanchor2">Using Data</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fowlkwalkthroughcreatingapplicationswithvisualfoxproanchor3">Creating a Program for a Form</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fowlkwalkthroughcreatingapplicationswithvisualfoxproanchor4">Creating an Application</a>
+        </p>
+      </li></ul>
+  <a name="fowlkwalkthroughcreatingapplicationswithvisualfoxproanchor2"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Using Data</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>Visual FoxPro programs and applications are based on data in tables or cursors. Data can exist already on your hard disk, a remote server, or a Web site, or you can create it in Visual FoxPro. Data can be in any of the formats that Visual FoxPro recognizes, including OLE objects.</p>
+      <p>For this sample application, the data you use will be copied from the Orders table, which is included with Visual FoxPro in the \Program Files\Microsoft Visual FoxPro 9\Samples\Data folder.</p>
+      <h3 class="procedureSubHeading">To move data from one table to another</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>File</b> menu, click <b>Export</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Type</b> drop-down list in the <b>Export</b> dialog box, select Visual FoxPro 3.0 (DBF).</p>
+            
+          </li><li>
+            
+              <p>In the <b>To</b> text box, type <b>myApp</b> as the name of the file you want to create.</p>
+            
+          </li><li>
+            
+              <p>Click the <b>ellipsis</b> (...) button and save the file in the <b>Visual FoxPro Projects</b> folder (..\My Documents\Visual FoxPro Projects).</p>
+            
+          </li><li>
+            
+              <p>In the <b>From</b> text box in the <b>Export</b> dialog box, click the <b>ellipsis</b> (...) button, and locate the <b>Orders.dbf</b> table in \Program Files\Microsoft Visual FoxPro 9\Samples\Data folder.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Export</b> dialog box, click <b>Options</b> . </p>
+            
+          </li><li>
+            
+              <p>In the <b>Export Options</b> dialog box, click <b>Fields</b>, move <b>cust_id</b>, <b>to_city</b>, <b>to_country</b>, and <b>order_amt</b> from the <b>All fields</b> list to the <b>Selected fields</b> list, and then click <b>OK</b>. Click <b>OK</b> twice more to close the <b>Export Options</b> dialog box and the <b>Export</b> dialog box.</p>
+            
+          </li><li>
+            
+              <p>On the <b>File</b> menu, click <b>Open</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Files of type</b> drop-down list, choose <b>Table</b>, select the <b>open exclusive</b> check box, and browse to <b>myApp.dbf</b>.</p>
+            
+          </li><li>
+            
+              <p>On the <b>View</b> menu, click <b>Table Designer</b>.</p>
+            
+          </li><li>
+            
+              <p>On the <b>Fields</b> tab, select the <b>to_city</b> row, click the <b>Index</b> drop-down list, and choose <b>Ascending</b>.</p>
+            
+          </li><li>
+            
+              <p>Click <b>OK</b>, and click <b>Yes</b> to make the structure change permanent. </p>
+            
+          </li><li>
+            
+              <p>On the <b>Window</b> menu, click <b>Data Session</b> to order the table according to your new index.  </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>You have created a table that, because it is indexed, supports group calculations in the <b>Report Designer</b>.</p>
+              </td></tr></table></div>
+            
+          </li><li>
+            
+              <p>In the <b>Data Session</b> window, click <b>Properties</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Index Order</b> drop-down list, select <b>myApp:to_city</b>, and then click <b>OK</b>. </p>
+              <p>You have now exported selected fields from one table to another and then set an index on the new table. Leave the Data Session window open, and use this table immediately for the rest of this sample. </p>
+            
+          </li></ol></div>
+    </div><a name="fowlkwalkthroughcreatingapplicationswithvisualfoxproanchor3"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Creating a Program for a Form</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>You can create simple Visual FoxPro programs from the menus and the IDE. These programs either run in Visual FoxPro or access the Visual FoxPro Runtime.</p>
+      <h3 class="procedureSubHeading">To create the form</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>File</b> menu, click <b>New</b>.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Form</b>, and then click <b>New file</b>. </p>
+              <p>This opens the Form Designer, adds the <b>Form</b> menu and the <b>Form</b> <b>Controls</b> toolbar, and displays the Properties window for the form. If the toolbar is not visible, you can open it from the <b>View</b> menu. </p>
+            
+          </li><li>
+            
+              <p>In the Properties window for the form, select <b>Caption</b>, and type <b>myForm</b>.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To add a label</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Form</b> <b>Controls</b> toolbar, click <b>Label</b>, and drag a rectangle on the form.</p>
+            
+          </li><li>
+            
+              <p>In the Properties window for the label control, select <b>Caption</b>, and change it to <b>My Data Form</b>. Then, select <b>FontSize</b>, and type <b>20</b>.</p>
+            
+          </li><li>
+            
+              <p>If necessary, resize the label so the text fits.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To add a grid</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Form</b> <b>Controls</b> toolbar, click <b>Grid</b>, and then draw a rectangle on the form.</p>
+            
+          </li><li>
+            
+              <p>Right-click the Grid control, and select <b>Builder</b> from the shortcut menu.</p>
+            
+          </li><li>
+            
+              <p>In the Grid Builder, select the table, <b>myApp</b>.</p>
+            
+          </li><li>
+            
+              <p>On the <b>Grid Items</b> tab, move all the items in the <b>Available fields</b> list to the <b>Selected fields</b> list, and then close the builder.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To add a button</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Form</b> <b>Controls</b> toolbar, click the <b>Command Button</b> icon, and then draw a rectangle on the form below the grid.</p>
+            
+          </li><li>
+            
+              <p>Double-click the newly created button, and type the following code in the code editor. Close the code editing window when you are finished. </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.RELEASE</pre></td></tr></table></span></div>
+              <p>This code will close the form when you do not need it any more. </p>
+            
+          </li><li>
+            
+              <p>In the Properties window for the button control, select <b>Caption</b>, and type <b>Exit</b>.</p>
+            
+          </li><li>
+            
+              <p>On the <b>File</b> menu, click <b>Save As</b>, and save the form as <b>myForm</b>.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Run</b> (<b>!</b>) on the toolbar to preview your form.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To complete the program</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>File</b> menu, click <b>New</b>.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Program</b>, and then click <b>New file</b>. This opens the Visual FoxPro editor.</p>
+            
+          </li><li>
+            
+              <p>In the editor, type the following: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO FORM myForm.scx</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Save this program as <b>myProgram</b>. This creates a Visual FoxPro program (.prg) file that runs your form from the following command in the <b>Command</b> window: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO myProgram</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+      <p>Now you have placed a table (as a grid), a label, and a button on a form. You created a program to run from the Command window or Program menu. In the next section, the application exchanges a data review form for the grid and adds it to the program before compiling it to a file.</p>
+    </div><a name="fowlkwalkthroughcreatingapplicationswithvisualfoxproanchor4"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2)" tabindex="0"><img id="sectionToggle2" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Creating an Application</span></h1><div id="sectionSection2" class="section" name="collapseableSection" style="display: none;">
+      <p>Running the program you created earlier requires Visual FoxPro to be installed on the computer. However, you can create an application with Visual FoxPro that will run on a computer that does not have Visual FoxPro installed on it.</p>
+      <p>The earlier program has only one form and does not have much functionality. This section walks you through adding a data review form with some additional controls and then compiling the two forms — first into a Visual FoxPro application and then into a Windows application. A Visual FoxPro application (.app) file or a Visual FoxPro executable (.exe) file can each run on Windows platforms if Visual FoxPro is installed. A Visual FoxPro application compiled as an executable (.exe) file also can run on Windows platforms with only the Visual FoxPro Runtime installed.</p>
+      <p>In this section, you will create an application using the Application wizard, the Application builder, and the Project manager.   </p>
+      <ul><li>
+          <p>The Application wizard creates a project and provides the advanced application framework so you can add components you might have created already or create an application from start to finish, including splash screens and other enhancements. </p>
+        </li><li>
+          <p>The Application builder makes it possible for you to add tables, forms, and reports to an existing project. </p>
+        </li><li>
+          <p>The Project manager, the most fundamental application-building tool in Visual FoxPro, provides access to all the components you might want to include in an application and contains them for compilation. </p>
+        </li></ul>
+      <p>For this walkthrough, you use the Application wizard first.</p>
+      <h3 class="procedureSubHeading">To create an application</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Tools</b> menu, point to <b>Wizards</b>, and click <b>Application</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Project name </b>box, type <b>MyApplication</b>, save the project in your <b>Visual FoxPro Projects</b> folder (..\My Documents\Visual FoxPro Projects), and then click <b>OK</b>.</p>
+            
+          </li></ol></div>
+      <p>Visual FoxPro prepares to create a project file with the name you specified. When it has finished creating the project, two windows appear: the Project Manager and the Application Builder. In the following procedures, you use the Application Builder to add components and functionality to your application.</p>
+      <h3 class="procedureSubHeading">To specify splash screen and About dialog box information</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>General</b> tab of the Application Builder, click the <b>ellipsis</b> (...) button next to the <b>Image</b> box.</p>
+            
+          </li><li>
+            
+              <p>Find the Visual FoxPro logo, <b>fox.bmp</b>, in your Visual FoxPro folder (..\Program Files\Microsoft Visual FoxPro <i>VersionNumber</i>), and click <b>OK</b>. This image will appear on your application splash screen. </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>If you close the <b>Application</b> builder, you can reopen it by clicking the <b>Tools</b> menu, pointing to<b>Wizards</b>, and clicking <b>All Wizards</b>. Click <b>Application Builder</b> in the <b>Wizard Selection</b> dialog box, and then click <b>OK</b>.</p>
+              </td></tr></table></div>
+            
+          </li><li>
+            
+              <p>On the <b>Credits</b> tab of the <b>Application Builder</b>, add the appropriate authoring and version information.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To specify the data source</h3><div class="subSection"><ul><li>
+            
+              <p>On the <b>Data</b> tab, click <b>Select</b>, and find and select <b>myAPP</b> (the table you used earlier in the simple program). </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>You can choose any available table. This tab also provides buttons, so you can create tables or a database easily.</p>
+              </td></tr></table></div>
+            
+          </li></ul></div>
+      <h3 class="procedureSubHeading">To create a form and a report</h3><div class="subSection"><ul><li>
+            
+              <p>On the <b>Data</b> tab, you can select from lists of form and report templates that are part of the <b>Advanced Application Framework</b> (included in the Application Builder). Accept the default values in the drop-down lists, and then click <b>Generate</b>. </p>
+              <p>Visual FoxPro generates a form and a report from the table you specify and gives you access to them from the <b>Forms</b> and <b>Reports</b> tabs of the <b>Application</b> builder. These components become part of the project you are building, and the files are saved in the <b>Forms</b> or <b>Reports</b> folder in your <b>Visual FoxPro Projects</b> folder (..\My Documents\Visual FoxPro Projects). </p>
+            
+          </li></ul></div>
+      <h3 class="procedureSubHeading">To add controls to the form</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Forms</b> tab of the Application Builder, click <b>Edit </b>to open the Form Designer, where you can make any additions or changes.  </p>
+              <p>As is, the form will display only the first record, so you must add at least one more control; in this procedure, you add two. </p>
+            
+          </li><li>
+            
+              <p>On the <b>Form Designer</b> toolbox, click the <b>Button</b> icon, and drag a rectangle in the form. In the <b>Caption</b> property, type <b>Next</b>.</p>
+            
+          </li><li>
+            
+              <p>Double click the <b>Next</b> button on the form, and type the following code in the code editor.Close the code-editing window when you are finished. </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF NOT EOF()
+   SKIP
+ELSE
+   GO TOP
+ENDIF
+THISFORM.REFRESH</pre></td></tr></table></span></div>
+              <p>This code steps through the table records and displays each record. You also could add another button, with appropriate code, to move back through the table.  </p>
+            
+          </li><li>
+            
+              <p>Copy the <b>Next</b> button, and place the copy at the far right of the form. In the <b>Caption</b> property, type <b>Exit</b>.</p>
+            
+          </li><li>
+            
+              <p>Double click the <b>Exit</b> button, and, in the Click event edit window, replace the code in the window with the following code, and then close the window: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.RELEASE</pre></td></tr></table></span></div>
+              <p>This code closes your form. </p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To add calculations to the report</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Reports</b> tab of the Application Builder, click <b>Edit</b> for <b>MyApp</b> to open the <b>Report Designer</b>. Expand all the bands of the report to make it easier to perform the following operations. </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>This is where you can make any additions or changes, such as rearranging fields or adding controls.</p>
+              </td></tr></table></div>
+            
+          </li><li>
+            
+              <p>On the <b>View</b> menu, click <b>Data Environment</b>.</p>
+            
+          </li><li>
+            
+              <p>Right click the <b>Data Environment </b>window, and select <b>Properties</b> from the shortcut menu. </p>
+              <p>This will set the Properties window to the <b>Dataenvironment</b>. </p>
+            
+          </li><li>
+            
+              <p>In the <b>Properties</b> window, choose the cursor from the <b>Properties Description</b> drop-down list, and change the <b>Order</b> property to <b>to_city</b> to make grouping possible.</p>
+            
+          </li><li>
+            
+              <p>On the <b>Report</b> menu, click <b>Data Grouping</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Data Grouping</b> dialog box, click the <b>Add</b> button and then double-click <b>to_city</b> in the <b>Fields</b> list in the <b>Expression Builder</b>. Click <b>OK</b> in both dialog boxes.</p>
+            
+          </li><li>
+            
+              <p>In the Report Designer, copy and paste the <b>to_city</b> element, and then drag the pasted element from the <b>Detail</b> band to the <b>Group Footer</b> band for group totals. Repeat this procedure to place another copy of the <b>to_city</b> element in the <b>Page Footer</b> for the entire table.</p>
+            
+          </li><li>
+            
+              <p>For each copy of the <b>to_city</b> element, double-click the element to open the <b>Report Expression</b> dialog box.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Calculations</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Calculation Field</b> dialog box, click <b>Count</b>. </p>
+              <p>The <b>Reset</b> drop-down list should display the default selection, which is the <b>to_city</b> field. This means the <b>Count</b> function will reset to zero each time the value of the <b>to_city</b> element changes in the pass through the table. This is correct for the <b>Group Footer</b> band, but you must change this selection for the <b>to_city</b> element in the <b>Page Footer</b> band. </p>
+            
+          </li><li>
+            
+              <p>After you select <b>Count</b> in the <b>Calculate Field</b> dialog box of the <b>to_city</b> element you placed in the <b>Page Footer</b> band, change the <b>Reset</b> value to <b>End of Report</b>.</p>
+            
+          </li><li>
+            
+              <p>After setting the <b>Calculation field</b> of each <b>to_city</b> element, click <b>OK</b> to close the dialog box.</p>
+            
+          </li><li>
+            
+              <p>Click <b>OK</b> to close the Application Builder.</p>
+            
+          </li></ol></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>In addition to the features you specified in the Application wizard, Visual FoxPro created other components for your application. When you run your application, you will discover a customized File menu and a dialog box from which you can run your form and your report. </p>
+      </td></tr></table></div>
+      <p>Now you can use the Project manager to review the components you have created. You will find that the Application wizard created many components, which you modified in the Application builder and the Form and Report designers. You can examine and modify these components in various Visual FoxPro tools, such as the designers or the Class Browser and Object Browser.</p>
+      <p>At this point, the most important use of the Project manager is to complete the compilation of your files into an application.</p>
+      <h3 class="procedureSubHeading">To complete the application</h3><div class="subSection"><ol><li>
+            
+              <p>In the <b>Project Manager</b>, click <b>Build</b>.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Application (app)</b> to create an application to be run only in Visual FoxPro. </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>If you select <b>Win 32 executable / COM server (exe)</b>, you create an application that can be run on a computer with only the Visual FoxPro Runtime installed.</p>
+              </td></tr></table></div>
+            
+          </li><li>
+            
+              <p>Click <b>OK</b>.</p>
+            
+          </li></ol></div>
+      <p>When the build process is complete, you have an application you can run in Visual FoxPro by double-clicking the .app file. When the program opens, it displays the splash screen and then the Quick Start dialog box from which you can view your form and your report. The application also provides a Quick Start menu item.</p>
+      <p>For more information on creating programs and applications, see <a href="/html/d5c22f8a-33ae-4ab9-9c26-d1113d2a3962.htm">Application Wizard</a> and <a href="/html/8d310495-b488-4aa1-abf0-1b0b622ddfd2.htm">Application Builder</a>.</p>
+      <p>For more information on the Project Manager and for details on application build options, see <a href="/html/93e1d13b-c029-47eb-b140-c119ff44f10d.htm">Project Manager Window</a>, and <a href="/html/56bee8fe-94d7-49a5-84e4-521d79e7df28.htm">Build Options Dialog Box</a>. </p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/d5c22f8a-33ae-4ab9-9c26-d1113d2a3962.htm">Application Wizard</a></span><br /><span class="linkTerms"><a href="/html/8d310495-b488-4aa1-abf0-1b0b622ddfd2.htm">Application Builder</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1690045a-ff3b-4707-8da8-f5b01ac684f0.htm">Walkthroughs</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Walkthrough: Creating Applications with Visual FoxPro">
+</OBJECT>

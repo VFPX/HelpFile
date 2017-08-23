@@ -1,0 +1,338 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>DDESetTopic( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">DDESetTopic( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Creates or releases a topic name from a service name in a dynamic data exchange (DDE) conversation.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+DDESetTopic(<span class="parameter">cServiceName</span>, <span class="parameter">cTopicName</span> [, <span class="parameter">cUDFName</span>])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cServiceName</span>
+        </span></dt><dd>
+          <p>Specifies the service name. Additional service names can be created with DDESetService( ).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cTopicName</span>
+        </span></dt><dd>
+          <p>Specifies the topic name to create or release. If you include <span class="parameter">cUDFName</span>, <b>DDESetTopic( )</b> creates the topic name <span class="parameter">cTopicName</span>. If you omit <span class="parameter">cUDFName</span>, the topic name <span class="parameter">cTopicName</span> is released. If <span class="parameter">cTopicName</span> is an empty string, the user-defined function specified with <span class="parameter">cUDFName</span> is executed for any topic name that is not explicitly declared.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cUDFName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the user-defined function executed when a client application makes a request to the topic name. If you omit <span class="parameter">cUDFName</span>, the topic name <span class="parameter">cTopicName</span> is released from the service name.</p>
+          <p>When the user-defined function is executed, it is passed the following six parameters in the order given below:   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Parameter
+                </th>
+                <th>
+                  Contents
+                </th>
+              </tr><tr>
+              <td>
+                <p>Channel Number</p>
+              </td>
+              <td>
+                <p>The client channel number.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Action</p>
+              </td>
+              <td>
+                <p>ADVISE, EXECUTE, INITIATE, POKE, REQUEST, or TERMINATE.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Item</p>
+              </td>
+              <td>
+                <p>The item name; for example, R1C1 for a Microsoft Excel worksheet cell.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Data</p>
+              </td>
+              <td>
+                <p>Data from the client.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Format</p>
+              </td>
+              <td>
+                <p>The data format; for example, CF_TEXT.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Advise Status</p>
+              </td>
+              <td>
+                <p>The link type (0 = manual, 2 = notify or automatic).</p>
+              </td>
+            </tr></table></div>
+          <p>The values of the Item, Data, and Advise Status parameters depend on the Action parameter. The following table lists the Action parameter values and the values contained in the Item, Data, and Advise Status parameters. A dash (–) indicates that the parameter value is the empty string.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Action value
+                </th>
+                <th>
+                  Item value
+                </th>
+                <th>
+                  Data value
+                </th>
+                <th>
+                  Advise status
+                </th>
+              </tr><tr>
+              <td>
+                <p>INITIATE</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>Topic name</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>TERMINATE</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>POKE</p>
+              </td>
+              <td>
+                <p>Item name</p>
+              </td>
+              <td>
+                <p>New data</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>REQUEST</p>
+              </td>
+              <td>
+                <p>Item name</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>EXECUTE</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>New command</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ADVISE</p>
+              </td>
+              <td>
+                <p>Item name</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>Link type</p>
+              </td>
+            </tr></table></div>
+          <p>If the user-defined function successfully handles the client request, the user-defined function should return true (.T.). If the request cannot be handled or an error occurs, the user-defined function should return false (.F.). If false is returned when the Action parameter value is INITIATE, the client topic name request is rejected. If false is returned when the value is POKE, REQUEST, or EXECUTE, the request is ignored. If false is returned when the value is ADVISE, the client request for a notify or automatic link is rejected. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Logical</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>After a topic name is created, any client requests to the topic name cause Visual FoxPro to execute the user-defined function specified with <span class="parameter">cUDFName</span>. The user-defined function is passed a set of parameters whose values are determined by the client request. The user-defined function return value is passed to the client with DDEPoke( ). The return value is a logical value indicating whether the topic name can provide the service requested by the client.</p>
+      <p>
+        <b>DDESetTopic( )</b> returns true (.T.) if it successfully creates or releases the topic name. It returns false (.F.) if the topic name cannot be created or released. Use DDELastError( ) to determine why a topic name cannot be created or released.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    
+      
+        <p>The following example creates a basic sample server called <code>myserver</code> that supports Visual FoxPro command execution from a client application. The client application makes requests to <code>myserver</code> through the DO topic, and macro substitution is used to execute the client's command.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*** Set Visual FoxPro up as a DDE server ***
+= DDESetService('myserver', 'DEFINE')
+= DDESetService('myserver', 'EXECUTE', .T.)
+= DDESetTopic('myserver', 'DO', 'DOTOPIC')
+WAIT WINDOW 'Server portion service setup ... ' NOWAIT
+*** Use Visual FoxPro as a DDE client ***
+gnChannel = DDEInitiate('myserver','DO')
+=DDEExecute(gnChannel, 'WAIT WINDOW "Command Executed ... "')
+=DDETerminate(gnChannel)
+PROCEDURE dotopic
+PARAMETERS gnChannel, gcAction, gcItem, gData, gcFormat, gnAdvise
+glResult = .F.
+*** It's necessary to return .T. from an   ***
+*** INITIATE action or no connection is made ***
+IF gcAction = 'INITIATE'
+   glResult = .T.
+ENDIF
+IF gcAction = 'EXECUTE'
+   &amp;gData
+   glResult = .T.
+ENDIF
+IF gcAction = 'TERMINATE'
+   WAIT WINDOW 'Goodbye ... ' NOWAIT
+   glResult = .T.
+ENDIF
+RETURN glResult</pre></td></tr></table></span></div>
+        <p>After running this example program, you have set up Visual FoxPro service, which other applications can access. If you have Microsoft Excel, you can run the following Excel macro:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>gnMyChan = INITIATE("myserver","DO")
+=EXECUTE(MyChan,"WAIT WINDOW 'Hi, this is EXCEL speaking'")
+=RETURN( )</pre></td></tr></table></span></div>
+      
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/26efad8c-b009-49f2-9255-39ca17a0de40.htm">DDEEnabled( ) Function</a></span><br /><span class="linkTerms"><a href="/html/54de6103-d68b-45fd-b02a-cc94656efffb.htm">DDELastError( ) Function</a></span><br /><span class="linkTerms"><a href="/html/0cf94b64-81df-49a9-9ab2-474ccac95c8e.htm">DDEPoke( ) Function</a></span><br /><span class="linkTerms"><a href="/html/4aaf2d78-0e05-41d7-bc56-25da2b4b0fa9.htm">DDESetService( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="DDESetTopic( ) Function">
+<param name="ALink Name" value="DDESetTopic">
+</OBJECT>

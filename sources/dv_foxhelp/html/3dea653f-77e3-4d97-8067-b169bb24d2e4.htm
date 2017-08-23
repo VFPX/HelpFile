@@ -1,0 +1,128 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Create Multicolumn List Boxes</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Create Multicolumn List Boxes</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Although the default number of columns in a list box is one, a list box in Visual FoxPro can contain as many columns as you want. A multicolumn list box differs from a grid in that you select a row at a time in a multicolumn list box while you can select individual cells in a grid, and data in the list cannot be directly edited.</p>
+  <h3 class="procedureSubHeading">To display multiple columns in a list box</h3><div class="subSection"><ol><li>
+        
+          <p>Set the <a href="/html/9b9270cb-27c5-470b-b889-5910309ef707.htm">ColumnCount</a> property to the number of desired columns.</p>
+        
+      </li><li>
+        
+          <p>Set the <span class="linkTerms"><a href="/html/3fd4128a-79fc-4b27-be7c-3c44f3f8f9dd.htm">ColumnWidths Property</a></span>. For example, if there are three columns in the list box, the following command would set the column widths to 10, 15, and 30, respectively: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.listbox.ColumnWidths = "10, 15, 30"</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>Set the <span class="linkTerms"><a href="/html/ffd39712-9ea4-42a5-bd92-9a4073f5a6b4.htm">RowSourceType Property</a></span> to <b>6 - Fields</b><code>.</code></p>
+        
+      </li><li>
+        
+          <p>Set the <span class="linkTerms"><a href="/html/490d957f-926a-4b4c-a265-e3ad5f679f1b.htm">RowSource Property</a></span> to the fields to be displayed in the columns. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>For the columns to align correctly, you need to either set the ColumnWidths property or change the <span class="linkTerms"><a href="/html/d15b6a96-339a-4366-a7b0-1348a6420b29.htm">FontName Property</a></span> to a monospaced font. The <span class="linkTerms"><a href="/html/27a271fc-803c-4f25-989d-c811114cff2f.htm">FirstElement Property</a></span> of ListBoxes and ComboBoxes is not effective in multi-column lists.</p>
+          </td></tr></table></div>
+        
+      </li></ol>
+      
+        <p>When the RowSourceType of the list is set to 0 - None, you can use the AddListItem method to add items to a multicolumn list box. For example, the following code adds text to specific columns in a list box:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.lst1.ColumnCount = 3
+THISFORM.lst1.Columnwidths = "100,100,100"
+THISFORM.lst1.AddListItem("row1 col1", 1,1)
+THISFORM.lst1.AddListItem("row1 col2", 1,2)
+THISFORM.lst1.AddListItem("row1 col3", 1,3)
+THISFORM.lst1.AddListItem("row2 col2", 2,2)</pre></td></tr></table></span></div>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/ccc655cb-3b49-42a2-a87c-43ce0a462c95.htm">Controls for Displaying Lists</a></span><br /><span class="linkTerms"><a href="/html/119e15f3-d59f-4ebc-8b75-98d1d4fbbdad.htm">Controls and Objects Created in Earlier Versions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b9032965-6941-41d2-8ff9-87c609673907.htm">Using Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Create Multicolumn List Boxes">
+</OBJECT>

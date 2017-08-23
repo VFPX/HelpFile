@@ -1,0 +1,241 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Specify and Distribute Report Output Application Components</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Specify and Distribute Report Output Application Components</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you write and distribute Visual FoxPro applications, you can distribute ReportOutput.app or its component files as part of your applications.  In this topic, you learn how to:</p>
+    <ul><li>
+        <p>Distribute the default ReportOutput.app with your applications with appropriate instructions to use the application and an accompanying registry table.</p>
+      </li><li>
+        <p>Adjust the registry table defaults in ReportOutput.app.</p>
+      </li><li>
+        <p>Integrate the Report Output Application registry table and other Report Output Application components into your applications without distributing ReportOutput.app.</p>
+      </li></ul>
+  <h1 class="heading">Using a non-default registry table in an application</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>If you distribute ReportOutput.App as a separate file from your application, and if you plan to distribute the registry table externally, the table can have any name.  </p>
+      <h3 class="procedureSubHeading">To include code designating a registry table with a non-default name for the default ReportOutput.app </h3><div class="subSection"><ol><li>
+            
+              <p>Create a new registry table on disk. For more information about creating the table, see <span class="linkTerms"><a href="/html/f31384bf-c40d-4fec-a8f7-99ff038c05ad.htm">How to: Specify an Alternate Report Output Registry Table</a></span>.</p>
+            
+          </li><li>
+            
+              <p>Edit the table with records suitable for your application.  For more information, see <span class="linkTerms"><a href="/html/e99d0fbc-19c6-4418-9e7e-7e170e5cc975.htm">How to: Register Custom ReportListeners and Custom OutputTypes in the Report Output Registry Table</a></span>.</p>
+            
+          </li><li>
+            
+              <p>Store the name and location in which you are distributing ReportOutput.app to the _REPORTOUTPUT System variable, either in the CONFIG.FPW file for your application or in your setup code.  For more information, see <span class="linkTerms"><a href="/html/e4da0efc-19ca-4eb4-a1b7-c5f7d60a4d9c.htm">Setting Configuration Options at Startup</a></span>.</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_ReportOutput = &lt;your ReportOutput.app file name and location&gt;</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Include code similar to the following during setup code in your application:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE OUTPUTAPP_CONFIG_READ -200
+DO (_REPORTOUTPUT) with OUTPUTAPP_CONFIG_READ, ;
+   &lt;your registry table file name and location&gt;</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Changing ReportOutput.app's default registry table information</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can distribute a recompiled copy of ReportOutput.app with different default registry table names to suit your application.</p>
+      <h3 class="procedureSubHeading">To recompile ReportOutput.app with different default registry filenames</h3><div class="subSection"><ol><li>
+            
+              <p>Expand the ReportOutput subfolder in the zip file located in Visual FoxPro's Tools\Xsource folder.  For more information about Xsource, see <span class="linkTerms"><a href="/html/9c12387d-6c8b-4fac-9da8-72d6ad2e0673.htm">XSource Folder</a></span>.</p>
+            
+          </li><li>
+            
+              <p>Navigate to the folder in which you expanded the ReportOutput component source files.  Modify the ReportOutput.H (header) file.</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CD &lt;your source folder&gt;
+MODIFY COMMAND ReportOutput.H</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Locate the following two lines of code in the header file:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE OUTPUTAPP_INTERNALDBF   "_ReportOutputConfig"
+#DEFINE OUTPUTAPP_EXTERNALDBF   "OutputConfig"</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Edit the value "OutputConfig", replacing it with the name of the table (.dbf) you want your application to use as a default value for finding the table on disk.  Edit the value "_ReportOutputConfig", replacing it with the name of the table you want your application to use as a default value for finding the table built into your application, if it does not first locate a table with the default name on disk.</p>
+            
+          </li><li>
+            
+              <p>Save your changes.</p>
+            
+          </li><li>
+            
+              <p>Rebuild the ReportOutput.App file, being sure to use the RECOMPILE switch:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BUILD APPLICATION ReportOutput FROM ReportOutput RECOMPILE</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>If you have changed the value in OUTPUTAPP_INTERNALDBF, the build process should automatically build in the table you specified and create the appropriate reference in your project.  Locate the table for the Project Manager, during the build process, if it asks you to find the table.</p>
+            
+          </li><li>
+            
+              <p>Store the name and location of your new ReportOutput.app to the _REPORTOUTPUT System variable, either in the CONFIG.FPW file for your application or in your setup code.  For more information, see <span class="linkTerms"><a href="/html/e4da0efc-19ca-4eb4-a1b7-c5f7d60a4d9c.htm">Setting Configuration Options at Startup</a></span>.</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_ReportOutput = &lt;your ReportOutput.app filename and location&gt;</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Distribute the new ReportOutput.App file with your applications.  Include an appropriate registry table to match the file name you chose, either built into the application or on-disk.</p>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Building Report Output Application components directly into your application</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>If you distribute Report Output Application components into your application file (.app or .exe), the registry table can have any name, whether you distribute the table internally or externally.  This section shows you how to build the components into your project and application files.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>You do not need to distribute the ReportOutput.App file externally with your application if you follow this procedure.</p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To include a registry table and Report Output Application components in your application (.app or .exe) file </h3><div class="subSection"><ol><li>
+            
+              <p>Include code similar to the following during setup code in your application to build the Report Output Application components into your application:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>
+* make sure that the main program of the 
+* Report Output Application is included 
+* in your project:
+EXTERNAL proc frxoutput.prg
+* make sure that the registry table is
+* also included, if you plan to build it in
+* to the application file:
+EXTERNAL TABLE MyConfig
+</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>In your application setup code, designate the main program of the default Report Output Application </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>
+* set the value of the _REPORTOUTPUT 
+* system variable to the main program of
+* the default Report Output Application:
+_REPORTOUTPUT = FULLPATH("frxoutput.prg")
+</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>In the application setup code, designate the appropriate registry table as described in the last section.  You do not need to include a path if you build the registry table into the application:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* designate the appropriate registry table:
+#DEFINE OUTPUTAPP_CONFIG_READ -200
+DO (_REPORTOUTPUT) with OUTPUTAPP_CONFIG_READ, "myconfig" </pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Rebuild your application.  Because you have included the main program of Report Output Application, the other required components should be automatically built into your application by the build process. During the build process, locate any files requested by the Project Manager.</p>
+            
+          </li><li>
+            
+              <p>Your application is now ready to use the built-in Report Output Application files and your custom registry table:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>
+* the following line will look for an class
+* to instantiate using your registry table. 
+* It will throw an error if no appropriate
+* record exists in the registry table:
+REPORT FORM &lt;your report&gt; OBJECT TYPE 993
+* the following line will look for a class
+* to instantiate using your registry table.
+* It will use Report Output Application's 
+* built-in default values if no appropriate
+* record exists in the registry table:
+REPORT FORM &lt;your report&gt; OBJECT TYPE 5 
+* the following lines of code causes Visual FoxPro
+* to automatically ask Report Output Application
+* for a ReportListener-derived object of 
+* TYPE 1 (print).  Your registry table
+* will be used to find a class of the appropriate
+* type, and Report Output Application's defaults
+* will be used if the table has no records 
+* designating a class for this type:
+SET REPORTBEHAVIOR 90
+REPORT FORM &lt;your report&gt; TO PRINT
+</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/36753dd4-25b1-412c-854b-256f84e49388.htm">_REPORTOUTPUT System Variable</a></span><br /><span class="linkTerms"><a href="/html/8920ed3c-4d89-4fea-9cf0-1cc21395928a.htm">Including Report Files for Distribution</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Specify and Distribute Report Output Application Components">
+</OBJECT>

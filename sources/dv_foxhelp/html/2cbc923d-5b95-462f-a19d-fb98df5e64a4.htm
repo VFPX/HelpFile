@@ -1,0 +1,188 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Enforcing Business Rules</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Enforcing Business Rules</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you have or use business rules for entering data, there are several ways you can enforce those rules in your database:  </p>
+    <ul><li>
+        <p>Create and use validation rules to control data entered in database table fields and records. For more information, see <span class="linkTerms"><a href="/html/df7e047b-24bc-4dd9-a327-6c2ee6640d9c.htm">Working with Validation Rules</a></span>.</p>
+      </li><li>
+        <p>Prevent duplicate values in fields by using candidate or primary indexes. For more information, see <span class="linkTerms"><a href="/html/726d741c-2733-4e1e-8416-284f6eb0f9f0.htm">Preventing Duplicate Values in Fields</a></span>.</p>
+      </li><li>
+        <p>Maintain relationships between tables by establishing referential integrity rules using triggers and stored procedures that are invoked when records in database tables are modified. For more information, see <span class="linkTerms"><a href="/html/6b6883f7-0524-4441-8493-4ec4cc42b315.htm">How to: Build Referential Integrity Between Tables</a></span>.</p>
+      </li></ul>
+    <p>When developing constraints for your database, consider the level at which you want to enforce a business rule and the action that activates the constraint. Constraints activate in the order that they appear in a table. The first violation of any constraint stops the operation.</p>
+    <p>The following table summarizes the order in which Visual FoxPro enforces data validation constraints, the level at which they apply, and when those constraints are activated. </p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Level
+          </th>
+          <th>
+            Enforcement mechanism
+          </th>
+          <th>
+            Activated when
+          </th>
+        </tr><tr>
+        <td>
+          <p>Form</p>
+        </td>
+        <td>
+          <p>
+            <b>VALID</b> clause</p>
+        </td>
+        <td>
+          <p>Moving the record pointer off the record.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Table</p>
+        </td>
+        <td>
+          <p>Triggers</p>
+        </td>
+        <td>
+          <p>Changing values in tables with an <b>INSERT</b>, <b>UPDATE</b>, or <b>DELETE</b> operation.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Field or column</p>
+        </td>
+        <td>
+          <p>NULL validation</p>
+        </td>
+        <td>
+          <p>Moving out of a field or column in a browse window or changing the field value with an <b>INSERT</b> or <b>REPLACE</b> operation.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Field or column</p>
+        </td>
+        <td>
+          <p>Field-level validation rules</p>
+        </td>
+        <td>
+          <p>Moving out of a field or column in a browse window or changing the field value with an <b>INSERT</b> or <b>REPLACE</b> operation.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Record </p>
+        </td>
+        <td>
+          <p>Record-level validation rules</p>
+        </td>
+        <td>
+          <p>Updating a record.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Record</p>
+        </td>
+        <td>
+          <p>Candidate/primary index</p>
+        </td>
+        <td>
+          <p>Updating a record.</p>
+        </td>
+      </tr></table></div>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>When a trigger is called, the Alias is always that of the cursor being updated, regardless of the Alias selected in the code that caused the trigger to fire.</p>
+    </td></tr></table></div>
+  <h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6581d527-030f-4e2d-8eef-bff704ffeb72.htm">Working with Data</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Enforcing Business Rules">
+</OBJECT>

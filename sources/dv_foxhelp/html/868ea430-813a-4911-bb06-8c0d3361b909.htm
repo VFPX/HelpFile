@@ -1,0 +1,177 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SET LIBRARY Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SET LIBRARY Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Opens an external API (application programming interface) library file.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SET LIBRARY TO [<span class="parameter">FileName</span> [ADDITIVE]]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">FileName</span>
+        </span></dt><dd>
+          <p>Specifies the file name of the API library or procedure file to open.</p>
+          <p>Visual FoxPro assume an .fll extension for libraries. If the library has an .fll extension, you don't have to include the extension with the file name. If a library has an extension other than .fll, you must include the extension with the file name.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+            <p>When using SET LIBRARY, be aware of the following:</p>
+          </td></tr></table></div>
+          <ul><li>
+              <p>You cannot use API libraries built for one platform on another platform. For example, libraries created for FoxPro for MS-DOS cannot be used in Visual FoxPro; libraries created for Visual FoxPro cannot be used in FoxPro for MS-DOS.</p>
+            </li><li>
+              <p>You cannot use API libraries built for one version on another version. For example, you cannot use libraries built for FoxPro version 2.6 in Visual FoxPro. You must recompile and link.</p>
+            </li></ul>
+          <p>Visual FoxPro assumes a .prg extension for a procedure file.   </p>
+          <p>When you execute a procedure with DO <span class="parameter">ProcedureName</span>, Visual FoxPro searches for the procedure in the following files in this order:   </p>
+          <ul><li>
+              <p>The file containing DO <span class="parameter">ProcedureName</span>.</p>
+            </li><li>
+              <p>A procedure file opened with SET PROCEDURE (if one is set).</p>
+            </li><li>
+              <p>The programs in the execution chain. Visual FoxPro searches program files beginning with the most recently executed program and continuing back to the first executed program.</p>
+            </li><li>
+              <p>A procedure file opened with SET LIBRARY (if one is set).</p>
+            </li><li>
+              <p>A stand-alone program file. If Visual FoxPro finds a program file with the same name as the file name specified with DO, the program is executed. If it doesn't find a matching program file name, Visual FoxPro generates an error message.</p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ADDITIVE </span></dt><dd>
+          <p>Opens additional API libraries. Include ADDITIVE after the file name in successive SET LIBRARY commands.</p>
+          <p>Visual FoxPro ignores ADDITIVE when you use SET LIBRARY to open a procedure file. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Use SET LIBRARY to open external Application Program Interface (API) libraries or a procedure file.</p>
+      <p>API routine libraries extend the capabilities of the Visual FoxPro language and user interface. Once an external API library is opened, you can use the API functions as if they were Visual FoxPro functions. Use DISPLAY STATUS or LIST STATUS to display the library's available functions.</p>
+      <p>You can use existing API libraries or create your own API libraries.</p>
+      <p>In Visual FoxPro, the preferred way to register functions in shared libraries is to use the <a href="/html/cf399321-e5e8-4b53-bc78-a30494d80204.htm">DECLARE - DLL</a> command.</p>
+      <p>To remove all API libraries from memory, use SET LIBRARY TO without including <span class="parameter">FileName</span> or ADDITIVE. To remove an individual library from memory, use RELEASE LIBRARY <span class="parameter">LibraryName</span>.</p>
+      <p>If you specify a procedure file, the procedures within the procedure file are made available to all programs and are also available interactively through the Command window.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The ability of Visual FoxPro to open a procedure file with SET LIBRARY provides compatibility with dBASE IV. Using SET LIBRARY to open a procedure file will close all open API libraries. Using SET LIBRARY to open API libraries will close a procedure file opened with SET LIBRARY. Use SET PROCEDURE to open a procedure file and prevent API libraries from being closed.</p>
+      </td></tr></table></div>
+      <p>For additional information about procedure files, see <a href="/html/69946d16-1eab-400c-9813-0a0230b0a230.htm">PROCEDURE</a> and <a href="/html/93f1eabe-abc5-4906-8894-75233b64c806.htm">SET PROCEDURE</a>.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/8466ae8a-18dd-400a-b611-28655d3ac3a7.htm">CALL Command</a></span><br /><span class="linkTerms"><a href="/html/4ee3835d-e700-4f57-aa04-701010bcc866.htm">DISPLAY STATUS Command</a></span><br /><span class="linkTerms"><a href="/html/13d21965-8877-4f61-a6bd-ee17f3230d45.htm">LIST Commands</a></span><br /><span class="linkTerms"><a href="/html/3eb752a0-b24e-4320-8d81-9ca10124f285.htm">LOAD Command</a></span><br /><span class="linkTerms"><a href="/html/1fcea6e9-8877-4d16-b4a3-cac0622ffeb5.htm">RELEASE LIBRARY Command</a></span><br /><span class="linkTerms"><a href="/html/1334aa6b-38e0-4fcd-a174-3c4f5c964155.htm">SET Command Overview</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SET LIBRARY Command">
+<param name="ALink Name" value="SET LIBRARY">
+</OBJECT>

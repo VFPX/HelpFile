@@ -1,0 +1,162 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Application Creation with Double-Byte Character Sets</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Application Creation with Double-Byte Character Sets</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro supports double-byte character sets (DBCS) — character sets that require more than one byte to represent a character. Some examples of languages that require a double-byte character set are Simplified Chinese, Traditional Chinese, and Korean.</p>
+    <p>Visual FoxPro DBCS support makes it possible for you to create international applications. For example, you can create a Korean application with a U.S. version of Visual FoxPro if you're running the Korean version of Windows. The Visual FoxPro DBCS functions operate properly on the Korean character set, and the Korean collation sequence is supported.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Visual FoxPro provides special programming functions for use with string in DBCS environments.</p>
+    </td></tr></table></div>
+  <h1 class="heading">Using DBCS Characters When Naming Objects</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro makes it possible for you to use DBCS characters when naming elements of your applications. As with Visual FoxPro generally, elements can:
+</p>
+      <ul><li>
+          <p>Be up to 254 bytes in length with the combination of double-byte characters and single characters. For example, if you use all double-byte characters, then the name you are creating can be only 127 characters long.</p>
+        </li><li>
+          <p>Begin with a letter, number, underscore or leading-trailing byte combination.</p>
+        </li><li>
+          <p>Contain only letters, numbers, underscores, or DBCS characters.</p>
+        </li></ul>
+      <p>These rules apply to variables, objects (windows, menus, and so on), function and procedure names, class and subclass names, aliases, and constants. You can also use double-byte characters for file names. To avoid the possibility that characters in the file name are inadvertently treated as delimiters, it's safest to always enclose the file name in quotation marks.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Visual FoxPro length limits are expressed using single-byte characters. Using double-byte characters in field names, index expressions, variable names, window names, and so on, effectively shortens the length of the name. For example, a field name can be up to 10 bytes long in a free table, so a field name can consist of 10 single-byte characters, but only 5 double-byte characters. For more information about Visual FoxPro system capacities, see <a href="/html/6e27027b-806b-4f96-b7e5-5f24af2901e0.htm">System Capacities</a>.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Sorting DBCS Data</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>To help you order information in DBCS environments, Visual FoxPro supports collation sequences for Simplified Chinese, Traditional Chinese, Japanese, and Korean. Collation sequences make it possible for you to properly order character fields in tables for each language.</p>
+      <p>The following table lists the Visual FoxPro collation sequence options and the corresponding language.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Options
+            </th>
+            <th>
+              Language
+            </th>
+          </tr><tr>
+          <td>
+            <p>JAPANESE</p>
+          </td>
+          <td>
+            <p>Japanese</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>KOREAN</p>
+          </td>
+          <td>
+            <p>Korean</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>PINYIN</p>
+          </td>
+          <td>
+            <p>Simplified Chinese</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>STROKE</p>
+          </td>
+          <td>
+            <p>Simplified and Traditional Chinese</p>
+          </td>
+        </tr></table></div>
+      <p>For more information, see <a href="/html/d273ff5d-3cfd-40d1-8c35-6839cfd2dae5.htm">How to: Specify a Sort Order</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5bc473c4-9546-4518-bbe2-96301a4fbee9.htm">Modifying International Applications</a></span><br /><span class="linkTerms"><a href="/html/a3d7b0e0-8320-44b1-8983-17c30a78c6c4.htm">Code Pages Supported by Visual FoxPro</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/c9bd3655-ed58-45df-870c-a867c0027bad.htm">Sorting Data in International Applications</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/e3423e23-033c-40b4-971c-75640ab17ec7.htm">Developing International Applications</a></span><br /><span class="linkTerms"><a href="/html/a4b83cd7-c41f-4e46-a70c-c7c6799cfb36.htm">Code Pages in Visual FoxPro</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Application Creation with Double-Byte Character Sets">
+</OBJECT>

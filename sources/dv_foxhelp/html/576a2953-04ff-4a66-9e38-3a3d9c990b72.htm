@@ -1,0 +1,166 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Considerations for Creating Index Expressions</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Considerations for Creating Index Expressions</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When creating index expressions, be aware of the following considerations:  </p>
+    <ul><li>
+        <p>If you specify an expression that exceeds the limits set for creating index keys, Visual FoxPro generates an error. </p>
+        <p>The length of an index key in a compound index (.cdx) file must be between 1 and 240 characters. The length of an index key in an index (.idx) file must be between 1 and 100 characters. With some collating sequences, or when using double-byte character set (DBCS) characters, each character in the index expression uses two characters in the index key. In these cases, the length of the index expression is limited to 120 characters. </p>
+      </li><li>
+        <p>If you create an index expression using numeric fields, the index organizes records by the sum of the fields, not the fields themselves.</p>
+      </li><li>
+        <p>Visual FoxPro does not support variable length index keys. If you attempt to build an index with a key that varies in length, the key is padded with spaces. </p>
+      </li><li>
+        <p>Do not use a variable, an array element, or a field or field expression from a table in another work area for the index expression.  </p>
+        <p>If you access an index that contains a variable or field that no longer exists or cannot be located, Visual FoxPro generates an error message.  </p>
+      </li><li>
+        <p>Even though Visual FoxPro generates an error, it is possible to create an index key with zero (0) length.  </p>
+        <p>When Visual FoxPro creates an index, it evaluates fields in the first record in the table. Therefore, if the index expression is a substring of an empty memo field, a zero-length index key is created.   </p>
+        <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+          <p>To prevent creating a zero-length index key if a field is empty, it might be necessary to enter some temporary data in the field of the first record.</p>
+        </td></tr></table></div>
+      </li><li>
+        <p>Visual FoxPro pads index keys based on <b>Character</b>, <b>Varchar</b>, <b>Varchar (Binary)</b>, and <b>Varbinary</b> fields and expressions. </p>
+        <p>Index keys based on <b>Varchar</b>, <b>Varchar (Binary)</b>, and <b>Varbinary</b> fields and expressions include padding even though these data types do not usually include padding. Index keys based on <b>Varchar</b> and <b>Varchar (Binary)</b> are padded with additional spaces, similar to index keys based on <b>Character</b> fields and expressions. Index keys based on <b>Varbinary</b> fields or expressions are padded with zeros from the right side of the value in the field to the maximum length of the field. For example, the values 0hAA, 0hAA00, and 0hAA000 have the same index key of 0hAA0000. For more information, see <a href="/html/ecece0aa-2f1b-4135-8429-8a173c9e835e.htm">Varchar Field Type</a> and <a href="/html/8617af84-55a5-4480-9b44-f349f066dac0.htm">Varbinary Data Type</a>. </p>
+      </li><li>
+        <p>Memo and Blob fields must be combined with other character expressions in index file expressions; they cannot be used alone. General fields cannot be used in index expressions. </p>
+        <p>If you include a field prefaced by a table alias or work area letter in the index expression, Visual FoxPro generates an error message.  </p>
+      </li><li>
+        <p>Avoid using aliased fields when creating indexes even though you can optimize <b>FOR</b> clauses with Rushmore Query Optimization technology when aliased fields are included.  </p>
+        <p>In several cases, for example, with the <b>USE...AGAIN</b> command and SQL queries, a different alias is automatically assigned to a table, and the index might not be properly updated or used. For more information on Rushmore technology, see <a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a>. </p>
+      </li><li>
+        <p>Although an index expression can contain a user-defined function (UDF), it is not recommended that you include a UDF in an index expression.  </p>
+        <p>Though both stored procedures and user-defined functions in an index expression increase the time it takes to create or update the index, if your table is associated with a database, you might prefer to use a stored procedure rather than a UDF in your index expression.   </p>
+        <p>If you use a UDF in an index expression, Visual FoxPro must be able to locate the user-defined function. When Visual FoxPro creates an index, the index expression is saved in the index file; however, only a reference to the UDF is included in the index expression. The UDF is stored in a file that is separate from the database; therefore, it is possible to move or delete the UDF file, which invalidates the reference in the index expression to the UDF.   </p>
+        <p>In contrast, stored procedure code is stored in the table (.dbc) file and can always be located by Visual FoxPro. Also, referencing a stored procedure in an index expression guarantees that the index is based on the exact code you specify.   </p>
+        <p>Also, index updates might not occur when user-defined functions are not in the scope of applications that modify the index. If you use a UDF in your index expression, Visual FoxPro uses any UDF that is in scope when indexing the table and that has the same name as the UDF referenced in the index.  </p>
+        <p>If you use a UDF associated with a database in an index expression, Visual FoxPro handles the expression in the same way it handles rule and trigger expressions that contain UDFs. For more information, see <a href="/html/2cbc923d-5b95-462f-a19d-fb98df5e64a4.htm">Enforcing Business Rules</a> and <a href="/html/068a2421-21b1-4651-a8ab-fa8207c0357e.htm">Trigger Usage</a>.</p>
+      </li><li>
+        <p>Be sure to use functions invariant from the current code page setting when creating an index that should be modified under different current code pages. Results of some functions used in index expressions can vary depending on the current codepage.</p>
+        <p>For example, the <b>UPPER( )</b> function uses the current code page to transform a string and might yield unexpected results if the index is modified under different current code pages or when the index is applied to a field and the current code page is not the same as the code page tagged to the table. You can use the <b>STRCONV( )</b> function instead, <code>STRCONV(...,8,...)</code>.</p>
+        <p>Visual FoxPro evaluates index expressions by reading character data from the table without additional code page translation even when current code page (CPCURRENT()) does not match code page tagged to the table (CPDBF()) in order to produce the same index regardless of the current code page.</p>
+      </li></ul>
+  <h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/1225f38b-2ed5-499e-b2c7-71b741bbe758.htm">How to: Create Indexes (Visual FoxPro)</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Considerations for Creating Index Expressions">
+</OBJECT>

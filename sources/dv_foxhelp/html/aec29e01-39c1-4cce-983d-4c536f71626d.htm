@@ -1,0 +1,168 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Use Data Sessions</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Use Data Sessions</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>To ensure that each user in a shared environment has a secure, exact duplicate of the working environment, and to ensure that multiple instances of a form can operate independently, Visual FoxPro provides data sessions.</p>
+    <p>A data session is a representation of the current dynamic work environment. You might think of a data session as a miniature data environment running inside one open Visual FoxPro session on one machine. Each data session contains:  </p>
+    <ul><li>
+        <p>A copy of the items in the form's data environment.</p>
+      </li><li>
+        <p>Cursors representing the open tables, their indexes, and relationships.</p>
+      </li></ul>
+    <p>The concept of a data session is easily understood when you consider what happens when you open the same form simultaneously from separate workstations in a multiuser application. In this case, each workstation is running a separate Visual FoxPro session, and therefore has its own set of work areas: cursors representing open base tables, indexes, and relationships. For more information about simultaneous access to data, see <span class="linkTerms"><a href="/html/79ee2b9d-ed7e-41af-b5c3-b906b7da46b7.htm">Updating Data Using Multiple Form Instances</a></span> and <span class="linkTerms"><a href="/html/56fc6463-66a1-482a-a981-ef2fedee4b5b.htm">Locking Data</a></span>.</p>
+    <p>However, if you open multiple instances of the same form in a single project, on one machine, within the same Visual FoxPro session, the forms share the Default data session, representing a single dynamic work environment. Each instance of the open form open in the same Visual FoxPro session uses the same set of work areas, and actions in one instance of a form that move the record pointer in a work area automatically affect other instances of the same form.</p>
+  <h1 class="heading">Using Private Data Sessions</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>If you want to have more control over multiple instances of form, you can implement Private data sessions. When your form uses private data sessions, Visual FoxPro creates a new data session for each instance of the Form, FormSet, or Toolbar control your application creates. Each private data session contains:  </p>
+      <ul><li>
+          <p>A separate copy of each table, index, and relationship in the form's data environment.</p>
+        </li><li>
+          <p>An unlimited number of work areas.</p>
+        </li><li>
+          <p>Record pointers for each copy of each table that are independent from the base tables for the form.</p>
+        </li></ul>
+      <p>The number of available data sessions is limited only by available system memory and disk space.</p>
+      <p>You implement private data sessions by setting the DataSession property for the form. The DataSession property has two settings:  </p>
+      <ul><li>
+          <p>1 – Default data session (the default setting).</p>
+        </li><li>
+          <p>2 – Private data session.</p>
+        </li></ul>
+      <p>By default, the DataSession property of a form is set to 1.</p>
+      <h3 class="procedureSubHeading">To enable private data sessions</h3><div class="subSection"><ul><li>
+            
+              <p>In the <span class="linkTerms"><a href="/html/4c6826b0-d49e-4f97-b18c-4670533600c7.htm">Form Designer</a></span>, set the DataSession property of the form to <b>2 – Private data session</b>. </p>
+              <p>-OR- </p>
+            
+          </li><li>
+            
+              <p>In code, set the <span class="linkTerms"><a href="/html/d047e2cc-0d8f-4cb5-aa0a-411714df58b3.htm">DataSession Property</a></span> to 2. </p>
+              <p>For example, type:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frmFormName.DataSession = 2</pre></td></tr></table></span></div>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>You can only set the DataSession property at design time. The DataSession property is read-only at run time.</p>
+              </td></tr></table></div>
+            
+          </li></ul></div>
+      <p>When a form uses private data sessions, each instance of a form open on a single machine in a single Visual FoxPro session uses its own data environment.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The <b>OPEN DATABASE</b> command is not scoped to a data session. Unlike a table, a database, once opened, is available to all data sessions.</p>
+      </td></tr></table></div>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Equivalent multiple data sessions</caption></caption></b><br></br></div><img src="../local/Local_-313126625_afd17006.gif" alt="EquivMultipleDataSessions screenshot foxpro"></img>
+    </div><h1 class="heading">Identifying Data Sessions</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Each private data session is identified separately. You can see the contents of each data session in the <span class="linkTerms"><a href="/html/3650aef7-c8a8-4f16-8a43-2c78c8e5536a.htm">Data Session Window</a></span>. You can also change the data session description through commands in the Load event code.</p>
+      <h3 class="procedureSubHeading">To view the identification number for each data session</h3><div class="subSection"><ul><li>
+            
+              <p>Use the run-time <span class="linkTerms"><a href="/html/9123cd92-863a-403e-8db0-e87289ae520b.htm">DataSessionID Property</a></span>.  </p>
+              <p>The following example displays the DataSessionID property of a form named <code>frmMyForm</code>:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO FORM frmMyForm
+? frmMyForm.DataSessionID</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>If you activate the form using the NAME clause, you can use the form's name to access the DataSessionID property, as in the following code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO FORM MyForm NAME one
+? one.DataSessionID</pre></td></tr></table></span></div>
+      <p>The DataSessionID property is designed only to identify a particular data session. Avoid changing the DataSessionID of a form instance because data-bound controls lose their data sources when you change the DataSessionID.</p>
+    </div><h1 class="heading">Overriding Automatic Private Data Session Assignment</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When private data sessions for a form are in use, changes you make to data in one form are not automatically represented in other instances of the same form. If you want all instances of a form to access the same data and to immediately reflect changes to common data, you can override automatic data session assignment.</p>
+      <h3 class="procedureSubHeading">To override automatic data session assignment</h3><div class="subSection"><ul><li>
+            
+              <p>Set the <b>SET DATASESSION</b> command to 1 or no value.</p>
+            
+          </li></ul></div>
+      <p>For example, the following code enables the Command window and Project Manager to control the default data session:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET DATASESSION TO 1</pre></td></tr></table></span></div>
+      <p>-OR-</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET DATASESSION TO</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/7e728b83-d644-4872-951b-6c7e15368d99.htm">Customizing the Environment of a Data Session</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/f3eff628-41b3-45cd-856d-2d97fd2fed05.htm">Controlling Access to Data</a></span><br /><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Use Data Sessions">
+</OBJECT>

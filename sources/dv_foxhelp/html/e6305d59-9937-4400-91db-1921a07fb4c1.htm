@@ -1,0 +1,197 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Working with Multi-File Components</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Working with Multi-File Components</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Some project components in Visual FoxPro actually consist of multiple files: a primary file and one or more implicit files. For example, when you create a form, Visual FoxPro creates an .scx file (the primary file) and an .sct file (the implicit file). The following components have multiple files:</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Component
+          </th>
+          <th>
+            Primary file type
+          </th>
+          <th>
+            Implicit file type(s)
+          </th>
+        </tr><tr>
+        <td>
+          <p>Form</p>
+        </td>
+        <td>
+          <p>.scx</p>
+        </td>
+        <td>
+          <p>.sct</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Report</p>
+        </td>
+        <td>
+          <p>.frx</p>
+        </td>
+        <td>
+          <p>.frt</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Label</p>
+        </td>
+        <td>
+          <p>.lbx</p>
+        </td>
+        <td>
+          <p>.lbt</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Class Library</p>
+        </td>
+        <td>
+          <p>.vcx</p>
+        </td>
+        <td>
+          <p>.vct</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Menu</p>
+        </td>
+        <td>
+          <p>.mnx</p>
+        </td>
+        <td>
+          <p>.mnt</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Table</p>
+        </td>
+        <td>
+          <p>.dbf</p>
+        </td>
+        <td>
+          <p>.fpt, .cdx, .idx</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Database</p>
+        </td>
+        <td>
+          <p>.dbc</p>
+        </td>
+        <td>
+          <p>.dct, .dcx</p>
+        </td>
+      </tr></table></div>
+    <p>When a developer checks out a component file, such as a form, Visual FoxPro also manages the corresponding implicit file or files. Likewise, when a file is checked back in, or a new file added, Visual FoxPro manages the implicit file or files automatically.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>If you generate and compile a menu, you create local .mpr and .mpx files as well. These aren't initially under source control, but you can add them as files to your project, and then put them under source control as you would other files.</p>
+    </td></tr></table></div>
+  <h1 class="heading">Checking In Text Files</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When you check in a text file such as a .prg file, and if multiple versions of the file are checked out, the source control software doesn't simply overwrite the central version. Instead, it checks whether there have been changes to the file since you last checked it out. If so, it attempts to merge those changes with your file. To do so, it adds, deletes, and changes lines in your copy of the file.</p>
+      <p>When it's finished merging, the source control software might also give you the opportunity to check in your file. Don't check in your file right away. Instead, test your application using the new version of the file that incorporates both your changes and those of other developers. Only when you're satisfied that the application works correctly, check in your file. If other developers have made further changes to the same file, you might have to merge, test, and check in again.</p>
+      <p>In some instances, the source control software might report a merge conflict, which indicates that it cannot resolve changes between your changes and those of other developers. This can occur, for example, if you and another developer have been updating the same lines of the same program. If the source control software cannot merge successfully, it creates a version of the file that contains the original text plus your changes, marks the conflicts, and writes that file to your computer. (The exact means by which the conflicts are marked depends on the source control software you're using.) The file then appears in the Project Manager with a merge conflict icon:</p>
+      <img src="../local/Local_-193200749_afx1164b.gif" alt="FoxProNoMergeSymbol screenshot"></img>
+      <p>To resolve the merge conflict, you must edit the file again, make your changes, and remove the merge conflict markers. When you're finished editing, Visual FoxPro prompts you to confirm that you've resolved all conflicts. The file is then marked with the merge icon:</p>
+      <img src="../local/Local_-193200396_afx1163b.gif" alt="FoxProMergeSymbol screenshot"></img>
+      <p>Test your application to be sure that the changes are working properly. You can then attempt to check the file in again. If no more merge conflicts occur, your file becomes the current version.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/0066ed80-c0ac-4264-b610-6d34d8ddca55.htm">How to: Check In Files</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/d2212673-7c95-4e7f-9dec-80ac9dbc2594.htm">Managing Files in a Source-Controlled Project</a></span><br /><span class="linkTerms"><a href="/html/a8286b0c-6b2c-4b8d-8e16-7db8dbda2a1f.htm">Options Dialog Box (Visual FoxPro)</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/cd842662-a8cb-436b-87c4-825d69b5d7af.htm">Planning for Team Development Projects</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Working with Multi-File Components">
+</OBJECT>

@@ -1,0 +1,165 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Pool Manager Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Pool Manager Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File: </b>...\Samples\Solution\Ffc\_PoolManager.scx</p>
+    <p>This sample demonstrates how to use the Pool Manager class, which manages a pool or collection of objects from a class and is useful when you need to use objects repeatedly for a short amount of time. </p>
+    <p>This sample contains the following classes.</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Class
+          </th>
+          <th>
+            Library
+          </th>
+          <th>
+            Description
+          </th>
+        </tr><tr>
+        <td>
+          <p>
+            <a href="/html/fc1f971e-c3e8-4cfe-979f-f572f935e939.htm">_poolmanager</a>
+          </p>
+        </td>
+        <td>
+          <p>_poolmanager.vcx</p>
+        </td>
+        <td>
+          <p>Manages a pool, or collection, of objects from a single class.</p>
+        </td>
+      </tr></table></div>
+  <h1 class="heading">Pooling Objects</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>In this sample, forms are collected in a pool so that you can reuse any form that is available in the pool instead of having to create a new form when you select a customer from the drop-down list.</p>
+      <p>To use the Pool Manager class in this sample, the following Pool Manager class properties must be set in the Properties window:</p>
+      <p>
+        <i>cClass</i>   = frmCustomer</p>
+      <p>
+        <i>cClassLibrary</i> = frmCustomer.vcx</p>
+    </div><h1 class="heading">Binding to Pool Manager Events</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can bind to <b>_PoolManager</b> events. In this sample, the form's <b>Init</b> event contains code that binds the form's custom handler methods, PoolManager_ObjectRequested and PoolManager_ObjectReturned, to the <b>_PoolManager</b> ObjectRequested and ObjectReturned events so that status can be reported on the sample form:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BINDEVENT(This.PoolManager,"ObjectRequested",ThisForm,"PoolManager_ObjectRequested")
+BINDEVENT(This.PoolManager,"ObjectReturned",ThisForm,"PoolManager_ObjectReturned")</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Requesting Objects</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>To request an object from the pool, call the <b>_PoolManager</b> Get method. </p>
+      <h3 class="procedureSubHeading">To open a customer form in this sample</h3><div class="subSection"><ol><li>
+            
+              <p>Select a customer name from the drop-down list.</p>
+            
+          </li><li>
+            
+              <p>Click <b>View Customer</b>.</p>
+            
+          </li></ol></div>
+      <p>You can open multiple forms by clicking View Customer repeatedly, which requests a form object from the Pool Manager class each time. The form's custom ViewCustomer method contains the following code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>loForm = ThisForm.PoolManager.Get(m.lcCustID)
+If Vartype(m.loForm) == "O"           
+   loForm.Show()
+EndIf</pre></td></tr></table></span></div>
+      <p>In this sample, the Get method returns an unused object that exists in the pool or creates a new object. When a new customer form is created, code in the form's <b>Init</b> event binds to the <b>_PoolManager</b> ObjectRequested and ObjectReturned methods using the private variable <code>THISPOOLMANAGER</code> created in the Get method:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BINDEVENT(THISPOOLMANAGER,"ObjectRequested",This,"PoolManager_ObjectRequested")
+BINDEVENT(THISPOOLMANAGER,"ObjectReturned",This,"PoolManager_ObjectReturned")</pre></td></tr></table></span></div>
+      <p>This event binding makes it possible for the form to call its <b>Hide</b> method instead of the <b>Release</b> method so the form returns to the pool instead of being destroyed. </p>
+    </div><h1 class="heading">Returning Objects</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>To return objects to the pool, call the <b>_PoolManager</b> Free method. In this sample, the form's <b>QueryUnload</b> event occurs when the customer form is closed and returns the form to the pool:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>If Vartype(This.oPoolManager) == "O"
+   This.oPoolManager.Free(This)
+   NoDefault 
+EndIf</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/3abe5487-930b-4981-a8e8-1c09f9d7ec32.htm">Foundation Class Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Pool Manager Sample">
+</OBJECT>

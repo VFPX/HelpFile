@@ -1,0 +1,223 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Reporting Features for International Applications</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Reporting Features for International Applications</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>This topic discusses features in Visual FoxPro 9's Report System that facilitate developing reports for use in international applications.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Some of the features discussed here are available only in Visual FoxPro's <i>object assisted</i> reporting mode.  If you find that you do not see some of the improvements described in this topic, use the command <code>SET REPORTBEHAVIOR 90</code>, or include the <b>OBJECT</b> clause on the <b>REPORT FORM</b> or <b>LABEL</b> command.  For more information, see <span class="linkTerms"><a href="/html/5d6e4527-8b6f-4f39-a670-c3397eff3bfd.htm">SET REPORTBEHAVIOR Command</a></span>.</p>
+    </td></tr></table></div>
+  <h1 class="heading">Using Language Script in Reports</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Just as you can choose fonts individually for report layout elements, you can choose a language script for each element individually.  For more information, see <span class="linkTerms"><a href="/html/ab8fbdad-875f-4c41-883c-bb5afcf8c54d.htm">How to: Change Font Settings in Report Controls</a></span>.  </p>
+      <p>If you do not choose a language script for a particular element, it receives its language script information, like its font information, from the report's default.  You use the <b>Default Font…</b> option on the <b>Report</b> menu for this purpose.  You can also set the font and language script defaults for a report using the Page Layout tab of the <b>Report Properties</b> dialog.  For more information, see <span class="linkTerms"><a href="/html/895f53a3-c631-45ce-a471-16a3636c5096.htm">How to: Change Page Settings for Reports</a></span>.  </p>
+      <p>When you design a new report, the default font and language script for the report is determined by your global preference, as set in the <b>Tools Options</b> dialog box.  For more information, see <span class="linkTerms"><a href="/html/9c565d7a-1111-4859-be06-78536132679f.htm">Reports Tab, Options Dialog Box</a></span>.  </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>The Options Dialog Box global choice, the Report Builder Page Layout tab, and the Report Builder's options for setting fonts for individual layout elements all offer you an option to omit the language script from your font settings.  When you choose this option, the language script for your report elements matches your computer's regional default settings.  This behavior is backward-compatible with earlier versions of Visual FoxPro.</p>
+      </td></tr></table></div>
+      <p>The language script with which the Visual FoxPro Report System generates output for report layout elements is automatically available to additional forms of report output you can create with ReportListener-derived classes.  The source text provided in the ReportListener's Render method's <span class="parameter">eContentsToBeRendered</span> parameter is Unicode, and the native Report System has already converted the data to the appropriate character set.  For more information, see <span class="linkTerms"><a href="/html/d84ca220-1017-4d03-92d0-907fb6f61f21.htm">Render Method</a></span>.</p>
+      <p>The <span class="linkTerms"><a href="/html/9631e586-cecd-44de-8ef9-be5805625c59.htm">ReportListener XML Foundation Class</a></span> provides an example of an alternative output type leveraging this feature. The class uses its Render method's Unicode value to account for mixed language scripts in report output automatically.  It converts the Unicode values to construct UTF-8 encoded documents.  For more information about the class's XML output, see <span class="linkTerms"><a href="/html/85f74bc8-b2a7-4ef5-8f2d-cd381c33331f.htm">Using VFP Report Output XML</a></span>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+        <p>This capability may appear to work in reports when you do not use object-assisted mode, when you preview the reports.  However, it will not print as you expect, and is only supported in object-assisted mode.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Localizing Report Builder, Report Preview, and Report Output Components</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The distributable source components of the Visual FoxPro Report System each provides a header (.h) file you can change to localize all user feedback strings.  You can recompile the applications, and redistribute them separately, to provide a shared, external reporting component.  You can also bind your adjusted version of each component directly into your application's .exe or .app file.</p>
+      <p>The following table lists the appropriate header file for each component, and provides a help topic you can read to learn more about specifying your adjusted reporting component file for application use.  </p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Component file name</b>
+              
+            </th>
+            <th>
+              
+                <b>Use in applications</b>
+              
+            </th>
+            <th>
+              
+                <b>Localization header file name</b>
+              
+            </th>
+            <th>
+              
+                <b>Help topic with additional information</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>ReportBuilder.app</p>
+          </td>
+          <td>
+            <p>Augments the user experience of creating and modifying report and label layouts.</p>
+          </td>
+          <td>
+            <p>frxbuilder_loc.h</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/de758f3c-c569-48e7-afa2-f8d45efe030d.htm">How to: Specify and Distribute ReportBuilder.App</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ReportPreview.app</p>
+          </td>
+          <td>
+            <p>Provides a  flexible user interface for GDI+-rendered report previews.</p>
+          </td>
+          <td>
+            <p>frxpreview_loc.h</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/3c2c0407-c691-4183-9c2e-b96a00698b73.htm">How to: Specify and Distribute ReportPreview.App</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ReportOutput.app,</p>
+            <p>_reportlistener.vcx</p>
+          </td>
+          <td>
+            <p>Provides ReportListener classes for object-assisted reporting.</p>
+          </td>
+          <td>
+            <p>reportoutput_locs.h,</p>
+            <p>reportlisteners_locs.h</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/ba6158fb-968d-4f13-b389-b56241500f30.htm">How to: Specify and Distribute Report Output Application Components</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/46ce7cb2-a620-447d-9314-1ebba6e3e271.htm">ReportListener Foundation Classes</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>_frxcursor.vcx</p>
+          </td>
+          <td>
+            <p>Provides algorithms useful for programmatically creating and adjusting reports.</p>
+          </td>
+          <td>
+            <p>_frxcursor.h</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/5bd65ee4-c279-487d-8b31-03f081dd9844.htm">FRX Cursor Foundation Class</a></span>
+            </p>
+          </td>
+        </tr></table></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/8920ed3c-4d89-4fea-9cf0-1cc21395928a.htm">Including Report Files for Distribution</a></span>. </p>
+      <p>Each component also includes application programming interfaces (APIs) appropriate to changing user feedback messages at run time, to customize for regional purposes as well as other, application-specific needs.  For example, the <span class="linkTerms"><a href="/html/6ddf0bcf-901f-47b1-a2be-6ad8afaa1541.htm">ReportListener User Feedback Foundation Class</a></span>, the default ReportListener-derived class for print and preview output, provides public members you use to set its various text status messages and captions. The Report Preview Application exposes a Caption property and an extensive API for adjusting its context menu.  For more information, see <span class="linkTerms"><a href="/html/9f96f0e9-9b5d-423d-be13-3c905e963681.htm">Leveraging the Default Preview Container</a></span>.</p>
+    </div><h1 class="heading">Handing Reading Order (Right-to-Left and Left-to-Right) of Multiple Languages</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The Report Designer supports right-to-left languages with Text Alignment and Reading Order properties. You can design labels and text (expression) layout elements to match the desired right-to-left results, by setting both these properties for selected elements, using the following options on the <b>Format</b> menu:</p>
+      <ul><li>
+          <p>Set the <b>Text Alignment</b> of the layout element to <b>Right</b></p>
+        </li><li>
+          <p>Set the <b>Reading Order</b> property to <b>Right to Left</b>.  </p>
+        </li></ul>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The <b>Reading Order</b> option on the <b>Format menu</b> is disabled unless you have set Windows' regional settings to display a right-to-left language, such as Arabic or Hebrew, for non-Unicode applications.  Once you have enabled the setting, you can set individual report items to different Reading Order values as required for a mixed-language report.</p>
+      </td></tr></table></div>
+      <p>At run time, Visual FoxPro 9's new GDI+ rendering system provides more flexible and accurate handling of alignment for right-to-left languages.   It also renders the alignment more consistently between preview and print output.</p>
+      <p>ReportListener-derived classes have access to the alignment and reading order settings stored in your report or label, and can take action based on these settings.  For example, the <span class="linkTerms"><a href="/html/5f0a1dab-ce24-4c87-ac2e-cb9e631d0115.htm">ReportListener HTML Foundation Class</a></span> uses these options to determine <code>text-align</code> and <code>direction</code> components of <code>style</code> attributes for individual HTML text elements.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/223a5d97-3d68-4e70-8bde-9c15b8f9ce62.htm">Understanding Visual FoxPro Object-Assisted Reporting</a></span><br /><span class="linkTerms"><a href="/html/e11b3ffe-ee6b-4af3-94f8-7a5ed30ea83d.htm">Using GDI+ in Reports</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/784111c1-e5ca-46f2-a4d1-6c57d597d206.htm">Distributing Reports with Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Reporting Features for International Applications">
+</OBJECT>

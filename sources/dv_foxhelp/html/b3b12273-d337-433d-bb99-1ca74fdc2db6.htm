@@ -1,0 +1,290 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Coordinate Toolbars and Forms Using Code</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Coordinate Toolbars and Forms Using Code</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>In addition to using the <span class="linkTerms"><a href="/html/4c6826b0-d49e-4f97-b18c-4670533600c7.htm">Form Designer</a></span>, you can add toolbars to form sets by using code.</p>
+  <h3 class="procedureSubHeading">To add a toolbar to a form set using code</h3><div class="subSection"><ul><li>
+        
+          <p>In the form set's <span class="linkTerms"><a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init Event</a></span>, use the <span class="linkTerms"><a href="/html/11fd4c12-260a-4937-b389-ed0667429d6b.htm">SET CLASSLIB Command</a></span> to specify the library containing the toolbar class, and then create a toolbar from that class in the form set.</p>
+        
+      </li></ul>
+      
+        <p>For example, to add and display the toolbar <code>tbrPrint</code>, which is based on the <code>printing</code> class in the <code>inventory</code> class library, add the following code to the form set's Init event:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET CLASSLIB TO inventory
+THIS.AddObject("tbrPrint","printing")
+THIS.tbrPrint.Show</pre></td></tr></table></span></div>
+        <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+          <p>If the toolbar class does not define the actions of the toolbar and its buttons, you must define the actions in the event procedures associated with the toolbar and its buttons.</p>
+        </td></tr></table></div>
+        <p>You can define all aspects of a toolbar in code. For example, if you add the following code to a form set's Init event, when the form set is loaded Visual FoxPro creates and displays the toolbar defined in the code. This toolbar contains two buttons.</p>
+        <p>When chosen, these buttons change the font attributes of the form <code>frmForm1</code> in the form set.</p>
+        <div class="labelheading"><b>Form Set Init Event Code</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+              <th>
+                Code
+              </th>
+              <th>
+                Comments
+              </th>
+            </tr><tr>
+            <td>
+              <p>
+                <code>THIS.AddObject("tbrTool1","mytoolbar")</code>
+              </p>
+              <p>
+                <code>THIS.tbrTool1.Show</code>
+              </p>
+            </td>
+            <td>
+              <p>Adds a toolbar of the class <code>mytoolbar</code> to the current form set and makes the toolbar visible. This code is in the form set's Init event.</p>
+            </td>
+          </tr></table></div>
+        <div class="labelheading"><b>Class definition code</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+              <th>
+                Code
+              </th>
+              <th>
+                Comments
+              </th>
+            </tr><tr>
+            <td>
+              <p>
+                <code>DEFINE CLASS myToolBar AS TOOLBAR</code>
+              </p>
+              <p>
+              </p>
+              <p>
+                <code>ADD OBJECT cmdBold AS COMMANDBUTTON</code>
+              </p>
+              <p>
+                <code>ADD OBJECT sep1    AS SEPARATOR</code>
+              </p>
+              <p>
+                <code>ADD OBJECT cmdItalic AS COMMANDBUTTON</code>
+              </p>
+            </td>
+            <td>
+              <p>Start of the class definition: one toolbar with a command button, a separator, and another command button.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>
+                <code>Left = 1</code>
+              </p>
+              <p>
+                <code>Top  = 1</code>
+              </p>
+              <p>
+                <code>Width = 25</code>
+              </p>
+              <p>
+                <code>Caption = "Form Attributes"</code>
+              </p>
+            </td>
+            <td>
+              <p>Sets properties of the toolbar object.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>
+                <code>cmdBold.Caption = "B"</code>
+              </p>
+              <p>
+                <code>cmdBold.Height = 1.7</code>
+              </p>
+              <p>
+                <code>cmdBold.Width = 10</code>
+              </p>
+              <p>
+              </p>
+              <p>
+                <code>cmdItalic.Caption = "I"</code>
+              </p>
+              <p>
+                <code>cmdItalic.Height = 1.7</code>
+              </p>
+              <p>
+                <code>cmdItalic.Width = 10</code>
+              </p>
+              <p>
+                <code>cmdItalic.FontBold = .F.</code>
+              </p>
+            </td>
+            <td>
+              <p>Sets properties of the controls. Notice that there are no Top or Left property settings for controls on a toolbar. Controls on a toolbar are automatically positioned in the order they are added. The FontBold property of <code>cmdItalic</code> is set to false (.F.) because FontBold is true (.T.) by default.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>
+                <code>PROCEDURE Activate</code>
+              </p>
+              <p>
+                <code>   THIS.cmdBold.FontBold = ;</code>
+              </p>
+              <p>
+                <code>    THISFORMSET.frmForm1.FontBold</code>
+              </p>
+              <p>
+                <code>   THIS.cmdItalic.FontItalic = ;</code>
+              </p>
+              <p>
+                <code>    THISFORMSET.frmForm1.FontItalic</code>
+              </p>
+              <p>
+                <code>ENDPROC</code>
+              </p>
+            </td>
+            <td>
+              <p>When the toolbar is activated, the font attributes of the two command buttons are set to reflect the Bold and Italic font settings of <code>frmForm1</code>.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>
+                <code>PROCEDURE cmdBold.CLICK</code>
+              </p>
+              <p>
+                <code>   THISFORMSET.frmForm1.FontBold = ;</code>
+              </p>
+              <p>
+                <code>    !THISFORMSET.frmForm1.FontBold</code>
+              </p>
+              <p>
+                <code>   THIS.FontBold = ;</code>
+              </p>
+              <p>
+                <code>    THISFORMSET.frmForm1.FontBold</code>
+              </p>
+              <p>
+                <code>ENDPROC</code>
+              </p>
+            </td>
+            <td>
+              <p>When the user clicks <code>cmdBold</code>, the FontBold setting of <code>frmForm1</code> is reversed, and the FontBold setting of <code>cmdBold</code> is set to match it.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>
+                <code>PROCEDURE cmdItalic.CLICK</code>
+              </p>
+              <p>
+                <code>   THISFORMSET.frmForm1.FontItalic = ;</code>
+              </p>
+              <p>
+                <code>    !THISFORMSET.frmForm1.FontItalic</code>
+              </p>
+              <p>
+                <code>   THIS.FontItalic = ;</code>
+              </p>
+              <p>
+                <code>    THISFORMSET.frmForm1.FontItalic</code>
+              </p>
+              <p>
+                <code>ENDPROC</code>
+              </p>
+            </td>
+            <td>
+              <p>When the user clicks <code>cmdItalic</code>, the FontItalic setting of <code>frmForm1</code> is reversed, and the FontItalic setting of <code>cmdItalic</code> is set to match it.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>
+                <code>ENDDEFINE</code>
+              </p>
+            </td>
+            <td>
+              <p>End of the class definition.</p>
+            </td>
+          </tr></table></div>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/300f3cd8-d92b-4a03-bc6b-4959d40dc498.htm">How to: Add Custom Toolbars to Form Sets</a></span><br /><span class="linkTerms"><a href="/html/d619891e-2060-49ab-8633-c7747aee8aa9.htm">How to: Define Toolbar Actions</a></span><br /><span class="linkTerms"><a href="/html/d619891e-2060-49ab-8633-c7747aee8aa9.htm">How to: Define Toolbar Actions</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5aeb5f16-deea-495c-8d96-602f3835e038.htm">Customize Toolbar Dialog Box (Visual FoxPro)</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/18f2b40a-6c13-4f57-b28e-ac3e0e21e083.htm">Creating Custom Toolbars</a></span><br /><span class="linkTerms"><a href="/html/21eaee88-6fbe-452b-839d-aa519d16892c.htm">Designing Menus and Toolbars</a></span><br /><span class="linkTerms"><a href="/html/4d5ad8fb-f7a7-416d-9076-cf6f53cbdb89.htm">Customizing the Visual FoxPro Environment</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Coordinate Toolbars and Forms Using Code">
+</OBJECT>

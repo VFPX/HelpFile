@@ -1,0 +1,476 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>ADOCKSTATE( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">ADOCKSTATE( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Retrieves the dock state of any dockable form, Integrated Development Environment (IDE) window, or toolbar. For forms only, you can use the <span class="linkTerms"><a href="/html/402f007d-2758-47be-9e6a-6f97a42dee64.htm">GetDockState Method</a></span>. <b>ADOCKSTATE( )</b> is available in the run time.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+ADOCKSTATE( <span class="parameter">ArrayName</span> [, <span class="parameter">nType</span> | <span class="parameter">nExtended</span>])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">ArrayName</span>
+        </span></dt><dd>
+          <p>Specifies an array with one or more rows containing the dock state of dockable items. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Both system and user-defined toolbars can appear in the array. A form appears in the array only if the form's <b>Dockable</b> property is set to a value greater than 0. </p>
+          </td></tr></table></div>
+          <p>The following table illustrates the information that the array contains.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Element
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>Name of the form, IDE window, or toolbar.</p>
+                <p>For user-defined toolbars, the first element contains the <b>Caption</b> property value for that toolbar. </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>Dock state: </p>
+                <p>1 - Docked </p>
+                <p>0 - Undocked</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>3</p>
+              </td>
+              <td>
+                <p>Dock position.</p>
+                <p>For form and toolbar values, see <span class="linkTerms"><a href="/html/6634cadc-9b65-4577-abb4-692b60de7982.htm">DockPosition Property</a></span>. For windows, see <span class="linkTerms"><a href="/html/688be3b8-44f4-4175-9ba4-ded78358d68f.htm">DOCK Command</a></span>.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>Target object that specified object is docked with.</p>
+                <p>This element does not apply to toolbars unless they are docked to the main Visual FoxPro window. For toolbars or windows docked to the main Visual FoxPro window, the fourth element contains the main Visual FoxPro window name, which you can retrieve using the _<b>VFP</b> <b>Caption</b> property. If a window or toolbar is not docked, the fourth element contains an empty string.</p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>If a toolbar appears between the Visual FoxPro desktop and a window docked to the Visual FoxPro desktop, the fourth element contains the name of the toolbar.</p>
+                </td></tr></table></div>
+              </td>
+            </tr><tr>
+              <td>
+                <p>5</p>
+              </td>
+              <td>
+                <p>Object reference to docking form or toolbar.</p>
+                <p>Applies only when docking user-defined forms or toolbars; otherwise, this element contains an empty string (IDE window).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>6</p>
+              </td>
+              <td>
+                <p>Object reference to the target object if it is a user-defined form. If the target object is the main Visual FoxPro window, this element contains an object reference to the <b>_SCREEN</b> system variable. Otherwise, this element contains an empty string (IDE window). </p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nType</span>
+        </span></dt><dd>
+          <p>Specifies one or more items for which you want <b>ADOCKSTATE( )</b> to return dock state information. </p>
+          <p>The following table lists the values for <span class="parameter">nType</span>.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nType</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>Return all or no windows. (Default)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>Return only IDE windows.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>Return only toolbars.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>3</p>
+              </td>
+              <td>
+                <p>Return only user-defined forms.</p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nExtended</span>
+        </span></dt><dd>
+          <p>Specifies the number of elements to return in the array.</p>
+          <p>The following table lists the values for <span class="parameter">nExtended</span>.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nExtended</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>Return a four-element array for windows and toolbars.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>Return a six-element array for forms.</p>
+              </td>
+            </tr></table></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Numeric data type. <b>ADOCKSTATE( )</b> returns the number of rows populated or 0 if none found.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>For tab-docked windows, the leftmost window is the anchor window and contains details about how the entire container is docked. Visual FoxPro traverses the windows from left to right. For link-docked windows, the upper left window in a link-docked container contains details about how the entire container is docked. </p>
+      <p>The following rules determine docking order:  </p>
+      <ul><li>
+          <p>Visual FoxPro traverses the link-docked container beginning with upper leftmost window.</p>
+        </li><li>
+          <p>Visual FoxPro traverses windows from top to bottom, from left to right. A link-docked container might consist of multiple inner containers. Thus, the ordering of windows in the <b>ADOCKSTATE( )</b> array might appear different.</p>
+        </li><li>
+          <p>The position contained in the third element of the array is relative to the window referenced in first element of the array.</p>
+        </li><li>
+          <p>Visual FoxPro traverses all link-docked windows first and tab-docked windows second. Essentially, Visual FoxPro makes two passes through a linked container. Visual FoxPro includes only the leftmost tab-docked window in the first pass for link-docked windows.</p>
+        </li><li>
+          <p>Visual FoxPro traverses a tab-docked container from left to right.</p>
+        </li></ul>
+      <p>If the third element in the array is set to -1 (not docked), the container is not docked. If the container is docked to the desktop, the third element in the array contains the position in which the container is docked to the Visual FoxPro desktop as referenced in the fourth element of the array.</p>
+      <p>For example, the following code creates an array, opens and docks several windows, and produces an array as shown:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR ALL
+PUBLIC aa
+DIMENSION aa[1]
+ACTIVATE WINDOW Command 
+ACTIVATE WINDOW Trace 
+ACTIVATE WINDOW Document 
+ACTIVATE WINDOW Properties 
+ACTIVATE WINDOW Watch 
+ACTIVATE WINDOW Locals 
+SET
+DOCK WINDOW View POSITION -1
+DOCK WINDOW Command POSITION -1 
+DOCK WINDOW Trace POSITION -1
+DOCK WINDOW Document POSITION -1
+DOCK WINDOW Properties POSITION -1
+DOCK WINDOW Watch POSITION -1
+DOCK WINDOW Command POSITION 1 WINDOW View
+DOCK WINDOW Trace POSITION 1 WINDOW Command
+DOCK WINDOW Document POSITION 3 WINDOW View
+DOCK WINDOW Properties POSITION 3 WINDOW Trace
+DOCK WINDOW Watch POSITION 4 WINDOW Command
+DOCK WINDOW Locals POSITION 3 WINDOW Command
+ADOCKSTATE(aa,1)</pre></td></tr></table></span></div>
+      <p>The resulting array appears as follows:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Row
+            </th>
+            <th>
+              First element
+            </th>
+            <th>
+              Second element
+            </th>
+            <th>
+              Third element
+            </th>
+            <th>
+              Fourth element
+            </th>
+          </tr><tr>
+          <td>
+            <p>1</p>
+          </td>
+          <td>
+            <p>Trace</p>
+          </td>
+          <td>
+            <p>1</p>
+          </td>
+          <td>
+            <p>-1</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>2</p>
+          </td>
+          <td>
+            <p>Properties</p>
+          </td>
+          <td>
+            <p>1</p>
+          </td>
+          <td>
+            <p>3</p>
+          </td>
+          <td>
+            <p>Trace</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>3</p>
+          </td>
+          <td>
+            <p>Watch</p>
+          </td>
+          <td>
+            <p>1</p>
+          </td>
+          <td>
+            <p>2</p>
+          </td>
+          <td>
+            <p>Trace</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>4</p>
+          </td>
+          <td>
+            <p>Locals</p>
+          </td>
+          <td>
+            <p>1</p>
+          </td>
+          <td>
+            <p>3</p>
+          </td>
+          <td>
+            <p>Watch</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>5</p>
+          </td>
+          <td>
+            <p>View</p>
+          </td>
+          <td>
+            <p>1</p>
+          </td>
+          <td>
+            <p>2</p>
+          </td>
+          <td>
+            <p>Watch</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>6</p>
+          </td>
+          <td>
+            <p>Document View</p>
+          </td>
+          <td>
+            <p>1</p>
+          </td>
+          <td>
+            <p>3</p>
+          </td>
+          <td>
+            <p>View</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>7</p>
+          </td>
+          <td>
+            <p>Command</p>
+          </td>
+          <td>
+            <p>1</p>
+          </td>
+          <td>
+            <p>4</p>
+          </td>
+          <td>
+            <p>Watch</p>
+          </td>
+        </tr></table></div>
+      <p>Visual FoxPro displays docking information for debugger windows in the debugger. If a window is undocked, Visual FoxPro shows the name, dock state (0) and position (-1). If a window is docked, Visual FoxPro shows only the name, dock state (1), position, and window ("Visual FoxPro Debugger").</p>
+      <p>Historically, in prior versions of Visual FoxPro, the Data Session window has always been referred to as the View window. Additionally, language used to control this window, such as <b>HIDE WINDOW</b>, <b>ACTIVATE WINDOW</b>, <b>WONTOP(</b><b> )</b>, also refers to this window as the View window. Visual FoxPro continues to refer to the View window for the <b>ADOCKSTATE( )</b> function.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    
+      
+        <p>The following example shows the return results of <b>ADOCKSTATE( )</b> when no toolbars or windows have been previously docked, for example, after deleting the FoxUser resource files or when Visual FoxPro is newly installed. Make sure the Command window is open.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+dockNum = ADOCKSTATE(dockState)
+? dockNum   &amp;&amp; Returns 2 because Standard toolbar also exists.
+? dockState(1,1)  &amp;&amp; Outputs "COMMAND".
+? dockState(1,4)  &amp;&amp; Outputs an empty string because the Command    
+                &amp;&amp; window is not docked.
+? dockState(2,1)  &amp;&amp; Outputs "Standard". 
+? dockState(2,4)  &amp;&amp; Outputs "Microsoft Visual FoxPro" because the 
+                &amp;&amp; Standard toolbar is docked to the Microsoft  
+                &amp;&amp; Visual FoxPro desktop.</pre></td></tr></table></span></div>
+        <p>The following example shows how to use the <b>DOCK</b> command to dock the Command window to the Visual FoxPro desktop window and use <b>ADOCKSTATE( )</b> to obtain the dock state of the Command window. First, make sure the Command window is open. After docking the Command window, you can see that the Standard toolbar and Command windows are docked to the Microsoft Visual FoxPro desktop window. The position of the toolbars or windows in the array returned by <b>ADOCKSTATE( )</b> can vary depending on the order in which the toolbars or windows are docked.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+DOCK WINDOW Command POSITION 0
+dockNum = ADOCKSTATE(dockState)
+? dockNum   &amp;&amp; Returns 2 because Standard toolbar also exists.
+? dockState(1,1)  &amp;&amp; Outputs "Standard". 
+? dockState(1,4)  &amp;&amp; Outputs "Microsoft Visual FoxPro".
+? dockState(2,1)  &amp;&amp; Outputs "COMMAND". 
+? dockState(2,4)  &amp;&amp; Outputs "Microsoft Visual FoxPro".</pre></td></tr></table></span></div>
+      
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/89e7f365-6e9c-4c3e-96a2-06b157b85d39.htm">How to: Dock Forms</a></span><br /><span class="linkTerms"><a href="/html/1b96bf6e-5ef3-445c-b6ef-95d0da2fc9f7.htm">How to: Dock Toolbars</a></span><br /><span class="linkTerms"><a href="/html/0b7ecf02-2e8a-4640-a425-811c7cbbd86c.htm">How to: Dock Windows</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/066f6a98-132a-448b-9fae-c4f67cd9b75e.htm">Caption Property (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6634cadc-9b65-4577-abb4-692b60de7982.htm">DockPosition Property</a></span><br /><span class="linkTerms"><a href="/html/688be3b8-44f4-4175-9ba4-ded78358d68f.htm">DOCK Command</a></span><br /><span class="linkTerms"><a href="/html/584b8870-20c6-41d7-bba5-e982fe2d70e9.htm">Docked Property</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="ADOCKSTATE( ) Function">
+<param name="ALink Name" value="ADOCKSTATE">
+</OBJECT>

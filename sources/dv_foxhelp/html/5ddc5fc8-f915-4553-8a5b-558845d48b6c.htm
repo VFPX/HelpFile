@@ -1,0 +1,285 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Set Properties at Run Time</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Set Properties at Run Time</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The object model in Visual FoxPro makes it possible for you to control form properties at run time.</p>
+  <h1 class="heading">Referencing Objects in the Object Hierarchy</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>To manipulate an object in code, you need to identify it in relation to the container hierarchy. At the highest level of the container hierarchy, that is, the form or form set, you need to reference the object variable. Unless you use the <b>NAME</b> clause of the <span class="linkTerms"><a href="/html/a727f12a-4d9f-45ca-aa01-c1bea7de9749.htm">DO FORM Command</a></span>, the object variable has the same name as the form (.scx) file.</p>
+      <h3 class="procedureSubHeading">To manipulate properties</h3><div class="subSection"><ul><li>
+            
+              <p>In code, reference the object variable, the control, and then the property with the dot (<b>.</b>) operator as a separator and using the following format:</p>
+              <p>
+                <span class="parameter">ObjectVariable</span>.[<span class="parameter">Form</span>.]<span class="parameter">Control</span>.<span class="parameter">Property</span> = <span class="parameter">Setting</span></p>
+            
+          </li></ul></div>
+      <p>The following table lists properties or keywords that make it easier to reference an object in the object hierarchy.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Property or keyword
+            </th>
+            <th>
+              References
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/8218fca1-03ec-4686-8478-f125c40cac2f.htm">ActiveControl</a>
+            </p>
+          </td>
+          <td>
+            <p>The control on the currently active form that has the focus.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/6b042572-4297-4469-bf6c-0a9676800f5a.htm">ActiveForm</a>
+            </p>
+          </td>
+          <td>
+            <p>The currently active form.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/4aebb057-5f54-492d-9229-7b1fb5becf81.htm">ActivePage</a>
+            </p>
+          </td>
+          <td>
+            <p>The active page on the currently active form.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/53c8d4ce-eade-4b2c-a0e4-82cf0c7b3373.htm">Parent</a>
+            </p>
+          </td>
+          <td>
+            <p>The immediate container of the object</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/83a84c44-e9ac-41aa-8479-73cf64d99e73.htm">THIS</a>
+            </p>
+          </td>
+          <td>
+            <p>The object or a procedure or event of the object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/943b05b7-f52c-48e9-8d38-25360bd52d4f.htm">THISFORM</a>
+            </p>
+          </td>
+          <td>
+            <p>The form that contains the object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/b9c4b74f-5082-4d6b-8911-9b75b521e107.htm">THISFORMSET</a>
+            </p>
+          </td>
+          <td>
+            <p>The form set that contains the object.</p>
+          </td>
+        </tr></table></div>
+      <p>For example, to change the caption of a command button on the form <code>frmCust</code> in a form set stored in Custview.scx, use the following command in a program or in the Command window:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CustView.frmCust.cmdButton1.Caption = "Edit"</pre></td></tr></table></span></div>
+      <p>Use the <b>THIS</b>, <b>THISFORM</b>, and <b>THISFORMSET</b> keywords to reference objects from within a form. For example, to change the Caption of a command button when the command button is clicked, include the following command in the Click event code for the command button:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THIS.Caption = "Edit"</pre></td></tr></table></span></div>
+      <p>The following table gives examples of using <b>THISFORMSET</b>, <b>THISFORM</b>, <b>THIS</b>, and <b>Parent</b> to set object properties:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Command
+            </th>
+            <th>
+              Where to include the command
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>THISFORMSET.frm1.cmd1.Caption = 'OK'</code>
+            </p>
+          </td>
+          <td>
+            <p>In the event or method code of any control on any form in the form set except for <code>frm1</code>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>THISFORM.cmd1.Caption = 'OK'</code>
+            </p>
+          </td>
+          <td>
+            <p>In the event or method code of any control except for <code>cmd1</code> on the same form that <code>cmd1</code> is on.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>THIS.Caption = 'OK'</code>
+            </p>
+          </td>
+          <td>
+            <p>In the event or method code of the control whose caption you want to change.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>THIS.Parent.BackColor = RGB(192,0,0)</code>
+            </p>
+          </td>
+          <td>
+            <p>In the event or method code of a control on a form. The command changes the background color of the form to dark red.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Setting Properties at Run Time with Expressions</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can also set properties at run time using expressions or functions.</p>
+      <h3 class="procedureSubHeading">To set properties to expressions at run time</h3><div class="subSection"><ol><li>
+            
+              <p>Assign an expression to the property. </p>
+              <p>-or- </p>
+            
+          </li><li>
+            
+              <p>Assign the result of a user-defined function to the property. </p>
+              <p>For example, you could set the caption of a button to be Edit or Save, depending on the value of a variable. Declare the variable in the calling program for your form:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PUBLIC glEditing
+glEditing = .F.</pre></td></tr></table></span></div>
+              <p>Then use an IIF expression in the Caption setting:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frsSet1.frmForm1.cmdButton1.Caption = ;   
+   IIF(glEditing = .F., "Edit", "Save")</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+      <p>You could determine the size of a button and set the caption using expressions with fields in a table:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* set button width to length of 'Call ' + first and last names
+frmForm1.cmdButton1.Width = 5 + ;
+   LEN(ALLTRIM(employee.first_name    + " " + employee.last_name)) 
+* set button caption to 'Call ' + first and last names
+frmForm1.cmdButton1.Caption = "Call " + ;
+   ALLTRIM(employee.first_name + " " + employee.last_name)</pre></td></tr></table></span></div>
+      <p>You could also set the caption using a user-defined function:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frsSet1.frmForm1.cmdButton1.Caption = setcaption()</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Setting Multiple Properties</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can set multiple properties at once.</p>
+      <h3 class="procedureSubHeading">To set multiple properties</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <span class="linkTerms"><a href="/html/6dfe10cd-d39b-4be3-b9d7-d5df291f4f46.htm">WITH ... ENDWITH Command</a></span> structure. </p>
+              <p>For example, to set multiple properties of a column in a grid in a form, you could include the following statement in any event or method code in the form:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>WITH THISFORM.grdGrid1.grcColumn1
+   .Width = 5
+   .Resizable = .F.
+   .ForeColor = RGB(0,0,0)
+   .BackColor = RGB(255,255,255)
+   .SelectOnEntry = .T.
+ENDWITH</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+    </div><h1 class="heading">Calling Methods at Run Time</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>After an object is created, you can call the methods of that object from anywhere in your application.</p>
+      <h3 class="procedureSubHeading">To call a method for an object</h3><div class="subSection"><ul><li>
+            
+              <p>Use the following syntax:</p>
+              <p>
+                <span class="parameter">Parent</span>.<span class="parameter">Object</span>.<span class="parameter">Method</span></p>
+            
+          </li></ul></div>
+      <p>For example, the following code calls methods to display a form and set the focus to a command button:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* form set saved in MYF_SET.SCX
+myf_set.frmForm1.Show
+myf_set.frmForm1.cmdButton1.SetFocus</pre></td></tr></table></span></div>
+      <p>To hide the form, issue this command:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>myf_set.frmForm1.Hide</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/ab5a757e-e1ab-4937-b8d9-576318664856.htm">How to: Run a Form</a></span><br /><span class="linkTerms"><a href="/html/19c08db1-f70c-473f-ab2a-e7e56528c2df.htm">How to: Hide a Form</a></span><br /><span class="linkTerms"><a href="/html/788a44bc-a066-42c8-b448-7854fc1dfb9f.htm">How to: Pass Parameters to a Form</a></span><br /><span class="linkTerms"><a href="/html/4065d662-45dd-4bb2-8828-86e58c8b0a7f.htm">How to: Save a Form as HTML</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/23c31bf8-0736-493d-9d21-3fd54abc309c.htm">Working with Forms</a></span><br /><span class="linkTerms"><a href="/html/adb21354-5dde-4f55-b92a-df0c53810385.htm">Creating Forms</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Set Properties at Run Time">
+</OBJECT>

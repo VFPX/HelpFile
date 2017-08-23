@@ -1,0 +1,168 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Controls and Data Concepts</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Controls and Data Concepts</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can have two types of controls on your forms: controls that are bound to data and controls that are not. When users interact with bound controls, the values that they enter or choose are stored in the data source, which can be a table field, a cursor field, or a variable. You bind a control to data by setting its <a href="/html/76c0d810-a6e4-4076-aa91-0763a6dfe03b.htm">ControlSource</a> property, or, in the case of grids, its <a href="/html/35fc073a-6840-4046-aa72-90f3c69b7f1e.htm">RecordSource</a> property.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>If you do not set the <b>ControlSource</b> property of a control, the value that the user enters or chooses in the control is only stored as a property setting. The value is not written to disk or stored in memory beyond the lifetime of the control.</p>
+      <div class="labelheading"><b>Effect of ControlSource Property Setting on Controls</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Control
+            </th>
+            <th>
+              Effect
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/519bc0b5-941f-43f3-a870-54d9eb16e5a6.htm">Check box</a>
+            </p>
+          </td>
+          <td>
+            <p>If <b>ControlSource</b> is a field in a table, then NULL values, logical values true (.T.) or false (.F.), or numeric values 0, 1, or 2 in the ControlSource field cause the check box to be selected, cleared, or grayed as the record pointer moves through the table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/362c5c7d-2dd9-4c2c-8028-af188f9fe3d8.htm">Column</a>
+            </p>
+          </td>
+          <td>
+            <p>If <b>ControlSource</b> is a table field, the user is directly editing the field when editing values in the column. To bind an entire grid to data, set the <b>RecordSource</b> property of the grid.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/821b8b23-3955-4d32-b53c-dcf5a5ef339c.htm">List box</a> or <a href="/html/10b56cf0-55bf-4242-88f2-481e6a013d16.htm">Combo box</a></p>
+          </td>
+          <td>
+            <p>If <b>ControlSource</b> is a variable, the value the user chooses in the list is stored in the variable. If the <b>ControlSource</b> is a field in a table, the value is stored in the field at the record pointer. If an item in the list matches the value of the field in the table, the item is selected in the list when the record pointer moves through the table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/4efaacba-2103-4ce8-990b-d52371259b4b.htm">Option button</a>
+            </p>
+          </td>
+          <td>
+            <p>If <b>ControlSource</b> is a numeric field, 0 or 1 is written to the field, depending on whether or not the button is chosen.</p>
+            <p>If <b>ControlSource</b> is logical, .T. or .F. is written to the field, depending on whether the button is chosen. If the record pointer moves in the table, the value of the option button is updated to reflect the new value in the field.</p>
+            <p>If <b>ControlSource</b> of the option button's <b>OptionGroup</b> control (not the option button itself) is a character field, the caption of the option button is stored to the field if the option button is chosen. Note that the control source for an option button (as distinct from an <b>OptionGroup</b> control) cannot be a character field, or Visual FoxPro will report a data type mismatch when the form is run.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f0867563-6b6a-45a9-8fd7-d0199b5d50f5.htm">Spinner</a>
+            </p>
+          </td>
+          <td>
+            <p>The spinner reflects and writes numeric values to the underlying field or variable.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/26bd8887-3888-41e6-a578-30b11a9eb2b4.htm">Text box</a> or <a href="/html/9d4545f7-74fe-4bd3-ba0f-bf9fba4d2129.htm">Edit box</a></p>
+          </td>
+          <td>
+            <p>The value in the table field is displayed in the text box. Changes the user makes to this value are written back to the table. Moving the record pointer affects the <a href="/html/45d3d91e-ee26-4ad1-95d6-4ebbc2791827.htm">Value property</a> of the text box.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/d6eb451b-e277-401c-bb8f-5669acf4ddc8.htm">How to: Create Controls by Dragging and Dropping Fields or Tables</a></span><br /><span class="linkTerms"><a href="/html/1b82372b-b062-41a0-9ec1-260445f59372.htm">How to: Set the Number of Option Buttons in an Option Button Group</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/d61febf6-28ac-4e9f-89f6-40de0f9ef214.htm">Setting Option Button Properties</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b9032965-6941-41d2-8ff9-87c609673907.htm">Using Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Controls and Data Concepts">
+</OBJECT>

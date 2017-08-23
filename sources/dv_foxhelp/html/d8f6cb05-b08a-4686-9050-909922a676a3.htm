@@ -1,0 +1,404 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Customizing Documenting Wizard Output</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Customizing Documenting Wizard Output</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>In addition to the options that you choose when running the Documenting wizard, you can employ additional options outside the wizard by changing the Fdkeywrd.dbf table, which contains all the Visual FoxPro reserved words, in the ...\Wizards folder or by adding Documenting wizard directives to your code.</p>
+  <h1 class="heading">Changing the Fdkeywrd.dbf</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can change the style of indent of the CASE structure by changing the code field value in Fdkeywrd.dbf. By default, the wizard looks for indentation in a CASE structure like this:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO CASE
+CASE case1=1
+   case2=2
+CASE case3=3
+   case4=4
+ENDCASE</pre></td></tr></table></span></div>
+      <p>Some developers prefer to indent the lines between DO CASE and ENDCASE an additional level like this:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO CASE
+   CASE case1=1
+      case2=2
+   CASE case3=3
+      case4=4
+ENDCASE</pre></td></tr></table></span></div>
+      <p>If you indent your CASE structures, as in the second example, specify this in Fdkeywrd.dbf. </p>
+      <procedure xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+        To specify wholly nested indents in DO CASE statements
+        <ddue:steps><ol xmlns=""><li>
+            
+              <p>Locate the <b>Fdkeywrd.dbf</b> file in the ...\Wizards folder of the Visual FoxPro root directory.</p>
+            
+          </li><li>
+            
+              <p>Open the <b>Fdkeywrd.dbf</b> table.</p>
+            
+          </li><li>
+            
+              <p>Locate the <b>ENDCASE</b> record.</p>
+            
+          </li><li>
+            
+              <p>Change the value in the <b>Code</b> field to <b>UU</b>.</p>
+            
+          </li></ol></ddue:steps>
+      </procedure>
+    </div><h1 class="heading">Adding Wizard Directives</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can place special directives in your code files that instruct the Documenting wizard to perform specific tasks when analyzing the code. The available wizard directives are as follows:  </p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>ACTIONCHARS</b>
+        </span></dt><dd>
+          <p>Specifies the characters used to create action or tree diagrams of your code. You might want to change the default settings if you use code pages other than ASCII 1250 or ANSI 1252 in FoxFont to get the characters you expect.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>EXPANDKEYWORDS</b>
+        </span></dt><dd>
+          <p>Specifies whether keyword expansion is active or not in the Documenting wizard. The default value is OFF, which retains keywords as typed in code. If you have used four-character abbreviations throughout your code, you might want to make the code more reader friendly by setting keyword expansion ON.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>XREFKEYWORDS</b>
+        </span></dt><dd>
+          <p>Specifies whether the wizard creates a file that shows all keywords and their locations in the code document. The file contains the keyword names, keyword type (according to the Fdxref.dbf table, as described in Step 5 of the Documenting wizard), the line it is located on, and the file containing it. The default is ON.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>ARRAYBRACKETS</b>
+        </span></dt><dd>
+          <p>Specifies whether square brackets and parentheses are treated differently. The default, ON, treats square brackets as array delimiters and parentheses as function or method delimiters.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>ACTIONINDENTLENGTH</b>
+        </span></dt><dd>
+          <p>Specifies the number of character spaces the wizard uses for indentation in tree or action diagrams. The minimum value is two characters. Functionally, in code, there is no difference between spaces or tabs. Indenting makes it easier to read and understand your code.</p>
+        </dd></dl>
+      <p>You can place wizard directives in the main program file of your project (to direct the wizard to analyze all code files in the project) or in individual code files (to instruct the wizard how to analyze specific files).</p>
+      <p>The syntax of the directives begins with an asterisk, so Visual FoxPro will treat them as comments and ignore them when compiling programs. The directives are not case sensitive. The syntax of the directives is:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*# document directive</pre></td></tr></table></span></div>
+      <p>For consistency throughout your code, it is a good idea to place the directives near the beginning of the main program file, so the Documenting wizard encounters the instruction when it begins analyzing.</p>
+      <p>The Documenting wizard directives are described below.  </p>
+      <dl><dt><span class="nonLinkTerms">*# document ACTIONCHARS " <span class="parameter">abcdef</span>" </span></dt><dd>
+          <p>By default, when the wizard creates an Action Diagram or a Tree Diagram, the wizard uses six characters that appear as lines and square corners when viewed under ASCII code page 1250 or under ANSI code page 1252 in FoxFont. Not all the characters map to line characters when viewed under other code pages. The six default characters and their corresponding FoxFont characters are listed below as <span class="parameter">a</span>, <span class="parameter">b</span>, <span class="parameter">c</span>, <span class="parameter">d</span>, <span class="parameter">e</span>, and <span class="parameter">f</span>.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">abcdef</span>
+                  
+                </th>
+                <th>
+                  Default Chr( ) Value
+                </th>
+                <th>
+                  As viewed in FoxFont
+                </th>
+              </tr><tr>
+              <td>
+                <p>
+                  <span class="parameter">a</span>
+                </p>
+              </td>
+              <td>
+                <p>32</p>
+              </td>
+              <td>
+                <p>(space)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <span class="parameter">b</span>
+                </p>
+              </td>
+              <td>
+                <p>196</p>
+              </td>
+              <td>
+                <img src="../local/Local_-1266761192_oh012.gif" alt="FoxProHorzLine screenshot"></img>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <span class="parameter">c</span>
+                </p>
+              </td>
+              <td>
+                <p>179</p>
+              </td>
+              <td>
+                <img src="../local/Local_-1266761191_oh013.gif" alt="FoxProVerticalLine screenshot"></img>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <span class="parameter">d</span>
+                </p>
+              </td>
+              <td>
+                <p>218</p>
+              </td>
+              <td>
+                <img src="../local/Local_-1266761186_oh014.gif" alt="FoxPro90DegreeTurnLine screenshot"></img>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <span class="parameter">e</span>
+                </p>
+              </td>
+              <td>
+                <p>192</p>
+              </td>
+              <td>
+                <img src="../local/Local_-1266761185_oh015.gif" alt="FoxPro90DegreeTurnLine2 screenshot"></img>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <span class="parameter">f</span>
+                </p>
+              </td>
+              <td>
+                <p>195</p>
+              </td>
+              <td>
+                <img src="../local/Local_-1266761188_oh016.gif" alt="FoxProTsectionLine screenshot"></img>
+              </td>
+            </tr></table></div>
+        </dd></dl>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>When using other code pages, insert the following code in your main program file to ensure that the lines in your diagrams map to line-like characters (the first character of the string enclosed in quotes is a space):</p>
+      </td></tr></table></div>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*# document ACTIONCHARS " -|+++"</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>For a list of supported code pages, see <a href="/html/a3d7b0e0-8320-44b1-8983-17c30a78c6c4.htm">Code Pages Supported by Visual FoxPro</a>.</p>
+      </td></tr></table></div>
+      <dl><dt><span class="nonLinkTerms">*# document XREF <span class="parameter">cMode</span></span></dt><dd>
+          <p>Enables cross-referencing of variables. The default is ON.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cMode</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>ON</p>
+              </td>
+              <td>
+                <p>Enables cross-referencing of variables</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>OFF</p>
+              </td>
+              <td>
+                <p>Disables cross-referencing of variables</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SUSPEND</p>
+              </td>
+              <td>
+                <p>Disables cross-referencing of variables in the current file until the <b>Documenting Wizard</b> encounters the next instance of:</p>
+                <p>
+                  <code>*# document XREF ON</code>
+                </p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">*# document EXPANDKEYWORDS <span class="parameter">cMode</span></span></dt><dd>
+          <p>Enables the expansion of abbreviated keywords in your code. For example, "DEFI WIND" would be expanded to "DEFINE WINDOW." The default is OFF.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+            <p>Not all keywords in Visual FoxPro begin with a unique string of four characters. For example, "REPL" could be short for "REPLACE" or "REPLICATE." Be careful if you include this directive and choose to overwrite existing files.</p>
+          </td></tr></table></div>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cMode</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>ON</p>
+              </td>
+              <td>
+                <p>Enables keyword expansion</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>OFF</p>
+              </td>
+              <td>
+                <p>Disables keyword expansion</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SUSPEND</p>
+              </td>
+              <td>
+                <p>Disables keyword expansion in the current file until the next instance of:</p>
+                <p>
+                  <code>*# document EXPANDKEYWORDS ON</code>
+                </p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">*# document XREFKEYWORDS <span class="parameter">cMode</span></span></dt><dd>
+          <p>This directive corresponds to the <b>Cross-Reference Keywords</b> option on "Step 6 – Finish" in the <b>Documenting Wizard</b>. The default is OFF.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cMode</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>ON</p>
+              </td>
+              <td>
+                <p>Enables cross-referencing of keywords</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>OFF</p>
+              </td>
+              <td>
+                <p>Disables cross-referencing of keywords</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SUSPEND</p>
+              </td>
+              <td>
+                <p>Disables cross-referencing of keywords in the current file until the next instance of:</p>
+                <p>
+                  <code>*# document XREFKEYWORDS ON</code>
+                </p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">*# document ARRAYBRACKETS <span class="parameter">cMode</span></span></dt><dd>
+          <p>The default is OFF.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cMode</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>ON</p>
+              </td>
+              <td>
+                <p>The <b>Documenting Wizard</b> assumes that square brackets are used for arrays and that parentheses are used for functions and methods.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>OFF</p>
+              </td>
+              <td>
+                <p>The <b>Documenting Wizard</b> treats both square brackets and parentheses as arrays.</p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">*# document ACTIONINDENTLENGTH <span class="parameter">nSpace</span></span></dt><dd>
+          <p>
+            <span class="parameter">nSpace</span> is the number of character spaces that you want the <b>Documenting Wizard</b> to use for indentation. The minimum value allowed is 2.</p>
+        </dd></dl>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/04374edb-c18f-471e-9555-bef25ef1ff05.htm">Documenting Wizard</a></span><br /><span class="linkTerms"><a href="/html/a3d7b0e0-8320-44b1-8983-17c30a78c6c4.htm">Code Pages Supported by Visual FoxPro</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/59eb1864-2238-485b-ab3b-9159c999c3c4.htm">Wizards (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Customizing Documenting Wizard Output">
+</OBJECT>

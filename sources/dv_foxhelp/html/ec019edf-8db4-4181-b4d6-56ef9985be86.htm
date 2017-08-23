@@ -1,0 +1,447 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Task List Manager Window</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Task List Manager Window</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Makes it possible for you to keep track of tasks. To customize the Task List Manager, see <a href="/html/23ddd4dc-d1bd-4f97-9a76-9dc3cb7d3559.htm">Customizing the Task List Manager</a>.</p>
+    <p>The Task List Manager appears when you click Task List on the Tools menu. You can also access the Task List Manager using the _TASKLIST system variable, which references Tasklist.app by default. You can modify this reference on the File Locations tab in the Options dialog box. For more information, see <a href="/html/5493c982-676f-49cb-af95-e488384108ba.htm">_TASKLIST System Variable</a> or <a href="/html/dc7766d4-a171-474b-9184-7017f6a64ea9.htm">File Locations Tab, Options Dialog Box</a>.</p>
+    <p>The task list is stored as a table in the FoxTask.dbf file. You can specify a different file using the _FOXTASK system variable. For more information, see <a href="/html/8727c6f8-61f0-473e-af5e-b0327b8e58ed.htm">_FOXTASK System Variable</a>.</p>
+  <h1 class="heading">Task List Visual Cues</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The Task List Manager indicates important information through visual cues:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Visual cue
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>Red text</p>
+          </td>
+          <td>
+            <p>Indicates that the Due Date has passed already.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Black text</p>
+          </td>
+          <td>
+            <p>Indicates that the Due Date has not yet arrived yet.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Blue text</p>
+          </td>
+          <td>
+            <p>Indicates that today is the Due Date.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Bold text</p>
+          </td>
+          <td>
+            <p>Indicates that the task has not been Read yet.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Strikethrough text</p>
+          </td>
+          <td>
+            <p>Indicates that the task has been Completed.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Red up arrow</p>
+          </td>
+          <td>
+            <p>Indicates a high Priority task.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Blue down arrow</p>
+          </td>
+          <td>
+            <p>Indicates a low Priority task.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Icon with arrow</p>
+          </td>
+          <td>
+            <p>Indicates a Shortcut task.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Icon with person/task</p>
+          </td>
+          <td>
+            <p>Indicates a User-Defined or Other task.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Task Fields</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The Task List Manager includes the following fields:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Field Name
+            </th>
+            <th>
+              Description
+            </th>
+            <th>
+              Initially Displayed
+            </th>
+            <th>
+              Removable
+            </th>
+            <th>
+              Shortcut Editable
+            </th>
+            <th>
+              User- Defined Editable
+            </th>
+          </tr><tr>
+          <td>
+            <p>Priority</p>
+          </td>
+          <td>
+            <p>Dropdown showing priority of task.</p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Task Completed</p>
+          </td>
+          <td>
+            <p>Checkbox indicating if task is complete.</p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Task Type</p>
+          </td>
+          <td>
+            <p>Visual representation of task type (icon). Internally, the types are represented by the following values in the Foxtask Type field: </p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>S - Shortcut</p>
+            </td></tr></table></div>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>U – User-Defined</p>
+            </td></tr></table></div>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>O – Other</p>
+            </td></tr></table></div>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Contents</p>
+          </td>
+          <td>
+            <p>Description of the task.</p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>File Name</p>
+          </td>
+          <td>
+            <p>Name of file containing the Shortcut or one associated with task.</p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Due Date</p>
+          </td>
+          <td>
+            <p>Date when task is scheduled to be completed.</p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Class</p>
+          </td>
+          <td>
+            <p>Name of class containing the Shortcut or task association.</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Line</p>
+          </td>
+          <td>
+            <p>Line number of Shortcut or task association.</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Method</p>
+          </td>
+          <td>
+            <p>Name of method containing the Shortcut or task association. </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Timestamp</p>
+          </td>
+          <td>
+            <p>Numeric datetime stamp when task was first added. </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Custom</p>
+          </td>
+          <td>
+            <p>You can add custom fields for tasks.</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+          <td>
+            <p>X</p>
+          </td>
+        </tr></table></div>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Tasklist Options dialog box</b>
+        </span></dt><dd>
+          <p>Displays options for adding, removing, and browsing custom fields in the Task List Manager. You can also edit the table structure and clean up the Task List table. The Tasklist Options dialog box appears when you right-click the Task List Manager and click Options.</p>
+          <ul><li>
+              <p>
+                <b>New button</b>   Creates a new table and displays the Table Designer so you can add new custom fields and their data types. Do not modify the initial UniqueID field in the table definition.  </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>The Fields tab in the Task Properties dialog box treats all custom fields as Character type and does not perform any type validation.</p>
+              </td></tr></table></div>
+            </li><li>
+              <p>
+                <b>Edit Structure button</b>   Makes it possible for you to edit the structure of the user-defined columns table.</p>
+            </li><li>
+              <p>
+                <b>Clear button</b>   Removes the custom fields table association from the Task List. The table and its contents are left untouched so that they can be restored later if necessary.</p>
+            </li><li>
+              <p>
+                <b>Browse button</b>   Makes it possible for you to select an existing custom fields table so you can set up an association to the main FoxTask.dbf table. </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>When a custom fields table has been created, it cannot be altered directly from the Task List Manager. You must do this manually in Visual FoxPro using the Table Designer.</p>
+              </td></tr></table></div>
+            </li><li>
+              <p>
+                <b>Clean Up FoxTask</b>   Cleans and packs the underlying Task List table.</p>
+            </li></ul>
+        </dd></dl>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/0ea476ea-4f54-4faa-b5c2-ff4a62653d5b.htm">How to: Create Bookmarks and Task List Shortcuts</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5493c982-676f-49cb-af95-e488384108ba.htm">_TASKLIST System Variable</a></span><br /><span class="linkTerms"><a href="/html/8727c6f8-61f0-473e-af5e-b0327b8e58ed.htm">_FoxTask System Variable</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/7aa5a4e6-75f9-418d-8e35-61690473cf18.htm">How to: Use the Task List Manager</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6172fcb3-8b8b-4fd2-a55e-2dba9bb8a8cb.htm">Windows (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Task List Manager Window">
+<param name="Alink Name" value="vfp.1230987">
+</OBJECT>

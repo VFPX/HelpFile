@@ -1,0 +1,124 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Enhance the Efficiency of Indexes</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Enhance the Efficiency of Indexes</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can improve the performance of indexed tables by keeping indexes current and using expressions that can be optimized in your indexes. You can rebuild active index files or reindex tables at run time.</p>
+  <h1 class="heading">Rebuilding Active Index Files</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When you open a table without opening its corresponding index files and make changes to the key fields in the table, index files become outdated. Index files can also become invalid when a system crash occurs or potentially by accessing and updating a table from a program other than Visual FoxPro. When index files become outdated, you can update them by reindexing with the <b>REINDEX</b> command.</p>
+      <h3 class="procedureSubHeading">To rebuild an active index file</h3><div class="subSection"><ol><li>
+            
+              <p>Open the table you want to reindex.</p>
+            
+          </li><li>
+            
+              <p>On the <b>Table</b> menu, choose <b>Rebuild Indexes</b>.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To rebuild active index files programmatically</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <b>REINDEX</b> command to rebuild an index.  </p>
+              <p>
+                <b>REINDEX</b> updates all index files open in the selected work area. Visual FoxPro recognizes and reindexes each index file type accordingly.   </p>
+              <p>For example, the following code updates the index file for the Customer table in the Visual FoxPro sample database, TestData:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE (HOME(2) + 'Data\TestData')
+USE Customer
+REINDEX</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/b515a6e4-392f-44e8-a48f-52054f2c8b72.htm">REINDEX Command</a></span>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Reindexing tables at run time can take time, particularly when you're reindexing large tables. You should reindex tables only when necessary. You can enhance performance by reindexing during the initialization or termination portion of your program, rather than performing indexing maintenance during the main portion of an application.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Enhance the Efficiency of Indexes">
+</OBJECT>

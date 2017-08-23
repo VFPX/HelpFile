@@ -1,0 +1,252 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Data Location on the Optimal Platform</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Data Location on the Optimal Platform</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You get maximum performance when you store data and other attributes of your database on the optimal platform. The best platform for a particular element depends on how the element is accessed and updated. For example, you might want to store a local copy of a server table, such as a postal code directory that is used as a lookup table, and refresh the local copy only when the back-end table changes.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The following table lists some common application elements and examples of where to locate them for optimal performance.</p>
+      <div class="labelheading"><b>Locating Elements by Platform</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Element
+            </th>
+            <th>
+              Location
+            </th>
+            <th>
+              Type
+            </th>
+            <th>
+              Notes
+            </th>
+          </tr><tr>
+          <td>
+            <p>Tables</p>
+          </td>
+          <td>
+            <p>Local</p>
+          </td>
+          <td>
+            <p>Local copies of server lookup tables; small, infrequently changed tables</p>
+          </td>
+          <td>
+            <p>Use a time stamp, if supported by your remote server, to compare and optionally refresh the local table to match any changes to the back-end source table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>Remote</p>
+          </td>
+          <td>
+            <p>Large or frequently changing tables</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Rules</p>
+          </td>
+          <td>
+            <p>Local</p>
+          </td>
+          <td>
+            <p>Rules on remote views</p>
+          </td>
+          <td>
+            <p>You can use <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> to store field- and record-level rules on a remote view. Your application can use these local rules to check the validity of data before sending the data to the back-end as an update to remote tables.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>Remote</p>
+          </td>
+          <td>
+            <p>Row-level and column-level rules on remote base tables</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Stored procedures</p>
+          </td>
+          <td>
+            <p>Local</p>
+          </td>
+          <td>
+            <p>Visual FoxPro stored procedures</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>Remote</p>
+          </td>
+          <td>
+            <p>Stored procedures on a remote server</p>
+          </td>
+          <td>
+            <p>Use the SQL pass-through <a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( )</a> function to call stored procedures on a remote server.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Transactions</p>
+          </td>
+          <td>
+            <p>Local</p>
+          </td>
+          <td>
+            <p>Visual FoxPro transactions</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>Remote</p>
+          </td>
+          <td>
+            <p>Server transactions</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Triggers</p>
+          </td>
+          <td>
+            <p>Local views</p>
+          </td>
+          <td>
+            <p>No triggers on views</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>Remote</p>
+          </td>
+          <td>
+            <p>Server triggers</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr></table></div>
+      <p>To reduce network traffic during lookups, you can choose to store not only infrequently changing but also frequently changing lookup tables locally. For example, you can download your company's customer list and refresh it only when customer information changes.</p>
+      <p>To accomplish this, you can program your application to compare the time stamp on the local copy of the table with the time stamp on back-end data (if your remote server supports time stamps) and update the local copy only if the server table has changed. You can also add a command button to your form that forces an immediate download of the table, allowing users to refresh their copy of the local table on demand.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/bdda028c-1bc4-4a45-bfa9-9c42a22f93c4.htm">Performance Enhancement through Set-Based Data Access</a></span><br /><span class="linkTerms"><a href="/html/15da0b53-4063-4b42-a51e-3433dec7e62d.htm">Selecting the Right Methods</a></span><br /><span class="linkTerms"><a href="/html/e1386aa7-a4c6-4cf0-a2b4-d401d2dbfbaa.htm">Rapid Application Development</a></span><br /><span class="linkTerms"><a href="/html/a97c6b37-f1e3-4546-a002-84690f5decaa.htm">Client/Server Design for High Performance</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/7a4c60ae-5309-4014-87ec-08ce277eede4.htm">Planning Client/Server Applications</a></span><br /><span class="linkTerms"><a href="/html/ea88b84a-e912-4f11-b6d0-b8ab7f38052a.htm">Optimizing Client/Server Performance</a></span><br /><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Data Location on the Optimal Platform">
+</OBJECT>

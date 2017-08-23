@@ -1,0 +1,113 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Use SQL Pass-Through Asynchronously</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Use SQL Pass-Through Asynchronously</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Your application can request asynchronous processing for the four functions that submit requests to a data source and retrieve data: <a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( )</a>, <a href="/html/b21a0d31-b1db-44f5-b5e1-266356406903.htm">SQLMORERESULTS( )</a>, <a href="/html/0b19c61f-a7db-4adb-8fb3-03aa6ccc783d.htm">SQLTABLES( )</a>, and <a href="/html/281ee9b3-c0d1-4558-8f09-fdf1ddb49001.htm">SQLCOLUMNS( )</a>. You enable asynchronous processing by setting the Asynchronous property of the connection with the SQLSETPROP( ) function. When asynchronous communication is established for the connection, all four of these functions operate asynchronously.</p>
+  <h3 class="procedureSubHeading">To check the setting of the Asynchronous property</h3><div class="subSection"><ul><li>
+        
+          <p>Use the <span class="linkTerms"><a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( ) Function</a></span> to view the Asynchronous property setting. In the following example, <code>nConnectionHandle</code> represents the handle number for your active connection: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? SQLGETPROP(nConnectionHandle,'Asynchronous')</pre></td></tr></table></span></div>
+        
+      </li></ul></div><h3 class="procedureSubHeading">To enable asynchronous processing</h3><div class="subSection"><ul><li>
+        
+          <p>Use the <span class="linkTerms"><a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( ) Function</a></span> to specify the Asynchronous property: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? SQLSETPROP(nConnectionHandle,'Asynchronous', .T.)</pre></td></tr></table></span></div>
+        
+      </li></ul>
+      
+        <p>In Asynchronous mode, you must call each function repeatedly until it returns a value other than 0 (still executing). While the function is still executing, you can cancel processing of the function by pressing the ESC key if the SET ESCAPE property is set to true (.T.).</p>
+        <p>Until the function has finished processing, the application can use a connection handle only with the <span class="linkTerms"><a href="/html/cbf45d9e-8551-4954-8014-b60b3d31179c.htm">SQLCANCEL( ) Function</a></span> or with the asynchronous functions — <a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( )</a>, <a href="/html/b21a0d31-b1db-44f5-b5e1-266356406903.htm">SQLMORERESULTS( )</a>, <a href="/html/0b19c61f-a7db-4adb-8fb3-03aa6ccc783d.htm">SQLTABLES( )</a>, or <a href="/html/281ee9b3-c0d1-4558-8f09-fdf1ddb49001.htm">SQLCOLUMNS( )</a> — originally associated with the handle. You can't call any of the other three asynchronous functions or <a href="/html/6a5eafb3-d5fe-4ca8-8896-2d9b1da8cff0.htm">SQLDISCONNECT( )</a> with the same connection handle until the function has finished.</p>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/6f289c65-6adc-4829-be74-dbf79e2667e7.htm">Selecting an Efficient SQL Pass-Through Processing Mode</a></span><br /><span class="linkTerms"><a href="/html/62b4109b-c1bf-495a-8eb9-6ba7fb1323da.htm">Processing Multiple Result Sets</a></span><br /><span class="linkTerms"><a href="/html/88be1b78-a093-4161-9c95-f00ff6dfd4db.htm">Working with Remote Data Using SQL Pass-Through</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/7a4c60ae-5309-4014-87ec-08ce277eede4.htm">Planning Client/Server Applications</a></span><br /><span class="linkTerms"><a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a></span><br /><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Use SQL Pass-Through Asynchronously">
+</OBJECT>

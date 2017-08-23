@@ -1,0 +1,385 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Understanding and Extending Report Structure</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Understanding and Extending Report Structure</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>In Visual FoxPro 9.0, both design-time and run-time Report System extensions are more feasible and varied than ever before. To ensure you create extensions successfully, you must understand the report (.frx) and label (.lbx) table structures.  </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Report and label file structures are identical in Visual FoxPro. For more information about the contents of the FILESPEC directory, see <span class="linkTerms"><a href="/html/b9fde125-b9df-4688-bae7-7ae28ebd99ee.htm">Table Structures of Table Files (.dbc, .frx, .lbx, .mnx, .pjx, .scx, .vcx)</a></span>.</p>
+    </td></tr></table></div>
+    <p>This topic discusses how you explore and extend the tables' use of various columns to describe different aspects of report layout and behavior.  It also provides you with specified limitations for extensions to these tables. </p>
+    <p>This information allows you to:</p>
+    <ul><li>
+        <p>Manipulate existing report and label table data successfully.</p>
+      </li><li>
+        <p>Describe new types of report elements and behavior in the tables.</p>
+      </li></ul>
+  <h1 class="heading">Understanding the Changes to Report and Label Tables</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro 9 adds no required fields to the native report table structure. Because no new fields are added to migrate report and label forms, you can use Visual FoxPro 9's enhanced design facilities to edit existing reports. These reports will still run when distributed to end-users of your existing applications. </p>
+      <p>To support various design-time and run-time enhancements, Visual FoxPro 9 <i>overloads</i> some fields in report and label tables, using them in new ways for report elements that did not use these fields in earlier versions. Some of the new values are not used directly by the product, instead providing information to ReportBuilder applications or other user-code.</p>
+      <p>Visual FoxPro 9's new content, supporting design and processing enhancements, can also be added into existing reports without disturbing backward- compatibility.  The additional content in report and label fields will be ignored at runtime by Visual FoxPro 8 and earlier versions.</p>
+      <p>Visual FoxPro provides information about the system tables for various elements, including reports, in the FILESPEC directory. Visual FoxPro 9.0 supplies an updated copy of 60FRX.DBF, the table that specifies usage of the various fields in the report and label tables. </p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Changes to 60FRX.DBF</h3><div class="subSection" xmlns="">
+          <p>The 60FRX.Descriptio column has been updated in almost every record, to better explain usage of fields by reports and labels. The updated information you see in this field applies to all versions of Visual FoxPro, and adds a separate section indicating any new usage in Visual FoxPro 9.0. </p>
+          <p>The following example is the 60FRX.Descriptio entry for the 60FRX.Fields value <code>RULERLINES</code>.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>
+RULERLINES is used only in the header record.
+0 = Show Ruler Lines: No
+1 = Show Ruler Lines: Yes
+==============================
+Visual FoxPro 9-only Information Below
+==============================
+RULERLINES is reserved in VFP9 for OBJTYPE=8 (Field) for StringTrimming.  
+Default is StringTrimmingEllipsisWord.
+0 or not entered = Default
+1 = StringTrimmingCharacter
+2 = StringTrimmingWord
+3 = StringTrimmingEllipsisCharacter
+4 = StringTrimmingEllipsisWord
+5 = StringTrimmingEllipsisPath (for filenames).
+</pre></td></tr></table></span></div>
+          <p>To help you find how each type of report and label field is used for different types of layout elements, the Visual FoxPro 9.0 version of 60FRX.DBF contains a new field, 60FRX.Usedby_obj.  The 60FRX.Usedby_obj field contains a list of keywords for all report elements that uses a given field.  </p>
+          <p>For example, if you wanted to find out all fields used in the header record of a report or label file, and a description for how these fields are used, you could issue this command:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT Fields, Descriptio FROM 60FRX WHERE ATC("Header",Usedby_obj) &gt; 0</pre></td></tr></table></span></div>
+          <p>The Fields column in the resulting cursor gives you the name of each field in an FRX or LBX table used in the Header record.  The Descriptio column tells you how each field is used.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>If a report field has new uses in Visual FoxPro 9.0, the keywords for elements newly using the field follow a symbol, "<code>|</code>", in the 60FRX.Usedby_obj list.  For example, for the 60FRX.Fields value <code>RULERLINES</code>, the 60FRX.Usedby_obj value reads <code>HEADER | EXPR</code>.  As indicated in the 60FRX.Descriptio entry for <code>RULERLINES</code> above, previous versions of Visual FoxPro used this field in the header record only.  Visual FoxPro 9.0 also uses this field for Field (or Expression) layout elements.  As a result, the two keywords appear separated by the "<code>|</code>" symbol in the 60FRX.Usedby_obj column.  </p>
+          </td></tr></table></div>
+          <p>The following table gives you the 60FRX.Usedby_obj keywords for each type of report object.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Report table </b>
+                  
+                  
+                    <b>Objtype field value</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Report object description</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>60FRX.Usedby_obj value</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>Comment</p>
+              </td>
+              <td>
+                <p>N/A</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>Report Header</p>
+              </td>
+              <td>
+                <p>HEADER</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>Workarea (FoxPro 2.x reports)</p>
+              </td>
+              <td>
+                <p>20TABLE</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>3</p>
+              </td>
+              <td>
+                <p>Index (FoxPro 2.x reports)</p>
+              </td>
+              <td>
+                <p>20INDEX</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>Relation (FoxPro 2.x reports)</p>
+              </td>
+              <td>
+                <p>20RELATION</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>5</p>
+              </td>
+              <td>
+                <p>Label</p>
+              </td>
+              <td>
+                <p>TEXT</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>6</p>
+              </td>
+              <td>
+                <p>Line</p>
+              </td>
+              <td>
+                <p>LINE</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>7</p>
+              </td>
+              <td>
+                <p>Rectangle / Shape</p>
+              </td>
+              <td>
+                <p>SHAPE</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>8</p>
+              </td>
+              <td>
+                <p>Field</p>
+              </td>
+              <td>
+                <p>EXPR</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>9</p>
+              </td>
+              <td>
+                <p>Bandinfo</p>
+              </td>
+              <td>
+                <p>BAND</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>10</p>
+              </td>
+              <td>
+                <p>Group</p>
+              </td>
+              <td>
+                <p>GROUP</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>17</p>
+              </td>
+              <td>
+                <p>Picture / OLE Bound</p>
+              </td>
+              <td>
+                <p>PICT</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>18</p>
+              </td>
+              <td>
+                <p>Variable</p>
+              </td>
+              <td>
+                <p>VAR</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>21</p>
+              </td>
+              <td>
+                <p>Printer Driver Setup (FoxPro 2.x reports)</p>
+              </td>
+              <td>
+                <p>20PDRIVER</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>23</p>
+              </td>
+              <td>
+                <p>Font resource</p>
+              </td>
+              <td>
+                <p>FONTRES</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>25</p>
+              </td>
+              <td>
+                <p>Data Environment</p>
+              </td>
+              <td>
+                <p>DATAENV</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>26</p>
+              </td>
+              <td>
+                <p>Cursor, Relation, or CursorAdapter (See Name field to determine which)</p>
+              </td>
+              <td>
+                <p>CURSOR-RELATION</p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Creating Valid Report and Label Content</h3><div class="subSection" xmlns="">
+          <p>Visual FoxPro 9 supplies reference code to show you how to locate and size the various objects used in reports and labels in Foundation Classes.  For more information, see <span class="linkTerms"><a href="/html/5bd65ee4-c279-487d-8b31-03f081dd9844.htm">FRX Cursor Foundation Class</a></span> and <span class="linkTerms"><a href="/html/2d699a43-bb61-4893-bdda-cbf2824990c3.htm">FRX Device Helper Foundation Class</a></span>.  These classes are part of the default ReportBuilder Application.  They give you the ReportBuilder Application's tools to use, when you want to determine appropriate placement and metrics for new report and label elements.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Formatting and Reviewing 60FRX.DBF Information</h3><div class="subSection" xmlns="">
+          <p>A new report in the FILESPEC directory, 90FRX.FRX, provides consolidated information on full report and label table usage in all versions, while highlighting new-to-Visual FoxPro 9 usage.  The earlier reports available for 60FRX.DBF, 60FRX1.FRX and 60FRX2.FRX, are still included in FILESPEC. </p>
+        </div>
+    </sections></div><h1 class="heading">Extending Report and Label Tables Safely</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro 9 provides reliable persistence of user-defined content in reports and labels. You can add your own content to these tables in the following ways:</p>
+      <ul><li>
+          <p>Add new columns to report and label tables. </p>
+        </li><li>
+          <p>Add new report and label object types as rows to the tables.</p>
+        </li><li>
+          <p>Add records with new Platform values (records that with platform values other than "<code>Windows</code>").</p>
+        </li><li>
+          <p>Add private data into columns, such as the User column, not used natively by reports or labels.</p>
+        </li><li>
+          <p>Add private attributes into the Reporting memberdata XML data schema.  Reporting memberdata is stored in the Style column.  For more information, see <span class="linkTerms"><a href="/html/0148d8e4-c41b-43ef-b164-cc1936db1826.htm">How to: Assign Structured Metadata to Report Controls</a></span>.</p>
+        </li></ul>
+      <p>Visual FoxPro 9 preserves all these types of user-defined content, whether they occur in records used natively, or in additional records.  It makes this content available to user code in Report Designer sessions, through Report Builder hooks. When you process reports and labels, it makes the full content of the report or label table available to ReportListener events and methods.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+        <p>Earlier versions of Visual FoxPro did not preserve user content in design sessions and did not allow user-defined records or columns in report and label tables.  As a result, you should not add new types of content into reports and tables using Visual FoxPro 9 if you expect to edit these files in earlier versions later, because the new content can be lost.  You can add new content into existing records of reports and labels and distribute them successfully to users of earlier versions.  However, do not add new columns into these tables, to ensure that the earlier versions can recognize the tables as reports and labels. </p>
+      </td></tr></table></div>
+      <p>The following limitations must be observed when you extend reports and labels with new types of content.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Differentiating Between Native and User-defined Record Types</h3><div class="subSection" xmlns="">
+          <p>There are 100 total possible Objtype values (0 through 99).  Visual FoxPro 9 explicitly reserves Objtype values 49 and below for internal or native Report Designer use. Only records with recognized and documented Objtype values, and only records containing Objcode field values natively associated with these Objtype values, are manipulated in the native Report Designer.</p>
+          <p>Users and add-ons such as ReportBuilder Applications can alter the contents of records with natively-recognized values in the Objtype field of the report or label.  They can also add new records with native Objtypes, taking care to follow standard usage of columns for all native types. </p>
+          <p>Users and add-ons should not add unknown or undocumented Objcode values to records with native Objtype values (49 and below).  They may be removed by the native Report Designer without warning.</p>
+          <p>You can add records with user-defined Objtype values of 50 and above.  These records can have any Objcode values. The native Report Designer preserves and ignores all content of such records, but ReportBuilder Applications and other add-ons can be used to add and modify them.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Although user-added records with Objtype values of 50 and above are preserved, the position of such records within the report or label table is not guaranteed. A Report Designer session may change the order of records in the report table. User-defined records will usually appear at the end of the table after the report is saved by the Report Designer.  If record order is significant to your application, store information relevant to record order in an additional column.</p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Ensuring Unique ID Values for Records With User-defined Content</h3><div class="subSection" xmlns="">
+          <p>Extra content in any records without UniqueID values,including content in native fields such as the User field, will not be preserved.  The restriction holds for records with native Objtype values as well as user-defined Objtype values.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>Use the <b>SYS(2015)</b> function to create values for the UniqueID field of new records.  Use the FRXCursor Foundation Class's getFrxTimeStamp method to create appropriate Timestamp values.</p>
+          </td></tr></table></div>
+          <p>Reports and labels have a few native Objtype values without UniqueIDs, notably font (objtype 23) and data environment-related resources (objtypes 25 and 26), used in specific ways by the Report Engine at runtime. It is also possible to have a “comment” record (objtype 0 or blank).  The Report Designer and ReportBuilder Application are not guaranteed to preserve user-defined content in these records. You can add new records of the appropriate objtypes for these resources, giving them standard contents. You can also extend these resources by associating user-defined object types with them.  For example, a record of objtype 53 could represent an "extended font resource record.  </p>
+        </div>
+      <h3 class="subHeading" xmlns="">Locating User-added Content in Report and Label Table Structures</h3><div class="subSection" xmlns="">
+          <p>User-added columns must be at the end of the Report or Label table structure.  If native columns are re-ordered, deleted, edited for size, type or name, etc., Visual FoxPro will consider the report or label to be invalid.</p>
+          <p>The header record of the table, describing global report or label attributes, must remain in its standard position (first record in the table). </p>
+          <p>The Expr, Tag, and Tag2 columns in the header record (used for printer setup attributes) are reserved for internal use.</p>
+          <p>In some limited cases, users may edit the values in the Expr column and, if these values are reasonable for the associated attributes, they will be recognized by the Designer, remain stable and be available during design sessions, and used by the Report Engine at run time. However, this behavior is not supported and not extensible. In particular, user-defined value-pairs in the Expr field will not be saved back to the report table after design sessions, even if no explicit changes to Page Setup are made during these sessions. You can use the Picture field of the header record to store user-override information for printer instructions, instead.  For more information, see <span class="linkTerms"><a href="/html/291ca481-a1bf-4a78-ac59-da3dfaba4037.htm">SYS(1037) - Page Setup Dialog Box</a></span>.</p>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span><br /><span class="linkTerms"><a href="/html/008a79ed-c957-4f91-bb5d-00a786d8d505.htm">SYS(2015) - Unique Procedure Name</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/2591781b-25f2-4a9d-afa4-3a620116b1da.htm">MemberData Extensibility</a></span><br /><span class="linkTerms"><a href="/html/d64130c7-bb9a-4191-b8b6-4ba430185fe8.htm">Report XML MemberData Extensions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/dbc4b061-74ad-4780-89bf-0e5d461be849.htm">Extending Reports at Design Time</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Understanding and Extending Report Structure">
+</OBJECT>

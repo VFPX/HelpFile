@@ -1,0 +1,396 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>DEFINE POPUP Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">DEFINE POPUP Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Creates a menu.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+DEFINE POPUP <span class="parameter">MenuName</span> [FROM <span class="parameter">nRow1</span>, <span class="parameter">nColumn1</span>] [TO <span class="parameter">nRow2</span>, <span class="parameter">nColumn2</span>]
+   [IN [WINDOW] <span class="parameter">WindowName</span> | IN SCREEN] 
+      [FONT <span class="parameter">cFontName</span> [, <span class="parameter">nFontSize</span>] [, <span class="parameter">nFontCharSet</span>]] [STYLE <span class="parameter">cFontStyle</span>]
+     [FOOTER <span class="parameter">cFooterText</span>] [KEY <span class="parameter">KeyLabel</span>] [MARGIN]
+   [MARK <span class="parameter">cMarkCharacter</span>] [MESSAGE <span class="parameter">cMessageText</span>] [MOVER] [MULTISELECT] 
+   [PROMPT FIELD <span class="parameter">FieldName</span> | PROMPT FILES [LIKE <span class="parameter">FileSkeleton</span>] 
+      | PROMPT STRUCTURE] [RELATIVE] [SCROLL] [SHORTCUT]
+   [TITLE <span class="parameter">cMenuTitleText</span>] [RTLJUSTIFY]
+   [COLOR SCHEME <span class="parameter">nSchemeNumber</span> | COLOR <span class="parameter">ColorPairList</span>]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">MenuName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the menu to create.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FROM <span class="parameter">nRow1</span>, <span class="parameter">nColumn1</span> TO <span class="parameter">nRow2</span>, <span class="parameter">nColumn2</span></span></dt><dd>
+          <p>Specifies where the menu is placed. <span class="parameter">nRow1</span>, <span class="parameter">nColumn1</span> specifies coordinates for the upper-left corner of the menu. If you omit the FROM clause, Visual FoxPro places the upper-left corner of the menu in the first row and first column of the main Visual FoxPro window or a user-defined window.</p>
+          <p>To create a menu with a specific size, you can also include TO <span class="parameter">nRow2</span>, <span class="parameter">nColumn2</span> to specify the location of the lower-right corner of the menu. If you include FROM <span class="parameter">nRow1</span>, <span class="parameter">nColumn1</span> and omit TO <span class="parameter">nRow2</span>, <span class="parameter">nColumn2</span>, Visual FoxPro automatically sizes the menu. The menu is as wide as the longest menu item in it (if the items are created with DEFINE BAR) and as long as needed to display all of the menu items. The menu length is limited by the size of the main Visual FoxPro window or user-defined window in which the menu is placed. If a menu isn't large enough to contain all of the menu items, a scroll bar appears so that you can scroll through the menu items. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN [WINDOW] <span class="parameter">WindowName</span></span></dt><dd>
+          <p>Places a menu in a user-defined window you specify with <span class="parameter">WindowName</span>. If you omit this clause, the menu is placed on the main Visual FoxPro window by default unless there is an active user-defined window. If there is an active user-defined window, the menu is placed in the active window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN SCREEN </span></dt><dd>
+          <p>Explicitly places a menu in the main Visual FoxPro window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FONT <span class="parameter">cFontName</span>[, <span class="parameter">nFontSize</span> [, <span class="parameter">nFontCharSet</span>]] </span></dt><dd>
+          <p>Specifies a default font for the menu. You can override the default font for an individual menu item by including the FONT clause in DEFINE BAR.</p>
+          <p>
+            <span class="parameter">cFontName</span> specifies the name of the font, and <span class="parameter">nFontSize</span> specifies the point size. You can specify a language script with <span class="parameter">nFontCharSet</span>. See the <span class="linkTerms"><a href="/html/53a11bb9-6a3b-4539-a343-ffd75ae45dbe.htm">GETFONT( ) Function</a></span> for a list of available language script values.</p>
+          <p>For example, the following command creates a menu in 12-point Courier font:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE POPUP popMyPopup FONT 'Courier', 12</pre></td></tr></table></span></div>
+          <p>If the font you specify is not available, a font with similar font characteristics is substituted. If you include the FONT clause but omit the point size <span class="parameter">nFontSize</span>, a 10-point font is used. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">STYLE <span class="parameter">cFontStyle</span></span></dt><dd>
+          <p>Specifies a default font style for the menu. You can override the default style for an individual menu item by including the FONT clause in DEFINE BAR.</p>
+          <p>If you omit the STYLE clause, or if the font style you specify is not available, the Normal font style is used.   </p>
+          <p>The font styles you can specify with <span class="parameter">cFontStyle</span> are listed in the following table:   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Character</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Font style</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>B</p>
+              </td>
+              <td>
+                <p>Bold</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>I</p>
+              </td>
+              <td>
+                <p>Italic</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>Normal</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Q</p>
+              </td>
+              <td>
+                <p>Opaque</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>-</p>
+              </td>
+              <td>
+                <p>Strikeout </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>T</p>
+              </td>
+              <td>
+                <p>Transparent</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>U</p>
+              </td>
+              <td>
+                <p>Underline</p>
+              </td>
+            </tr></table></div>
+          <p>You can include more than one character to specify a combination of font styles. For example, the following command specifies Bold Italic:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE MENU popMyPopup STYLE 'BI'</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FOOTER <span class="parameter">cFooterText</span></span></dt><dd>
+          <p>Creates a footer with the text specified with <span class="parameter">cFooterText</span> centered in the bottom border of the menu.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">KEY <span class="parameter">KeyLabel</span></span></dt><dd>
+          <p>Specifies an access key or key combination for a menu. For a list of available keys and key combinations and their key label names, see <span class="linkTerms"><a href="/html/3b90dacf-2ab1-4457-b73a-70fbad80948c.htm">ON KEY LABEL Command</a></span>. </p>
+          <p>Including KEY is equivalent to issuing the following command:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ON KEY LABEL KeyLabel ACTIVATE POPUP MenuName</pre></td></tr></table></span></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If a keyboard macro is already defined with the same key label, the keyboard macro takes precedence, and the menu cannot be activated with the specified key or key combination.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MARGIN </span></dt><dd>
+          <p>Places an extra space to the left and right of each menu item. Mark characters are displayed in the space to the left of an item, and arrows indicating additional cascading submenus are available and are displayed to the right of menu items. If you omit MARGIN, the mark characters overwrite the first character of the menu item names; hierarchical arrows overwrite the last character of the menu items.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You must include this clause if you want to use the DEFINE BAR ... PICTURE or PICTRES clauses.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MARK <span class="parameter">cMarkCharacter</span></span></dt><dd>
+          <p>Specifies a character that appears to the left of an item on the menu. The default mark character is a check mark. The MARK clause is ignored and the default mark character is used if the menu is integrated into the Visual FoxPro system menu. Also, the MARK clause is ignored if FoxFont isn't the font for the main FoxPro window or the user-defined window in which the menu is placed.</p>
+          <p>MARK can be included to change the default mark character to a character specified with <span class="parameter">cMarkCharacter</span>. If <span class="parameter">cMarkCharacter</span> includes more than one character, only the first character is used as the mark character.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Specifying a mark character doesn't mark a menu item. Use SET MARK OF to mark a menu item.</p>
+          </td></tr></table></div>
+          <p>The MARK clause sets the mark character for all items on the menu. Mark characters specified with DEFINE BAR commands take precedence over mark characters specified with the MARK clause in DEFINE POPUP. SET MARK OF is used to toggle mark characters on or off and can also be used to specify a mark character for an individual menu item or for all menu items. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MESSAGE <span class="parameter">cMessageText</span></span></dt><dd>
+          <p>Displays a message when you select a menu item. The message is placed in the graphical status bar. If the character-based status bar is turned on with SET STATUS ON, the message is centered on the last line of the main Visual FoxPro window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MOVER </span></dt><dd>
+          <p>Places a double-headed arrow <img src="../local/Local_-1073502748_arrowud.gif" alt="ArrowUpDown screenshot"></img> in the Mover box to the left of the selected item in the menu. You can drag the double-headed arrow to move an item to another position on the menu. GETBAR( ) can be used to determine where each item is positioned on the menu.</p>
+          <p>You cannot rearrange items in a menu created with a PROMPT clause. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MULTISELECT </span></dt><dd>
+          <p>Allows the user to select multiple items from a menu at the same time. When the user chooses an item from a menu, the mark character is placed to the left of the item.</p>
+          <p>You cannot make multiple selections from a menu created with a PROMPT clause.   </p>
+          <p>MRKBAR( ) can be used to determine which items are chosen from the menu.   </p>
+          <p>If you include MULTISELECT in DEFINE POPUP, you can include MARGIN to reserve space in each item for the mark character.   </p>
+          <p>In the following example, a menu named <code>popFruits</code> is created. MULTISELECT is included to create a menu that allows multiple items to be chosen.   </p>
+          <p>Each of the four items has a different mark character. When a user chooses items from the menu, the items are marked and a routine named <code>yourchoice</code> displays the chosen items.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+ACTIVATE SCREEN
+DEFINE POPUP popFruits FROM 5,5 ;
+   MULTISELECT MARGIN            &amp;&amp; Create multi-choice menu
+DEFINE BAR 1 OF popFruits ;
+   PROMPT '\&lt;Apples'  MARK CHR(3)    &amp;&amp; First item
+DEFINE BAR 2 OF popFruits ;
+   PROMPT '\&lt;Bananas' MARK CHR(4)    &amp;&amp; Second item
+DEFINE BAR 3 OF popFruits ;
+   PROMPT '\&lt;Grapes'  MARK CHR(5) &amp;&amp; Third item
+DEFINE BAR 4 OF popFruits ;
+   PROMPT '\&lt;Lemons'  MARK CHR(6)    &amp;&amp; Fourth item
+@ 12,5 SAY 'Your choices:'
+ON SELECTION POPUP popFruits DO yourchoice    &amp;&amp; Choice routine
+ACTIVATE POPUP popFruits 
+PROCEDURE yourchoice            &amp;&amp; Executed when choice is made
+@ 13,5 CLEAR
+FOR gnCount = 1 TO CNTBAR('popFruits')      &amp;&amp; Loop for # of items
+   IF MRKBAR('popFruits', gnCount) = .T.      &amp;&amp; Option is marked,
+      ? PRMBAR('popFruits', gnCount) AT 5      &amp;&amp; display caption
+   ENDIF
+NEXT</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">PROMPT FIELD <span class="parameter">FieldName</span></span></dt><dd>
+          <p>Specifies the field name from an open table whose records become the items on the menu. The menu contains an item for each record in the table. When the menu is activated, the tables' work area is selected.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>You can take advantage of Rushmore Query Optimization if you set a filter on the field specified with PROMPT FIELD used in the menu. For more information on Rushmore Query Optimization, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span> in <span class="linkTerms"><a href="/html/3f3c7751-db8b-43ad-9da6-7daa3f8eb8b5.htm">Optimizing Applications</a></span>.</p>
+          </td></tr></table></div>
+          <p>
+            <span class="parameter">FieldName</span> can also contain multiple field names and expressions concatenated with the addition operator (+). <span class="parameter">FieldName</span> can also be the name of the field in a table open in another work area or a user-defined function.   </p>
+          <p>There is no limit to the number of entries that can appear in a menu created with PROMPT FIELD. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">PROMPT FILES [LIKE <span class="parameter">FileSkeleton</span>] </span></dt><dd>
+          <p>Creates a menu that displays the names of files available in the current directory.</p>
+          <p>LIKE <span class="parameter">FileSkeleton</span> allows you to specify the files that are displayed in the menu using wildcards. For example, to create a menu that displays the names of tables in the default drive and directory, include the following command:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PROMPT FILES LIKE *.DBF</pre></td></tr></table></span></div>
+          <p>You can create a menu that displays the names of files on other drives and in other directories or folders by including a drive or volume specification, a directory specification, or both. For example, to create a menu that displays the names of program files in a directory called PROGRAMS on drive C, include the following command:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PROMPT FILES LIKE C:\PROGRAMS\*.PRG</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">PROMPT STRUCTURE </span></dt><dd>
+          <p>Displays the names of the fields in the current table on the menu according to the table's field structure. When the menu is activated, the table's work area is selected.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">RELATIVE </span></dt><dd>
+          <p>Specifies the order in which items are placed on a menu. If you create a menu without the RELATIVE clause, an item is positioned on a menu in an order dictated by the item's bar number. Space on the menu is reserved for undefined items. For example, if the first and third items are defined and the menu is activated, a blank line reserved for the second item is placed on the menu.</p>
+          <p>If you create a menu with RELATIVE, the items appear on the menu in the order in which they are defined. Space in the menu isn't reserved for undefined items.   </p>
+          <p>Defining a menu with RELATIVE also lets you make use of BEFORE and AFTER clauses in DEFINE BAR to position items on a menu relative to other items. If a menu is created without RELATIVE, including BEFORE or AFTER in DEFINE BAR generates an error.   </p>
+          <p>Run the following two program examples and compare the placement of the items on each menu.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*** RELATIVE Example  ***
+DEFINE POPUP popRelatYes RELATIVE FROM 1,1
+DEFINE BAR 4  OF popRelatYes PROMPT '4444'
+DEFINE BAR 3  OF popRelatYes PROMPT '3333'
+DEFINE BAR 2  OF popRelatYes PROMPT '2222'
+DEFINE BAR 1  OF popRelatYes PROMPT '1111'
+DEFINE BAR 6  OF popRelatYes PROMPT '6666' BEFORE 4
+ACTIVATE POPUP popRelatYes 
+*** NON-RELATIVE Example ***
+DEFINE POPUP popRelatNo FROM 1,1
+DEFINE BAR 4  OF popRelatNo PROMPT '4444'
+DEFINE BAR 3  OF popRelatNo PROMPT '3333'
+DEFINE BAR 2  OF popRelatNo PROMPT '2222'
+DEFINE BAR 1  OF popRelatNo PROMPT '1111'
+DEFINE BAR 6  OF popRelatNo PROMPT '6666'
+ACTIVATE POPUP popRelatNo</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SCROLL </span></dt><dd>
+          <p>Places a scroll bar to the right of the menu you create. The scroll bar is displayed only when there are more items than can fit on the menu, or if the menu is too long to fit in the main Visual FoxPro window or the user-defined window in which it is placed.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SHORTCUT </span></dt><dd>
+          <p>Creates a shortcut menu. A shortcut menu typically appears when a selection, toolbar, or taskbar button is clicked with the right mouse button. The shortcut menu lists commands that pertain to the screen region on which the mouse was right-clicked.</p>
+          <p>You can include MROW( ) and MCOL( ) in the FROM clause to activate the popup at the location where the mouse is clicked. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TITLE <span class="parameter">cMenuTitleText</span></span></dt><dd>
+          <p>Displays a title in the center of the top border of the menu. <span class="parameter">cTitleText</span> specifies the menu title.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">RTLJUSTIFY</span></dt><dd>
+          <p>Specifies that the text in the popup is justified in a right to left direction.</p>
+          <p>The RTLJUSTIFY clause is intended for use with fonts that support bi-directional alignments.</p>
+          <p>Issue SET SYSMENU TO LTRJUSTIFY to return the menu system to default left to right justification. This option is only available when Windows is configured to a Middle-Eastern locale.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">COLOR SCHEME <span class="parameter">nSchemeNumber</span></span></dt><dd>
+          <p>Specifies the colors for all elements of a menu. By default, the colors of menus created with DEFINE POPUP are controlled by color scheme 2.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">COLOR <span class="parameter">ColorPairList</span></span></dt><dd>
+          <p>Specifies the colors for all elements of a menu.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>To place a set of menu items that you define on a menu, use a series of DEFINE BAR commands. To place records, files, or fields in a menu, use the PROMPT FIELD, PROMPT FILES, or PROMPT STRUCTURE options of DEFINE POPUP.</p>
+      <p>When the menu is displayed and activated with ACTIVATE POPUP, you can choose one of the items on the menu. Depending on the item chosen, a routine can be executed or another menu can be displayed and activated. A menu that displays another menu when an item is chosen is called a cascading submenu. For more information on creating submenus, see <span class="linkTerms"><a href="/html/3eecfefb-7685-4d43-8cec-6812216bd05e.htm">ON BAR Command</a></span>.</p>
+      <p>If you use the <span class="linkTerms"><a href="/html/331479bc-d5c1-4d26-8394-d04673f0dd0c.htm">Menu and Shortcut Designers</a></span> to create your menu, you may not have to use these commands at all. The Menu Designer automatically creates the commands for your menu. The Menu Designer uses the Visual FoxPro system menu, which you can then modify by adding your own menu items.</p>
+      <p>For more information on creating menus, see <span class="linkTerms"><a href="/html/9c8b57ce-8c6c-4ce8-a2ed-8136dc2a8c59.htm">Menu System Creation</a></span>.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example uses DEFINE POPUP to create menus that are activated when a menu title in the menu bar is chosen. The current system menu bar is first saved to memory with SET SYSMENU SAVE, and then all system menu titles are removed with SET SYSMENU TO.</p>
+        <p xmlns="">Two new system menu titles are created with DEFINE PAD, and DEFINE POPUP creates a drop-down menu for each menu title. DEFINE BAR creates items on each of the menus. When a menu title is chosen, ON PAD uses ACTIVATE POPUP to activate the corresponding menu.</p>
+        <p xmlns="">When an item is chosen from a menu, ON SELECTION POPUP uses PROMPT( ) and POPUP( ) to pass the item number and menu name to the CHOICE procedure. CHOICE displays the text of the chosen item and the name of the menu containing the item. If the Exit item is chosen from the Card Info menu, the original Visual FoxPro system menu is restored.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*** Name this program DEFINPOP.PRG ***
+CLEAR
+SET SYSMENU SAVE
+SET SYSMENU TO
+DEFINE PAD convpad OF _MSYSMENU PROMPT '\&lt;Conversions' COLOR SCHEME 3 ;
+   KEY ALT+C, ''
+DEFINE PAD cardpad OF _MSYSMENU PROMPT 'Card \&lt;Info' COLOR SCHEME 3 ;
+   KEY ALT+I, ''
+ON PAD convpad OF _MSYSMENU ACTIVATE POPUP conversion
+ON PAD cardpad OF _MSYSMENU ACTIVATE POPUP cardinfo
+DEFINE POPUP conversion MARGIN RELATIVE COLOR SCHEME 4
+DEFINE BAR 1 OF conversion PROMPT 'Ar\&lt;ea' KEY CTRL+E, '^E'
+DEFINE BAR 2 OF conversion PROMPT '\&lt;Length' ;
+   KEY CTRL+L, '^L'
+DEFINE BAR 3 OF conversion PROMPT 'Ma\&lt;ss' ;
+   KEY CTRL+S, '^S'
+DEFINE BAR 4 OF conversion PROMPT 'Spee\&lt;d' ;
+   KEY CTRL+D, '^D'
+DEFINE BAR 5 OF conversion PROMPT '\&lt;Temperature' ;
+   KEY CTRL+T, '^T'
+DEFINE BAR 6 OF conversion PROMPT 'T\&lt;ime' ;
+   KEY CTRL+I, '^I'
+DEFINE BAR 7 OF conversion PROMPT 'Volu\&lt;me' ;
+   KEY CTRL+M, '^M'
+ON SELECTION POPUP conversion;
+   DO choice IN definpop WITH PROMPT( ), POPUP( )
+DEFINE POPUP cardinfo MARGIN RELATIVE COLOR SCHEME 4
+DEFINE BAR 1 OF cardinfo PROMPT '\&lt;View Charges' ;
+   KEY ALT+V, ''
+DEFINE BAR 2 OF cardinfo PROMPT 'View \&lt;Payments' ;
+   KEY ALT+P, ''
+DEFINE BAR 3 OF cardinfo PROMPT 'Vie\&lt;w Users' ;
+   KEY ALT+W, ''
+DEFINE BAR 4 OF cardinfo PROMPT '\-'
+DEFINE BAR 5 OF cardinfo PROMPT '\&lt;Charges '
+DEFINE BAR 6 OF cardinfo PROMPT '\-'
+DEFINE BAR 7 OF cardinfo PROMPT 'E\&lt;xit '
+ON SELECTION POPUP cardinfo;
+   DO choice IN definpop WITH PROMPT( ), POPUP( )
+PROCEDURE choice
+PARAMETERS mprompt, mpopup
+WAIT WINDOW 'You chose ' + mprompt + ;
+   ' from popup ' + mpopup NOWAIT
+IF mprompt = 'Exit'
+   SET SYSMENU TO DEFAULT
+ENDIF</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/03809745-bd0d-4ba4-9871-4d0dfdead918.htm">ACTIVATE POPUP Command</a></span><br /><span class="linkTerms"><a href="/html/22728947-b7ce-4f15-8a7f-c2c2c516e7a0.htm">CNTBAR( ) Function</a></span><br /><span class="linkTerms"><a href="/html/412aa2c2-5056-450c-8d0c-73abea4a2aa9.htm">CREATE MENU Command</a></span><br /><span class="linkTerms"><a href="/html/2fc7bf2a-2e0e-49ee-b784-fc1562bf2260.htm">DEFINE BAR Command</a></span><br /><span class="linkTerms"><a href="/html/ad12f85b-767f-4a7a-9b65-c6f26364fcd5.htm">GETBAR( ) Function</a></span><br /><span class="linkTerms"><a href="/html/d34e9ca8-bc8d-4d95-990e-4ac4d2b4d770.htm">HIDE POPUP Command</a></span><br /><span class="linkTerms"><a href="/html/14b3337c-b37e-4d60-9038-7b549925cc72.htm">MOVE POPUP Command</a></span><br /><span class="linkTerms"><a href="/html/7f9a8ff8-b97d-4502-be18-98ef2f4a3d22.htm">MRKBAR( ) Function</a></span><br /><span class="linkTerms"><a href="/html/166d908f-4d20-4ea7-badd-29dca7004633.htm">ON SELECTION BAR Command</a></span><br /><span class="linkTerms"><a href="/html/6c9ddf76-5826-419e-980b-5d3ee95a15f9.htm">POPUP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/f9cf6b9c-9685-42e0-be3a-c68395b47f4f.htm">PRMBAR( ) Function</a></span><br /><span class="linkTerms"><a href="/html/89228705-7343-4600-be38-71392f47194c.htm">PROMPT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/b0bc7758-c6ed-4460-9ccb-f4490abed064.htm">RELEASE POPUPS Command</a></span><br /><span class="linkTerms"><a href="/html/64e4e2e2-84c7-4d60-b814-74ad4606e25b.htm">SET MARK OF Command</a></span><br /><span class="linkTerms"><a href="/html/c90cace5-fb83-4d3a-8cd0-1347321744b6.htm">SET MESSAGE Command</a></span><br /><span class="linkTerms"><a href="/html/fce968a6-ba35-4c93-b707-8bc3df1d13fc.htm">SIZE POPUP Command</a></span><br /><span class="linkTerms"><a href="/html/94d22fc1-ab55-4366-adba-181ee17d8dc2.htm">SHOW POPUP Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="DEFINE POPUP Command">
+<param name="ALink Name" value="DEFINE POPUP">
+</OBJECT>

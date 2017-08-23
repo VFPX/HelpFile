@@ -1,0 +1,300 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Optimizing Access to Remote Data</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Optimizing Access to Remote Data</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Data retrieval from any remote database is expensive. In order to get data from a server database, the following steps must occur:  </p>
+    <ol><li>
+        <p>The client issues the query to the remote database.</p>
+      </li><li>
+        <p>The server parses and compiles the query.</p>
+      </li><li>
+        <p>The server generates a result set.</p>
+      </li><li>
+        <p>The server notifies the client that the result is complete.</p>
+      </li><li>
+        <p>The client fetches the data over the network from the server. This step can happen all at once, or the client can request that results be sent in pieces as requested.</p>
+      </li></ol>
+    <p>You can use a number of techniques to speed up the retrieval (or update) of data, such as:  </p>
+    <ul><li>
+        <p>Retrieving only the data you need</p>
+      </li><li>
+        <p>Updating remote tables efficiently</p>
+      </li><li>
+        <p>Sending statements in a batch</p>
+      </li><li>
+        <p>Setting packet size</p>
+      </li><li>
+        <p>Delaying retrieval of memo and binary data</p>
+      </li><li>
+        <p>Storing lookup data locally</p>
+      </li><li>
+        <p>Creating local rules</p>
+      </li></ul>
+  <h1 class="heading">Retrieving Only the Data You Need</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>In most applications that use remote data, forms and reports don't need to access all the data from a table at once. Therefore, you can speed performance by creating remote views that fetch or update only the fields and records you want, which minimizes the amount of data that needs to be transmitted across the network.</p>
+      <p>To create queries that minimize the overhead of data retrieval from remote sources, follow these suggestions:  </p>
+      <ul><li>
+          <p>Specify only the fields you need. Don't use the statement <code>SELECT * FROM customers</code> unless you need all the fields from the table.</p>
+        </li><li>
+          <p>Include a WHERE clause to limit the number of records downloaded. The more specific your WHERE clause, the fewer records are transmitted to your computer, and the faster the query will finish.</p>
+        </li><li>
+          <p>If you cannot predict at design time what values to use in a WHERE clause, you can use parameters in the clause. When the query is executed, Visual FoxPro uses the value of a parameter variable or prompts the user for the search value. For example, this query allows the application or user to fill in the region at run time: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT cust_id, company, contact, address ;
+   FROM customers ;
+   WHERE region = ?pcRegion</pre></td></tr></table></span></div>
+        </li><li>
+          <p>Set the <a href="/html/1c1011f0-4a1d-47bd-bf58-9fbe61bccb81.htm">NoDataOnLoad</a> property of the corresponding Data Environment Cursor object. This technique is commonly used with parameterized views in which the data for the parameter comes from the value of a control on a form.</p>
+        </li></ul>
+    </div><h1 class="heading">Updating Remote Tables Efficiently</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>When you use a view to update a table on a remote data source, Visual FoxPro must check whether the record or records you are updating have been changed. To do so, Visual FoxPro must examine the data on the server and compare it to the data being held on your computer. In some instances, this can be a time-consuming operation.</p>
+      <p>To optimize the process of updating data on remote data sources, you can specify how Visual FoxPro should check for changed records. To do this, you indicate the WHERE clause that Visual FoxPro should generate in order to perform the update.</p>
+      <p>For example, imagine that you are using a view based on a customer table on a remote data source. You created the view using a <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL</a> statement such as this one:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT cust_id, company, address, contact ; 
+   FROM customers ;
+   WHERE region = ?vpRegion</pre></td></tr></table></span></div>
+      <p>You want to be able to update all four fields that you have specified in the view except the key field (<code>cust_id</code>). The following table illustrates the WHERE clause that Visual FoxPro will generate for each of the options available under the SQL WHERE clause.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The <a href="/html/fa81be19-03be-4e02-8af1-74f8c521b766.htm">OLDVAL( )</a> function returns the pre-update version of fields you modified, and the <a href="/html/d4dc65e0-a039-40ac-8df4-508a60a77228.htm">CURVAL( )</a> function returns the current value stored on the remote data source. By comparing them, Visual FoxPro can determine whether the record has changed on the remote data source since you downloaded it to your computer.</p>
+      </td></tr></table></div>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Setting
+            </th>
+            <th>
+              Resulting WHERE clause
+            </th>
+          </tr><tr>
+          <td>
+            <p>Key fields only</p>
+          </td>
+          <td>
+            <p>
+              <code>WHERE OLDVAL(cust_id) = CURVAL(cust_id)</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Key and updatable fields (default)</p>
+          </td>
+          <td>
+            <p>
+              <code>WHERE OLDVAL(cust_id) = CURVAL(cust_id) AND</code>
+            </p>
+            <p>
+              <code>   OLDVAL(&lt;mod_fld1&gt;) = CURVAL(&lt;mod_fld2&gt;) AND</code>
+            </p>
+            <p>
+              <code>   OLDVAL(&lt;mod_fld2&gt;) = CURVAL(&lt;mod_fld2&gt;) AND</code>
+            </p>
+            <p>
+              <code>   ...</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Key and modified fields</p>
+          </td>
+          <td>
+            <p>
+              <code>WHERE OLDVAL(cust_id) = CURVAL(cust_id) AND</code>
+            </p>
+            <p>
+              <code>   OLDVAL(company) = CURVAL(company) AND</code>
+            </p>
+            <p>
+              <code>   OLDVAL(contact) = CURVAL(contact) AND</code>
+            </p>
+            <p>
+              <code>   OLDVAL(address) = CURVAL(address)</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Key and timestamp</p>
+          </td>
+          <td>
+            <p>
+              <code>WHERE OLDVAL(cust_id) = CURVAL(cust_id) AND</code>
+            </p>
+            <p>
+              <code>   OLDVAL(timestamp) = CURVAL(timestamp)</code>
+            </p>
+          </td>
+        </tr></table></div>
+      <p>In general, you should choose an option for the SQL WHERE clause in this order of preference:  </p>
+      <ol><li>
+          <p>
+            <b>Key and timestamp</b>, if the remote database supports timestamped fields, which is the fastest way to tell if a record has changed.</p>
+        </li><li>
+          <p>
+            <b>Key and modified fields</b>, because the fields you update to the server are almost always a subset of the total number of fields that you could update.</p>
+        </li><li>
+          <p>
+            <b>Key and updatable fields</b>.</p>
+        </li><li>
+          <p>
+            <b>Key fields only</b>. Using these settings implies that the remote server will insert an entirely new record using the changed key, and will delete the old record.</p>
+        </li></ol>
+    </div><h1 class="heading">Sending Statements in a Batch</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Some servers (such as Microsoft SQL Server) allow you to send a batch of SQL statements in a single packet. This speeds performance because you reduce network traffic, and because the server can compile multiple statements at once.</p>
+      <p>For example, if you specify a batch size of four, then update 10 records in a database, Visual FoxPro sends four statements such as the following to the server database in one batch:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>UPDATE customer SET contact = "John Jones" ; 
+   WHERE cust_id = 1;
+UPDATE customer SET contact = "Sally Park" ; 
+   WHERE cust_id = 2;
+UPDATE customer SET company = "John Jones" ;
+   WHERE cust_id = 3;
+UPDATE customer SET contact = "John Jones" ;
+   WHERE cust_id = 4</pre></td></tr></table></span></div>
+      <h3 class="procedureSubHeading">To send statements in a batch</h3><div class="subSection"><ol><li>
+            
+              <p>In the <b>Options</b> dialog box, choose the <b>Remote Data</b> tab, and then under <b>Records to batch update</b>, specify the number of records to include in a batch. </p>
+              <p>-or- </p>
+            
+          </li><li>
+            
+              <p>Call the <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> or <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a> functions to set these properties: </p>
+              <ul><li>
+                  <p>Set Transaction to 2.</p>
+                </li><li>
+                  <p>Set BatchUpdateCount to the number of statements to send in a batch. </p>
+                  <p>-or- </p>
+                </li></ul>
+            
+          </li></ol></div>
+      <ol><li>
+          <p>In the <b>View Designer</b>, choose <b>Advanced Options</b> from the <b>Query</b> menu to display the <b>Advanced Options</b> dialog box.</p>
+        </li><li>
+          <p>In the <b>Performance</b> area, next to <b>Number of records to batch update</b>, specify the number of statements to send in a batch. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You should experiment with different values for this property and the PacketSize property to optimize your updates.</p>
+          </td></tr></table></div>
+        </li></ol>
+    </div><h1 class="heading">Setting Packet Size</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>You can optimize access to remote servers by fine-tuning the size of the network packet that is sent to and retrieved from the remote database. For example, if your network supports large packet sizes (greater than 4,096 bytes), you can increase the packet size in Visual FoxPro in order to send more data each time you read or write to the network.</p>
+      <h3 class="procedureSubHeading">To set packet size</h3><div class="subSection"><ul><li>
+            
+              <p>Call the <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> or <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a> functions and set the PacketSize property to a positive integer value. The default value is 4,096. </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>Different network providers will handle this property differently, so you should consult your network service documentation. Novell NetWare, for example, has a maximum packet size of 512 bytes so setting the PacketSize property to a value greater than this will have no additional benefit.</p>
+              </td></tr></table></div>
+            
+          </li></ul></div>
+    </div><h1 class="heading">Delaying Retrieval of Memo and Binary Data</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>If you're storing Memo or binary data on a remote server, you can improve performance by delaying the download of this data until your application actually requires it.</p>
+      <h3 class="procedureSubHeading">To delay retrieval of memo and binary data</h3><div class="subSection"><ol><li>
+            
+              <p>In the <b>Options</b> dialog box, choose the <b>Remote Data</b> tab, and then under <b>Remote view defaults</b>, set <b>Fetch memo</b>. </p>
+              <p>-or- </p>
+            
+          </li><li>
+            
+              <p>Call the <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> or <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a> functions to set the FetchMemo property.</p>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Storing Lookup Data Locally</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>Many applications include static lookup data such as state abbreviations, postal codes, and employee titles. If your application contains this type of data, and if the table is not too large, you might be able to speed up your application by keeping copies of this information on each user's computer, because lookups do not generate network traffic.</p>
+      <p>This technique is primarily useful for data that never changes or changes very rarely. If the data does change on occasion, you must devise a strategy for downloading a new copy of the lookup table to each user's computer.</p>
+    </div><h1 class="heading">Creating Local Rules</h1><div id="sectionSection6" class="seeAlsoNoToggleSection">
+      <p>You can gain efficiency in your application by creating local field-level and record-level rules within Visual FoxPro, rather than relying on rules defined on the server. These rules can prevent data that doesn't conform to data or business rules from getting into the database.</p>
+      <p>By defining rules in Visual FoxPro, you trap the invalid data before it's sent across the network, which is faster, and which gives you better control for handling error conditions. However, using local rules also means that you must coordinate them with rules on the remote server. For example, if there are changes to the rules on the server, you might have to change your local rules to match.</p>
+      <p>For more information, see <a href="/html/b0ee3a0c-3183-498f-b22d-02963647ce19.htm">How to: Create Validation Rules for Views</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/1c1011f0-4a1d-47bd-bf58-9fbe61bccb81.htm">NoDataOnLoad Property</a></span><br /><span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/a5eba8b0-679c-4d87-9ea2-b10b9fc6e48f.htm">Optimizing Applications in Multiuser Environments</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/3f3c7751-db8b-43ad-9da6-7daa3f8eb8b5.htm">Optimizing Applications</a></span><br /><span class="linkTerms"><a href="/html/c43a1e26-abb8-486a-9e59-a8c188a882cc.htm">Optimizing Your System</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Optimizing Access to Remote Data">
+</OBJECT>

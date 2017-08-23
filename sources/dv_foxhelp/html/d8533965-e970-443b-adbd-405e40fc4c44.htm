@@ -1,0 +1,200 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SORT Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SORT Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Sorts records in the currently selected table and outputs the sorted records to a new table.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SORT TO <span class="parameter">TableName </span>ON <span class="parameter">FieldName1</span> [/A | /D] [/C]
+   [, <span class="parameter">FieldName2</span> [/A | /D] [/C] ...]   [ASCENDING | DESCENDING]
+   [<span class="parameter">Scope</span>] [FOR <span class="parameter">lExpression1</span>] [WHILE <span class="parameter">lExpression2</span>]
+   [FIELDS <span class="parameter">FieldNameList</span>   | FIELDS LIKE <span class="parameter">Skeleton</span>
+   | FIELDS EXCEPT <span class="parameter">Skeleton</span>]   [NOOPTIMIZE]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">TableName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the new table containing the sorted records. Visual FoxPro assumes a .dbf file name extension for tables. A .dbf extension is automatically assigned if the file name you include doesn't have an extension.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ON <span class="parameter">FieldName1</span></span></dt><dd>
+          <p>Specifies the field in the currently selected table on which the sort is based. The contents and data type of the field determine the order of the records in the new table. By default, the sort is done in ascending order. You can't sort on memo or general fields.</p>
+          <p>The following example sorts a table on the <code>cust_id</code> field. The <code>customer</code> table is opened and sorted, creating a new table named <code>temp</code>. The records in <code>temp</code> are ordered by the <code>cust_id</code> field.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE customer  &amp;&amp; Opens Customer table
+CLEAR
+LIST FIELDS company, cust_id NEXT 3
+SORT TO temp ON cust_id
+USE temp
+LIST FIELDS company, cust_id NEXT 3
+WAIT WINDOW 'Now sorted on CUST_ID' NOWAIT</pre></td></tr></table></span></div>
+          <p>You can include additional field names (<span class="parameter">FieldName2</span>, <span class="parameter">FieldName3</span>) to further order the new table. The first field <span class="parameter">FieldName1</span> is the primary sort field, the second field <span class="parameter">FieldName2</span> is the secondary sort field, and so on. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[/A | /D] [/C] </span></dt><dd>
+          <p>For each field you include in the sort, you can specify an ascending or descending sort order. /A specifies an ascending order for the field. /D specifies a descending order. /A or /D can be included with any type of field.</p>
+          <p>By default, the field sort order for character fields is case sensitive. If you include the /C option after the name of a character field, case is ignored. You can combine the /C option with the /A or /D option. For example, /AC or /DC.   </p>
+          <p>In the following example, a new table named <code>clients</code> is created. The <code>orders</code> table is sorted on the <code>order_date</code> field in ascending order and the <code>freight</code> field in descending order.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE orders
+SORT TO clients ON order_date/A,freight/D</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ASCENDING </span></dt><dd>
+          <p>Specifies an ascending order for all fields not followed by /D.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DESCENDING </span></dt><dd>
+          <p>Specifies a descending order for all fields not followed by /A.</p>
+          <p>If you omit either ASCENDING or DESCENDING, the sort order is ascending by default. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">Scope</span>
+        </span></dt><dd>
+          <p>Specifies a range of records to sort. The scope clauses are: ALL, NEXT <span class="parameter">nRecords</span>, RECORD <span class="parameter">nRecordNumber</span>, and REST.</p>
+          <p>The default scope for SORT is ALL records. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FOR <span class="parameter">lExpression1</span></span></dt><dd>
+          <p>Specifies that only the records in the current table for which the logical condition <span class="parameter">lExpression1</span> evaluates to true (.T.) are included in the sort. Including FOR lets you conditionally sort records, filtering out undesired records.</p>
+          <p>Rushmore Query Optimization optimizes a SORT ... FOR command if <span class="parameter">lExpression1</span> is an optimizable expression. For best performance, use an optimizable expression in the FOR clause.    </p>
+          <p>A discussion of expressions that Rushmore can optimize appears in <span class="linkTerms"><a href="/html/3f3c7751-db8b-43ad-9da6-7daa3f8eb8b5.htm">Optimizing Applications</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WHILE <span class="parameter">lExpression2</span></span></dt><dd>
+          <p>Specifies a condition whereby records from the current table are included in the sort for as long as the logical expression <span class="parameter">lExpression2</span> evaluates to true (.T.).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS <span class="parameter">FieldNameList</span></span></dt><dd>
+          <p>Specifies fields from the original table to include in the new table that SORT creates. If you omit the FIELDS clause, all fields from the original table are included in the new table.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS LIKE <span class="parameter">Skeleton</span></span></dt><dd>
+          <p>Specifies that fields from the original table that match the field skeleton <span class="parameter">Skeleton</span> are included in the new table that SORT creates.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS EXCEPT <span class="parameter">Skeleton</span></span></dt><dd>
+          <p>Specifies that all fields except those that match the field skeleton <span class="parameter">Skeleton</span> are included in the new table that SORT creates.</p>
+          <p>The field skeleton <span class="parameter">Skeleton</span> supports wildcards. For example, to specify that all fields that begin with the letters A and P are included in the new table, use the following:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SORT TO mytable ON myfield FIELDS LIKE A*,P*</pre></td></tr></table></span></div>
+          <p>The LIKE clause can be combined with the EXCEPT clause:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SORT TO mytable ON myfield FIELDS LIKE A*,P* EXCEPT PARTNO*</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOOPTIMIZE </span></dt><dd>
+          <p>Disables Rushmore optimization of SORT.</p>
+          <p>For more information, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>One or more specified fields in the current table determine the order in which the records appear in the new table.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+        <p>Be sure you have enough disk space for the new table and the temporary work files created during the sort. The disk space needed to perform a sort can be as much as three times the size of the source table. The amount of available disk space can be determined with DISKSPACE() and SYS(2020). If you run out of disk space during a sort, Visual FoxPro displays an error message, and the temporary work files are deleted.</p>
+      </td></tr></table></div>
+      <p>Character-type fields that contain numbers and spaces might not sort in the order you expect. Numeric fields fill from right to left, with empty spaces to the left. In contrast, character fields fill from left to right, with empty spaces to the right.</p>
+      <p>For example, if two records in a table contain a character field with 1724 in one record and 18 in the other, and the table is sorted on this field in ascending order, the record containing 1724 appears before the record containing 18. This is because Visual FoxPro reads each character in the character fields from left to right, and because 17 (in 1724) is less than 18 (in 18), it puts 1724 first. To avoid this problem, always precede lower numbers with leading zeros (0018) or make the field numeric.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/53af0023-ca09-44ff-8c59-7b44bbbd9390.htm">COPY FILE Command</a></span><br /><span class="linkTerms"><a href="/html/8f97a44a-909d-4d4e-9a5e-6814e26e7d3b.htm">DISKSPACE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span><br /><span class="linkTerms"><a href="/html/67d6accd-8cf3-41fa-abc6-d374d7a9493d.htm">SYS(2020) - Default Disk Free Space</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SORT Command">
+<param name="ALink Name" value="SORT">
+</OBJECT>

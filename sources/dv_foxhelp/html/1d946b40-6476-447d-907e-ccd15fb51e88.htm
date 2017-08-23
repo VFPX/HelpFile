@@ -1,0 +1,164 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>RecordRefresh Method</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">RecordRefresh Method</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Refreshes the current field values for the specified records.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+CursorAdapter.RecordRefresh([<span class="parameter">nRecords</span>],[ <span class="parameter">nRecordOffset</span>])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nRecords</span>
+        </span></dt><dd>
+          <p>Specifies the number of consecutive records (in physical order) to refresh. <span class="parameter">nRecords</span> is an integer greater than or equal to zero. If nRecords is 1 or you omit nRecords, only the field values in the current record are refreshed. If nRecords is 0, no field values are refreshed.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nRecordOffset</span>
+        </span></dt><dd>
+          <p>Specifies the number of records before the current record where the refresh begins. <span class="parameter">nRecordOffset</span> is an integer greater than, less than, or equal to zero.</p>
+          <p>For example, if the current record is record 10 and nRecordOffset is 4, record refresh begins with record 6. If nRecordOffset is 0 or you omit nRecordOffset, the refresh begins with the current record.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Numeric. The RecordRefresh method returns the number of refreshed records or zero if no records were refreshed and there were no errors. For example, zero is returned if all target records are buffered inserts or <span class="parameter">nRecords</span> is zero. In case of failure, a negative integer is returned which represents the negative value of the number of successfully refreshed records minus 1. </p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>
+        <b>Applies To</b>: <span class="linkTerms"><a href="/html/3cd87ac7-582c-43b9-b1f7-006a9a5c7508.htm">CursorAdapter Class</a></span></p>
+      <p>The RecordRefresh method refreshes the current field values for the target records. Use the <span class="linkTerms"><a href="/html/d4dc65e0-a039-40ac-8df4-508a60a77228.htm">CURVAL( ) Function</a></span> to determine current field values.</p>
+      <p>The tables or cursors must be opened exclusively.</p>
+      <p>The refresh operation is not supported buffered inserts, which are simply ignored, and no error is generated. If a target record has buffered table or record changes, those changes are preserved, and the current field values are refreshed.</p>
+      <p>If a target record cannot be located in at least one base table, the target record’s current field values are not refreshed and the record is marked as DELETED. Records are refreshed record by record until the number of records specified by <span class="parameter">nRecords</span> is refreshed or until a failure occurs. When the refresh key is not unique an error is generated. </p>
+      <p>The CursorAdapter <span class="linkTerms"><a href="/html/9261def0-7448-4db2-9ed7-fec6b7d70755.htm">FetchMemo Property</a></span> setting is respected during the refresh operation unless there is an index on a Memo field. In this case, the Memo field is fetched regardless of the FetchMemo property setting. Long running RecordRefresh execution can be interrupted by pressing ESC; no error is generated.</p>
+      <p>Use the AERROR( ) function to determine the cause of failure of the RecordRefresh method. The <span class="linkTerms"><a href="/html/833fefcd-01e7-423b-998e-611a14e7c163.htm">ON ERROR Command</a></span> and <span class="linkTerms"><a href="/html/2344b71b-14c0-4125-b001-b5fbb7bd1f05.htm">TRY...CATCH...FINALLY Command</a></span> cannot be used to determine the cause of RecordRefresh method errors.</p>
+      <p>The RecordRefresh method is integrated with the <span class="linkTerms"><a href="/html/9b41a875-0c45-4931-bbb2-3856b72efe93.htm">REFRESH( ) Function</a></span>. If the REFRESH( ) function is called for a cursor associated with a CursorAdapter object, the RecordRefresh method is called for the CursorAdapter object. For backward compatibility, the REFRESH( ) function returns zero if the RecordRefresh method fails.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The RecordRefresh method uses CursorAdapter properties. In Visual FoxPro 8, the REFRESH( ) function always uses cursor properties set with the <span class="linkTerms"><a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a></span> and the <span class="linkTerms"><a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( ) Function</a></span> regardless of whether or not the cursor is associated with a CursorAdapter object.</p>
+      </td></tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/d4dc65e0-a039-40ac-8df4-508a60a77228.htm">CURVAL( ) Function</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="RecordRefresh Method">
+<param name="ALink Name" value="RecordRefresh">
+<param name="Alink Name" value="vfp.50001225">
+</OBJECT>

@@ -1,0 +1,1074 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Event Sequence in Visual FoxPro</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Event Sequence in Visual FoxPro</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Though some events occur as single events, a user action often triggers multiple events. Some of these events occur independently; however, some event sequences are fixed, for example, the event sequence that occurs when a form is created or destroyed.</p>
+    <p>When a sequence of events is triggered for a control, the entire sequence of events is associated with the control. For example, suppose you click the left mouse button on a command button and the drag the mouse pointer away from the command button. The command button's <b>MouseMove</b> event continues to occur even though the mouse pointer moves over the form. If you release the left mouse button over the form instead of over the command button, the <b>MouseUp</b> event that occurs is associated with the command button instead of the form.</p>
+    <p>The following table shows the general sequence of Visual FoxPro events, assuming that the data environment's <b>AutoOpenTables</b> property is set to True (.T.). Other events can occur based on user interaction and system response.</p>
+    <div class="labelheading"><b>Visual FoxPro Event Sequence</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Object
+          </th>
+          <th>
+            Event that occurs
+          </th>
+        </tr><tr>
+        <td>
+          <p>Data environment</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/79dea3ce-196e-4fa1-a873-80eb97b4e875.htm">BeforeOpenTables</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Form set</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/e99e2d06-97eb-4d29-8a03-43bc90ef44ca.htm">Load</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Form</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/e99e2d06-97eb-4d29-8a03-43bc90ef44ca.htm">Load</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Data environment cursor(s)</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Data environment</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Objects 1</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Form</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Form set</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Form set</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/1cec317f-4e12-4c47-9c00-40bf91099ef9.htm">Activate</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Form</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/1cec317f-4e12-4c47-9c00-40bf91099ef9.htm">Activate</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Object1 2</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/a06d2f38-2e33-4e77-bca2-c71d99bb6af9.htm">When</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Form</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/594fd8f7-16d6-494e-b0af-83acb62abfd6.htm">GotFocus</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Object1</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/594fd8f7-16d6-494e-b0af-83acb62abfd6.htm">GotFocus</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Object1</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/1ee67eec-bf89-423e-9dc7-f8ec130bbd95.htm">Message</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Object1</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/862db396-f508-4212-81ef-15b21313b8a3.htm">Valid</a> 3</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Object1</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/d1468dc2-702c-4053-9d91-bb2ba75c636c.htm">LostFocus</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Object2 3</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/a06d2f38-2e33-4e77-bca2-c71d99bb6af9.htm">When</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Object2</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/594fd8f7-16d6-494e-b0af-83acb62abfd6.htm">GotFocus</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Object2</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/1ee67eec-bf89-423e-9dc7-f8ec130bbd95.htm">Message</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Object2</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/862db396-f508-4212-81ef-15b21313b8a3.htm">Valid</a> 4</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Object2</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/d1468dc2-702c-4053-9d91-bb2ba75c636c.htm">LostFocus</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Form</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/d2f19370-16dc-4b15-8119-fcf1c63911c0.htm">QueryUnload</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Form</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/7976dadc-90c8-438b-bd89-3ddc123a3db5.htm">Destroy</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Object 5</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/7976dadc-90c8-438b-bd89-3ddc123a3db5.htm">Destroy</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Form</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/93b06f6a-3a16-435f-ab23-08eeeb5fff5b.htm">Unload</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Form set</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/93b06f6a-3a16-435f-ab23-08eeeb5fff5b.htm">Unload</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Data environment</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/3be87404-da32-4c4c-bf92-c91be759f11d.htm">AfterCloseTables</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Data environment</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/7976dadc-90c8-438b-bd89-3ddc123a3db5.htm">Destroy</a>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Data environment cursor(s)</p>
+        </td>
+        <td>
+          <p>
+            <a href="/html/7976dadc-90c8-438b-bd89-3ddc123a3db5.htm">Destroy</a>
+          </p>
+        </td>
+      </tr></table></div>
+    <p>1. For each object, from innermost object to outermost container
+2. First object in the tab order
+3. Next object to get focus
+4. As the object loses focus
+5.For each object, from outermost container to innermost object</p>
+  <h1 class="heading">Event Sequence Example</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The following example uses a form to illustrate the order in which events occur in response to user interaction.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">A sample form</caption></caption></b><br></br></div><img src="../local/Local_-309532931_afd04006.gif" alt="FoxProFormEvenSequence screenshot"></img>
+      <p>In this example, the user performs the following actions:
+</p>
+      <ol><li>
+          <p>Runs the form.</p>
+        </li><li>
+          <p>Types text in the Text1 text box.</p>
+        </li><li>
+          <p>Selects the text and copies it to the Clipboard.</p>
+        </li><li>
+          <p>Moves to the Text2 text box by pressing the TAB key.</p>
+        </li><li>
+          <p>Pastes the text into Text2.</p>
+        </li><li>
+          <p>Closes the form by clicking the Command2 command button.</p>
+        </li></ol>
+      <p>These actions trigger system events for each object. The following tables list the events that occur in response to each user action.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>In this example, the Paint event has been removed from the tables because this event occurs frequently and makes it difficult to see the sequences of the other events.</p>
+      </td></tr></table></div>
+      <p>
+        <b>Action 1</b>
+      </p>
+      <p>The user runs the form by typing the following command in the Command window:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO FORM form1 NAME frmObject</pre></td></tr></table></span></div>
+      <p>Visual FoxPro loads the form, initializes each object, and then initializes the form. The form is activated and the first text box receives input focus.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Object
+            </th>
+            <th>
+              Event
+            </th>
+          </tr><tr>
+          <td>
+            <p>DataEnvironment</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/79dea3ce-196e-4fa1-a873-80eb97b4e875.htm">BeforeOpenTables</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Form1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e99e2d06-97eb-4d29-8a03-43bc90ef44ca.htm">Load</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DataEnvironment</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Command1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Command2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Form1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Form1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/1cec317f-4e12-4c47-9c00-40bf91099ef9.htm">Activate</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Form1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/594fd8f7-16d6-494e-b0af-83acb62abfd6.htm">GotFocus</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/a06d2f38-2e33-4e77-bca2-c71d99bb6af9.htm">When</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/594fd8f7-16d6-494e-b0af-83acb62abfd6.htm">GotFocus</a>
+            </p>
+          </td>
+        </tr></table></div>
+      <p>
+        <b>Action 2</b>
+      </p>
+      <p>The user types the text "Test" in the text box, Text1. Each keystroke generates two events. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The <b>KeyPress</b> event receives two parameters: a number representing the pressed key and the state of the SHIFT, ALT, and CTRL keys. </p>
+      </td></tr></table></div>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Object
+            </th>
+            <th>
+              Event
+            </th>
+            <th>
+              Parameters
+            </th>
+          </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/8afda750-86c0-4d0b-9303-fc8dbbc44af0.htm">KeyPress</a>
+            </p>
+          </td>
+          <td>
+            <p>(84 for "T", 1) </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/f320bc9d-4e0e-47cf-974c-4c4882240ddb.htm">InteractiveChange</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/8afda750-86c0-4d0b-9303-fc8dbbc44af0.htm">KeyPress</a>
+            </p>
+          </td>
+          <td>
+            <p>(101 for "e", 0) </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/f320bc9d-4e0e-47cf-974c-4c4882240ddb.htm">InteractiveChange</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/8afda750-86c0-4d0b-9303-fc8dbbc44af0.htm">KeyPress</a>
+            </p>
+          </td>
+          <td>
+            <p>(115 for "s", 0) </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/f320bc9d-4e0e-47cf-974c-4c4882240ddb.htm">InteractiveChange</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/8afda750-86c0-4d0b-9303-fc8dbbc44af0.htm">KeyPress</a>
+            </p>
+          </td>
+          <td>
+            <p>(116 for "t",0) </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/f320bc9d-4e0e-47cf-974c-4c4882240ddb.htm">InteractiveChange</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr></table></div>
+      <p>
+        <b>Action 3</b>
+      </p>
+      <p>The user selects the text in the text box, Text1, by double-clicking the text and copies the text to the Clipboard by pressing CTRL+C. Mouse events and a <b>Click</b> event accompany the <b>DblClick</b> event.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The <b>MouseMove</b>, <b>MouseDown</b>, and <b>MouseUp</b> events receive four parameters: a number indicating the pressed button, the state of the SHIFT key, and (X, Y) coordinates. The X and Y coordinates are relative to the form and reflect the form's scale mode, for example, pixels. Though only one <b>MouseMove</b> event is listed for each control, in actuality, this event can occur half a dozen times or more.</p>
+      </td></tr></table></div>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Object
+            </th>
+            <th>
+              Event
+            </th>
+            <th>
+              Parameters
+            </th>
+          </tr><tr>
+          <td>
+            <p>Form1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/99987292-3965-4353-ae82-46ca45a14930.htm">MouseMove</a>
+            </p>
+          </td>
+          <td>
+            <p>(0, 0, 100, 35) </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/99987292-3965-4353-ae82-46ca45a14930.htm">MouseMove</a>
+            </p>
+          </td>
+          <td>
+            <p>(0, 0, 44, 22)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/978c1996-f612-4854-8352-96cdd7c9e0d5.htm">MouseDown</a>
+            </p>
+          </td>
+          <td>
+            <p>(1, 0, 44, 22)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/52d2deb6-4513-44e9-b7dd-c6383a3167c8.htm">MouseUp</a>
+            </p>
+          </td>
+          <td>
+            <p>(1, 0, 44, 22)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/514e4b37-03df-482c-9c9f-df2873f48aee.htm">Click</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/978c1996-f612-4854-8352-96cdd7c9e0d5.htm">MouseDown</a>
+            </p>
+          </td>
+          <td>
+            <p>(1, 0, 44, 22)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/52d2deb6-4513-44e9-b7dd-c6383a3167c8.htm">MouseUp</a>
+            </p>
+          </td>
+          <td>
+            <p>(1, 0, 44, 22)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/0d62ca75-b19c-4100-850e-ea8a33601b1e.htm">DblClick</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr></table></div>
+      <p>
+        <b>Action 4</b>
+      </p>
+      <p>The user moves to the text box, Text2, by pressing the TAB key. </p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Object
+            </th>
+            <th>
+              Event
+            </th>
+            <th>
+              Parameters
+            </th>
+          </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/8afda750-86c0-4d0b-9303-fc8dbbc44af0.htm">KeyPress</a>
+            </p>
+          </td>
+          <td>
+            <p>(9, 0)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/862db396-f508-4212-81ef-15b21313b8a3.htm">Valid</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/d1468dc2-702c-4053-9d91-bb2ba75c636c.htm">LostFocus</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/a06d2f38-2e33-4e77-bca2-c71d99bb6af9.htm">When</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/594fd8f7-16d6-494e-b0af-83acb62abfd6.htm">GotFocus</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr></table></div>
+      <p>
+        <b>Action 5</b>
+      </p>
+      <p>The user pastes the text into the text box, Text2, by pressing CTRL+V.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Object
+            </th>
+            <th>
+              Event
+            </th>
+          </tr><tr>
+          <td>
+            <p>Text2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/f320bc9d-4e0e-47cf-974c-4c4882240ddb.htm">InteractiveChange</a>
+            </p>
+          </td>
+        </tr></table></div>
+      <p>
+        <b>Action 6</b>
+      </p>
+      <p>The user clicks the command button, Command2, to close the form.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Object
+            </th>
+            <th>
+              Event
+            </th>
+            <th>
+               
+            </th>
+          </tr><tr>
+          <td>
+            <p>Form1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/99987292-3965-4353-ae82-46ca45a14930.htm">MouseMove</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Command2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/99987292-3965-4353-ae82-46ca45a14930.htm">MouseMove</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/862db396-f508-4212-81ef-15b21313b8a3.htm">Valid</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Command2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/a06d2f38-2e33-4e77-bca2-c71d99bb6af9.htm">When</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/d1468dc2-702c-4053-9d91-bb2ba75c636c.htm">LostFocus</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Command2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/594fd8f7-16d6-494e-b0af-83acb62abfd6.htm">GotFocus</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Command2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/978c1996-f612-4854-8352-96cdd7c9e0d5.htm">MouseDown</a>
+            </p>
+          </td>
+          <td>
+            <p>(1, 0, 143, 128)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Command2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/52d2deb6-4513-44e9-b7dd-c6383a3167c8.htm">MouseUp</a>
+            </p>
+          </td>
+          <td>
+            <p>(1, 0, 143, 128)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Command2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/514e4b37-03df-482c-9c9f-df2873f48aee.htm">Click</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Command2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/862db396-f508-4212-81ef-15b21313b8a3.htm">Valid</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Command2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/a06d2f38-2e33-4e77-bca2-c71d99bb6af9.htm">When</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr></table></div>
+      <p>When the form closes and objects are released, additional events take place in the opposite order of the events listed for Action 1.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Object
+            </th>
+            <th>
+              Event
+            </th>
+          </tr><tr>
+          <td>
+            <p>Form1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/7976dadc-90c8-438b-bd89-3ddc123a3db5.htm">Destroy</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Command2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/7976dadc-90c8-438b-bd89-3ddc123a3db5.htm">Destroy</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Command1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/7976dadc-90c8-438b-bd89-3ddc123a3db5.htm">Destroy</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text2</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/7976dadc-90c8-438b-bd89-3ddc123a3db5.htm">Destroy</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/7976dadc-90c8-438b-bd89-3ddc123a3db5.htm">Destroy</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Form1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/93b06f6a-3a16-435f-ab23-08eeeb5fff5b.htm">Unload</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DataEnvironment</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/3be87404-da32-4c4c-bf92-c91be759f11d.htm">AfterCloseTables</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DataEnvironment</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/7976dadc-90c8-438b-bd89-3ddc123a3db5.htm">Destroy</a>
+            </p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/e77b7e4b-12e9-4d8d-9297-da21d4f36cd9.htm">How to: Track Event Sequences</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/e84973a0-2060-47ad-adfc-52b472305ed2.htm">Events in Visual FoxPro</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/70c74abb-6b29-4696-822a-5301a48de671.htm">Event Binding for Objects</a></span><br /><span class="linkTerms"><a href="/html/d3087fe2-ae39-42b0-95a1-62618480a63b.htm">Understanding the Event Model</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Event Sequence in Visual FoxPro">
+</OBJECT>

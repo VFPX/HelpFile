@@ -1,0 +1,243 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Field Creation</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Field Creation</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can define fields by specifying a field name, a data type, and a field width. When you create a table, you need to define the fields that the table contains. Visual FoxPro tables can contain up to 255 fields. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>If one or more fields can store null values, the maximum number of fields is reduced from 255 to 254.</p>
+    </td></tr></table></div>
+    <p>The following list describes the general attributes you specify when creating a field:
+</p>
+    <ul><li>
+        <p>Name of the field.</p>
+      </li><li>
+        <p>Type of data that the field contains.</p>
+      </li><li>
+        <p>Width of the field.</p>
+      </li><li>
+        <p>Number of decimal places if the field contains numeric or float values.</p>
+      </li><li>
+        <p>An index on the field.</p>
+      </li><li>
+        <p>Whether the field accepts null values.</p>
+      </li></ul>
+    <p>You can also perform the following tasks when working with fields:
+</p>
+    <ul><li>
+        <p>Specify default values for the field.</p>
+      </li><li>
+        <p>Add comments for the field.</p>
+      </li><li>
+        <p>Specify input masks for entering and storing data in the field.</p>
+      </li><li>
+        <p>Set automatically incrementing values in fields.</p>
+      </li></ul>
+    <p>The following sections describes considerations when creating fields:
+</p>
+    <ul><li>
+        <p>
+          <a href="#dgconfieldcreationanchor3">Considerations for Choosing Field Names</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgconfieldcreationanchor1">Considerations for Choosing Data Types</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgconfieldcreationanchor2">Considerations for Default Values in Fields</a>
+        </p>
+      </li></ul>
+  <a name="dgconfieldcreationanchor3"></a><h1 class="heading">Considerations for Choosing Field Names</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>For database fields, Visual FoxPro stores the first 10 characters of the field name in the table (.dbf) file and the long name for the field in the database (.dbc) file. The rules for creating long field names are the same as those for creating any Visual FoxPro identifier except that database field names can contain up to 128 characters. For more information, see <a href="/html/cb692fd1-6a35-426c-9952-f76f0f792596.htm">Creating Visual FoxPro Names</a>.</p>
+      <p>However, as long as a table is associated with a database, you must use the long field names to refer to table fields, not the 10-character field names. If you remove a table from a database, the long names for the fields are lost, and you must use the 10-character field names stored in the table (.dbf) file as the field names.</p>
+      <p>If the first 10 characters in the long name are not unique in the table, Visual FoxPro generates a field name consisting of the first <i>n</i> characters in the long name appended by a sequential number for a total of 10 characters. The following table lists examples of generated names.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Long name
+            </th>
+            <th>
+              Short name
+            </th>
+          </tr><tr>
+          <td>
+            <p>customer_contact_name</p>
+          </td>
+          <td>
+            <p>customer_c</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>customer_contact_address</p>
+          </td>
+          <td>
+            <p>customer_2</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>customer_contact_city</p>
+          </td>
+          <td>
+            <p>customer_3</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>...</p>
+          </td>
+          <td>
+            <p>...</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>customer_contact_fax</p>
+          </td>
+          <td>
+            <p>customer11</p>
+          </td>
+        </tr></table></div>
+      <p>In indexes, long field names can consist of characters, but not numbers. However, if you create an index using long field names and then remove the referenced table from the database, the index no longer functions correctly. In this case, you can shorten the field names in the index and then rebuild the index, or you can delete the index and recreate it using short field names. For more information, see <a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a>.</p>
+      <p>For more information about choosing field names, see <a href="/html/c5a751a9-81c3-405c-9a7d-aa58b1aaf1a0.htm">How to: Name Fields</a>.</p>
+    </div><a name="dgconfieldcreationanchor1"></a><h1 class="heading">Considerations for Choosing Data Types</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>When you choose the data type for a field, remember the following considerations:
+</p>
+      <ul><li>
+          <p>The types of values the field can store. 
+</p>
+          <p>For example, you cannot store text in a numeric field.
+</p>
+        </li><li>
+          <p>The amount of storage the field needs to store values. 
+</p>
+          <p>For example, any value with <b>Currency</b> type uses 8 bytes of storage. 
+</p>
+        </li><li>
+          <p>The types of operations you want to perform on values in the field. 
+</p>
+          <p>For example, Visual FoxPro can calculate the sum of values with <b>Numeric</b> or <b>Currency</b> type but not the sum of values with <b>Character</b> or <b>General</b> type.
+</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>For numbers that you do not intend to use for mathematical calculations, for example, phone numbers, use the <b>Character</b>, not <b>Numeric</b>, type.</p>
+          </td></tr></table></div>
+        </li><li>
+          <p>The capability to index or sort values in the field. 
+</p>
+          <p>For example, you cannot sort or create an index for fields with <b>Memo</b> or <b>General</b> type.
+</p>
+        </li></ul>
+      <p>For more information about Visual FoxPro data types, see <a href="/html/67c1d841-7fa8-4e98-afaf-e4b167a52447.htm">Visual FoxPro Data and Field Types</a>. For more information about choosing data types for fields, see <a href="/html/25531062-a27e-47b0-b753-f5ecec809a19.htm">How to: Choose Data Types</a>.</p>
+    </div><a name="dgconfieldcreationanchor2"></a><h1 class="heading">Considerations for Default Values in Fields</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Specifying default values for fields help application users enter data more quickly by making it possible to skip fields unless they want to change the default value.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>If a business rule for your application requires that a field contain an entry, providing a default value helps to comply with that rule using a field-level or record-level rule.</p>
+      </td></tr></table></div>
+      <p>For example, suppose a company has primarily domestic customers. On the form used to enter data for new customers, you might want to display the country for those customers as the default value in the country or region field. If other values are required for the country or region, the user can replace the default value with the appropriate value.</p>
+      <p>You can specify default values that are scalar values, such as a number, or expressions that evaluate to a scalar quantity. You can also specify any valid FoxPro expression that returns a value consistent with the data type for the field. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>When specifying the default value, Visual FoxPro evaluates the default value or expression for the correct data type when the closing the table structure or using the SQL <b>CREATE TABLE</b> or <b>ALTER TABLE</b> commands. If the data type of the expression does not match the data type of the field, Visual FoxPro generates an error. Expressions that are user-defined functions (UDF) or contain UDFs are not evaluated; and therefore, do not generate errors.</p>
+      </td></tr></table></div>
+      <p>Visual FoxPro evaluates the default value or expression when using the <b>APPEND</b>, <b>APPEND BLANK</b>, or SQL <b>INSERT</b> commands to assign values to fields. When you assign values to fields using the <b>APPEND FROM</b> or SQL <b>INSERT</b> commands, Visual FoxPro applies default values to any fields that are not explicitly assigned. However, these two commands do not replace any existing values with default values. </p>
+      <p>You can also use default values to populate fields that do not accept null values. When you add a new record, Visual FoxPro applies the default values then checks each field in the order they are defined for missing data. This makes sure that fields that do not accept null values can be populated with default values before applying the constraint that the fields cannot be null. </p>
+      <p>If fields in your tables accept null values, you can use the null value (.NULL.) as the default value. Regardless of whether <b>SET NULL</b> is on or off, if you use null (.NULL.) as the default value, Visual FoxPro inserts null (.NULL.) into fields for all commands except <b>APPEND BLANK</b>. For more information, see <a href="/html/202e6dbc-56be-43ac-a272-ee14184fa205.htm">SET NULL Command</a> and <a href="/html/3adfaeb7-7d0a-4aba-9474-3aed20b730b4.htm">How to: Permit Null Values in Fields</a>.</p>
+      <p>If you do not specify a default value, a blank value appropriate for the data type of the field is inserted unless the <b>SET NULL</b> command is set to <b>ON</b>. This preserves backward compatibility.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>When you remove or delete a table from a database, all the default values for fields in that table are deleted from the database. However, stored procedures referenced by the removed or deleted default value remain even after the default value has been removed.</p>
+      </td></tr></table></div>
+      <p>For more information about setting default values for fields, see <a href="/html/446c2e61-8087-4cb7-b1c6-e27b7f462df7.htm">How to: Create Default Field Values</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/e19b3777-d507-41f4-bff1-96abc302a2de.htm">How to: Add Fields to Tables</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/86ee6d44-482a-48f4-8b2c-18607a08f3fe.htm">Working with Fields</a></span><br /><span class="linkTerms"><a href="/html/e72c1fd6-0b60-4dbd-9000-0ffecfb637fa.htm">Working with Tables (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Field Creation">
+</OBJECT>

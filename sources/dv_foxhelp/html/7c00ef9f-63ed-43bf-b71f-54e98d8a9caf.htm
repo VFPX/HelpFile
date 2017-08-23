@@ -1,0 +1,167 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Creating Visual FoxPro Dynamic-Link Libraries</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Creating Visual FoxPro Dynamic-Link Libraries</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>A Visual FoxPro dynamic-link library (FLL) is essentially a DLL that contains calls to the Visual FoxPro API. You can create the basic DLL structure in your development environment and then add the Visual FoxPro functions you want to call. The following sections describe example templates for creating FLL templates in C and C++.</p>
+  <h1 class="heading">Setting Up a Library Template</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Each Visual FoxPro FLL library has the same basic structure. You can use a template for the structure so that you need only to add code for your specific library routine.</p>
+      <p>There are five elements in a Visual FoxPro library template:
+</p>
+      <ul><li>
+          <p>#include statement.</p>
+        </li><li>
+          <p>Function definition.
+</p>
+          <p>The function definition has a void return value and is passed the <code>ParamBlk *parm</code> parameter. For more information about the <code>ParamBlk</code> parameter, see <a href="/html/ad9896fa-643e-48d3-a3b9-d738971e71a3.htm">Parameters in External Libraries</a>.
+</p>
+        </li><li>
+          <p>Function code.</p>
+        </li><li>
+          <p>FoxInfo structure.
+</p>
+          <p>The functions in the FLL interact with Visual FoxPro through the FoxInfo structure. Visual FoxPro uses FoxInfo to determine the function name and the number and type of parameters.
+</p>
+        </li><li>
+          <p>FoxTable structure.
+</p>
+          <p>The FoxTable structure is a linked list that keeps track of the FoxInfo structures.
+</p>
+        </li></ul>
+      <p>For more information about FoxInfo and FoxTable struct definitions, see the Pro_ext.h file.</p>
+      <p>You also need the following files: 
+</p>
+      <ul><li>
+          <p>The Pro_ext.h header file. 
+</p>
+          <p>You can print this file to see the function declarations, typedefs, and structs used in the Visual FoxPro API.
+</p>
+        </li><li>
+          <p>The Winapims.lib file.</p>
+        </li></ul>
+      <p>Both of these files are located in the Microsoft Visual FoxPro ..\Samples\API directory.</p>
+    </div><h1 class="heading">Sample Templates</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>For C routines, you can use the following template:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#include &lt;Pro_ext.h&gt;
+void Internal_Name(ParamBlk *parm)
+{
+// Function code goes here.
+}
+FoxInfo myFoxInfo[] = {
+   {"FUNC_NAME", (FPFI) Internal_Name, 0, ""},
+};
+FoxTable _FoxTable = {
+   (FoxTable *)0, sizeof(myFoxInfo)/sizeof(FoxInfo), myFoxInfo
+};</pre></td></tr></table></span></div>
+      <p>For C++ routines, you need to declare the FoxTable structure as external in the following template:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#include &lt;Pro_ext.h&gt;
+void Internal_Name(ParamBlk  *parm)
+{
+// Function code goes here.
+}
+   FoxInfo myFoxInfo[] = {
+      {"FUNC_NAME", (FPFI) Internal_Name, 0, ""},
+   };
+extern "C" {
+   FoxTable _FoxTable = {
+      (FoxTable *)0, sizeof(myFoxInfo)/sizeof(FoxInfo), myFoxInfo
+   };
+}</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/9f65d44f-5cd5-407e-bd20-c6a8ca584db9.htm">How to: Add Visual FoxPro API Calls</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/f29fdefe-24fe-48d7-868b-59e3a9551226.htm">FoxInfo Structure</a></span><br /><span class="linkTerms"><a href="/html/1cf7cf31-6b15-46ba-baf8-3c1229ef8569.htm">FoxTable Structure</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/8c8b7a75-75ae-4a31-95ce-5b1ea7fc7a7d.htm">API Library Construction</a></span><br /><span class="linkTerms"><a href="/html/566a1828-db5f-432f-8940-c4dd53c08920.htm">Accessing the Visual FoxPro API</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Creating Visual FoxPro Dynamic-Link Libraries">
+</OBJECT>

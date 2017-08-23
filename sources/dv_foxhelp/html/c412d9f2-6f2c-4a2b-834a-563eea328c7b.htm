@@ -1,0 +1,221 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Graph Equations on a Form Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Graph Equations on a Form Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File:</b> ...\Samples\Solution\Forms\Graphics\Graph.scx</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>This sample shows how to graph equations with form graphics. The user can scale the equation by choosing the Zoom command buttons. The user also can move the graph's origin by clicking and dragging.</p>
+      <p>The graphing engines for this sample are in two programs: Cgraph.prg and Pgraph.prg. CGRAPH graphs equations based on Cartesian coordinates. PGRAPH graphs equations based on Polar coordinates. These programs use the PSet and Line methods of a form to draw the equation.</p>
+      <p>The following code, associated with the OneGraph method of the form set, runs the CGRAPH program when a user chooses the Graph button:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORMSET.frmGraph.Draw
+   DO cgraph WITH ;
+      graph.equation, ; 
+      graph.step, ;
+      graph.ecolor, ;
+      graph.connect, ;
+      THISFORMSET.nFormX, ;
+      THISFORMSET.nFormY, ;
+      .F., ;
+      THISFORMSET.frmgraph, ;
+      THISFORMSET.nFormScale</pre></td></tr></table></span></div>
+      <p>The following table lists the parameters for CGRAPH:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Parameter
+            </th>
+            <th>
+              Type
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>equation</p>
+          </td>
+          <td>
+            <p>C</p>
+          </td>
+          <td>
+            <p>The equation in terms of X. Will plot the answer as Y.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>step</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>Step increment.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ecolor</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>Equation color.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>connect</p>
+          </td>
+          <td>
+            <p>L</p>
+          </td>
+          <td>
+            <p>Whether the previous point is connected to the current point with a line.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>nFormX</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>Point on form where x = 0</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>nFormY</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>Point on form where y = 0</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>lAddCoords</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>Whether to draw coordinate lines.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>frmgraph</p>
+          </td>
+          <td>
+            <p>C</p>
+          </td>
+          <td>
+            <p>Name of the form to write to.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>nFormScale</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>Scale to graph the equation at.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/4fd7fb7e-1bb6-4415-9561-5bb2f926de60.htm">Refresh a Graph in a Form Sample</a></span><br /><span class="linkTerms"><a href="/html/348fec52-e48a-489f-86fb-0b0ac888ba69.htm">Solution Samples</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/a69195a8-5205-4d3e-b205-bc00b8633cf3.htm">Graph Object Foundation Class</a></span><br /><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/a7c5a592-3bed-4402-b516-f24e22b721ca.htm">Forms Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Graph Equations on a Form Sample">
+<param name="Alink Name" value="vfp.1231550">
+</OBJECT>

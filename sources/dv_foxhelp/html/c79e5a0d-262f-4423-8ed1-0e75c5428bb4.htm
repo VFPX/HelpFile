@@ -1,0 +1,211 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Debugging Before Bugs Exist</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Debugging Before Bugs Exist</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Good coding practices, such as using white space, including comments, and adhering to naming conventions, help reduce the number of bugs in your code. However, one of the best ways to create a robust application is to look for potential problems before they occur. To make testing and debugging easier later, take the following steps early in the development process:
+</p>
+    <ul><li>
+        <p>
+          <a href="#dgdebugging_before_you_have_bugsanchor1">Creating a Test Environment</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgdebugging_before_you_have_bugsanchor3">Writing Code to Avoid Errors</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtsksettingasserts">Setting Asserts</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgdebugging_before_you_have_bugsanchor2">Tracking Event Sequences</a>
+        </p>
+      </li></ul>
+  <a name="dgdebugging_before_you_have_bugsanchor1"></a><h1 class="heading">Creating a Test Environment</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Though the data environment you have set up for the application is important, the system environment that you expect an application to run in is just as important. To ensure portability of your application and to create an appropriate environment for testing and debugging, you need to consider the following items:
+</p>
+      <ul><li>
+          <p>Hardware and software.</p>
+        </li><li>
+          <p>System paths and file properties.</p>
+        </li><li>
+          <p>Directory structure and file locations.</p>
+        </li></ul>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Hardware and Software</h3><div class="subSection" xmlns="">
+          <p>For maximum portability, it is recommended that you develop applications on the lowest common platform you expect them to run on. To establish a baseline platform, use the following guidelines:
+</p>
+          <ul><li>
+              <p>Develop your applications using the lowest common video mode.</p>
+            </li><li>
+              <p>Determine base requirements for RAM and media storage space, including any necessary drivers or concurrently running software.</p>
+            </li><li>
+              <p>Consider special memory, file, and record-locking scenarios for network versus stand-alone versions of applications.</p>
+            </li></ul>
+        </div>
+      <h3 class="subHeading" xmlns="">System Paths and File Properties</h3><div class="subSection" xmlns="">
+          <p>To ensure all necessary program files are readily accessible on each computer that runs your application, you might require a baseline file configuration. To help you define a configuration baseline, consider the following questions:
+</p>
+          <ul><li>
+              <p>Does your application require common system paths?</p>
+            </li><li>
+              <p>Have you set appropriate file access properties?</p>
+            </li><li>
+              <p>Are network permissions set correctly for each user?</p>
+            </li></ul>
+        </div>
+      <h3 class="subHeading" xmlns="">Directory Structure and File Locations</h3><div class="subSection" xmlns="">
+          <p>If your source code references absolute paths or file names, those exact paths and files must exist when your application is installed on any other computer. Avoid this scenario by performing the following tasks:
+</p>
+          <ul><li>
+              <p>Use Visual FoxPro configuration files. For additional information on using configuration files, see <a href="/html/4d5ad8fb-f7a7-416d-9076-cf6f53cbdb89.htm">Customizing the Visual FoxPro Environment</a><i>.</i></p>
+            </li><li>
+              <p>Create a separate directory or directory structure to keep source files apart from the generated application files. This way, you can test the references of the completed application and know exactly which files to distribute.</p>
+            </li><li>
+              <p>Use relative paths.</p>
+            </li></ul>
+        </div>
+    </sections></div><a name="dgdebugging_before_you_have_bugsanchor3"></a><h1 class="heading">Writing Code to Avoid Errors</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can help reduce errors by anticipating where they might occur and write code that avoids those errors. </p>
+      <p>The following table illustrates how to avoid example error conditions.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Error condition
+            </th>
+            <th>
+              How to avoid the error
+            </th>
+          </tr><tr>
+          <td>
+            <p>The <b>SKIP</b> command moves the record pointer in a table to the next record. However, if the record pointer has moved past the last record in the table, then calling the <b>SKIP</b> command generates an error. </p>
+          </td>
+          <td>
+            <p>Check for end of file:
+</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF !EOF()
+   SKIP
+      IF EOF()
+         GO BOTTOM
+      ENDIF
+ENDIF</pre></td></tr></table></span></div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>The following line of code displays the Open dialog box so that a user can open a table in a new work area:
+</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE GETFILE('DBF') IN 0</pre></td></tr></table></span></div>
+            <p>The user can choose Cancel in the Open dialog box or type the name of a file that does not exist. The user might also type the name of a file that is not a Visual FoxPro table.</p>
+          </td>
+          <td>
+            <p>Make sure that the file exists before the user tries to use it:
+</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>cNewTable = GETFILE('DBF')
+IF FILE(cNewTable)
+   USE (cNewTable) IN 0
+ENDIF</pre></td></tr></table></span></div>
+            <p>If the user types the name of a file that is not a Visual FoxPro table, and error message 15, "Not a table" occurs, you can display a message that prompts the user to open another file, for example, "Please open another file. This file is not a table."</p>
+          </td>
+        </tr></table></div>
+    </div><a name="dgtsksettingasserts"></a><h1 class="heading">Setting Asserts</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Asserts display message boxes when a logical expression evaluates to False (.F.). You can include asserts in your code to verify assumptions you have about the run-time environment for the code. You can use the <b>ASSERT</b> command to set asserts. For more information, see <a href="/html/6a3aab98-f27b-4fb1-9ceb-1c342782facd.htm">ASSERT Command</a>.</p>
+    </div><a name="dgdebugging_before_you_have_bugsanchor2"></a><h1 class="heading">Tracking Event Sequences</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>By tracking event sequences in relation to other events, you can determine the most efficient location to add code to events. For more information, see <a href="/html/e77b7e4b-12e9-4d8d-9297-da21d4f36cd9.htm">How to: Track Event Sequences</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/afcaef34-96c4-40bb-937a-8e4fe6df3380.htm">How to: Use the Automated Test Harness</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/44c896ae-cba9-4869-8a3f-908e5abde1b3.htm">Testing and Debugging Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Debugging Before Bugs Exist">
+</OBJECT>

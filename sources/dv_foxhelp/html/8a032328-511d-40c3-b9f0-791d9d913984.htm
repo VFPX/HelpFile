@@ -1,0 +1,129 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Data Groups in Reports</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Data Groups in Reports</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You often want to examine data grouped on the basis of one or more criteria.  These criteria are usually expressions based on one or more table fields, but can be much more complex.  You designate a data group in a report by associating a <b>Group on</b> expression, your criterion for grouping the records, with the report.  </p>
+    <p>For each set of records in which the expression evaluates to one value, you can designate certain actions you want the Report Engine to perform.  These actions include providing summary content in the report output, and triggering program code.</p>
+  <h1 class="heading">Using Multiple Data Groups</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Data groups are nested, which can be useful for organizing data and totaling expressions at different levels.  For example, you can group records in a report by country by creating data groups based on the country name field. You can then group records by region within each country as a nested group. </p>
+      <p>To determine the nesting level for a data group, consider how often the value of the expression for the data group might change, then define the group that changes most often first. In the example report described in this section, the value of a country field changes more often than the value of a region field. Therefore, the country should be the outer two group, and the region should be the inner group. </p>
+    </div><h1 class="heading">Putting Data in Order for Groups</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>To group records effectively, you must sort the records appropriately before running the report. If the records with the same group value don't appear consecutively in the output, the Report Engine can't display the summary information or calculate your group-related values.</p>
+      <p>The report layout does not actually sort and order your data. It processes records in the same order that they exist in the data source. Sorting and ordering must be performed with a view, index, or other form of data manipulation outside the layout. For example, if the data source is a table, its records are probably not in the appropriate order for grouping. You can sort and order the data by setting an appropriate index on the table, using an ordered view in the data environment, or using a query as the data source to display the records in groups.</p>
+      <p>In the sample report described above, which contains two group levels, the records in the data source must be sorted country name and also by state or region within country, to appear properly in the output. If the report's data source is a table, you index the table on a key expression such as <code>Country + Region</code>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Your index can contain additional elements not needed by the data groups in your report.  In this example, your index expression could read <code>Country + Region +City. </code>This order would provide a sorted list of cities in the details you display for each region. </p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Report Display Options relevant to Data Groups</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When you add data groups, you can preface and follow each group with a group header and group footer, which appear on the report layout as a Group Header band and a Group Footer band. Typically, the Group Header band contains a Field control for the field used by the group. You can also add other controls such as shapes or labels that display before the first record in a group. The Group Footer band often contains group totals and other summary information for the group.</p>
+      <p>You can also specify other options for data groups:</p>
+      <ul><li>
+          <p>Printing text in headers and footers to identify specific groups.</p>
+        </li><li>
+          <p>Printing each group on a new page.</p>
+        </li><li>
+          <p>Resetting page numbers when groups are printed on a new page.</p>
+        </li></ul>
+    </div><h1 class="heading">Triggering Code for a Data Group</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>You can perform actions programmatically for each data group.  For example, each time a new region starts, you could insert a record into a cursor, with fields for the region name and the system variable <b>_PAGENO</b>.  After running the report, you could use this cursor to provide a second report with an index or table of contents.</p>
+      <p>To perform this task during the run of the report, write a user-defined function and specify its name as the code to run during the <b>On entry</b> or <b>On exit</b> event for the Group Header band.</p>
+      <p>For more information, see <span class="linkTerms"><a href="/html/be546a6a-8383-419b-ade3-0bd3c39b8555.htm">How to: Specify Expressions to Evaluate When Processing Bands</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/fc032066-edee-4ba1-a49a-48a145493609.htm">How to: Add Data Groups to Reports</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/f8dde7e9-6ba8-4f65-a797-8cbbcde1f89d.htm">User-Defined Procedures and Functions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/2b533c95-9cc9-4544-8daf-970c699f4483.htm">Working with Report Data Groups</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Data Groups in Reports">
+</OBJECT>

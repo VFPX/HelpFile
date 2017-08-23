@@ -1,0 +1,462 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Dockable Property</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Dockable Property</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Determines whether a form can be docked. Read/write at design time and run time.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+<span class="parameter">Form</span>.Dockable [= <span class="parameter">nValue</span>]</pre></td></tr></table></span></div></div><h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nValue</span>
+        </span></dt><dd>
+          <p>Specifies a value that determines whether a form can be docked.</p>
+          <p>The following table lists the values for <span class="parameter">nValue</span>.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nValue</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>
+                  <span class="parameter">0</span>
+                </p>
+              </td>
+              <td>
+                <p>Form does not support docking. (Default)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <span class="parameter">1</span>
+                </p>
+              </td>
+              <td>
+                <p>Form supports docking and is dockable. The <b>HalfHeightCaption</b> property is set to <span class="parameter">True (.T)</span>.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <span class="parameter">2</span>
+                </p>
+              </td>
+              <td>
+                <p>Form supports docking but is not dockable. The <b>HalfHeightCaption</b> property is set to <span class="parameter">True (.T)</span>.</p>
+              </td>
+            </tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Before setting <b>Dockable</b> to <span class="parameter">1</span> or <span class="parameter">2</span>, the <b>ScrollBars</b> property must be <span class="parameter">0 (None)</span>, the <b>ShowWindow</b> property must be <span class="parameter">0 (In Screen)</span>, and <b>Desktop</b> must be <span class="parameter">False (.F.)</span>. The <b>ScrollBars</b>, <b>ShowWindow</b>, and <b>Desktop</b> properties are read-only during run time. For more information, see <span class="linkTerms"><a href="/html/27ab2417-d2e6-47e5-a577-cec12dbcad9d.htm">ScrollBars Property</a></span> and <span class="linkTerms"><a href="/html/9eb67555-deb2-4490-9d71-87d60f909bf7.htm">ShowWindow Property</a></span>. </p>
+          </td></tr></table></div>
+        </dd></dl>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Applies To: <span class="linkTerms"><a href="/html/a7ff9dc8-6d63-498c-aab6-4ce664c25190.htm">Form Object</a></span></p>
+      <p>Forms that are part of a form set do not support docking.</p>
+      <p>If the <b>Dockable</b> property changes when a form is docked, the form is undocked automatically.</p>
+      <p>When the form supports docking, that is, <b>Dockable</b> is set to 1 or 2, you can interactively set the form as dockable using one of two methods:  </p>
+      <ul><li>
+          <p>On the <b>Window</b> menu, click <b>Dockable</b>.</p>
+        </li></ul>
+      <p>-OR-  </p>
+      <ul><li>
+          <p>Right-click the form's title bar and click <b>Dockable</b> on the shortcut menu.</p>
+        </li></ul>
+      <p>Performing either of these actions switches the setting of <b>Dockable</b> between 1 and 2. </p>
+      <p>When <b>Dockable</b> is set to a value greater than 0, Visual FoxPro sets the properties in the following table automatically and disregards changes made to these properties. Setting <b>Dockable</b> to 0 does not revert these properties to their previous values.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Property
+            </th>
+            <th>
+              Setting
+            </th>
+            <th>
+              Notes
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/bf84c55f-0971-40d3-a2dc-8cfb60fe8665.htm">AlwaysOnBottom Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>.F.</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/245a0e12-0ace-4668-a681-91a6b8fbfd02.htm">AlwaysOnTop Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>.F.</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/0b730da3-d318-4ec2-9e25-7d751334f09f.htm">BorderStyle Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>3</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/810ad493-66cf-4f81-89de-96d08576d929.htm">Closable Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>.T.</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/7e6ebd78-71a5-4c59-84dc-9ed34aad48cf.htm">Desktop Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>.F.</p>
+          </td>
+          <td>
+            <p>Read-only at run time.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/9a192728-f031-4ce5-8df2-5deef9789892.htm">Enabled Property (Visual FoxPro)</a></span>
+            </p>
+          </td>
+          <td>
+            <p>.T.</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/61e26cad-b9a0-4b5a-89c7-3d89dac5f087.htm">HalfHeightCaption Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>.T.</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/60ab1848-b417-4da8-bdec-ec286bb48f9b.htm">MaxButton Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>.F. </p>
+          </td>
+          <td>
+            <p>Used only when <b>Dockable</b> is set to 2.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/aaa2b0c3-8dca-4b9e-8570-bbcbfa9b8bec.htm">MDIForm Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>.F.</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/88240620-aee9-4e81-834b-a696f653115e.htm">MinButton Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>.F. </p>
+          </td>
+          <td>
+            <p>Used only when <b>Dockable</b> is set to 2.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/b58d37bb-48eb-47c1-805a-4e91d5e8996c.htm">Movable Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>.T.</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/27ab2417-d2e6-47e5-a577-cec12dbcad9d.htm">ScrollBars Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>0. </p>
+          </td>
+          <td>
+            <p>Read-only at run time.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/9eb67555-deb2-4490-9d71-87d60f909bf7.htm">ShowWindow Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>0. </p>
+          </td>
+          <td>
+            <p>Read-only at run time.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/f9fd6fe3-bb23-4302-bfed-295adf9826c1.htm">TitleBar Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>1 </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/206a9044-c88a-490b-910a-344c4760a14c.htm">Visible Property (Visual FoxPro)</a></span>
+            </p>
+          </td>
+          <td>
+            <p>.T.</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/617fe6a4-0b04-4ef7-8664-975b44f52835.htm">WindowState Property (Visual FoxPro)</a></span>
+            </p>
+          </td>
+          <td>
+            <p>0</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/85a48531-6db3-44a3-b7ae-014aefd7cc61.htm">WindowType Property</a></span>
+            </p>
+          </td>
+          <td>
+            <p>0</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr></table></div>
+      <p>When <b>Dockable</b> is set to a value greater than 0, Visual FoxPro disregards the following properties entirely:  </p>
+      <ul><li>
+          <p>
+            <span class="linkTerms"><a href="/html/42ce1df3-5b54-40ee-afa0-fc8f5173720a.htm">MaxLeft Property</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/da094c85-383e-4f6d-9799-2808c81b7c2b.htm">MaxTop Property</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/11f5366d-6092-4019-8f84-b0cd3ae30561.htm">MaxWidth Property</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/b347167b-6ae0-4785-bdba-b541512f6ebb.htm">MinHeight Property</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/bc33a36e-3218-4ce2-abea-952e13fe858d.htm">MinWidth Property</a></span>
+          </p>
+        </li></ul>
+      <p>When a form is docked, the following properties are read-only:</p>
+      <ul><li>
+          <p>
+            <a href="/html/5b9c2197-c222-4b99-b621-71c5f1c216ae.htm">Left Property</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/514d14b4-7d0d-4951-8ac6-ecc686c4a838.htm">Top Property</a>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/d49e8724-ad2b-4fd7-bfe2-67c0de878414.htm">Width Property</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/b53e65b9-abd2-499f-992a-bc67bd5f192c.htm">Height Property</a></span>
+          </p>
+        </li></ul>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example uses the <b>CREATEOBJECT( )</b> function to create a form, sets the <b>Dockable</b> and <b>Visible</b> properties so that the form is dockable and visible, and uses the <b>Dock</b> method to dock the form to the left side of the main Visual FoxPro window.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>omyForm = CREATEOBJECT("Form")
+omyForm.Dockable = 1
+omyForm.Visible = .T.
+omyForm.Dock(1)</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/89e7f365-6e9c-4c3e-96a2-06b157b85d39.htm">How to: Dock Forms</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/584b8870-20c6-41d7-bba5-e982fe2d70e9.htm">Docked Property</a></span><br /><span class="linkTerms"><a href="/html/6634cadc-9b65-4577-abb4-692b60de7982.htm">DockPosition Property</a></span><br /><span class="linkTerms"><a href="/html/d32d216d-b90c-4117-927f-fd7a2c6b96b0.htm">AfterDock Event</a></span><br /><span class="linkTerms"><a href="/html/6a8c4f1b-2144-49e3-9667-863899eeb14d.htm">BeforeDock Event</a></span><br /><span class="linkTerms"><a href="/html/69834460-a1ac-4fcd-9fdf-43553460d5e2.htm">UnDock Event</a></span><br /><span class="linkTerms"><a href="/html/191ebb7b-f87f-43c7-8712-c91e69851333.htm">Dock Method</a></span><br /><span class="linkTerms"><a href="/html/402f007d-2758-47be-9e6a-6f97a42dee64.htm">GetDockState Method</a></span><br /><span class="linkTerms"><a href="/html/8d99300e-3a10-406e-9a93-c742ac0cf9cb.htm">ADOCKSTATE( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ee3cb1dc-11b6-434d-8d4d-7a91daa5097a.htm">Properties (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Dockable Property">
+<param name="ALink Name" value="Dockable">
+<param name="Alink Name" value="vfp.50000510">
+</OBJECT>

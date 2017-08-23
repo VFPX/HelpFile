@@ -1,0 +1,196 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>LoadReport Event</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">LoadReport Event</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Occurs previous to a report run, before output is initialized in the BeforeReport event. Provides access to report command clauses.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+PROCEDURE <span class="parameter">Object</span>.LoadReport</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <p>
+        <span class="parameter">None.</span>
+      </p>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Applies To: <span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span>.</p>
+      <p>LoadReport and UnloadReport are the two <i>framing</i> events of the report or label run; from the Report System's point of view, the report run has not yet started when it invokes LoadReport, and the report run has already ended when it invokes UnloadReport.  </p>
+      <p>Consequently, these events allow you to perform certain setup and cleanup activities.  For example, in LoadReport, you can change the contents of the report or label definition table (frx or lbx) because the Report Engine and ReportListener have not read the contents of the table at this point.  The print job has not yet started, unless this <b>REPORT FORM</b> command continues the print job started in an earlier <b>REPORT FORM</b> command that used the <b>NOPAGEEJECT</b> keyword, so you can change the current printer setup. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>For information about the order of events in a report run, see <span class="linkTerms"><a href="/html/223a5d97-3d68-4e70-8bde-9c15b8f9ce62.htm">Understanding Visual FoxPro Object-Assisted Reporting</a></span>.</p>
+      </td></tr></table></div>
+      <p>If you write code in the LoadReport event that returns a value of False (<code>.F.</code>), the report run will not proceed.  The print spool will not be opened, preview will not be instantiated, further Listener events will not be called, and so on.  This behavior is similar to the Load event for forms and formsets; for forms, if Load returns <code>.F.</code>, the form does not instantiate.</p>
+      <p>The clauses with which you invoked <b>REPORT FORM</b> or <b>LABEL FORM</b> are available for your use in LoadReport; however, certain values are not yet calculated at this point.  For more information, see <span class="linkTerms"><a href="/html/f5f90b33-e6ae-4139-9d13-be1495a87cf6.htm">CommandClauses Property</a></span>.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">In the following example class definition, the report definition file (frx) specified in the <b>REPORT FORM</b> command is "swapped" for a temporary file during the LoadReport event.  It is replaced in its original position during the UnloadReport event.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS rlswap AS ReportListener
+   ListenerType = 1  &amp;&amp; to see the results, use a preview
+   realFRX = ""
+   useFRX = ""
+   tempFRX = FORCEPATH(SYS(2015),SYS(2023))
+   PROCEDURE LoadReport
+      THIS.realFRX = THIS.CommandClauses.FILE
+      THIS.useFRX = GETFILE("frx")
+      IF EMPTY(THIS.useFRX)
+         RETURN .F.
+      ENDIF
+      SET DATASESSION TO THIS.FRXDataSession
+      SET SAFETY OFF  &amp;&amp; it's scoped to session anyway
+      THIS.ClearFRX(THIS.tempFRX)
+      RENAME  (FORCEEXT(THIS.realFRX,"frx")) TO ;
+               FORCEEXT(THIS.tempFRX,"frx")
+      RENAME  (FORCEEXT(THIS.realFRX,"frt")) TO ;
+               FORCEEXT(THIS.tempFRX,"frt")
+      COPY FILE  (FORCEEXT(THIS.useFRX,"frx")) TO ;
+               FORCEEXT(THIS.realFRX,"frx")
+      COPY FILE  (FORCEEXT(THIS.useFRX,"frt")) TO ;
+               FORCEEXT(THIS.realFRX,"frt")
+   ENDPROC
+   PROTECTED PROCEDURE clearFRX(tFRX)
+      IF FILE(FORCEEXT(tFRX,"frx"))
+         ERASE FORCEEXT(tFRX,"frx")) NORECYCLE
+      ENDIF
+      IF FILE(FORCEEXT(tFRX,"frt"))
+         ERASE FORCEEXT(tFRX,"frt")) NORECYCLE
+      ENDIF
+   ENDPROC
+   PROCEDURE UnloadReport
+      SET DATASESSION TO THIS.FRXDataSession
+      USE IN FRX
+      THIS.clearFRX(THIS.realFRX)
+      RENAME  (FORCEEXT(THIS.tempFRX,"frx")) TO ;
+               FORCEEXT(THIS.realFRX,"frx")
+      RENAME  (FORCEEXT(THIS.tempFRX,"frt")) TO ;
+               FORCEEXT(THIS.realFRX,"frt")
+   ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span><br /><span class="linkTerms"><a href="/html/8fa78476-e4a6-4b9b-b5a3-80043e73ed4c.htm">UnloadReport Event</a></span><br /><span class="linkTerms"><a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT FORM Command</a></span><br /><span class="linkTerms"><a href="/html/3876aeab-209d-42b0-9ebd-033284c74adb.htm">LABEL Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/45aa16ed-5a77-45e0-a382-dcb7be6f10d7.htm">Events (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="LoadReport Event">
+<param name="ALink Name" value="LoadReport">
+<param name="Alink Name" value="vfp.50000904">
+</OBJECT>

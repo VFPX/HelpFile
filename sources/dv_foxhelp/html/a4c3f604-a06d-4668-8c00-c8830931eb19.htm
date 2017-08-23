@@ -1,0 +1,232 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Use SQL Pass-Through Functions</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Use SQL Pass-Through Functions</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Your client/server application can access server data by using:  </p>
+    <ul><li>
+        <p>Remote views</p>
+      </li><li>
+        <p>SQL pass-through</p>
+      </li></ul>
+    <p>Remote views provide the most common and easiest method for accessing and updating remote data. The upsizing wizards can automatically create remote views in your database as part of upsizing, or you can use Visual FoxPro to create remote views after upsizing. For more information on remote views, see <span class="linkTerms"><a href="/html/591b23fa-6e54-43a4-a5af-ed2c50bd8316.htm">How to: Create Remote Views</a></span>.</p>
+    <p>SQL pass-through technology enables you to send SQL statements directly to a server. SQL pass-through statements, because they execute on the back-end server, are powerful ways to enhance the performance of your client/server applications. The following table compares remote views with SQL pass-through.</p>
+    <div class="labelheading"><b>Comparison of Remote View and SQL Pass-Through Technologies</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Remote View
+          </th>
+          <th>
+            SQL Pass-Through
+          </th>
+        </tr><tr>
+        <td>
+          <p>Based on a SQL SELECT statement.</p>
+        </td>
+        <td>
+          <p>Based on any native server SQL statement, enabling data definition statements or execution of stored procedures on a remote server.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Can be used as data source for controls at design time.</p>
+        </td>
+        <td>
+          <p>Can't be used as a data source for controls.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Provides no ability to execute DDL commands on data source.</p>
+        </td>
+        <td>
+          <p>Provides method for using DDL commands on data source.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Fetches one result set.</p>
+        </td>
+        <td>
+          <p>Fetches one or multiple result sets.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Provides built-in connection management.</p>
+        </td>
+        <td>
+          <p>Requires explicit connection management.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Provides built-in default update information for updates, inserts, and deletes.</p>
+        </td>
+        <td>
+          <p>Provides no default update information.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Provides implicit SQL execution and data fetching.</p>
+        </td>
+        <td>
+          <p>Provides explicit SQL execution and result fetching control.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Provides no transaction handling.</p>
+        </td>
+        <td>
+          <p>Provides explicit transaction handling.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Stores properties persistently in database.</p>
+        </td>
+        <td>
+          <p>Provides temporary properties for SQL pass-through cursor, based on session properties.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Employs asynchronous progressive fetching while executing SQL.</p>
+        </td>
+        <td>
+          <p>Fully supports programmatic asynchronous fetching.</p>
+        </td>
+      </tr></table></div>
+    <p>SQL pass-through technology offers the following advantages over remote views:  </p>
+    <ul><li>
+        <p>You can use server-specific functionality, such as stored procedures and server-based intrinsic functions.</p>
+      </li><li>
+        <p>You can use extensions to SQL supported by the server, as well as data-definition, server administration, and security commands.</p>
+      </li><li>
+        <p>You have more control over SQL pass-through Update, Delete, and Insert statements.</p>
+      </li><li>
+        <p>You have more control over remote transactions. </p>
+        <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+          <p>Visual FoxPro can handle SQL pass-through queries that return more than a single result set.</p>
+        </td></tr></table></div>
+      </li></ul>
+    <p>SQL pass-through queries also have disadvantages:  </p>
+    <ul><li>
+        <p>By default, a SQL pass-through query always returns a non-updatable snapshot of remote data, which is stored in an active view cursor. You can make the cursor updatable by setting properties with the <span class="linkTerms"><a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a></span>. An updatable remote view, in contrast, usually doesn't require that you set properties before you can update remote data, because property settings are stored in the database with the view definition.</p>
+      </li><li>
+        <p>You must enter SQL commands directly into the Command window or into a program, rather than using the graphical View Designer.</p>
+      </li><li>
+        <p>You create and manage the connection to the data source.</p>
+      </li></ul>
+    <p>Whether you use remote views or SQL pass-through, you can query and update remote data. In many applications, you'll use both remote views and SQL pass-through.</p>
+  <h1 class="heading">Using SQL Pass-Through Functions</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>To use SQL pass-through to connect to a remote ODBC data source, you first call the Visual FoxPro <span class="linkTerms"><a href="/html/55b8c0e7-d39b-476f-a5cc-980719b36d4e.htm">SQLCONNECT( ) Function</a></span> to create a connection. You then use the Visual FoxPro SQL pass-through functions to send commands to the remote data source for execution.</p>
+      <h3 class="procedureSubHeading">To use Visual FoxPro SQL pass-through functions</h3><div class="subSection"><ol><li>
+            
+              <p>Confirm your system's ability to connect your computer to your data source. Use a utility such as ODBC Test for ODBC.</p>
+            
+          </li><li>
+            
+              <p>Establish a connection to your data source with the <span class="linkTerms"><a href="/html/55b8c0e7-d39b-476f-a5cc-980719b36d4e.htm">SQLCONNECT( ) Function</a></span> or the <span class="linkTerms"><a href="/html/9a4d380b-b3a4-450a-b414-5a7724e7fec0.htm">SQLSTRINGCONNECT( ) Function</a></span>. </p>
+              <p>For example, if you're connecting Visual FoxPro to the SQL Server data source <code>sqlremote</code>, you might log on with the following command:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>nConnectionHandle = SQLCONNECT('sqlremote','&lt;userid&gt;','&lt;password&gt;')</pre></td></tr></table></span></div>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>You can also use the SQLCONNECT() function to connect to a named connection.</p>
+              </td></tr></table></div>
+            
+          </li><li>
+            
+              <p>Use Visual FoxPro SQL pass-through functions to retrieve data into Visual FoxPro cursors and process the retrieved data with standard Visual FoxPro commands and functions. </p>
+              <p>For example, you might query the <code>authors</code> table and browse the resulting cursor using this command:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? SQLEXEC(nConnectionHandle,"select * from authors","mycursorname")
+BROWSE</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Disconnect from the data source with the SQLDISCONNECT( ) function.</p>
+            
+          </li></ol></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/3676f937-c989-46f2-97fb-4e4cc5660f61.htm">How to: Access Stored Procedures on Remote Servers with SQL Pass-Through Functions</a></span><br /><span class="linkTerms"><a href="/html/670d0ff7-3f45-4088-a9b0-45992a519fcb.htm">How to: Return Multiple Result Sets</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/aa47c7d4-6b99-4f26-a553-11fc3a2ced80.htm">Visual FoxPro SQL Pass-Through Functions</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/f6715bca-5f9d-42b3-a57e-72504c5a7421.htm">Using Result Sets</a></span><br /><span class="linkTerms"><a href="/html/62b4109b-c1bf-495a-8eb9-6ba7fb1323da.htm">Processing Multiple Result Sets</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c9d098df-6241-45d2-9d81-1f49ad9b3641.htm">Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/7a4c60ae-5309-4014-87ec-08ce277eede4.htm">Planning Client/Server Applications</a></span><br /><span class="linkTerms"><a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a></span><br /><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Use SQL Pass-Through Functions">
+</OBJECT>

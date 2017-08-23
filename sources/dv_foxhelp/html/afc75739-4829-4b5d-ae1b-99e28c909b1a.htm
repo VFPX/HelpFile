@@ -1,0 +1,154 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Customize the Class Browser</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Customize the Class Browser</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can customize the Class Browser by changing the values for its properties and using its methods and events. You can perform additional operations, such as specifying default class libraries to open in the Class Browser, using Class Browser methods. For more information, see <span class="linkTerms"><a href="/html/ed9c65f5-d306-40d8-8d13-78f2fdc5d1d7.htm">Class Browser Properties</a></span>, <span class="linkTerms"><a href="/html/74a3ca77-af9b-45b5-b261-15443802938e.htm">Class Browser Methods</a></span>, and <span class="linkTerms"><a href="/html/55103006-10e5-4610-b749-d7b9beb8f0d5.htm">Class Browser Object Members</a></span></p>
+    <p>When you open the Class Browser, the public variable, <code>_oBrowser</code>, is automatically created. You can use this variable to reference or manipulate the Class Browser as you can any form object.</p>
+  <h3 class="procedureSubHeading">To set properties for the Class Browser</h3><div class="subSection"><ul><li>
+        
+          <p>In the <b>Command</b> window, use the following syntax to set Class Browser properties that you want to change: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_oBrowser.<i>Property</i> = <i>newValue</i></pre></td></tr></table></span></div>
+        
+      </li></ul></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>For example, after opening the Class Browser, you can use the following lines of code to set the <b>Caption</b> property of the Class Browser to "My Class Browser" and the <b>Left</b> property to 10:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_OBROWSER.Caption = "My Class Browser"
+_OBROWSER.Left = 10</pre></td></tr></table></span></div>
+      <h3 class="procedureSubHeading">To specify the default class library to open in the Class Browser</h3><div class="subSection"><ol><li>
+            
+              <p>Open the class library in the <b>Class Browser</b>.</p>
+            
+          </li><li>
+            
+              <p>In the class list of the <b>Class Browser</b>, select the class library.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Command</b> window, type the following code: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_oBrowser.SetDefaultFile</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+      <p>This resets any previously specified default libraries. </p>
+      <p>You can specify class libraries to open by default in addition to the default library. </p>
+      <h3 class="procedureSubHeading">To specify additional libraries to open with the Class Browser</h3><div class="subSection"><ol><li>
+            
+              <p>In the <b>Class Browser</b>, click the <b>View Additional File</b> button.</p>
+            
+          </li><li>
+            
+              <p>In the class list of the <b>Class Browser</b>, select the class library.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Command</b> window, type the following code: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_oBrowser.SetDefaultFile(.T.)</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To remove class libraries from the Class Browser list</h3><div class="subSection"><ol><li>
+            
+              <p>In the class list of the <b>Class Browser</b>, select the class library.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Command</b> window, type the following code: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_oBrowser.ResetDefaultFile</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To remove all libraries from the Class Browser list</h3><div class="subSection"><ul><li>
+            
+              <p>In the <b>Command</b> window, type the following code: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_oBrowser.ResetDefaultFile(.T.)</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/60a1f38d-aaee-439b-b57d-acec3c796030.htm">How to: View Class Hierarchies</a></span><br /><span class="linkTerms"><a href="/html/68548e59-811e-4637-af02-9149ea120a6f.htm">How to: Filter the Class Browser Class List</a></span><br /><span class="linkTerms"><a href="/html/0cb9b66a-0dc2-4feb-b443-75f1fd4a998f.htm">How to: View Class Definition Code</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5bfd4f8d-0324-4a75-904c-330eea767a3d.htm">Class Browser Window</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/122bfedb-7376-43f3-b16e-8696d9300ea6.htm">Operating the Class Browser</a></span><br /><span class="linkTerms"><a href="/html/fad9d946-6168-4460-bbfd-2ba3ba2bd348.htm">Managing Classes and Class Libraries</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Customize the Class Browser">
+</OBJECT>

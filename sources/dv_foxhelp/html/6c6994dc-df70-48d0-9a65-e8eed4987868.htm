@@ -1,0 +1,228 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Manipulating Objects with Automation</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Manipulating Objects with Automation</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>OLE objects in your forms or programs, or ActiveX controls inside OLE Container controls, can be manipulated through code in the same way that you can program native Visual FoxPro objects.</p>
+  <h1 class="heading">Manipulating Extrinsic Object Properties</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>In code, you can manipulate an object using its properties. The way you reference a property depends on whether the object stands alone or is part of a container, such as the OLE Container control or OLE Bound control.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>ActiveX controls are always part of an OLE Container control.</p>
+      </td></tr></table></div>
+      <p>An object in a container has two parts: the object itself and a container around the object. Both the object and the container have properties, and sometimes they have the same property names. To ensure you reference the object's properties, always append the container's Object property to the object's name. For example, the following code refers to the object's Left property:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frm1.olecontrol1.Object.Left = 25  &amp;&amp; Object's Left</pre></td></tr></table></span></div>
+      <p>If you omit the Object property, you reference the container's Left property instead:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frm1.olecontrol1.Left= 25  &amp;&amp; Container's Left property </pre></td></tr></table></span></div>
+      <p>For example, suppose you have an application that sends mail when the user clicks on a compose command button. If you've added a Microsoft MAPI message control to a form as <code>olecontrol1</code>, the code associated with the Click event of the command button might be:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.olecontrol1.Object.Compose
+THISFORM.olecontrol1.Object.Send(.T.)</pre></td></tr></table></span></div>
+      <p>In addition to using the Object property to reference properties of the contained object, you can use other properties of the container control. For example, you can reference the read-only OLEClass property to identify the type of object in the container and the Sizable property to prevent users from changing the size of an object. For details about container control properties, see <a href="/html/485a56a2-27b6-41a6-9243-57440f9304dd.htm">OLE Container Control</a>.</p>
+      <p>In the Form and Class Designers, the properties of ActiveX controls are displayed in the Visual FoxPro Properties window, but most ActiveX controls also have their own interface for setting common properties. You can see this properties interface by selecting the object-specific Properties option from the ActiveX control's shortcut menu. For example, to open the Properties dialog box for a rich text control, choose Microsoft RichText Control Properties from the shortcut menu.</p>
+    </div><h1 class="heading">Using Extrinsic Object Methods</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>In addition to setting and retrieving properties of objects, you can manipulate an object using methods it supports. For example, you can use the Add method of a Microsoft Excel collection object to create a new Microsoft Excel workbook.</p>
+      <p>The following Automation example uses the Add method to create an Excel workbook, the Save method to save the workbook, and the Quit method to end Excel:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>oleApp = CREATEOBJECT("Excel.Application")</code>
+            </p>
+          </td>
+          <td>
+            <p>Start Excel.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>OleApp.Visible=.T.</code>
+            </p>
+          </td>
+          <td>
+            <p>Display Excel.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>OleApp.Workbooks.Add</code>
+            </p>
+          </td>
+          <td>
+            <p>Create a workbook.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>OleApp.Cells(1,1).Value=7</code>
+            </p>
+          </td>
+          <td>
+            <p>Set a cell's value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>OleApp.ActiveWorkbook.SaveAs("C:\TEMP.XLS")</code>
+            </p>
+          </td>
+          <td>
+            <p>Save the workbook.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>OleApp.Quit</code>
+            </p>
+          </td>
+          <td>
+            <p>Quit Excel.</p>
+          </td>
+        </tr></table></div>
+      <p>If you create an object using the OLE Container control or OLE Bound control, you can use the DoVerb method of the control to execute a verb on the object. For example, use DoVerb(0) to execute the default verb, DoVerb(– 1) to activate the object for visual editing, and DoVerb(– 2) to open the object in a separate window.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>See an application's documentation to determine what Automation commands it supports. For example, Microsoft Excel add-in components are not available for Automation.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Setting Time Outs</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When you pass a request to an OLE object, the Automation server processes it. You don't have much control over the server processing, but you can specify how long you'll wait for a process to finish by setting the OLERequestPendingTimeout and OLEServerBusyTimeout properties. You can determine what happens when that time has expired by setting the OLEServerBusyRaiseError property.</p>
+    </div><h1 class="heading">Accessing Collections of Objects</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>An object type can represent a single object or a collection of related objects. For example, a Microsoft Excel Workbook object represents a single workbook, whereas the Workbooks object represents all the workbooks currently loaded. Because the Workbooks object represents a collection of objects, it's called a collection object.</p>
+      <p>In code, a collection is an unordered list in which the position of an object can change whenever objects are added to or removed from the collection. You access an object in a collection by iterating through the collection, using the Count property of the collection. The Count property returns the number of items in the collection. You can also use the Item method to return an item in a collection.</p>
+      <p>For example, to display the names of worksheets in a Microsoft Excel workbook, use the following code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oleApp = CREATEOBJECT("Excel.Application")
+oleApp.Workbooks.Add
+FOR EACH x IN oleApp.Workbooks
+ ? x.Name
+ENDFOR</pre></td></tr></table></span></div>
+      <p>You can also access a collection within a collection. For example, you can access a cells collection within a range using the following code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oleApp = CREATEOBJECT("Excel.sheet")
+oleApp.Workbooks.Add
+oleApp.Range(oleApp.Cells(1,1),oleApp.Cells(10,10)).Value=100
+oleApp.Visible=.T.</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Using Arrays of Objects</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>You can pass arrays to methods, and you can receive arrays back. However, you must pass arrays by reference by prefixing the array name with the @ sign.</p>
+      <p>For example, to send a Visual FoxPro array to Microsoft Excel, consider the following code. It creates an array in Visual FoxPro, assigns the array some values, starts Microsoft Excel, creates a workbook, sets a value to the first cell of a worksheet, and then copies that value to the other sheets in the array:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DIMENSION aV(3)
+aV(1) = "Sheet1"
+aV(2) = "Sheet2"
+aV(3) = "Sheet3"
+oleApp=CREATEOBJECT("Excel.Application")
+oleApp.Workbooks.Add
+oleI=oleApp.Workbooks.Item(1)
+oleI.Sheets.Item(1).Cells(1,1).Value = 83
+oleI.Sheets(@aV).;
+ FillAcrossSheets(oleI.Worksheets("Sheet1").Cells(1,1))
+oleApp.Visible = .T.</pre></td></tr></table></span></div>
+      <p>Alternatively, the following example returns an array to Visual FoxPro and then displays the contents of the array:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oleApp = CREATEOBJECT("Excel.Application")
+aOleArray = oleApp.GetCustomListContents(3)
+FOR nIndex = 1 to ALEN(aOleArray)
+   ? aOleArray(nIndex)
+ENDFOR</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>With Visual FoxPro, you cannot pass arrays larger than two dimensions to OLE objects. For more information about working with arrays in Visual FoxPro, see <a href="/html/e58df646-1f73-4cfb-9793-1b86f76e919a.htm">Arrays</a> and <a href="/html/b2836c9a-fc0b-4915-a6b7-3dc1a0cee1c5.htm">Object and Member Arrays</a>.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Releasing Extrinsic Objects</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>An Automation server is automatically released if it is not visible and no variables in scope reference the object. You can use the RELEASE command to release the variable associated with an object. If the server is visible, use the Quit method to release it.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/c3c39fab-9535-4aa0-8d03-c9253a8c24d1.htm">How to: Add OLE Objects to Applications</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/485a56a2-27b6-41a6-9243-57440f9304dd.htm">OLE Container Control</a></span><br /><span class="linkTerms"><a href="/html/90e15732-cf8a-4656-9f5f-5b1158b91e45.htm">OLE Bound Control</a></span><br /><span class="linkTerms"><a href="/html/cfbb7399-6678-4369-b76f-b7027c010a90.htm">Object Property (Visual FoxPro)</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/66d47bc7-f93b-483b-b39f-ebcc9e0a1be4.htm">Sharing Information and Adding OLE</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Manipulating Objects with Automation">
+</OBJECT>

@@ -1,0 +1,115 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Working with the Project File and Project List File</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Working with the Project File and Project List File</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>In Visual FoxPro, project information is maintained in a set of table and memo files with the extensions .pjx and .pjt. For example, if you've created a project called "MyProj," the information about the project, including the list of files, their location, and whether they're compiled into the application file (.app or .exe file), is stored in the files called Myproj.pjx and Myproj.pjt.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When working in a team development environment, developers don't share the same project files (.pjx and .pjt files). Instead, developers maintain their own local copies of the .pjx and .pjt files.</p>
+      <p>To coordinate changes that individual developers make to a project under source control, Visual FoxPro maintains a project file list (or .pjm file, short for "project metafile"). The file containing the project file list is a text file that stores the same information as the .pjx and .pjt files, such as which files are currently included in the project.</p>
+      <p>The source code control software maintains a central project file list file stored with the other files in the central repository. In addition, each developer has a local copy of the project file list checked out that reflects his or her current version of the project.</p>
+      <p>Imagine you're working with a project, and that you're adding a new program (.prg file). When you add the new file (and assuming that you put this file under source control), Visual FoxPro updates your local copy of the project and shows the file when you use the Project Manager on your computer. Other developers aren't initially aware of your change, and their local copies of the project don't show the file you have added. Even though you haven't updated the project file list, you can still check in the new file for safekeeping and check it back out again as needed.</p>
+      <p>When you're finished with the new file — for example, when you've finished testing your new program — you can update the project file list. When you do, Visual FoxPro merges the information in your local project file list with that in the central project file list.</p>
+      <p>Visual FoxPro in turn updates your local project file list with changes it finds in the central project file list. If other developers have added files to the project, your local project file list is updated, local copies of the new files are placed on your computer, Visual FoxPro rebuilds your project (.pjx and .pjt files), and the Project Manager displays the added files for you to work with.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Managing project files using the project list</caption></caption></b><br></br></div><img src="../local/Local_-189787582_afx01167.gif" alt="FoxPro Source Control Systems"></img>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The project file list tracks only the project files that are explicitly under source control. If your project includes files that aren't under source control, they will not appear in the project file list, and Visual FoxPro will not add these files to other developers' projects when they update their own project lists.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/024103bf-1004-48d9-9d93-db74c2094d94.htm">How to: Add Files to a Source-Controlled Project</a></span><br /><span class="linkTerms"><a href="/html/f9b62ac8-a4f0-468f-b15d-d228fbc32685.htm">How to: Update the Project List</a></span><br /><span class="linkTerms"><a href="/html/0d7e5f08-ea27-4307-b56c-99785fb2f251.htm">How to: Join an Existing Source-Controlled Project</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/c7101442-849c-4cf7-b114-e5dce7374587.htm">Managing Visual FoxPro Projects Under Source Control</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/cd842662-a8cb-436b-87c4-825d69b5d7af.htm">Planning for Team Development Projects</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Working with the Project File and Project List File">
+</OBJECT>

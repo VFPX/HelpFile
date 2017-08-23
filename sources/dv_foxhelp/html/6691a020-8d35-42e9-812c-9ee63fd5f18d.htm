@@ -1,0 +1,157 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Client/Server Solution Development</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Client/Server Solution Development</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can use Visual FoxPro as a front end for developing robust client/server applications. Visual FoxPro combines the higher-level support of updatable views of server data with direct access to native server syntax using SQL pass-through. This gives you a solid foundation on which to build versatile client/server solutions. A full-featured data dictionary, local and remote views, null support, transactions, international application support, and access to ODBC data sources all contribute to the features you need for client/server development.</p>
+  <h1 class="heading">Increasing Client/Server Performance</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can increase the performance of your client/server application using the properties and ODBC driver provided in Visual FoxPro.</p>
+    </div><h1 class="heading">Controlling Performance with Properties</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can increase performance by using the following cursor and remote view properties:  </p>
+      <ul><li>
+          <p>CompareMemo</p>
+        </li><li>
+          <p>FetchAsNeeded</p>
+        </li><li>
+          <p>Prepared</p>
+        </li></ul>
+      <p>You can display these properties using the <a href="/html/2ef53aef-69ed-46e4-9f47-94ee4e19eb8f.htm">DBGETPROP( ) Function</a> and <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( ) Function</a> functions, or set the properties with the <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( ) Function</a> and <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a> functions.</p>
+      <p>
+        <b>Include or Exclude Memo Fields in Update Detection</b>   You can use the CompareMemo property to control when memo fields are used to detect update conflicts. This view and cursor property determines whether memo fields (types M or G) are included in the update WHERE clause. The default setting, True (.T.), means that memo fields are included in the WHERE clause. If you set this property to False (.F.), memo fields don't participate in the update WHERE clause, regardless of the settings of UpdateType.</p>
+      <p>Optimistic conflict detection on Memo fields is disabled when CompareMemo is set to False (.F.). For conflict detection on memo values, CompareMemo should be set to True (.T.).</p>
+      <p>
+        <b>Fine Tune Record Fetching</b>   Use the FetchAsNeeded property to specify if all rows are fetched progressively, or only those within the row set determined by the FetchSize property. If you want to fetch all of the rows in the result set using the Visual FoxPro idle loop, use the default setting, False (.F.). If you want to fetch only when the user scrolls beyond the row set determined by the FetchSize property, set FetchAsNeeded to True (.T.) to fetch the next row set.</p>
+      <p>
+        <b>Speed Up Re-query Operations on Parameterized Views</b>   Using the Prepared property, you can set whether the query for the view is prepared before it is executed. If you set this property to True (.T.), Visual FoxPro sends a request to the ODBC driver to prepare or compile the SQL query that defines the view. If the ODBC driver for your back-end data source supports the use of prepared statements, subsequent re-queries on the open view are executed faster.</p>
+    </div><h1 class="heading">Defining Rules with the Data Dictionary</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro databases (.dbc files) provide a data dictionary that allows you to add rules, views, triggers, persistent relationships, and connections to every table in a database.</p>
+      <p>Within a database you can define:  </p>
+      <ul><li>
+          <p>Field-level or record-level rules that Visual FoxPro enforces wherever the table is used in an application.</p>
+        </li><li>
+          <p>Primary and candidate index keys.</p>
+        </li><li>
+          <p>Local and remote views.</p>
+        </li><li>
+          <p>Triggers.</p>
+        </li><li>
+          <p>Persistent relationships between database tables.</p>
+        </li><li>
+          <p>Connections to remote data sources.</p>
+        </li><li>
+          <p>Stored procedures.</p>
+        </li><li>
+          <p>Default values on fields.</p>
+        </li><li>
+          <p>Long table and field names.</p>
+        </li></ul>
+      <p>In addition, you can enforce referential integrity for every persistent relationship by using the Referential Integrity Builder to define rules for inserts, updates, and deletes.</p>
+      <p>Visual FoxPro also supports null values in tables, greatly improving compatibility and connectivity with other data sources such as Microsoft Access, Visual Basic, and SQL-based servers. For details about null values, search for "null" and "null values".</p>
+      <p>Each Visual FoxPro database is completely user-extensible, with access through language enhancements and the visual designers. For more information about databases and data dictionaries, see <a href="/html/acbcbb01-6290-4201-b378-fabfbcbcd644.htm">Developing Databases</a>.</p>
+      <p>
+        <b>View Local, Remote, and Offline Data</b>   You can design and test a client/server application on your local computer using data from remote, local, or multiple-table heterogeneous views. Local views use tables on your local computer rather than tables on a remote server, and multiple table views use related data from separate tables. You can create parameterized views to minimize the amount of data you download from the server, take the data on the road, or update remote data from your Visual FoxPro application. For more information about views, see <a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views</a>.</p>
+      <p>
+        <b>Manage Shared Access with Transactions</b>   You can design your application to provide shared access to data. Shared access involves sharing data among users and restricting access when necessary. Transactions and buffering — pessimistic or optimistic, record-level or table-level — mean less programming for you. Built-in batch processing and detailed control over handling update conflicts simplifies updating data in a multiuser environment. For details about designing your application for shared access, see <a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a>.</p>
+      <p>
+        <b>Develop International Applications</b>   Visual FoxPro provides several areas of support for developing international applications. For example, Visual FoxPro supports several code pages. The code pages for Greek and Russian are supported on MS-DOS, Microsoft Windows, and Macintosh platforms. Visual FoxPro also supports double-byte character sets for languages such as Japanese, Korean, Traditional Chinese, and Simplified Chinese; however, Unicode is not supported. Visual FoxPro supports collation sequences for languages such as Japanese, German, Traditional Chinese, and Icelandic. For more information about international applications, see <a href="/html/e3423e23-033c-40b4-971c-75640ab17ec7.htm">Developing International Applications</a>.</p>
+      <p>
+        <b>Implement a Client/Server Application</b>   In addition to using views for client/server development, you can send any native server syntax you want directly to a server with Visual FoxPro SQL pass-through functions. These functions permit additional server access and control beyond the capability of views. For details about SQL pass-through see <a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications using SQL Pass-Through Technology</a>.</p>
+      <p>After designing your application locally, you can upsize and implement it against a back-end data source. Upsizing applies the benefits of client/server architecture to the local application and allows you to create a remote server database with the same table structure and data as the original Visual FoxPro tables. When you upsize, you choose which tables move to the server and which remain locally for more immediate access. For details about upsizing see <a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/7aba4ddd-86a3-40f5-9de8-d59f89032851.htm">Upgrading from Earlier Versions</a></span><br /><span class="linkTerms"><a href="/html/4e7622fe-3a5c-4ace-a3f8-37f5edb755ef.htm">Interaction with Other Applications</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/17ef2fda-ce52-4edb-8f53-2350bdcf9722.htm">Overview of Visual FoxPro Features</a></span><br /><span class="linkTerms"><a href="/html/acbcbb01-6290-4201-b378-fabfbcbcd644.htm">Developing Databases</a></span><br /><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Client/Server Solution Development">
+</OBJECT>

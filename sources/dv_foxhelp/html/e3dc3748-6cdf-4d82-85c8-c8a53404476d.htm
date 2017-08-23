@@ -1,0 +1,151 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Delete Indexes (Visual FoxPro)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Delete Indexes (Visual FoxPro)</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>By deleting indexes, or index tags, that you never use, you can improve performance by removing the need for Visual FoxPro to update those tags. To delete an index, delete the index tag in the compound index (.cdx) file or delete the entire standalone index (.idx) file. </p>
+    <p>You can delete index tags in structural .cdx files by using the Visual FoxPro IDE or language. To delete an .idx file or index tags from a nonstructural .cdx file, use the Visual FoxPro language. </p>
+  <h1 class="heading">Deleting Index Tags from a Structural .cdx File</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can delete an index tag from the structural .cdx file by using the Table Designer, the <b>DELETE TAG</b> command if you know the tag name, or the SQL <b>ALTER TABLE</b> command if you do not know the tag name but you know the tag is a primary or unique index.</p>
+      <h3 class="procedureSubHeading">To delete an index tag in a structural .cdx file</h3><div class="subSection"><ol><li>
+            
+              <p>Open the <b>Table Designer</b> to modify your table and choose the <b>Indexes</b> tab.</p>
+            
+          </li><li>
+            
+              <p>Select the index and choose <b>Delete</b>. </p>
+              <p>For more information, see <span class="linkTerms"><a href="/html/f027d3c4-d79d-435e-abb5-787d0f0d7939.htm">Table Designer (Visual FoxPro)</a></span>. </p>
+            
+          </li></ol>
+          
+            <p>-OR-  </p>
+            <ul><li>
+                <p>Use the <b>DELETE TAG</b> command.  </p>
+                <p>For example, suppose the structural .cdx file for the Employee table in the Visual FoxPro sample database, TestData, contains an index tag named Title. The following code deletes the Title index tag:  </p>
+                <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE Employee
+DELETE TAG Title</pre></td></tr></table></span></div>
+                <p>To delete all the tags in the .cdx file, include the <b>ALL</b> clause in the <b>DELETE TAG</b> command. For more information, see <span class="linkTerms"><a href="/html/56a2a1e6-6e93-4690-bafb-6d782d14d7c5.htm">DELETE TAG Command</a></span>. </p>
+              </li></ul>
+            <p>-OR-  </p>
+            <ul><li>
+                <p>Use the <b>DROP PRIMARY KEY</b> or <b>DROP UNIQUE TAG</b> clause in the SQL <b>ALTER TABLE </b>command. </p>
+                <p>For example, suppose the index tag you wanted to delete is the primary key for the Employee table in the sample database, TestData, but you did not have the name of the index key. You can use the <b>DROP PRIMARY KEY</b> clause in the SQL <b>ALTER TABLE</b> command:  </p>
+                <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE employee
+ALTER TABLE DROP PRIMARY KEY</pre></td></tr></table></span></div>
+                <p>For more information, see <span class="linkTerms"><a href="/html/3c5a454a-67ec-48a8-8290-18dd0e8a97ea.htm">ALTER TABLE - SQL Command</a></span>. </p>
+              </li></ul>
+          
+        </div>
+    </div><h1 class="heading">Deleting Index Tags from a Nonstructural .cdx File</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You cannot view the index tags in nonstructural .cdx files in the Table Designer. Therefore, you must know the name of the index tag and use the <b>DELETE TAG</b> command to delete an index tag from a nonstructural .cdx file. </p>
+      <h3 class="procedureSubHeading">To delete an index tag in a nonstructural .cdx file</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <b>DELETE TAG</b> command and the <b>OF</b> clause to specify the name of the tag and the .cdx file that you want to delete the index tag from. </p>
+              <p>For example, suppose you have a nonstructural .cdx file named QRTLYRPT.CDX containing a tag named Title. The following line of code deletes the Title tag:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DELETE TAG Title OF QRTLYRPT</pre></td></tr></table></span></div>
+              <p>To delete all the tags in the .cdx file, use the <b>ALL</b> clause in the <b>DELETE TAG</b> command. For more information, see <span class="linkTerms"><a href="/html/56a2a1e6-6e93-4690-bafb-6d782d14d7c5.htm">DELETE TAG Command</a></span>. </p>
+            
+          </li></ul></div>
+    </div><h1 class="heading">Deleting Standalone .idx Files</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>A standalone index (.idx) file contains only a single index key expression; therefore, you can delete the index by deleting the .idx file.</p>
+      <h3 class="procedureSubHeading">To delete a standalone .idx file</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <b>DELETE FILE</b> command. </p>
+              <p>For example, suppose you have a standalone .idx file called OrdDate.idx. The following line of code deletes the .idx file:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DELETE FILE OrdDate.idx</pre></td></tr></table></span></div>
+              <p>For more information, see <span class="linkTerms"><a href="/html/24575b6b-21b7-4e46-8a38-25576c93e1bf.htm">DELETE FILE Command</a></span>. </p>
+            
+          </li></ul></div>
+      <p>You can also use your computer operating system to delete the file.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Delete Indexes (Visual FoxPro)">
+</OBJECT>

@@ -1,0 +1,315 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>DOCK Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">DOCK Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Docks an Integrated Development Environment (IDE) tool window or toolbar to the Visual FoxPro desktop window or another IDE window. There are two versions of the syntax. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>DOCK WINDOW is not supported during run time.</p>
+    </td></tr></table></div>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+DOCK WINDOW <span class="parameter">WindowName1</span> | NAME <span class="parameter">ObjectName1</span> POSITION <span class="parameter">nPosition</span> [ WINDOW <span class="parameter">WindowName2</span> | NAME <span class="parameter">ObjectName2</span> ]</pre></td></tr></table></span><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+DOCK WINDOW <span class="parameter">WindowName1</span> WINDOW <span class="parameter">WindowName2</span></pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">WindowName1</span>
+        </span></dt><dd>
+          <p>Specifies the name of the window or toolbar to dock. For a user-defined toolbar, you can use the <b>Caption</b> property as its name.</p>
+          <p>If you specify an undockable window as the window to be docked, it becomes dockable internally. For example:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>WDOCKABLE("Command", .F.)
+DOCK WINDOW Command
+? WDOCKABLE("Command")  &amp;&amp; Returns .T.</pre></td></tr></table></span></div>
+          <p>If you want to dock a single window that is currently bound inside a tabbed or linked container to the main Visual FoxPro window, you must first undock it from the container, for example, by using <code>POSITION -1</code> or <code>WDOCKABLE(, .F. )</code>.   </p>
+          <p>A tabbed or linked container is a set of tabbed or linked windows.  </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NAME <span class="parameter">ObjectName1</span></span></dt><dd>
+          <p>Specifies an object reference for a valid dockable form to dock. If <span class="parameter">ObjectName1</span> is docked, Visual FoxPro undocks and redocks it as specified.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If <span class="parameter">ObjectName1</span> is undefined or not valid, Visual FoxPro generates an error.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">POSITION <span class="parameter">nPosition</span></span></dt><dd>
+          <p>Specifies the docking position of the window or toolbar. </p>
+          <p>The following table lists the possible values for <span class="parameter">nPosition</span>.    </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nPosition</span>
+                  
+                </th>
+                <th>
+                  Docking position
+                </th>
+              </tr><tr>
+              <td>
+                <p>-3</p>
+              </td>
+              <td>
+                <p>Undock inner container.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>-2</p>
+              </td>
+              <td>
+                <p>Undock outer container.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>-1</p>
+              </td>
+              <td>
+                <p>Undock window.</p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>When you specify a value of -1 for POSITION, you cannot include the WINDOW clause. Otherwise, a syntax error occurs.</p>
+                </td></tr></table></div>
+              </td>
+            </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>Top</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>Left</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>Right</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>3</p>
+              </td>
+              <td>
+                <p>Bottom</p>
+                <p>If <span class="parameter">nPosition</span> is set between 0 and 3, the window is link-docked, for example, it appears attached to the side of another window.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>Tabbed</p>
+                <p>If <span class="parameter">nPosition</span> is set to 4, the window is tab-docked, for example, it appears as a tabbed window.</p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>If you specify a value of 4 for <b>POSITION</b>, you must specify a <b>WINDOW</b> clause. Otherwise, an error occurs.</p>
+                </td></tr></table></div>
+              </td>
+            </tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Tab and link docking is not supported for debugger windows inside the Debug Frame. You can control the Frame setting in the Options dialog box. Toolbars do not support linked or tabbed docking. </p>
+          </td></tr></table></div>
+          <p>If a tabbed or linked container is docked, you can undock that container if you specify a value of -2 or -3 for any of the windows in the container, according to the following details:   </p>
+          <ul><li>
+              <p>If you pass a value of -2, the entire container is undocked if the container is docked to the Visual FoxPro desktop.</p>
+            </li><li>
+              <p>If you pass a value of -3, only the inner container that is part of an larger outer container is undocked. This applies only to tab-docked containers bound inside link-docked containers. If the window specified is not part of an inner tab-docked container, Visual FoxPro treats the value of -3 as a value of -2 and undocks entire outer container.</p>
+            </li><li>
+              <p>If the window specified is not part of a container, Visual FoxPro undocks it as if you passed a value of -1.</p>
+            </li></ul>
+          <p>If the window or container is already undocked, Visual FoxPro does nothing.   </p>
+          <p>For more information about linked and tabbed docking, see <span class="linkTerms"><a href="/html/0b7ecf02-2e8a-4640-a425-811c7cbbd86c.htm">How to: Dock Windows</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WINDOW <span class="parameter">WindowName2</span></span></dt><dd>
+          <p>Specifies the name of the target window or toolbar to dock with. If you omit the <span class="parameter">WindowName2</span> parameter, the window is docked to the Visual FoxPro desktop window. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Visual FoxPro disregards the <b>WINDOW</b> keyword for toolbars. You can dock toolbars only to the desktop. No other window can be docked to a toolbar. </p>
+          </td></tr></table></div>
+          <p>You can use the <b>WINDOW</b> clause for linked and tabbed docking. <b>DOCK WINDOW</b> uses a tab-docking position as the default if you use <b>DOCK WINDOW...WINDOW</b> without including a <b>POSITION</b> clause.    </p>
+          <p>To dock an entire tabbed or linked container to the Visual FoxPro desktop window, call <b>DOCK WINDOW</b> with any of the windows in the container and omit the <b>WINDOW</b> clause.    </p>
+          <p>If you specify an undockable window as the docking target, Visual FoxPro generates "Function argument value, type, or count is invalid (Error 11)". For example:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DOCK WINDOW Command WINDOW Standard   &amp;&amp; Generates an error.</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NAME <span class="parameter">ObjectName2</span></span></dt><dd>
+          <p>Specifies an object reference for a valid dockable form to dock with. If <span class="parameter">ObjectName2</span> is docked, Visual FoxPro undocks and redocks it as specified.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If <span class="parameter">ObjectName2</span> is undefined or not valid, Visual FoxPro generates an error.</p>
+          </td></tr></table></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The following IDE windows and toolbars are supported by <b>DOCK WINDOW</b>:  </p>
+      <ul><li>
+          <p>All system toolbars</p>
+        </li><li>
+          <p>Call Stack</p>
+        </li><li>
+          <p>Command</p>
+        </li><li>
+          <p>Data Session (View)</p>
+        </li><li>
+          <p>Document View</p>
+        </li><li>
+          <p>Locals</p>
+        </li><li>
+          <p>Output</p>
+        </li><li>
+          <p>Properties</p>
+        </li><li>
+          <p>Trace</p>
+        </li><li>
+          <p>Watch</p>
+        </li></ul>
+      <p>Both system and user-defined toolbars are supported by <b>DOCK WINDOW</b>. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The specified window must first exist on the Visual FoxPro desktop; otherwise, an error occurs.</p>
+      </td></tr></table></div>
+      <p>In prior versions of Visual FoxPro, the Data Session window is always referred to as the View window. Additionally, language used to control this window, such as <b>HIDE WINDOW</b>, <b>ACTIVATE WINDOW</b>, <b>WONTOP( )</b>, also refers to this window as the View window. Visual FoxPro continues to refer to the View window for the <b>DOCK WINDOW</b> command.</p>
+      <p>
+        <b>DOCK WINDOW</b> always forces the window, if it exists, to become dockable and changes the setting for the <b>Visible</b> property of the window to True (.T.).</p>
+      <p>You can dock multiple windows that are docked as a group to another window by specifying one of the docked windows. However, if the docking target exists in the same container as the specified window, only that window is docked. This prevents cyclical relations. For example, the following code redocks the Command window to the right side of the Properties window:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DOCK WINDOW Command POSITION 4 WINDOW Properties
+DOCK WINDOW Command POSITION 2 WINDOW Properties</pre></td></tr></table></span></div>
+      <p>Compare this example to the following code, which docks the Command and View windows to the Properties window as tabbed windows:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DOCK WINDOW Command POSITION 4 WINDOW View
+DOCK WINDOW Command POSITION 4 WINDOW Properties</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>Deleting or editing the FoxUser.dbf resource file, which contains your user settings, restores your default window settings.</p>
+      </td></tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example uses the <b>DOCK WINDOW</b> command to dock the Command window to the Visual FoxPro desktop window and uses <b>ADOCKSTATE( )</b> to obtain the dock state of the Command window. </p>
+        <p xmlns="">First, make sure the Command window is open. After docking the Command window, you can see that the Standard toolbar and Command windows are docked to the Microsoft Visual FoxPro desktop window. The position of the toolbars or windows in the array returned by <b>ADOCKSTATE( )</b> can vary depending on the order in which the toolbars or windows are docked. </p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+DOCK WINDOW Command POSITION 0
+dockNum = ADOCKSTATE(dockState)
+? dockNum   &amp;&amp; Returns 2 only if Command window and 
+            &amp;&amp; Standard toolbar exist.
+? dockState(1,1)  &amp;&amp; Outputs "Standard". 
+? dockState(1,4)  &amp;&amp; Outputs "Microsoft Visual FoxPro".
+? dockState(2,1)  &amp;&amp; Outputs "COMMAND". 
+? dockState(2,4)  &amp;&amp; Outputs "Microsoft Visual FoxPro".</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/8d99300e-3a10-406e-9a93-c742ac0cf9cb.htm">ADOCKSTATE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/0a229e27-120b-4dac-b7e8-74d1c099ebd0.htm">WDOCKABLE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/191ebb7b-f87f-43c7-8712-c91e69851333.htm">Dock Method</a></span><br /><span class="linkTerms"><a href="/html/6634cadc-9b65-4577-abb4-692b60de7982.htm">DockPosition Property</a></span><br /><span class="linkTerms"><a href="/html/584b8870-20c6-41d7-bba5-e982fe2d70e9.htm">Docked Property</a></span><br /><span class="linkTerms"><a href="/html/6a8c4f1b-2144-49e3-9667-863899eeb14d.htm">BeforeDock Event</a></span><br /><span class="linkTerms"><a href="/html/d32d216d-b90c-4117-927f-fd7a2c6b96b0.htm">AfterDock Event</a></span><br /><span class="linkTerms"><a href="/html/69834460-a1ac-4fcd-9fdf-43553460d5e2.htm">UnDock Event</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="DOCK Command">
+<param name="ALink Name" value="DOCK">
+</OBJECT>

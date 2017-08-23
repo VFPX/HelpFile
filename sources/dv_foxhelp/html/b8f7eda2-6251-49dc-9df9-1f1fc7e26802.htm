@@ -1,0 +1,239 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Data Tab, Pane Customization Dialog Box</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Data Tab, Pane Customization Dialog Box</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The <b>Data</b> tab contains the data that Web Page, HTML, and XML panes are based on.  </p>
+    <dl><dt><span class="nonLinkTerms">
+        <b>Source</b>
+      </span></dt><dd>
+        <p>Specifies the data source type for the pane. The five data source types are explained in the following table.</p>
+        <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+              <th>
+                Data source type
+              </th>
+              <th>
+                Description
+              </th>
+            </tr><tr>
+            <td>
+              <p>Static Text</p>
+            </td>
+            <td>
+              <p>Specifies that the data is well-formed XML. The default static text for XML Pane type is: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;VFPData&gt;
+   &lt;!-- CONTENT --&gt;
+&lt;/VFPData&gt;</pre></td></tr></table></span></div>
+              <p>You can type well-formed XML data instead of the comment. If the root pane has subsections, the default static text can remain because Visual FoxPro concatenates and places the XML data for the subsection here.</p>
+              <p>If you need to wrap your subcontent in XML so that the content sections can be further transformed by the root before finally displaying on the pane, use the following syntax in the root content section.</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;VFPData&gt;
+   &lt;!-- XMLCONTENT --&gt;
+&lt;/VFPData&gt;</pre></td></tr></table></span></div>
+              <p>This wraps each subcontent in XML CDATA sections with the content between &lt;HTMLText&gt; tags. For example, a pane with two subcontent records might look like the following example:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;VFPData&gt;
+   &lt;PaneContent id="uniqueid1"&gt;
+   &lt;PaneTitle&gt;Content Title goes here&lt;/PaneTitle&gt;
+   &lt;HTMLText&gt;&lt;![CDATA[Transformed sub-content is placed here]]&gt;
+   &lt;/HTMLText&gt;
+   &lt;/PaneContent&gt;
+      &lt;PaneContent id="uniqueid2"&gt;
+   &lt;PaneTitle&gt;Content Title goes here&lt;/PaneTitle&gt;
+   &lt;HTMLText&gt;&lt;![CDATA[Transformed sub-content is placed here]]&gt;
+   &lt;/HTMLText&gt;
+   &lt;/PaneContent&gt;
+&lt;/VFPData&gt;</pre></td></tr></table></span></div>
+              <p>The root content section's transformation then determines whether to handle transforming this XML data or distribute an XML file in the files section.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>URL</p>
+            </td>
+            <td>
+              <p>The data is contained in a file on the Internet. You can then push dynamic content to the pane from a file on the Internet.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Script</p>
+            </td>
+            <td>
+              <p>Specifies Visual FoxPro code to generate XML data. The code returns an XML string to be used as the data and accepts a parameter object to expose options set for the pane to the code. </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LPARAMTERS oContent</pre></td></tr></table></span></div>
+              <p>The object exposes the following properties and methods:  </p>
+              <ul><li>
+                  <p>
+                    <b>CacheDir   </b>The directory of the user's pane cache</p>
+                </li><li>
+                  <p>
+                    <b>ContentTitle   </b>The name of the selected content section</p>
+                </li><li>
+                  <p>
+                    <b>Unique ID   </b>The unique ID of the selected content section</p>
+                </li><li>
+                  <p>
+                    <b>TaskPaneID   </b>The unique ID of the pane the content section belongs to</p>
+                </li><li>
+                  <p>
+                    <b>User   </b>User data that is contained in the User field in the PaneContent table</p>
+                </li><li>
+                  <p>
+                    <b>GetOption(cOptionName</b>
+                    <b>
+                      <i>, </i>
+                    </b>
+                    <b>xDefaultValue)   </b>Returns the value of the option specified. You can optionally specify the default value to be returned if the option is empty. All option values are returned as strings, unless <span class="parameter">xDefaultValue</span> specifies a different data type.</p>
+                </li></ul>
+            </td>
+          </tr><tr>
+            <td>
+              <p>File</p>
+            </td>
+            <td>
+              <p>Specifies a local file as the data source. This file is added to the list of associated files for the pane and copied to the pane's cache directory.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Web Service</p>
+            </td>
+            <td>
+              <p>Specifies that the data is obtained through an XML Web service on the Internet.</p>
+            </td>
+          </tr></table></div>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Modify</b>
+      </span></dt><dd>
+        <p>Opens a window to modify the Visual FoxPro Code or XML data.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Edit Box</b>
+      </span></dt><dd>
+        <p>Displays Visual FoxPro code or XML data.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Source of this content is from the Internet</b>
+      </span></dt><dd>
+        <p>Specifies that a Visual FoxPro code script is downloading content from the Internet. This enables the <b>Check for New Internet Content</b> option for the pane. </p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>File</b>
+      </span></dt><dd>
+        <p>Specifies the name of the data file.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Ellipsis (...)</b>
+      </span></dt><dd>
+        <p>Prompts you to select a data file.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>WSDL URL</b>
+      </span></dt><dd>
+        <p>Specifies the Web Services Description Language (WSDL) file URL for the XML Web service that provides the data for the pane. The WSDL describes the services offered by the server. </p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Method</b>
+      </span></dt><dd>
+        <p>Specifies the XML Web service method to call. The appropriate parameters for the method must also be specified. To specify pane options, use the ## delimiters. For example, <code>GetPaneXML(##daysold##)</code> references the GetPaneXML XML Web service method and uses the DaysOld option for a pane as the parameter. </p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Service</b>
+      </span></dt><dd>
+        <p>Specifies the service in the WSDL file that contains the operation specified in the Simple Object Access Protocol (SOAP) request. If this option is blank, the first service in the specified WSDL file is used when initializing the SoapClient object. (Optional)</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Port</b>
+      </span></dt><dd>
+        <p>Specifies the name of the port in the WSDL file that contains the operation specified in the SOAP request. If this option is blank, the first port in the specified service is used when initializing the SoapClient object. (Optional)</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>WSML</b>
+      </span></dt><dd>
+        <p>Specifies the URL of the Web Services Meta Language (WSML) file. This is a required parameter only when using custom type mappers. For more information about custom type mappers, see the SOAP Toolkit documentation distributed with Visual FoxPro.</p>
+      </dd></dl>
+  <h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/dd629fea-75db-433e-8f49-6e6e553b63b6.htm">Pane Customization Dialog Box</a></span><br /><span class="linkTerms"><a href="/html/1f25f5d2-f67a-4a67-adeb-68d72300a31e.htm">Task Pane Manager</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Data Tab, Pane Customization Dialog Box">
+</OBJECT>

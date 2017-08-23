@@ -1,0 +1,543 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>DEFINE CLASS Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">DEFINE CLASS Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Creates a user-defined class or subclass and specifies the properties, events, and methods for the class or subclass.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+      <p>Modifying read-only properties from base classes generates an error message.</p>
+    </td></tr></table></div>
+    <p>The full syntax for the <b>DEFINE CLASS</b> main clauses appears as follows:</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+DEFINE CLASS <span class="parameter">ClassName1</span> AS <span class="parameter">ParentClass</span> [OF <span class="parameter">ClassLibrary</span>] [OLEPUBLIC]
+   [[PROTECTED | HIDDEN] <span class="parameter">PropertyName1</span>, <span class="parameter">PropertyName2</span> ...]
+   [[.]Object.]<span class="parameter">PropertyName</span> = <span class="parameter">eExpression</span> ...]
+   [<span class="parameter">PEMName</span>_COMATTRIB = <span class="parameter">nFlags</span> | DIMENSION PEMName_COMATTRIB[<span class="parameter">numElements</span>]
+      [<span class="parameter">PEMName</span>_COMATTRIB[1] = <span class="parameter">nFlags</span>
+              <span class="parameter">PEMName</span>_COMATTRIB[2] = <span class="parameter">cHelpString</span>
+              <span class="parameter">PEMName</span>_COMATTRIB[3] = <span class="parameter">cPropertyCapitalization</span>
+              <span class="parameter">PEMName</span>_COMATTRIB[4] = <span class="parameter">cPropertyType</span>
+              <span class="parameter">PEMName</span>_COMATTRIB[5] = <span class="parameter">nOptionalParams</span>]]
+   [ADD OBJECT [PROTECTED] <span class="parameter">ObjectName</span> AS <span class="parameter">ClassName2</span> [NOINIT] [WITH <span class="parameter">cPropertylist</span>]]
+   [IMPLEMENTS <span class="parameter">cInterfaceName</span> [EXCLUDE] IN <span class="parameter">TypeLib</span> | <span class="parameter">TypeLibGUID</span> | <span class="parameter">ProgID</span> ]
+   [[PROTECTED | HIDDEN] FUNCTION | PROCEDURE <span class="parameter">Name</span>[_ACCESS |_ASSIGN]
+      ([<span class="parameter">cParamName</span> | <span class="parameter">cArrayName</span>[] [AS <span class="parameter">Type</span>][@]]) [AS <span class="parameter">Type</span>]
+      [HELPSTRING <span class="parameter">cHelpString</span>] | THIS_ACCESS(<span class="parameter">cMemberName</span>) [NODEFAULT]
+            <span class="parameter">cStatements</span>
+   [ENDFUNC | ENDPROC]
+ENDDEFINE</pre></td></tr></table></span></div></div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The following code shows a summary of the main clauses:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS Clause
+   [Property_Definition_Clause]
+   [PEMName_COMATTRIB Clause]
+   [ADD OBJECT Clause]
+   [IMPLEMENTS Clause]
+   [Function_Procedure_Definition_Clause]
+ENDDEFINE</pre></td></tr></table></span></div>
+      <p>The following sections describe detailed syntax and parameters for each clause of the <b>DEFINE CLASS</b> command:  </p>
+      <ul><li>
+          <p>
+            <span class="linkTerms"><a href="/html/df8b5e2c-f279-40f5-a727-56261debf919.htm">DEFINE CLASS Command - DEFINE CLASS Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/2d203429-d816-4928-a4e8-dfa9a040fcbc.htm">DEFINE CLASS Command - Property Definition Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/a562a92e-aeaa-418d-af39-e6808e64c668.htm">DEFINE CLASS Command - PEMName_COMATTRIB Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/d2417970-2d60-4a28-8dd2-b07930d802bb.htm">DEFINE CLASS Command - ADD OBJECT Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/4b1c35cb-251e-4d16-a785-521e0e631749.htm">DEFINE CLASS Command - IMPLEMENTS Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/12e162e0-33dc-489f-af85-f825a8e3db42.htm">DEFINE CLASS Command - Function or Procedure Definition Clause</a></span>
+          </p>
+        </li></ul>
+      <p>Code for user-defined classes is stored in a program (.prg) file, similar to procedures. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>You cannot follow procedures in a .prg file with normal executable program code. Only class definitions, other procedures, and user-defined functions can follow the first <b>DEFINE CLASS</b>, <b>PROCEDURE</b> or <b>FUNCTION</b> statement in the file. For more information, see <span class="linkTerms"><a href="/html/f8dde7e9-6ba8-4f65-a797-8cbbcde1f89d.htm">User-Defined Procedures and Functions</a></span>.</p>
+      </td></tr></table></div>
+      <p>You cannot place class definitions created with <b>DEFINE CLASS</b> within structured programming commands, for example, <b>IF ... ENDIF</b> or <b>DO CASE ... ENDCASE</b>, or in loops, such as <b>DO WHILE ... ENDDO</b> or <b>FOR ... ENDFOR</b>.</p>
+      <p>To instantiate, or create instances of, the class you defined, use the <b>CREATEOBJECT( )</b> function. You can access public properties and call method and event functions and procedures outside the class definition as shown in the following example:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>myObject = CREATEOBJECT('MyClass')
+myObject.myPropertyName =
+myObject.myMethodName( argument1, argument2, ... )
+myObject.myEventName</pre></td></tr></table></span></div>
+      <p>Protected or hidden properties, methods, and events have restricted access as defined by the <b>PROTECTED</b> and <b>HIDDEN</b> keywords. For more information, see <span class="linkTerms"><a href="/html/2d203429-d816-4928-a4e8-dfa9a040fcbc.htm">DEFINE CLASS Command - Property Definition Clause</a></span> and <span class="linkTerms"><a href="/html/12e162e0-33dc-489f-af85-f825a8e3db42.htm">DEFINE CLASS Command - Function or Procedure Definition Clause</a></span>.</p>
+      <p>Visual FoxPro converts <b>AS </b> <span class="parameter">Type</span> clause values automatically when other COM servers use them. When you type the <b>AS</b> clause in code, IntelliSense functionality in Visual FoxPro displays the type information for COM servers. </p>
+      <p>The following table shows the data type information that is displayed.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              VFP defined type
+            </th>
+            <th>
+              COM Typelib conversion 
+            </th>
+            <th>
+              IntelliSense displays
+            </th>
+          </tr><tr>
+          <td>
+            <p>Array</p>
+          </td>
+          <td>
+            <p>SAFEARRAY(type)</p>
+          </td>
+          <td>
+            <p>Array</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>BinaryMemo</p>
+          </td>
+          <td>
+            <p>VARIANT</p>
+          </td>
+          <td>
+            <p>—</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Boolean</p>
+          </td>
+          <td>
+            <p>VARIANT_BOOL</p>
+          </td>
+          <td>
+            <p>Logical</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Byte</p>
+          </td>
+          <td>
+            <p>unsigned char</p>
+          </td>
+          <td>
+            <p>Number</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Character *</p>
+          </td>
+          <td>
+            <p>BSTR</p>
+          </td>
+          <td>
+            <p>String</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Currency *</p>
+          </td>
+          <td>
+            <p>CURRENCY</p>
+          </td>
+          <td>
+            <p>Currency</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Date</p>
+          </td>
+          <td>
+            <p>DATE</p>
+          </td>
+          <td>
+            <p>Date</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DateTime</p>
+          </td>
+          <td>
+            <p>DATE</p>
+          </td>
+          <td>
+            <p>Date</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Decimal *</p>
+          </td>
+          <td>
+            <p>wchar_t</p>
+          </td>
+          <td>
+            <p>Number</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Double</p>
+          </td>
+          <td>
+            <p>double</p>
+          </td>
+          <td>
+            <p>Number</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Float</p>
+          </td>
+          <td>
+            <p>VARIANT</p>
+          </td>
+          <td>
+            <p>—</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Integer</p>
+          </td>
+          <td>
+            <p>long</p>
+          </td>
+          <td>
+            <p>Number</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Logical</p>
+          </td>
+          <td>
+            <p>VARIANT_BOOL</p>
+          </td>
+          <td>
+            <p>Logical</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Long</p>
+          </td>
+          <td>
+            <p>long</p>
+          </td>
+          <td>
+            <p>Number</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Memo</p>
+          </td>
+          <td>
+            <p>VARIANT</p>
+          </td>
+          <td>
+            <p>—</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Number</p>
+          </td>
+          <td>
+            <p>double</p>
+          </td>
+          <td>
+            <p>Number</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Object</p>
+          </td>
+          <td>
+            <p>IDispatch*</p>
+          </td>
+          <td>
+            <p>Object</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Short </p>
+          </td>
+          <td>
+            <p>long</p>
+          </td>
+          <td>
+            <p>Number</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Single *</p>
+          </td>
+          <td>
+            <p>single</p>
+          </td>
+          <td>
+            <p>Number</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>String</p>
+          </td>
+          <td>
+            <p>BSTR</p>
+          </td>
+          <td>
+            <p>String</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Variant</p>
+          </td>
+          <td>
+            <p>VARIANT</p>
+          </td>
+          <td>
+            <p>—</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Void</p>
+          </td>
+          <td>
+            <p>void</p>
+          </td>
+          <td>
+            <p>VOID</p>
+          </td>
+        </tr></table></div>
+      <p>You can view code for Access and Assign methods in the Trace window of the Debugger window. However, you cannot execute Access and Assign methods from the Watch and Local windows of the Debugger window. For more information, see <span class="linkTerms"><a href="/html/0f0717bb-ec5c-4d09-a80d-0afb19466c4b.htm">Access and Assign Methods</a></span>, <span class="linkTerms"><a href="/html/a65f602b-607e-42f4-a9fb-bfd2fc2665a7.htm">Trace Window</a></span>, and <span class="linkTerms"><a href="/html/b831ef40-4e26-44c0-8a49-6028b7a2ae92.htm">Debugger Window</a></span>.</p>
+      <p>A safe array is a one- or multi-dimensional array of a single data type, which can be of type VARIANT, allowing you to create arrays of mixed types. The safe array stores its lower bound, which does not have to be zero, and its size. Safe arrays allow locking and unlocking so you can be sure that the pointer you receive to the data is valid.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Examples</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Example 1</h3><div class="subSection" xmlns="">
+          <p>The following example creates a class named MyForm from the <b>Form</b> base class and creates a protected property named Version. The class also contains another property called Caption, which is not protected. The class definition initializes the default values of Version and Caption to the strings "1.0" and "My Form", respectively.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS MyForm AS Form
+   PROTECTED Version
+   Version = "1.0"
+   Caption = "My Form"
+ENDDEFINE</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 2</h3><div class="subSection" xmlns="">
+          <p>The following example creates the form frmOLETest from a <b>Form</b> base class and uses the <b>AddObject</b> method to add an object named OCXTest based on the BlueOLEControl class created by <b>DEFINE CLASS</b> and specifies the OLE class for the Listview ActiveX control. The .Object keyword is used to specify a value for the BackColor property of the control before it is created.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PUBLIC frmOLETest
+frmOLETest = CREATEOBJECT('Form')
+frmOLETest.Visible = .T.
+frmOLETest.AddObject('OCXTest', 'BlueOLEControl', 'MSComctlLib.ListViewCtrl')
+frmOLETest.OCXTest.View = 2
+frmOLETest.OCXTest.ListItems.Add(1,'one','Item One')
+frmOLETest.OCXTest.ListItems.Add(2,'two','Item Two')
+DEFINE CLASS BlueOLEControl AS OLEControl
+   * Set property for Outline ActiveX control.
+   .Object.Backcolor = 16776960
+   
+   * Set properties for the OLE Container control.
+   Visible = .T.
+   Height = 100
+   Width = 200
+ENDDEFINE</pre></td></tr></table></span></div>
+          <p>For more information, see <span class="linkTerms"><a href="/html/1f5a8276-1fdd-4782-9539-eb8454cd68a4.htm">AddObject Method</a></span>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 3</h3><div class="subSection" xmlns="">
+          <p>The following example demonstrates how to define an array of type library attributes using the <b>DIMENSION</b> <span class="parameter">PEMName</span><b>_COMATTRIB</b> clause: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#INCLUDE foxpro.h
+DEFINE CLASS myOLEClass AS Custom OLEPUBLIC
+   MyProperty = 5.2
+   * Set COM attributes for MyProperty.
+   DIMENSION MyProperty_COMATTRIB[4]
+   myProperty_COMATTRIB[1] = COMATTRIB_READONLY
+   myProperty_COMATTRIB[2] = "Help text displayed in object browser"
+   myProperty_COMATTRIB[3] = "MyProperty"  &amp;&amp; Proper capitalization.
+   myProperty_COMATTRIB[4] = "Float"        &amp;&amp; Data type
+ENDDEFINE</pre></td></tr></table></span></div>
+          <p>However, if you want to set only the <span class="parameter">nFlags</span> element, you do not need to create an array: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#INCLUDE foxpro.h
+DEFINE CLASS myOLEClass AS Custom OLEPUBLIC
+   MyProperty = "Test"
+   * Set the only the nFlags attribute for MyProperty.
+   myProperty_COMATTRIB = COMATTRIB_READONLY
+ENDDEFINE</pre></td></tr></table></span></div>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example 4</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>The following example creates a class named MyForm from the <b>Form</b> base class and adds a command button from the <b>CommandButton</b> base class and a check box from the <b>CheckBox</b> base class:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS MyForm AS Form
+   ADD OBJECT cmdButton1 AS CommandButton
+   ADD OBJECT chkBox1 AS CheckBox
+ENDDEFINE</pre></td></tr></table></span></div>
+      <p>As another example, the following code creates a class called MyForm, adds a command button and check box to the class, and specifies values for the <b>Caption</b> properties of the command button and check box.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS MyForm AS Form
+   ADD OBJECT cmdButton1 AS CommandButton WITH Caption = "Yes"
+   ADD OBJECT chkBox1 AS CheckBox WITH Caption = "Click Me"
+ENDDEFINE</pre></td></tr></table></span></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Example 5</h3><div class="subSection" xmlns="">
+          <p>The following example creates a class named MyPublisherClass as a <b>Custom</b> class, uses the <b>OLEPUBLIC</b> keyword to specify that Automation clients can access the class when included in an Automation server, uses the <b>IMPLEMENTS</b> clause to inherit the class definition inherit from the Publisher class definition in the type library, MyBookStore.dll, and includes the method ShowPrice from the Publisher interface.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS MyPublisherClass AS Custom OLEPUBLIC
+   IMPLEMENTS Publisher IN "MyBookStore.dll"
+   PROCEDURE Publisher_ShowPrice(cGetID AS Long) AS Short
+   ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 6</h3><div class="subSection" xmlns="">
+          <p>The following example creates a class named MyForm from the <b>Form</b> base class and contains a procedure for a <b>Click</b> event definition. The form created from the class contains a <b>Click</b> method that displays a dialog box when you click the form.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS MyForm AS Form
+   PROCEDURE Click
+      = MESSAGEBOX('MyForm has been clicked!')
+   ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+          <p>As another example, the following code contains a procedure for one of the objects added to the class. This event procedure overrides the default <b>Click</b> event for the command button:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS MyForm AS Form
+   ADD OBJECT MyButton AS CommandButton
+   ADD OBJECT chkBox1 AS CheckBox
+   PROCEDURE MyButton.Click
+      = MESSAGEBOX('This is my click event procedure')
+   ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 7</h3><div class="subSection" xmlns="">
+          <p>The following example shows how you can specify strong typing using <b>PROCEDURE</b> <span class="parameter">cArrayName</span>[] [AS <span class="parameter">Type</span>][@][AS <span class="parameter">Type</span>] clause so that arrays can be correctly written as safe arrays to a type library:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS mySession AS Session OLEPUBLIC
+    PROCEDURE GetWidgets1(aWidgets[])
+    ENDPROC
+    PROCEDURE GetWidgets2(aWidgets[] AS Integer)
+    ENDPROC
+    PROCEDURE GetWidgets3(aWidgets[] AS Integer @)
+    ENDPROC
+    PROCEDURE GetRS(oRS[] AS ADODB.Recordset @)
+    ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+          <p>As another example, the following code demonstrates how you can specify strong complex typing by defining a type based on a COM class:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS mySession AS Session OLEPUBLIC
+   PROCEDURE GetRS() AS ADODB.Recordset
+      x=CREATEOBJECT("ADODB.Recordset")
+      RETURN X
+   ENDPROC
+   PROCEDURE SetRS(oRS AS ADODB.Recordset @)
+      oRS=CREATEOBJECT("ADODB.Recordset")
+   ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/060ee886-18bc-41dd-b12d-27fc7669b9b8.htm">:: Scope Resolution Operator</a></span><br /><span class="linkTerms"><a href="/html/d0417150-09bb-4617-a02c-e6e4e1e39393.htm">ADD CLASS Command</a></span><br /><span class="linkTerms"><a href="/html/bf40024f-fb8b-4ded-b0a2-8298e5d8a223.htm">CREATE CLASS Command</a></span><br /><span class="linkTerms"><a href="/html/0b563d46-15c2-4a3b-8a64-af2103cea7cf.htm">CREATE CLASSLIB Command</a></span><br /><span class="linkTerms"><a href="/html/a587b685-14d8-44c2-86d7-da3b81391df0.htm">DODEFAULT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/81422070-37ef-492f-b813-9b40bcaed762.htm">EVENTHANDLER( ) Function</a></span><br /><span class="linkTerms"><a href="/html/f046afe9-7279-4409-a2b9-aca70936a273.htm">GETOBJECT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/78dc6e67-6ffc-484d-8370-38e3371964ec.htm">MODIFY CLASS Command</a></span><br /><span class="linkTerms"><a href="/html/6b7e3a6c-bf81-4c0b-be00-6eaada91e845.htm">RELEASE CLASSLIB Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="DEFINE CLASS Command">
+<param name="ALink Name" value="DEFINE CLASS">
+</OBJECT>

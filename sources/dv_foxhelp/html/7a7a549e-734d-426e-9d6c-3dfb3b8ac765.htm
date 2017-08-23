@@ -1,0 +1,125 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Open Views in Work Areas</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Open Views in Work Areas</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can open a view in separate work areas similar to how you can open a table in different work areas. For more information, see <span class="linkTerms"><a href="/html/01d0b3c7-da95-45e2-ae27-3676dfd97caf.htm">How to: Open Tables in Work Areas</a></span>. </p>
+    <p>However, unlike tables, views retrieve a new data set each time you use the view. When you open the view programmatically with the <b>USE</b> command, you can open additional instances of the view without retrieving data from the data source. This is particularly useful when you want to open a remote view in multiple work areas without waiting to download data from remote data sources.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <h3 class="procedureSubHeading">To open another instance of a view without downloading data</h3><div class="subSection"><ul><li>
+            
+              <p>Open the view with the <b>USE</b> command and include the <b>NOREQUERY</b> or <b>AGAIN</b> clause.</p>
+            
+          </li></ul></div>
+      <p>You can specify a data session number when using the <b>NOREQUERY</b> clause. If you omit a data session number, Visual FoxPro searches in all data sessions. If an opened result set is found for the view, Visual FoxPro opens the cursor again on the same result set. If no open result set is found, Visual FoxPro retrieves a new result set for the view. As is true with tables, if the view is not found, Visual FoxPro opens a new cursor for the view. </p>
+      <p>If you want Visual FoxPro to search only the current data session for an opened result set, use the <b>AGAIN</b> clause. Opening another instance of a view with the <b>AGAIN</b> clause is the equivalent using the <b>NOREQUERY</b> clause with the current session number. </p>
+      <p>For more information, see <span class="linkTerms"><a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a></span>.</p>
+      <p>For example, the following code opens the sample Northwind database using the <b>OPEN DATABASE</b> command, creates a remote view named Product_View using the <b>CREATE SQL VIEW</b> command and selects all the records in the Products table. The <b>USE</b> command opens the view, and the <b>BROWSE</b> command displays the first instance of the view in a browse window. The <b>SELECT</b> command selects the work area of the view, and the <b>USE</b> command opens the same view with the <b>NOREQUERY</b> clause. This time, the <b>BROWSE</b> command displays the view in a browse window without retrieving the data from the data source:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE HOME(2) + "Northwind\Northwind"
+CREATE SQL VIEW Product_View AS SELECT * FROM Products
+USE Product_View
+BROWSE
+SELECT 0
+USE Product_View NOREQUERY
+BROWSE</pre></td></tr></table></span></div>
+      <p>The following code uses the <b>USE</b> command to open the view and the <b>BROWSE</b> command to display the view in a browse window. The second <b>USE</b> command opens the view from the current data session with the <b>AGAIN</b> clause using a different alias. The <b>BROWSE</b> command displays the view with the different alias: </p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE HOME(2) + "Northwind\Northwind"
+USE Product_View
+BROWSE
+USE Product_View AGAIN IN 0
+BROWSE</pre></td></tr></table></span></div>
+      <p>The following command deletes the view when you are finished working with it:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DELETE VIEW Product_View</pre></td></tr></table></span></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/167e24f6-0e6f-4cc1-a1a9-dffc9491d85a.htm">OPEN DATABASE Command</a></span>, <span class="linkTerms"><a href="/html/2a22b360-882b-4bc9-ab9d-b89be1e56dd1.htm">CREATE SQL VIEW Command</a></span>, <span class="linkTerms"><a href="/html/8f9cae61-2a9a-4893-8325-40426b907de8.htm">BROWSE Command</a></span>, <span class="linkTerms"><a href="/html/cc85d04b-c4d7-495f-b7c3-ca8a61ea596c.htm">SELECT Command</a></span>, and <span class="linkTerms"><a href="/html/bef99681-b1e4-4a6c-ab65-ac18535c2483.htm">DELETE VIEW Command</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/04008d6d-1ffd-4555-bf6a-1c50f39b418f.htm">Managing Views</a></span><br /><span class="linkTerms"><a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Open Views in Work Areas">
+</OBJECT>

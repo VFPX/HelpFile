@@ -1,0 +1,132 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Collect User Input with Queries</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Collect User Input with Queries</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>If you want to collect values that the application user enters from a form, you can create variables to store those values and then use them immediately in the SQL SELECT statement or execute the statement later. For more information about customizing queries using SQL SELECT statements, see <span class="linkTerms"><a href="/html/caad3264-1f34-430b-93bb-18c1f6c5eeb8.htm">How to: Customize Queries Using SQL SELECT Statements</a></span> and <span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span>.</p>
+  <h3 class="procedureSubHeading">To collect user input values for immediate use</h3><div class="subSection"><ul><li>
+        
+          <p>In the SQL SELECT statement, include the name of the form or a reference to the form where appropriate.</p>
+        
+      </li></ul></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The following example illustrates how to collect user input values from a form using a shortcut reference that appears in the WHERE clause of the SQL SELECT statement. The shortcut reference, <code>THISFORM</code>, refers to the currently active form. You should substitute control names for <code>ControlName1</code> and <code>ControlName2</code>.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * ;
+   FROM tastrade!customer ;
+   WHERE customer.country = ;
+    THISFORM.<i>ControlName1</i>.Value ;
+   AND customer.region = 
+THISFORM.<i>ControlName2</i>.Value ;
+   GROUP BY customer.postal_code ;
+   ORDER BY customer.postal_code, 
+customer.company_name</pre></td></tr></table></span></div>
+      <p>To store user input values from a form when you do not need to use them while the form is active, use variables in code. For example, if you do not want to use references to a control, you can define variables in the code to store the values returned by the control.</p>
+      <h3 class="procedureSubHeading">To collect user input values for later use</h3><div class="subSection"><ol><li>
+            
+              <p>Define the variable you want to use for storing the user input value.</p>
+            
+          </li><li>
+            
+              <p>In the SQL SELECT statement, include the name of the variable where appropriate.</p>
+            
+          </li></ol></div>
+      <p>The following example illustrates how to collect user input values from a form using the variable, <code>cValue</code>, to store the value returned from a control on the currently active form. The shortcut reference, <code>THISFORM</code>, refers to the currently active form. The variable appears in the WHERE clause of the SQL SELECT statement to select the country that matches <code>cValue</code>.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>cValue = THISFORM.<i>ControlName</i>.Value
+SELECT * ;
+   FROM tastrade!customer ;
+   WHERE customer.country = cValue ;
+   GROUP BY customer.postal_code ;
+   ORDER BY customer.postal_code, ;
+     customer.company_name</pre></td></tr></table></span></div>
+      <p>If you don't define the variable before you run the query, an error message appears stating that the variable couldn't be found. If the variable isn't defined in code, Visual FoxPro assumes that the variable is pre-initialized.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/caad3264-1f34-430b-93bb-18c1f6c5eeb8.htm">How to: Customize Queries Using SQL SELECT Statements</a></span><br /><span class="linkTerms"><a href="/html/f5b2d063-c8c2-4ada-bf3a-b599409cb41c.htm">How to: Create Queries (Visual FoxPro)</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/0e3a7b29-19c8-47e8-9830-17e9c03454aa.htm">Integrating Reports with Applications</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ccb3a0ad-7fe4-4267-ba42-aa9918ed1f21.htm">Working with Queries</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Collect User Input with Queries">
+</OBJECT>

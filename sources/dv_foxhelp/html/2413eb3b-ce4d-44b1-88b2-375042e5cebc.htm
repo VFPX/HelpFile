@@ -1,0 +1,195 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Resolve SQL Server Upsizing Wizard Errors</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Resolve SQL Server Upsizing Wizard Errors</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>If any errors occur while the <b>SQL Server Upsizing</b> wizard is exporting data, you are asked whether you want to save error information. If you choose to save error information, an error report is generated.</p>
+    <p>Most upsizing errors occur because there isn't enough space on your server's database or log device, or because your remote database is not large enough to accept the data you're exporting to the server. Make sure that you select devices with ample free space and that you set your database size sufficiently high. Some errors occur because of inappropriate login permissions.</p>
+  <h1 class="heading">Database or Log Full</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The <b>SQL Server</b><b> </b><b>Upsizing</b> wizard runs out of space and stops if the SQL database you selected or created is too small. To resolve this problem, you can increase the space for the database or the log. This solution can involve dropping (removing) the database or the log from the upsizing process.</p>
+      <h3 class="procedureSubHeading">To increase the space for a new database or log</h3><div class="subSection"><ol><li>
+            
+              <p>Drop the database.</p>
+            
+          </li><li>
+            
+              <p>If the <b>SQL Server Upsizing</b> wizard changed the names of any local tables, restore tables to their original names by: </p>
+              <ul><li>
+                  <p>Copying your backup version of your local database's .dbc file onto your system, overwriting the altered .dbc file.  </p>
+                  <p>-or- </p>
+                </li><li>
+                  <p>Renaming local tables to their original names.</p>
+                </li></ul>
+            
+          </li><li>
+            
+              <p>When you run the wizard again, specify a larger database or log size.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To increase the space for an existing database</h3><div class="subSection"><ol><li>
+            
+              <p>Increase the size of the database.</p>
+            
+          </li><li>
+            
+              <p>If the <b>SQL Server Upsizing</b> wizard changed the names of any local tables, rename them to their original names. </p>
+              <ul><li>
+                  <p>Copying your backup version of your local database's .dbc file onto your system, overwriting the altered .dbc file.  </p>
+                  <p>-or- </p>
+                </li><li>
+                  <p>Renaming local tables to their original names.</p>
+                </li></ul>
+            
+          </li><li>
+            
+              <p>Run the wizard again.</p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To increase the space for an existing log</h3><div class="subSection"><ol><li>
+            
+              <p>Increase the size of the log. </p>
+              <p>-or-  </p>
+              <p>Dump the transaction log. </p>
+            
+          </li><li>
+            
+              <p>If the <b>SQL Server Upsizing</b> wizard changed the names of any local tables, rename them with their original names.  </p>
+              <ul><li>
+                  <p>Copying your backup version of your local database's .dbc file onto your system, overwriting the altered .dbc file.  </p>
+                  <p>-or- </p>
+                </li><li>
+                  <p>Renaming local tables to their original names.</p>
+                </li></ul>
+            
+          </li><li>
+            
+              <p>Run the wizard again.</p>
+            
+          </li></ol></div>
+      <p>You should overwrite tables from the previous partial upsizing to make sure all table relationships are created.</p>
+      <p>For information on increasing the database or log size, see the ALTER DATABASE command in your SQL Server documentation. For information on dumping the transaction log, see the DUMP TRANSACTION command in your SQL Server documentation.</p>
+    </div><h1 class="heading">Device Full</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The device on which a database or log is located can fill up. You can extend the database or log to another device using the ALTER DATABASE command or the SQL Server Administrator, or you can create a larger device.</p>
+      <h3 class="procedureSubHeading">To create a larger device</h3><div class="subSection"><ol><li>
+            
+              <p>Drop the device.</p>
+            
+          </li><li>
+            
+              <p>Restart SQL Server.</p>
+            
+          </li><li>
+            
+              <p>Create a larger device. </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+                <p>Dropping a device deletes all databases and logs on the device, not just the database to which you are upsizing.</p>
+              </td></tr></table></div>
+            
+          </li></ol></div>
+      <p>You can use the sp_dropdevice system procedure to drop a device. For more information, see your SQL Server documentation.</p>
+    </div><h1 class="heading">Improper Compatibility Level for Upsizing</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>To upsize a database, Visual FoxPro sets the compatibility level of the target SQL database to 6.5 by calling the SP_DBCMPTLEVEL stored procedure on SQL Server. Make sure the SQL login you are using has the appropriate rights to perform this action.</p>
+      <h3 class="procedureSubHeading">To make sure the SQL login has appropriate rights</h3><div class="subSection"><ul><li>
+            
+              <p>Verify that the login you are using has the permissions as one of the following:</p>
+              <ul><li>
+                  <p>DBO</p>
+                </li><li>
+                  <p>Member of the sysadmin fixed server role</p>
+                </li><li>
+                  <p>DB_OWNER fixed database role</p>
+                </li></ul>
+            
+          </li></ul></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/764204c0-ce75-416c-965a-00c57810e1a4.htm">SQL Server Upsizing Wizard</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/607ab194-ce6b-4b0a-be4f-3f0d93ff760b.htm">How the SQL Server Upsizing Wizard Works</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/59eb1864-2238-485b-ab3b-9159c999c3c4.htm">Wizards (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Resolve SQL Server Upsizing Wizard Errors">
+</OBJECT>

@@ -1,0 +1,145 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Add Visual FoxPro API Calls</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Add Visual FoxPro API Calls</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>To integrate your program with Visual FoxPro, you can call Visual FoxPro API routines. These API routines are functions you can call from any C or C++ program, including an .ocx or .fll file, that give you access to variables, manage database operations, and accomplish many other Visual FoxPro-specific tasks.</p>
+    <p>The following table lists the general categories of API calls available in Visual FoxPro. For details about individual API functions, see <span class="linkTerms"><a href="/html/fb5db75c-1c10-43bb-ac09-674dd5f41b8d.htm">API Library Routines A-Z</a></span> or <span class="linkTerms"><a href="/html/62b23918-d9f3-462c-89ed-9fd684c32f19.htm">API Library Routines by Category</a></span>. </p>
+    <p>To use the Visual FoxPro API routines, you must include the file Pro_ext.h, available in the Visual FoxPro API directory. This file includes the prototypes for the functions and structures that allow you to share information with Visual FoxPro.</p>
+    <p>If you're writing an ActiveX control, you must also add calls to initialize and clear the API.</p>
+  <h3 class="procedureSubHeading">To add Visual FoxPro API routines to your ActiveX object</h3><div class="subSection"><ol><li>
+        
+          <p>Use <code>#INCLUDE</code> to include the Pro_ext.h file along with any other required header files.</p>
+        
+      </li><li>
+        
+          <p>In the Constructor (Init method) of the control, call _OCXAPI( ) to initialize the interface to Visual FoxPro using this code: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_OCXAPI(AfxGetInstanceHandle(),DLL_PROCESS_ATTACH);</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>Include calls to the Visual FoxPro API as required in your object.</p>
+        
+      </li><li>
+        
+          <p>In the Destructor (Destroy method) for the object, call _OCXAPI( ) again to release the process created in the Constructor, using this code: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_OCXAPI(AfxGetInstanceHandle(),DLL_PROCESS_DETACH);</pre></td></tr></table></span></div>
+        
+      </li></ol>
+      
+        <p>For an example of an .fll library that includes calls to the Visual FoxPro API, see the sample programs in \Api\Samples directory that have the extension C: EVENT.C, HELLO.C, and so on.</p>
+        <p>If you use Visual FoxPro API calls in your ActiveX control, COM object, or .fll library, the code containing the calls is incompatible with other applications. You might therefore want to build one or more tests into the program to determine whether the object is being called from Visual FoxPro.</p>
+        <p>For example, if you're creating an ActiveX control using the Microsoft Foundation Classes, you can change the control's constructor code to include a test and then alert the user if the control has been called from a program other than Visual FoxPro:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>if (!_OCXAPI(AfxGetInstanceHandle(),DLL_PROCESS_ATTACH))
+{
+   ::MessageBox(0,"This OCX can only be hosted by Visual Foxpro","",0);
+      //Here you can do whatever you want when the host isn't VFP:
+      // you might want to reject loading or you 
+      // might want to set a property
+      // saying that the host isn't VFP and the control will use other 
+      // means to achieve it's purpose.
+}</pre></td></tr></table></span></div>
+        <p>If you're creating an ActiveX control using the Microsoft ActiveX Template Library, use the following code:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>if (!_OCXAPI(_Module.GetModuleInstance(),DLL_PROCESS_ATTACH))
+{
+   ::MessageBox(0,"This OCX can only be hosted by Visual Foxpro","",0);
+      //Here you can do whatever you want when the host isn't VFP:
+      // you might want to reject loading or you 
+      // might want to set a property
+      // saying that the host isn't VFP and the control will use other 
+      // means to achieve it's purpose.
+}</pre></td></tr></table></span></div>
+        <p>In this example, the control doesn't exit, and will continue running after the user has acknowledged the message. The strategy you choose depends on how you anticipate the control will be used. For example, if you detect that the control is being used outside of Visual FoxPro, you can set a flag that you test at each point in the control where you call the Visual FoxPro API. If the flag indicates that the control is outside Visual FoxPro, you can branch around the API call to an alternative means of accomplishing the same task.</p>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/73c38886-0f6a-4f7b-a01e-af8727aa03ca.htm">How to: Return Values from ActiveX Controls and FLL Libraries</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/7c00ef9f-63ed-43bf-b71f-54e98d8a9caf.htm">Creating Visual FoxPro Dynamic-Link Libraries</a></span><br /><span class="linkTerms"><a href="/html/ad9896fa-643e-48d3-a3b9-d738971e71a3.htm">Parameters in External Libraries</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/566a1828-db5f-432f-8940-c4dd53c08920.htm">Accessing the Visual FoxPro API</a></span><br /><span class="linkTerms"><a href="/html/941bd4e8-58e8-4353-890d-91a96b8344c0.htm">Extending Visual FoxPro with External Libraries</a></span><br /><span class="linkTerms"><a href="/html/8c8b7a75-75ae-4a31-95ce-5b1ea7fc7a7d.htm">API Library Construction</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Add Visual FoxPro API Calls">
+</OBJECT>

@@ -1,0 +1,218 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Generate Output for Reports</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Generate Output for Reports</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can generate output reports and labels by performing the following:  </p>
+    <ul><li>
+        <p>
+          <span class="linkTerms"><a href="#fotskhowtogenerateoutputforreportsanchor1">Printing Reports</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#fotskhowtogenerateoutputforreportsanchor4">Sending Reports to the Screen</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#fotskhowtogenerateoutputforreportsanchor2">Sending Reports to a File</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#fotskhowtogenerateoutputforreportsanchor3">Saving Reports as HTML</a></span>
+        </p>
+      </li></ul>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Some of the actions discussed in this topic have different results, depending on the setting of <b>REPORTBEHAVIOR</b>.  When you use the command <code>SET REPORTBEHAVIOR 90</code>, Visual FoxPro uses a ReportListener object to generate your results through GDI+ instead of GDI.  For more information, see <span class="linkTerms"><a href="/html/5d6e4527-8b6f-4f39-a670-c3397eff3bfd.htm">SET REPORTBEHAVIOR Command</a></span>. </p>
+    </td></tr></table></div>
+  <a name="fotskhowtogenerateoutputforreportsanchor1"></a><h1 class="heading">Printing Reports</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can change printer settings before you print the report or print the report programmatically.</p>
+      <h3 class="procedureSubHeading">
+          <b>To print a report or label</b>
+        </h3><div class="subSection"><ol><li>
+            
+              <p>Choose the <b>Print…</b> option on the File menu, and select <b>Report</b> or <b>Label</b> as the <b>Type</b> of output to print in the <b>Print</b> dialog box. Click the ellipsis <b>(...)</b> button to choose the report or label file (.frx or .lbx) to print.  Alternatively, open the report or label in the appropriate designer and click <b>Run Report</b> on the <b>Report</b> menu.</p>
+            
+          </li><li>
+            
+              <p>The <b>Print</b> dialog box opens so you can make changes to printer settings.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Print</b> dialog box, click <b>Print</b>. </p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">
+          <b>To print reports and labels programmatically</b>
+        </h3><div class="subSection"><ul><li>
+            
+              <p>
+                <b>Option 1:</b> Use the <b>REPORT FORM</b> or <b>LABEL</b> command with the <b>TO PRINTER</b> clause.</p>
+            
+          </li><li>
+            
+              <p>
+                <b>Option 2:</b> Use <b>REPORT FORM</b> or <b>LABEL</b> command with the clause <b>OBJECT TYPE 0</b>. </p>
+            
+          </li><li>
+            
+              <p>
+                <b>Option 3:</b> Use <b>REPORT FORM</b> or <b>LABEL</b> command with the clause <b>OBJECT</b> <span class="parameter">&lt;oReference&gt;</span>, where <span class="parameter">&lt;oReference&gt;</span> is an instance of a ReportListener-derived class with its ListenerType property value set to <code>0</code>.  For more information, see <span class="linkTerms"><a href="/html/ad1bf074-a169-4fd4-b160-c39bdd8c8402.htm">ListenerType Property</a></span>.</p>
+            
+          </li></ul>
+          
+            <p>When using these commands, you can also display or suppress display of the <b>Print</b> dialog box and print status message.  You can set many other options, such as which records to print. </p>
+            <p>For more information, see <span class="linkTerms"><a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT FORM Command</a></span> or <span class="linkTerms"><a href="/html/3876aeab-209d-42b0-9ebd-033284c74adb.htm">LABEL Command</a></span>.</p>
+          
+        </div>
+    </div><a name="fotskhowtogenerateoutputforreportsanchor4"></a><h1 class="heading">Sending Reports to the Screen</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can send report or label output to the main Visual FoxPro screen or currently active window.</p>
+      <h3 class="procedureSubHeading">
+          <b>To send report or label output to the screen or currently active window</b>
+        </h3><div class="subSection"><ul><li>
+            
+              <p>When using the <b>REPORT FORM</b> and <b>LABEL</b> commands, omit all clauses that direct output other than to the screen or currently active window.</p>
+            
+          </li></ul></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>Visual FoxPro 9's GDI+ reporting rendering mechanism does not echo the contents of the report or label directly to the current output window, so ensure that <b>SET REPORTBEHAVIOR</b> is set to <code>80</code> when you want this result.  Alternatively, you can use a ReportListener object to draw the report contents to a shape or container on _SCREEN, or in any Visual FoxPro form.  <span class="linkTerms"><a href="/html/68ca355c-7494-4a8a-9baf-e525437adc8d.htm">Creating a Custom Preview Container</a></span> for an example performing this task with minimal code.</p>
+      </td></tr></table></div>
+    </div><a name="fotskhowtogenerateoutputforreportsanchor2"></a><h1 class="heading">Sending Reports to a File</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Sending reports to a file makes it possible for you to create an electronic version of the report and print them as a batch file on your printer at a later time.</p>
+      <h3 class="procedureSubHeading">
+          <b>To send a report to a file</b>
+        </h3><div class="subSection"><ul><li>
+            
+              <p>Use the <b>REPORT FORM</b> or <b>LABEL</b> command and include the <b>TO FILE</b> clause.</p>
+            
+          </li></ul>
+          
+            <p>For more information, see <span class="linkTerms"><a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT FORM Command</a></span> or <span class="linkTerms"><a href="/html/3876aeab-209d-42b0-9ebd-033284c74adb.htm">LABEL Command</a></span>.</p>
+          
+        </div>
+    </div><a name="fotskhowtogenerateoutputforreportsanchor3"></a><h1 class="heading">Saving Reports as HTML</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>You can save a report in Hypertext Markup Language (HTML) format.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>You must first save the report and any changes to disk before saving it as HTML.</p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">
+          <b>To save a report as HTML</b>
+        </h3><div class="subSection"><ol><li>
+            
+              <p>Open the report or label in the appropriate designer.</p>
+            
+          </li><li>
+            
+              <p>On the <b>File</b> menu, click <b>Save As HTML</b>. </p>
+            
+          </li><li>
+            
+              <p>In the <b>Save As HTML</b> dialog box, select the options you want.</p>
+            
+          </li><li>
+            
+              <p>To save the HTML (.htm) file with a different name, click the <b>ellipsis (...)</b> button to open the <b>Save As</b> dialog box so you can specify a different name. When you are finished in the <b>Save As</b> dialog box, click <b>Save</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Save As HTML</b> dialog box, click <b>OK</b>.</p>
+            
+          </li></ol>
+          
+            <p>For more information, see <span class="linkTerms"><a href="/html/87d479ba-af0f-4ff6-9925-4fac7f95c09c.htm">Save As HTML Dialog Box</a></span>.</p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+              <p>Without opening the Report or Label Designer, you can also generate HTML from your report form by using the command <code>REPORT FORM &lt;your filename&gt; OBJECT TYPE 5</code>.  This command uses an instance of the <span class="linkTerms"><a href="/html/5f0a1dab-ce24-4c87-ac2e-cb9e631d0115.htm">ReportListener HTML Foundation Class</a></span> to generate your HTML file; the <b>Save As HTML</b> dialog box invokes the same object to perform its task.</p>
+            </td></tr></table></div>
+          
+        </div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/d6a4f74c-c330-423f-8fbd-f3278def7b06.htm">How to: Preview Reports</a></span><br /><span class="linkTerms"><a href="/html/d5cc80ad-9693-4ca4-ad52-7bf9605e35c9.htm">How to: Control Record Selection in Report Output</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/982fd0d5-a294-401e-a720-3a29a59d87be.htm">Running Reports</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Generate Output for Reports">
+</OBJECT>

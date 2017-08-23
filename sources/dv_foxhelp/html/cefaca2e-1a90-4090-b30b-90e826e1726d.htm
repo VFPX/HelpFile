@@ -1,0 +1,407 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Understanding Container and Control Objects</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Understanding Container and Control Objects</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can add the following types of objects to a form:
+</p>
+    <ul><li>
+        <p>Controls</p>
+      </li><li>
+        <p>Containers</p>
+      </li><li>
+        <p>User-defined classes</p>
+      </li><li>
+        <p>
+          <a href="/html/66d47bc7-f93b-483b-b39f-ebcc9e0a1be4.htm">Sharing Information and Adding OLE</a>
+        </p>
+      </li></ul>
+    <p>Objects in Visual FoxPro belong in one of two categories, depending on the nature of the class they are based on:
+</p>
+    <ul><li>
+        <p>Containers can hold other containers or controls. They can act as the parent object for other objects. For example, a form, as a container, is the parent object of a check box on that form.</p>
+      </li><li>
+        <p>Controls can be placed in containers, but cannot be the parent for other objects. For example, a check box cannot contain any other object.</p>
+      </li></ul>
+    <p>The <a href="/html/4c6826b0-d49e-4f97-b18c-4670533600c7.htm">Form Designer</a> allows you to design both containers and controls.</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Container
+          </th>
+          <th>
+            Can contain
+          </th>
+        </tr><tr>
+        <td>
+          <p>Column</p>
+        </td>
+        <td>
+          <p>Headers, and any objects except form sets, forms, toolbars, timers, and other columns</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Command button group</p>
+        </td>
+        <td>
+          <p>Command buttons</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Form set</p>
+        </td>
+        <td>
+          <p>Forms, toolbars</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Form</p>
+        </td>
+        <td>
+          <p>Page frames, grids, any controls</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Grid</p>
+        </td>
+        <td>
+          <p>Columns</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Option button group</p>
+        </td>
+        <td>
+          <p>Option buttons</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Page frame</p>
+        </td>
+        <td>
+          <p>Pages</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Page</p>
+        </td>
+        <td>
+          <p>Grids, any controls</p>
+        </td>
+      </tr></table></div>
+  <h1 class="heading">Collection and Count Properties</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>All container objects in Visual FoxPro have a count property and a collection property associated with them. The collection property is an array referencing each contained object. The count property is a numeric property indicating the number of contained objects.</p>
+      <p>The collection and count properties for each container are named according to the type of object that can be contained in the container. The following table lists the containers and the corresponding collection and count properties.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Container
+            </th>
+            <th>
+              Collection Property
+            </th>
+            <th>
+              Count Property
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/394305f5-b155-4606-be86-de326849c4a1.htm">Application</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/40c14565-d6cf-499e-b5db-565aba619a0d.htm">Objects</a>
+              <a href="/html/07bd66ba-d9ad-4913-86a2-c611d299a722.htm">Forms</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/3041c551-20de-4747-8d6f-32d7964c3ce1.htm">Count</a>
+              <a href="/html/04334b67-5dd6-484a-ac09-b9f36b499127.htm">FormCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/84d27300-b6ce-463d-b569-46dffc7fa48c.htm">FormSet</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/07bd66ba-d9ad-4913-86a2-c611d299a722.htm">Forms</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/04334b67-5dd6-484a-ac09-b9f36b499127.htm">FormCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/a7ff9dc8-6d63-498c-aab6-4ce664c25190.htm">Form</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/40c14565-d6cf-499e-b5db-565aba619a0d.htm">Objects</a>
+              <a href="/html/07a8567e-e2d0-4829-9471-856f5c9e5a7f.htm">Controls</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/3041c551-20de-4747-8d6f-32d7964c3ce1.htm">Count</a>
+              <a href="/html/e3f058b2-4f5f-4cf2-8fa5-43d2ea8bd4d6.htm">ControlCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/852d4c6e-2b5c-404b-ae44-90cdd79ebea5.htm">PageFrame</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/d445328d-88cf-417a-b105-8f1d6fdb420b.htm">Pages</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/9c9e7bc0-9bc0-4869-94d9-a33ae8c089d6.htm">PageCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/83a4017f-483a-4c8f-b63c-e16a58e011af.htm">Page</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/07a8567e-e2d0-4829-9471-856f5c9e5a7f.htm">Controls</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e3f058b2-4f5f-4cf2-8fa5-43d2ea8bd4d6.htm">ControlCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/0212bad2-48a3-49ae-98de-c71ba3af0ede.htm">Grid</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e8c42868-0eff-4363-a0d9-261b118dcc4a.htm">Columns</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/9b9270cb-27c5-470b-b889-5910309ef707.htm">ColumnCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/cb0db420-f1b3-46c9-9d57-2b1d63d429e8.htm">CommandGroup</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/8f21284e-ac1a-4f0b-8357-dff6b7f6d170.htm">Buttons</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/850d30c5-8a65-4689-ad21-621de0faf1e4.htm">ButtonCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/11e98c55-43b3-4c8b-a7a0-6427f31c2e68.htm">OptionGroup</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/8f21284e-ac1a-4f0b-8357-dff6b7f6d170.htm">Buttons</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/850d30c5-8a65-4689-ad21-621de0faf1e4.htm">ButtonCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/362c5c7d-2dd9-4c2c-8028-af188f9fe3d8.htm">Column</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/07a8567e-e2d0-4829-9471-856f5c9e5a7f.htm">Controls</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e3f058b2-4f5f-4cf2-8fa5-43d2ea8bd4d6.htm">ControlCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/b6fbb189-1e9a-47ed-b453-706c05a4b018.htm">ToolBar</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/07a8567e-e2d0-4829-9471-856f5c9e5a7f.htm">Controls</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e3f058b2-4f5f-4cf2-8fa5-43d2ea8bd4d6.htm">ControlCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/31b59b85-d92f-4a32-bc93-da8d637e2c3f.htm">Container</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/07a8567e-e2d0-4829-9471-856f5c9e5a7f.htm">Controls</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e3f058b2-4f5f-4cf2-8fa5-43d2ea8bd4d6.htm">ControlCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/c4372c70-c8c4-49ac-9daa-4c2f9a5647c3.htm">Control</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/07a8567e-e2d0-4829-9471-856f5c9e5a7f.htm">Controls</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e3f058b2-4f5f-4cf2-8fa5-43d2ea8bd4d6.htm">ControlCount</a>
+            </p>
+          </td>
+        </tr></table></div>
+      <p>These properties allow you to use a loop to programmatically manipulate all or specific contained objects. For example, the following lines of code set the <a href="/html/124bcd5c-2771-419c-9518-64009bbb7e00.htm">BackColor</a> property of columns in a grid to alternating green and red:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>o = THISFORM.grd1
+FOR i = 1 to o.ColumnCount
+   IF i % 2 = 0 &amp;&amp; Even-numbered column
+      o.Columns(i).BackColor = RGB(0,255,0) &amp;&amp; Green
+   ELSE
+      o.Columns(i).BackColor = RGB(255,0,0) &amp;&amp; Red
+   ENDIF
+ENDFOR</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/46303a96-544a-431a-abd6-10a757e21590.htm">How to: Add Visual FoxPro Containers</a></span><br /><span class="linkTerms"><a href="/html/f2eadfcc-c33d-4d53-922d-e5383bb9f751.htm">How to: Add Visual FoxPro Controls to a Form</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/8cf9459c-0430-48db-8271-769fa5db76d3.htm">Adding Objects to Forms</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Understanding Container and Control Objects">
+</OBJECT>

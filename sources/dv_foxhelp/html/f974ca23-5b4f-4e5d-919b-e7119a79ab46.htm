@@ -1,0 +1,176 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Optimize Filters and Joins</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Optimize Filters and Joins</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>To make optimization decisions for a view or query, you might need to know the execution plan: the order that joins and filter clauses will be evaluated. Using the <a href="/html/400a0198-cac5-4abd-8e2d-79564a75742d.htm">SYS(3054)</a> function, you can display one of three Rushmore Query Optimization levels. The three levels indicate the degree to which the filter conditions or join conditions were able to use Rushmore optimization. The levels are completely (Full), partially (Partial) or not at all (None).</p>
+  <h3 class="procedureSubHeading">To display the execution plan for filters</h3><div class="subSection"><ol><li>
+        
+          <p>In the <a href="/html/b6357e87-9f16-406c-832c-398bb2bcea87.htm">Command</a> window, type <b>SYS(3054,1)</b> to enable SQL ShowPlan.</p>
+        
+      </li><li>
+        
+          <p>Type your SQL SELECT statement. </p>
+          <p>For example, you might type:  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * FROM customer, orders ;
+AND Upper(country) = "MEXICO"</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>On the screen, read the execution plan. </p>
+          <p>For this example, the screen might display:  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Using Index Tag Country to optimize table customer
+Rushmore Optimization Level for table customer: Full
+Rushmore Optimization level for table orders: none</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>In the <b>Command</b> window, type <b>SYS(3054,0)</b> to turn off SQL ShowPlan.</p>
+        
+      </li></ol></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can then pass 11 to the SYS function to evaluate joins in the FROM or WHERE clauses.</p>
+      <h3 class="procedureSubHeading">To display the execution plan for joins</h3><div class="subSection"><ol><li>
+            
+              <p>In the <a href="/html/b6357e87-9f16-406c-832c-398bb2bcea87.htm">Command</a> window, type <b>SYS(3054,11)</b> to enable SQL ShowPlan.</p>
+            
+          </li><li>
+            
+              <p>Enter your SQL SELECT statement. </p>
+              <p>For example, you might type:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * ;
+FROM customer INNER JOIN orders ;
+   ON customer.cust_id = orders.cust_id ;
+WHERE Upper(country) = "MEXICO"</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>On the screen, read the execution plan. </p>
+              <p>For this example, the screen might display:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Using Index Tag Country to optimize table customer
+Rushmore Optimization Level for table customer: Full
+Rushmore Optimization level for table orders: none
+Joining table customer and table orders using Cust_id</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>In the <b>Command</b> window, type <b>SYS(3054,0)</b> to turn off SQL ShowPlan.</p>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Controlling Join Evaluation</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>If the execution plan for your joins does not match your specific needs, you can force your join order to execute exactly as written without optimization from the processor. </p>
+      <h3 class="procedureSubHeading">To force the evaluation order of the join</h3><div class="subSection"><ul><li>
+            
+              <p>Add the FORCE keyword and place your join conditions in the FROM clause.  </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>Note   Join conditions placed within the WHERE clause are not included in a forced join evaluation.</p>
+              </td></tr></table></div>
+            
+          </li></ul></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>You can't use the FORCE keyword in SQL pass-through statements or remote views because this keyword is a Visual FoxPro extension of the ANSI standard and is not supported in other SQL dictionaries. The FORCE clause is global and therefore applies to all tables in the JOIN clause. Be sure that the order in which the join tables appear is exactly the order in which they should be joined. You can also use parentheses to control the evaluation order of joins.</p>
+      </td></tr></table></div>
+      <p>In this example, the first join specified is also the first join evaluated. The Customer table is joined with the Orders table first. The result of that join is then joined with the <code>OrdItems</code> table:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * ;
+   FROM FORCE Customers ;
+   INNER JOIN Orders ;
+      ON Orders.Company_ID = Customers.Company_ID ;
+   INNER JOIN OrItems;
+      ON OrdItems.Order_NO = Orders.Order_NO </pre></td></tr></table></span></div>
+      <p>In this example, the join within the parentheses for the table <code>Orders</code> and <code>OrdItems</code> is evaluated first. The result of that join is then used in the evaluation of the join with <code>Customers</code>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * ;
+FROM FORCE Customers ;
+   INNER JOIN (orders INNER JOIN OrdItems ;
+      ON OrdItems.Order_No = Orders.Order_No) ;
+      ON Orders.Company_ID = Customers.Company_ID</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/68ec0ec7-121f-44df-ae68-deaf22ec7484.htm">How to: Set the Maximum Number of Records Downloaded</a></span><br /><span class="linkTerms"><a href="/html/515161b6-f2e8-423a-affa-8f87854b114a.htm">How to: Optimize View Performance</a></span><br /><span class="linkTerms"><a href="/html/f5b2d063-c8c2-4ada-bf3a-b599409cb41c.htm">How to: Create Queries (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/7a2c187e-f76a-4c89-a0bb-5899a04d558a.htm">How to: Share Connections for Multiple Remote Views</a></span><br /><span class="linkTerms"><a href="/html/231ec44b-c39b-4921-bfa8-6f702821f9f4.htm">How to: Test a Connection for Availability</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/400a0198-cac5-4abd-8e2d-79564a75742d.htm">SYS(3054) - Rushmore Query Optimization Level</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Optimize Filters and Joins">
+</OBJECT>

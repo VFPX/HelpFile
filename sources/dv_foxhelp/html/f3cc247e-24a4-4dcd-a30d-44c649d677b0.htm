@@ -1,0 +1,131 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Passing Parameters to Dynamic-Link Libraries</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Passing Parameters to Dynamic-Link Libraries</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you register a DLL function, you must specify the number and data types of its parameters. By default, data is passed by value. You can force a parameter to be passed by reference by including an at sign (@) in front of the parameter.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>In general, DLL functions follow the data type conventions used for C, which differ from those used in Visual FoxPro. For example, DLL functions do not support a data type for a date or for currency. If the data you're passing to a DLL function is in a data type not supported by the function, you must convert it to an appropriate type before passing it. For example, you can convert a date to a numeric Julian format using commands such as the following:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>cDate = sys(11, date())
+nDate = val( cDate )</pre></td></tr></table></span></div>
+      <p>Some DLL functions require more complex parameters, such as structures or arrays. If the function requires a pointer to a structure, you must determine the layout of the structure, then emulate it as a string in Visual FoxPro before passing it or receiving it from the DLL function. For example, the Windows system function GetSystemTime( ) expects a pointer to a structure consisting of eight words or unsigned 16-bit integers indicating the year, month, day, and so on. The structure is defined this way:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>typedef struct _SYSTEMTIME { 
+   WORD wYear ;
+   WORD wMonth ;
+   WORD wDayOfWeek ;
+   WORD wDay ;
+   WORD wHour ;
+   WORD wMinute ;
+   WORD wSecond ;
+   WORD wMilliseconds ;
+} SYSTEMTIME</pre></td></tr></table></span></div>
+      <p>To pass data between Visual FoxPro and the GetSystemTime( ) function, you must create a 40-byte string buffer (consisting initially of spaces) and then pass the address of this string to the function for it to fill in. When the string is returned, you must parse it in 2-byte increments to extract the individual fields of the structure. The following fragment illustrates how you could extract three of the fields from the structure:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DECLARE INTEGER GetSystemTime IN win32api STRING @
+cBuff=SPACE(40)
+=GetSystemTime(@cBuff)
+tYear = ALLTRIM(STR(ASC(SUBSTR(cBuff,2)) *  ; 
+   256 + ASC(SUBSTR(cBuff,1))))
+tMonth = ALLTRIM(STR(ASC(SUBSTR(cBuff,4)) * ; 
+   256 + ASC(SUBSTR(cBuff,3))))
+tDOW = ALLTRIM(STR(ASC(SUBSTR(cBuff,6)) * ; 
+   256 + ASC(SUBSTR(cBuff,5))))</pre></td></tr></table></span></div>
+      <p>For more information, you can examine the sample form Systime.scx in the Visual FoxPro ...\Samples\Solution\Winapi directory. For other examples of how to pass parameters to DLL functions, see the program Registry.prg in the Visual FoxPro ...\Samples\Classes directory.</p>
+      <p>If the data you're working with in Visual FoxPro is in an array, you must loop through the array and concatenate it into a single string representing a C-style array before passing it to the DLL function. If the Windows function expects 16-bit or 32-bit values, you must convert the values to their hex equivalents before concatenating them into string. When you pass the string containing the array data, Visual FoxPro passes the address of the string variable to the DLL, which can then manipulate it as an array. For an example of this, see the sample form Syscolor.scx in the Visual FoxPro ...\Samples\Solution\Winapi directory.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/ca0d55e0-9f98-428e-920d-4834546f53d5.htm">How to: Access Dynamic-Link Libraries</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/941bd4e8-58e8-4353-890d-91a96b8344c0.htm">Extending Visual FoxPro with External Libraries</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Passing Parameters to Dynamic-Link Libraries">
+</OBJECT>

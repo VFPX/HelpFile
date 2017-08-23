@@ -1,0 +1,279 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Specify a Builder Application with Builder.dbf</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Specify a Builder Application with Builder.dbf</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can use the Builder.dbf table to specify a builder application. Each record contains fields that represent the name of a builder, optionally, a description of the builder, and a field called Type that identifies the Class or Base Class property that invokes the custom builder. For instance, the Type entry for a <b>Command</b> <b>Button</b> is <i>Commandbutton</i> and the Type entry for the Autoformat builder is <i>Multiselect</i> because it runs against multiple selected controls.</p>
+    <p>The following table describes a BUILDER table record.</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Field Name
+          </th>
+          <th>
+            Field Type
+          </th>
+          <th>
+            Width (comment)
+          </th>
+        </tr><tr>
+        <td>
+          <p>NAME</p>
+        </td>
+        <td>
+          <p>Character</p>
+        </td>
+        <td>
+          <p>45 (Builder name)</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>DESCRIPT</p>
+        </td>
+        <td>
+          <p>Memo</p>
+        </td>
+        <td>
+          <p>4</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>BITMAP (unused)</p>
+        </td>
+        <td>
+          <p>Memo</p>
+        </td>
+        <td>
+          <p>4</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>TYPE</p>
+        </td>
+        <td>
+          <p>Character</p>
+        </td>
+        <td>
+          <p>20</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>PROGRAM</p>
+        </td>
+        <td>
+          <p>Memo</p>
+        </td>
+        <td>
+          <p>4 (Builder application)</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>CLASSLIB</p>
+        </td>
+        <td>
+          <p>Memo</p>
+        </td>
+        <td>
+          <p>4 (Class Library name)</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>CLASSNAME</p>
+        </td>
+        <td>
+          <p>Memo</p>
+        </td>
+        <td>
+          <p>4 (Builder Class)</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>PARMS</p>
+        </td>
+        <td>
+          <p>Memo</p>
+        </td>
+        <td>
+          <p>4 (passed parameter list)</p>
+        </td>
+      </tr></table></div>
+    <p>The named builder application compares the value in the Type field and the Class of the object and starts if there is a match. If more than one match is found, a selection dialog displays.</p>
+    <p>By default, the Builder.app application passes three parameters, listed in the PARMS field of Builder.dbf, to a builder program:</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            PARMS Entry
+          </th>
+          <th>
+            Description
+          </th>
+        </tr><tr>
+        <td>
+          <p>wbReturnValue</p>
+        </td>
+        <td>
+          <p>Variable containing a value to be returned to the Builder.app.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>&lt;character string&gt;</p>
+        </td>
+        <td>
+          <p>A literal string to pass to Register table.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>&lt;optional value&gt;</p>
+        </td>
+        <td>
+          <p>A keyword or other value to pass to Builder.app</p>
+        </td>
+      </tr></table></div>
+  <h3 class="procedureSubHeading">To create a custom builder</h3><div class="subSection"><ol><li>
+        
+          <p>Write an application that provides an interface and modifies the selected control or controls.</p>
+        
+      </li><li>
+        
+          <p>Save the application in the Wizards folder.</p>
+        
+      </li><li>
+        
+          <p>Open the Builders.dbf table and append a new record.</p>
+        
+      </li><li>
+        
+          <p>Enter values for the Name, Descript, Type, and Program fields. </p>
+          <p>If your custom builder uses additional values, you can also enter values for the remaining fields. </p>
+        
+      </li></ol>
+      
+        <p>After you complete all entries and close the Browse, the new builder is registered. For example, if you create a program that changes the fonts of selected controls, then save the program in a file called Chgfont.prg, the following table shows the entries for Builder.dbf.</p>
+        <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value
+              </th>
+            </tr><tr>
+            <td>
+              <p>NAME</p>
+            </td>
+            <td>
+              <p>The Builder That Changes Fonts</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>DESCRIPT</p>
+            </td>
+            <td>
+              <p>This builder modifies the font of all selected controls</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>TYPE</p>
+            </td>
+            <td>
+              <p>MULTISELECT</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>PROGRAM</p>
+            </td>
+            <td>
+              <p>Chgfont.prg</p>
+            </td>
+          </tr></table></div>
+        <p>When you use the builder, Visual FoxPro displays the Builder Selection dialog box because there are now two builders of the Multiselect type. When you choose The Builder that Changes Fonts , Builder.app runs the program you saved as Chgfont.prg.</p>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/8933ae2d-5da1-4d87-9986-551750596e7b.htm">AutoFormat Builder</a></span><br /><span class="linkTerms"><a href="/html/debe2849-5b26-42ff-a9de-7208a9965ef8.htm">How to: Use Builders</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/712ebab2-3807-4896-b32d-5f0116dfa7f1.htm">_BUILDER System Variable</a></span><br /><span class="linkTerms"><a href="/html/8d310495-b488-4aa1-abf0-1b0b622ddfd2.htm">Application Builder</a></span><br /><span class="linkTerms"><a href="/html/e65a4990-0b8d-479b-94ad-55afef7b6a2c.htm">Combo Box Builder</a></span><br /><span class="linkTerms"><a href="/html/493c48ce-fc5a-43fe-83c3-44702a63c8bf.htm">Command Group Builder</a></span><br /><span class="linkTerms"><a href="/html/5be47247-0ca5-4cee-9fee-79f7e3be8487.htm">Edit Box Builder</a></span><br /><span class="linkTerms"><a href="/html/7b062458-9810-43b3-aadb-96ec302151fb.htm">Form Builder</a></span><br /><span class="linkTerms"><a href="/html/bf9f6727-ee0e-42c2-9ae5-e8902f435bb6.htm">Grid Builder</a></span><br /><span class="linkTerms"><a href="/html/329da130-0c22-4e5c-bc03-08f1037bae65.htm">List Box Builder</a></span><br /><span class="linkTerms"><a href="/html/6920443b-c32b-44f3-993a-64727e243660.htm">Option Group Builder</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/38009e5d-e0a5-46ac-86b3-8cff132aec15.htm">Creating Applications with the Application Framework</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Specify a Builder Application with Builder.dbf">
+</OBJECT>

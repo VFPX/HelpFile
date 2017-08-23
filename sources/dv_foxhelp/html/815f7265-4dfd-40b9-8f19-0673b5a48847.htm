@@ -1,0 +1,261 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SELECT - SQL Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SELECT - SQL Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Retrieves data from one or more tables. When you use SQL SELECT to create a query, Visual FoxPro parses the query and retrieves the specified data from the tables. You can create a SQL SELECT query from the Command window, in a Visual FoxPro program, or using the Query Designer. Please review the <span class="linkTerms"><a href="/html/822ef7c0-0c8e-43b8-ba98-5a4246a94c59.htm">Considerations for SQL SELECT Statements</a></span> help topic for more information on using SQL SELECT.</p>
+    <p>The full syntax for the SQL SELECT command appears as follows:</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SELECT [ALL | DISTINCT] [TOP <span class="parameter">nExpr</span> [PERCENT]] <span class="parameter">Select_List_Item</span> [, <span class="parameter">...</span>]
+   FROM [FORCE] <span class="parameter">Table_List_Item</span> [, ...]
+      [[<span class="parameter">JoinType</span>] JOIN <span class="parameter">DatabaseName</span>!]<span class="parameter">Table </span>[[AS] <span class="parameter">Local_Alias</span>]
+      [ON <span class="parameter">JoinCondition</span> [AND | OR [<span class="parameter">JoinCondition</span> | <span class="parameter">FilterCondition</span>] ...] 
+   [WITH (BUFFERING = lExpr)]
+   [WHERE <span class="parameter">JoinCondition</span> | <span class="parameter">FilterCondition</span> [AND | OR <span class="parameter">JoinCondition</span> | <span class="parameter">FilterCondition</span>] ...]
+   [GROUP BY <span class="parameter">Column_List_Item</span> [, ...]] [HAVING <span class="parameter">FilterCondition</span> [AND | OR ...]]
+   [UNION [ALL] <span class="parameter">SELECTCommand</span>]
+   [ORDER BY <span class="parameter">Order_Item</span> [ASC | DESC] [, ...]]
+   [INTO <span class="parameter">StorageDestination</span> | TO <span class="parameter">DisplayDestination</span>]
+   [PREFERENCE <span class="parameter">PreferenceName</span>] [NOCONSOLE] [PLAIN] [NOWAIT]</pre></td></tr></table></span></div></div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The following code shows a summary of the main clauses:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT Select_List
+   FROM Table_List
+   [WITH (BUFFERING = lExpr)]
+   [WHERE Conditions]
+   [GROUP BY Column_List]
+   [UNION Clause]
+   [HAVING Conditions]
+   [ORDER BY Column_List]
+   [INTO Clause | TO Clause ] 
+   [Additional_Display_Options]</pre></td></tr></table></span></div>
+      <p>The following sections describe the detailed syntax and parameters for each clause of the SQL SELECT command:   </p>
+      <ul><li>
+          <p>
+            <span class="linkTerms"><a href="/html/8a629568-55b2-43df-b0e9-8e9f8f527c2f.htm">SELECT - SQL Command - SELECT Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/4c5507da-5215-4dbe-94d0-3a8e67e17a54.htm">SELECT - SQL Command - FROM Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/479afb59-2d67-41f6-8c6f-0d7f5f77cae5.htm">SELECT - SQL Command - WITH Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/23db93e0-c5ca-4be9-9cf5-05db3876f027.htm">SELECT - SQL Command - WHERE Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/8697bcbd-4606-4f43-91c3-892358d85e9d.htm">SELECT - SQL Command - GROUP BY Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/3282aa2c-9b64-4344-9d0d-ce996881c719.htm">SELECT - SQL Command - HAVING Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/73aa552d-84f7-4c01-a58a-1ca40880e6b3.htm">SELECT - SQL Command - UNION Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/54357719-862f-4072-ba9a-f93eabd96873.htm">SELECT - SQL Command - ORDER BY Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/c3875b75-5dc5-4eff-b33f-25b8686301ad.htm">SELECT - SQL Command - INTO or TO Clause</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/acd4f7e8-8dd3-44c1-b9d0-08e143f8ea74.htm">SELECT - SQL Command - Additional Display Options</a></span>
+          </p>
+        </li></ul>
+      <p>When you issue SET TALK ON and SET NOTIFY ON before executing SELECT, Visual FoxPro displays the length of time the query took to execute and the number of records in the results. _TALLY contains the number of records in the query results. For more information, see <span class="linkTerms"><a href="/html/9049d9e4-9174-4ea3-8980-3171c48f6f9f.htm">SET TALK Command</a></span>, <span class="linkTerms"><a href="/html/9f2a60c5-1728-4093-8e78-b2b67b10aeda.htm">SET NOTIFY Command</a></span>, and <span class="linkTerms"><a href="/html/81e37e7a-1e31-4e4e-9ec8-c77593f1499e.htm">_TALLY System Variable</a></span>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The length of time might not display if the query execution time is very short.</p>
+      </td></tr></table></div>
+      <p>SELECT does not respect the current filter condition specified with SET FILTER. For more information, see <span class="linkTerms"><a href="/html/b1f6cce2-4c60-41b0-88e8-60d6cabb7068.htm">SET FILTER Command</a></span>.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Examples</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>The following code examples show many ways of retrieving data with the SQL SELECT command and use the sample TestData.dbc database included in Visual FoxPro.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Example 1</h3><div class="subSection" xmlns="">
+          <p>The following example displays data from field in a table using the FROM clause. The example displays all the company names in the Company field from the Customer table:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT customer.company ;
+   FROM customer</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 2</h3><div class="subSection" xmlns="">
+          <p>The following example displays all records from a query in a specified column using the AS <span class="parameter">Column_Name</span> clause. The example displays all names in the City field from the Customer table in uppercase using the UPPER( ) function and in column called CityList.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT UPPER(city) AS CityList FROM customer</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 3</h3><div class="subSection" xmlns="">
+          <p>The following example displays unique data from a query using the DISTINCT option with a join condition in the WHERE clause. The example displays the Company, Order_Date, and Shipped_On fields for only those records with unique data in the Customer and Orders tables. The SELECT statement specifies local aliases for the tables to distinguish the same field name, Cust_ID, in both tables.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT DISTINCT TAlias1.company, TAlias2.order_date, ;
+   TAlias2.shipped_on ;
+   FROM customer TAlias1, orders TAlias2 ;
+   WHERE TAlias1.cust_id = TAlias2.cust_id</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 4</h3><div class="subSection" xmlns="">
+          <p>The following example displays three fields from two tables, but only those records meeting join and filter conditions in the WHERE clause. The example joins the Customer and Orders table on the Cust_ID field and displays the Company, Order_Date, and Shipped_On fields for only those records that have an order date earlier than 02/16/1994. The SELECT statement specifies local aliases for the tables to distinguish the same field name, Cust_ID, in both tables.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT TAlias1.company, TAlias2.order_date, TAlias2.shipped_on ;
+   FROM customer TAlias1, orders TAlias2 ;
+   WHERE TAlias1.cust_id = TAlias2.cust_id ;
+   AND TAlias2.order_date &lt; {^1994-02-16}</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 5</h3><div class="subSection" xmlns="">
+          <p>The following example organizes results of a query using the ORDER BY <span class="parameter">Order_Item</span> clause. The example displays the Country, PostalCode, and Company fields for those records in the Customer table in ascending order, by default.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT country, postalcode, company ;
+   FROM customer ;
+   ORDER BY country, postalcode, company</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 6</h3><div class="subSection" xmlns="">
+          <p>The following example stores the contents of a query into a table using INTO TABLE <span class="parameter">TableName</span> clause. The example stores the contents of the Company, Order_Date, and Shipped_On fields from the Customer and Order tables, which are joined on the Cust_ID field, in a third table called CustShip. The example then opens a Browse window for the new table. The SELECT statement specifies local aliases for the tables to distinguish the same field name, Cust_ID, in both tables.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT TAlias1.company, TAlias2.order_date, TAlias2.shipped_on ;
+   FROM customer TAlias1, orders TAlias2 ;
+   WHERE TAlias1.cust_id = TAlias2.cust_id ;
+   INTO TABLE custship.dbf
+BROWSE</pre></td></tr></table></span></div>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/af6dbad4-9e4b-4343-abc7-fab66044f6e6.htm">CREATE QUERY Command</a></span><br /><span class="linkTerms"><a href="/html/b14e5d95-5b1c-4cfa-a5ac-4093ea6211e0.htm">CREATE TABLE - SQL Command</a></span><br /><span class="linkTerms"><a href="/html/e50de98c-0375-492c-a432-e667a1711b11.htm">MODIFY QUERY Command</a></span><br /><span class="linkTerms"><a href="/html/23b309b9-92ce-410c-9dd1-227c7f59c047.htm">SET ENGINEBEHAVIOR Command</a></span><br /><span class="linkTerms"><a href="/html/400a0198-cac5-4abd-8e2d-79564a75742d.htm">SYS(3054) - Rushmore Query Optimization Level</a></span><br /><span class="linkTerms"><a href="/html/2d3d72ca-6dc3-49db-8b45-ffed10eaaa90.htm">SYS(3099) - SQL Data Engine Compatibility Mode</a></span><br /><span class="linkTerms"><a href="/html/a04f4bf9-31a9-425f-b4cd-161fa29b67ce.htm">Filter Conditions for Queries and Views</a></span><br /><span class="linkTerms"><a href="/html/822ef7c0-0c8e-43b8-ba98-5a4246a94c59.htm">Considerations for SQL SELECT Statements</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/6dd78277-4a9d-4482-8ea5-42c0db850d99.htm">Join Conditions for Tables, Queries, and Views</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ccb3a0ad-7fe4-4267-ba42-aa9918ed1f21.htm">Working with Queries</a></span><br /><span class="linkTerms"><a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/d9f7a435-663d-4523-9511-c847be4311ca.htm">Query and View Designers</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SELECT - SQL Command">
+<param name="ALink Name" value="SELECT">
+</OBJECT>

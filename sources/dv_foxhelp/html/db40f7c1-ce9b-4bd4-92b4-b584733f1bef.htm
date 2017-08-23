@@ -1,0 +1,373 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>ASORT( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">ASORT( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Sorts elements in an array in ascending or descending order.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+ASORT(<span class="parameter">ArrayName</span> [, <span class="parameter">nStartElement</span> [, <span class="parameter">nNumberSorted</span> [, <span class="parameter">nSortOrder </span>[, <span class="parameter">nFlags</span>]]])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">ArrayName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the array to sort.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nStartElement</span>
+        </span></dt><dd>
+          <p>Specifies the starting element of the sort. If you omit <span class="parameter">nStartElement</span>, the array is sorted starting with the first array element by default. If the array is one-dimensional, the sort includes <span class="parameter">nStartElement</span>. If the array is two-dimensional, the starting element <span class="parameter">nStartElement</span> determines both the row where the sort begins and the column that determines the sort order of the rows.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You can refer to an element in a two-dimensional array in one of two ways. The first method uses two subscripts to specify the row and column position of the element in the array; the other method uses an element number. This function and others that manipulate two-dimensional arrays require element numbers (in ASORT() the numeric expressions <span class="parameter">nStartElement</span> and <span class="parameter">nNumberSorted</span>). You can use AELEMENT( ) to return the element number from row and column subscripts in a two-dimensional array.</p>
+          </td></tr></table></div>
+          <p>The following example illustrates that the starting element <span class="parameter">nStartElement</span> determines how the rows in a two-dimensional array are sorted. A small array named <code>gaArray</code> is created and sorted twice. The first sort begins with the first element of <code>gaArray</code>; the rows are sorted based on the values contained in the first column of the array. The second sort begins with the fourth element of <code>gaArray</code>; the rows are sorted based on the values contained in the second column.   </p>
+          <p>The first sort begins with the first row. The second sort begins with the second row. You can use DISPLAY MEMORY to display the contents of the array; in these examples tables are used to graphically display the results of the sorts.   </p>
+          <p>These commands create the array named <code>gaArray</code>:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DIMENSION gaArray(3,2)
+gaArray(1) = 'G'
+gaArray(2) = 'A'
+gaArray(3) = 'C'
+gaArray(4) = 'Z'
+gaArray(5) = 'B'
+gaArray(6) = 'N'</pre></td></tr></table></span></div>
+          <p>
+            <code>gaArray</code> looks like this:   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                   
+                </th>
+                <th>
+                  Column 1
+                </th>
+                <th>
+                  Column 2
+                </th>
+              </tr><tr>
+              <td>
+                <p>Row 1</p>
+              </td>
+              <td>
+                <p>G</p>
+              </td>
+              <td>
+                <p>A</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Row 2</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>Z</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Row 3</p>
+              </td>
+              <td>
+                <p>B</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+            </tr></table></div>
+          <p>The array is then sorted by ASORT( ) starting with the first element (1,1) in the array. The elements in the first column are placed in ascending order by rearranging the rows of the array.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>=ASORT(gaArray,1)</pre></td></tr></table></span></div>
+          <p>Note the new order of the rows:   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                   
+                </th>
+                <th>
+                  Column 1
+                </th>
+                <th>
+                  Column 2
+                </th>
+              </tr><tr>
+              <td>
+                <p>Row 1</p>
+              </td>
+              <td>
+                <p>B</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Row 2</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>Z</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Row 3</p>
+              </td>
+              <td>
+                <p>G</p>
+              </td>
+              <td>
+                <p>A</p>
+              </td>
+            </tr></table></div>
+          <p>The array is then sorted starting with the fourth element (2,2) in the array. The elements in the second column are placed in order by rearranging the array rows.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>=ASORT(gaArray,4)</pre></td></tr></table></span></div>
+          <p>Note the difference in the order of the rows:   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                   
+                </th>
+                <th>
+                  Column 1
+                </th>
+                <th>
+                  Column 2
+                </th>
+              </tr><tr>
+              <td>
+                <p>Row 1</p>
+              </td>
+              <td>
+                <p>B</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Row 2</p>
+              </td>
+              <td>
+                <p>G</p>
+              </td>
+              <td>
+                <p>A</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Row 3</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>Z</p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nNumberSorted</span>
+        </span></dt><dd>
+          <p>Specifies the number of elements that are sorted in a one-dimensional array, or the number of rows that are sorted in a two-dimensional array. For example, if the array is one-dimensional and <span class="parameter">nStartElement</span> is 2, indicating that the sort starts with the second array element, and <span class="parameter">nNumberSorted</span> is 3, indicating that the sort should include three elements, the second, third and fourth array elements are sorted. If <span class="parameter">nNumberSorted</span> is –1 or is omitted, all array elements from the starting element <span class="parameter">nStartElement</span> through the last element in the array are sorted.</p>
+          <p>If the array is two-dimensional, <span class="parameter">nNumberSorted</span> designates the number of rows to sort, beginning with the row containing the starting element <span class="parameter">nStartElement</span>. For example, if <span class="parameter">nStartElement</span> is 2 and <span class="parameter">nNumberSorted</span> is 3, the row containing the second array element and the following two rows are sorted. If <span class="parameter">nNumberSorted</span> is –1 or is omitted, all array rows beginning with the row containing the starting element <span class="parameter">nStartElement</span> through the last array row are sorted. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nSort</span>
+          <i>Order</i>
+        </span></dt><dd>
+          <p>Specifies the sort order (ascending or descending) for the elements in the array. By default, array elements are sorted in ascending order. If <span class="parameter">nSortOrder</span> is 0 or is omitted, the array elements are sorted in ascending order. If <span class="parameter">nSortOrder</span> is any positive value, the array elements are sorted in descending order.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nFlags</span>
+        </span></dt><dd>
+          <p>Specifies case-sensitive search criteria to apply to the sort function. Valid values are 0 (the default) and 1. ASORT( ) uses the current collate sequence (see <span class="linkTerms"><a href="/html/77f8984a-1abf-4efc-b63f-bd1700a34c97.htm">SET COLLATE Command</a></span>) to determine the sort order. Certain collate sequences (such as "GENERAL") are not case-sensitive, and specifying <span class="parameter">nFlags</span> = 0 will not cause a case-sensitive sorting. </p>
+          <p>The <span class="parameter">nFlags</span> parameter is only useful when the current collate sequence is case-sensitive (such as "MACHINE"), and you wish to do a non-case-sensitive sort.   </p>
+          <p>The number you specify in <span class="parameter">nFlags</span> provides a bit-value that determines the case sensitivity of a sort according to the following table:   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nFlag</span>
+                  
+                </th>
+                <th>
+                  Bit
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>000</p>
+              </td>
+              <td>
+                <p>Case-sensitive sort</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>001</p>
+              </td>
+              <td>
+                <p>Case insensitive sort</p>
+              </td>
+            </tr></table></div>
+        </dd></dl>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If you specify <span class="parameter">nFlags</span>, you can omit the other parameters by passing them in as -1.</p>
+      </td></tr></table></div>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Numeric</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>All elements included in the sort must be of the same data type. One-dimensional arrays are sorted by their elements; two-dimensional arrays are sorted by their rows. When a two-dimensional array is sorted, the order of the rows in the array is changed so that the elements in a column of the array are in ascending or descending order.</p>
+      <p>If the sort is successful, 1 is returned; otherwise –1 is returned.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example copies the <code>contact</code> field from the <code>customer</code> table to an array named <code>gaContact</code>. The first 20 contacts in the array are displayed, the array is sorted, and the contacts are displayed again in sorted order.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\testdata')
+USE Customer  &amp;&amp; Open customer table
+COUNT TO gnCount  &amp;&amp; Number of contacts
+DIMENSION gaContact(gnCount,1)  &amp;&amp; Create a contact array
+COPY TO ARRAY gaContact FIELD contact     &amp;&amp; Fill the array
+CLEAR
+? 'Contact names:'
+?
+FOR nCount = 1 TO 20
+   ? gaContact(nCount)  &amp;&amp; Display first 20 contacts
+ENDFOR
+= ASORT(gaContact)     &amp;&amp; Sort the array
+?
+? 'Sorted Contact names:'
+?
+FOR nCount = 1 TO 20
+   ? gaContact(nCount)  &amp;&amp; Display first 20 contacts, sorted
+ENDFOR</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/4cfd7044-d4e6-46ee-a6f0-98b5c8d8ffca.htm">ACOPY( ) Function</a></span><br /><span class="linkTerms"><a href="/html/281f8451-8f91-4ea4-a750-b6484cb4c148.htm">ADEL( ) Function</a></span><br /><span class="linkTerms"><a href="/html/77958569-651d-46c5-86e3-935dc7ec6486.htm">ADIR( ) Function</a></span><br /><span class="linkTerms"><a href="/html/8593614e-fdfa-46da-bae8-ea7e85e3c412.htm">AELEMENT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/c576b477-4cf5-4ad4-a115-6963867dd548.htm">AFIELDS( ) Function</a></span><br /><span class="linkTerms"><a href="/html/58867a98-4899-4436-abae-6ee6a07c7a52.htm">AINS( ) Function</a></span><br /><span class="linkTerms"><a href="/html/8496659e-83b9-4e08-847b-f93b1e791ee5.htm">ALEN( ) Function</a></span><br /><span class="linkTerms"><a href="/html/169b2160-e94f-4a49-a05e-dd235d8e70ca.htm">ASCAN( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="ASORT( ) Function">
+<param name="ALink Name" value="ASORT">
+</OBJECT>

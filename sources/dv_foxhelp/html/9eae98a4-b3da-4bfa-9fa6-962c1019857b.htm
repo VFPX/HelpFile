@@ -1,0 +1,168 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>WAIT Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">WAIT Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Displays a message and pauses Visual FoxPro execution until the user presses a key or clicks the mouse.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+WAIT [<span class="parameter">cMessageText</span>] [TO <span class="parameter">VarName</span>] [WINDOW [AT <span class="parameter">nRow</span>, <span class="parameter">nColumn</span>]] [NOWAIT]
+   [CLEAR | NOCLEAR] [TIMEOUT <span class="parameter">nSeconds</span>]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cMessageText</span>
+        </span></dt><dd>
+          <p>Specifies a custom message to display. You can specify any valid Visual FoxPro function, object, or data type instead of <span class="parameter">cMessageText</span>. If you omit <span class="parameter">cMessageText</span>, Visual FoxPro displays the default message. If <span class="parameter">cMessageText</span> is an empty string (""), Visual FoxPro does not display a message and waits until a key is pressed before continuing program execution. </p>
+          <p>The length of <span class="parameter">cMessageText</span> can be up to 255 characters.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Visual FoxPro converts object references to the string, "(Object)". If the function you specify evaluates to a noncharacter value, Visual FoxPro automatically uses the <b>TRANSFORM( )</b> function to provide the character equivalent. In the following example, a character type date is returned and passed to <b>WAIT WINDOW</b>:</p>
+          </td></tr></table></div>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>WAIT DATE() WINDOW AT 20,20 TIMEOUT 10</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TO <span class="parameter">VarName</span></span></dt><dd>
+          <p>Saves the key pressed to a variable or an array element. </p>
+          <p>If the variable or an array element you specify with <span class="parameter">VarName</span> does not exist, it is created. The empty string is stored in <span class="parameter">VarName</span> if you press ENTER or a nonprintable key or key combination, or click the mouse. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WINDOW </span></dt><dd>
+          <p>Displays the message in a system message window located in the upper-right corner of the main Visual FoxPro window. The window can be temporarily hidden by pressing the CTRL or SHIFT key.</p>
+          <p>Beginning with Visual FoxPro 7, core font attributes including font name, font size and font style are derived from the font characteristics specified in the Appearance tab of the Windows Display Control Panel. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">AT <span class="parameter">nRow</span>, <span class="parameter">nColumn</span></span></dt><dd>
+          <p>In Visual FoxPro, specifies the position of the message window on the screen.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOWAIT </span></dt><dd>
+          <p>Continues program execution immediately after the message is displayed. </p>
+          <p>The program does not wait for the message to be removed from the main Visual FoxPro window, but continues executing on the program line immediately following the program line containing WAIT NOWAIT.    </p>
+          <p>If you omit NOWAIT, program execution pauses until the message is removed from the main Visual FoxPro window by pressing a key or clicking the mouse. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CLEAR </span></dt><dd>
+          <p>Removes a Visual FoxPro system window or a WAIT message window from the main Visual FoxPro window from within a program. </p>
+          <p>For example, talk from indexing, sorting, and so on is directed to a Visual FoxPro system window if you issue SET TALK WINDOW. The window can be removed interactively if you press a key or move the mouse. Issue WAIT CLEAR to remove the window from within a program. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOCLEAR </span></dt><dd>
+          <p>Specifies that a WAIT message window remains on the main Visual FoxPro window until WAIT CLEAR or another WAIT WINDOW command is issued, or a Visual FoxPro system message is displayed.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TIMEOUT <span class="parameter">nSeconds</span></span></dt><dd>
+          <p>Specifies the number of seconds that can elapse without input from the keyboard or the mouse before the WAIT is terminated. <span class="parameter">nSeconds</span> specifies the number seconds, the fractional seconds that are permitted, that elapse. If TIMEOUT is not the last clause in WAIT, Visual FoxPro generates a syntax error message.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>If a WAIT message is displayed in Visual FoxPro for Windows, pressing the SHIFT or CTRL keys hides all windows including the WAIT message.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/a13cde28-affa-4bec-96ab-a4370da9b3b6.htm">TRANSFORM( ) Function</a></span><br /><span class="linkTerms"><a href="/html/e8428e66-02be-4822-b8c2-26ffffdc030d.htm">ACCEPT Command</a></span><br /><span class="linkTerms"><a href="/html/b89737d7-7dac-455e-9088-fa0ec6c93b98.htm">CLEAR Commands</a></span><br /><span class="linkTerms"><a href="/html/0d34633b-585f-4443-b788-eb7db5aa59b3.htm">ReadTimeout Property</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="WAIT Command">
+<param name="ALink Name" value="WAIT">
+</OBJECT>

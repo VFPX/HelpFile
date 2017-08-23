@@ -1,0 +1,138 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Call Procedures and Functions</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Call Procedures and Functions</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can call native Visual FoxPro functions, user-defined functions, and procedures in different ways. In addition, you can call user-defined functions (UDFs) the same way you call procedures. You can call procedures that you create in a program (.prg) file as if they were standalone programs or as functions if your procedures return values you want to use.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>If you include procedures and user-defined functions in a separate program (.prg) file, you can open those files using the <b>SET PROCEDUR</b>E command. For example, suppose you have a file called ProcFile.prg. The following line of code opens the file:</p>
+    </td></tr></table></div>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET PROCEDURE TO ProcFile.prg</pre></td></tr></table></span></div>
+  <h3 class="procedureSubHeading">To call a Visual FoxPro or user-defined function</h3><div class="subSection"><ul><li>
+        
+          <p>Call the function without storing the return value. </p>
+          <p>-OR-  </p>
+        
+      </li><li>
+        
+          <p>Call the function and assign the return value to a variable.</p>
+          <p>-OR-  </p>
+        
+      </li><li>
+        
+          <p>Include the function call within another command or function.</p>
+        
+      </li></ul>
+      
+        <p>Some functions also accept data as arguments that are passed from the calling program. For more information, see <span class="linkTerms"><a href="/html/9937ae10-df44-461f-a7db-64ba43000ca6.htm">Passing Data to Parameters</a></span> and <span class="linkTerms"><a href="/html/6ac4f04d-e703-4950-97d7-5abeac62e50a.htm">Parameters in Procedures and Functions</a></span>. </p>
+      
+    </div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>In the following example, the first line of code calls the <b>DATE( )</b> function, which returns the current system date, without performing any operations with the return value. The second line of code stores the return value to a variable named <code>dToday</code>. The third line of code includes the function in another command and sends the return value to the currently active output window. The fourth line of code includes the function in another function and passes the return value to the outer function, which returns the day of the week.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DATE( )
+dToday = DATE( )
+? DATE( )
+DOW(DATE( ))</pre></td></tr></table></span></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/276a7534-30de-47af-a0f7-99ac7bebcc4a.htm">Returning Data from Procedures and Functions</a></span>.</p>
+      <h3 class="procedureSubHeading">To call a procedure</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <b>DO</b> command followed by the procedure name.</p>
+            
+          </li></ul></div>
+      <p>In the following example, the <b>DO</b> command calls procedures named myProc1 and myProc2. The first line of code calls myProc1 without arguments. The second line of code includes the <b>WITH</b> clause in the <b>DO</b> command to pass a list of arguments to myProc2.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO myProc1
+var1=4
+var2=5
+DO myProc2 WITH (var1, var2)</pre></td></tr></table></span></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/c4dda428-55f2-4610-9d0f-bccc53023a41.htm">DO Command</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/864b609a-6e86-41d8-a04f-ccb1da701f7a.htm">How to: Create Procedures and Functions</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/f8dde7e9-6ba8-4f65-a797-8cbbcde1f89d.htm">User-Defined Procedures and Functions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/a6d6b28b-6366-406f-a7ea-3df9d870a770.htm">Working with Procedures and Functions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Call Procedures and Functions">
+</OBJECT>

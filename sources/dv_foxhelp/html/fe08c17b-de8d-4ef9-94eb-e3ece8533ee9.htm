@@ -1,0 +1,161 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Use Grid Objects</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Use Grid Objects</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The grid is a container object. Just as a form set can contain forms, a grid can contain columns. In addition, the columns contain headers and controls, each with their own sets of properties, events, and methods, giving you a great deal of control over the elements of the grid.</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Container
+          </th>
+          <th>
+            Can contain
+          </th>
+        </tr><tr>
+        <td>
+          <p>Grid</p>
+        </td>
+        <td>
+          <p>Columns</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Column</p>
+        </td>
+        <td>
+          <p>Headers, controls</p>
+        </td>
+      </tr></table></div>
+    <p>The Grid object makes it possible for you to present and manipulate rows and columns of data in a form or page. A particularly useful application of the Grid control is creating one-to-many forms, such as an invoice form.</p>
+  <h3 class="procedureSubHeading">To add a Grid control to a form</h3><div class="subSection"><ul><li>
+        
+          <p>In the <b>Form Controls</b> toolbar, choose the <b>Grid</b> button and drag to size in the <b>Form</b> window.</p>
+        
+      </li></ul></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>If you do not specify a <a href="/html/35fc073a-6840-4046-aa72-90f3c69b7f1e.htm">RecordSource</a> value for the grid and there is a table open in the current work area, the grid will display all the fields in that table.</p>
+      <p>By default, a grid control is created when you drag a table onto a form. </p>
+      <h3 class="procedureSubHeading">To create a grid control</h3><div class="subSection"><ul><li>
+            
+              <p>Choose any table in the <b>Data Environment</b>, <span class="linkTerms"><a href="/html/316676c8-1232-4756-b385-fa7af6528835.htm">Database Designer (Visual FoxPro)</a></span>, or <span class="linkTerms"><a href="/html/93e1d13b-c029-47eb-b140-c119ff44f10d.htm">Project Manager Window</a></span> and drag it onto a form.</p>
+            
+          </li></ul></div>
+      <p>You can override the default and create multiple controls corresponding to the default field type mappings specified for each field in the table. For more information, see <span class="linkTerms"><a href="/html/d6eb451b-e277-401c-bb8f-5669acf4ddc8.htm">How to: Create Controls by Dragging and Dropping Fields or Tables</a></span>. </p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Setting the Number of Columns in a Grid</h3><div class="subSection" xmlns="">
+          <p>One of the first properties you might want to set for the Grid control is the number of columns.</p>
+          <h3 class="procedureSubHeading">To set the number of columns in a grid</h3><div class="subSection"><ol><li>
+                
+                  <p>Select the ColumnCount property in the <b>Property and Methods</b> list.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>Property</b> box, type the number of columns you want.</p>
+                
+              </li></ol></div>
+          <p>If the ColumnCount property is set to - 1 (the default), the grid will contain, at run time, as many columns as there are fields in the table associated with the grid.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Adding Records to a Grid</h3><div class="subSection" xmlns="">
+          <p>You can make it possible for users to add new records to a table displayed in a grid by setting the <span class="linkTerms"><a href="/html/c2e5412b-34f1-44f7-8d64-9d6e20be67aa.htm">AllowAddNew Property</a></span> of the grid to true (.T.). When the AllowAddNew property is set to true, new records are added to the table when the last record is selected and the user presses the DOWN ARROW key.</p>
+          <p>If you want more control over when a user adds new records to a table, you can set the AllowAddNew property to false (.F.), the default, and use the <a href="/html/7210015f-dc18-451e-97d7-c1c3b86d5a2a.htm">APPEND BLANK</a> or <a href="/html/9f33867b-fcdd-49ec-b71f-962affad7f9e.htm">INSERT</a> commands to add new records.</p>
+          <h3 class="procedureSubHeading">To see examples of using grids</h3><div class="subSection"><ol><li>
+                
+                  <p>Run <b>Solution.app</b> in the Visual FoxPro ...\Samples\Solution directory.</p>
+                
+              </li><li>
+                
+                  <p>In the tree view, click <b>Controls</b>, and then click <b>Grid</b>.</p>
+                
+              </li></ol></div>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/88dda8bc-f9f4-476c-9e1a-26bee1279be2.htm">How to: Enhance Control Display</a></span><br /><span class="linkTerms"><a href="/html/0bf609ef-f60a-4f31-979c-7cd785a8d6bf.htm">How to: Manually Adjust Grid Display at Design Time</a></span><br /><span class="linkTerms"><a href="/html/b9edda51-8c48-454d-89b3-faf8507041b1.htm">How to: Set the Source of the Data Displayed in the Grid</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/777f75d2-36a1-43b7-bad1-7c311a0f262b.htm">Controls for Manipulating Rows of Data</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/01335609-6ab7-43d7-9074-2e1c0c81f0d1.htm">Formatting Grids</a></span><br /><span class="linkTerms"><a href="/html/119e15f3-d59f-4ebc-8b75-98d1d4fbbdad.htm">Controls and Objects Created in Earlier Versions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b9032965-6941-41d2-8ff9-87c609673907.htm">Using Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Use Grid Objects">
+</OBJECT>

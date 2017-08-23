@@ -1,0 +1,175 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Move Items Between List Boxes Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Move Items Between List Boxes Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File:</b> ...\Samples\Solution\Controls\Lists\Lmover.scx</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>This sample demonstrates moving items from one list box to another. A user can double-click one item to move it, select one or more items and drag them, or use the appropriate command buttons to move the items between the lists.</p>
+      <p>The two list boxes and four associated command buttons are saved as a class: MoverLists in Samples.vcx. The base class of MoverLists is CONTAINER. To be able to add and remove items from lists, the RowSourceType of the lists must be set to 0 – None. If you want to fill the list box with array elements or values from a table, you can use code like the following:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*array
+FOR i = 1 to ALEN(myarray)
+   List.AddItem(myarray[i])
+ENDFOR
+*table
+SCAN
+   List.AddItem(table.field)
+ENDSCAN</pre></td></tr></table></span></div>
+    </div><h1 class="heading">To Move Items by Double-clicking</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The following code is associated with the <b>DblClick</b> event of the left list box (lstSource). Similar code is associated with the <b>DblClick</b> event of the right list box (lstSelected).</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THIS.Parent.lstSelected.AddItem(THIS.List(THIS.ListIndex))
+This.RemoveItem(THIS.ListIndex)
+THIS.Parent.Refresh</pre></td></tr></table></span></div>
+      <p>"THIS" refers to lstSource. "THIS.Parent" refers to the moverlists class, the container of the lists.</p>
+    </div><h1 class="heading">To Move all Items from One List to Another</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The following code is associated with the <b>Click</b> event of cmdAddAll:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>  DO WHILE THIS.PARENT.lstSource.ListCount &gt; 0
+    THIS.PARENT.lstSelected.AddItem;
+        (THIS.PARENT.lstSource.List(1))
+   THIS.PARENT.lstSource.RemoveItem(1)
+  ENDDO
+  THIS.PARENT.Refresh</pre></td></tr></table></span></div>
+    </div><h1 class="heading">To Move Selected Items from One List to Another</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>If you remove an item from a list box, the <b>ListCount</b> property of the list box is decremented, as is the <b>ListIndex</b> of all the subsequent items in the list. To move multiply selected items, you need to use a DO WHILE loop. The following code is associated with the <b>Click</b> event of cmdAdd:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>nCnt = 1
+DO WHILE nCnt &lt;= THIS.PARENT.lstSource.ListCount
+   IF THIS.PARENT.lstSource.Selected(nCnt)
+      THIS.PARENT.lstSelected.AddItem;
+         (THIS.PARENT.lstSource.List(nCnt))
+      THIS.PARENT.lstSource.RemoveItem(nCnt)
+   ELSE
+      nCnt = nCnt + 1
+   ENDIF
+ENDDO
+THIS.PARENT.Refresh</pre></td></tr></table></span></div>
+    </div><h1 class="heading">To Drag and Drop Items from One List to Another</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>Implementing drag-and-drop between the list boxes involves code associated with the MouseDown, MouseMove, DragOver, and DragDrop events. Three user-defined properties (DragThreshold, MouseX, and MouseY) extend the usability of the class.</p>
+      <p>The MouseDown code stores the X and Y coordinates of the mouse pointer to class properties. </p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*MouseDown
+Parameters nButton, nShift, nXCoord, nYCoord
+THIS.PARENT.MouseX = nXCoord
+THIS.PARENT.MouseY = nYCoord</pre></td></tr></table></span></div>
+      <p>The MouseMove code makes sure the left mouse button is pressed before initiating the drag procedure. In addition, to guard against accidental dragging, this code checks to make sure that the user has moved the mouse a distance greater than a set threshold (8 pixels by default).</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*MouseMove
+Parameters nButton, nShift, nXCoord, nYCoord
+IF nButton = 1 &amp;&amp; Left Mouse
+   IF ABS(nXCoord - THIS.PARENT.MouseX) &gt; ;
+      THIS.Parent.DragThreshold OR ;
+         ABS(nYCoord - THIS.PARENT.MouseY) &gt; ;
+         THIS.Parent.DragThreshold
+      THIS.Drag
+   ENDIF
+ENDIF</pre></td></tr></table></span></div>
+      <p>The DragOver code changes the DragIcon of the source when the mouse pointer enters and leaves the list box "air space."</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*DragOver
+Parameters oSource, nXCoord, nYCoord, nState
+DO CASE
+   CASE nState = 0 &amp;&amp; Enter
+      oSource.DragIcon = THIS.Parent.CanDropIcon
+   CASE nState = 1 &amp;&amp; Leave
+      oSource.DragIcon = THIS.Parent.NoDropIcon
+ENDCASE</pre></td></tr></table></span></div>
+      <p>The DragDrop code makes sure that the source of the drag is not the same as the target of the drag and calls the method associated with the Click event of the cmdAdd command button (in the case of lstSelected) or cmdRemove (in the case of lstSource).</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*DragDrop
+Parameters oSource, nXCoord, nYCoord
+IF oSource.Name != THIS.Name
+   THIS.PARENT.cmdAdd.Click
+ENDIF</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/3d9cdf65-0b6b-45f7-8c8c-84dcf4e367ae.htm">Add Items Interactively to a List Box Sample</a></span><br /><span class="linkTerms"><a href="/html/a14dffd5-642a-4c1b-9081-fb3929559bae.htm">Display Multiple Columns in a List Box Sample</a></span><br /><span class="linkTerms"><a href="/html/aa4ec198-8866-4e3d-9733-3b1611e8c58f.htm">Display Pictures in a List Sample</a></span><br /><span class="linkTerms"><a href="/html/18f0e686-0c9f-4801-8e3b-e03d52f2ce3f.htm">Fill a List with Values from Different Sources Sample</a></span><br /><span class="linkTerms"><a href="/html/6ea1926c-5532-4848-acc6-d6ae66c86494.htm">Multiselect Items in a List Box Sample</a></span><br /><span class="linkTerms"><a href="/html/0f581c1b-869b-480f-837e-81243ba4136d.htm">Open Multiple Files Interactively Sample</a></span><br /><span class="linkTerms"><a href="/html/516b612e-a9c4-4e63-a439-8ae7d843ac03.htm">Sort List Box Items Sample</a></span><br /><span class="linkTerms"><a href="/html/01a6d28a-a38b-4985-a568-df8f93531e9e.htm">Treeview/Listbox Drag and Drop Sample</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/909bc1e6-7b98-4527-a57f-c99f0ce4fc6f.htm">Controls Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Move Items Between List Boxes Sample">
+<param name="Alink Name" value="vfp.1231509">
+</OBJECT>

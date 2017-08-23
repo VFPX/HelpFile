@@ -1,0 +1,127 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Display Child Records in a List</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Display Child Records in a List</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can display records from a one-to-many relationship in a list so that the list displays the child records in the relationship as the record pointer moves through the parent table.</p>
+  <h3 class="procedureSubHeading">To display child records in a list</h3><div class="subSection"><ol><li>
+        
+          <p>Add a list to the form.</p>
+        
+      </li><li>
+        
+          <p>Set the <a href="/html/9b9270cb-27c5-470b-b889-5910309ef707.htm">ColumnCount</a> property of the list to the number of columns you want to display. </p>
+          <p>For example, if you want to display the <code>Order_id</code>, <code>Order_net</code>, and <code>Shipped_on</code> fields in the list, set the ColumnCount property to 3. </p>
+        
+      </li><li>
+        
+          <p>Set the <a href="/html/3fd4128a-79fc-4b27-be7c-3c44f3f8f9dd.htm">ColumnWidths</a> property to the appropriate widths for displaying your selected fields.</p>
+        
+      </li><li>
+        
+          <p>Set the <span class="linkTerms"><a href="/html/ffd39712-9ea4-42a5-bd92-9a4073f5a6b4.htm">RowSourceType Property</a></span> of the list to <b>3</b> <b>SQL Statement</b>.</p>
+        
+      </li><li>
+        
+          <p>Set the <span class="linkTerms"><a href="/html/490d957f-926a-4b4c-a265-e3ad5f679f1b.htm">RowSource Property</a></span> to the <a href="/html/cc85d04b-c4d7-495f-b7c3-ca8a61ea596c.htm">SELECT</a> statement. For example, the following statement selects three fields from the orders table for the current record in the customer table: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT order_id, order_net, shipped_on from orders ;
+   WHERE order.cust_id = customer.cust_id ;
+   INTO CURSOR temp</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>In the <span class="linkTerms"><a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init Event</a></span> of the form and in the code that moves the record pointer through the table, requery the list: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.lstChild.Requery</pre></td></tr></table></span></div>
+        
+      </li></ol></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/43e35c4f-b1f6-490c-a111-94a861f7a1a3.htm">How to: Use Check Boxes to Specify States</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/ccc655cb-3b49-42a2-a87c-43ce0a462c95.htm">Controls for Displaying Lists</a></span><br /><span class="linkTerms"><a href="/html/119e15f3-d59f-4ebc-8b75-98d1d4fbbdad.htm">Controls and Objects Created in Earlier Versions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b9032965-6941-41d2-8ff9-87c609673907.htm">Using Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Display Child Records in a List">
+</OBJECT>

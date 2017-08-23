@@ -1,0 +1,156 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Handling Run-Time Errors</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Handling Run-Time Errors</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>After an application starts executing, errors can occur at run time. For example, errors can occur at run time from the following actions:   </p>
+    <ul><li>
+        <p>Writing to a file that does not exist.</p>
+      </li><li>
+        <p>Attempting to open an open table or select a closed table.</p>
+      </li><li>
+        <p>Encountering a data conflict.</p>
+      </li><li>
+        <p>Dividing a value by zero.</p>
+      </li></ul>
+    <p>You can handle such errors, including errors that occur in reports and those due to tables with bad database back links, by using the error handlers that Visual FoxPro provides. However, if your application does not contain error-handling routines when an error occurs at run time, the application pauses, and the appropriate Visual FoxPro system error message appears with the following buttons:  </p>
+    <ul><li>
+        <p>
+          <b>Cancel</b>   If a user chooses Cancel, the application immediately stops running and returns control to the system.</p>
+      </li><li>
+        <p>
+          <b>Ignore</b>   If a user chooses Ignore, Visual FoxPro ignores the line that caused the error and continues to the next line in the program.</p>
+      </li></ul>
+    <p>For a list and explanation of Visual FoxPro error messages, see <a href="/html/ff24a2ff-b29a-497e-a0db-eb01d727a32c.htm">Error Messages</a>. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>For errors that you cannot avoid, make sure to provide documentation that describes errors that users might see and suggest ways to correct those errors.</p>
+    </td></tr></table></div>
+  <a name="dghandling_run_time_errorsanchor2"></a><h1 class="heading">Using Error Handling Routines</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can use the Visual FoxPro language to create error-handling routines for error conditions. The following topics explain several mechanisms for handling run-time errors in code and the order of their operation:  </p>
+      <ul><li>
+          <p>
+            <a href="/html/f11956b1-d26f-4321-842a-f1f2dd1de757.htm">Procedural Error Handling</a>
+          </p>
+          <p>Discusses using the <b>ON ERROR</b> command to handle errors in procedural code. </p>
+        </li><li>
+          <p>
+            <a href="/html/2904a3c2-10ce-41cb-b031-ee3600dacc96.htm">Class and Object Error Handling</a>
+          </p>
+          <p>Discusses using the <b>Error</b> event to handle local errors for objects and classes. </p>
+        </li><li>
+          <p>
+            <a href="/html/220ead6b-fd59-49d7-94e3-6270a91e6807.htm">Structured Error Handling</a>
+          </p>
+          <p>Discusses using the <b>TRY...CATCH...FINALLY</b> control structure to handle errors or exceptions that can occur at run time. </p>
+        </li><li>
+          <p>
+            <a href="/html/a00d44be-85b4-4f2a-b2ac-bb947694a634.htm">Error Handler Priority</a>
+          </p>
+          <p>Discusses the order of priority for error-handling routines. </p>
+        </li></ul>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Running the Most Recently Executed Line of Code</h3><div class="subSection" xmlns="">
+          <p>You can use the <b>RETRY</b> command, except with <b>TRY...CATCH...FINALLY</b>, to run a line of code that caused an error after changing conditions that caused the error. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Sometimes, the line of code that caused an error does not exist for you to execute with <b>RETRY</b>. The <b>Error</b> event can occur even when the error encountered is not associated with a line of your code. For example, if you call a data environment's <b>CloseTables</b> method in code when the <b>AutoCloseTables</b> property is set to True (.T.) and then release the form, Visual FoxPro generates an internal error when it attempts to close the tables again. You can trap the error; however, no line of code exists for you to execute with <b>RETRY</b>.</p>
+          </td></tr></table></div>
+          <p>For more information, see <a href="/html/b74b696c-f6ed-4602-a4b7-943756338b01.htm">RETRY Command</a>.</p>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/ae5f6da1-8aa7-450f-905c-60d5cd0a5c3c.htm">Debugging and Error-Handling Language</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/5ba2f0f6-c515-4d48-83b6-5de8e13537ea.htm">Handling Errors During Report Runs</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/44c896ae-cba9-4869-8a3f-908e5abde1b3.htm">Testing and Debugging Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Handling Run-Time Errors">
+</OBJECT>

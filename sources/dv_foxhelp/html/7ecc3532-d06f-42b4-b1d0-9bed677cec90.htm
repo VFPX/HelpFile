@@ -1,0 +1,225 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Indexes Based on Deleted Records</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Indexes Based on Deleted Records</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When records are marked for deletion in Visual FoxPro, they are not physically removed until the <b>PACK</b> command is called. Therefore, these records remain visible and accessible while performing basic table operations unless you set the <b>SET DELETED</b> command to <b>ON</b>, which hides these records from basic operations. </p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>To help ensure that queries use Rushmore optimization, some developers create an index tag for deleted records by using the <b>DELETED( )</b> function in the index expression. The <b>DELETED( )</b> function determines whether a record is marked for deletion. For example, the following code creates an index named Deleted using an index expression that includes the <b>DELETED( )</b> function that selects records marked for deletion:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>INDEX ON DELETED() TAG Deleted</pre></td></tr></table></span></div>
+      <p>However, performance issues can still exist with this method, usually when working with large data sets in a LAN/WAN networking environment where deleted records are scattered in a table and when transmitting a large index over the network. </p>
+      <p>Instead, you can create and use a binary index, which optimizes the bit that marks records for deletion, to improve performance when you set the <b>SET DELETED</b> command to <b>ON</b>. You can create a binary index by choosing the Binary index type in the Table Designer or by including the <b>BINARY</b> keyword in the <b>INDEX</b> command. For example, the following code creates a binary index named myDeleted that selects records marked for deletion:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>INDEX ON DELETED() TAG DeletedTag BINARY</pre></td></tr></table></span></div>
+      <p>For more information, see <a href="/html/fe911859-3235-4349-82c7-fa16a16d5527.htm">Visual FoxPro Index Types</a>, <a href="/html/bed9eb67-ee75-435b-8918-41751169cf5a.htm">DELETED( ) Function</a>, and <a href="/html/456fe115-d38a-4e98-b040-4a00308d9e5a.htm">SET DELETED Command</a>.</p>
+    </div><h1 class="heading">Rushmore Optimization for Indexes Based on Deleted Records</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>For indexes based on deleted records, Visual FoxPro includes the following Rushmore optimization enhancements in the SQL engine:   </p>
+      <ul><li>
+          <p>
+            <code>INDEX ON NOT(DELETED())</code> optimizes <code>NOT(DELETED())</code> and <code>DELETED()</code> query conditions. In versions prior to Visual FoxPro 9.0, only <code>DELETED()</code> was optimized. </p>
+          <p>For example, the following queries are now optimized:  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+CLOSE DATABASE ALL
+SYS(3054,1)
+CREATE TABLE myTable (f1 I)
+INDEX ON NOT(DELETED()) TAG NotDel
+SET DELETED OFF
+SELECT * FROM myTable WHERE NOT(DELETED()) INTO CURSOR tempCursor
+SELECT * FROM myTable WHERE DELETED() INTO CURSOR tempCursor
+SET DELETED ON
+SELECT * FROM myTable INTO CURSOR tempCursor
+INDEX ON DELETED() TAG Del
+SET DELETED OFF
+SELECT * FROM myTable WHERE NOT(DELETED()) INTO CURSOR tempCursor
+SELECT * FROM myTable WHERE DELETED() INTO CURSOR tempCursor
+SET DELETED ON
+SELECT * FROM myTable INTO CURSOR tempCursor
+CLOSE DATABASE ALL</pre></td></tr></table></span></div>
+        </li><li>
+          <p>
+            <code>INDEX ON ... FOR DELETED( )</code> or <code>INDEX ON ... FOR NOT(DELETED())</code> optimizes <code>DELETED()</code> or <code>NOT(DELETED())</code> query conditions respectively when <code>INDEX ON DELETED() </code>or <code>INDEX ON NOT(DELETED())</code> is not present. </p>
+          <p>For example, the following queries are now optimized:  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+CLOSE DATABASES ALL
+SYS(3054,1)
+CREATE TABLE myTable (f1 I)
+INDEX ON f1 TAG f1_NotDel FOR NOT(DELETED())
+INDEX ON f1 TAG f1_Del FOR DELETED()
+SET DELETED OFF
+SELECT * FROM myTable WHERE NOT(DELETED()) INTO CURSOR tempCursor
+SELECT * FROM myTable WHERE DELETED() INTO CURSOR tempCursor
+SET DELETED ON
+SELECT * FROM myTable INTO CURSOR tempCursor
+INDEX ON DELETED() TAG DeletedRec
+SET DELETED OFF
+SELECT * FROM myTable WHERE NOT(DELETED()) INTO CURSOR tempCursor
+SELECT * FROM myTable WHERE DELETED() INTO CURSOR tempCursor
+SET DELETED ON
+SELECT * FROM myTable INTO CURSOR tempCursor
+CLOSE DATABASES ALL</pre></td></tr></table></span></div>
+        </li><li>
+          <p>When Visual FoxPro can determine that a query should not return deleted or undeleted records, and if no unfiltered index is present, it uses <code>INDEX ON &lt;expression&gt; ... FOR DELETED()</code> or <code>INDEX ON &lt;expression&gt; FOR NOT(DELETED())</code>. </p>
+          <p>For example, the following queries are now optimized:  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+CLOSE DATABASE ALL
+SYS(3054,1)
+CREATE TABLE myTable (f1 I,f2 I)
+INDEX ON f1 TAG f1_NotDel FOR NOT(DELETED())
+INDEX ON f1 TAG f1_Del FOR DELETED()
+SET DELETED OFF
+SELECT * FROM myTable WHERE ;
+  (NOT(DELETED()) AND f1&gt;3) OR ;    &amp;&amp; Tag f1_NotDel used for optimization.
+  (DELETED() AND f1&lt;3) ;       &amp;&amp; Tag f1_Del used for optimization.
+  INTO CURSOR tempCursor
+SELECT * FROM myTable WHERE ;
+  (f1&gt;3 AND NOT(DELETED())) OR ;   &amp;&amp; Not optimized. f1&gt;3 comes first.
+  (f1&lt;3 AND DELETED()) ;      &amp;&amp; Not optimized. f1&lt;3 comes first.
+  INTO CURSOR tempCursor
+SET DELETED ON
+SELECT * FROM myTable WHERE ;
+  (f1&gt;3000) OR ;       &amp;&amp; Tag f1_NotDel used for optimization.
+  (f1&lt;1000) ;         &amp;&amp; Tag f1_NotDel used for optimization.
+  INTO CURSOR tempCursor
+INDEX ON f1 TAG f1
+SET DELETED OFF
+SELECT * FROM myTable WHERE ;
+  (NOT(DELETED()) AND f1&gt;3) OR ;   &amp;&amp; Tag f1 used for optimization.
+  (DELETED() AND f1&lt;3) ;    &amp;&amp; Tag f1 used for optimization.
+  INTO CURSOR tempCursor
+SET DELETED ON 
+SELECT * FROM myTable WHERE ;
+  (f1&gt;3000) OR ;       &amp;&amp; Tag f1 used for optimization.
+  (f1&lt;1000) ;      &amp;&amp; Tag f1 used for optimization.
+  INTO CURSOR tempCursor
+CLOSE DATABASE ALL</pre></td></tr></table></span></div>
+        </li><li>
+          <p>If only indexes with <code>NOT(DELETED())</code> filter expressions are used for Rushmore optimization and <b>SET DELETED</b> is set to <b>ON</b>, then additional optimization using <code>NOT(DELETED())</code> is not performed as it is unnecessary.</p>
+        </li></ul>
+    </div><h1 class="heading">SQL Optimizations for MIN( ) and MAX( ) Aggregate Functions</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When appropriate, Visual FoxPro uses <code>FOR DELETED()</code> and <code>FOR NOT(DELETED())</code> filter expressions to optimize <b>MIN( )</b> and <b>MAX( )</b> aggregate functions. Visual FoxPro uses filtered indexes based on <code>DELETED()</code> index expressions when available. </p>
+      <p>Filtered indexes that use <code>FOR NOT(DELETED())</code> can provide additional optimization with SQL queries with any <b>SET DELETED</b> setting. However, a filtered index tag with FOR <code>DELETED()</code> provides benefits only when <b>SET DELETED</b> is set to <b>OFF</b>. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>These optimizations are not Rushmore-based; therefore, they do not appear in the results returned by <a href="/html/400a0198-cac5-4abd-8e2d-79564a75742d.htm">SYS(3054) - Rushmore Query Optimization Level</a>.</p>
+      </td></tr></table></div>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+SET SAFETY OFF
+CLOSE DATABASE ALL
+CREATE TABLE myTable (f1 I)
+INDEX ON f1 TAG f1
+SET DELETED OFF
+SELECT MAX(f1) FROM myTable INTO CURSOR temp1
+* tag f1 is used to optimize MAX(f1)
+SELECT MAX(f1) FROM myTable WHERE DELETED()INTO CURSOR temp1
+* MAX(f1) is not optimized and slow
+SET DELETED ON
+SELECT MAX(f1) FROM myTable INTO CURSOR temp1
+* MAX(f1) is not optimized and slow
+SELECT myTable
+INDEX ON f1 TAG f1Del FOR DELETED()
+INDEX ON f1 TAG f1NotDel FOR NOT(DELETED())
+SET DELETED OFF
+SELECT MAX(f1) FROM myTable INTO CURSOR temp1
+* tag f1 is used to optimize MAX(f1)
+SELECT MAX(f1) FROM myTable WHERE DELETED()INTO CURSOR temp1
+* tag f1Del is used by  MAX(f1)
+SET DELETED ON
+SELECT MAX(f1) FROM myTable INTO CURSOR temp1
+* tag f1NotDel is used to optimize MAX(f1)
+CLOSE DATABASE ALL</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/1225f38b-2ed5-499e-b2c7-71b741bbe758.htm">How to: Create Indexes (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/364cfc78-0c85-4ec3-86e4-cbe3961979e4.htm">How to: Create Less Frequently Used Indexes</a></span><br /><span class="linkTerms"><a href="/html/dbccc178-a2a7-43ae-9340-f87a654d3cfd.htm">How to: Filter Data</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Indexes Based on Deleted Records">
+</OBJECT>

@@ -1,0 +1,368 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>DEFINE WINDOW Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">DEFINE WINDOW Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Creates a window and specifies its attributes.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+DEFINE WINDOW <span class="parameter">WindowName1</span> FROM <span class="parameter">nRow1</span>, <span class="parameter">nColumn1</span> TO <span class="parameter">nRow2</span>, <span class="parameter">nColumn2</span> 
+   | AT <span class="parameter">nRow3</span>, <span class="parameter">nColumn3</span> SIZE <span class="parameter">nRow4</span>, <span class="parameter">nColumn4</span> 
+   [IN [WINDOW] <span class="parameter">WindowName2</span> | IN SCREEN | IN DESKTOP [NAME <span class="parameter">ObjectName</span>]
+      [FONT <span class="parameter">cFontName</span> [, <span class="parameter">nFontSize</span> [, <span class="parameter">nFontCharSet</span>]]] [STYLE <span class="parameter">cFontStyle</span>] 
+      [FOOTER <span class="parameter">cFooterText</span>] [TITLE <span class="parameter">cTitleText</span>] [HALFHEIGHT] 
+      [DOUBLE | PANEL | NONE | SYSTEM | <span class="parameter">cBorderString</span>] 
+      [CLOSE | NOCLOSE] [FLOAT | NOFLOAT] [GROW | NOGROW] [MDI | NOMDI]
+      [MINIMIZE | NOMINIMIZE] [ZOOM | NOZOOM] [ICON FILE <span class="parameter">FileName1</span>]
+      [FILL <span class="parameter">cFillCharacter</span> | FILL FILE <span class="parameter">FileName2</span>] 
+      [COLOR SCHEME <span class="parameter">nSchemeNumber</span>   | COLOR <span class="parameter">ColorPairList</span>]]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">WindowName1</span>
+        </span></dt><dd>
+          <p>Specifies the name of the window to create. Window names can be up to 254 characters long in Visual FoxPro. They must begin with a letter or underscore, and cannot begin with a number. They can contain any combination of letters, numbers and underscores.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FROM <span class="parameter">nRow1</span>, <span class="parameter">nColumn1</span>TO <span class="parameter">nRow2</span>, <span class="parameter">nColumn2</span></span></dt><dd>
+          <p>Specifies the position and size of the user-defined window on the main Visual FoxPro window. FROM <span class="parameter">nRow1</span>, <span class="parameter">nColumn1</span> specifies the position of the upper-left corner of the user-defined window on the main Visual FoxPro window. TO <span class="parameter">nRow2</span>, <span class="parameter">nColumn2</span> specifies the position of the lower-right corner of the user-defined window on the main Visual FoxPro window.</p>
+          <p>A window can be defined with coordinates that lie outside the Visual FoxPro window border and can be larger than the main Visual FoxPro window.   </p>
+          <p>The window's location and size are determined by the font of the window's parent. The window's parent can be another user-defined window or the main Visual FoxPro window. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">AT <span class="parameter">nRow3</span>, <span class="parameter">nColumn3S</span>IZE <span class="parameter">nRow4</span>, <span class="parameter">nColumn4</span></span></dt><dd>
+          <p>Specifies the position and size of a user-defined window.</p>
+          <p>AT <span class="parameter">nRow3</span>, <span class="parameter">nColumn3</span> specifies the position of the upper-left corner of the user defined window on the main Visual FoxPro window. This position is determined by the current font of the window's parent. Because the AT clause is identical to the FROM clause in all respects, the two clauses can be used interchangeably.   </p>
+          <p>SIZE <span class="parameter">nRow4</span>, <span class="parameter">nColumn4</span> specifies in rows and columns the size of the user-defined window and ensures that text displayed in a specific font will fit in the window you create.   </p>
+          <p>You can specify a font and font style for a user-defined window by including the FONT and STYLE clauses. If you specify a font for the window and include the SIZE clause, its size is determined by the window's font height and width. If you don't specify a font for a window, the window's font is the default system font, 10-point FoxFont.  </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN [WINDOW] <span class="parameter">WindowName2</span></span></dt><dd>
+          <p>Places a user-defined window in a parent window. The user-defined window becomes a child window and cannot be moved outside the parent window. If the parent window is moved, the child window moves with it.</p>
+          <p>When a child window is placed in a parent window, the child window coordinates specified with the FROM and TO clauses or the AT and SIZE clauses are relative to the parent window, not the main Visual FoxPro window.   </p>
+          <p>In the following example, a parent window, <code>wParent</code>, is created. A child window, <code>wChild</code>, is placed in the parent window.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+DEFINE WINDOW wParent ;
+   FROM 1, 1 TO 20, 30 ;
+   TITLE "Parent"         &amp;&amp; Parent window.
+ACTIVATE WINDOW wParent 
+DEFINE WINDOW wChild ;
+   FROM 1, 1 TO 20, 20 ;
+   TITLE "Child" ;
+   IN WINDOW wParent       &amp;&amp; Child window.
+ACTIVATE WINDOW wChild
+ACTIVATE SCREEN
+WAIT WINDOW 'Press a key to clear the windows'
+RELEASE WINDOW wParent, wChild
+CLEAR</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN SCREEN </span></dt><dd>
+          <p>Explicitly places a user-defined window on the main Visual FoxPro window. If you omit IN SCREEN, the user-defined window is placed on the main Visual FoxPro window by default.</p>
+          <p>You can include the IN WINDOW clause in ACTIVATE WINDOW to place the window in another user-defined window and override this IN SCREEN clause. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN DESKTOP </span></dt><dd>
+          <p>Places a user-defined window on the Microsoft Windows desktop, outside the main Visual FoxPro window. The position of the window is relative to the Windows desktop, and the current font of the main Visual FoxPro window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NAME <span class="parameter">ObjectName</span></span></dt><dd>
+          <p>Creates an object reference for the window, allowing you to manipulate the window with object-oriented properties available for the form object.</p>
+          <p>For additional information about object-oriented programming in Visual FoxPro, see <span class="linkTerms"><a href="/html/925ef3b8-48dc-4ea1-9112-a7afc2d9161e.htm">Object-Oriented Programming</a></span>. For additional information about the form object properties you can specify for a window created with the NAME clause, see the <span class="linkTerms"><a href="/html/a7ff9dc8-6d63-498c-aab6-4ce664c25190.htm">Form Object</a></span> topic. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FONT <span class="parameter">cFontName</span>[, <span class="parameter">nFontSize</span> [, <span class="parameter">nFontCharSet</span>]] </span></dt><dd>
+          <p>Specifies a font for text placed in the window. <span class="parameter">cFontName</span> specifies the name of the font and <span class="parameter">nFontSize</span> specifies the point size. If you omit <span class="parameter">nFontSize</span>, a 9-point font is used. You can specify a language script with <span class="parameter">nFontCharSet</span>. See the <span class="linkTerms"><a href="/html/53a11bb9-6a3b-4539-a343-ffd75ae45dbe.htm">GETFONT( ) Function</a></span> for a list of available language script values.</p>
+          <p>For example, this command creates a window that displays output directed to the window in a 16-point Courier font:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE WINDOW wDisplayFont FROM 2,2 TO 12,22 FONT 'Courier', 16 </pre></td></tr></table></span></div>
+          <p>If you omit the FONT clause, a 10-point FoxFont is used. If the font you specify is not available, a font with similar font characteristics is substituted. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">STYLE <span class="parameter">cFontStyle</span></span></dt><dd>
+          <p>Specifies a font style for text placed in the window. <span class="parameter">cFontStyle</span> specifies the font. If you omit the STYLE clause, or if the font style you specify is not available, the Normal font style is used.</p>
+          <p>The following table lists font styles and their corresponding characters.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Character
+                </th>
+                <th>
+                  Font style
+                </th>
+              </tr><tr>
+              <td>
+                <p>B</p>
+              </td>
+              <td>
+                <p>Bold</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>I</p>
+              </td>
+              <td>
+                <p>Italic</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>Normal</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Q</p>
+              </td>
+              <td>
+                <p>Opaque</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>-</p>
+              </td>
+              <td>
+                <p>Strikeout </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>T</p>
+              </td>
+              <td>
+                <p>Transparent</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>U</p>
+              </td>
+              <td>
+                <p>Underline</p>
+              </td>
+            </tr></table></div>
+          <p>You can include more than one character to specify a combination of font styles. In Visual FoxPro, the following commands specify the style Bold Italic:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE WINDOW wDisplayStyle FROM 2, 2 TO 12, 22 STYLE 'BI'</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FOOTER <span class="parameter">cFooterText</span></span></dt><dd>
+          <p>Included for backwards compatibility. Ignored in Visual FoxPro Windows versions.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TITLE <span class="parameter">cTitleText</span></span></dt><dd>
+          <p>Assigns a title with the TITLE clause. <span class="parameter">cTitleText</span> specifies the title's text and is centered in the top border of the window. If the title is wider than the window, the title is truncated.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">HALFHEIGHT </span></dt><dd>
+          <p>Creates a window with a half-height title bar. This provides compatibility for windows created in previous versions of FoxPro that are imported into Visual FoxPro.</p>
+          <p>When you use DEFINE WINDOW to create a window, a half-height title bar is used, unless you include the SYSTEM keyword or you include a FONT clause.   </p>
+          <p>If you include the HALFHEIGHT keyword, a half-height title bar is used regardless of whether the SYSTEM or FONT clause is included. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DOUBLE | PANEL | NONE | SYSTEM | <span class="parameter">cBorderString</span></span></dt><dd>
+          <p>Specifies a border style for a user-defined window. The default border is a single line.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Argument
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>DOUBLE</p>
+              </td>
+              <td>
+                <p>Specifies a double-line border around the window.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>PANEL</p>
+              </td>
+              <td>
+                <p>Specifies a wide border around the window.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>NONE</p>
+              </td>
+              <td>
+                <p>Suppresses the border entirely.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SYSTEM</p>
+              </td>
+              <td>
+                <p>Specifies the user-defined window to look like a system window. When you include certain other clauses (GROW, ZOOM, and so on), the appropriate window controls are placed in the window's border.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <span class="parameter">cBorderString</span>
+                </p>
+              </td>
+              <td>
+                <p>Specifies a custom border. For more information on defining a custom border, see <span class="linkTerms"><a href="/html/793d3194-0b1a-4a12-acbe-91723c6499c1.htm">SET BORDER Command</a></span>.</p>
+              </td>
+            </tr></table></div>
+          <p>Including DOUBLE or a custom border string creates a window with the PANEL border. Including the CLOSE, FLOAT, GROW, ZOOM, or MINIMIZE clauses places the appropriate controls on the window even if the SYSTEM window definition clause is not included. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CLOSE </span></dt><dd>
+          <p>Allows the user to close a user-defined window using the keyboard or mouse. Closing a window removes it from the main Visual FoxPro window or a parent user-defined window and removes its definition from memory. If you omit CLOSE, you cannot close the window using the interface; the window must be closed using a command in a program or in the Command window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOCLOSE </span></dt><dd>
+          <p>Prevents the window from being closed except by a command in a program or in the Command window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FLOAT </span></dt><dd>
+          <p>Allows the window to be moved using the keyboard or mouse. If you omit FLOAT, you cannot move the window except using the MOVE WINDOW command in a program or in the Command window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOFLOAT </span></dt><dd>
+          <p>Prevents the window from being moved except by using the MOVE WINDOW command in a program or in the Command window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">GROW </span></dt><dd>
+          <p>Allows you to resize a user-defined window using the keyboard or mouse. If you omit GROW, you cannot size the window except using the SIZE WINDOW command in a program or in the Command window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOGROW </span></dt><dd>
+          <p>Prevents the window from being resized except by the SIZE WINDOW command in a program or in the Command window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MDI </span></dt><dd>
+          <p>Creates a user-defined window that is MDI-compliant. MDI (multiple document interface) is a specification that allows multiple document windows and determines their structure and behavior. If you omit MDI, the window you create isn't MDI-compliant.</p>
+          <p>When an MDI-compliant window is maximized:   </p>
+          <ul><li>
+              <p>The window assumes the size of the main Visual FoxPro window. The window's controls disappear and its pop-up menu icon appears in the Visual FoxPro system menu bar. The window's Restore button is also placed in the Visual FoxPro system menu bar.</p>
+            </li><li>
+              <p>The window title is placed in the Visual FoxPro title bar and is separated from the Visual FoxPro title by a hyphen.</p>
+            </li><li>
+              <p>If you activate another MDI-compliant window, it is automatically maximized.</p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOMDI </span></dt><dd>
+          <p>Creates a window that isn't MDI-compliant.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MINIMIZE </span></dt><dd>
+          <p>Allows you to minimize a user-defined window using the keyboard or mouse.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOMINIMIZE </span></dt><dd>
+          <p>Prevents the window from being minimized.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ZOOM </span></dt><dd>
+          <p>Allows the window to be maximized using the keyboard or mouse. You can also restore the window to its original size.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOZOOM </span></dt><dd>
+          <p>Prevents the window from being maximized.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ICON FILE <span class="parameter">FileName</span></span></dt><dd>
+          <p>Specifies the icon that displays when the window is minimized. You must include the MINIMIZE keyword in DEFINE WINDOW. You can specify only an icon (.ico) file; you cannot specify a bitmap (.bmp) file.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FILL FILE <span class="parameter">FileName2</span></span></dt><dd>
+          <p>Specifies wallpaper (the background) for the window. The window is tiled with the specified <span class="parameter">FileName2</span>. You specify a .bmp bitmap file.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">COLOR SCHEME <span class="parameter">nSchemeNumber</span></span></dt><dd>
+          <p>Specifies the colors for the user-defined window. By default, the colors of windows created with DEFINE WINDOW are controlled by color scheme 1.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">COLOR <span class="parameter">ColorPairList</span></span></dt><dd>
+          <p>Specifies the colors for the user-defined window.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>After user-defined windows are created with DEFINE WINDOW, they can be displayed in the main Visual FoxPro window with ACTIVATE WINDOW or SHOW WINDOW. The number of user-defined windows you can create is limited only by the amount of available memory and system resources.</p>
+      <p>Activated windows remain in the main Visual FoxPro window until DEACTIVATE WINDOW or HIDE WINDOW is issued. DEACTIVATE WINDOW and HIDE WINDOW remove windows from the main Visual FoxPro window but don't remove the window definitions from memory. Windows can be placed back in the main Visual FoxPro window with ACTIVATE WINDOW or SHOW WINDOW.</p>
+      <p>Use CLEAR WINDOWS or RELEASE WINDOWS to remove windows from the main Visual FoxPro window and window definitions from memory. Windows whose definitions have been removed from memory must be recreated with DEFINE WINDOW in order to be redisplayed.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">In the following example, a window named <code>output</code> is created and activated. The program waits for you to press a key and then hides the window. The program waits for you to press a key again and then redisplays the window.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+DEFINE WINDOW output FROM 2,1 TO 13,75 TITLE 'Output' ;
+   CLOSE FLOAT GROW ZOOM
+ACTIVATE WINDOW output
+WAIT WINDOW 'press any key to hide window output'
+HIDE WINDOW output
+WAIT WINDOW 'press any key to show window output'
+SHOW WINDOW output
+WAIT WINDOW 'press any key to release window output'
+RELEASE WINDOW  output</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5a38e8ab-6e54-4387-95c6-0a84eb3ef70e.htm">ACTIVATE WINDOW Command</a></span><br /><span class="linkTerms"><a href="/html/1dd6c4ba-a1dd-4d13-a8fe-370c97240f11.htm">DEACTIVATE WINDOW Command</a></span><br /><span class="linkTerms"><a href="/html/a7ff9dc8-6d63-498c-aab6-4ce664c25190.htm">Form Object</a></span><br /><span class="linkTerms"><a href="/html/fa1091b7-6fdf-4ea2-ad7e-fdfc6d5db580.htm">HIDE WINDOW Command</a></span><br /><span class="linkTerms"><a href="/html/7e82f598-3081-421a-9805-ca2187aa3c51.htm">MODIFY WINDOW Command</a></span><br /><span class="linkTerms"><a href="/html/cd6b25f6-f82d-4142-9f56-5bbe4041634d.htm">MOVE WINDOW Command</a></span><br /><span class="linkTerms"><a href="/html/f5b03042-d682-4710-b85d-aa5c73ef70de.htm">RELEASE WINDOWS Command</a></span><br /><span class="linkTerms"><a href="/html/793d3194-0b1a-4a12-acbe-91723c6499c1.htm">SET BORDER Command</a></span><br /><span class="linkTerms"><a href="/html/84e9cc78-5648-43bd-bf28-02c5cd3154f3.htm">SHOW WINDOW Command</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/aaaf562a-6ef1-402a-9f4f-45c349438c4d.htm">Fonts Overview</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="DEFINE WINDOW Command">
+<param name="ALink Name" value="DEFINE WINDOW">
+</OBJECT>

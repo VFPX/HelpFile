@@ -1,0 +1,292 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SQLEXEC( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SQLEXEC( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Sends a SQL statement to the data source, where the statement is processed.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SQLEXEC(<span class="parameter">nStatementHandle</span> [, <span class="parameter">cSQLCommand</span> [, <span class="parameter">cCursorName</span>[, <span class="parameter">aCountInfo</span>]]])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nStatementHandle</span>
+        </span></dt><dd>
+          <p>Specifies the statement handle to the data source returned by the <b>SQLCONNECT( )</b> function. For more information, see <span class="linkTerms"><a href="/html/55b8c0e7-d39b-476f-a5cc-980719b36d4e.htm">SQLCONNECT( ) Function</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cSQLCommand</span>
+        </span></dt><dd>
+          <p>Specifies the SQL statement passed to the data source.</p>
+          <p>The SQL statement can contain a parameterized WHERE clause, which creates a parameterized view. You must define all parameters in the WHERE clause before issuing <b>SQLEXEC( )</b>. For example, if the parameters are variables, the variables must be created and initialized before <b>SQLEXEC( )</b> is issued. For more information about parameterized views, see <span class="linkTerms"><a href="/html/028ab955-0e39-459e-a26c-bdd39c0fb0b4.htm">How to: Create Parameterized Views</a></span>.   </p>
+          <p>You can include expressions in the SQL statement. Visual FoxPro evaluates all expressions in the SQL statement that you pass before sending them to the data source. Visual FoxPro can evaluate memory variable names, function calls, and expressions enclosed in parentheses as parameter values. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cCursorName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the Visual FoxPro cursor to which the result set is sent. If you don't include a cursor name, Visual FoxPro uses the default name SQLRESULT.</p>
+          <p>For multiple result sets, new cursor names are derived by appending an incremented number to the name of the first cursor. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">aCountInfo</span>
+        </span></dt><dd>
+          <p>Specifies the name of the array to populate with row count information. If the array doesn’t exist, it is created. The array has two columns: 1 – Alias, 2 –Count.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Column
+                </th>
+                <th>
+                  Array contents
+                </th>
+                <th>
+                  Data type
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>Alias</p>
+              </td>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>Character</p>
+              </td>
+              <td>
+                <p>Indicates that SQL command did not return any results. Either no records were returned or the SQL command failed before results could be returned. (final <b>SQLMORERESULTS</b> call) or execution failed before any result could be processed. Can be only on the first row. Count column for the row contains value -1.</p>
+              </td>
+            </tr><tr>
+              <td>
+              </td>
+              <td>
+                <p>Non-empty uppercase string</p>
+              </td>
+              <td>
+                <p>Character</p>
+              </td>
+              <td>
+                <p>Alias of the cursor – target for the record fetch operation. The Count column for the row contains the number of fetched records or -1 if fetch failed. If Count is -1, cursor may not have been created. During asynchronous execution, the fetch process for a cursor can be split between multiple SQLMORERESULTS or SQLEXEC calls; each call returns its own fetch count for the cursor.</p>
+              </td>
+            </tr><tr>
+              <td>
+              </td>
+              <td>
+                <p>Empty String</p>
+              </td>
+              <td>
+                <p>Character</p>
+              </td>
+              <td>
+                <p>Indicates that the SQL command (INSERT, UPDATE, or DELETE) did not return a result set. </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Count</p>
+              </td>
+              <td>
+                <p>Number of affected or fetched records.</p>
+              </td>
+              <td>
+                <p>Integer</p>
+              </td>
+              <td>
+                <p>Indicates the number of affected records as returned by the ODBC SQLRowCount function. Returns -1 if the number of records is unavailable.</p>
+              </td>
+            </tr></table></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Numeric data type. <b>SQLEXEC( )</b> returns the number of result sets if there is more than one. <b>SQLEXEC( )</b> returns 0 if it is still executing and returns 1 when it has finished executing. <b>SQLEXEC( )</b> returns –1 if a connection level error occurs.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>If the SQL statement you want to pass is quite long, check to see if it exceeds the maximum length of a string literal in Visual FoxPro, which is 255 characters. Longer strings will cause a "Command contains unrecognized phrase/keyword" error. However, you can pass long SQL statements if you break them up into several concatenated literals. For example:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>lnRetVal = SQLEXEC(lnHandle, "SELECT &lt;long list of fields&gt; " + ;
+   "FROM &lt;several tables&gt; " + ;
+   "WHERE &lt;complex filter expression&gt;")</pre></td></tr></table></span></div>
+      <p>If <b>SQLEXEC( )</b> is used to execute a SQL statement prepared with <b>SQLPREPARE( )</b>, only the connection handle argument <span class="parameter">nStatementHandle</span> is required. The <span class="parameter">cSQLCommand</span> and <span class="parameter">CursorName</span> arguments should be omitted. For more information, see <span class="linkTerms"><a href="/html/5103290a-daf3-4a43-8481-e50f54ef5f8d.htm">SQLPREPARE( ) Function</a></span>.</p>
+      <p>If the SQL statement generates one result set, <b>SQLEXEC( )</b> stores the result set to the specified Visual FoxPro cursor. If the SQL statement generates two or more result sets, you can name each result set by setting the connection's BatchMode property to False (.F.) using the <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( ) function</a> and changing the cursor name each time you call the <a href="/html/b21a0d31-b1db-44f5-b5e1-266356406903.htm">SQLMORERESULTS( ) function</a>. Otherwise, SQLEXEC( ) names each result set by appending sequential numbers to the name of the first one.</p>
+      <p>
+        <b>SQLEXEC( )</b> is one of the four functions that you can execute either synchronously or asynchronously. The Asynchronous setting of <b>SQLSETPROP( )</b> determines whether these functions execute synchronously or asynchronously. In asynchronous mode, you must call <b>SQLEXEC( )</b> repeatedly until it returns a value other than 0 (still executing).</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    
+      
+        <p>The following example shows various ways to use <b>SQLEXEC( )</b> to execute ad-hoc queries and to call or create stored procedures:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+LOCAL lnConn
+LOCAL lnPercent AS Int  &amp;&amp; Input parameters must be typed.
+LOCAL lnOutput 
+lnPercent = 50
+lnOutput = 0
+* Make connection, assuming a local trusted connection.
+lnConn = SQLCONNECT('local')
+IF m.lnConn &gt; 0  &amp;&amp; Success.
+   * Set the active database to PUBS.
+   SQLEXEC(m.lnConn, 'use pubs')
+   * Execute SELECT statement.
+   SQLEXEC(m.lnConn, 'SELECT * FROM authors', 'PubAuthors')
+   BROWSE
+  
+   * Execute INSERT statement, get value of identity field.
+   SQLEXEC(m.lnConn, "INSERT INTO JOBS (job_desc, min_lvl, max_lvl);
+       VALUES ('Developer',75,150)")
+   SQLEXEC(m.lnConn, "SELECT SCOPE_IDENTITY()", "job_id")
+   ? "ID for added Job is " + LTRIM(STR(job_id.exp))
+   * Execute DELETE statement. Get number of records affected.
+   SQLEXEC(m.lnConn, "DELETE FROM JOBS WHERE job_desc ='Developer'")
+   SQLEXEC(m.lnConn, "SELECT @@ROWCOUNT", 'rowcount')
+   ? rowcount.exp, "record(s) deleted"
+   * Call a stored procedure with no parameters.
+   SQLEXEC(m.lnConn, 'sp_who', 'activeusers')
+   BROWSE 
+   * Execute stored procedure with an INPUT parameter.
+   SQLEXEC(m.lnConn, 'exec byroyalty ?lnPercent','HalfOffAuthors')
+   
+   * Create temp stored procedure with OUTPUT parameter and call it.
+   SQLEXEC(m.lnConn, "CREATE PROCEDURE #MyProc @outparam int OUTPUT AS;
+      SELECT @outparam=100")
+   SQLEXEC(m.lnConn, "exec #myProc ?@lnOutput")
+   ? m.lnOutput
+   
+   * Create a temp stored procedure with INPUT and OUTPUT parameters 
+   * and call it.
+    SQLEXEC(m.lnConn, "CREATE PROCEDURE #MyProc2 " + ;
+                      "@inputparam INT, " + ;
+                      "@outparam int OUTPUT " + ;
+                      "AS SET @outparam=@inputparam*10")
+    SQLEXEC(m.lnConn, "exec #myProc2 ?lnPercent, ?@lnOutput")
+    ? m.lnOutput
+   * Get version information.
+   SQLEXEC(m.lnConn, 'SELECT @@VERSION','SQLVersion1')
+   ? STRTRAN(SQLVersion1.Exp,CHR(0))  
+   * Disconnect.
+   SQLDISCONNECT(m.lnConn)
+ELSE
+   ? "Unable to connect to SQL Server"
+ENDIF
+RETURN</pre></td></tr></table></span></div>
+      
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/17c2b362-8646-41fc-a66d-6c80cf201b0d.htm">SQL Commands and Functions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SQLEXEC( ) Function">
+<param name="ALink Name" value="SQLEXEC">
+</OBJECT>

@@ -1,0 +1,180 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Structured Exception Handling Sample (Visual FoxPro)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Structured Exception Handling Sample (Visual FoxPro)</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File: </b>...\Samples\Solution\Toledo\TryCatch.scx</p>
+    <p>You can implement structured exception handling using the <b>TRY...CATCH...FINALLY</b> error handling structure to run a particular block of statements if a specified exception occurs when your program runs. When an error, or exception, occurs, an <b>Exception</b> object is created.</p>
+    <p>This sample demonstrates how to catch exceptions using the <b>TRY</b> and <b>CATCH</b> blocks, clean up resources using the <b>FINALLY</b> block, and throwing, or escalating, exceptions using a <b>THROW</b> statement.</p>
+    <p>For more information, see <a href="/html/220ead6b-fd59-49d7-94e3-6270a91e6807.htm">Structured Error Handling</a>, <a href="/html/2344b71b-14c0-4125-b001-b5fbb7bd1f05.htm">TRY...CATCH...FINALLY Command</a> and <a href="/html/eba34ca2-04c6-43be-a3c3-01a878961fa7.htm">Exception Object</a>.</p>
+  <h1 class="heading">Catching Exceptions</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>In this sample, you can choose an error, or exception, you want to cause in the <b>TRY</b> block and view the properties for the <b>Exception</b> object generated from the exception. </p>
+      <h3 class="procedureSubHeading">To raise an exception</h3><div class="subSection"><ul><li>
+            
+              <p>In the <b>CATCHing Exceptions</b> tab, select the error you want from the drop-down list and click <b>Execute TRY block</b>.</p>
+            
+          </li></ul></div>
+      <p>The <b>CATCH</b> block runs and displays the <b>Exception</b> object properties. </p>
+      <p>The following code shows the error handling structure in this particular sample. Usually, code that might generate an exception appears in the <b>TRY</b> block; however, the <b>ERROR</b> command is called specifically to show how the flow of control is passed to the <b>CATCH</b> block only when an exception occurs.</p>
+      <p>You can use the <b>Exception</b> <b>UserValue</b> property to store any additional information about the error.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>TRY
+   ERROR <i>nErrorCode</i>
+CATCH TO <i>myException</i>
+   <i>myException</i>.UserValue = "I can handle this."
+ENDTRY</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Cleaning Up Resources</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The <b>FINALLY</b> block usually cleans up any resources allocated by the <b>TRY</b> block and is always the last code to run before control leaves the <b>TRY...CATCH...FINALLY</b> structure. </p>
+      <h3 class="procedureSubHeading">To observe how FINALLY executes after all other code</h3><div class="subSection"><ul><li>
+            
+              <p>In the <b>Using FINALLY</b> tab, select an option or type a table name and path in the combo box and click <b>TRY</b>.</p>
+            
+          </li></ul></div>
+      <p>The following code demonstrates how <b>FINALLY</b> executes after all other code.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>TRY
+   lnPrevArea = SELECT()
+   USE CUSTOMERS IN 0 EXCLUSIVE 
+* Handle when file does not exist.
+CATCH TO <i>myException</i> WHEN myException.ErrorNo = 1 
+* Handle when file is in use.
+CATCH TO <i>myException</i> WHEN myException.ErrorNo = 3 
+* Handle when file access is denied.
+CATCH TO <i>myException</i> WHEN myException.ErrorNo = 1704  
+* Catch everything else.
+CATCH TO <i>myException</i> 
+* Code in FINALLY block always executes.
+FINALLY
+IF USED('CUSTOMERS')
+      USE IN CUSTOMERS
+   ENDIF
+   SELECT (lnPrevArea)
+ENDTRY</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Throwing Exceptions</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>To escalate an exception to a higher-level error handler, use a <b>THROW</b> statement in a <b>CATCH</b> block. </p>
+      <p>This sample uses nested <b>TRY</b> blocks. The inner <b>TRY</b> block can handle only the first error. For subsequent errors, the inner <b>TRY</b> block escalates the <b>Exception</b> object to the outer <b>TRY</b> block. When a specific exception is thrown, specifically <code>THROW oMyException</code> in this example, the <b>UserValue</b> property of the caught exception in the outer block contains the thrown exception from the inner block.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>TRY
+   * Run some code.
+   TRY
+      * Error occurs.
+      ERROR 3
+      CATCH TO InnerException WHEN InnerException.ErrorNo = 1
+      InnerException.UserValue = "INNER TRY: I can handle this."
+      CATCH TO InnerException
+      InnerException.UserValue = "INNER TRY: I can't handle this."
+      * Error cannot be handled so escalate to outer TRY block.
+      THROW InnerException
+   ENDTRY
+CATCH TO OuterException
+* In this case, when the exception is escalated, the caught exception's 
+* UserValue property contains the escalated exception from inner TRY.
+? OuterException.UserValue.UserValue
+ENDTRY</pre></td></tr></table></span></div>
+      <p>You can also throw a string message. In this case, the string message is stored in the <b>UserValue</b> property of the outer exception:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>TRY   
+   * Run some code.
+   TRY
+      * Error occurs.
+        ERROR 1
+   CATCH
+      THROW "INNER TRY: I can't handle this one."
+   ENDTRY
+CATCH TO OuterException 
+   ? OuterException.UserValue
+ENDTRY      </pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/cc41129c-e406-40c1-a6fe-6fffaf315d78.htm">Programming Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Structured Exception Handling Sample (Visual FoxPro)">
+<param name="Alink Name" value="vfp.1231678">
+</OBJECT>

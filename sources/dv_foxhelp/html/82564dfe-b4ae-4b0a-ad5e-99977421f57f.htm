@@ -1,0 +1,279 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Replace the Report Builder's Expression Builder Dialog Box</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Replace the Report Builder's Expression Builder Dialog Box</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									<a href="#codeExampleSection">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The Report Builder architecture defines a framework into which you can plug your own classes to handle specific builder actions, such as responding to report designer events. Additionally, the report builder also allows you to replace the <b>Expression Builder</b> dialog box with your own implementation, by registering a class in the report builder's event handler registry table.</p>
+    <p>This topic describes the process of plugging in your own class to replace the expression builder dialog box, and also gives a more comprehensive example class that demonstrates how to create a Data Environment-aware expression builder.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>If you have not already done so, create an editable copy of the report builder's internal event handler registry table, as described in <span class="linkTerms"><a href="/html/ef9ad5e3-0660-463c-bb3e-573319abb5d8.htm">How to: Add Your Own Handler to the Report Builder's Registry</a></span>.</p>
+    </td></tr></table></div>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>This topic assumes that the _<b>REPORTBUILDER</b> system variable is set to the default Report Builder application. If it is empty, or has been set to a third-party report builder, then the procedures described below probably will not apply. For more information, see <span class="linkTerms"><a href="/html/66161092-cda2-4d9f-868c-26beaffa0841.htm">_REPORTBUILDER System Variable</a></span><b>.</b></p>
+    </td></tr></table></div>
+  <h3 class="procedureSubHeading">To create a GetExpression wrapper class</h3><div class="subSection"><ol><li>
+        
+          <p>Create or edit a programmatic class library:</p>
+          <p>
+            <code>MODIFY COMMAND c:\temp\mylibrary.prg</code>
+          </p>
+        
+      </li><li>
+        
+          <p>Define a class that implements the GetExpression wrapper API, as documented in <span class="linkTerms"><a href="/html/91d5dbf6-5294-468e-8ed6-b195d62603e5.htm">Report Builder Event Handler Registry Table</a></span>. You can use the simple example shown here as a template. This example replaces the label caption editor with a simple input box.</p>
+        
+      </li><li>
+        
+          <p>Save your changes.</p>
+        
+      </li></ol>
+      
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS MyGetExpressionWrapper AS Custom
+   PROCEDURE GetExpression( cDefaultExpr, cDataType, ;
+                            cCalledFrom,  oEvent )
+      LOCAL cNewValue
+      * Switch to the designer datasession, where tables
+      * may be open:
+      SET DATASESSION TO (oEvent.DefaultSessionID)
+      DO CASE
+      CASE m.cCalledFrom = "LabelCaption"
+         * Specify special handling for label captions:
+         cNewValue = INPUTBOX("Enter the label caption")
+      OTHERWISE
+         * All other expression builders will use the default:
+         GETEXPR "Enter the label caption" TO cNewValue ;
+            TYPE cDataType DEFAULT cDefaultExpr
+      ENDCASE
+      * Restore to the private builder datasession:
+      SET DATASESSION TO (oEvent.FrxSessionID)
+      RETURN cNewValue
+   ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+      
+    </div><h3 class="procedureSubHeading">To register your class as in the handler registry table</h3><div class="subSection"><ol><li>
+        
+          <p>Open the Report Builder <b>Options</b> dialog box:</p>
+          <p>
+            <code>DO (_REPORTBUILDER)</code>
+          </p>
+        
+      </li><li>
+        
+          <p>Click <b>Explore Registry</b>.</p>
+        
+      </li><li>
+        
+          <p>Locate the record with Type = "G".</p>
+        
+      </li><li>
+        
+          <p>Edit the record so that Class = <code>"MyGetExpressionWrapper"</code> and Library=<code> "c:\temp\mylibrary.prg"</code></p>
+        
+      </li><li>
+        
+          <p>Click <b>OK</b> to save your changes.</p>
+        
+      </li></ol></div><h3 class="procedureSubHeading">To test your changes</h3><div class="subSection"><ol><li>
+        
+          <p>Open a report or label layout in the designer.</p>
+        
+      </li><li>
+        
+          <p>Double-click on a label control to display the <b>Properties</b> dialog box.</p>
+        
+      </li><li>
+        
+          <p>Click on the ellipsis (…) next to the label caption text box to invoke the custom expression builder provided by your class.</p>
+        
+      </li></ol></div><h1 class="heading">Example</h1><div id="codeExampleSection" class="section">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">By design and by default, the Expression Builder dialog box invoked by ReportBuilder.App does not show tables that are not open in the designer's data session. Tables and cursors included in the report layout's data environment are not available. This is a change from how the designer's Expression Builder behaved in earlier versions (and still does when <code>_REPORTBUILDER = ""</code>).</p>
+        <p xmlns="">This example shows how you can define an alternative wrapper class that inspects the data environment, opens the tables in a private data session and then invokes the standard GETEXPR dialog box, to duplicate the original behavior of the report designer's Expression Builder.</p>
+        <p xmlns="">You can save this class to a procedure file, and register it for use in the report builder, as described above.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS GetExpressionWithDE AS Session
+  DataSession = 2   &amp;&amp; private
+  
+  PROCEDURE GetExpression
+     LPARAMETERS lcDefaultExpr, lcDataType, lcCalledFrom, loEvent 
+     LOCAL lCurSel, lcNewExpr, liPrivateSession
+     LOCAL liLines, i, iTableCount, lcAlias, lcSource
+     *----------------------------------------------
+     * Save this before it changes:
+     *----------------------------------------------
+     liPrivateSession = THIS.DataSessionId 
+     *----------------------------------------------
+     * Scan the data environment and open tables:
+     *----------------------------------------------
+     SET DATASESSION TO (loEvent.FrxSessionId)
+     lCurSel     = SELECT()
+     iTableCount = 0
+     SELECT expr FROM frx WHERE objtype = 26 ;
+        INTO CURSOR environCursors
+     SELECT environCursors
+     SCAN
+        liLines = ALINES(laValuePairs, environCursors.expr )
+        FOR i = 1 TO liLines
+           DO CASE
+           CASE LEFT(UPPER(laValuePairs[i]),5) == "ALIAS"
+              lcAlias = THIS.GetValue( laValuePairs[i])
+           CASE LEFT(UPPER(laValuePairs[i]),7) == "CURSORS"
+              lcSource = THIS.GetValue( laValuePairs[i])
+           ENDCASE
+        ENDFOR
+        lcSource = EVL(lcSource,"")
+        DO CASE
+        CASE FILE(lcSource)
+        CASE FILE(FORCEEXT(lcSource,"DBF"))
+           lcSource = FORCEEXT(lcSource,"DBF")
+        CASE FILE(JUSTFNAME(lcSource))
+           lcSource = JUSTFNAME(lcSource)
+        CASE FILE(FORCEEXT(JUSTFNAME(lcSource),"DBF"))
+           lcSource = FORCEEXT(JUSTFNAME(lcSource),"DBF")
+        ENDCASE
+        IF FILE(lcSource)
+           lcAlias = EVL( lcAlias, "Cursor"+TRANSFORM(i))
+           SET DATASESSION TO (liPrivateSession)
+           IF NOT USED(lcAlias)
+              TRY
+                 IF EMPTY(ALIAS())
+                    USE (lcSource) ALIAS (lcAlias) ;
+                       NOUPDATE SHARED
+                 ELSE
+                    USE (lcSource) ALIAS (lcAlias) ;
+                       IN 0 NOUPDATE SHARED
+                 ENDIF
+                 iTableCount = iTableCount+1
+              CATCH WHEN .T.
+              ENDTRY
+           ENDIF
+           SET DATASESSION TO (loEvent.FrxSessionID)
+        ENDIF
+     ENDSCAN
+     USE IN environCursors
+     SELECT (lCurSel)
+     IF iTableCount &gt; 0
+        SET DATASESSION TO (liPrivateSession)
+     ELSE
+        SET DATASESSION TO (loEvent.DefaultSessionID)
+     ENDIF
+     *-----------------------------------
+     * Display the GETEXPR dialog:
+     *-----------------------------------
+     GETEXPR TO lcNewExpr TYPE lcDataType DEFAULT lcDefaultExpr
+     *-----------------------------------
+     * Clean up and exit:
+     *-----------------------------------
+     SET DATASESSION TO (liPrivateSession)
+     CLOSE DATA
+     SET DATASESSION TO (loEvent.FrxSessionID)
+     RETURN lcNewExpr
+  ENDPROC
+  PROTECTED PROCEDURE GetValue
+     LPARAMETER lcValuePair
+     LOCAL liPos, lcReturn
+     lcReturn = ""
+     IF NOT EMPTY(lcValuePair)
+        liPos = AT("=",lcValuePair)
+        IF EMPTY(liPos)
+           RETURN ""
+        ENDIF
+        lcReturn =CHRTRAN(ALLTRIM(SUBSTR(lcValuePair,liPos+1)),["'],[])
+     ENDIF
+     RETURN lcReturn
+  ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/7161b49c-792d-4b6c-8219-cbe780af3dae.htm">How to: Configure the Report Builder's Event Handling</a></span><br /><span class="linkTerms"><a href="/html/3ae94a82-7396-4e6b-b6ff-57ec8541f366.htm">How to: Specify an Alternate Report Event Handler Table</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/fae228fe-3f63-4d54-b7b0-ab19279caad8.htm">Event Handler Registry Dialog Box (Report Builder)</a></span><br /><span class="linkTerms"><a href="/html/4ba558b6-55fc-4af4-86c9-dbcd225ce6fa.htm">Report Builder Options Dialog Box (Report Builder)</a></span><br /><span class="linkTerms"><a href="/html/91d5dbf6-5294-468e-8ed6-b195d62603e5.htm">Report Builder Event Handler Registry Table</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/3c88c403-7559-4001-9cae-3e2ad5f39090.htm">Understanding Report Builder Events</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Replace the Report Builder's Expression Builder Dialog Box">
+</OBJECT>

@@ -1,0 +1,242 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>APPEND FROM Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">APPEND FROM Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Adds records to the end of the currently selected table from another file.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+APPEND FROM <span class="parameter">FileName</span> | ?[FIELDS <span class="parameter">FieldList</span>] [FOR <span class="parameter">lExpression</span>]
+   [[TYPE] [DELIMITED [WITH <span class="parameter">Delimiter</span> | WITH BLANK | WITH TAB
+      | WITH CHARACTER <span class="parameter">Delimiter</span>] | DIF | FW2 | MOD | PDOX | RPD |
+      SDF | SYLK | WK1 | WK3 | WKS | WR1 | WRK | CSV | XLS | XL5 
+      [SHEET <span class="parameter">cSheetName</span>] | XL8 [SHEET <span class="parameter">cSheetName</span>]]] [AS <span class="parameter">nCodePage</span>]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">FileName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the file to append from. If you don't include a file name extension, a Visual FoxPro table and a default extension .dbf is assumed. If you are appending from a Visual FoxPro table, records in the table that are marked for deletion are appended if the current SET DELETED setting is OFF.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">? </span></dt><dd>
+          <p>Displays the <b>Open</b> dialog box, from which you can choose a table to append from.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS <span class="parameter">FieldList</span></span></dt><dd>
+          <p>Specifies to which fields data is appended.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You cannot append to memo fields from text files such as CSV and SDF files.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FOR <span class="parameter">lExpression</span></span></dt><dd>
+          <p>Appends a new record for each record in the currently selected table for which <span class="parameter">lExpression</span> evaluates to True (.T.). Records are appended until the end of the currently selected table is reached. If you omit FOR, the entire source file is appended to the currently selected table.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TYPE </span></dt><dd>
+          <p>Specifies the source file type of the file you are appending from. Although you must specify a file type if the file you are appending from isn't a Visual FoxPro table, you need not include the TYPE key word. You can append from a wide variety of different file types including delimited ASCII text files, in which you can specify a field delimiter.</p>
+          <p>If the source file you are appending from doesn't have the usual default file extension for that type of file, the source file name must include the file's extension. For example, Microsoft Excel worksheets normally have an .xls extension. If the Microsoft Excel worksheet you append from has an extension other than the expected .xls, be sure to specify the extension.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>When you are appending from a worksheet, the data in the worksheet must be stored in a row-major order rather than a column-major order. This allows the appended worksheet data to match the table structure.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DELIMITED </span></dt><dd>
+          <p>Specifies that the source file from which data is appended to the current Visual FoxPro table is a delimited file. A delimited file is an ASCII text file in which each record ends with a carriage return and line feed. Field contents are by default assumed to be separated from each other by commas (do not include extra spaces before or after the commas), and character field values to be additionally delimited by double quotation marks. For example:  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>"Smith",9999999,"TELEPHONE"</pre></td></tr></table></span></div>
+          <p>The file extension is assumed to be .txt for all delimited files.   </p>
+          <p>You can import dates from delimited files if the dates are in proper date format. The date format defaults to mm/dd/yy. Including the century portion of a date is optional. Visual FoxPro will import a date, such as 12/25/95, that doesn't include the century and assumes the date is in the twentieth century. Date delimiters can be any non-numeric character except the delimiter that separates the fields in the delimited file.   </p>
+          <p>Dates in other formats can be imported if their formats match date formats available in SET DATE. To import dates that are not in the default format, issue SET DATE with the proper date format before using APPEND FROM. To test whether a date format can be successfully imported, use it with CTOD( ). If the date is acceptable to CTOD( ), the date will import properly. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DELIMITED WITH <span class="parameter">Delimiter</span></span></dt><dd>
+          <p>Indicates that character fields are separated by a character other than the quotation mark.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DELIMITED WITH BLANK </span></dt><dd>
+          <p>Specifies files that contain fields separated by spaces instead of commas.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DELIMITED WITH TAB </span></dt><dd>
+          <p>Specifies files that contain fields separated by tabs rather than commas.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DELIMITED WITH CHARACTER <span class="parameter">Delimiter</span></span></dt><dd>
+          <p>Specifies files that contain fields all enclosed by the character specified with <span class="parameter">Delimiter</span>. If <span class="parameter">Delimiter</span> is a semicolon (the character used in Visual FoxPro to indicate command line continuation), enclose the semicolon in quotation marks. You can also specify the BLANK and TAB keywords for <span class="parameter">Delimiter</span>.</p>
+          <p>The WITH <span class="parameter">Delimiter</span> clause can be combined with the WITH CHARACTER clause. For example, the following command adds records from a text file with character fields enclosed by underscores and all fields delimited from each other with asterisks:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>APPEND FROM mytxt.txt DELIMITED WITH _ WITH CHARACTER *</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DIF </span></dt><dd>
+          <p>Include DIF to import data from a VisiCalc .dif (Data Interchange Format) file. Vectors (columns) become fields in the currently selected table and tuples (rows) become records. DIF file names are assumed to have a .dif extension.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FW2 </span></dt><dd>
+          <p>Include FW2 to import data from a file created by Framework II. FW2 file names are assumed to have a .fw2 extension.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MOD </span></dt><dd>
+          <p>Include MOD to import data from a Microsoft Multiplan version 4.01 file. MOD files are created by Microsoft Multiplan version 4.01, and are assumed to have a .mod extension.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">PDOX </span></dt><dd>
+          <p>Include PDOX to import data from a Paradox version 3.5 or 4.0 database file. Paradox file names are assumed to have a .db extension.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">RPD </span></dt><dd>
+          <p>Include RPD to import data from a file created by RapidFile version 1.2. RapidFile file names are assumed to have an .rpd extension.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SDF </span></dt><dd>
+          <p>Include SDF to import data from a System Data Format file. An SDF file is an ASCII text file in which records have a fixed length and end with a carriage return and line feed. Fields are not delimited. The file name extension is assumed to be .txt for SDF files.</p>
+          <p>Effective conversion of date data from SDF files to Visual FoxPro tables requires data to be stored in YYYYMMDD format.   </p>
+          <p>If date information is stored in ambiguous formats, you should map the date column to a character column of appropriate width so you can inspect the value and then apply the correct conversion routine to create correctly formatted date data. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SYLK </span></dt><dd>
+          <p>Include SYLK to import data from a SYLK (Symbolic Link) interchange format file. SYLK files are used in Microsoft MultiPlan. Columns in the SYLK file become fields in the Visual FoxPro table and rows become records. SYLK file names have no extension.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WK1 </span></dt><dd>
+          <p>Include WK1 to import data from a Lotus 1-2-3 version 2.x spreadsheet. Each column from the spreadsheet becomes a field in the table; each spreadsheet row becomes a record in the table. A .WK1 file name extension is assigned to a spreadsheet created in Lotus 1-2-3 revision 2.x.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WK3 </span></dt><dd>
+          <p>Include WK3 to import data from a Lotus 1-2-3 spreadsheet. Each column from the spreadsheet becomes a field in the table; each spreadsheet row becomes a record in the table. A .wk3 file name extension is assigned to a spreadsheet created in Lotus 1-2-3 revision 3.x.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WKS </span></dt><dd>
+          <p>Include WKS to import data from a Lotus 1-2-3 revision 1-A spreadsheet. Each column from the spreadsheet becomes a field in the table; each spreadsheet row becomes a record in the table. A .wks file name extension is assigned to a spreadsheet created in Lotus 1-2-3 revision 1-A.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WR1 </span></dt><dd>
+          <p>Include WR1 to import data from a Lotus Symphony version 1.1 or 1.2 spreadsheet. Each column from the spreadsheet becomes a field in the table and each spreadsheet row becomes a record in the table. A .wr1 file name extension is assigned to a spreadsheet created in Symphony versions 1.1 or 1.2.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WRK </span></dt><dd>
+          <p>Include WRK to import data from a Lotus Symphony version 1.0 spreadsheet. Each column from the spreadsheet becomes a field in the table and each spreadsheet row becomes a record in the table. A .wrk file name extension is assigned to a spreadsheet created in Symphony version 1.0.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CSV </span></dt><dd>
+          <p>Include CSV to import data from a comma separated value file. A CSV file has field names as the first line in the file; the field names are ignored when the file is imported.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">XLS </span></dt><dd>
+          <p>Include XLS to import data from a Microsoft Excel worksheet. Each column from the worksheet becomes a field in the table and each worksheet row becomes a record in the table. Worksheet files created in Microsoft Excel are given an .xls file name extension.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">XL5 </span></dt><dd>
+          <p>Include XL5 to import data from Microsoft Excel version 5.0. Columns from the worksheet become fields in the table; the worksheet rows become records in the table. Worksheet files created in Microsoft Excel have an .xls extension.</p>
+          <p>If you omit the SHEET clause, the data in Sheet1 is imported. To import data from a specific sheet, include the SHEET keyword and specify the sheet name with <span class="parameter">cSheetName</span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">XL8 </span></dt><dd>
+          <p>Include XL8 to import data from Microsoft Excel 97. Columns from the worksheet become fields in the table; the worksheet rows become records in the table. Worksheet files created in Microsoft Excel have an .xls extension.</p>
+          <p>If you omit the SHEET clause, the data in Sheet1 is imported. To import data from a specific sheet, include the SHEET keyword and specify the sheet name with <span class="parameter">cSheetName</span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">AS <span class="parameter">nCodePage</span></span></dt><dd>
+          <p>Specifies the code page of the source table or file. Visual FoxPro copies the contents of the source table or file and, as it copies the data, automatically converts the data to the code page of the current table. </p>
+          <p>If you specify a value for <span class="parameter">nCodePage</span> that is not supported, Visual FoxPro generates an error message. You can use GETCP( ) for <span class="parameter">nCodePage</span> to display the Code Page dialog box, making it possible for you to specify a code page for the appended table or file.   </p>
+          <p>If you omit AS <span class="parameter">nCodePage</span> and Visual FoxPro cannot determine the code page of the source table or file, Visual FoxPro copies the contents of the source table or file. As it copies the data, it automatically converts the data to the current Visual FoxPro code page. If SET CPDIALOG is ON, the table in the currently selected work area is marked with a code page. If you're appending from a table not marked with a code page, the Code Page dialog is displayed, making it possible for you to choose the code page of the table from which you're appending. The current Visual FoxPro code page can be determined with CPCURRENT( ).   </p>
+          <p>If you omit AS <span class="parameter">nCodePage</span> and Visual FoxPro can determine the code page of the table or file being appended, Visual FoxPro copies the contents of the appended table or file. As it copies the data, it automatically converts the data to the code page of the currently selected table.    </p>
+          <p>If <span class="parameter">nCodePage</span> is 0, Visual FoxPro assumes that the code page of the table or file being appended is the same as the code page of the currently selected table. No conversion to the current Visual FoxPro code page occurs. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>If the file from which you append is a Visual FoxPro table or a table created in an earlier version of FoxPro, a .dbf extension is assumed. If the Visual FoxPro table or the table created in an earlier version of FoxPro doesn't have a .dbf extension, you must specify its extension. If the file is not a Visual FoxPro table or a table created in an earlier version of FoxPro, you must specify the type of file from which you append.</p>
+      <p>Before you can append from a table created in dBASE IV or dBASE V that contains a memo field, you must first open the table in Visual FoxPro with USE. When you are prompted to convert the file, choose Yes.</p>
+      <p>If you append from a Visual FoxPro table or a table created in an earlier version of FoxPro, the table you append from can be open in another work area. Records marked for deletion in the table you are appending from are unmarked once the records are appended.</p>
+      <p>Use the <a href="/html/a47b9442-316f-42dc-9eea-817ddda2c7dc.htm">DBF( )</a> function to append from a temporary read-only cursor created by a <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL</a> command. Include the name of the cursor in the DBF( ) function as in the following example:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>APPEND FROM DBF('&lt;Cursor Name&gt;')</pre></td></tr></table></span></div>
+      <p>If the target table uses autoincrementing, APPEND FROM fails if AUTOINCERROR is set to ON, unless the FIELDS option is used to omit the AUTOINC column. Setting AUTOINCERROR to OFF or turning off autoincrementing in the target table by using CURSORSETPROP( ) allows the APPEND FROM to succeed. The target table's autoincrementing field or fields are incremented according to the values specified, and the values in source table are not applied.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">In the following example, the <code>customer</code> table is opened, its structure is copied to a table called <code>backup,</code> and <code>backup</code> is then opened. Visual FoxPro then appends all records where country is equal to Finland from the <code>customer</code> table. These records are then copied to a new delimited file called <code>TEMP.TXT</code>.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\testdata')
+USE customer  &amp;&amp; Open customer table
+COPY STRUCTURE TO backup
+USE backup
+APPEND FROM customer FOR country = 'Finland'
+COPY TO temp TYPE DELIMITED
+MODIFY FILE temp.txt
+USE
+DELETE FILE backup.dbf
+DELETE FILE temp.txt</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/53af0023-ca09-44ff-8c59-7b44bbbd9390.htm">COPY FILE Command</a></span><br /><span class="linkTerms"><a href="/html/e5cc1f14-402f-43b7-8066-af695c60e183.htm">COPY TO Command</a></span><br /><span class="linkTerms"><a href="/html/be78df32-95c1-4939-a439-65f1f0b93ca9.htm">EXPORT Command</a></span><br /><span class="linkTerms"><a href="/html/7b4a0531-66e1-4df9-828e-8450a761a9db.htm">GETCP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/33f7a0ab-d6ea-499e-9531-fe9635ab6357.htm">IMPORT Command</a></span><br /><span class="linkTerms"><a href="/html/456fe115-d38a-4e98-b040-4a00308d9e5a.htm">SET DELETED Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="APPEND FROM Command">
+<param name="ALink Name" value="APPEND FROM">
+</OBJECT>

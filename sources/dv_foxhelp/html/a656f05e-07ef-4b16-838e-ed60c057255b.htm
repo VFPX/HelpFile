@@ -1,0 +1,269 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Update Multiple Tables in a View</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Update Multiple Tables in a View</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can update multiple base tables from a view. When your view combines two or more tables, you set properties to ensure that only the many side of the view query is updatable.</p>
+    <p>Views are updated on a table-by-table basis. You must ensure that for each table accessed in a view, the key field set is a unique key for both the view result set and the base table.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <h3 class="procedureSubHeading">To make a multitable view updatable</h3><div class="subSection"><ul><li>
+            
+              <p>In the <span class="linkTerms"><a href="/html/d9f7a435-663d-4523-9511-c847be4311ca.htm">Query and View Designers</a></span>, choose the <b>Update Criteria</b> tab, and then select the tables and field names you want to update. </p>
+              <p>-or- </p>
+            
+          </li><li>
+            
+              <p>Use the <span class="linkTerms"><a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( ) Function</a></span>.</p>
+            
+          </li></ul></div>
+      <p>In most cases, the default values provided by Visual FoxPro prepare a multitable view to be updatable, even when you create the view programmatically. The following code example creates and explicitly sets properties to update a two-table view. You can use this example as a guide for customizing update property settings on a view.</p>
+      <div class="labelheading"><b>Updating Multiple Tables in a View</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>CREATE SQL VIEW emp_cust_view AS ;</code>
+            </p>
+            <p>
+              <code>   SELECT employee.emp_id, ;</code>
+            </p>
+            <p>
+              <code>   employee.phone, customer.cust_id, ;</code>
+            </p>
+            <p>
+              <code>   customer.emp_id, customer.contact, ;</code>
+            </p>
+            <p>
+              <code>   customer.company ;</code>
+            </p>
+            <p>
+              <code>   FROM employee, customer ;</code>
+            </p>
+            <p>
+              <code>   WHERE employee.emp_id = customer.emp_id</code>
+            </p>
+          </td>
+          <td>
+            <p>Create a view that accesses fields from two tables.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>DBSETPROP('emp_cust_view', 'View', 'Tables',</code>
+            </p>
+            <p>
+              <code>'employee, customer')</code>
+            </p>
+          </td>
+          <td>
+            <p>Set the tables to be updated.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>DBSETPROP('emp_cust_view.emp_id', 'Field', ;                'UpdateName', 'employee.emp_id')</code>
+            </p>
+            <p>
+              <code>DBSETPROP('emp_cust_view.phone', 'Field', ;                'UpdateName', 'employee.phone')</code>
+            </p>
+            <p>
+              <code>DBSETPROP('emp_cust_view.cust_id', 'Field', ;             'UpdateName', 'customer.cust_id')</code>
+            </p>
+            <p>
+              <code>DBSETPROP('emp_cust_view.emp_id1', 'Field', ;             'UpdateName', 'customer.emp_id')</code>
+            </p>
+            <p>
+              <code>DBSETPROP('emp_cust_view.contact', 'Field', ;             'UpdateName', 'customer.contact')</code>
+            </p>
+            <p>
+              <code>DBSETPROP('emp_cust_view.company', 'Field', ;             'UpdateName', 'customer.company')</code>
+            </p>
+          </td>
+          <td>
+            <p>Set update names.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>DBSETPROP('emp_cust_view.emp_id', 'Field', ;                'KeyField', .T.)</code>
+            </p>
+          </td>
+          <td>
+            <p>Set a single-field unique key for the Employee table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>DBSETPROP('emp_cust_view.cust_id', 'Field', ;</code>
+            </p>
+            <p>
+              <code>            'KeyField', .T.)</code>
+            </p>
+            <p>
+              <code>DBSETPROP('emp_cust_view.emp_id1', 'Field', ;</code>
+            </p>
+            <p>
+              <code>            'KeyField', .T.)</code>
+            </p>
+            <p>
+            </p>
+          </td>
+          <td>
+            <p>Set a two-field unique key for the Customer table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>DBSETPROP('emp_cust_view.phone', 'Field', ; </code>
+            </p>
+            <p>
+              <code>            'Updatable', .T.)</code>
+            </p>
+            <p>
+              <code>DBSETPROP('emp_cust_view.contact', 'Field', ;             'Updatable', .T.)</code>
+            </p>
+            <p>
+              <code>DBSETPROP('emp_cust_view.company', 'Field', ;             'Updatable', .T.)</code>
+            </p>
+            <p>
+            </p>
+          </td>
+          <td>
+            <p>Set the updatable fields. Typically, key fields are not updatable.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>DBSETPROP('emp_cust_view', 'View', ;</code>
+            </p>
+            <p>
+              <code>            'SendUpdates', .T.)</code>
+            </p>
+          </td>
+          <td>
+            <p>Activate the update functionality.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>GO TOP</code>
+            </p>
+            <p>
+              <code>REPLACE employee.phone WITH "(206)111-2222"</code>
+            </p>
+            <p>
+              <code>REPLACE customer.contact WITH "John Doe"</code>
+            </p>
+            <p>
+            </p>
+          </td>
+          <td>
+            <p>Modify data in the view.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>TABLEUPDATE()</code>
+            </p>
+          </td>
+          <td>
+            <p>Commit the changes by updating both the Employee and Customer base tables.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/2534690a-d695-4e44-82ae-826a80f0e0f0.htm">How to: Update a Table in a View</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ec63ea6a-e6c9-48d9-b7a1-c76a7fcd1857.htm">Updating Data in Views</a></span><br /><span class="linkTerms"><a href="/html/04008d6d-1ffd-4555-bf6a-1c50f39b418f.htm">Managing Views</a></span><br /><span class="linkTerms"><a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Update Multiple Tables in a View">
+</OBJECT>

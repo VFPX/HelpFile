@@ -1,0 +1,145 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Define Columns in Reports</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Define Columns in Reports</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can define multiple columns for the report or label page layout. Multiple columns divide a page layout into vertical sections. The Report Designer and Label Designer display one column, allowing you to place report controls only in a portion of the page layout. At runtime, the Report Engine repeats the column layout two or more times to fill the page. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p> If you increase the number of columns in your page layout after arranging report controls in the layout, you might need to move or resize the controls to fit within the new boundaries of column.</p>
+    </td></tr></table></div>
+    <p>Columns have an associated pair of header and footer bands, which are nested inside the report's page header and page footer bands.  Column header bands appear above any group header bands, and column footer bands appear below any group footer bands, in the Report Designer layout.  The behavior of these bands and the options you can set for them is similar to those available for group header and footer bands.  For more information, see <span class="linkTerms"><a href="/html/a9c7a092-bbe7-4f90-96f2-6ba0595bfcca.htm">How to: Add Bands to Reports</a></span>.</p>
+    <p>However, the addition of multiple columns to a report layout can have an impact on the behavior of column, group, and detail header and footer bands in the report.  This impact depends on how you set <b>Column print order</b>, as described in the procedures below.</p>
+  <h3 class="procedureSubHeading">To define columns for a report or label page layout</h3><div class="subSection"><ol><li>
+        
+          <p>Open the report or label in the appropriate designer.</p>
+        
+      </li><li>
+        
+          <p>On the <b>Report</b> menu, click <b>Properties</b>.</p>
+          <p>The <b>Report Properties</b> dialog box opens. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If the <b>_REPORTBUILDER</b> system variable is not set to the default Report Builder, the <b>Report Page Setup</b> dialog box opens instead. If <b>_REPORTBUILDER</b> is set to a third-party builder, a different dialog box might display. For more information, see <span class="linkTerms"><a href="/html/66161092-cda2-4d9f-868c-26beaffa0841.htm">_REPORTBUILDER System Variable</a></span> and <span class="linkTerms"><a href="/html/88acebef-e44b-443b-8d96-feb4f1c16aef.htm">Report Page Setup Dialog Box</a></span>.</p>
+          </td></tr></table></div>
+        
+      </li><li>
+        
+          <p>In the <b>Report Properties</b> dialog box, click the <b>Page Setup</b> tab.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Number</b> box, type or select the number of columns you want to appear across the page. </p>
+        
+      </li><li>
+        
+          <p>In the <b>Width</b> box, type or select a value for the column width.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Spacing</b> box, type a value for the amount of space you want between each column.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The <b>Spacing</b> box is available only when specifying more than one column in the <b>Number</b> box.  Use the <b>Column print order</b> option group to determine the print order appropriate to the data in this report or label. By default, the Report Designer selects the <b>Top to bottom</b> option button.  In this print order, Report Engine prints records consecutively in a single column until reaching the end of the available height for the detail band on the current page.  If you select the <b>Left to right</b> option button, the Report Engine prints records across the multiple columns, before continuing to print an additional record in the first column.  This print order is the default for the Label Designer, and is often referred to as <i>label style</i>. </p>
+          </td></tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>In Visual FoxPro 9.0, setting label-style print order has some additional impact on reports.  When you use this option to make columns flow from left to right, group and detail header and footer bands extend across the page, so they can provide true header information for the entire row.  The detail band starts one row down from any header bands you design in the layout.  In earlier versions, <b>Column print order</b> did not change the behavior of group header and footer bands, so the first detail item printed adjacent to the innermost group header on the same row.</p>
+          </td></tr></table></div>
+        
+      </li><li>
+        
+          <p>Click <b>OK</b>.</p>
+        
+      </li></ol>
+      
+        <p>For more information, see <span class="linkTerms"><a href="/html/e87644f7-f678-44b2-b25b-8c3cf4710a9e.htm">Page Layout Tab, Report Properties Dialog Box (Report Builder)</a></span>.</p>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/e7cdbea5-de9e-4a8c-a17d-29dd23b05fa0.htm">How to: Open Reports and Labels</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/49265836-568c-4121-9aa1-789162d15091.htm">Report Bands</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/a4be0b3e-a624-4590-8fc6-19fae0a76a77.htm">Working with Page Layouts</a></span><br /><span class="linkTerms"><a href="/html/fd877c13-ade8-475e-bac3-d74115e43ce8.htm">Working with Reports</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Define Columns in Reports">
+</OBJECT>

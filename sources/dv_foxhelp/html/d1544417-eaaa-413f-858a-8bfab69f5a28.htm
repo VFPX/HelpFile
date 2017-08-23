@@ -1,0 +1,144 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Create an Irregularly Shaped Window Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Create an Irregularly Shaped Window Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File: </b>...\Samples\Solution\Toledo\Irregular.scx</p>
+    <p>The main Visual FoxPro window and any forms you create have rectangular-shaped client areas by default. To change the shape, you can use the Windows API SetLayeredWindowAttributes function, which sets the opacity and transparency color key of a layered window. SetLayeredWindowAttributes is supported in Microsoft Windows 2000 and Windows XP. </p>
+  <h1 class="heading">Windows API Function Declarations</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>In this sample, the form's <b>Init</b> event contains the following declarations for the necessary API functions:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DECLARE INTEGER SetLayeredWindowAttributes IN win32api;
+      INTEGER HWND, INTEGER crKey, INTEGER bAlpha, INTEGER dwFlags
+DECLARE INTEGER SetWindowLong IN user32.DLL ;
+   INTEGER hWnd, INTEGER nIndex, INTEGER dwNewLong
+DECLARE INTEGER GetWindowLong IN user32.DLL ;
+   INTEGER hWnd, INTEGER nIndex</pre></td></tr></table></span></div>
+      <p>For more information about the Init event, see <a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init Event</a>. For detailed information about these declarations and functions, see MSDN online at <b>http://msdn.microsoft.com</b>.</p>
+    </div><h1 class="heading">Displaying Irregularly-Shaped Windows</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can display a nonrectangular form by using the SetLayeredWindowAttributes function and setting a transparent color. Shapes that are drawn using this color appear transparent. Also, any mouse clicks in these shapes pass through to the visible form. </p>
+      <p>This functionality is supported only in Microsoft Windows 2000 and Windows XP but is more efficient than previous techniques for setting a bounding region on the form. Although this technique makes a form transparent, the form must be set up properly to work with this functionality. </p>
+      <h3 class="procedureSubHeading">To set up the form</h3><div class="subSection"><ol><li>
+            
+              <p>On the form, set the <b>Form</b> <b>ShowWindow</b> property to 2 (As Top-Level Form) to make it possible to draw a layered window.</p>
+            
+          </li><li>
+            
+              <p>Turn off the window frame because it is not drawn when transparent by setting the following properties for the form: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BorderStyle   = 0
+Caption   = ""
+Closable   = .F.
+ControlBox   = .F.
+TitleBar   = 0</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>In the MakeIrregular method of the sample, set the magenta areas, as specified by the <code>nColor</code> variable, to transparent using the following code: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Gets existing flags from the window.
+lnFlags = GetWindowLong(nHWND, GWL_EXSTYLE)
+ThisForm.nFlags = lnFlags 
+* Appends Layered flag to existing flags.
+lnFlags = BITOR(lnFlags, WS_EX_LAYERED)
+* Sets new flags to the window.
+SetWindowLong(nHWND, GWL_EXSTYLE, lnFlags)
+SetLayeredWindowAttributes(nHWND, nColor, 0, LWA_COLORKEY)</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+      <p>For more information, see <a href="/html/4c6826b0-d49e-4f97-b18c-4670533600c7.htm">Form Designer</a>, <a href="/html/adb21354-5dde-4f55-b92a-df0c53810385.htm">Creating Forms</a>, and <a href="/html/9eb67555-deb2-4490-9d71-87d60f909bf7.htm">ShowWindow Property</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/348fec52-e48a-489f-86fb-0b0ac888ba69.htm">Solution Samples</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/a7c5a592-3bed-4402-b516-f24e22b721ca.htm">Forms Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Create an Irregularly Shaped Window Sample">
+<param name="Alink Name" value="vfp.1231681">
+</OBJECT>

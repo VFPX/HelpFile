@@ -1,0 +1,716 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Walkthrough: Creating a Visual FoxPro Application Setup Program Using InstallShield</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Walkthrough: Creating a Visual FoxPro Application Setup Program Using InstallShield</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you are ready to distribute an application, you can create a setup program to help your customers install it. This walkthrough explains considerations you should make prior to distributing the application and shows how to create a Setup project, include files and set their properties, and distribute the application files from Setup using InstallShield Express Visual FoxPro Limited Edition. </p>
+    <p>This walkthrough contains the following sections:</p>
+    <ul><li>
+        <p>
+          <span class="linkTerms"><a href="#fowlkwalkthroughcreatingvisualfoxproapplicationsetupprogramusinginstallshieldexpressanchor1">Prerequisites</a></span>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fowlkwalkthroughcreatingvisualfoxproapplicationsetupprogramusinginstallshieldexpressanchor3">Creating the Setup Program Using InstallShield Express</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fowlkwalkthroughcreatingvisualfoxproapplicationsetupprogramusinginstallshieldexpressanchor4">Distributing An Application</a>
+        </p>
+      </li></ul>
+    <p>For more information about distributing applications, see <a href="/html/44a57df6-33fa-419a-a650-542f2ad28148.htm">Distributing Applications</a>.</p>
+  <h1 class="heading"><span onclick="ExpandCollapse(prerequisitesToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(prerequisitesToggle)" tabindex="0"><img id="prerequisitesToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Prerequisites</span></h1><div id="prerequisitesSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Visual FoxPro includes the limited edition of InstallShield Express version 5.0, replacing the Setup Wizard found in versions prior to Visual FoxPro 7.0. To learn how to install InstallShield Express Limited Edition on your computer, see <span class="linkTerms"><a href="/html/dddc54ec-860c-4a46-ad80-8ba062346623.htm">How to: Install Additional Applications</a></span>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>You can use any setup creation program that uses Microsoft Windows Installer technology to create a Setup program (.msi) or merge modules (.msm) that are compatible with Microsoft Windows Installer. Some distribution scenarios require merge modules in addition to the Visual FoxPro run-time files. For more information, see <a href="#fowlkwalkthroughcreatingvisualfoxproapplicationsetupprogramusinginstallshieldexpressanchor8">Visual FoxPro Distribution Scenarios</a> in this walkthrough.</p>
+      </td></tr></table></div>
+      <p>The Windows 2000 Logo guidelines require that setup programs be based on Windows Installer technology. The Windows Installer is part of the Windows 2000 and Zero Administration Windows efforts to reduce the overall cost of deploying, using, and managing desktop computers. Both the limited and full editions of InstallShield Express use Microsoft Installer, which features comprehensive and flexible Setup creation technology. This technology makes it possible for your customers to install and configure your application efficiently. </p>
+      <p>This walkthrough does not act as a replacement for the InstallShield Express documentation, which you should read first. It is a supplement to assist you in using InstallShield Express to package and distribute applications. You can also download the Platform SDK Components for Windows Installer Developers from the Microsoft download Web site at <b>http://www.microsoft.com/msdownload/platformsdk/sdkupdate/</b>.</p>
+      <p>You should consider several issues when preparing an application for distribution. In addition to following the procedure outlined in the <a href="/html/7ec199a1-d019-4c84-ae60-ab285c76c06f.htm">Application Distribution Process</a>, you must identify the structure of your application; decide how to deliver the application to users, and how to best organize your Setup program. When you have addressed all these issues, you are ready to distribute your Visual FoxPro application.</p>
+    
+  </div><a name="fowlkwalkthroughcreatingvisualfoxproapplicationsetupprogramusinginstallshieldexpressanchor3"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Creating the Setup Program Using InstallShield Express</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>Creating the Setup project is the first step in creating a Setup program. The Setup project (.ism) file you create with InstallShield Express is based on the Windows Installer project file. This file stores all the logic and information necessary to build a setup program compatible with Windows Installer.</p>
+      <h3 class="procedureSubHeading">To create a Setup project</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Start</b> menu, point to <b>All Programs</b>. Point to <b>InstallShield</b>, and click <b>Express</b> to open InstallShield Express.</p>
+            
+          </li><li>
+            
+              <p>On the <b>File</b> menu, click <b>New</b> to open the <b>New Project</b> dialog box.</p>
+            
+          </li><li>
+            
+              <p>Browse to the location where you want to save your project, rename the default project file name in the <b>Project Name and Location</b> box, and click <b>OK</b>. </p>
+            
+          </li><li>
+            
+              <p>To create your setup program in a language other than English, select an alternate language in the <b>Project</b> <b>Language</b> list.  </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>After you choose a language, you cannot change it for the project.</p>
+              </td></tr></table></div>
+            
+          </li></ol></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Defining Project Properties</h3><div class="subSection" xmlns="">
+          <p>After you create a Setup project, you can define properties, such as:  </p>
+          <ul><li>
+              <p>Product name</p>
+            </li><li>
+              <p>Product version</p>
+            </li><li>
+              <p>Product icons</p>
+            </li><li>
+              <p>Default installation folder for all application files</p>
+            </li><li>
+              <p>Name and location of a Readme file</p>
+            </li></ul>
+          <p>At the minimum, you should specify the product name and a default installation folder for your application files. The <b>INSTALLDIR</b> property in InstallShield Express specifies the location of the default installation folder, for example, the application home directory. The location of the default installation folder specified by INSTALLDIR is:</p>
+          <p>[ProgramFilesFolder]<span class="parameter">Your Company Name</span>\<span class="parameter">Your Product Name</span></p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>It is recommended that you change <span class="parameter">Your Company Name</span> and <span class="parameter">Your Product Name</span> to the appropriate names for your application.</p>
+          </td></tr></table></div>
+          <p>You can also specify a different folder for your application by setting <b>INSTALLDIR</b> to a folder with the name of your application as specified by <span class="parameter">MyApp</span> in the following example:</p>
+          <p>[ProgramFilesFolder]\<span class="parameter">MyApp</span></p>
+          <p>If you plan to install any data or database files, you can also edit the <b>DATABASEDIR</b> property to specify the default destination folder for those files.</p>
+          <h3 class="procedureSubHeading">To specify general information for your Setup project</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Organize Your Setup</b> node, click <b>General Information</b>.</p>
+                
+              </li><li>
+                
+                  <p>In the property list, double-click the value field of a property to edit its value. </p>
+                
+              </li><li>
+                
+                  <p>Click elsewhere in the property list to see your changes take effect.</p>
+                
+              </li></ol></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Dividing Your Product into Features</h3><div class="subSection" xmlns="">
+          <p>From the perspective of the application user and InstallShield Express, a feature is considered a building block of an application. Features make it possible for users to install parts of an application. For example, during Visual FoxPro installation, you can specify whether to install the Visual FoxPro Samples and Visual FoxPro Tools as features. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Dividing your product into features is not required when creating a Setup program, although it can be helpful to users.</p>
+          </td></tr></table></div>
+          <p>The default setting for installing features is Always Install, which lists the components that install with all Setup Types.</p>
+          <h3 class="procedureSubHeading">To create a feature</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Organize Your Setup</b> node, click <b>Features</b>.</p>
+                
+              </li><li>
+                
+                  <p>To add a new feature, right-click the <b>Features</b> node in the tree view in the middle pane, and click <b>New Feature Ins</b>.</p>
+                
+              </li><li>
+                
+                  <p>Type a name for the new feature, and press ENTER.</p>
+                
+              </li></ol></div>
+          <p>When you have identified the your product features, you can set feature properties, such as feature description, how the feature is advertised, and whether the feature is required. Although advertised features appear to be installed to the user, they are not installed during setup. Windows Installer installs the advertised feature when the user tries to use the feature for the first time. </p>
+          <h3 class="procedureSubHeading">To set a feature property</h3><div class="subSection"><ol><li>
+                
+                  <p>Select the feature for which you want to modify properties. </p>
+                
+              </li><li>
+                
+                  <p>In the property list, double-click the value field of the property to edit its value.  </p>
+                  <p>To display more options, click the <b>ellipsis (...)</b> or arrow button that appears next to the property value field when additional options are available. </p>
+                
+              </li><li>
+                
+                  <p>Type or select a new value for the property. </p>
+                
+              </li></ol></div>
+          <p>For example, suppose you wanted to provide the option of installing the Help file for your application. Follow the steps to create the feature, and name it "Help file." If you want to make the Help file installation optional, set the Required property to No. If you want the feature to be installed the first time the user tries to invoke the feature by pressing F1 for Help, set the Advertised property to Yes.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Specifying Features for a Setup Type</h3><div class="subSection" xmlns="">
+          <p>You can include different Setup types in a Setup program and specify which features each Setup type should install. Setup types offer different levels of installation that the user can choose:  </p>
+          <ul><li>
+              <p>Typical Setup installs all features and files.</p>
+            </li><li>
+              <p>Minimal Setup installs the minimum number of features and files necessary for an application to function.</p>
+            </li><li>
+              <p>Custom Setup makes it possible to specify which features to install.</p>
+            </li></ul>
+          <p>You must include at least one Setup type.</p>
+          <p>All three Setup types install features listed by Always Install. For example, a basic Setup includes features listed by Always Install and the &amp;Typical Setup type. The ampersand (&amp;) in the Setup type name indicates the access key for a particular Setup type in the Setup user interface. You can include or remove Setup types depending on whether you want it included, as long as one remains available, or rename the Setup types.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Specifying features for each Setup type is not required when creating a Setup program.</p>
+          </td></tr></table></div>
+          <h3 class="procedureSubHeading">To select Setup types and specify features for each Setup type</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Organize Your Setup</b> node, click <b>Setup Types</b>.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>Setup Types</b> pane, select the check box for each Setup type you want to include. </p>
+                
+              </li><li>
+                
+                  <p>In the <b>Features installed for &lt;</b><span class="parameter">selected</span><b>&gt; setup type</b> pane, select the check box for each feature you want to this Setup type to install.</p>
+                
+              </li></ol></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Adding Files to Setup</h3><div class="subSection" xmlns="">
+          <p>The executable (.exe) file is usually needed for the user to start an application. You can add this file first along with other files your application requires, followed by any optional files. </p>
+          <p>Visual FoxPro provides resource files that extend the basic functionality of your applications, including FoxUser resource files, API libraries, and Microsoft ActiveX controls. If you use these files, you must add them to the Setup program so they can be installed when running Setup. For more information about resource files that you can use, see <a href="/html/9877952e-f860-41ef-a67e-e33af4c7970f.htm">Resource Files in Applications</a>.</p>
+          <h3 class="procedureSubHeading">To view files you can add to Setup</h3><div class="subSection"><ul><li>
+                
+                  <p>In the <b>Specify Application Data</b> node, click <b>Files</b>.</p>
+                
+              </li></ul></div>
+          <p>The Files view is divided into four panes. The left panes display folders on the source and destination computers. The right panes display the files in those folders. The Feature box appears above the four panes.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The <b>INSTALLDIR</b> property specifies the directory containing the root folder for your application files and is usually specified as the destination installation directory.</p>
+          </td></tr></table></div>
+          <p>Before adding files to the Setup project, you must specify the feature to associate those files with by selecting it in the Feature box. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Add required files as Always Install features. </p>
+          </td></tr></table></div>
+          <p>Make sure the feature appears in the Feature box. After selecting the feature, you can add files to the Setup project by copying them from the source folders to the folders on the destination computer. </p>
+          <h3 class="procedureSubHeading">To add files from the source folder to the destination folder</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Destination computer's folders</b> pane, select the destination folder where you want to install the application file.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>Source computer's files</b> pane, drag the source file to the destination folder. </p>
+                  <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                    <p>The folder specified by <b>INSTALLDIR</b> in the <b>General Information</b> node as the default installation directory should appear in the <b>Destination computer's folders</b> pane. Dragging the source file to the destination folder only instructs InstallShield Express where to locate the source file when you build your Setup program. It does not move or remove any files on the source computer.</p>
+                  </td></tr></table></div>
+                
+              </li></ol></div>
+          <p>You can also view a list of predefined folders, such as the desktop folder, that you can select and add to the list of destination computer folders. </p>
+          <h3 class="procedureSubHeading">To view and add predefined folders</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Destination computer's folders</b> pane, right-click <b>Destination Computer</b>.</p>
+                
+              </li><li>
+                
+                  <p>Click <b>Show Predefined Folders</b>.</p>
+                
+              </li><li>
+                
+                  <p>Select the folder you want to add. </p>
+                  <p>The folder appears in the list of destination computer folders.  </p>
+                
+              </li></ol></div>
+          <p>You can create one or more subfolders in a destination folder.</p>
+          <h3 class="procedureSubHeading">To create a subfolder in a destination folder</h3><div class="subSection"><ol><li>
+                
+                  <p>Right-click the destination folder, and click <b>Add</b>.</p>
+                
+              </li><li>
+                
+                  <p>Type a name for the new folder, and press ENTER.</p>
+                
+              </li></ol></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Registering Files</h3><div class="subSection" xmlns="">
+          <p>Windows Installer includes the following capabilities:   </p>
+          <ul><li>
+              <p>Roll back an unsuccessful installation, returning the target computer to its preinstallation state. </p>
+              <p>For example, COM Servers, such as ActiveX, COM, and COM+ files, require special registration so applications can access their interfaces. These .ocx, .exe, and .dll files traditionally contained self-registration functions that can be invoked to register the files during installation. However, relying on self-registration can cause some problems with Windows Installer.  </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>When registering a COM Server, it is highly recommended that you select <b>Extract COM Information</b> instead of <b>Self-registration</b> as the registration type for the file. If you select <b>Self-registration</b>, Windows Installer will not have the information needed to remove the COM Server from the registry properly.</p>
+              </td></tr></table></div>
+              <p>With traditionally scripted Setup programs, self-registration was acceptable for installing COM objects and is still valid. However, self-registering COM objects do not pass their installation and registration information to Windows Installer. Therefore, Windows Installer cannot roll back installation and registration of self-registered COM objects or advertise those objects. </p>
+            </li><li>
+              <p>Advertise installed products or individual product elements, such as COM objects.  </p>
+              <p>Advertising makes a product or COM object available to the user or target computer without installing the product until the user or another computer function attempts to access the advertised element. Advertisement occurs by placing a shortcut in the appropriate location such as the <b>Start</b> menu or registry. </p>
+            </li></ul>
+          <h3 class="procedureSubHeading">To register a COM server with InstallShield Express</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Specify Application Data</b> node, click <b>Files</b>.</p>
+                
+              </li><li>
+                
+                  <p>Copy the file for the COM Server from the source folder to the destination folder.</p>
+                
+              </li><li>
+                
+                  <p>Right-click the file you want to register, and click <b>Properties</b>.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>Properties</b> dialog box, click the <b>COM &amp; .NET Settings</b> tab.</p>
+                
+              </li><li>
+                
+                  <p>Select a <b>Registration Type</b>.</p>
+                
+              </li></ol></div>
+          <p>For more information registering COM Servers, see <a href="#fowlkwalkthroughcreatingvisualfoxproapplicationsetupprogramusinginstallshieldexpressanchor8">Visual FoxPro Distribution Scenarios</a>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Selecting Objects and Merge Modules</h3><div class="subSection" xmlns="">
+          <p>A merge module (.msm file) contains all of the logic, registry entries, and files needed to install an application or run-time files successfully. If you were to install your application manually, you would need to copy the Visual FoxPro run-time files to the destination computer and register those files. However, if you select the Microsoft Visual FoxPro 9 Runtime Libraries merge module, InstallShield Express copies and registers the run-time files properly. </p>
+          <p>For a Visual FoxPro application, you should select, at the minimum, the Microsoft Visual FoxPro 9 Runtime Libraries and MSXML 4.0 modules. For more information about Visual FoxPro run-time libraries, see <a href="/html/bbfb45cd-34ee-4040-a861-ae5a340db003.htm">Visual FoxPro Run-Time Libraries</a>. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>When you select the Microsoft Visual FoxPro 9 Runtime Libraries module in InstallShield Express, the check boxes for the Microsoft Visual C Runtime Library 7.1 and GDI Plus Redist modules are automatically selected and should remain selected. Visual FoxPro 9.0 requires these modules; therefore, do not clear selection of these modules.</p>
+          </td></tr></table></div>
+          <p>There are two MSXML 4.0 modules that should be included:</p>
+          <ul><li>
+              <p>MSXML 4.0 (msxml4sxs32.msm)</p>
+            </li><li>
+              <p>MSXML 4.0 (msxml4sys32.msm)</p>
+            </li></ul>
+          <p>You should also include the Microsoft Visual FoxPro 9 Report Applications merge module which contains runtime applications used by the Visual FoxPro 9.0 reporting engine. For more information, see <span class="linkTerms"><a href="/html/8920ed3c-4d89-4fea-9cf0-1cc21395928a.htm">Including Report Files for Distribution</a></span>.</p>
+          <p>If your application uses one of the <a href="/html/b53b14fa-c1b0-4c29-82b1-3149adf53073.htm">CURSORTOXML</a> functions, you should also include the MSXML 3.0 merge modules. These include the following:</p>
+          <ul><li>
+              <p>MSXML 3.0 (msxml3_wim32.msm)</p>
+            </li><li>
+              <p>Msxml3 Exception INF Merge Module (msxml3inf_wim32.msm)</p>
+            </li><li>
+              <p>WebData std library (wdstddll_wim32.msm)</p>
+            </li></ul>
+          <p>If you are deploying your application internationally, you may need to include one or more of the Microsoft Visual FoxPro 9 Resource language modules.</p>
+          <h3 class="procedureSubHeading">To select objects and merge modules for installation</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Specify Application Data</b> node, click <b>Redistributables</b>.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>InstallShield Redistributables</b> pane, select the check box for each merge module you want to install. </p>
+                
+              </li><li>
+                
+                  <p>You can install a merge module feature by feature by selecting or clearing the check boxes in the <b>Conditional Installation</b> pane when available.</p>
+                
+              </li></ol></div>
+          <p>For more information on merge modules, see <a href="#fowlkwalkthroughcreatingvisualfoxproapplicationsetupprogramusinginstallshieldexpressanchor8">Visual FoxPro Distribution Scenarios</a>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Creating Shortcuts and Folders</h3><div class="subSection" xmlns="">
+          <p>InstallShield Express makes it possible for you to create shortcuts and folders in the <b>Start</b> menu and on the desktop. </p>
+          <h3 class="procedureSubHeading">To create folders or shortcuts</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Configure the Target System</b> node, click <b>ShortCuts/Folders</b>.</p>
+                
+              </li><li>
+                
+                  <p>From the <b>Shortcuts</b> tree view in the middle pane, right-click the node where you want to install a shortcut or folder, and click <b>New Shortcut</b> or <b>New Folder</b>.</p>
+                
+              </li><li>
+                
+                  <p>If you created a shortcut, you must specify a target file. In the <b>Browse for Shortcut Target</b> dialog box, double-click the file for which you want to create a shortcut in the <b>Look in</b> list.  </p>
+                  <p>You can also associate your shortcut with a feature by navigating to the folder containing the file associated with the feature and selecting the file from the list. </p>
+                
+              </li><li>
+                
+                  <p>Type a name for the shortcut or folder, and press ENTER. </p>
+                  <p>To rename the folder or shortcut right-click it, click <b>Rename</b>, type a new name, and press ENTER.  </p>
+                  <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                    <p>Files for your application are at the bottom of the <b>Look in</b> list.</p>
+                  </td></tr></table></div>
+                
+              </li></ol></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Creating Registry Keys</h3><div class="subSection" xmlns="">
+          <p>If your application uses registry keys, for example, to keep track of user options, InstallShield Express can add them to the target computer during setup. If the keys do not exist on the development computer, you can create them manually. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Creating registry keys is not required when creating a Setup program.</p>
+          </td></tr></table></div>
+          <p>Registry entries are created in registry hives. Registry hives categorize registry entries by function. For example, COM Server classes are stored in the HKEY_CLASSES_ROOT registry hive. Software options, such as options for Visual FoxPro, are stored in the Software folder in the HKEY_CURRENT_USER hive.</p>
+          <h3 class="procedureSubHeading">To create registry keys</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Configure the Target System</b> node, click <b>Registry</b>.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>Destination computer's Registry view </b>pane, right-click the desired registry hive.</p>
+                
+              </li><li>
+                
+                  <p>On the shortcut menu, point to <b>New</b>, and click <b>Key</b>.</p>
+                
+              </li><li>
+                
+                  <p>Type a name for the key, and press ENTER.</p>
+                
+              </li><li>
+                
+                  <p>Right-click the new key, point to <b>New</b>, and select the type of value you want to add to the key.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>Destination computer's registry data </b>pane, double-click the key to enter a data value. </p>
+                  <p>Depending on the type of key, you can enter a name for it. </p>
+                
+              </li></ol></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Creating Open Database Connectivity (ODBC) Data Source Names (DSNs)</h3><div class="subSection" xmlns="">
+          <p>If the development computer has previously existing DSNs, you can instruct InstallShield Express to install the DSN on the destination computer. If you are installing DSNs, you should include the MDAC merge module when selecting merge modules in case the destination computer does not have ODBC components installed.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Creating ODBC DSNs is not required when creating a Setup program.</p>
+          </td></tr></table></div>
+          <h3 class="procedureSubHeading">To create DSNs</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Configure the Target System</b> node, click <b>ODBC Resources</b>.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>ODBC Resources</b> tree view, select the check boxes for the DSNs you want to create on the destination computer.</p>
+                
+              </li></ol></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Customizing Setup Appearance</h3><div class="subSection" xmlns="">
+          <p>You can select and change the appearance of dialog boxes that users see when installing your application. You can specify bitmap (.bmp) images for each dialog box and add additional dialog boxes, for example, to allow the user to specify a destination folder.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Customizing Setup appearance is not required when creating a Setup program.</p>
+          </td></tr></table></div>
+          <h3 class="procedureSubHeading">To select dialog boxes</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Customize the Setup Appearance</b> node, select <b>Dialogs</b>.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>Dialogs</b> tree view, select the dialog boxes you want to display during installation. </p>
+                  <p>When you select a dialog box, an image of the dialog box appears in the lower-left pane, and properties for the dialog box appear in the upper-right pane. </p>
+                
+              </li></ol></div>
+          <h3 class="procedureSubHeading">To make it possible for the user to specify a destination folder</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Customize the Setup Appearance</b> node, select <b>Dialogs</b>.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>Dialogs</b> tree view, click <b>Destination Folder</b>.</p>
+                
+              </li></ol></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Building Your Setup Program</h3><div class="subSection" xmlns="">
+          <p>After you have finished designing and setting the properties for all the elements in your Setup project, including the features, files, shortcuts, registry entries, and user interface, you are ready to build your Setup program.</p>
+          <p>The most commonly selected build types are CD-ROM or single image. Selecting CD_ROM creates a Setup program that contains files organized in a directory structure. Selecting SingleImage combines the files into a single file.</p>
+          <h3 class="procedureSubHeading">To build a Setup program</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Prepare for Release</b> node, click <b>Build Your Release</b>.</p>
+                
+              </li><li>
+                
+                  <p>In the<b> Builds</b> tree view, select the type of media you want to build. </p>
+                
+              </li><li>
+                
+                  <p>In the property list, set or edit the build properties.</p>
+                
+              </li><li>
+                
+                  <p>To build your Setup program, right-click the selected media type, and click <b>Build</b>.  </p>
+                  <p>InstallShield Express places the built Setup package into the following folder:  </p>
+                  <p>&lt;project directory&gt;\Express\&lt;media type&gt;\DiskImages\DISK1  </p>
+                
+              </li></ol></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Testing Your Setup Program</h3><div class="subSection" xmlns="">
+          <p>It is important to test your Setup program. You can do so without running the actual installation using InstallShield Express.</p>
+          <h3 class="procedureSubHeading">To test your Setup program with InstallShield Express</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Prepare for Release</b> node, click <b>Test Your Setup</b>.</p>
+                
+              </li><li>
+                
+                  <p>In the <b>Builds</b> tree view, select the media type containing the build you want to test.</p>
+                
+              </li><li>
+                
+                  <p>If you want to run the Setup program and install your application and its files on the development computer, click <b>Run Your Setup</b>. </p>
+                  <p>-or-  </p>
+                  <p>If you want to test only the Setup dialog boxes and any custom actions you have chosen, click <b>Test Your Setup</b>.   </p>
+                  <p>This option does not install any files or make any system changes. </p>
+                
+              </li></ol></div>
+        </div>
+    </sections></div><a name="fowlkwalkthroughcreatingvisualfoxproapplicationsetupprogramusinginstallshieldexpressanchor4"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Distributing an Application</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>After building and testing your Setup program, you are ready to distribute it.</p>
+      <h3 class="procedureSubHeading">To distribute your Setup program</h3><div class="subSection"><ol><li>
+            
+              <p>In the <b>Prepare for Release</b> node, click <b>Distribute Your Release</b>. </p>
+            
+          </li><li>
+            
+              <p>In the <b>Builds</b> tree view, select the media type containing the build you want to distribute. </p>
+            
+          </li><li>
+            
+              <p>Enter the location, or click <b>Browse</b> and navigate to the location where your Setup package will be copied.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Distribute to Location</b>.</p>
+            
+          </li></ol></div>
+      <p>You can also copy your Setup package to an FTP location. </p>
+      <p>For additional information and options for distributing applications, see the InstallShield Express documentation.</p>
+      <p>This walkthrough assumes you are installing a simple Visual FoxPro application that does not have dependencies other than the Visual FoxPro Runtime Libraries. The following information includes instructions needed for distribution scenarios other than installing only Visual FoxPro applications and their native data. For these scenarios, add the following appropriate merge modules when selecting objects and merge modules for your Setup program.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Web Services and SOAP</h3><div class="subSection" xmlns="">
+          <p>If your application uses Web services or SOAP, you must include the following merge modules:  </p>
+          <ul><li>
+              <p>SOAP SDK Files (Soap_Core.msm)</p>
+            </li><li>
+              <p>Visual Basic Virtual Machine (MSVBVM60.msm)</p>
+            </li><li>
+              <p>Microsoft Component Category Manager Library (Comcat.msm)</p>
+            </li><li>
+              <p>Microsoft OLE 2.40 (OLEAUT32.msm)</p>
+            </li></ul>
+        </div>
+      <h3 class="subHeading" xmlns="">Applications using Visual FoxPro Report Application Components</h3><div class="subSection" xmlns="">
+          <p>If your application uses the default Report Builder Application, Report Output Application, or Report Preview Application, and you want to ensure that these components are available to your application by default, include the following merge module:</p>
+          <ul><li>
+              <p>Visual FoxPro 9 Report Applications (vfp9rptapps.msm)</p>
+            </li></ul>
+          <p>For more information, see <span class="linkTerms"><a href="/html/8920ed3c-4d89-4fea-9cf0-1cc21395928a.htm">Including Report Files for Distribution</a></span>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Microsoft Visual FoxPro OLE DB Provider</h3><div class="subSection" xmlns="">
+          <p>The Visual FoxPro OLE DB Provider makes it possible for both Visual FoxPro and other applications to access Visual FoxPro data using OLE DB or ActiveX® Data Objects (ADO). To install the Visual FoxPro OLE DB Provider on the destination computer, include the Microsoft Visual FoxPro OLE DB Provider (VfpOLEDB.msm) merge module.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">ActiveX Controls</h3><div class="subSection" xmlns="">
+          <p>ActiveX controls are a common element of many Visual FoxPro applications. To include ActiveX controls with your InstallShield Express Setup, you should include the Microsoft Component Category Manager Library (Comcat.msm) merge module. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Windows 2000 and Windows XP also install files in this merge module.</p>
+          </td></tr></table></div>
+          <p>The ActiveX controls you install affect the type of merge modules you need to install and the extra steps you must take to install them.  </p>
+          <ul><li>
+              <p>Common ActiveX Controls    </p>
+              <p>These are common ActiveX controls that ship with Visual FoxPro and Microsoft Visual Studio. InstallShield Express ships with merge modules for most of these controls.   </p>
+              <p>If necessary, add the appropriate merge module for the needed control. For example, if your application uses the Treeview control, you should include the MSCOMCTL.msm merge module.  </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>The Common ActiveX Controls included in the InstallShield Express merge modules contain registration information that is compliant with Windows Installer.</p>
+              </td></tr></table></div>
+            </li><li>
+              <p>Microsoft Foundation Class (MFC) Controls    </p>
+              <p>Some older controls, such as the Calendar control, use the MFC libraries; therefore, it is recommended that you include the appropriate MFC merge modules, such as MFC42.msm. As with VBCCE controls, you must add the control manually to the project and set various settings. </p>
+            </li><li>
+              <p>Third-party controls    </p>
+              <p>Be sure to register any included third-party controls. In addition, you might need to add specific registry keys using the InstallShield Express Registry window for any necessary licensing requirements.  </p>
+              <p>For more information about third-party controls, see the documentation provided by the vendor about how and where to install these controls. Third-party control documentation should also provide information about any needed dependency files, such as MFC files. </p>
+            </li></ul>
+          <p>To make sure that Windows Installer can roll back or advertise installed files, you must install files in a manner compliant with Windows Installer requirements. Self-registration of files is not compliant with Windows Installer requirements. You can make sure InstallShield Express installs COM objects that are compliant with Windows Installer by following the instructions about registering files in this topic. For more information, see the InstallShield Express online documentation.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Applications Using HTML Help</h3><div class="subSection" xmlns="">
+          <p>The Microsoft Visual FoxPro HTML Help Support Library (VFP9HTMLHelp.msm) merge modules include both FOXHHELP9.exe and FOXHHELPPS9.dll files needed to support context-sensitive HTML Help within your Visual FoxPro applications. </p>
+          <p>In addition to your application-specific .chm file, you can include the core HTML Help viewer files. Later versions of Microsoft Internet Explorer include these files. You also can distribute them with the HHUPD.exe file available on the Microsoft Developer Network (MSDN). </p>
+        </div>
+      <h3 class="subHeading" xmlns="">Applications Using MDAC Components</h3><div class="subSection" xmlns="">
+          <p>For Visual FoxPro applications running on operating systems earlier than Windows 2000 or Windows XP, it is recommended that you include the Microsoft Data Access Components (MDAC) merge module (MDAC25.msm) if your applications use any of the following data components:  </p>
+          <ul><li>
+              <p>ODBC drivers, including Microsoft Visual FoxPro ODBC Driver (VFPODBC.msm)</p>
+            </li><li>
+              <p>OLE DB Provider</p>
+            </li><li>
+              <p>ADO, RDS</p>
+            </li></ul>
+        </div>
+      <h3 class="subHeading" xmlns="">COM Servers</h3><div class="subSection" xmlns="">
+          <p>The Windows Installer rollback and advertising features make it possible to undo component installation and registration if the product installation does not succeed. However, you must install and register COM objects correctly to make these features available. To register installed COM objects correctly, set the Registration Type to Extract COM Information. Self-registering installed COM objects sacrifices Windows Installer rollback and advertising functionality.</p>
+          <p>For more information, see the instructions about registering files in this topic.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Localized Applications</h3><div class="subSection" xmlns="">
+          <p>The Visual FoxPro Runtime Libraries (VFP9Runtime.msm) contain the standard language-neutral resource file (VFP9renu.dll) used for shipping all English (US) applications. If you want to include support for another localized resource file (VFP9R<span class="parameter">nnn</span>.dll), include the appropriate Microsoft Visual FoxPro Resource merge module that contains the localized resource file you want.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Localized resource files do not localize Setup dialog boxes. You can select the desired language for Setup dialog boxes when you create your Setup project.</p>
+          </td></tr></table></div>
+          <h3 class="procedureSubHeading">To include a localized Visual FoxPro resource file</h3><div class="subSection"><ol><li>
+                
+                  <p>In the <b>Specify Application Data</b> node, click <b>Redistributables</b>.</p>
+                
+              </li><li>
+                
+                  <p>To identify the Microsoft Visual FoxPro Resource merge module you want, look at the description for each merge module in the lower-left pane.</p>
+                
+              </li><li>
+                
+                  <p>Select the merge module you want. </p>
+                  <p>For example, to include the German resource file, select the VFP9rdeu.msm merge module. The following table lists available merge modules containing the corresponding localized resource files.</p>
+                  <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                        <th>
+                          Language
+                        </th>
+                        <th>
+                          Merge Module
+                        </th>
+                      </tr><tr>
+                      <td>
+                        <p>Chinese, Simplified</p>
+                      </td>
+                      <td>
+                        <p>VFP9rchs.msm</p>
+                      </td>
+                    </tr><tr>
+                      <td>
+                        <p>Chinese, Traditional</p>
+                      </td>
+                      <td>
+                        <p>VFP9rcht.msm</p>
+                      </td>
+                    </tr><tr>
+                      <td>
+                        <p>Czech</p>
+                      </td>
+                      <td>
+                        <p>VFP9rcsy.msm</p>
+                      </td>
+                    </tr><tr>
+                      <td>
+                        <p>French</p>
+                      </td>
+                      <td>
+                        <p>VFP9rfra.msm</p>
+                      </td>
+                    </tr><tr>
+                      <td>
+                        <p>German</p>
+                      </td>
+                      <td>
+                        <p>VFP9rdeu.msm</p>
+                      </td>
+                    </tr><tr>
+                      <td>
+                        <p>Korean</p>
+                      </td>
+                      <td>
+                        <p>VFP9rkor.msm</p>
+                      </td>
+                    </tr><tr>
+                      <td>
+                        <p>Russian</p>
+                      </td>
+                      <td>
+                        <p>VFP9rrus.msm</p>
+                      </td>
+                    </tr><tr>
+                      <td>
+                        <p>Spanish, International Sort</p>
+                      </td>
+                      <td>
+                        <p>VFP9resn.msm</p>
+                      </td>
+                    </tr></table></div>
+                
+              </li></ol></div>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/9877952e-f860-41ef-a67e-e33af4c7970f.htm">Resource Files in Applications</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/8b4b3584-e28e-498c-8c24-eb87968540dc.htm">Distributable and Restricted Visual FoxPro Features and Files</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1690045a-ff3b-4707-8da8-f5b01ac684f0.htm">Walkthroughs</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Walkthrough: Creating a Visual FoxPro Application Setup Program Using InstallShield">
+</OBJECT>

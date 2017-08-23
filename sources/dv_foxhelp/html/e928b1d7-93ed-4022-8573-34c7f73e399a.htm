@@ -1,0 +1,130 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Store Query Results in a Table, Array, or Cursor</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Store Query Results in a Table, Array, or Cursor</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can store your query results in a table, array, or cursor for other uses such as populating forms and printing reports and labels. If you want to store the results only temporarily, send the results to an array or cursor. If you want to store the results permanently, send the results to a table.</p>
+  <h3 class="procedureSubHeading">To specify a table as the destination</h3><div class="subSection"><ul><li>
+        
+          <p>Use the INTO clause of the SELECT - SQL statement to specify a destination.</p>
+        
+      </li></ul></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The following example shows an INTO clause for a table:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * ;
+   FROM tastrade!customer ;
+   WHERE customer.country = "Canada" ;
+   INTO TABLE mytable</pre></td></tr></table></span></div>
+      <h3 class="procedureSubHeading">To specify an array as the destination</h3><div class="subSection"><ul><li>
+            
+              <p>Use the INTO clause of the SELECT - SQL statement to specify a destination.</p>
+            
+          </li></ul></div>
+      <p>The following example shows an INTO clause for an array:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * ;
+   FROM tastrade!customer ;
+   WHERE customer.country = "Canada" ;
+   INTO ARRAY aMyArray</pre></td></tr></table></span></div>
+      <h3 class="procedureSubHeading">To specify a cursor as the destination</h3><div class="subSection"><ul><li>
+            
+              <p>Use the INTO clause of the SELECT - SQL statement to specify a destination.</p>
+            
+          </li></ul></div>
+      <p>The following example shows an INTO clause for a cursor named <code>mycursor</code>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * ;
+   FROM tastrade!customer ;
+   WHERE customer.country = "Canada" ;
+   INTO CURSOR mycursor</pre></td></tr></table></span></div>
+      <p>If you create a table or an array, you can use it like any other table or array in Visual FoxPro. If you create a cursor, you can browse through its contents. The cursor is opened in the lowest available work area. You can access it by using the name you gave it in the SELECT - SQL statement.</p>
+      <p>The following two procedures describe two common ways to include query results stored in tables and cursors into an application.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/b0a290f6-5c73-4cbc-a4e0-cb1078d1553f.htm">How to: Run Queries (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/5f20f561-1dae-47ad-8912-2a527195f6f8.htm">How to: Populate Query Results in a Form Control</a></span><br /><span class="linkTerms"><a href="/html/4ef5d74c-a97c-4c11-a029-7c9955e08fe2.htm">How to: Print Query Results in a Report or Label</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/073ce7c2-3c7c-423a-8c74-a478867f3848.htm">Setting Query Output Destinations</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Store Query Results in a Table, Array, or Cursor">
+</OBJECT>

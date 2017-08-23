@@ -1,0 +1,217 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Performing Specific Actions at Given Intervals</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Performing Specific Actions at Given Intervals</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The Timer control makes it possible for you to perform actions or check values at specific intervals.</p>
+  <h1 class="heading">Using the Timer Control</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Timer controls respond to the passage of time independent of user interaction, so you can program them to take actions at regular intervals. A typical use is checking the system clock to see if it is time to do a particular task. Timers are also useful for other kinds of background processing.</p>
+      <p>To see examples of using timers, run <b>Solution.app</b> in the Visual FoxPro ...\Samples\Solution directory. In the tree view, click <b>Controls</b>, and then click <b>Timer.</b></p>
+      <p>Each timer has an <a href="/html/a3f71859-64f9-469e-9cfe-06b4844d7e15.htm">Interval property</a>, which specifies the number of milliseconds that pass between one timer event and the next. Unless disabled, a timer continues to receive an event (appropriately named the Timer event) at roughly equal intervals of time. The Interval property has a few limitations to consider when you are programming a timer:  </p>
+      <ul><li>
+          <p>The interval can be between 0 and 2,147,483,647, inclusive, which means that the longest interval is about 596.5 hours (over 24 days).</p>
+        </li><li>
+          <p>The interval is not guaranteed to elapse exactly on time. To ensure accuracy, the timer should check the system clock when it needs to, rather than try to keep track of accumulated time internally.</p>
+        </li><li>
+          <p>Although the Interval property is measured in milliseconds, the actual interval is dependent on the system timer. For example, on Windows XP or later, a one millisecond interval can trigger 1000 events per second. On operating systems prior to Windows XP, the system generates 18 clock ticks per second so even though the Interval property is measured in milliseconds, the true precision of an interval is no more than one-eighteenth of a second. For more information on system timers and timer tick, refer to the online MSDN reference.</p>
+        </li><li>
+          <p>If your application or another application is making heavy demands on the system — such as long loops, intensive calculations, or disk, network, or port access — your application might not get timer events as often as the Interval property specifies.</p>
+        </li></ul>
+    </div><h1 class="heading">Placing a Timer Control on a Form</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Placing a Timer control on a form is like drawing any other control: you choose the Timer control on the Form Controls toolbar and click and drag on the form.</p>
+      <p>The timer appears on the form at design time so you can select it, view its properties, and write an event procedure for it. At run time, a timer is invisible and its position and size are irrelevant.</p>
+    </div><h1 class="heading">Initializing a Timer Control</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>A Timer control has two key properties.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Property
+            </th>
+            <th>
+              Setting
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9a192728-f031-4ce5-8df2-5deef9789892.htm">Enabled</a>
+            </p>
+          </td>
+          <td>
+            <p>If you want the timer to start working as soon as the form loads, set to true (.T.). Otherwise, leave this property set to false (.F.). You can choose to have an outside event (such as a click of a command button) start operation of the timer.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/a3f71859-64f9-469e-9cfe-06b4844d7e15.htm">Interval</a>
+            </p>
+          </td>
+          <td>
+            <p>Number of milliseconds between timer events.</p>
+          </td>
+        </tr></table></div>
+      <p>The Enabled property for the timer is different than for other objects. With most objects, the Enabled property determines whether the object can respond to an event caused by the user. With the Timer control, setting Enabled to false (.F.) suspends timer operation.</p>
+      <p>Remember that the Timer event is periodic. The Interval property does not determine "how long" as much as it determines "how often." The length of the interval should depend on how much precision you want. Because there is some built-in potential for error, make the interval one-half the desired amount of precision.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The more often a timer event is generated, the more processor time is consumed in responding to the event. This can slow down overall performance. Do not set a particularly small interval unless you need it.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Responding to the Timer Event</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>When a Timer control's interval elapses, Visual FoxPro generates the <a href="/html/0679e89d-2ed1-4eba-82fc-7bc1e5f4b88d.htm">Timer event</a>. Typically, you respond to this event by checking some general condition, such as the system clock.</p>
+      <p>A digital clock is a very simple but highly useful application involving a Timer control. When you understand how the application works, you can enhance it to work as an alarm clock, stopwatch, or other timing device.</p>
+      <p>The digital clock application includes a timer and a label with a border. At design time, the application looks like this:</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">The digital clock application</caption></caption></b><br></br></div><img src="../local/Local_-312877218_afd10011.gif" alt="FoxProFormLabel screenshot"></img>
+      <p>At run time, the timer is invisible.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Control</b>
+              
+            </th>
+            <th>
+              
+                <b>Property</b>
+              
+            </th>
+            <th>
+              
+                <b>Setting</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>lblTime</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/066f6a98-132a-448b-9fae-c4f67cd9b75e.htm">Caption</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Timer1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/a3f71859-64f9-469e-9cfe-06b4844d7e15.htm">Interval</a>
+            </p>
+          </td>
+          <td>
+            <p>500 (half a second)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Timer1</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/9a192728-f031-4ce5-8df2-5deef9789892.htm">Enabled</a>
+            </p>
+          </td>
+          <td>
+            <p>True</p>
+          </td>
+        </tr></table></div>
+      <p>The sole procedure in the application is the Timer event procedure:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF THISFORM.lblTime.Caption != Time()
+   THISFORM.lblTime.Caption = Time()
+ENDIF</pre></td></tr></table></span></div>
+      <p>The Interval property for the timer is set to 500, following the rule of setting the Interval to half of the shortest period you want to distinguish (one second in this case). This might cause the timer code to update the label with the same time twice in one second. This could cause some visible flicker, so the code tests to see if the time is different from what is displayed in the label before it changes the caption.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/88dda8bc-f9f4-476c-9e1a-26bee1279be2.htm">How to: Enhance Control Display</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/223e747b-b7aa-416c-8d21-fdb92cd428a4.htm">Controls for Allowing Specific Actions</a></span><br /><span class="linkTerms"><a href="/html/c03b9b51-7c73-48d0-ba37-3cedbef3d8f7.htm">Controls for Displaying Information</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/119e15f3-d59f-4ebc-8b75-98d1d4fbbdad.htm">Controls and Objects Created in Earlier Versions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b9032965-6941-41d2-8ff9-87c609673907.htm">Using Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Performing Specific Actions at Given Intervals">
+</OBJECT>

@@ -1,0 +1,191 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>FOR ... ENDFOR Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">FOR ... ENDFOR Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Executes a set of commands a specified number of times.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+FOR <span class="parameter">VarName</span> = <span class="parameter">nInitialValue</span> TO <span class="parameter">nFinalValue</span> [STEP <span class="parameter">nIncrement</span>] 
+      <span class="parameter">Commands</span>
+   [EXIT]
+   [LOOP]
+ENDFOR | NEXT</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">VarName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the variable to act as the counter. The counter keeps track of the number of times the Visual FoxPro commands execute inside the <b>FOR ... ENDFOR</b> loop. The variable does not need to exist before executing <b>FOR ... ENDFOR</b>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nInitialValue</span>TO <span class="parameter">nFinalValue</span></span></dt><dd>
+          <p>Specifies the initial and final values of the counter. Both <span class="parameter">nInitialValue</span> and <span class="parameter">nFinalValue</span> can be array elements.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[STEP <span class="parameter">nIncrement</span>] </span></dt><dd>
+          <p>Specifies the amount to increment or decrement the counter value. If <span class="parameter">nIncrement</span> is negative, the counter value is decremented. If you omit the <b>STEP</b> clause, <span class="parameter">VarName</span> increments by 1.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">Commands</span>
+        </span></dt><dd>
+          <p>Specifies the Visual FoxPro commands to execute. <span class="parameter">Commands</span> can include any number of commands.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[EXIT] </span></dt><dd>
+          <p>Transfers control from within the <b>FOR ... ENDFOR</b> loop to the command immediately following <b>ENDFOR</b>. You can place <b>EXIT</b> anywhere between <b>FOR</b> and <b>ENDFOR</b>. For more information, see <span class="linkTerms"><a href="/html/0227204b-0c58-4ac2-a623-a2ac828a1da2.htm">EXIT Command</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[LOOP] </span></dt><dd>
+          <p>Returns control to the <b>FOR</b> clause without executing the statements between the <b>LOOP</b> and <b>ENDFOR</b> keywords. The counter value increments or decrements as if <b>ENDFOR</b> was reached. For more information, see <span class="linkTerms"><a href="/html/2d39b72f-49fb-45f8-b366-8f5309041527.htm">LOOP Command</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ENDFOR </span></dt><dd>
+          <p>Specifies the end of the <b>FOR ... ENDFOR</b> loop.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NEXT </span></dt><dd>
+          <p>Specifies the location to continue program execution after the counter value exceeds <span class="parameter">nFinalValue</span>.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The Visual FoxPro commands that appear in the <b>FOR</b> loop execute until <b>ENDFOR</b> or <b>NEXT</b> is reached. The value in the counter <span class="parameter">VarName</span> then increments or decrements by the value of <span class="parameter">nIncrement</span>. The value of the counter is then compared with <span class="parameter">nFinalValue</span>. If the counter is less than or equal to <span class="parameter">nFinalValue</span>, the commands following the <b>FOR</b> clause execute again. If the counter is greater than <span class="parameter">nFinalValue</span>, the <b>FOR ... ENDFOR </b>loop exits, and program execution continues with the first command following <b>ENDFOR</b> or <b>NEXT</b>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The values of <span class="parameter">nInitialValue</span>, <span class="parameter">nFinalValue</span>, and <span class="parameter">nIncrement</span> are read only initially. However, changing the value of the counter <span class="parameter">VarName</span> inside the loop affects the number of times the loop is executed. Changing the value of <span class="parameter">nFinalValue</span> in a <b>FOR</b> loop has no effect.</p>
+      </td></tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    
+      
+      
+      <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+        <h3 class="subHeading" xmlns="">Example 1</h3><div class="subSection" xmlns="">
+            <p>In the following example, the <b>FOR ... ENDFOR</b> loop displays the numbers 1 through 10 using the <b>?</b> command:</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>FOR gnCount = 1 TO 10
+   ? gnCount
+ENDFOR</pre></td></tr></table></span></div>
+            <p>For more information, see <span class="linkTerms"><a href="/html/4718b6ad-af5e-4ced-8e93-7347259a92d5.htm">? | ?? Command</a></span>.</p>
+          </div>
+        <h3 class="subHeading" xmlns="">Example 2</h3><div class="subSection" xmlns="">
+            <p>The following example opens Customer table in the Visual FoxPro sample TestData database, located in the Microsoft Visual FoxPro directory ..\Samples\Data. The <b>FOR ... ENDFOR</b> loop specifies an initial value of 1, an increment value of 2, and a final value of 10. The <b>GOTO</b> command moves the record pointer to the record number specified by the variable <code>gnCount</code> and the <b>DISPLAY</b> command displays the name of the company from the Company field in the table. The <b>FOR ... ENDFOR</b> loop displays all odd-numbered records from the first 10 records.</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE (HOME(2) + 'Data\TestData')
+USE Customer  
+FOR gnCount = 1 TO 10 STEP 2
+   GOTO gnCount  
+   DISPLAY Company 
+ENDFOR</pre></td></tr></table></span></div>
+            <p>For more information, see <span class="linkTerms"><a href="/html/21117980-58f1-47b0-9384-05e0172f7af7.htm">GO | GOTO Command</a></span> and <span class="linkTerms"><a href="/html/b524a1c7-d4df-4312-b0f0-472297c73752.htm">DISPLAY Command</a></span>.</p>
+          </div>
+      </sections>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/85acf00a-9435-4308-96c5-a900f513eb20.htm">DO CASE ... ENDCASE Command</a></span><br /><span class="linkTerms"><a href="/html/e32603d6-0fe2-4149-a8c8-6db8d4cee78f.htm">DO WHILE ... ENDDO Command</a></span><br /><span class="linkTerms"><a href="/html/b21ba88f-aeda-48e0-a3c5-de9984020281.htm">FOR EACH ... ENDFOR Command</a></span><br /><span class="linkTerms"><a href="/html/c61f2d7e-2317-477e-9bf9-fa900c1bcac9.htm">SCAN ... ENDSCAN Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="FOR ... ENDFOR Command">
+<param name="ALink Name" value="FOR ... ENDFOR">
+</OBJECT>

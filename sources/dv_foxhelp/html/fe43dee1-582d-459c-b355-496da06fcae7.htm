@@ -1,0 +1,176 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Optimizing Programs</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Optimizing Programs</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>By writing your code carefully, you can write the fastest possible programs. There are several ways to improve program performance in Visual FoxPro:
+</p>
+    <ul><li>
+        <p>Following the general programming performance hints provided below.</p>
+      </li><li>
+        <p>Using name expressions instead of macro substitution.</p>
+      </li><li>
+        <p>Referencing object properties efficiently.</p>
+      </li></ul>
+  <h1 class="heading">General Programming Performance Hints</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>To write the fastest programs possible, follow the recommendations listed below.
+</p>
+      <ul><li>
+          <p>Choose the correct data type for your data. In particular, use the Integer data type for numeric information whenever possible, as it is processed most efficiently. Wherever possible, use Integer data types for primary and foreign key values, which will result in smaller data files, smaller (and therefore faster) indexes, and faster joins.
+</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>For an example showing how to create a smaller (and therefore faster) index, run Solution.app, located in the Visual FoxPro ...\Samples\Solution directory. Choose <b>View Samples by Filtered List</b>, select <b>Indexes</b> from the drop-down list, and then choose <b>Create Small Indexes Using BINTOC( )</b> from the list that appears.</p>
+          </td></tr></table></div>
+        </li><li>
+          <p>Avoid reopening files, which slows performance. Instead, assign files to work areas as you open them, then use the <a href="/html/cc85d04b-c4d7-495f-b7c3-ca8a61ea596c.htm">SELECT</a> command to choose a specific work area as needed.</p>
+        </li><li>
+          <p>Use <a href="/html/a7f9db76-2eaf-479d-94e9-ce15b4dac39d.htm">FOR ... ENDFOR</a> loops rather than <a href="/html/e32603d6-0fe2-4149-a8c8-6db8d4cee78f.htm">DO WHILE ... ENDDO</a> loops when possible, because they're faster.</p>
+        </li><li>
+          <p>When you copy data from multiple fields, <a href="/html/e5d1e608-a184-4cfb-8a06-f83ab8a6c50c.htm">SCATTER</a> TO ARRAY is faster than <a href="/html/e5d1e608-a184-4cfb-8a06-f83ab8a6c50c.htm">SCATTER</a> MEMVAR.</p>
+        </li><li>
+          <p>To use memory most efficiently, avoid creating objects before you need them, and clear objects when you finish with them to free memory.
+</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>You can test how much memory each object consumes by calling the <a href="/html/2d1b6bdc-9e99-4ce4-b041-ecd7dda8d063.htm">SYS(1016)</a> function.</p>
+          </td></tr></table></div>
+        </li><li>
+          <p>Send output to the topmost window whenever possible; updating windows behind the top window is substantially slower. Causing output to scroll behind a window is nearly a worst-case event.</p>
+        </li><li>
+          <p>Disable status display with the <a href="/html/9049d9e4-9174-4ea3-8980-3171c48f6f9f.htm">SET TALK OFF</a> command, which eliminates the overhead of screen update.</p>
+        </li><li>
+          <p>Set the <a href="/html/bc00454b-84fa-4d5b-9834-0dc97f6627aa.htm">SET DOHISTORY</a> command to OFF to avoid updating the command window each time a program runs.</p>
+        </li></ul>
+    </div><h1 class="heading">Using Name Expressions Instead of Macro Substitution</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>If you use name expressions instead of macro substitution, program performance will greatly improve. For example, if you assign a value to the variable <code>cFile</code>, a name expression created with <code>cFile</code> is faster than macro substitution.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>cFile = "CUST"
+use &amp;cFile      &amp;&amp; Macro substitution, slow
+use (cFile)      &amp;&amp; Name expression: faster, preferred</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Referencing Object Properties Efficiently</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>By understanding how Visual FoxPro works with properties and objects, you can make your applications run more efficiently.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Optimizing Repeated References to a Property</h3><div class="subSection" xmlns="">
+          <p>When you reference an object property with the <i>object.property</i> syntax, Visual FoxPro must search for the object before it can access the property. If you must access the property repeatedly, this search strategy can slow performance.</p>
+          <p>To avoid referencing the same procedure repeatedly (such as in a loop), read the property value into a variable, make changes, and then set the property when you're through. For example, the following code fills a property array by first creating an array in memory, filling it, and then setting the property only once at the end:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Copy string to a local variable
+lcChar = THISFORM.cCharString
+LOCAL laCharArray[256]   &amp;&amp; Create local array
+FOR nCounter = 1 to 256
+   laCharArray[x] = SUBSTR(laChar,x,1)
+ENDFOR
+* Copy the local array to the property array
+ACOPY(laCharArray,THISFORM.aCharArray)</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Referencing Multiple Properties Efficiently</h3><div class="subSection" xmlns="">
+          <p>If you update more than one property for the object, Visual FoxPro must search for the object multiple times, which can affect performance. In the following example, the code causes Visual FoxPro to search through four objects (such as <code>THISFORM</code>, <code>pgfCstInfo</code>, <code>pgCstName</code>, and <code>txtName</code>) to find the property to be set. Because the code sets two properties, the fourfold search is done twice:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.pgfCstInfo.pgCstName.txtName.Value = ;
+ "Fred Smith"
+THISFORM.pgfCstInfo.pgCstName.txtName.BackColor = ;
+ RGB (0,0,0)  &amp; Dark red</pre></td></tr></table></span></div>
+          <p>To avoid this overhead, use the <a href="/html/6dfe10cd-d39b-4be3-b9d7-d5df291f4f46.htm">WITH ... ENDWITH</a> command. This method causes Visual FoxPro to find the object once. For example, the following example accomplishes the same task as the previous one, but faster:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>WITH THISFORM.pgfCstInfo.pgCstName.txtName
+   .Value = "Fred Smith"
+   .BackColor = RGB (0,0,0)  &amp; Dark red
+ENDWITH</pre></td></tr></table></span></div>
+          <p>You can also store an object reference in a variable, then include the variable in place of the object reference:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oControl = THISFORM.pgfCstInfo.pgCstName.txtName
+oControl.Value = "Fred Smith"
+oControl.BackColor = RGB (0,0,0)  &amp; Dark red</pre></td></tr></table></span></div>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/cc85d04b-c4d7-495f-b7c3-ca8a61ea596c.htm">SELECT Command</a></span><br /><span class="linkTerms"><a href="/html/a7f9db76-2eaf-479d-94e9-ce15b4dac39d.htm">FOR ... ENDFOR Command</a></span><br /><span class="linkTerms"><a href="/html/e5d1e608-a184-4cfb-8a06-f83ab8a6c50c.htm">SCATTER Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/3f3c7751-db8b-43ad-9da6-7daa3f8eb8b5.htm">Optimizing Applications</a></span><br /><span class="linkTerms"><a href="/html/c43a1e26-abb8-486a-9e59-a8c188a882cc.htm">Optimizing Your System</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Optimizing Programs">
+</OBJECT>

@@ -1,0 +1,178 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>_TEXT System Variable</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">_TEXT System Variable</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Directs output from the \ | \\ and TEXT ... ENDTEXT text merge commands to a low-level file.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+_TEXT = <span class="parameter">nFileHandle</span></pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nFileHandle</span>
+        </span></dt><dd>
+          <p>Specifies a numeric value that determines the low-level file to which output is directed.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>\ | \\ and TEXT ... ENDTEXT facilitate the merging of text with the contents of tables, memory variables, and the results of functions and expressions. Output generated by these text merge commands can be directed to the screen or a window or to a low-level file. The _TEXT system memory variable lets you direct text merge output from these commands to a low-level file.</p>
+      <p>To send output from the \ and \\ and TEXT ... ENDTEXT text merge commands to a low-level file, include the TO <span class="parameter">FileName</span> clause in SET TEXTMERGE. The file handle of <span class="parameter">FileName</span> is stored to _TEXT. If the file handle of another low-level file was previously stored in _TEXT, that low-level file is closed.</p>
+      <p>FCREATE( ) creates and opens low-level files and FOPEN( ) opens existing files. These functions return a positive file handle if the file is successfully created or opened. Storing this file handle to _TEXT directs any subsequent output from the \, \\ and TEXT ... ENDTEXT text merge commands to the file. Use STORE or = to store a file handle to _TEXT. You must open a low-level file with write privileges in order for it to accept output from the text merge commands.</p>
+      <p>You can close low-level files with FCLOSE( ) or CLOSE ALL. You can also use SET TEXTMERGE TO without a file name to close the low-level file whose handle is stored in _TEXT.</p>
+      <p>The startup default value of _TEXT is –1. If you are directing text merge output to a file whose file handle is stored in _TEXT, you can turn off the output to that file without closing the file by storing –1 to _TEXT. By storing different file handles and –1 to _TEXT, you can direct text merge output to alternate files.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following program demonstrates how to direct text merge output to alternate files:</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET TALK OFF
+SET TEXTMERGE ON NOSHOW      &amp;&amp; Enable text merge, no output to screen
+SET TEXTMERGE DELIMITERS TO   &amp;&amp; Default text merge delimiters &lt;&lt;,&gt;&gt;
+SET TEXTMERGE TO date.txt   &amp;&amp; Create and send output to date.txt
+STORE _TEXT TO gcDateHandle   &amp;&amp; Save date.txt's file handle
+STORE -1 TO _TEXT         &amp;&amp; Output off to date.txt; keep it open
+SET TEXTMERGE TO time.txt   &amp;&amp; Create and send output to time.txt
+STORE _TEXT TO gcTimeHandle   &amp;&amp; Save time.txt's file handle
+*** Send the following text to time.txt ***
+\The time is:
+STORE gcDateHandle TO _TEXT    &amp;&amp; Now direct output to date.txt
+*** Send the following text to date.txt ***
+\Today's date is:
+STORE gcTimeHandle TO _TEXT   &amp;&amp; Now direct output to time.txt
+*** Output the time on the same line ***
+\\ &lt;&lt;TIME( )&gt;&gt;
+STORE gcDateHandle TO _TEXT   &amp;&amp; Now direct output to date.txt
+*** Output the date on the same line ***
+\\ &lt;&lt;DATE( )&gt;&gt;
+CLOSE ALL  &amp;&amp; Close all files
+TYPE date.txt  &amp;&amp; See what's in this file...
+WAIT WINDOW  &amp;&amp; Pause
+TYPE time.txt  &amp;&amp; ...and what's in this file
+ERASE date.txt
+ERASE time.txt</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/b04be2e6-5973-4ce2-bc41-3b69439f19e2.htm">\ | \\ Command</a></span><br /><span class="linkTerms"><a href="/html/f8c60315-bed3-48ef-919b-3b18a197f868.htm">FOPEN( ) Function</a></span><br /><span class="linkTerms"><a href="/html/406587fd-1ab5-4f52-9675-31a894530112.htm">FCLOSE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/4ace2f80-3f5a-4aa9-a949-3f03a414a0d5.htm">FCREATE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/45afea55-e808-4623-aa6e-0ed6648ec029.htm">_PRETEXT System Variable</a></span><br /><span class="linkTerms"><a href="/html/0c509f57-18ae-4580-a9a9-0032fc2f315c.htm">SET TEXTMERGE Command</a></span><br /><span class="linkTerms"><a href="/html/e16e6233-51a4-4f82-b979-f7ef9f95e967.htm">SET TEXTMERGE DELIMITERS Command</a></span><br /><span class="linkTerms"><a href="/html/1151b31e-7348-4b1e-9be0-c2b45c57f65d.htm">System Variables Overview</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="_TEXT System Variable">
+<param name="ALink Name" value="_TEXT">
+</OBJECT>

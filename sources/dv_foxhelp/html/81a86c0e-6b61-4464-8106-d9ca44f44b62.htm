@@ -1,0 +1,144 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Compiling Source Code</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Compiling Source Code</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>In Visual FoxPro, you can compile Visual FoxPro source code into run-time files created with VFP9R.dll or VFP9T.dll. For more information about run-time files, see <a href="/html/bbfb45cd-34ee-4040-a861-ae5a340db003.htm">Visual FoxPro Run-Time Libraries</a>.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Earlier versions of Visual FoxPro required using macro substitution or expression evaluation for each line to execute code generated at run time. This process was not always optimal because of the complexities of executing large blocks of code and the performance penalty incurred using the macro operator &amp;, or the <b>EVALUATE( )</b> function.</p>
+      </td></tr></table></div>
+      <p>The <b>COMPILE</b> command is available in the runtime so that your applications can generate and compile a program (.prg) file. Run-time compilation works with all files supported by the <b>COMPILE</b> command including programs, forms, classes, labels, reports and databases. You can use the <b>STRTOFILE( )</b> function to output your code to a .prg file. </p>
+      <p>There are a few differences between the compiler in the development product and in the runtime:
+</p>
+      <ul><li>
+          <p>The "?" switch in the <b>COMPILE</b> command is unavailable for the runtime because unattended automation servers (.dlls) do not allow modes involving user input.</p>
+        </li><li>
+          <p>The <b>SET DEVELOPMENT</b> command has no effect in the runtime. 
+</p>
+          <p>With the full product, <b>SET DEVELOPMENT</b> causes Visual FoxPro to compare the creation date and time of a program with those of its compiled object file when the program is run. If <b>SET DEVELOPMENT</b> is set to <b>ON</b>, the latest version is always executed – out-of-date programs are automatically recompiled. In the runtime, you must explicitly call the <b>COMPILE</b> command to recompile source. This means that calling the <b>DO</b> command in your runtime will never cause the .prg file to be recompiled. Also, with the runtime, the <b>DO</b> command ignores the file extension and looks for a file with an .fxp extension, even if you specify a .prg file.
+</p>
+        </li></ul>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/12083e78-3f22-408f-9d50-eac98dfaffad.htm">Early (vtable) and Late (IDispatch) Binding</a></span><br /><span class="linkTerms"><a href="/html/cb168eda-a7b4-4dcf-a455-1d3eba1139f5.htm">Scalability and Multithreading</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/0e1a350d-8fa7-4231-9e8f-3ac6d8b120fa.htm">Working with Automation Servers</a></span><br /><span class="linkTerms"><a href="/html/2d8cb3e1-df20-4304-8326-d3d469002652.htm">Interoperability and the Internet</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Compiling Source Code">
+</OBJECT>

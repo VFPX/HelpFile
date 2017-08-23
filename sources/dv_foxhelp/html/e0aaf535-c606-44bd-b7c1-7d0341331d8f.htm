@@ -1,0 +1,359 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>BINDEVENT( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">BINDEVENT( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Provides ability to execute user code (an object method) when an event occurs.</p>
+    <p>With the first form of the syntax below, you can use <b>BINDEVENT( )</b> to bind events, properties, or methods from native Visual FoxPro objects to other Visual FoxPro objects.</p>
+    <p>With the second syntax variation below, you can bind to Windows Message (Win Msg) events.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>If you want to bind to events from Component Object Model (COM) objects, use the <b>EVENTHANDLER( )</b> function.</p>
+    </td></tr></table></div>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+BINDEVENT(<span class="parameter">oEventSource</span>, <span class="parameter">cEvent</span>, <span class="parameter">oEventHandler</span>, <span class="parameter">cDelegate</span> [, <span class="parameter">nFlags</span>])</pre></td></tr></table></span><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+BINDEVENT(<span class="parameter">hWnd | 0</span>, <span class="parameter">nMessage</span>, <span class="parameter">oEventHandler</span>, <span class="parameter">cDelegate </span>[, <span class="parameter">nFlags</span>])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">oEventSource</span>
+        </span></dt><dd>
+          <p>Specifies the event source, which must be a valid Visual FoxPro object.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">hWnd</span>
+        </span></dt><dd>
+          <p>Specifies the integer handle of the window that receives Windows Messages.</p>
+          <p>If a value of 0 is passed, the specified event (<span class="parameter">nMessage</span>) is trapped for all windows.</p>
+          <p>You can use the <span class="linkTerms"><a href="/html/d51aa86c-cad0-49b7-9473-7b0ee974ddcb.htm">hWnd Property (Visual FoxPro)</a></span> to bind Windows Messages (events) received by _VFP, _SCREEN and instantiated form. ActiveX controls also have an hWnd property</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cEvent</span>
+        </span></dt><dd>
+          <p>Specifies the name of the event, method, or property you want to bind.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nMessage</span>
+        </span></dt><dd>
+          <p>Specifies a valid Windows message that is trapped. See MSDN (the Microsoft Developer Network) for information about Windows messages.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">oEventHandler</span>
+        </span></dt><dd>
+          <p>Specifies the object, which must be a valid Visual FoxPro object, handling the event. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cDelegate</span>
+        </span></dt><dd>
+          <p>Specifies the method, or "delegate", that handles the event for <span class="parameter">oEventHandler</span>.</p>
+          <p>The delegate method must have the same parameters as the event specified in <span class="parameter">cEvent</span>. You can call the <b>AEVENTS( ) </b>function to retrieve an object reference to the event source. If the delegate method does not have enough parameters to handle those passed by the event, Visual FoxPro generates an error.</p>
+          <p>When trapping for Windows Message (Win Msg) events, the <span class="parameter">cDelegate</span> method must include a PARAMETERS statement to accept four parameters that get passed to the method. The format of the parameters is identical to the format of the Windows WindowProc function. See MSDN (the Microsoft Developer Network) for information about the Windows WindowProc function. The method must return an integer value.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nFlags</span>
+        </span></dt><dd>
+          <p>Specifies an additive bit flag you can set for the event binding operation.</p>
+          <p>The <span class="parameter">nFlags</span> parameter is ignored when a Windows message event binding is created.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>nFlags</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Bits</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Event Type</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>000</p>
+              </td>
+              <td>
+                <p>FoxPro object</p>
+              </td>
+              <td>
+                <p>Call delegate code before event code. (Default)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>001</p>
+              </td>
+              <td>
+                <p>FoxPro object</p>
+              </td>
+              <td>
+                <p>Call event code before delegate code. </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>010</p>
+              </td>
+              <td>
+                <p>FoxPro object</p>
+              </td>
+              <td>
+                <p>Do not trigger event (call delegate code) by simple method call.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>3</p>
+              </td>
+              <td>
+                <p>011</p>
+              </td>
+              <td>
+                <p>FoxPro object</p>
+              </td>
+              <td>
+                <p>Call event code before delegate code. Do not trigger event (call delegate code) when simple method calls occur.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>100</p>
+              </td>
+              <td>
+                <p>Windows Message</p>
+              </td>
+              <td>
+                <p>Prevents recursion of similar events while user event code is executing. </p>
+              </td>
+            </tr></table></div>
+          <p>The following table shows whether an event is raised when Bit 1 is off or on.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Event trigger</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>OFF (Default)</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>ON</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Interactive</p>
+              </td>
+              <td>
+                <p>YES</p>
+              </td>
+              <td>
+                <p>YES</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Programmatic</p>
+              </td>
+              <td>
+                <p>YES</p>
+              </td>
+              <td>
+                <p>NO</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <b>RAISEEVENT( )</b>
+                </p>
+              </td>
+              <td>
+                <p>YES</p>
+              </td>
+              <td>
+                <p>YES</p>
+              </td>
+            </tr></table></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Numeric data type. <b>BINDEVENT( )</b> returns the number of bindings for the object's event.</p>
+      <p>BINDEVENT( ) always returns 1 when a Windows message event binding is created. No error detection is performed, so if invalid hWnd and <span class="parameter">nMessage</span> values are specified, 1 is still returned and the binding remains in effect until it is released.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>You can bind to any valid Visual FoxPro object event, property, or method, including the <b>Access</b> and <b>Assign</b> methods. However, the event and delegate methods must be public, not protected or hidden, members of the class. </p>
+      <p>You cannot bind to an event with parameters that are passed by reference. Though calling <b>BINDEVENT( )</b> succeeds, raising the event, for example, using <b>RAISEEVENT( )</b>, fails.</p>
+      <p>When you bind to a property, you should bind to it directly and not to the <b>Assign</b> method. If you bind directly to the <b>Assign</b> method, be aware that <b>Access</b> and <b>Assign</b> methods are marked as <b>Protected</b> and are not visible except within the class.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If you bind to a property that has an <b>Assign</b> method, the delegate method might trigger twice. The first time is when the property assignment call is made. The second time is when the property is actually set, within the <b>Assign</b> method, to the parameter that is passed. The delegate method should be aware of this possibility.</p>
+      </td></tr></table></div>
+      <p>Normal rules of inheritance apply. If the delegate method does not contain any code, Visual FoxPro traverses up the parent hierarchy.</p>
+      <p>An event handler is called when an event occurs or if it is called as a method. Calling the event as a method triggers the event unless you specify an <span class="parameter">nFlags</span> value of 2 or 3.</p>
+      <p>By default, Visual FoxPro calls the delegate method before the event. However, you can change the default behavior by using an <span class="parameter">nFlags</span> setting.</p>
+      <p>If you specify a property as the event you want to bind, Visual FoxPro binds that property to an implicit <b>Assign</b> method. When the value of that property changes, Visual FoxPro triggers an event.</p>
+      <p>If an invalid parameter is passed, Visual FoxPro generates the error, "Function argument value, type, or count is invalid." However, if a problem occurs during the binding operation, Visual FoxPro does not generate an error. You can retrieve the return value of <b>BINDEVENT( )</b> to check the number of bindings.</p>
+      <p>Certain control events such as <b>GotFocus</b>, <b>LostFocus</b>, <b>InteractiveChange</b>, and <b>ProgrammaticChange</b> do not work if the second bit of the <span class="parameter">nFlags</span> parameter is set, for example, nFlags set to 2. These events are treated as method calls internally by Visual FoxPro, even though they are considered events. The same behavior applies to the <b>Refresh</b> method of an object on a form that is called when the form's <b>Refresh</b> method is called. Certain events such as <b>When</b> and <b>Valid</b> require code in the event for it to occur.</p>
+      <p>
+        <b>BINDEVENT( )</b> does not directly support the <b>Value</b> property because it is handled by Visual FoxPro in a special way. You should use the <b>InteractiveChange </b>and <b>ProgrammaticChange</b> events instead. Additionally, the <b>ActivePage</b> property is not supported.</p>
+      <p>If the original event contains a <b>NODEFAULT</b> command, Visual FoxPro still processes the event because it is possible that the delegate method is called before the event. <b>NODEFAULT</b> applies only to native Visual FoxPro events.</p>
+      <p>If you make an exact duplicate <b>BINDEVENT( )</b> call, Visual FoxPro disregards the call but still returns the number of bindings for the object's event. If you change the <span class="parameter">nFlags</span> setting, you can call <b>BINDEVENT( )</b> to rebind the event.</p>
+      <p>When binding to Windows message (Win Msg) events, only one hWnd to Windows message pairing can exist. You can pass an hWnd value of 0 if you want to bind all windows to the same Windows message event. A Windows message event binding can be released with the <span class="linkTerms"><a href="/html/b64acd53-4196-48ce-9ab3-8da9dc8ed49a.htm">UNBINDEVENTS( ) Function</a></span> and the <span class="linkTerms"><a href="/html/b89737d7-7dac-455e-9088-fa0ec6c93b98.htm">CLEAR Commands</a></span>. Also, if the event handler object specified with the <span class="parameter">oEventHandler</span> parameter no longer exists, the binding is released when its Windows message occurs.</p>
+      <p>With a Windows message event binding, your user code will execute whenever an event occurs including scenarios in which a modal dialog is displayed. This is because the Window Procedure must always process the message and return. Since it is possible for recursion to occur with an event while your user code is executing, you may want to specify an <span class="parameter">nFlags</span> value of 4 to prevent this from happening.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>A Windows message event binding should be used with care since your user code is bound to events being triggered by the Windows operating system and these events can occur at times when you do not expect them to.</p>
+      </td></tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example shows how you can keep the Class Browser positioned to the right side of the Visual FoxPro desktop, regardless of how the desktop is resized. <b>BINDEVENT( )</b> associates the <b>Resize</b> event of the <b>_SCREEN </b>system variable, or Visual FoxPro desktop, with <code>oHandler</code>, which uses <code>myresize</code> as its delegate. The code for <code>myresize</code> runs when the <b>Resize</b> event is triggered.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PUBLIC oHandler
+oHandler=NEWOBJECT("myhandler")
+DO (_browser)
+BINDEVENT(_SCREEN,"Resize",oHandler,"myresize")
+DEFINE CLASS myhandler AS Session
+   PROCEDURE myresize
+      IF ISNULL(_obrowser) THEN
+         UNBINDEVENTS(THIS)
+      ELSE
+         _obrowser.left = _SCREEN.Width - _obrowser.width
+      ENDIF
+   RETURN
+ENDDEFINE</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/191ff51b-b302-4a91-b463-ef0a7ff98375.htm">Bind, Raise, Unbind, and Retrieve Events Sample</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/d8025938-9dc6-4091-840b-2770396946c8.htm">AEVENTS( ) Function</a></span><br /><span class="linkTerms"><a href="/html/297f42e9-e402-4a4f-abad-15f180508f2a.htm">RAISEEVENT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/b64acd53-4196-48ce-9ab3-8da9dc8ed49a.htm">UNBINDEVENTS( ) Function</a></span><br /><span class="linkTerms"><a href="/html/95a36787-89ac-4e4f-ac50-60708ab61363.htm">SYS(2325) - WCLIENTWINDOW from Visual FoxPro WHANDLE</a></span><br /><span class="linkTerms"><a href="/html/06f2cee1-b3aa-4f81-a37c-2efcd611af41.htm">SYS(2326) - WHANDLE from a Window's hWnd</a></span><br /><span class="linkTerms"><a href="/html/f30fb98e-e1df-4e6b-bf9e-1ad506e06174.htm">SYS(2327) - Window's hWnd from Visual FoxPro WHANDLE</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/d0d1eaf7-9399-4b84-a073-42239bdafdbb.htm">Event Binding for Visual FoxPro Objects</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="BINDEVENT( ) Function">
+<param name="ALink Name" value="BINDEVENT">
+</OBJECT>

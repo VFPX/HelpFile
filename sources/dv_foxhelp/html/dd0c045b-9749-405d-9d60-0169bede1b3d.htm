@@ -1,0 +1,203 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SET RELATION Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SET RELATION Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Establishes a relationship between open tables so that moving the record pointer in the parent table moves the record pointer in the child table.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SET RELATION TO [<span class="parameter">eExpression1</span> INTO <span class="parameter">nWorkArea1</span> | <span class="parameter">cTableAlias1</span>
+   [, <span class="parameter">eExpression2</span> INTO <span class="parameter">nWorkArea2</span> | <span class="parameter">cTableAlias2</span> ...]
+   [IN <span class="parameter">nWorkArea</span> | <span class="parameter">cTableAlias</span>] [ADDITIVE]]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">eExpression1</span>
+        </span></dt><dd>
+          <p>Specifies the relational expression that creates a relationship between the parent and child tables. The relational expression is usually the index expression of the controlling index of the child table.</p>
+          <p>If <span class="parameter">eExpression1</span> is numeric, it is evaluated when the record pointer in the parent table is moved. The record pointer in the child table is then moved to record number <span class="parameter">eExpression1</span>.</p>
+          <p>Omitting arguments for <b>SET RELATION</b> removes all relationships in the currently selected work area. You can remove a specific parent-child relationship using <b>SET RELATION OFF</b>. For more information, see <a href="/html/1bab736f-2ab3-48d5-8031-549c7a8c6a36.htm">SET RELATION OFF Command</a>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">INTO <span class="parameter">nWorkArea1</span>| <span class="parameter">cTableAlias1</span></span></dt><dd>
+          <p>Specifies the work area number or table alias of the child table.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">eExpression2</span>INTO <span class="parameter">nWorkArea2</span>| <span class="parameter">cTableAlias2</span>... </span></dt><dd>
+          <p>Specifies a relational expression and the work area number or a child table alias so you can create an additional relationship between the parent table and child tables. Precede each relationship definition with a comma.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN <span class="parameter">nWorkArea</span></span></dt><dd>
+          <p>Specifies the work area of the parent table.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN <span class="parameter">cTableAlias</span></span></dt><dd>
+          <p>Specifies the alias of the parent table.</p>
+          <p>The IN clause makes it possible for you to create a relationship without first selecting the parent table's work area. If you omit <span class="parameter">nWorkArea</span> and <span class="parameter">cTableAlias</span>, the parent table must be open in the currently selected work area. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ADDITIVE </span></dt><dd>
+          <p>Preserves all existing relationships in the current work area and creates the specified relationship. Omitting <b>ADDITIVE</b> breaks any relationships in the current work area and creates the specified relationship.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Before you can create a relationship, the tables must be open in different work areas. The child table must be indexed on the common field unless the relational expression is numeric. The index for the child table can be a single-entry (.idx) index, a structural compound (.cdx) index, or an non-structural compound index. If the index is a compound index, specify the proper index tag to order the records in the child table using the <b>SET ORDER</b> command. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If you call <b>SET RELATION</b> with a nonnumeric relational expression and the child table has not been ordered with an index, Visual FoxPro generates an error message.</p>
+      </td></tr></table></div>
+      <p>You can typically create relationships between tables that have a common field. You can create multiple relations between a single parent table and various child tables using a single <b>SET RELATION</b> command. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If a matching record is not found in the child table, the record pointer in the child table is positioned at the end of the table.</p>
+      </td></tr></table></div>
+      <p>If the child table has an active index, the data type of <span class="parameter">eExpression1</span> must be the same as the child table's active index key. If the child table does not have an active index, then <span class="parameter">eExpression1</span> must have a numeric data type, in which case it represents a record number to move to in the child table.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Examples</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>
+        <b>Example 1</b>
+      </p>
+      <p>The following example creates a relationship between a customer table and an orders table where one customer record in the customer table can have many order records in the orders table. By creating a relationship using a common field, you can see all the orders for any customer. This example creates relationship using the Cust_ID field in the customer table and the Cust_ID index tag in the orders table. The index in the orders table organizes records by customer.</p>
+      <p>The following code uses the <b>USE</b> command to open the customer table as the parent table in work area 1 and open the orders table as the child table in work area 2. The <b>SELECT</b> command selects the work area for the orders table. The <b>SET ORDER</b> command specifies the order of the orders table using the Cust_ID index tag:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE Customer IN 1
+USE Orders IN 2
+SELECT Orders
+SET ORDER TO TAG Cust_ID</pre></td></tr></table></span></div>
+      <p>The following code uses the <b>SELECT</b> command to select the work area for the customer table. <b>SET RELATION</b> creates the relationship between the parent table and the controlling index in the child table:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT Customer
+SET RELATION TO Cust_ID INTO Orders</pre></td></tr></table></span></div>
+      <p>The following code opens the customer table in a browse window, selects the work area of the orders table and opens a browse window for the orders table:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BROWSE NOWAIT
+SELECT Orders
+BROWSE NOWAIT</pre></td></tr></table></span></div>
+      <p>When you move the record pointer in the customer table, the record pointer in the orders table also moves. Opening the Data Session window displays the relationship created between the two tables.</p>
+      <p>
+        <b>Example 2</b>
+      </p>
+      <p>The following example creates a relationship within a single table, or a self-referential relationship. By opening the same table with two different aliases in different work areas, you can create a relationship in the same table by using the two aliases. The following code selects the work area of the table with the <b>SELECT</b> command and opens the table with the Manager alias with the <b>USE</b> command. The <b>SELECT</b> command then selects the same work area and opens the table again with the Employee alias with the <b>USE</b> command and the <b>AGAIN</b> keyword. The tables open in two different work areas:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT 0
+USE Employees ALIAS Manager
+SELECT 0
+USE Employees AGAIN ALIAS Employee</pre></td></tr></table></span></div>
+      <p>The following code creates an index on the based on the Reports_To field with the index tag Mgr_ID for the table using the <b>INDEX</b> command and sets the order in the table to that index using the <b>SET ORDER</b> command. The index created organizes records by manager.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>INDEX ON Reports_To TAG Mgr_ID
+SET ORDER TO Mgr_ID</pre></td></tr></table></span></div>
+      <p>The following code selects the Manager alias as the parent using the <b>SELECT</b> command.</p>
+      <p>
+        <b>SET RELATION</b> creates the relationship between the parent table and the controlling index tag in the child table. The controlling index in the child table organizes records by employee.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT Manager
+SET RELATION TO Emp_ID INTO Employee</pre></td></tr></table></span></div>
+      <p>The following code opens the table with the Manager alias in a browse window, selects the work area of the table with the Employee alias and opens a browse window for the table:<code>BROWSESELECT EmployeeBROWSE</code></p>
+      <p>When you move the record pointer in the manager table, the record pointer in the employee table also moves and displays only those employees who report to the selected manager.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/9d8045a5-93c3-4aed-b5de-97d4b278d2c1.htm">How to: Set Temporary Relationships Between Tables</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span><br /><span class="linkTerms"><a href="/html/679b0838-fe0a-458c-bffe-ed2117136dd1.htm">RELATION( ) Function</a></span><br /><span class="linkTerms"><a href="/html/f88b697b-c89f-4343-b9f9-4ecda6fe95ac.htm">SET ORDER Command</a></span><br /><span class="linkTerms"><a href="/html/c345c87a-8589-4854-89a4-68697c8d7cc7.htm">TARGET( ) Function</a></span><br /><span class="linkTerms"><a href="/html/1334aa6b-38e0-4fcd-a174-3c4f5c964155.htm">SET Command Overview</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SET RELATION Command">
+<param name="ALink Name" value="SET RELATION">
+</OBJECT>

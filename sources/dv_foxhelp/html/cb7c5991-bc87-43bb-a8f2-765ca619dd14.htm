@@ -1,0 +1,174 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>CREATEOBJECTEX( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">CREATEOBJECTEX( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Creates an instance of a registered COM object (such as a Visual FoxPro Automation server) on a remote computer.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+CREATEOBJECTEX(<span class="parameter">cCLSID</span> | <span class="parameter">cPROGID</span>, <span class="parameter">cComputerName</span> [, <span class="parameter">cIID</span>])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cCLSID</span>| <span class="parameter">cPROGID</span></span></dt><dd>
+          <p>Specifies the CLSID (Class Identifier) or PROGID (Programmatic Identifier) for the COM object to instantiate. If you include a CLSID, the COM object must be registered on the remote server you specify with <span class="parameter">cComputerName</span>. If you include a PROGID, the COM object must be registered on both the your local computer and the remote computer you specify with <span class="parameter">cComputerName</span>. Attempting to use a PROGID without first registering the server on your local computer will generate the OLE error Code 0x800401f3, "Invalid Class String."</p>
+          <p>For Visual FoxPro automation servers created on your local machine, you can use the server object CLSID and PROGID properties to determine the local CLSID and PROGID values. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cComputerName</span>
+        </span></dt><dd>
+          <p>Specifies the remote computer on which the COM object is instantiated.</p>
+          <p>If <span class="parameter">cComputerName</span> is the empty string, the COM object is instantiated on the local computer or a redirected machine as specified in the registry.    </p>
+          <p>
+            <span class="parameter">cComputerName</span> supports Universal Naming Convention (UNC) names such as "\\myserver" and "myserver," and Domain System Names (DNS) names. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cIID</span>
+        </span></dt><dd>
+          <p>Specifies the Interface ID GUID of <span class="parameter">cCLSID</span> | <span class="parameter">cPROGID</span> when you create an early bound instance of the class. If you pass an empty string as <span class="parameter">cIID</span> Visual FoxPro attempts to access the default interface (IID) of <span class="parameter">cCLSID</span> | <span class="parameter">cPROGID</span>. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Object</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    
+      
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>      x = CREATEOBJECTEX("excel.application","",;
+      "{000208D5-0000-0000-C000-000000000046}")</pre></td></tr></table></span></div>
+        <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+          <p>The following is a valid function call for an excel application object. It will return the excel.application default interface.</p>
+        </td></tr></table></div>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>      x = CREATEOBJECTEX("excel.application","","")</pre></td></tr></table></span></div>
+      
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>CREATEOBJECTEX( ) returns an object reference to the COM object if it is successfully instantiated. CREATEOBJECTEX( ) cannot be used to instantiate Visual FoxPro classes such as forms – use CREATEOBJECT( ) to instantiate Visual FoxPro classes. Note that you can only abbreviate CREATEOBJECTEX( ) to a minimum of 13 characters, distinguishing it from the CREATEOBJECT( ) function.</p>
+      <p>When you call certain COM classes with CREATEOBJECT( ) they return "No such interface supported" because they do not support an IDispatch interface. Using the <span class="parameter">cIID </span>parameter you can now access these classes in your applications. </p>
+      <p>If you pass an empty string ("") as <span class="parameter">cIID </span>Visual FoxPro attempts to to get the default interface (IID) of the specified <span class="parameter">CLSID</span> or <span class="parameter">PROGID.</span></p>
+      <p>Because it supports early binding through <span class="parameter">cIID</span>, CREATEOBJECTEX( ) can help improve performance by avoiding much of the overhead of IDispatch calls.</p>
+      <p>CREATEOBJECTEX( ) supports creation of new early-bound objects. However, it is also possible that your Visual FoxPro component is passed an object that you want to call via early-binding. You can use the GETINTERFACE( ) support on existing COM objects.</p>
+      <p>For additional information about using Visual FoxPro to create Automation servers, see <a href="/html/66d47bc7-f93b-483b-b39f-ebcc9e0a1be4.htm">Sharing Information and Adding OLE</a>.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/fe4a8926-1dee-45f0-8492-ac52f66b4cd7.htm">CLSID Property</a></span><br /><span class="linkTerms"><a href="/html/932a73fb-6354-402b-bbb2-08386d41fdae.htm">CREATEOBJECT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/083621c1-2f21-4759-801a-3b143c09a213.htm">ProgID Property (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/8e7a8f17-4899-4bcc-b10d-d4e01c21e231.htm">Server Object</a></span><br /><span class="linkTerms"><a href="/html/60ed6b3b-07bc-4c9b-98d1-c36c86490010.htm">GETINTERFACE( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="CREATEOBJECTEX( ) Function">
+<param name="ALink Name" value="CREATEOBJECTEX">
+</OBJECT>

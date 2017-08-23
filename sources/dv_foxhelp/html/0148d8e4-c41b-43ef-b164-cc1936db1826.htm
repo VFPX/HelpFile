@@ -1,0 +1,186 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Assign Structured Metadata to Report Controls</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Assign Structured Metadata to Report Controls</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The default Report Builder application allows you to assign structured metadata to individual report controls and layout bands.</p>
+    <p>Metadata XML for report elements is stored in the STYLE field of the report structure table (.frx or .lbx).  For more information about report and label tables, see <span class="linkTerms"><a href="/html/e62ce8ab-f156-45d2-a0b9-11562e5dbcef.htm">Understanding and Extending Report Structure</a></span>. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Reporting metadata XML documents are instances of Visual FoxPro's Memberdata XML Schema (.xsd), which also specifies metadata document format for Visual FoxPro Class and Property extensibility.  For the full Memberdata Schema, see <span class="linkTerms"><a href="/html/2591781b-25f2-4a9d-afa4-3a620116b1da.htm">MemberData Extensibility</a></span>.</p>
+    </td></tr></table></div>
+    <p>The ReportBuilder.App permits direct text editing of the full XML memberdata element for a report control. It also exposes two supported attributes of Reporting metadata for convenient editing:</p>
+    <ul><li>
+        <p>The Run-time extensions attribute can be used to store executable script.</p>
+      </li><li>
+        <p>The Execute When attribute can be used to specify an expression that ReportListener method code can evaluate in order to conditionally execute.</p>
+      </li></ul>
+    <p>Just as it does not directly use the contents of the User Data field, the Report Engine does not reference report XML metadata directly. You can make use of the metadata in custom methods of a <b>ReportListener</b> object when running a report or label layout in object-assisted mode. For more information, see <span class="linkTerms"><a href="/html/223a5d97-3d68-4e70-8bde-9c15b8f9ce62.htm">Understanding Visual FoxPro Object-Assisted Reporting</a></span>.  You can also write Report Builder extensions that use the metadata during report design sessions.  For more information, see <span class="linkTerms"><a href="/html/d64130c7-bb9a-4191-b8b6-4ba430185fe8.htm">Report XML MemberData Extensions</a></span>.</p>
+  <h3 class="procedureSubHeading">To assign Run-time extensions and Execute When metadata attributes to a report control</h3><div class="subSection"><ol><li>
+        
+          <p>Open the report or label in the appropriate designer.</p>
+        
+      </li><li>
+        
+          <p>In the designer, double-click the report control to which you want to add user data.</p>
+          <p>The <b>Properties</b> dialog box for the report control opens.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If the <b>_REPORTBUILDER</b> system variable is not set to the default Report Builder or is set to a third-party builder, the <b>Report Control</b> dialog box displays or a different dialog box might display. For more information, see <span class="linkTerms"><a href="/html/66161092-cda2-4d9f-868c-26beaffa0841.htm">_REPORTBUILDER System Variable</a></span>.</p>
+          </td></tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p> The dialog box that appears when there is no report builder set does not include the ability to edit the report metadata.</p>
+          </td></tr></table></div>
+        
+      </li><li>
+        
+          <p>In the <b>Report Control Properties</b> dialog box, click the Other tab if it is not selected.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Run-time extensions</b> area, click <b>Edit settings</b>.</p>
+          <p>The <b>Run-time extensions</b> dialog box for the report band opens.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Run-time extensions</b> edit box, type your script or run-time extension data. In the <b>Execute When</b> expression box, you can enter a value or expression that can be used by custom ReportListener classes at run-time.</p>
+        
+      </li><li>
+        
+          <p>When you are finished, click <b>OK</b>.</p>
+        
+      </li></ol>
+      
+        <p>For more information, see <span class="linkTerms"><a href="/html/15795042-05d4-4f40-98b7-fa9a96ce6782.htm">Other Tab, Report Control Properties Dialog Box (Report Builder)</a></span>.</p>
+      
+    </div><h3 class="procedureSubHeading">To edit the metadata XML directly</h3><div class="subSection"><ol><li>
+        
+          <p>Open the report or label in the appropriate designer.</p>
+        
+      </li><li>
+        
+          <p>In the designer, double-click the report control to which you want to add user data.</p>
+          <p>The <b>Properties</b> dialog box for the report control opens.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If the <b>_REPORTBUILDER</b> system variable is not set to the default Report Builder or is set to a third-party builder, the <b>Report Control</b> dialog box displays or a different dialog box might display. For more information, see <span class="linkTerms"><a href="/html/66161092-cda2-4d9f-868c-26beaffa0841.htm">_REPORTBUILDER System Variable</a></span>.  The default Report Builder also allows you to specify a different dialog box for metadata XML editing. For more information, see <span class="linkTerms"><a href="/html/91d5dbf6-5294-468e-8ed6-b195d62603e5.htm">Report Builder Event Handler Registry Table</a></span>.</p>
+          </td></tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p> The dialog box that appears when there is no report builder set does not include the ability to edit the report metadata.</p>
+          </td></tr></table></div>
+        
+      </li><li>
+        
+          <p>In the report control properties dialog box, click the Other tab if it is not selected.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Run-time extensions</b> area, click <b>Edit settings</b>.</p>
+          <p>The <b>Run-time extensions</b> dialog box for the report band opens.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Run-time extensions</b> dialog box, click <b>Edit XML</b>.</p>
+          <p>The <b>Metadata XML</b> dialog box opens. If previously there was no metadata assigned to the selected control, the ReportBuilder places an empty XML template into the edit box.</p>
+        
+      </li><li>
+        
+          <p>Enter values against the metadata attributes.</p>
+        
+      </li><li>
+        
+          <p>When you are finished, click <b>OK</b>.</p>
+        
+      </li><li>
+        
+          <p>For more information about the supported Reporting metadata XML document format, see the XML schema in <span class="linkTerms"><a href="/html/2591781b-25f2-4a9d-afa4-3a620116b1da.htm">MemberData Extensibility</a></span>.</p>
+        
+      </li></ol></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/a1d45a8e-a2ca-4ec1-a70f-3a73d7f36589.htm">How to: Add User Data to Report Controls</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/9bbc8a23-4114-4616-97e9-40fd70173750.htm">Managing Report Controls</a></span><br /><span class="linkTerms"><a href="/html/61e447b9-a978-4fe2-934b-9f3335dbc005.htm">Configuring Report Controls</a></span><br /><span class="linkTerms"><a href="/html/f43a8458-5934-495a-9178-dd751a91677a.htm">Working with Report Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Assign Structured Metadata to Report Controls">
+</OBJECT>

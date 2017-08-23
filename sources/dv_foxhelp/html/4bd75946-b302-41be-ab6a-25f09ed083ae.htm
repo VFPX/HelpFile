@@ -1,0 +1,176 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Project Object Hierarchy</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Project Object Hierarchy</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The project hierarchy consists of the <b>Projects</b> collection, <b>Project</b> objects in the collection, and a <b>ProjectHook</b> object associated with each project object. A <b>Project</b> object contains a <b>Files</b> collection consisting of project files and a <b>Servers</b> collection consisting of Automation servers created from the project. </p>
+    <p>The following diagram illustrates the project hierarchy within the Visual FoxPro object model.</p>
+    <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Projects Hierarchy</caption></caption></b><br></br></div><img src="../local/Local_-1917398135_projman.gif" alt="FoxPro Project Object Hierarchy"></img>
+    <p>A <b>Project</b> object is instantiated when a project is created, opened, or rebuilt, or when an application (.app) file, dynamic-link library (.dll) file, or executable (.exe) file is built from the project. When a project associated with a <b>ProjectHook</b> class opens, a <b>ProjectHook</b> object is instantiated by default.</p>
+    <p>When an event occurs in a project, the <b>Project</b> object passes the event to the <b>ProjectHook</b> object. User code in the event of the <b>ProjectHook</b> object executes and passes control back to the <b>Project</b> object. The value returned to the <b>Project</b> object from the <b>ProjectHook</b> object determines whether the <b>Project</b> object finishes the operation. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>Placing <b>NODEFAULT</b> in the event code prevents the default action from being performed. For example, placing <b>NODEFAULT</b> in the <b>QueryAddFile</b> event of a <b>ProjectHook</b> object prevents a file from being added to a project.</p>
+    </td></tr></table></div>
+    <p>The following sections contain more information about the project hierarchy:
+</p>
+    <ul><li>
+        <p>
+          <a href="#dgcontheprojectobjecthierarchyanchor1">Projects Collection in the Project Hierarchy</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgcontheprojectobjecthierarchyanchor2">Project Object in the Project Hierarchy</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgcontheprojectobjecthierarchyanchor3">ProjectHook Object in the Project Hierarchy</a>
+        </p>
+      </li></ul>
+  <a name="dgcontheprojectobjecthierarchyanchor1"></a><h1 class="heading">Projects Collection in the Project Hierarchy</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The <b>Projects</b> collection provides direct access to <b>Project</b> objects, making it possible for you to manipulate a project and the files and servers that the project contains. When a project is created or opened or when an application (.app) file, dynamic-link library (.dll) file, or executable (.exe) file is built from the project, a project object is added to the projects collection.</p>
+      <p>You can obtain information about a project in the <b>Projects</b> collection using its properties and methods. For example, the following lines of code show two ways to display the names of all projects in a <b>Projects</b> collection. The first example uses the <b>Count</b> property and <b>Item</b> method of a <b>Projects</b> collection. The second example uses the <b>FOR EACH</b> command.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>nProjectCount = Application.Projects.Count
+FOR nCount = 1 TO nProjectCount
+   ? Application.Projects.Item(nCount).Name
+NEXT
+FOR EACH oProj IN Application.Projects
+   ? oProj.Name
+ENDFOR</pre></td></tr></table></span></div>
+      <p>For more information, see <a href="/html/312a7be2-99cb-4d5d-8d5a-37c9be9ef769.htm">Projects Collection</a>.</p>
+    </div><a name="dgcontheprojectobjecthierarchyanchor2"></a><h1 class="heading">Project Object in the Project Hierarchy</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>A <b>Project</b> object is instantiated when a project is created, opened, or rebuilt, or when an application (.app) file, dynamic-link library (.dll) file, or executable (.exe) file is built from the project. A <b>Project</b> object contains a <b>Files</b> collection consisting of project files and a <b>Servers</b> collection consisting of Automation servers created from the project. </p>
+      <p>The <b>Project</b> object makes it possible for you manipulate a project programmatically and to access it through an <b>Application</b> object. The <b>Application</b> object has an <b>ActiveProject</b> property that provides an object reference to an open project in the currently active Project Manager. </p>
+      <p>You can manipulate a <b>Project</b> object through its properties and methods. For more information, see <a href="/html/57756853-a83c-4feb-b807-8e854e0c2f82.htm">Project Object</a> and <a href="/html/394305f5-b155-4606-be86-de326849c4a1.htm">Application Object</a>.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Files Collection</h3><div class="subSection" xmlns="">
+          <p>The <b>Files</b> collection provides direct access to a <b>File</b> object, which makes it possible for you to manipulate <b>File</b> objects in a project while the project is open. You can manipulate a <b>File</b> object using its properties and methods. For more information, see <a href="/html/bf3db2df-d91a-402f-b179-665c6a1e8000.htm">File Object</a>.</p>
+          <p>You can add files to a project programmatically. For example, the following line of code uses the <b>ActiveProject</b> property of an <b>Application</b> object to add a program, Main.prg, to the currently active project:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Application.ActiveProject.Files.Add('Main.prg')</pre></td></tr></table></span></div>
+          <p>The following line of code adds Main.prg to the first project in the <b>Projects</b> collection:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Application.Projects[1].Files.Add('Main.prg')</pre></td></tr></table></span></div>
+          <p>You can obtain information about a file in a <b>Files</b> collection using its properties and methods. For example, the following lines of code show two ways to display the names of all files in a <b>Files</b> collection. The first example uses the <b>Count</b> property and <b>Item</b> method of a <b>Files</b> collection. The second example uses the <b>FOR EACH</b> command.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>nFileCount = Application.ActiveProject.Files.Count
+FOR nCount = 1 TO nFileCount
+   ? Application.ActiveProject.Files.Item(nCount).Name
+NEXT
+FOR EACH oProj IN Application.ActiveProject.Files
+   ? oProj.Name
+ENDFOR</pre></td></tr></table></span></div>
+          <p>For more information, see <a href="/html/24bf9e26-da62-4408-8885-f02d9e990dc6.htm">Files Collection</a>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Servers Collection</h3><div class="subSection" xmlns="">
+          <p>The <b>Servers</b> collection provides direct access to a <b>Server</b> object, which makes it possible for you to manipulate <b>Server</b> objects that a project contains. You can manipulate a <b>Servers</b> collection through its properties and methods. For more information, see <a href="/html/fb283d41-6236-418e-bbef-e710a7f905c0.htm">Servers Collection</a>.</p>
+          <p>When you build a dynamic-link library (.dll) file or executable (.exe) file containing an Automation server from the project, a <b>Server</b> object is added to the <b>Servers</b> collection. For more information about creating Automation servers, see <a href="/html/b1ca676d-68a8-4ebe-aa68-ce6ac2083c59.htm">How to: Create Automation Servers</a> in <a href="/html/66d47bc7-f93b-483b-b39f-ebcc9e0a1be4.htm">Sharing Information and Adding OLE</a>.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>A <b>Server</b> object is not instantiated until the project containing the <b>OLEPUBLIC</b> class, specified in the <b>DEFINE CLASS</b> command, is built. For more information, see <a href="/html/42b84eb0-a6fc-4ccd-abc2-1f9ffc853471.htm">DEFINE CLASS Command</a>.</p>
+          </td></tr></table></div>
+          <p>A <b>Server</b> object makes it possible for you to obtain information about Automation servers contained in a project, for example, type library information. This information is also available on the Servers tab in the Project Information dialog box. For more information, see <a href="/html/6a6c28e0-9849-4f8d-95b8-7db99ed30935.htm">Servers Tab, Options Dialog Box</a>.</p>
+          <p>You can manipulate a <b>Server</b> object in a <b>Servers</b> collection using its properties. For more information, see <a href="/html/8e7a8f17-4899-4bcc-b10d-d4e01c21e231.htm">Server Object</a>.</p>
+        </div>
+    </sections></div><a name="dgcontheprojectobjecthierarchyanchor3"></a><h1 class="heading">ProjectHook Object in the Project Hierarchy</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When a project associated with a <b>ProjectHook</b> class opens, a <b>ProjectHook</b> object is instantiated by default. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>To prevent a <b>ProjectHook</b> object from instantiating for the project, include the <b>NOPROJECTHOOK</b> clause in <b>CREATE PROJECT</b> and <b>MODIFY PROJECT</b> commands. For more, see <a href="/html/d4a51140-2f1f-4423-a207-a0fd38379be2.htm">CREATE PROJECT Command</a> and <a href="/html/0f14a86c-442f-482b-919f-d10bd75f93ad.htm">MODIFY PROJECT Command</a>.</p>
+      </td></tr></table></div>
+      <p>The <b>ProjectHook</b> object and allows programmatic access to events that occur in a project. For example, you can execute code when adding a file to a project. The <b>ProjectHook</b> object differs from a <b>Project</b> object, which contains all the properties and methods available in the Project Information dialog box. For more information, see <a href="/html/c2c64ad0-d9da-44fe-b7dd-5d675e0ec13e.htm">Project Information Dialog Box</a>.</p>
+      <p>The default <b>ProjectHook</b> class is specified for new projects in the Projects tab of the Options dialog box. You can override the default <b>ProjectHook</b> class by specifying a different project hook class for an individual project in the Project Information dialog box. However, if no default <b>ProjectHook</b> class is specified in the Projects tab, new projects are not associated with a <b>ProjectHook</b> object. For more information, see <a href="/html/e08c615a-9bb0-44a9-b24f-e507ae48c69e.htm">Projects Tab, Options Dialog Box</a>.</p>
+      <p>At run time, you can use the <b>ProjectHook</b> property to specify a project hook class for a project. If you change the <b>ProjectHook</b> class for a project, the new <b>ProjectHook</b> class does not take effect until the project closes and opens again.</p>
+      <p>You can manipulate a <b>ProjectHook</b> object through properties, methods, and events. For more information, see <a href="/html/5b749bec-81db-4ed6-a913-ed4529208b7c.htm">ProjectHook Object</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/785cd0a3-babd-438c-9260-dd4e8e13687c.htm">Project Manager Hooks</a></span><br /><span class="linkTerms"><a href="/html/91ed2ca5-3f9c-4641-b2fd-07b1c341a78c.htm">Project Object Architecture</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/fc448e19-8529-443d-9dba-99dcde0341c0.htm">Extending Projects in Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/64f18886-1426-46e6-8667-b0b5a497b24b.htm">Working with Projects</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Project Object Hierarchy">
+</OBJECT>

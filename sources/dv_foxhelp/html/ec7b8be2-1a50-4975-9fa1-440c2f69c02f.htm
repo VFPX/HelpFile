@@ -1,0 +1,244 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Dragging and Dropping Data</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Dragging and Dropping Data</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Understanding some of the basics of OLE drag-and-drop applications makes it easier to take full advantage of their features.</p>
+    <p>The mouse is used to drag and drop data between applications and controls. For example, you can select a set of files in the Windows Explorer. You can then press and hold the mouse button down while dragging the files, then release the mouse button to drop them onto the Visual FoxPro Project Manager, or you can select text in a Word document and drop the text into a text box on a Visual FoxPro form. During the OLE drag-and-drop operation, the mouse cursor changes to indicate that an OLE drag-and-drop operation is in effect.</p>
+  <h1 class="heading">Drag Source</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The application or control from which data is moved is called the drag source.</p>
+      <p>The following table lists the properties, events, and methods available for an OLE drag source.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Property, Event, or Method
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9dc58b1a-fcf9-4118-9c4e-cedaa33e8181.htm">OLECompleteDrag Event</a>
+            </p>
+          </td>
+          <td>
+            <p>Occurs when data is dropped on the drop target or the OLE drag-and-drop operation is canceled.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/7734b5b0-1c4b-490d-b78a-2eb4cad30c4b.htm">OLEDrag Method</a>
+            </p>
+          </td>
+          <td>
+            <p>Starts an OLE drag-and-drop operation.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/c541a59b-a258-4ff1-ab0c-c26e72042cd8.htm">OLEDragPicture Property</a>
+            </p>
+          </td>
+          <td>
+            <p>Specifies the picture displayed under the mouse pointer during an OLE drag-and-drop operation. You can specify a picture file of type .bmp, .dib, .jpg, .gif, .ani, .cur, and .ico.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/0826b76e-7540-4093-adcf-6f5000d63f39.htm">OLEDragMode Property</a>
+            </p>
+          </td>
+          <td>
+            <p>Specifies how a drag source manages OLE drag operations.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/2213715b-72ee-46ce-aa84-e2f230ff3bb8.htm">OLEGiveFeedBack Event</a>
+            </p>
+          </td>
+          <td>
+            <p>Occurs after every OLEDragOver event. Allows the drag source to specify the type of OLE drag-and-drop operation and the visual feedback.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/7aff392a-9956-4ef8-88c4-6dc543bc01b0.htm">OLESetData Event</a>
+            </p>
+          </td>
+          <td>
+            <p>Occurs when a drop target calls the GetData method and there is no data in a specified format on the OLE drag-and-drop DataObject.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/3630367b-f023-40a7-933c-08ab6c04fc9f.htm">OLEStartDrag Event</a>
+            </p>
+          </td>
+          <td>
+            <p>Occurs when the OLEDrag method is called.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Drop Target</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The application or control to which the data is moved is called the <i>drop target</i>.</p>
+      <p>The following table lists the properties, events, and methods available for an OLE drop target.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Property or Event
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/850dfaa2-4196-4524-ab14-13997f3b72d6.htm">OLEDragDrop Event</a>
+            </p>
+          </td>
+          <td>
+            <p>Occurs when data is dropped on a drop target and the drop target's OLEDropMode property is set to 1 – Enabled.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/0bc63db0-ff8d-4f23-98e6-680bd28527da.htm">OLEDragOver Event</a>
+            </p>
+          </td>
+          <td>
+            <p>Occurs when data is dragged over a drop target and the drop target's OLEDropMode property is set to 1 – Enabled.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/c6035e6f-efa1-46e6-aac2-8a1c36cfb656.htm">OLEDropEffects Property</a>
+            </p>
+          </td>
+          <td>
+            <p>Specifies the type of drop operations an OLE drop target supports.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/6b0e18d9-9f1b-41c2-8ef8-14bbbedff871.htm">OLEDropHasData Property</a>
+            </p>
+          </td>
+          <td>
+            <p>Specifies how a drop operation is managed.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/21e704df-ae10-4173-9720-df82128b241f.htm">OLEDropMode Property</a>
+            </p>
+          </td>
+          <td>
+            <p>Specifies how a drop target manages OLE drop operations.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Moving Data</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>To perform a drag-and-drop operation to move data using the default (left) mouse button, select the data you want to move in the drag source. After selecting the data, press and hold down the mouse button as you move the mouse pointer over the drop target. Release the mouse button to drop the data onto the drop target. During the OLE drag-and-drop operation, the mouse cursor changes to indicate that an OLE drag-and-drop operation is in effect.</p>
+      <p>You can also click the non-default (right) mouse button on the data in a drag source and drag it to a drop target. Depending on the drop target, a context menu may be displayed when you drop the data on the drop target. The context menu contains a set of options that make it possible for you to choose how the data is processed by the drop target.</p>
+    </div><h1 class="heading">Copying Data</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>You can also copy data from a drag source and paste it in a drop target. Press the Ctrl key as you click the mouse on the data selected in the drag source. The mouse cursor displays a plus sign (+) while the mouse is dragged to indicate a Copy operation is in effect.</p>
+    </div><h1 class="heading">Targets and Sources Not Supporting OLE drag-and-drop</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>You can only move or copy data from a drag source that supports OLE drag-and-drop, and the drop target must also support OLE drag-and-drop. Note that while a drop target may support OLE drag-and-drop, the drop target doesn't have to accept the data you attempt to drop on it. For example, the data you're moving or copying may be in a format the drop target doesn't support. During a drag-and-drop operation, the mouse cursor changes to a No Drop symbol (a slashed circle) to indicate the mouse is positioned over an area of an application or control where the data cannot be dropped.</p>
+    </div><h1 class="heading">Canceling an Operation</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>You can cancel the OLE drag-and-drop operation by pressing ESC during the operation.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/7752548b-993c-4d2b-bece-561bd479eaf5.htm">OLE Drag-and-Drop</a></span><br /><span class="linkTerms"><a href="/html/ccdc993c-0192-4d2d-a53e-427cd04705b4.htm">Run-Time OLE Drag-and-Drop Support</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/2d8cb3e1-df20-4304-8326-d3d469002652.htm">Interoperability and the Internet</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Dragging and Dropping Data">
+</OBJECT>

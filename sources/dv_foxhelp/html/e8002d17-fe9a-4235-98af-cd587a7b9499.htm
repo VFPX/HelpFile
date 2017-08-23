@@ -1,0 +1,836 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Managing Connections with SQL Pass-Through</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Managing Connections with SQL Pass-Through</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you create a remote view, you choose an ODBC data source name or a connection name that is then used as a pipeline to the remote server upon activation of the view. To access remote data directly with SQL pass-through, you must have the handle for an active connection. A handle is a value that refers to an object; in this case, the handle refers to a data source connection. To obtain a handle, you request a connection to the data source using the <a href="/html/55b8c0e7-d39b-476f-a5cc-980719b36d4e.htm">SQLCONNECT( )</a> or <a href="/html/9a4d380b-b3a4-450a-b414-5a7724e7fec0.htm">SQLSTRINGCONNECT( )</a> function. If the connection is successful, your application receives a connection handle for use in subsequent Visual FoxPro calls.</p>
+    <p>Your application can request multiple connections for one data source. You can also work with multiple ODBC data sources by requesting a connection to each data source you want to access. If you want to reduce the number of connections used, you can configure remote views to share the same connection. You disconnect from a data source with the SQLDISCONNECT( ) function.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>Visual FoxPro relies on the definition of the ODBC data source that is stored in Windows to connect to a data source. If you change the name or the logon information for a data source, keep in mind that these changes might affect whether an application using that data source can connect to the desired remote server.</p>
+    </td></tr></table></div>
+  <h1 class="heading">Controlling Environment and Connection Properties</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The client/server environment is established each time you open Visual FoxPro. The environment exists for that session of Visual FoxPro and disappears when you close Visual FoxPro. The client/server environment contains:  </p>
+      <ul><li>
+          <p>Global properties that act as the prototypes for new connections.</p>
+        </li><li>
+          <p>Error values for errors that occur outside a specific connection.</p>
+        </li></ul>
+      <p>You can use a handle of 0, the environment handle, to refer to global property settings. You use the <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a> function to control default property settings in the connection environment and properties within individual connections. The methods you use for entering SQLSETPROP( ) values are consistent for both the environment and individual connections:  </p>
+      <ul><li>
+          <p>Properties specified with one of two values can use a logical value (.F. or .T.) for <i>eExpression</i>.</p>
+        </li><li>
+          <p>A property name can be abbreviated to its shortest unambiguous truncation. For example, you can use "<code>Asynchronous</code>", "<code>Asynch</code>", or "A" to specify the Asynchronous property. Property names aren't case-sensitive.</p>
+        </li></ul>
+      <p>When you initiate a connection, the connection inherits default connection property values. You can use SQLSETPROP( ) to change these values.</p>
+    </div><h1 class="heading">Setting Connection Properties</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>To view the current settings for a connection, use the <a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( )</a> function with the respective connection handle. The following table lists the connection settings you can access with SQLGETPROP( ).</p>
+      <div class="labelheading"><b>Visual FoxPro Connection Properties</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              To
+            </th>
+            <th>
+              Use this setting
+            </th>
+            <th>
+              Purpose
+            </th>
+          </tr><tr>
+          <td>
+            <p>Display the information used to create the active connection</p>
+          </td>
+          <td>
+            <p>ConnectString</p>
+          </td>
+          <td>
+            <p>The login connection string.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>DataSource</p>
+          </td>
+          <td>
+            <p>The name of the data source as defined by ODBC.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>Password</p>
+          </td>
+          <td>
+            <p>The connection password.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>UserID</p>
+          </td>
+          <td>
+            <p>The user identification.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Work with shared connections</p>
+          </td>
+          <td>
+            <p>ConnectBusy</p>
+          </td>
+          <td>
+            <p>True (.T.) if a shared connection is busy; false (.F.) otherwise.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Control interface display</p>
+          </td>
+          <td>
+            <p>DispLogin</p>
+          </td>
+          <td>
+            <p>Controls when the ODBC Login dialog box is displayed.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>DispWarnings</p>
+          </td>
+          <td>
+            <p>Controls whether non-fatal warning messages are displayed or not.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Control time intervals</p>
+          </td>
+          <td>
+            <p>ConnectTimeout</p>
+          </td>
+          <td>
+            <p>Specifies the time (in seconds) to wait before returning a connection time-out error.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>IdleTimeout</p>
+          </td>
+          <td>
+            <p>Specifies the idle time-out interval (in seconds). Qualifying active connections are deactivated after the specified time interval.<sup>1</sup></p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>WaitTime</p>
+          </td>
+          <td>
+            <p>Controls the amount of time in milliseconds that elapses before Visual FoxPro checks whether the SQL statement has completed executing.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>QueryTimeout</p>
+          </td>
+          <td>
+            <p>Controls the time (in seconds) to wait before returning a general time-out error.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Manage transactions</p>
+          </td>
+          <td>
+            <p>Transactions</p>
+          </td>
+          <td>
+            <p>Determines how the connection manages transactions on the remote table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Control fetching of result sets into view cursors</p>
+          </td>
+          <td>
+            <p>Asynchronous</p>
+          </td>
+          <td>
+            <p>Specifies if result sets are returned synchronously (the default) or asynchronously.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>BatchMode</p>
+          </td>
+          <td>
+            <p>Specifies if SQLEXEC( ) returns result sets all at once (the default), or individually with SQLMORERESULTS( ).</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>PacketSize</p>
+          </td>
+          <td>
+            <p>Specifies the size of the network packet used by the connection.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Display internal ODBC handles</p>
+          </td>
+          <td>
+            <p>ODBChdbc<sup>2</sup></p>
+          </td>
+          <td>
+            <p>The internal ODBC connection handle that can be used by external library files (.fll files) to call the ODBC API functions.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>ODBChstmt<sup>2</sup></p>
+          </td>
+          <td>
+            <p>The internal ODBC statement handle that can be used by external library files (.fll files) to call the ODBC API functions.</p>
+          </td>
+        </tr></table></div>
+      <p>1. If in manual transaction mode, the connection is not deactivated.</p>
+      <p>2. If a connection is deactivated, the ODBChdbc and ODBChstmt values are no longer valid. Do not free or drop these values in a user library.</p>
+      <p>For more information on connection properties and their default settings, see <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>.</p>
+    </div><h1 class="heading">Controlling Environment Property Settings</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The values you set in the Visual FoxPro environment using handle 0 are used as prototypes or default values for each subsequent connection or attachment.</p>
+      <p>To view the current environment property settings, use <a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( )</a> with 0 as the value for the handle.</p>
+      <p>The following example displays the current environment's WaitTime property setting:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? SQLGETPROP(0, "WaitTime")</pre></td></tr></table></span></div>
+      <p>If you set the DispWarnings property to true (.T.), Visual FoxPro displays any environment errors from that point on, and also sets DispWarnings to true (.T.) for newly created connections.</p>
+      <p>Although the values you set for handle 0 are used as prototype values for each connection, you can also set custom properties for an individual connection by issuing <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a> for that connection handle. The exceptions are the ConnectTimeout, PacketSize, and DispLogin properties, whose settings the connection inherits at connect time. If you change the setting of the ConnectTimeout, PacketSize, or DispLogin property, the new setting isn't used until you reconnect.</p>
+    </div><h1 class="heading">Controlling Connection and View Objects</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>You can control connections and views by setting properties on the connection or view object. Properties that control databases, tables, table fields, view definitions, view fields, named connections, active connections, or active view cursors are called <i>engine properties</i>. You can display or set engine properties with one of the following Visual FoxPro functions:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              To display engine properties use
+            </th>
+            <th>
+              To set engine properties use
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( )</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/2ef53aef-69ed-46e4-9f47-94ee4e19eb8f.htm">DBGETPROP( )</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( )</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>
+            </p>
+          </td>
+        </tr></table></div>
+      <p>The function you use depends on whether you want to set properties on object 0 (connection 0 and cursor 0), the object definition in a database (named connection or view definition), or the active object (active connection or active view cursor). The following table lists objects and the functions you use to set properties on each object:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              To set properties for
+            </th>
+            <th>
+              Connection
+            </th>
+            <th>
+              View
+            </th>
+          </tr><tr>
+          <td>
+            <p>Object 0 </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Object definition in a database</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Active object</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>
+            </p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Engine Properties</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>The following diagram lists engine properties alphabetically along with the objects that use each property.</p>
+      <img src="../local/Local_1166977055_protable.gif" alt="FoxPro Properties Table Sample"></img>
+      <p>The following table lists engine properties alphabetically along with the functions you can use to set those properties.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Engine property
+            </th>
+            <th>
+              Applies to
+            </th>
+          </tr><tr>
+          <td>
+            <p>Asynchronous</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>BatchMode</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>BatchUpdateCount<sup>1</sup></p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active view cursors: see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Buffering</p>
+          </td>
+          <td>
+            <p>Active view cursors: see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Caption</p>
+          </td>
+          <td>
+            <p>Fields in tables, fields in view definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Comment</p>
+          </td>
+          <td>
+            <p>Databases, tables, fields in tables, view definitions, fields in view definitions, connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>CompareMemo</p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active view cursors: see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ConnectBusy</p>
+          </td>
+          <td>
+            <p>Active connections: see <a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ConnectHandle</p>
+          </td>
+          <td>
+            <p>Active view cursors: see <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ConnectName<sup>1</sup></p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( )</a>. Active view cursors: see <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ConnectString</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ConnectTimeout</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Database</p>
+          </td>
+          <td>
+            <p>Active view cursors: see <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DataSource</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DataType</p>
+          </td>
+          <td>
+            <p>Fields in view definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DefaultValue</p>
+          </td>
+          <td>
+            <p>Fields in tables, fields in view definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DeleteTrigger</p>
+          </td>
+          <td>
+            <p>Tables: see <a href="/html/2ef53aef-69ed-46e4-9f47-94ee4e19eb8f.htm">DBGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DispLogin</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DispWarnings</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>FetchAsNeeded</p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active view cursors: see <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>FetchMemo<sup>1</sup></p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active view cursors: see <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>FetchSize<sup>1</sup></p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active view cursors: see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>IdleTimeout</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>InsertTrigger</p>
+          </td>
+          <td>
+            <p>Tables: see <a href="/html/2ef53aef-69ed-46e4-9f47-94ee4e19eb8f.htm">DBGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>KeyField</p>
+          </td>
+          <td>
+            <p>Fields in view definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>KeyFieldList<sup>2</sup></p>
+          </td>
+          <td>
+            <p>Active view cursors: see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>MaxRecords<sup>1</sup></p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active view cursors: see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ODBCHdbc</p>
+          </td>
+          <td>
+            <p>Active connections: see <a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ODBCHstmt</p>
+          </td>
+          <td>
+            <p>Active connections: see <a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Offline</p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/2ef53aef-69ed-46e4-9f47-94ee4e19eb8f.htm">DBGETPROP( ).</a></p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>PacketSize</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ParameterList</p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active view cursors: see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Password</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Path</p>
+          </td>
+          <td>
+            <p>Tables: see <a href="/html/2ef53aef-69ed-46e4-9f47-94ee4e19eb8f.htm">DBGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Prepared</p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>PrimaryKey</p>
+          </td>
+          <td>
+            <p>Tables: see <a href="/html/2ef53aef-69ed-46e4-9f47-94ee4e19eb8f.htm">DBGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>QueryTimeout</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>RuleExpression</p>
+          </td>
+          <td>
+            <p>Tables, fields in tables, view definitions, fields in view definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>RuleText</p>
+          </td>
+          <td>
+            <p>Tables, fields in tables, view definitions, fields in view definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SendUpdates<sup>2</sup></p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active view cursors: see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ShareConnection</p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active view cursors: see <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SourceName</p>
+          </td>
+          <td>
+            <p>Active view cursors: see <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SourceType</p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/2ef53aef-69ed-46e4-9f47-94ee4e19eb8f.htm">DBGETPROP( )</a>. Active view cursors: see <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SQL</p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/2ef53aef-69ed-46e4-9f47-94ee4e19eb8f.htm">DBGETPROP( )</a>. Active view cursors: see <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Tables<sup>2</sup></p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active view cursors: see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ).</a></p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Transactions</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Updatable</p>
+          </td>
+          <td>
+            <p>Fields in view definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>UpdatableFieldList<sup>2</sup></p>
+          </td>
+          <td>
+            <p>Active view cursors: see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>UpdateName</p>
+          </td>
+          <td>
+            <p>Fields in view definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>UpdateNameList<sup>2</sup></p>
+          </td>
+          <td>
+            <p>Active view cursors: see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>UpdateTrigger</p>
+          </td>
+          <td>
+            <p>Tables: see <a href="/html/2ef53aef-69ed-46e4-9f47-94ee4e19eb8f.htm">DBGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>UpdateType</p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active view cursors: see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>UseMemoSize<sup>1</sup></p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active view cursors: see <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>UserID</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Version</p>
+          </td>
+          <td>
+            <p>Databases: see <a href="/html/2ef53aef-69ed-46e4-9f47-94ee4e19eb8f.htm">DBGETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>WaitTime</p>
+          </td>
+          <td>
+            <p>Connection definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active connections: see <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>WhereType</p>
+          </td>
+          <td>
+            <p>View definitions: see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>. Active view cursors: see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+          </td>
+        </tr></table></div>
+      <p>1. Property primarily useful for remote views; setting has no effect on performance of local views. You can set this property on local views if you want to pre-set the property on the local view and then upsize later to create a remote view.</p>
+      <p>2. Property must be set for updates to be sent to remote data source.</p>
+    </div><h1 class="heading">Using Transactions with Remote Data</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>You can wrap transactions around updates, deletes, and inserts to remote data using one of two methods:  </p>
+      <ul><li>
+          <p>Automatic transaction mode</p>
+        </li><li>
+          <p>Manual transaction mode</p>
+        </li></ul>
+      <p>The transaction mode you select determines how Visual FoxPro handles transactions on your local machine.</p>
+    </div><h1 class="heading">Nested Transactions</h1><div id="sectionSection6" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro supports transactions nested up to five levels for local data. A single level of transaction support is built into SQL pass-through.</p>
+      <p>If your server supports multiple levels of transactions, you can use SQL pass-through to manage transaction levels explicitly. Explicit transaction management is complex, however, because it can be difficult to control the interaction between the built-in transaction and the timing of remote server transactions. For more information on explicit transaction management, see your ODBC documentation.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/0403e96e-c37d-489b-ba6b-4dc2944042a9.htm">How to: Use Automatic Transaction Mode</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/b026dca4-d70c-4904-a074-d4a397794dbc.htm">Execution of ODBC Extensions to SQL</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c9d098df-6241-45d2-9d81-1f49ad9b3641.htm">Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/7a4c60ae-5309-4014-87ec-08ce277eede4.htm">Planning Client/Server Applications</a></span><br /><span class="linkTerms"><a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a></span><br /><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Managing Connections with SQL Pass-Through">
+</OBJECT>

@@ -1,0 +1,130 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Specify a Sort Order</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Specify a Sort Order</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can specify a sort order for character fields used in subsequent indexing and sorting operations.</p>
+  <h3 class="procedureSubHeading">To specify a sort order</h3><div class="subSection"><ol><li>
+        
+          <p>From the <b>Tools</b> menu, choose <b>Options</b>.</p>
+        
+      </li><li>
+        
+          <p>Select the <a href="/html/a3a5e840-ab92-4925-8425-c6df294d2794.htm">Data</a> tab.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Collating sequence</b> box, select the appropriate sort order. </p>
+          <p>To save this setting for future sessions of Visual FoxPro, choose <b>Set as Default</b>.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>You can also specify a sort order with the <a href="/html/77f8984a-1abf-4efc-b63f-bd1700a34c97.htm">SET COLLATE TO</a> command or the COLLATE statement in your Config.fpw file. For details about Config.fpw, see <span class="linkTerms"><a href="/html/4d5ad8fb-f7a7-416d-9076-cf6f53cbdb89.htm">Customizing the Visual FoxPro Environment</a></span>.</p>
+          </td></tr></table></div>
+        
+      </li></ol>
+      
+        <p>The current sort order doesn't affect previously created indexes; however, it does affect the results of comparisons and commands such as SEEK and SELECT - SQL.</p>
+        <p>You can change the sort order at any time. For instance, after opening a customer table you can create index tags representing different sort orders, as shown in the following code. Then you can change the sort order by simply using a different tag:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE customer
+SET COLLATE TO "GENERAL"
+INDEX ON fname TAG mygeneral ADDITIVE
+SET COLLATE TO "MACHINE"
+INDEX ON custid TAG mymachine ADDITIVE
+SET COLLATE TO "DUTCH"
+INDEX ON lname TAG mydutch ADDITIVE</pre></td></tr></table></span></div>
+        <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+          <p>The sort order for an index overrides the current sort order.</p>
+        </td></tr></table></div>
+        <p>The current code page determines which sort orders are available. If you use the <span class="linkTerms"><a href="/html/77f8984a-1abf-4efc-b63f-bd1700a34c97.htm">SET COLLATE Command</a></span> to specify a sort order not supported by the current code page, Visual FoxPro generates an error. Also, if you specify a sort order in Config.fpw that isn't supported by the current code page, the sort order defaults to Machine.</p>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/a3d7b0e0-8320-44b1-8983-17c30a78c6c4.htm">Code Pages Supported by Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/a3a5e840-ab92-4925-8425-c6df294d2794.htm">Data Tab, Options Dialog Box</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/667aa0c1-497c-4aa4-98f9-5e0186fc73f8.htm">Application Creation with Double-Byte Character Sets</a></span><br /><span class="linkTerms"><a href="/html/c9bd3655-ed58-45df-870c-a867c0027bad.htm">Sorting Data in International Applications</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/e3423e23-033c-40b4-971c-75640ab17ec7.htm">Developing International Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Specify a Sort Order">
+</OBJECT>

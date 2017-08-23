@@ -1,0 +1,115 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Class and Object Error Handling</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Class and Object Error Handling</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can handle errors that occur in objects at run time by adding error-handling code to the <b>Error</b> event of an object or class definition. If you want an object to have its own error-handling behavior, add error-handling code to the object's <b>Error</b> event. The error-handling behavior you specify applies to that particular object only. </p>
+    <p>If you want all objects based on a particular class to use the same error-handling behavior, add <b>Error</b> event code to the class definition, for example, for a custom class or subclass. All objects instantiated from the class contain the same error-handling behavior. If the class or subclass does not contain <b>Error</b> event code, it inherits error-handling behavior from the parent class. If <b>Error</b> event code does not exist in the parent class, Visual FoxPro searches for <b>Error</b> event code in another class up the class hierarchy. You can also use the <b>NODEFAULT</b> command and <b>DODEFAULT( )</b> function to override or call code from the parent class. For more information, see <a href="/html/6d73089a-af9c-469f-aca4-842ac7d08932.htm">Overriding and Calling Parent Class Code</a>.</p>
+    <p>If and when an error occurs in the object at run time, Visual FoxPro searches for <b>Error</b> event code in the object's <b>Error</b> event, the <b>Error</b> event of the base class, or up the class hierarchy for that object, and runs that code, if it exists. Other error handlers might affect how Visual FoxPro handles errors. For more information, see <a href="/html/a00d44be-85b4-4f2a-b2ac-bb947694a634.htm">Error Handler Priority</a>.</p>
+  <h1 class="heading">Error Handling for Objects in Containers</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>For member objects instantiated within another object or container, for example, controls on a form, you can specify error handling for each member object by adding <b>Error</b> event code for each member object. However, if <b>Error</b> event code does not exist for the member object, it does not inherit <b>Error</b> event code from the container object automatically. If you want the container object's <b>Error</b> event to handle errors for its member objects, you can pass error information from the member object's <b>Error</b> event to container's <b>Error</b> event by using the following code in the member object's <b>Error</b> event:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LPARAMETERS nError, cMethod, nLine
+THIS.Parent.Error(nError, cMethod, nLine)</pre></td></tr></table></span></div>
+      <p>You can add code in the container object's <b>Error</b> event to process the error information passed through the parameters specified in this code.</p>
+      <p>For example, the Vcr class in the Visual FoxPro sample class library, Buttons.vcx, located in the Visual FoxPro ...\Samples\Classes directory, is based on the Visual FoxPro <b>Container</b> class. The container has four command buttons that navigate a table by moving the record pointer.</p>
+      <p>However, when a user clicks a button when a table is not open, an error can occur. Visual FoxPro attempts to write buffered values to a table when the record pointer moves; therefore, if optimistic row buffering is enabled and another user has changed a value in the buffered record, another error can also occur. </p>
+      <p>These errors can occur when the user chooses any button; therefore, you do not need to write four separate error-handling routines for each button. Instead, each command button's <b>Error</b> event contains code to pass error information to a single error-handling routine in the <b>Error</b> event for the Vcr class. </p>
+      <p>You can also include other error handlers, such as the <b>TRY...CATCH...FINALLY</b> and <b>ON ERROR</b> commands, in class definitions and objects. For more information about the order and priority in which error handlers operate, see <a href="/html/a00d44be-85b4-4f2a-b2ac-bb947694a634.htm">Error Handler Priority</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/ae5f6da1-8aa7-450f-905c-60d5cd0a5c3c.htm">Debugging and Error-Handling Language</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/220ead6b-fd59-49d7-94e3-6270a91e6807.htm">Structured Error Handling</a></span><br /><span class="linkTerms"><a href="/html/f11956b1-d26f-4321-842a-f1f2dd1de757.htm">Procedural Error Handling</a></span><br /><span class="linkTerms"><a href="/html/9b4782b2-1bcc-4774-b66f-2bb15381d587.htm">Handling Run-Time Errors</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Class and Object Error Handling">
+</OBJECT>

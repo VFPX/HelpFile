@@ -1,0 +1,153 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Manage Memory</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Manage Memory</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can allocate and manage memory using the Visual FoxPro API.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>The techniques described apply to both ActiveX controls and FLL libraries.</p>
+    </td></tr></table></div>
+  <h3 class="procedureSubHeading">To allocate and use memory</h3><div class="subSection"><ol><li>
+        
+          <p>Allocate a handle with <a href="/html/c4bdddbf-bb8e-4066-aee1-99383fec96ca.htm">_AllocHand( )</a>.</p>
+        
+      </li><li>
+        
+          <p>Lock the handle with <a href="/html/50cdacab-e4c0-4348-83cb-2a4817c82a8c.htm">_HLock( )</a>.</p>
+        
+      </li><li>
+        
+          <p>Convert the handle into a pointer with <a href="/html/02bb9d73-2ef5-4a3a-87a6-7ebfb440b742.htm">_HandToPtr( )</a>.</p>
+        
+      </li><li>
+        
+          <p>Reference the memory by using the pointer.</p>
+        
+      </li><li>
+        
+          <p>Unlock the handle with <a href="/html/38cc5cb6-c286-4166-a048-f9b502025463.htm">_HUnLock( )</a>. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>To avoid memo file corruption, don't write to a memo file before calling <a href="/html/7f973996-79f8-439d-8861-0f8f4bb79672.htm">_AllocMemo( )</a>.</p>
+          </td></tr></table></div>
+        
+      </li></ol>
+      
+        <p>In order to address the allocated memory, your API routines must convert the handle to a pointer by calling the <a href="/html/02bb9d73-2ef5-4a3a-87a6-7ebfb440b742.htm">_HandToPtr( )</a> routine. Even if the Visual FoxPro memory manager needs to reorganize memory to obtain more contiguous memory for subsequent memory requests, the handle remains the same. Routines that grow, shrink, free, and lock memory allocations are also provided.</p>
+        <p>When you're creating external routines, try to minimize memory use. If you create an external routine that dynamically allocates memory, try to use the least amount of memory possible. Be especially careful about locking large memory allocations for long periods of time. Remember to unlock memory handles with <a href="/html/38cc5cb6-c286-4166-a048-f9b502025463.htm">_HUnLock( )</a> when they no longer need to be locked, because the performance of Visual FoxPro can be adversely affected by locked memory handles.</p>
+        <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+          <p>Excessive use of dynamic memory deprives Visual FoxPro of memory for buffers, windows, menus, and so on, and degrades performance, because the memory given to fill API requests is managed by the Visual FoxPro memory manager. Allocating large handles and retaining them could cause Visual FoxPro to run out of memory and terminate abnormally. The Visual FoxPro environment has no memory protection. The external API routine cannot provide all the validation that's inherent in a standard Visual FoxPro program. If you corrupt memory, you receive messages such as "Transgressed handle," "Internal consistency error," and "Transgressed node during compaction."</p>
+        </td></tr></table></div>
+        <p>The following function from an FLL library illustrates memory allocation. The example uses <a href="/html/8d26556e-4235-46e8-b139-61c7acc9eb49.htm">_RetDateStr( )</a> to return a Visual FoxPro Date type (assuming that the Character parameter is a proper date):</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#include &lt;Pro_ext.h&gt;
+void dates(ParamBlk  *parm)
+{
+   MHANDLE mh;
+   char *instring;
+   if ((mh = _AllocHand(parm-&gt;p[0].val.ev_length + 1)) == 0) {
+      _Error(182); // "Insufficient memory"
+   }
+   _HLock(parm-&gt;p[0].val.ev_handle);
+   instring = _HandToPtr(parm-&gt;p[0].val.ev_handle);
+   instring[parm-&gt;p[0].val.ev_length] = '\0';
+   _RetDateStr(instring);
+   _HUnLock(parm-&gt;p[0].val.ev_handle);
+}
+FoxInfo myFoxInfo[] = {
+   {"DATES", (FPFI) dates, 1, "C"}
+};
+FoxTable _FoxTable = {
+   (FoxTable *) 0, sizeof(myFoxInfo)/sizeof(FoxInfo), myFoxInfo
+};</pre></td></tr></table></span></div>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/9b6de5b9-949e-4542-93c3-cf177e40ef5c.htm">Memory Management Using the Visual FoxPro API</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/566a1828-db5f-432f-8940-c4dd53c08920.htm">Accessing the Visual FoxPro API</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Manage Memory">
+</OBJECT>

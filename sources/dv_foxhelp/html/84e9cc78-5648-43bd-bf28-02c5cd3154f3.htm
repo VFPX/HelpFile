@@ -1,0 +1,230 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SHOW WINDOW Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SHOW WINDOW Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Displays one or more user-defined windows or Visual FoxPro system windows without activating them.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SHOW WINDOW WindowName1 [, WindowName2 ...] | ALL | SCREEN
+   [IN [WINDOW] WindowName3   [REFRESH]   [TOP | BOTTOM | SAME]   [SAVE]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">WindowName1 </span>[, <span class="parameter">WindowName2</span>...] </span></dt><dd>
+          <p>Specifies the name of one or more windows to display.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ALL </span></dt><dd>
+          <p>Displays all user-defined windows.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SCREEN </span></dt><dd>
+          <p>Displays the main Visual FoxPro window when it is hidden. You can also choose Screen from the Window menu to display the main Visual FoxPro window. You can hide the main Visual FoxPro window by clicking its close box or issuing <b>DEACTIVATE WINDOW SCREEN, HIDE WINDOW SCREEN</b>, or  <b>RELEASE WINDOW SCREEN</b>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN [WINDOW] <span class="parameter">WindowName3</span></span></dt><dd>
+          <p>Displays the window inside a parent window specified with <span class="parameter">WindowName3</span>. The window does not assume the characteristics of the parent window. A window displayed inside a parent window cannot be moved outside the parent window. If the parent window is moved, the child window moves with it.</p>
+          <p>The parent window specified with <span class="parameter">WindowName3</span> must first be created with <b>DEFINE WINDOW</b>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN SCREEN </span></dt><dd>
+          <p>Explicitly displays the window in the main Visual FoxPro window instead of in another window. Windows are placed in the main Visual FoxPro window by default.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">REFRESH </span></dt><dd>
+          <p>Redraws a Browse window. This option is useful on a network to ensure that you are browsing the most current version of a table. The work area for the Browse window table is selected.</p>
+          <p>Memo-editing windows are refreshed with changes made to the memo field by other users on a network. <b>SET REFRESH</b> determines the interval between memo-editing-window refreshes. Refer to <b>SET REFRESH</b> for additional information on how data is refreshed in tables opened for shared use on a network. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TOP </span></dt><dd>
+          <p>Places the specified window in front of all other windows.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">BOTTOM </span></dt><dd>
+          <p>Places the specified window behind all other windows.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SAME </span></dt><dd>
+          <p>Places the specified window back into a stack of windows in the same position the window occupied before it was deactivated. SAME affects only windows that have been previously displayed or activated and then cleared from the main Visual FoxPro window with <b>DEACTIVATE WINDOW</b>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SAVE </span></dt><dd>
+          <p>Keeps an image of the window in the main Visual FoxPro window or in another window after the window is released. Normally, windows are removed from the main Visual FoxPro window after they are released. The window image can be cleared from the main Visual FoxPro window or a window with <b>CLEAR</b>.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>
+        <b>SHOW WINDOW</b> controls the display and front-to-back screen placement of windows. If a window is hidden or has not been activated, <b>SHOW WINDOW</b> displays the window without activating it. If one or more windows are currently displayed, <b>SHOW WINDOW</b> lets you change the front-to-back order of the windows.</p>
+      <p>You can also display system windows, such as the Command window.</p>
+      <p>In Visual FoxPro, you can use <b>SHOW WINDOW </b> to display the Visual FoxPro toolbars. Use <b>HIDE WINDOW</b> to remove a toolbar from the FoxPro window. Toolbars must be active before they can be displayed. The following table lists the Visual FoxPro toolbars names to use in <b>SHOW WINDOW</b> and <b>HIDE WINDOW</b>. Enclose the toolbar name in quotation marks.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Toolbar Names
+            </th>
+            <th>
+               
+            </th>
+            <th>
+               
+            </th>
+          </tr><tr>
+          <td>
+            <p>Color Palette</p>
+          </td>
+          <td>
+            <p>Layout</p>
+          </td>
+          <td>
+            <p>Report Designer</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Database Designer</p>
+          </td>
+          <td>
+            <p>Print Preview</p>
+          </td>
+          <td>
+            <p>Standard</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Form Controls</p>
+          </td>
+          <td>
+            <p>Query Designer</p>
+          </td>
+          <td>
+            <p>View Designer</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Form Designer</p>
+          </td>
+          <td>
+            <p>Report Controls</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr></table></div>
+      <p>To show a system window, enclose the entire system window name in quotation marks.</p>
+      <p>You cannot specify where output is directed to user-defined windows with <b>SHOW WINDOW</b>. Use <b>ACTIVATE WINDOW </b>to direct output to a user-defined window created with <b>DEFINE WINDOW</b>.</p>
+      <p>Historically in prior versions of Visual FoxPro, the Data Session window has always been referred to as the View window. Additionally, language used to control this window, such as <b>HIDE WINDOW</b>, <b>ACTIVATE WINDOW</b>, <b>WONTOP( )</b>, also refers to this window as the View window. Visual FoxPro continues to refer to the View window for the <b>SHOW WINDOW</b> command.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example, a window named <code>wOutput1</code> is created and displayed. Since <b>SHOW WINDOW</b> is used to display the window, output cannot be directed to the window until it is activated.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+DEFINE WINDOW wOutput1 FROM 2,1 TO 13,75 TITLE 'Output' ;
+   CLOSE FLOAT GROW ZOOM
+SHOW WINDOW wOutput1 </pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5a38e8ab-6e54-4387-95c6-0a84eb3ef70e.htm">ACTIVATE WINDOW Command</a></span><br /><span class="linkTerms"><a href="/html/400d1a36-63d5-496d-a54d-a57c2632f4ae.htm">DEFINE WINDOW Command</a></span><br /><span class="linkTerms"><a href="/html/b89737d7-7dac-455e-9088-fa0ec6c93b98.htm">CLEAR Commands</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SHOW WINDOW Command">
+<param name="ALink Name" value="SHOW WINDOW">
+</OBJECT>

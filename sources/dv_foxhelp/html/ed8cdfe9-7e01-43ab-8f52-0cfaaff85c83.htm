@@ -1,0 +1,193 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SYS(14) - Index Expression</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SYS(14) - Index Expression</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Returns index expression of an open single-entry .idx index file or index expressions for tags in compound .cdx index files.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SYS(14, <span class="parameter">nIndexNumber</span> [, <span class="parameter">nWorkArea</span> | <span class="parameter">cTableAlias</span>])</pre></td></tr></table></span></div></div>
+<p />
+<h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nIndexNumber</span>
+        </span></dt><dd>
+          <p>Specifies which index expression to return from the open index files or tags. SYS(14) returns index expressions from open index files and tags in the following order as <span class="parameter">nIndexNumber</span> increases from 1 to the total number of open single-entry files and structural compound and independent compound index tags:</p>
+          <ol><li>
+              <p>Index expressions from single-entry index files (if any are open) are returned first. The order the single-entry index files are included in USE or SET INDEX determines the order the index expressions are returned.</p>
+            </li><li>
+              <p>Index expressions for each tag in the structural compound index (if one is present) are returned next. The index expressions are returned from the tags in the order that the tags were created in the structural index.</p>
+            </li><li>
+              <p>Index expressions for each tag in any open independent compound indexes are returned last. The index expressions are returned from the tags in the order that the tags were created in the independent compound indexes.</p>
+            </li></ol>
+          <p>The empty string is returned if <span class="parameter">nIndexNumber</span> is greater than the total number of open single-entry files and structural compound and independent compound index tags. </p>
+        </dd></dl>
+		<dl>
+		<dt>
+		<span class="nonLinkTerms">
+          <span class="parameter">nWorkArea</span>| <span class="parameter">cTableAlias</span></span></dt><dd>
+          <p>Specifies a work area number or work area alias. If you omit <span class="parameter">nWorkArea</span> and <span class="parameter">cTableAlias</span>, index expressions are returned from index files open in the current work area. If a table doesn't have the alias you specify, Visual FoxPro generates an error message.</p>
+        </dd></dl>
+    
+  <h1 class="heading">
+  <span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1>
+  <div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Character</p>
+    
+  </div>
+  <h1 class="heading">
+  <span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0">
+  <img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1>
+  <div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>An index expression is specified when an index file or tag is created with INDEX. The index expression determines how a table is displayed and accessed when an index file or tag is used to order the table.</p>
+      <p>For more information on index expressions and creating index files and tags, see <a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX</a>. SYS(14) is similar to the KEY( ) function.</p>
+      <p>USE and SET INDEX both support an index file name list that makes it possible for you to open index files for a table. Any combination of single-entry index files, structural compound or independent compound index file names can be included in the index file list.</p>
+    
+  </div>
+	<h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0">
+	<img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif">
+	</img>See Also</span></h1>
+		<div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;">
+		<h4 class="subHeading">Reference</h4>
+		<span class="linkTerms"><a href="/html/ab8904c2-9e34-449d-a623-4941c94a648d.htm">ATAGINFO( ) Function</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />
+		<span class="linkTerms"><a href="/html/1d125780-6aa3-43c3-9dc0-6fc18c0cfeb1.htm">CDX( ) Function</a></span><br />
+		<span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />
+		<span class="linkTerms"><a href="/html/f256f6d2-b03f-41cb-af88-4fb4dce1dc9d.htm">KEY( ) Function</a></span><br />
+		<span class="linkTerms"><a href="/html/4dd1b20d-a1d2-4fac-baf8-409e9c50b475.htm">MDX( ) Function</a></span><br />
+		<span class="linkTerms"><a href="/html/ff2c387a-af9c-4171-8769-8c81a1760992.htm">NDX( ) Function</a></span><br />
+		<span class="linkTerms"><a href="/html/b515a6e4-392f-44e8-a48f-52054f2c8b72.htm">REINDEX Command</a></span><br />
+		<span class="linkTerms"><a href="/html/b0166019-d7d2-4322-8a7f-d3986987a71e.htm">SET INDEX Command</a></span><br />
+		<span class="linkTerms"><a href="/html/f88b697b-c89f-4343-b9f9-4ecda6fe95ac.htm">SET ORDER Command</a></span><br />
+		<span class="linkTerms"><a href="/html/634e3863-7f71-4868-b023-d0633240a541.htm">SYS( ) Functions Overview</a></span><br />
+		<span class="linkTerms"><a href="/html/f61ef93d-6e45-4640-b34f-e44833340ca1.htm">TAG( ) Function</a></span><br />
+		<span class="linkTerms"><a href="/html/300805ce-f78a-42d1-ac82-bd695650fbd3.htm">TAGCOUNT( ) Function</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />
+		<span class="linkTerms"><a href="/html/ef964c61-9adc-43d5-b10d-828a3068e490.htm">TAGNO( ) Function</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />
+		<h4 class="subHeading">Other Resources</h4>
+		<span class="linkTerms"><a href="/html/bd8c95ee-78bf-4d47-9c76-f51562e8f90a.htm">Index Manipulation Language</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />
+		<br />
+		</div>
+	</div>
+  <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SYS(14) - Index Expression">
+</OBJECT>

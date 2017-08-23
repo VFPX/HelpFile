@@ -1,0 +1,245 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SQLCONNECT( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SQLCONNECT( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Establishes a connection to a data source. There are two versions of the syntax.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SQLCONNECT([nStatementHandle])</pre></td></tr></table></span><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SQLCONNECT([cConnectionName | cDataSourceName [, cUserID [, cPassword ]][, lShared]])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nStatementHandle</span>
+        </span></dt><dd>
+          <p>Specifies that a new statement handle be created for the underlying shared connection that is represented by <span class="parameter">nStatementHandle</span>. The new statement handle uses the settings provided from <span class="parameter">nStatementHandle</span> instead of using the default settings. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You cannot create a new statement handle for a connection that is not shared. Visual FoxPro generates an error if you attempt to create a new statement handle against a nonshared connection.</p>
+          </td></tr></table></div>
+          <p>You can also use <b>SQLCONNECT( )</b> to obtain a new statement handle on a shared connection that was opened using <b>SQLSTRINGCONNECT( )</b>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cConnectionName</span>
+        </span></dt><dd>
+          <p>Specifies a named connection created by the <b>CREATE CONNECTION</b> command. </p>
+          <p>When using <b>CREATE CONNECTION</b> or the Connection Designer to create a named connection, you can configure the connection by specifying a data source name, user ID, and password. When using the named connection in <b>SQLCONNECT( )</b> as <span class="parameter">cConnectionName</span>, you can pass values different from those in the named connection for the optional <span class="parameter">cUserID</span> and <span class="parameter">cPassword</span> parameters. These passed values are used instead of the user ID and password in the named connection specified by <span class="parameter">cConnectionName</span>.    </p>
+          <p>For example, suppose you create a named connection called <code>myNamedConnection</code> using <b>CREATE CONNECTION</b> or the Connection Designer and specify the values <code>myUserID</code> and <code>myPassword</code> for the named connection. For <b>SQLCONNECT( )</b>, you can specify <code>myNamedConnection</code> as <span class="parameter">cConnectionName</span> and then specify <code>myAltUserID</code> and <code>myAltPassword</code> as an alternate user ID and password as in the following code:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SQLCONNECT("myNamedConnection", "myAltUserID", "myAltPassword")</pre></td></tr></table></span></div>
+          <p>However, if you create a named connection using a connection string with <b>CREATE CONNECTION</b> or the Connection Designer, use the named connection in <b>SQLCONNECT( )</b>, and attempt to pass optional user ID and password parameters to <b>SQLCONNECT( )</b>, Visual FoxPro generates the appropriate message.   </p>
+          <p>When creating a new shared connection, the <span class="parameter">cConnectionName</span> parameter refers to a named connection in the current database container (DBC).    </p>
+          <p>When creating a new statement handle based on an existing shared connection, the <span class="parameter">cConnectionName</span> parameter refers to a previous connection opened in shared mode.   </p>
+          <p>If you use the <span class="parameter">cConnectionName</span> parameter without the <span class="parameter">lShared</span> parameter or with <span class="parameter">lShared</span> parameter as False (.F.), you will always create a new connection that is not shared.   </p>
+          <p>When using <span class="parameter">cConnectionName</span>, if <span class="parameter">lShared</span> is True (.T.) and the named connection is already open in shared mode, the user name and password provided should match those previously used. Otherwise, Visual FoxPro generates the appropriate message. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cDataSourceName</span>
+        </span></dt><dd>
+          <p>Specifies the name of a data source as defined in your Odbc.ini file. </p>
+          <p>You can also choose a data source from the <a href="/html/c9d6c6ff-92ff-41ea-af94-76e85557ea89.htm">Select Connection or Data Source Dialog Box</a>, which appears when you call <b>SQLCONNECT( )</b> without any additional arguments or with only the <span class="parameter">lShared</span> parameter. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cUserID</span>
+        </span></dt><dd>
+          <p>Specifies the user identifier used to log on to the data source.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cPassword</span>
+        </span></dt><dd>
+          <p>Specifies the password for gaining access to the data source.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">lShared</span>
+        </span></dt><dd>
+          <p>Specifies whether or not to create a shared connection.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">lShared</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>False (.F.)</p>
+              </td>
+              <td>
+                <p>
+                  <b>SQLCONNECT( )</b> does not create a shared connection. (Default)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>True (.T.)</p>
+              </td>
+              <td>
+                <p>
+                  <b>SQLCONNECT( )</b> creates a shared connection.</p>
+              </td>
+            </tr></table></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Numeric data type. <b>SQLCONNECT( )</b> returns a positive nonzero numeric value as the statement handle if you successfully connect to the data source. <b>SQLCONNECT( )</b> returns –1 if it cannot make the connection.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>You should store this statement handle in a memory variable and use the variable in subsequent function calls that require a connection handle. </p>
+      </td></tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The <b>SQLCONNECT( )</b> and <b>SQLSTRINGCONNECT( )</b> functions return a numeric value as the statement handle rather than a connection handle. You cannot obtain a connection handle directly. You can still set and get connection properties using the <b>SQLSETPROP( )</b> and <b>SQLGETPROP( )</b> functions by passing the statement handle for that connection and the string, "Shared", as arguments. All other SQL functions use a statement handle instead of a connection handle.</p>
+      <p>If you issue a statement such as <code>SQLCONNECT(cConnectionName, .T.)</code>, and a shared connection is already open with the same name, then the settings for that connection do not change to the settings stored for that connection in the database container (DBC). However, the new statement handle will use the statement settings from the DBC.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>You must disable the Open Database Connectivity (ODBC) login dialog box to support SQL pass through with Microsoft Transaction Server. To disable the ODBC login dialog box, use the statement <code>SQLSETPROP(nStatementHandle, 'DispLogin', 3)</code>, where <span class="parameter">cStatementHandle</span> is the statement handle returned by <b>SQLCONNECT( )</b>. You can also disable the ODBC login dialog box in the <a href="/html/308de4ee-ed87-45be-9d10-b1b425eb0e9c.htm">Connection Designer</a>.</p>
+      </td></tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    
+      
+        <p>
+          <b>Example 1</b>
+        </p>
+        <p>The following example assumes that an ODBC data source called MyFoxSQLNT exists and is available. <b>SQLCONNECT( )</b> returns a numeric value, which is stored to a variable named <code>gnConnHandle</code>. </p>
+        <p>If you successfully connect to the data source, <b>SQLCONNECT( )</b> returns a positive number, a dialog box appears, and <b>SQLDISCONNECT( )</b> is called to disconnect from the data source. </p>
+        <p>If you cannot connect to the data source, <b>SQLCONNECT( )</b> returns a negative number and displays a message.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>STORE SQLCONNECT('MyFoxSQLNT', 'myUserID', 'myPassword') TO gnConnHandle
+IF gnConnHandle &lt;= 0
+   = MESSAGEBOX('Cannot make connection', 16, 'SQL Connect Error')
+ELSE
+   = MESSAGEBOX('Connection made', 48, 'SQL Connect Message')
+   = SQLDISCONNECT(gnHandle)
+ENDIF</pre></td></tr></table></span></div>
+        <p>
+          <b>Example 2</b>
+        </p>
+        <p>Each of the following examples create new shared connections. The Choose Data Source Dialog Box appears, and <b>SQLCONNECT( )</b> creates the resulting connection as shared.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SQLCONNECT(.T.)
+SQLCONNECT( myConnectionName, .T. )
+SQLCONNECT( myDataSourceName, myUserID, myPassword, .T. )</pre></td></tr></table></span></div>
+        <p>
+          <b>Example 3</b>
+        </p>
+        <p>Each of the following examples creates a new statement handle based on an existing shared connection.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SQLCONNECT( nStatementHandleValue )
+SQLCONNECT( myConnectionName, .T. )  </pre></td></tr></table></span></div>
+      
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/cf8d9a30-f8dc-4181-bebd-1181c3554308.htm">AERROR( ) Function</a></span><br /><span class="linkTerms"><a href="/html/2f558c81-0cfb-408d-88c1-21bd328373ce.htm">CREATE CONNECTION Command</a></span><br /><span class="linkTerms"><a href="/html/6a5eafb3-d5fe-4ca8-8896-2d9b1da8cff0.htm">SQLDISCONNECT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( ) Function</a></span><br /><span class="linkTerms"><a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/9a4d380b-b3a4-450a-b414-5a7724e7fec0.htm">SQLSTRINGCONNECT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/17c2b362-8646-41fc-a66d-6c80cf201b0d.htm">SQL Commands and Functions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SQLCONNECT( ) Function">
+<param name="ALink Name" value="SQLCONNECT">
+</OBJECT>

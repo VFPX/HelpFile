@@ -1,0 +1,148 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>View Creation</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">View Creation</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The basic process for creating a view is generally the same regardless of the method you use and the type of view you create:
+</p>
+    <ol><li>
+        <p>Determine the type of view you need to create.</p>
+      </li><li>
+        <p>Specify the tables or views you want to retrieve records from and their join conditions.</p>
+      </li><li>
+        <p>Select the fields you want to retrieve data from.</p>
+      </li><li>
+        <p>Specify any additional criteria for retrieving records from those tables.</p>
+      </li><li>
+        <p>Specify whether to update the original tables or base tables used to build the view. </p>
+      </li><li>
+        <p>Generate the view to retrieve and view the resulting records.</p>
+      </li></ol>
+    <p>Similar to queries, when you create a view, Visual FoxPro builds and runs a SQL statement that defines the data set for the view using the view definition you created. You can also set properties for views.</p>
+  <h1 class="heading">Combining Views</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can combine views when need a subset of data from other views or if you want to combine local and remote data in a single view. A view built from other views is called a top-level view. A view built from local tables and local or remote views is called a multitiered view. </p>
+      <p>The basic process for combining local and remote data into a single view is described in the following steps:
+</p>
+      <ol><li>
+          <p>Create a remote view. </p>
+        </li><li>
+          <p>Create a local view and add the remote view you created.</p>
+        </li><li>
+          <p>Add any local tables that you want to the local view and join them on a common field.</p>
+        </li><li>
+          <p>In the local view, set the fields and filter the records that you want.</p>
+        </li><li>
+          <p>Run the view.</p>
+        </li><li>
+          <p>Update the view results to update both the local table and the remote view.</p>
+        </li><li>
+          <p>Close the local view and then the remote view to update the data on the remote server.</p>
+        </li></ol>
+      <p>You can also combine local and remote data in a view by creating a new local view based on a local view and a remote view. You can have multiple levels of views between the top-level view and the local or remote base tables. When you use a multitiered view, the views on which the top-level view is based and any Visual FoxPro base tables used in the top-level or intermediate-level views appear in the Data Session window for the database. Remote tables do not appear in the Data Session window.</p>
+      <p>For example, the following code use the Northwind sample database and creates a local view that combines data from a local employee table and the remote orders table, you can use the following code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE HOME(2) + "Northwind\Northwind"
+CREATE SQL VIEW Local_Employee_View AS SELECT * FROM Employees
+CREATE SQL VIEW Remote_Orders_View ;
+   CONNECTION Remote_01 AS SELECT * FROM Orders
+CREATE SQL VIEW Local_Employee_Remote_Orders_View ;
+   AS SELECT * FROM Northwind!Local_Employee_View, ;
+   Northwind!Remote_Orders_View ;
+   WHERE Local_Employee_View.Emp_ID = Remote_Orders_View.Emp_ID</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/bad9294b-af77-4b47-86c8-80b2d28fe7ba.htm">How to: Create Local Views</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/fadf7948-fde3-49eb-ae1f-ca8c4700f023.htm">Accessing Remote Data Using Views</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><span class="linkTerms"><a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="View Creation">
+</OBJECT>

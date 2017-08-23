@@ -1,0 +1,313 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>COPY TO Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">COPY TO Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Creates a new file from the contents of the currently selected table.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+COPY TO <span class="parameter">FileName</span> [DATABASE <span class="parameter">DatabaseName</span> [NAME <span class="parameter">LongTableName</span>]]
+   [FIELDS <span class="parameter">FieldList</span> | FIELDS LIKE <span class="parameter">Skeleton</span> | FIELDS EXCEPT <span class="parameter">Skeleton</span>]
+   [<span class="parameter">Scope</span>] [FOR <span class="parameter">lExpression1</span>] [WHILE <span class="parameter">lExpression2</span>] 
+   [ [WITH] CDX ] | [ [WITH] PRODUCTION ] [NOOPTIMIZE] 
+   [ [TYPE] [ FOXPLUS | FOX2X | DIF | MOD | SDF | SYLK | WK1 | WKS | WR1
+   | WRK | CSV | XLS | XL5 | DELIMITED [ WITH <span class="parameter">Delimiter</span> | WITH BLANK 
+   | WITH TAB | WITH CHARACTER <span class="parameter">Delimiter </span>] ] ] [AS <span class="parameter">nCodePage</span>]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">FileName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the new file to create. If you do not include a file extension, <b>COPY TO</b> assigns the default extension for the specified file type. If you do not specify a file type, <b>COPY TO</b> creates a new Visual FoxPro table and assigns the default .dbf extension to the table file name.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DATABASE <span class="parameter">DatabaseName</span></span></dt><dd>
+          <p>Specifies a database to which the new table is added.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NAME <span class="parameter">LongTableName</span></span></dt><dd>
+          <p>Specifies a long name for the new table. Long names can contain up to 128 characters and can be used instead of short file names in the database.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS <span class="parameter">FieldList</span></span></dt><dd>
+          <p>Specifies which fields are copied to the new file. If you omit <b>FIELDS</b> <span class="parameter">FieldList</span>, all fields are copied to the file. If the file you are creating is not a table, memo fields are not copied to the new file, even if memo field names are included in the field list.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS LIKE <span class="parameter">Skeleton</span></span></dt><dd>
+          <p>Specifies that fields from the original table that match the field skeleton <span class="parameter">Skeleton</span> are included in the new file that <b>COPY TO</b> creates.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS EXCEPT <span class="parameter">Skeleton</span></span></dt><dd>
+          <p>Specifies that all fields except those that match the field skeleton <span class="parameter">Skeleton</span> are included in the new file that <b>COPY TO</b> creates.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">Scope</span>
+        </span></dt><dd>
+          <p>Specifies a range of records to copy to a file. Only the records within the range are copied. The scope clauses are: <b>ALL</b>, <b>NEXT</b><span class="parameter">nRecords</span>, <b>RECORD</b><span class="parameter">nRecordNumber</span>, and <b>REST</b>. For more information on scope clauses, see <span class="linkTerms"><a href="/html/c8d51e13-0119-4fc5-a0df-b6a9ab7997bb.htm">Scope Clauses</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FOR <span class="parameter">lExpression1</span></span></dt><dd>
+          <p>Specifies that <b>COPY TO</b> copies only the records for which the logical condition <span class="parameter">lExpression1</span> evaluates to True (.T.) to the file. To conditionally copy records, include the <b>FOR</b><span class="parameter">lExpression1</span> clause to filter out undesired records.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WHILE <span class="parameter">lExpression2</span></span></dt><dd>
+          <p>Specifies a condition where records are copied while the logical expression <span class="parameter">lExpression2</span> evaluates to True (.T.).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[WITH] CDX | [WITH] PRODUCTION </span></dt><dd>
+          <p>Creates a structural index file for the new table that is identical to the structural index file of the existing table. The tags and index expressions from the original structural index file are copied to the new structural index file. The <b>CDX</b> and <b>PRODUCTION</b> clauses are identical. However, do not include <b>CDX</b> or <b>PRODUCTION</b> if you are copying to a file other than a new Visual FoxPro table.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOOPTIMIZE </span></dt><dd>
+          <p>Disables Rushmore Query Optimization for <b>COPY TO</b>. For more information, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TYPE </span></dt><dd>
+          <p>Specifies the file type if the file you create is not a Visual FoxPro table. Although you must specify a file type, you do not need to include the <b>TYPE</b> keyword.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FOXPLUS </span></dt><dd>
+          <p>Visual FoxPro memo files have a different structure than Microsoft FoxBASE+™ memo files. If your source Visual FoxPro table contains a memo field, include the <b>FOXPLUS</b> clause to create a table that can be used in FoxBASE+. The Visual FoxPro memo field cannot contain binary data because FoxBASE+ does not support binary data in memo fields.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FOX2X </span></dt><dd>
+          <p>Creates a new table that can be opened in earlier versions of FoxPro (versions 2.0, 2.5, and 2.6).</p>
+          <p>For Numeric, Float, Integer, Double, and Currency type fields, null values in the source table are converted to zero in the new table. For other field types, null values in the source table are converted to blanks in the new table. For further information about blank values, see <span class="linkTerms"><a href="/html/17571b10-3976-427f-bc75-b96713cfbe7f.htm">ISBLANK( ) Function</a></span>.   </p>
+          <p>The following table lists the Visual FoxPro field types that are converted to different field types in the new table when the FOX2X argument is included.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Visual FoxPro field type</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>FoxPro 2.x field type</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Blob</p>
+              </td>
+              <td>
+                <p>Memo</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Currency</p>
+              </td>
+              <td>
+                <p>Float</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DateTime</p>
+              </td>
+              <td>
+                <p>Date</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Double</p>
+              </td>
+              <td>
+                <p>Float</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Integer</p>
+              </td>
+              <td>
+                <p>Numeric</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Varbinary</p>
+              </td>
+              <td>
+                <p>Memo</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Varchar</p>
+              </td>
+              <td>
+                <p>Memo</p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DIF </span></dt><dd>
+          <p>Creates a VisiCalc® .dif (Data Interchange Format) file. Fields from the Visual FoxPro table become vectors (columns) and records become tuples (rows). The new file name is assigned a .dif extension if you do not include an extension in <span class="parameter">FileName</span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MOD </span></dt><dd>
+          <p>Creates a Microsoft Multiplan® version 4.01 file. The new Microsoft Multiplan file name is assigned a .mod extension if an extension is not included.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SDF </span></dt><dd>
+          <p>Creates an SDF (System Data Format) file. An SDF file is an ASCII text file in which records have a fixed length and end with a carriage return and line feed. Fields are not delimited. The SDF file name is assigned a .txt file extension if you do not include an extension. The <b>SET CENTURY</b> setting is ignored when creating SDF files with <b>COPY TO</b>.</p>
+          <p>If SDF files include date data, it should be in YYYYMMDD format to allow effective reconversion into Visual FoxPro tables.   </p>
+          <p>If date information is stored in ambiguous formats, you should make sure that the dates are in YYYYMMDD format before you perform the <b>COPY TO</b> operation. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SYLK </span></dt><dd>
+          <p>Creates a SYLK (Symbolic Link) interchange file. SYLK files are used in Microsoft MultiPlan. Each field from the currently selected table becomes a column in the spreadsheet, and each record becomes a row. SYLK file names have no extension.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WK1 </span></dt><dd>
+          <p>Creates a Lotus® 1-2-3® version 2.x spreadsheet file. Each field from the currently selected table becomes a column in the spreadsheet and each record becomes a row. A .wk1 file name extension is assigned to the new spreadsheet.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WKS </span></dt><dd>
+          <p>Creates a Lotus 1-2-3 version 1a spreadsheet file. Each field from the currently selected table becomes a column in the spreadsheet and each record becomes a row. A .wks file name extension is assigned to the new spreadsheet.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WR1 </span></dt><dd>
+          <p>Creates a Lotus Symphony® version 1.1 or 1.2 spreadsheet file. Each field from the currently selected table becomes a column in the spreadsheet and each record becomes a row. A .wr1 file name extension is assigned to the new spreadsheet.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WRK </span></dt><dd>
+          <p>Creates a Lotus Symphony version 1.0 spreadsheet file. Each field from the currently selected table becomes a column in the spreadsheet and each record becomes a row. A .wr1 file name extension is assigned to the new spreadsheet.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CSV </span></dt><dd>
+          <p>Creates a comma separated value file. A CSV file has the field names as the first line in the file, and the field values in the remainder of the file are separated with commas.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">XLS </span></dt><dd>
+          <p>Creates a Microsoft Excel version 2.0 worksheet file. Each field from the currently selected table becomes a column in the spreadsheet, and each record becomes a row. If you do not include a file extension, an .xls extension is assigned to the new worksheet. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Though you can export a maximum of 65,535 rows, which includes one row reserved for the field header, versions of Excel earlier than 8.0 (Excel 97) display only the first 16,384 rows and cannot import files containing more than 32,767 rows.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">XL5 </span></dt><dd>
+          <p>Creates a Microsoft Excel version 5.0 workbook file. Each field from the currently selected table becomes a column in the spreadsheet, and each record becomes a row. If you do not include a file extension, an .xls extension is assigned to the new workbook. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Though you can export a maximum of 65,535 rows, which includes one row reserved for the field header, versions of Excel earlier than 8.0 (Excel 97) display only the first 16,384 rows and cannot import files containing more than 32,767 rows.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DELIMITED </span></dt><dd>
+          <p>Creates a delimited file. A delimited file is an ASCII text file in which each record ends with a carriage return and line feed. The default field separator is a comma. Because character data can include commas, character fields are additionally delimited with double quotation marks.</p>
+          <p>Unless you specify otherwise, a .txt extension is assigned to all newly created <b>DELIMITED</b> files. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DELIMITED WITH <span class="parameter">Delimiter</span></span></dt><dd>
+          <p>Creates a delimited file with character fields delimited by a character other than a quotation mark. The character that delimits character fields is specified with <span class="parameter">Delimiter</span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DELIMITED WITH BLANK </span></dt><dd>
+          <p>Creates a delimited file with fields separated by spaces instead of commas.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DELIMITED WITH TAB </span></dt><dd>
+          <p>Creates a delimited file with fields separated by tabs instead of commas.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DELIMITED WITH CHARACTER <span class="parameter">Delimiter</span></span></dt><dd>
+          <p>Creates a delimited file with all fields enclosed by the character specified with <span class="parameter">Delimiter</span>. If <span class="parameter">Delimiter</span> is a semicolon (;), used in Visual FoxPro to indicate command line continuation, enclose the semicolon in quotation marks. You can also specify the <b>BLANK</b> and <b>TAB</b> keywords for <span class="parameter">Delimiter.</span></p>
+          <p>You can combine the <b>WITH </b><span class="parameter">Delimiter </span>clause with the <b>WITH CHARACTER</b> clause. For example, the following command creates a text file with character fields enclosed by underscores and all fields delimited from each other with semicolons:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>COPY TO mytxt.txt DELIMITED WITH _ WITH CHARACTER ';'</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">AS <span class="parameter">nCodePage</span></span></dt><dd>
+          <p>Specifies the code page for the table or file that <b>COPY TO</b> creates. Visual FoxPro copies the contents of the currently selected table, and, as it copies the data, automatically converts the data to the code page you specify for the new table or file. If possible, Visual FoxPro marks the newly created table or file with the code page you specify.</p>
+          <p>If you omit <b>AS </b><span class="parameter">nCodePage</span>, the newly created table or file is converted to the current Visual FoxPro code page. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The field skeleton <span class="parameter">Skeleton</span> supports wildcards. For example, to specify that all fields that begin with the letters A and P are included in the new file, use the following:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>COPY TO mytable FIELDS LIKE A*,P*</pre></td></tr></table></span></div>
+      <p>The <b>LIKE</b> clause can be combined with the <b>EXCEPT</b> clause:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>COPY TO mytable FIELDS LIKE A*,P* EXCEPT PARTNO*</pre></td></tr></table></span></div>
+      <p>Rushmore Query Optimization optimizes <b>COPY TO</b> with a <b>FOR</b> <span class="parameter">lExpression1</span> clause if <span class="parameter">lExpression1</span> is an optimizable expression. For the best performance, use an optimizable expression in the FOR <span class="parameter">lExpression1</span> clause. For information on Rushmore optimizable expressions, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>.</p>
+      <p>If an index order is set, records are copied in master index order.</p>
+      <p>If you specify a value for <span class="parameter">nCodePage</span> that is not supported, Visual FoxPro generates an error message. You can use the <b>GETCP( )</b> function for <span class="parameter">nCodePage</span> to display the Code Page dialog box, allowing you to specify a code page for the table or file Visual FoxPro creates.</p>
+      <p>The <b>COPY TO</b> command preserves autoincrementing settings except under the following conditions:  </p>
+      <ul><li>
+          <p>When the field list specified using <b>COPY TO...FIELDS</b> does not include the field that uses autoincrementing.</p>
+        </li><li>
+          <p>When using the <b>TYPE</b> clause in the <b>COPY TO</b> command, regardless of the type specified by the clause.</p>
+        </li></ul>
+      <p>The target table begins autoincrementing starting with the NextValue of the source table. For example, suppose the NextValue in the source table is 1000 with a Step value of 1. The first row of the target table then has an autoincrementing field value of 1001; the second row has a value of 1002, and so on.</p>
+      <p>When using the <b>COPY TO</b> command, be aware that the <span class="linkTerms"><a href="/html/5c5cda35-c999-4084-aee6-6576b10e0bb2.htm">SET VARCHARMAPPING Command</a></span> will impact calculated fields (character expressions of variable length) set by the <span class="linkTerms"><a href="/html/06a3376d-fd4e-4fd3-9b3f-55861168ae54.htm">SET FIELDS Command</a></span>.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">In the following example, the Customer table is opened and the next three records are copied to a new <b>DELIMITED</b> data file called Temp.txt.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\testdata')
+USE Customer  &amp;&amp; Opens Customer table.
+COPY NEXT 3 TO Temp TYPE DELIMITED
+WAIT WINDOW 'This is the delimited text file' NOWAIT
+MODIFY FILE Temp.txt
+DELETE FILE Temp.txt</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/c426861f-e5ef-44ae-96a6-8dbc7a4a2ad5.htm">APPEND FROM Command</a></span><br /><span class="linkTerms"><a href="/html/53af0023-ca09-44ff-8c59-7b44bbbd9390.htm">COPY FILE Command</a></span><br /><span class="linkTerms"><a href="/html/7b4a0531-66e1-4df9-828e-8450a761a9db.htm">GETCP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/be78df32-95c1-4939-a439-65f1f0b93ca9.htm">EXPORT Command</a></span><br /><span class="linkTerms"><a href="/html/33f7a0ab-d6ea-499e-9531-fe9635ab6357.htm">IMPORT Command</a></span><br /><span class="linkTerms"><a href="/html/ee01ab62-7e01-4494-ae35-168afb847e63.htm">RENAME TABLE Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="COPY TO Command">
+<param name="ALink Name" value="COPY TO">
+</OBJECT>

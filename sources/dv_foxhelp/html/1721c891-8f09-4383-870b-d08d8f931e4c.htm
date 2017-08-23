@@ -1,0 +1,155 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>EJECT PAGE Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">EJECT PAGE Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Sends a conditional page advance to the printer.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+EJECT PAGE</pre></td></tr></table></span></div></div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Use EJECT PAGE to advance streaming output. The advance depends on the value of _PADVANCE and if an ON PAGE routine is in effect.</p>
+      <p>If _PADVANCE is set to FORMFEED and an ON PAGE routine isn't in effect, EJECT PAGE performs the following:  </p>
+      <ul><li>
+          <p>Sends a formfeed to the printer if the printer is online.</p>
+        </li><li>
+          <p>Sends linefeeds, as determined by the system memory variables _PLENGTH and _PLINENO, to the screen or to an alternate file or to both.</p>
+        </li><li>
+          <p>Increments _PAGENO by 1.</p>
+        </li><li>
+          <p>Sets _PLINENO to 0.</p>
+        </li><li>
+          <p>If the system memory variable _PADVANCE is set to LINEFEEDS, and if an ON PAGE routine is in effect and _PLINENO is less than the page line number specified in the ON PAGE routine, EJECT PAGE sends to the printer, to the main Visual FoxPro window, or to an alternate file or to both, as many linefeeds as needed to advance to the top of the next page.</p>
+        </li></ul>
+      <p>If an ON PAGE routine is not in effect, or if _PADVANCE is set to LINEFEEDS and _PLINENO is greater than the page line number specified with ON PAGE, EJECT PAGE does the following:  </p>
+      <ul><li>
+          <p>Sends linefeeds, as determined by the system memory variables _PLENGTH and _PLINENO, to the printer, the main Visual FoxPro window, or to the alternate file or to both.</p>
+        </li><li>
+          <p>Increments _PAGENO by 1.</p>
+        </li><li>
+          <p>Sets _PLINENO to 0.</p>
+        </li></ul>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/04e41957-8514-48f1-847a-af2abf9a8724.htm">EJECT Command</a></span><br /><span class="linkTerms"><a href="/html/e5f99c20-85da-4b5d-b2be-031d41bd0f90.htm">ON PAGE Command</a></span><br /><span class="linkTerms"><a href="/html/44599ee6-8420-4b9c-8314-db52a8d8c7f4.htm">SET ALTERNATE Command</a></span><br /><span class="linkTerms"><a href="/html/fa62353f-661e-4ebd-ae13-bd056e76cb18.htm">SET DEVICE Command</a></span><br /><span class="linkTerms"><a href="/html/c3b802b8-87ab-4e20-ab4f-50d6c6c9f87a.htm">SET PRINTER Command</a></span><br /><span class="linkTerms"><a href="/html/b13ee90e-706f-433a-93fb-9fdd6f5fcd5f.htm">PCOL( ) Function</a></span><br /><span class="linkTerms"><a href="/html/868204f6-8e33-4a4b-bb18-6aca34d81bdb.htm">PROW( ) Function</a></span><br /><span class="linkTerms"><a href="/html/1151b31e-7348-4b1e-9be0-c2b45c57f65d.htm">System Variables Overview</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="EJECT PAGE Command">
+<param name="ALink Name" value="EJECT PAGE">
+</OBJECT>

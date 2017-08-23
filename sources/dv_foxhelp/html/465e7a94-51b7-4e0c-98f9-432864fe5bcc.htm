@@ -1,0 +1,378 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Table File Structure (.dbc, .dbf, .frx, .lbx, .mnx, .pjx, .scx, .vcx)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Table File Structure (.dbc, .dbf, .frx, .lbx, .mnx, .pjx, .scx, .vcx)</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro uses tables to store data that defines different file types. The following list includes the file types that are saved as tables:  </p>
+    <ul><li>
+        <p>Database (.dbc)</p>
+      </li><li>
+        <p>Form (.scx)</p>
+      </li><li>
+        <p>Label (.lbx)</p>
+      </li><li>
+        <p>Menu (.mnx)</p>
+      </li><li>
+        <p>Project (.pjx)</p>
+      </li><li>
+        <p>Report (.frx)</p>
+      </li><li>
+        <p>Table (.dbf)</p>
+      </li><li>
+        <p>Visual class library (.vcx)</p>
+      </li></ul>
+    <p>You can use and browse these files in the same way that you browse any table file because these files are actually tables.</p>
+    <p>A table file consists of a header record and data records. The header record defines the structure of the table and contains any other information related to the table. The header record starts at file position zero. Data records follow the header, in consecutive bytes, and contain the actual text of the fields. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>The data in the data file starts at the position indicated in bytes 8 to 9 of the header record. Data records begin with a delete flag byte. If this byte is an ASCII space (0x20), the record is not deleted. If the first byte is an asterisk (0x2A), the record is deleted. The data from the fields named in the field subrecords follows the delete flag.</p>
+    </td></tr></table></div>
+    <p>The length of a record, in bytes, is determined by summing the defined lengths of all fields. Integers in table files are stored with the least significant byte first.</p>
+    <p>For information about the table structures of the different file types, see <a href="/html/b9fde125-b9df-4688-bae7-7ae28ebd99ee.htm">Table Structures of Table Files</a>.</p>
+  <h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Table Header Record Structure</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Byte offset
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>0</p>
+          </td>
+          <td>
+            <p><b>File type:</b><img class="vfpxmark" src="../local/vfpXmark.gif"/></p>			
+            <p>0x02 FoxBASE / dBase II</p>
+            <p>0x03 FoxBASE+ / FoxPro /dBase III PLUS / dBase IV, no memo</p>
+            <p>0x30 Visual FoxPro</p>
+            <p>0x31 Visual FoxPro, autoincrement enabled</p>
+            <p>0x32 Visual FoxPro, Varchar, Varbinary, or Blob-enabled</p>
+            <p>0x43 dBASE IV SQL table files, no memo</p>
+            <p>0x63 dBASE IV SQL system files, no memo</p>
+            <p>0x83 FoxBASE+/dBASE III PLUS, with memo</p>
+            <p>0x8B dBASE IV with memo</p>
+            <p>0xCB dBASE IV SQL table files, with memo</p>
+            <p>0xF5 FoxPro 2.x (or earlier) with memo</p>
+            <p>0xFB FoxBASE (?)</p>			
+          </td>
+        </tr><tr>
+          <td>
+            <p>1 - 3</p>
+          </td>
+          <td>
+            <p>Last update (YYMMDD)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>4 – 7</p>
+          </td>
+          <td>
+            <p>Number of records in file</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>8 – 9</p>
+          </td>
+          <td>
+            <p>Position of first data record</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>10 – 11</p>
+          </td>
+          <td>
+            <p>Length of one data record, including delete flag</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>12 – 27</p>
+          </td>
+          <td>
+            <p>Reserved</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>28</p>
+          </td>
+          <td>
+            <p>Table flags: 0x01   file has a structural .cdx 0x02   file has a Memo field 0x04   file is a database (.dbc) This byte can contain the sum of any of the above values. For example, the value 0x03 indicates the table has a structural .cdx and a Memo field.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>29</p>
+          </td>
+          <td>
+            <p>Code page mark</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>30 – 31</p>
+          </td>
+          <td>
+            <p>Reserved, contains 0x00</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>32 – n</p>
+          </td>
+          <td>
+            <p>Field subrecords The number of fields determines the number of field subrecords. One field subrecord exists for each field in the table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>n+1</p>
+          </td>
+          <td>
+            <p>Header record terminator (0x0D)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>n+2 to n+264</p>
+          </td>
+          <td>
+            <p>A 263-byte range that contains the backlink, which is the relative path of an associated database (.dbc) file, information. If the first byte is 0x00, the file is not associated with a database. Therefore, database files always contain 0x00.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Field Subrecords Structure</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Byte offset
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>0 – 10 </p>
+          </td>
+          <td>
+            <p>Field name with a maximum of 10 characters. If less than 10, it is padded with null characters (0x00).</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>11</p>
+          </td>
+          <td>
+            <p>Field type:  </p>
+            <p>W   -   Blob </p>
+            <p>C   –   Character </p>
+            <p>C   –   Character (binary) </p>
+            <p>Y   –   Currency </p>
+            <p>B   –   Double </p>
+            <p>D   –   Date </p>
+            <p>T   –   DateTime </p>
+            <p>F   –   Float </p>
+            <p>G   –   General </p>
+            <p>I   –   Integer </p>
+            <p>L   –   Logical </p>
+            <p>M   –   Memo </p>
+            <p>M   –   Memo (binary) </p>
+            <p>N   –   Numeric </p>
+            <p>P   –   Picture </p>
+            <p>Q   -   Varbinary </p>
+            <p>V   -   Varchar</p>
+            <p>V   -   Varchar (binary)</p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>For each <b>Varchar</b> and <b>Varbinary</b> field, one bit, or "varlength" bit, is allocated in the last system field, which is a hidden field and stores the null status for all fields that can be null. If the <b>Varchar</b> or <b>Varbinary</b> field can be null, the null bit follows the "varlength" bit. If the "varlength" bit is set to 1, the length of the actual field value length is stored in the last byte of the field. Otherwise, if the bit is set to 0, length of the value is equal to the field size.</p>
+            </td></tr></table></div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>12 – 15</p>
+          </td>
+          <td>
+            <p>Displacement of field in record</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>16</p>
+          </td>
+          <td>
+            <p>Length of field (in bytes)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>17</p>
+          </td>
+          <td>
+            <p>Number of decimal places</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>18</p>
+          </td>
+          <td>
+            <p>Field flags: 0x01   System Column (not visible to user) 0x02   Column can store null values 0x04   Binary column (for CHAR and MEMO only)  0x06   (0x02+0x04) When a field is NULL and binary (Integer, Currency, and Character/Memo fields) 0x0C   Column is autoincrementing</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>19 - 22</p>
+          </td>
+          <td>
+            <p>Value of autoincrement Next value</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>23</p>
+          </td>
+          <td>
+            <p>Value of autoincrement Step value</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>24 – 31</p>
+          </td>
+          <td>
+            <p>Reserved</p>
+          </td>
+        </tr></table></div>
+      <p>For information about limitations on characters per record, maximum fields, and so on, see <a href="/html/6e27027b-806b-4f96-b7e5-5f24af2901e0.htm">Visual FoxPro System Capacities</a>.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Visual FoxPro modifies the table header when you turn on or add autoincrementing for field values.</p>
+      <p>Visual FoxPro does not modify the header of a file that has been saved to a FoxPro 2.<span class="parameter">x</span> file format unless one of the following features has been added to the file:  </p>
+      <ul><li>
+          <p>Null value support</p>
+        </li><li>
+          <p>DateTime, Currency, and Double data types</p>
+        </li><li>
+          <p>CHAR or MEMO field is marked as Binary</p>
+        </li><li>
+          <p>A table is added to a database (.dbc) file </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>You can use the following formula to return the number of fields in a table file: <code>(x – 296/32)</code>. In the formula, <code>x</code> is the position of the first record (bytes 8 to 9 in the table header record), 296 is 263 (backlink info) + 1 (header record terminator) + 32 (first field subrecord), and 32 is the length of a field subrecord.</p>
+          </td></tr></table></div>
+        </li></ul>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;">
+  <h4 class="subHeading">Tasks</h4>
+  <span class="linkTerms"><a href="/html/25e5743c-65b9-434a-a1c3-bb7eefbe492d.htm">How to: Check for Differences in Forms, Reports, and Other Table Files</a></span><br />
+  <h4 class="subHeading">Reference</h4>
+  <span class="linkTerms"><a href="/html/a3d7b0e0-8320-44b1-8983-17c30a78c6c4.htm">Code Pages Supported by Visual FoxPro</a></span><br />
+  <span class="linkTerms"><a href="/html/71acd830-031d-40ee-bc2b-a8d9452d0efc.htm">File Extensions and File Types</a></span><br />
+  <span class="linkTerms"><a href="/html/b9d6cff8-7cd0-45e9-b564-6a53701d27b4.htm">SYS(2029) - Table Type</a></span><br />
+  <span class="linkTerms"><a href="/html/b9fde125-b9df-4688-bae7-7ae28ebd99ee.htm">Table Structures of Table Files (.dbc, .frx, .lbx, .mnx, .pjx, .scx, .vcx)</a></span><br />
+  <span class="linkTerms"><a href="/html/67c1d841-7fa8-4e98-afaf-e4b167a52447.htm">Visual FoxPro Data and Field Types</a></span><br />
+  <h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c591bd07-e952-4330-b59b-135f0bef2926.htm">File Structures</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Table File Structure (.dbc, .dbf, .frx, .lbx, .mnx, .pjx, .scx, .vcx)">
+</OBJECT>

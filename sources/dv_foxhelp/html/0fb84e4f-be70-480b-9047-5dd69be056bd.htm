@@ -1,0 +1,156 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Controlling Call Blocking</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Controlling Call Blocking</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>To enhance the scalability of your applications, Visual FoxPro provides SingleUse Objects and Apartment-model threading as ways of controlling issues of call blocking.</p>
+  <h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>SingleUse Objects</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>You can cause each instance of an OLEPUBLIC class to run in a separate instance of your component by setting the Instancing property of the OLEPUBLIC class to SingleUse in the Project Info dialog box. This means that even though your component is single-threaded, each instance of the SingleUse class has its own thread of execution. The behavior of SingleUse objects differs between .exe and .dll servers.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">SingleUse Objects in EXE Servers</h3><div class="subSection" xmlns="">
+          <p>With the Instancing property set to SingleUse, each instance causes a new EXE process to begin. On Windows 2000 or later, you will see each running process in the Task Manager. With the MultiUse setting, the first instance will cause a new process to start, but each new object instance shares the same process as the first.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">SingleUse Objects in DLL Servers</h3><div class="subSection" xmlns="">
+          <p>The Instancing property is ignored for multithreaded .dlls and is only read for the VFP9R.dll run-time library. Servers built for use with the VFP<i>VersionNumber</i>T.dll run-time library, with <i>VersionNumber</i> representing the version number for this release, are always MultiUse regardless of their setting. In general, you should always set the Instancing property to MultiUse for VFP<i>VersionNumber</i>R.dll in-process servers. If you set it to SingleUse, only one instance of an object from that server can be created. You will get an error if you try to instantiate more objects. </p>
+          <p>Only under rare circumstances would you want to use the SingleUse setting. In fact, Microsoft Transaction Server components require the MultiUse setting. SingleUse objects often require more memory overhead than multiple objects in a multithreaded component. There are reasons, however, for which you might want to use SingleUse objects. For example, you can isolate high-risk activities in separate processes with SingleUse objects. If the object suffers a fatal error, other processes are not affected. By contrast, a fatal error in a multithreaded component terminates all threads.</p>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Apartment-Model Threading</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>Visual FoxPro Automation servers now support Apartment-model threading. The Microsoft Transaction Server utilizes servers marked as apartment-threaded and offers better thread protection and scalability through serialization and marshaling.</p>
+      <p>In Visual FoxPro, apartment-model threading provides thread safety. In apartment-model threading, each thread is like an apartment — all objects created on the thread live in this apartment, and are unaware of objects in other apartments. Each Apartment-model object (such as a Visual FoxPro Automation server) may only be entered by one thread, the thread that created the object. However, an object server (such as Microsoft Transaction Server) can support multiple objects, each being entered simultaneously by different threads. Common data held by the object server must be protected against thread collisions. </p>
+      <p>Apartment-model threading provides the following benefits:   </p>
+      <ul><li>
+          <p>All of the objects a client creates on a given thread are created in the same apartment (thread) in the DLL. Calls on the same thread to these objects do not require cross-thread marshaling, making them more efficient.</p>
+        </li><li>
+          <p>Because an object is only accessed on the thread on which it was created, calls are serialized so that a call is never interrupted by a call from another thread.</p>
+        </li><li>
+          <p>Arguments for cross-thread calls are marshaled, and the calling thread is blocked. This synchronization of data protects the calling thread's state. </p>
+        </li></ul>
+      <p>Apartment-threaded DLLs cannot create their own threads; the first time a client thread requests an object provided by your DLL, a new apartment is created, and the object Init event runs for that apartment. All single threaded client objects requested by that client will reside in the same apartment, and will share global data. Any PRIVATE objects (including forms) that are created by the public objects will also reside in the apartment.</p>
+      <p>Though Visual FoxPro does not provide a way for apartments to access each other, a multithreaded client could obtain a reference to an object on Thread A, and pass that reference to an object on Thread B.</p>
+      <p>For more information about Apartment-model threading, search on "<i>Apartment-Model Threading</i>" in the MSDN library.</p>
+      <p>The Visual FoxPro implementation of Apartment-model threading eliminates conflicts in accessing global data from multiple threads by giving each apartment its own copy of global data. This means that all objects created on the thread exist in this apartment, and are unaware of objects in other apartments. </p>
+      <p>Visual FoxPro uses thread local storage to store a unique set of application and environment global data for each thread (apartment). This means that two instances of the same class created on different threads cannot access each other's data. However, if these same two instances reside on the same thread, each object can access the other's data. This could cause timing issues for your applications. In fact, as long as two objects on the same thread are created from OLEPUBLIC classes in the same .dll server, data from those objects is common between them (Note: You can use the Session class to give each object a unique private datasession.) </p>
+      <p>In addition to thread local storage, Visual FoxPro also provides each project (.dll) a unique set of globals data. Objects created from different projects (.dll servers) cannot access each other's globals, even if the two objects reside on the same thread.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/8d75ba95-f669-4091-9f80-8368ded51b29.htm">Selecting Process Types</a></span><br /><span class="linkTerms"><a href="/html/c3f20e0d-0160-48e0-abb7-3737d2d4af2b.htm">Language Supported in Run-Time Libraries</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/b84cd0dc-bfc6-44be-9d5d-2d60fee32bfd.htm">Selecting a Run-Time Library</a></span><br /><span class="linkTerms"><a href="/html/7e1c2940-d069-448e-9d71-bf153706c904.htm">Automation Server Programming Notes</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/8c6a3e61-311d-48bd-a6cf-628e3f37f193.htm">Server Design Considerations and Limitations</a></span><br /><span class="linkTerms"><a href="/html/2d8cb3e1-df20-4304-8326-d3d469002652.htm">Interoperability and the Internet</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Controlling Call Blocking">
+</OBJECT>

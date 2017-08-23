@@ -1,0 +1,205 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Formatting Grids</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Formatting Grids</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can customize the format for grids in various ways.</p>
+  <h1 class="heading">Using Conditional Formatting in Grids</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Special formatting in a grid can make it easier for a user to scan through the records in the grid and locate certain information. To provide conditional formatting, use the dynamic font and color properties of a column.</p>
+      <p>For example, you can add a grid to a form and set the <a href="/html/9b9270cb-27c5-470b-b889-5910309ef707.htm">ColumnCount</a> property to 2. Set the <a href="/html/76c0d810-a6e4-4076-aa91-0763a6dfe03b.htm">ControlSource</a> property of the first column to <code>orders.to_name</code> and the ControlSource property of the second column to <code>orders.order_net</code>. To display order totals less than 500.00 with a forecolor of black and order totals greater than or equal to 500.00 with a foreground color of red, include the following line in the grid's Init event code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THIS.Column2.DynamicForeColor = ;
+   "IIF(orders.order_net &gt;= 500, RGB(255,0,0), RGB(0,0,0))"</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Common Grid Properties</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The following grid properties are commonly set at design time.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Property
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9fa79958-cbe1-458b-9720-f60162022bf5.htm">ChildOrder</a>
+            </p>
+          </td>
+          <td>
+            <p>The foreign key of the child table that is joined with the primary key of the parent table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9b9270cb-27c5-470b-b889-5910309ef707.htm">ColumnCount</a>
+            </p>
+          </td>
+          <td>
+            <p>Number of columns. If ColumnCount is set to - 1, the grid has as many columns as there are fields in the grid's RecordSource.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f3162434-bd53-4380-81e0-c7dd6519693b.htm">LinkMaster</a>
+            </p>
+          </td>
+          <td>
+            <p>The parent table for child records displayed in the grid.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/35fc073a-6840-4046-aa72-90f3c69b7f1e.htm">RecordSource</a>
+            </p>
+          </td>
+          <td>
+            <p>The data to be displayed in the grid.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/2a82b827-657a-40e6-a48a-556bbdf6d8e2.htm">RecordSourceType</a>
+            </p>
+          </td>
+          <td>
+            <p>Where the data displayed in the grid comes from:
+a table, an alias, a query, or a table selected by the user in response to a prompt.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Common Column Properties</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The following column properties are commonly set at design time.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Property
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/76c0d810-a6e4-4076-aa91-0763a6dfe03b.htm">ControlSource</a>
+            </p>
+          </td>
+          <td>
+            <p>The data to be displayed in the column. This is often a field in a table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/70651ce4-7f13-40d4-8186-d64742bd865e.htm">Sparse</a>
+            </p>
+          </td>
+          <td>
+            <p>If Sparse is set to true (.T.), controls in a grid are displayed as controls only when the cell in the column is selected. Other cells in the column display the underlying data value in a text box. Setting Sparse to true (.T.) allows faster repainting if a user is scrolling through a grid with a lot of displayed rows.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/c5e097fc-473d-41f4-9633-a38dfb5de727.htm">CurrentControl</a>
+            </p>
+          </td>
+          <td>
+            <p>Which control in the grid is active. The default is Text1, but if you add a control to the column, you can specify it as the CurrentControl.</p>
+          </td>
+        </tr></table></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The <a href="/html/8fe458a4-06aa-48a7-be97-eefcace09f07.htm">ReadOnly</a> property of a control inside the column is overridden by the ReadOnly property of the Column. If you set the ReadOnly property of the control in a column in the code associated with the <a href="/html/74a27394-1b9c-43f3-b856-782b62f1100d.htm">AfterRowColChange event</a>, the new setting will be valid while you are in that cell.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/016a84c9-4bad-4d96-a31d-2b8736c4ef6b.htm">How to: Set Up a One-to-Many Form Using the Grid Control</a></span><br /><span class="linkTerms"><a href="/html/79111552-2e51-4f4e-bf25-0fddb99d2ea7.htm">How to: Make Controls Easier to Use</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/777f75d2-36a1-43b7-bad1-7c311a0f262b.htm">Controls for Manipulating Rows of Data</a></span><br /><span class="linkTerms"><a href="/html/8c34daa5-67bf-498e-8cda-0e762a14c788.htm">Controls for Extending Forms</a></span><br /><span class="linkTerms"><a href="/html/4c6826b0-d49e-4f97-b18c-4670533600c7.htm">Form Designer</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/119e15f3-d59f-4ebc-8b75-98d1d4fbbdad.htm">Controls and Objects Created in Earlier Versions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b9032965-6941-41d2-8ff9-87c609673907.htm">Using Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Formatting Grids">
+</OBJECT>

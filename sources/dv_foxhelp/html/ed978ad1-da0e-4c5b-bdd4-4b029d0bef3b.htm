@@ -1,0 +1,242 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Set Stretching Report Controls</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Set Stretching Report Controls</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can specify that controls on reports and labels <i>stretch</i>, or automatically expand and contract to accommodate the output they generate. For example, a Field control that contains a memo field expression may evaluate to varying amounts of text from record to record. Therefore, you can set the control to stretch according to the amount of information it contains. If you are using a shape as a border around one or more field expression controls, you can also specify that the shape stretches to accommodate the varying size of the controls it encompasses.</p>
+    <p>Controls that can stretch might affect the position of other controls that appear below them in the layout. You can set the other controls to <i>float</i>, or adjust position automatically according to changes in size of the controls above them. For more information about adjusting report control position automatically, see <span class="linkTerms"><a href="/html/ae281129-9900-4acb-b6ab-afb5e4222f5e.htm">How to: Adjust Report Control Position</a></span>.</p>
+    <p>The following illustration shows how stretching and floating report controls function. </p>
+    <img src="../local/Local_-312949063_afd12005.gif" alt="ControlSetExamples graphic"></img>
+    <p>The following sections contain information about working with stretching controls:</p>
+    <ul><li>
+        <p>
+          <span class="linkTerms"><a href="#SpecifyingStretchingForReportControls">Specifying Stretching for Report Controls</a></span>
+        </p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#DisplayingBordersForStretchableControls">Displaying Borders for Stretchable Controls</a></span>
+        </p>
+      </li></ul>
+  <a name="SpecifyingStretchingForReportControls"></a><h1 class="heading">Specifying Stretching for Report Controls</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The following control types can be set to stretch:</p>
+      <ul><li>
+          <p>Field/Expression</p>
+        </li><li>
+          <p>Vertical line</p>
+        </li><li>
+          <p>Rectangle / Rounded rectangle</p>
+        </li></ul>
+      <p>For Line, Rectangle, and Rounded Rectangle controls, you can specify that they stretch relative to the height of the band that contains them or, if grouped, relative to the largest control in the group.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+        <p>You must set floating for controls that are placed underneath controls that stretch; otherwise, the output generated from controls that stretch might overlap output in controls appearing underneath them. Output from controls might also be overwritten on the page layout when any of the following conditions occur:</p>
+      </td></tr></table></div>
+      <ul><li>
+          <p>You position a control that remains fixed relative to the bottom of the band and position a stretching control below it that remains fixed relative to the top of the band.</p>
+        </li><li>
+          <p>You position a control that remains fixed relative to the top of the band and position a stretching control above it that remains fixed to the top of the band.</p>
+        </li></ul>
+      <h3 class="procedureSubHeading">To specify stretching for a report control</h3><div class="subSection"><ol><li>
+            
+              <p>Open the report or label in the appropriate designer.</p>
+            
+          </li><li>
+            
+              <p>In the designer, double-click the report control you want.</p>
+              <p>The properties dialog box for the report control opens.</p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>If the <b>_REPORTBUILDER</b> system variable is not set to the default Report Builder or is set to a third-party builder, the report control dialog box displays or a different dialog box might display. For more information, see <span class="linkTerms"><a href="/html/66161092-cda2-4d9f-868c-26beaffa0841.htm">_REPORTBUILDER System Variable</a></span>.</p>
+              </td></tr></table></div>
+            
+          </li><li>
+            
+              <p>In the report control properties dialog box, click the <b>General</b> tab if it is not selected.</p>
+            
+          </li><li>
+            
+              <p>On the <b>General</b> tab, choose one of the following:</p>
+              <ul><li>
+                  <p>For Field controls, click <b>Stretch with overflow</b>.</p>
+                </li><li>
+                  <p>For Rectangle, Rounded Rectangle, or vertical Line controls, in the <b>Stretch downwards</b> area, click the stretch setting you want. </p>
+                </li></ul>
+            
+          </li></ol>
+          
+            <p>For more information, see <span class="linkTerms"><a href="/html/3e0cd17a-2919-4469-a8c5-0250aab47b68.htm">General Tab, Report Control Properties Dialog Box (Report Builder)</a></span>.</p>
+            <p>For examples, see the sample report Wrapping.frx in the Visual FoxPro ...\Samples\Solution\Reports directory.</p>
+          
+        </div>
+      <h3 class="procedureSubHeading">To position a stretching report control below another</h3><div class="subSection"><ol><li>
+            
+              <p>Open the report or label in the appropriate designer.</p>
+            
+          </li><li>
+            
+              <p>In the designer, position one report control below the other.</p>
+            
+          </li><li>
+            
+              <p>Double-click the report control that appears above the other control.</p>
+              <p>The properties dialog box for the report control opens.</p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>If the <b>_REPORTBUILDER</b> system variable is not set to the default Report Builder or is set to a third-party builder, the report control dialog box displays or a different dialog box might display. For more information, see <span class="linkTerms"><a href="/html/66161092-cda2-4d9f-868c-26beaffa0841.htm">_REPORTBUILDER System Variable</a></span>.</p>
+              </td></tr></table></div>
+            
+          </li><li>
+            
+              <p>In the report control properties dialog box, click the <b>General</b> tab if it is not selected.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Object position</b> area, click <b>Fix relative to top of band</b>, and then <b>OK</b>.</p>
+            
+          </li><li>
+            
+              <p>Double-click the report control that appears below the other control.</p>
+              <p>The properties dialog box for the report control opens.</p>
+            
+          </li><li>
+            
+              <p>In the report control properties dialog box, click the <b>General</b> tab if it is not selected.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Object position</b> area on the <b>General</b> tab, click <b>Float</b>, and then <b>OK</b>.</p>
+            
+          </li></ol>
+          
+            <p>For more information, see <span class="linkTerms"><a href="/html/3e0cd17a-2919-4469-a8c5-0250aab47b68.htm">General Tab, Report Control Properties Dialog Box (Report Builder)</a></span>.</p>
+          
+        </div>
+    </div><a name="DisplayingBordersForStretchableControls"></a><h1 class="heading">Displaying Borders for Stretchable Controls</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can use a shape control as a border around a report control, and specify that it stretches with the control. </p>
+      <h3 class="procedureSubHeading">To display a border for a stretching control</h3><div class="subSection"><ol><li>
+            
+              <p>Open the report or label in the appropriate designer.</p>
+            
+          </li><li>
+            
+              <p>In the designer, draw a border by dragging a <b>Rectangle</b> or <b>Rounded Rectangle</b> report control around the report control that stretches.</p>
+            
+          </li><li>
+            
+              <p>Double-click the <b>Rectangle</b> or <b>Rounded Rectangle</b> report control.</p>
+              <p>The <b>Rectangle Properties</b> dialog box for the report control opens.</p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>If the <b>_REPORTBUILDER</b> system variable is not set to the default Report Builder or is set to a third-party builder, the <b>Rectangle/Line</b> or <b>Round Rectangle</b> dialog box displays or a different dialog box might display. For more information, see <span class="linkTerms"><a href="/html/66161092-cda2-4d9f-868c-26beaffa0841.htm">_REPORTBUILDER System Variable</a></span>, <span class="linkTerms"><a href="/html/7bdcc90d-bc58-4b62-b4a5-244e1f0ec1e5.htm">Rectangle/Line Dialog Box</a></span>, and <span class="linkTerms"><a href="/html/3c373386-539d-44f1-894c-37b5724cc961.htm">Round Rectangle Dialog Box</a></span>.</p>
+              </td></tr></table></div>
+            
+          </li><li>
+            
+              <p>In the <b>Rectangle Properties</b> dialog box, click the <b>General</b> tab if it is not selected.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Stretch downwards</b> area, click <b>Stretch relative to tallest object in group</b>, and then <b>OK</b>.</p>
+            
+          </li><li>
+            
+              <p>Drag a selection box around the <b>Rectangle</b> or <b>Rounded Rectangle</b> control.</p>
+            
+          </li><li>
+            
+              <p>On the <b>Format</b> menu, click <b>Group</b>.</p>
+            
+          </li></ol>
+          
+            <p>You can now manipulate both controls permanently as a single unit. The Rectangle or Rounded Rectangle control stretches when the report control within its boundaries stretches.</p>
+            <p>For more information, see <span class="linkTerms"><a href="/html/cdef88be-f099-4df5-8839-d6f67681ad2a.htm">How to: Add Shapes to Reports</a></span> and <span class="linkTerms"><a href="/html/58010da3-6688-4a9c-b266-da9a93f9483b.htm">How to: Group Report Controls</a></span>.</p>
+          
+        </div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/c60143e9-0456-4b61-8608-6832f0fa7302.htm">How to: Resize Report Controls</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/61e447b9-a978-4fe2-934b-9f3335dbc005.htm">Configuring Report Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Set Stretching Report Controls">
+</OBJECT>

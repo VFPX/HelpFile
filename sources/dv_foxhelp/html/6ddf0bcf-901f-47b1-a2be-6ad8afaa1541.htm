@@ -1,0 +1,387 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>ReportListener User Feedback Foundation Class</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">ReportListener User Feedback Foundation Class</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>This class provides user-configurable feedback during the report runs. . The Report Output Application uses UpdateListener as its designated default ReportListener class for Print and Preview output (<b>ListenerType</b> values 0 and 1).</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            
+              <b>Category</b>
+            
+          </th>
+          <th>
+            
+              <b>Reporting</b>
+            
+          </th>
+        </tr><tr>
+        <td>
+          <p>Default Catalog</p>
+        </td>
+        <td>
+          <p>Visual FoxPro Catalog\Foundation Classes\Output\Report Listeners</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Class</p>
+        </td>
+        <td>
+          <p>UpdateListener</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Base Class</p>
+        </td>
+        <td>
+          <p>ReportListener</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Class Library</p>
+        </td>
+        <td>
+          <p>_REPORTLISTENER.vcx</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Parent Class</p>
+        </td>
+        <td>
+          <p>_ReportListener (<span class="linkTerms"><a href="/html/ad251059-3de1-4928-992c-ddb8be50fce8.htm">ReportListener Base Foundation Class</a></span>)</p>
+        </td>
+      </tr></table></div>
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>UpdateListener's design has the following goals:</p>
+      <ul><li>
+          <p>
+            <b>Ease of localization and customization.</b> All the captions and messages UpdateListener displays during a report run, as well as the dimensions of its display window are exposed as public properties. UpdateListener dynamically validates any changes you make to its base configuration and adjusts its display elements to match.</p>
+        </li><li>
+          <p>
+            <b>Sophisticated feedback information about the report in progress.</b>  UpdateListener overrides the base <b>ReportListener.UpdateStatus</b> calls, which occur on each page, to display more finely-tuned information about report progress according to the report scope.  Its feedback mechanism distinguishes between the initial calculation pass and the subsequent rendering pass, using the <b>ReportListener.TwoPassProcess</b> and <b>ReportListener.CurrentPass</b> properties. For more information, see <span class="linkTerms"><a href="/html/a713cbaf-16a7-4d6c-8478-3822006a1d69.htm">ReportListener Object Properties, Methods, and Events</a></span>.</p>
+        </li><li>
+          <p>
+            <b>Availability of report timing information.</b>  UpdateListener uses its reportStartRunDatetime and reportStopRunDatetime properties to display optional timing information during a report run, but you can also use them after the conclusion of the report run.</p>
+        </li><li>
+          <p>
+            <b>Ability to pause and continue report runs.</b>  UpdateListener handles <b>Escape</b> presses during report runs for this purpose during report runs.  It saves and restores your keypress-handling code appropriately.</p>
+        </li><li>
+          <p>
+            <b>No dependencies on external classes.</b>  UpdateListener uses a single protected method, createTherm(), to create its feedback display window.  There are no external library forms or classes; this class creates and configures the window entirely within the code of the createTherm() method.  </p>
+        </li></ul>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>This design goal stems from Report Output Application's use of UpdateListener as the default ReportListener for the traditional output formats for reports and labels (Print and Preview).  Your subclass can override createTherm() and adapt the DoStatus() method code that writes to it.</p>
+      </td></tr></table></div>
+      <p>The following table lists public properties added by this class to its parent class, _ReportListener.  UpdateListener adds no public methods.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Properties</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>includeSeconds Property</p>
+          </td>
+          <td>
+            <p>Indicates whether the default user feedback message should include timing data. </p>
+            <p>
+              <b>Default </b>
+              <code>.T.</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>initStatusText Property</p>
+          </td>
+          <td>
+            <p>Provides the user message shown when user feedback first appears.</p>
+            <p>
+              <b>Default </b>
+              <code>"Initializing... "</code>
+            </p>
+            <p>
+              <b>Remarks</b>:  See REPORTLISTENERS_LOCS.H, which provides the localizable value to which this property is set in the class' <b>Init</b> method.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>prepassStatusText Property</p>
+          </td>
+          <td>
+            <p>Provides a user feedback message for use when the report is in a pre-generation pass to calculate <b>_PAGETOTAL. </b></p>
+            <p>
+              <b>Default </b>
+              <code>"Running calculation prepass... "</code>
+            </p>
+            <p>
+              <b>Remarks</b>:  See REPORTLISTENERS_LOCS.H, which provides the localizable value to which this property is set in the class' <b>Init</b> method.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>reportStartRunDatetime Property</p>
+          </td>
+          <td>
+            <p>A datetime value indicating when the last report generation run began. </p>
+            <p>
+              <b>Default </b>
+              <code>DTOT({})</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>reportStopRunDatetime Property</p>
+          </td>
+          <td>
+            <p>A datetime value for use at the conclusion of a report run, empty during a report, storing when the last report generation run ended.</p>
+            <p>
+              <b>Default </b>
+              <code>DTOT({})</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>runStatusText Property</p>
+          </td>
+          <td>
+            <p>Provides a user message shown during the course of a report run. </p>
+            <p>
+              <b>Default </b>
+              <code>"Creating output..."</code>
+            </p>
+            <p>
+              <b>Remarks</b>:  See REPORTLISTENERS_LOCS.H, which provides the localizable value to which this property is set in the class' <b>Init</b> method.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>secondsText Property</p>
+          </td>
+          <td>
+            <p>Provides the text message included to describe the time value in the default user feedback message during a report, when IncludeSeconds is <code>.T.</code></p>
+            <p>
+              <b>Default </b>
+              <code>SPACE(1) + "secs "</code>
+            </p>
+            <p>
+              <b>Remarks</b>:  See REPORTLISTENERS_LOCS.H, which provides the localizable value to which this property is set in the class' <b>Init</b> method.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>thermCaption Property</p>
+          </td>
+          <td>
+            <p>Holds an evaluated expression for use in the user feedback message shown during a report run. If this expression includes "cMessage," the contents of the argument provided to DoStatus will be included in the result of the evaluation.  This value overlays UpdateListener's progress bar.</p>
+            <p>
+              <b>Default </b>
+              <code>[cMessage+ " "+ TRANSFORM(INT(THIS.PercentDone*100)) + "%" + IIF(NOT THIS.IncludeSeconds, "" , " "+TRANSFORM(IIF(THIS.IsRunning,DATETIME(), THIS.ReportStopRunDateTime)-THIS.ReportStartRunDateTime)+" " + THIS.SecondsText)]</code>
+            </p>
+            <p>
+              <b>Remarks</b>: When you adjust this value, UpdateListener attempts to evaluate a result, including a "dummy" value for cMessage if necessary.  If it cannot evaluate your result at the time you set the value of the property, it will retain the previous value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>thermFormCaption Property</p>
+          </td>
+          <td>
+            <p>Holds the value used to set the title of the user feedback form. </p>
+            <p>
+              <b>Default </b>
+              <code>""</code>
+            </p>
+            <p>
+              <b>Remarks</b>: UpdateListener evaluates this value at the start of each report run.  If you have set it to a non-empty value, UpdateListener does not adjust your setting.  </p>
+            <p>If you do not supply a value, UpdateListener sets the value using the <b>ReportListener.PrintJobName</b> property.  If its PrintJobName property is empty, it uses <b>ReportListener.CommandClauses.File</b>, the name of the running report file, instead.  To the resulting value it adds a localizable string, by default <code>"Press Esc to cancel... "</code>, to indicate the user's ability to pause or cancel the report with this keystroke.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>thermFormHeight Property</p>
+          </td>
+          <td>
+            <p>Holds the height of the user feedback form, in pixels.</p>
+            <p>
+              <b>Default </b>
+              <code>40</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>thermFormWidth Property</p>
+          </td>
+          <td>
+            <p>Holds the width of the user feedback form, in pixels.</p>
+            <p>
+              <b>Default </b>
+              <code>356</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>thermMargin Property</p>
+          </td>
+          <td>
+            <p>Holds the value (in pixels) used to determine the difference between the size of the user feedback window and the thermometer bar it displays.</p>
+            <p>
+              <b>Default </b>
+              <code>5</code>
+            </p>
+          </td>
+        </tr></table></div>
+      <p> </p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example turns off the default feedback for an HTMLListener and chains it together with an UpdateListener for the same user feedback you would get for printing or previewing by default.  </p>
+        <p xmlns="">The code adjusts the feedback form's caption and instructs UpdateListener not to include seconds in the user feedback for this report.  Then it briefly shows the feedback form, so you can check the results of these changes, using UpdateListener.initStatusText to supply a message.</p>
+        <p xmlns="">The example code then runs a report, showing UpdateListener's feedback form to update the user about progress as the HTML file is generated. </p>
+        <p xmlns="">After the report run, the code brings up the HTML file in a VisualFoxPro window for quick verification.  It displays the timing results of the report run, leveraging _ReportListener's augmented version of the <b>ReportListener.DoMessage</b> method and HtmlListener.AppName to provide a title for the message window.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL oUpdate, oHtml
+* create the ReportListeners:
+oHtml = NEWOBJECT("HtmlListener","_REPORTLISTENER.VCX")
+oUpdate = NEWOBJECT("UpdateListener","_REPORTLISTENER.VCX")
+* customize them both:
+oHtml.QuietMode = .T.
+oUpdate.ThermFormCaption = "My Listener Demo"
+oUpdate.IncludeSeconds = .F.
+oUpdate.DoStatus(oUpdate.initStatusText)
+WAIT WINDOW TIMEOUT 3 "Notice the window title... "
+* make one the successor of the other:
+oHtml.successor = oUpdate 
+* run the report:
+REPORT FORM ? OBJECT oHtml
+* show results:
+MODIFY FILE (oHtml.TargetFileName) NOWAIT
+oUpdate.DoMessage("Total Report Time: "  + ;
+                  TRANSFORM(oUpdate.reportStopRunDatetime - ;
+                            oUpdate.reportStartRunDatetime) + ;
+                  Update.secondsText,0,oHTML.appName )</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><span class="linkTerms"><a href="/html/ad251059-3de1-4928-992c-ddb8be50fce8.htm">ReportListener Base Foundation Class</a></span><br /><span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/005682e4-5892-4e65-bcc3-2b64213e3fcc.htm">Guidelines for Using Visual FoxPro Foundation Classes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="ReportListener User Feedback Foundation Class">
+</OBJECT>

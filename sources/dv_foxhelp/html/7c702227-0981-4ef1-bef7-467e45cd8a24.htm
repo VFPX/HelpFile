@@ -1,0 +1,311 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>User Input in Edit Boxes</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">User Input in Edit Boxes</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can make it possible for users to edit text from long character fields or memo fields in edit boxes. Edit boxes allow automatic wordwrapping and the ability to move through the text using the arrow keys, page up and page down keys, and scrollbars.</p>
+    <p>To see examples of using edit boxes, run <b>Solution.app</b> in the Visual FoxPro ...\Samples\Solution directory. In the tree view, click <b>Controls</b>, and then click <b>Edit boxes</b>.</p>
+  <h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Allowing Users to Edit a Memo Field in an Edit Box</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>All you have to do to make it possible for a user to edit a memo field in an edit box is set the <a href="/html/76c0d810-a6e4-4076-aa91-0763a6dfe03b.htm">ControlSource</a> property of the edit box to the memo field. For example, if you have a memo field named <code>comments</code> in a table named <code>log</code>, you can set the ControlSource property of an edit box to <code>log.comments</code> to make it possible for a user to edit the memo field in the edit box.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Allowing Users to Edit a Text File in an Edit Box</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>You also can make it possible for a user to edit a text file in an edit box. The following form demonstrates this.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Example form for editing a text file in an edit box</caption></caption></b><br></br></div><img src="../local/Local_-312877193_afd10009.gif" alt="FoxForm1 screenshot"></img>
+      <p>An OK button on the form closes the form with the following command in the Click event code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>RELEASE THISFORM</pre></td></tr></table></span></div>
+      <p>The other two buttons in this example, <code>cmdOpenFile</code> and <code>cmdSave</code>, make it possible for a user to open a text file and save the file after edits.</p>
+      <div class="labelheading"><b>Code Associated with the Click Event of cmdOpenFile</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>CREATE CURSOR textfile ;</code>
+            </p>
+            <p>
+              <code>  (filename c(35), mem m)</code>
+            </p>
+            <p>
+              <code>APPEND BLANK</code>
+            </p>
+            <p>
+            </p>
+          </td>
+          <td>
+            <p>Create a cursor with a character field to hold the name of the text file and a memo field to hold the contents of the text file.  Add a blank record to the cursor.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>REPLACE textfile.FileName WITH ;</code>
+            </p>
+            <p>
+              <code>  GETFILE("TXT")</code>
+            </p>
+          </td>
+          <td>
+            <p>Use the <a href="/html/346cabaf-aa41-47b2-955d-3b16db3815e2.htm">GETFILE( )</a> function to return the name of the file to open. Store the name in the FileName field of the cursor.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>IF EMPTY(textfile.FileName)</code>
+            </p>
+            <p>
+              <code>   RETURN</code>
+            </p>
+            <p>
+              <code>ENDIF</code>
+            </p>
+            <p>
+            </p>
+          </td>
+          <td>
+            <p>If the user chooses Cancel in the Get File dialog box, the FileName field will be empty and there will be no file to open.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>APPEND MEMO mem FROM ;</code>
+            </p>
+            <p>
+              <code>  (textfile.FileName) OVERWRITE</code>
+            </p>
+            <p>
+            </p>
+          </td>
+          <td>
+            <p>Fill the memo field with the text in the file.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>THISFORM.edtText.ControlSource = ;</code>
+            </p>
+            <p>
+              <code>  "textfile.mem"</code>
+            </p>
+            <p>
+              <code>THISFORM.Refresh</code>
+            </p>
+            <p>
+            </p>
+          </td>
+          <td>
+            <p>Set the <a href="/html/76c0d810-a6e4-4076-aa91-0763a6dfe03b.htm">ControlSource</a> of the edit box on the form.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>THISFORM.cmdSave.Enabled = .T.</code>
+            </p>
+          </td>
+          <td>
+            <p>Enable the Save button.</p>
+          </td>
+        </tr></table></div>
+      <p>When the file has been opened and edited, the Save button makes it possible for a user to write changes back out to the file.</p>
+      <div class="labelheading"><b>Code Associated with the Click Event of cmdSave</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>COPY MEMO textfile.mem TO ;</code>
+            </p>
+            <p>
+              <code>  (textfile.filename)</code>
+            </p>
+            <p>
+            </p>
+          </td>
+          <td>
+            <p>Overwrites the old value in the file with the text in the memo field.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2)" tabindex="0"><img id="sectionToggle2" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Manipulating Selected Text in an Edit Box</span></h1><div id="sectionSection2" class="section" name="collapseableSection" style="display: none;">
+      <p>Edit boxes and text boxes have three properties that make it possible for you to work with selected text: SelLength, SelStart, and SelText.</p>
+      <p>You can select text programmatically using the <a href="/html/15ad5a5d-c67d-4d17-95f0-8a1df3adc5aa.htm">SelStart</a> and <a href="/html/3b731397-dd2d-46a3-9a8a-7fc7924b47c3.htm">SelLength</a> properties. For example, the following lines of code select the first word in an edit box.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Form1.edtText.SelStart = 0 
+Form1.edtText.SelLength = AT(" ", Form1.edtText.Text) - 1</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>When you change the SelStart property, the edit box scrolls to display the new SelStart. If you change the SelStart in a loop, for example when searching for text, your code will execute faster if you include <code>THISFORM.LockScreen = .T.</code> before processing and <code>THISFORM.LockScreen = .F.</code> after processing.</p>
+      </td></tr></table></div>
+      <p>You can access selected text in an edit box or text box with the <a href="/html/422a7ad4-c46d-4e0e-9081-84e0e181f0dc.htm">SelText</a> property. For example, the following line of code makes the selected text all uppercase:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Form1.edtText.SelText = UPPER(Form1.edtText.SelText)</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle3)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle3)" tabindex="0"><img id="sectionToggle3" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Common Edit Box Properties</span></h1><div id="sectionSection3" class="section" name="collapseableSection" style="display: none;">
+      <p>The following edit box properties are commonly set at design time.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Property
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/8c731802-80dd-4114-a47c-c3a43e2f659f.htm">AllowTabs</a>
+            </p>
+          </td>
+          <td>
+            <p>Whether the user can insert tabs in the edit box instead of moving to the next control. If you allow tabs, be sure to indicate that users can move to the next control by pressing CTRL+TAB.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/d570469b-2056-45a6-bc98-a5a2d208d6d9.htm">HideSelection</a>
+            </p>
+          </td>
+          <td>
+            <p>Whether selected text in the edit box is visibly selected when the edit box does not have the focus.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/8fe458a4-06aa-48a7-be97-eefcace09f07.htm">ReadOnly</a>
+            </p>
+          </td>
+          <td>
+            <p>Whether the user can change the text in the edit box.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/27ab2417-d2e6-47e5-a577-cec12dbcad9d.htm">ScrollBars</a>
+            </p>
+          </td>
+          <td>
+            <p>Whether there are vertical scrollbars.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/3a1c30da-397f-467e-b131-e8c2e642a305.htm">Controls for Accepting Input</a></span><br /><span class="linkTerms"><a href="/html/9d4545f7-74fe-4bd3-ba0f-bf9fba4d2129.htm">EditBox Control</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b9032965-6941-41d2-8ff9-87c609673907.htm">Using Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="User Input in Edit Boxes">
+</OBJECT>

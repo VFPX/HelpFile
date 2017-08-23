@@ -1,0 +1,194 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Create Indexes (Visual FoxPro)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Create Indexes (Visual FoxPro)</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can create an index for a table when you define a field for a table or after you create the table. When you create an index, you supply an expression, which can contain table field names, that specifies how table records should be organized. You can also specify a filter expression so that Visual FoxPro adds only those records that meet the filter criteria to the index.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>Indexes are easy to create, but they impact performance so use restraint when creating them. You do not need to define an index for every field. Indexes that you rarely use can slow performance. </p>
+    </td></tr></table></div>
+    <p>You can create an index using the Visual FoxPro Table Designer or programmatically. For information about using Visual FoxPro commands to create indexes, see <span class="linkTerms"><a href="#dgtskcreatingoneindexanchor2">Creating Indexes Programmatically</a></span>. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>After you create an index, you need to select the index to use it for the table. For more information, see <span class="linkTerms"><a href="/html/c1010566-c922-4bc6-9691-adb2e3414360.htm">How to: Set Controlling Indexes</a></span>.</p>
+    </td></tr></table></div>
+  <h3 class="procedureSubHeading">To create an index using the Table Designer</h3><div class="subSection"><ol><li>
+        
+          <p>Open the <b>Table Designer</b> to modify your table.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Table Designer</b>, choose the <b>Indexes</b> tab.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Name</b> box, type a name for the index tag.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Type</b> list, choose the index type you want.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Expression</b> box, type the name of the field that you want use to organize the records. </p>
+          <p>-OR-  </p>
+          <p>Build an index expression by clicking the <b>ellipsis</b> (...) button to the right of the box.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>When specifying an index expression for binary indexes, you must specify a logical expression that does not evaluate to a null value. If the index expression is changed so that it contains or evaluates to a null value, Visual FoxPro generates an error.</p>
+          </td></tr></table></div>
+        
+      </li><li>
+        
+          <p>Choose <b>OK</b>.</p>
+        
+      </li></ol>
+      
+        <p>For more information about index types, see <span class="linkTerms"><a href="/html/fe911859-3235-4349-82c7-fa16a16d5527.htm">Visual FoxPro Index Types</a></span>. </p>
+        <p>For considerations concerning index expressions, see <span class="linkTerms"><a href="/html/210ac6a4-8d8c-409d-bc12-c02a332cfea9.htm">Index Creation Based on Expressions</a></span> and <span class="linkTerms"><a href="/html/576a2953-04ff-4a66-9e38-3a3d9c990b72.htm">Considerations for Creating Index Expressions</a></span>. </p>
+        <p>You can add a filter to the index to select only those records that match the filter expression you supply. For more information, see <span class="linkTerms"><a href="/html/dbccc178-a2a7-43ae-9340-f87a654d3cfd.htm">How to: Filter Data</a></span>. </p>
+        <p>When you create an index for a table, Visual FoxPro automatically creates a structural compound index (.cdx) file to store the index. This structural .cdx file has the same name as the table and opens automatically when the table opens. For more information about index files, see <span class="linkTerms"><a href="/html/80cfd247-4e1a-40af-8f9f-3891bed94bbe.htm">Visual FoxPro Index Files</a></span>. </p>
+        <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+          <p>By default, Visual FoxPro displays records in ascending order. You can specify to display records in descending order when you create the index or after you create the index. For more information, see <span class="linkTerms"><a href="/html/26fcf23f-a277-4cdf-806e-1a49cff93621.htm">How to: Display Records in Descending Order</a></span>.</p>
+        </td></tr></table></div>
+        <p>As you work with records in tables, you might need to access records in different orders. For example, you might want to organize a customer table by contact name to quickly find the name you want or by postal code to generate mailing labels that are presorted for efficient mailing. You can create and store different ordering scenarios for tables by creating multiple indexes for the same table. </p>
+      
+    </div><a name="dgtskcreatingoneindexanchor2"></a><h1 class="heading">Creating Indexes Programmatically</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can create indexes in structural compound index (.cdx) files using the Visual FoxPro language. You can create an index when you create a table using the SQL <b>CREATE TABLE</b> command or create an index for an existing table using the SQL <b>ALTER TABLE</b> command or the <b>INDEX</b> command.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If you want to create a primary index, use the SQL <b>CREATE TABLE</b> or <b>ALTER TABLE</b> commands. You cannot use the <b>INDEX</b> command to create primary indexes. </p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To create an index in a structural .cdx file when creating a table</h3><div class="subSection"><ol><li>
+            
+              <p>Use the SQL <b>CREATE TABLE</b> command to specify a name and fields for the table.</p>
+            
+          </li><li>
+            
+              <p>To create a primary index, include the <b>PRIMARY KEY</b> clause for the corresponding field that you want to use.  </p>
+              <p>-OR-  </p>
+              <p>To create a candidate index, include the <b>UNIQUE</b> clause.   </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>Including the <b>UNIQUE</b> clause is not the same as specifying a unique index.</p>
+              </td></tr></table></div>
+              <p>-OR-  </p>
+              <p>For all other indexes, include the <b>FOREIGN KEY</b> clause.  </p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To create an index in a structural .cdx file for an existing table</h3><div class="subSection"><ol><li>
+            
+              <p>Use the SQL <b>ALTER TABLE</b> command to specify a name and fields for the table.</p>
+            
+          </li><li>
+            
+              <p>To create a primary index, include the <b>PRIMARY KEY</b> or <b>ADD PRIMARY KEY</b> clause for the corresponding field that you want to use.  </p>
+              <p>-OR-  </p>
+              <p>To create a candidate index, include the <b>ADD UNIQUE</b> clause.   </p>
+              <p>-OR-  </p>
+              <p>For all other indexes, include the <b>ADD FOREIGN KEY</b> clause.  </p>
+            
+          </li></ol></div>
+      <p>For example, using the Customer table from the Visual FoxPro sample database, TestData, you can use either of the following commands to assign the Cust_ID field as the primary key for the Customer table:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ALTER TABLE Customer ADD PRIMARY KEY Cust_ID TAG Cust_ID
+ALTER TABLE Customer ALTER COLUMN Cust_ID c(5) PRIMARY KEY</pre></td></tr></table></span></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/b14e5d95-5b1c-4cfa-a5ac-4093ea6211e0.htm">CREATE TABLE - SQL Command</a></span>, <span class="linkTerms"><a href="/html/3c5a454a-67ec-48a8-8290-18dd0e8a97ea.htm">ALTER TABLE - SQL Command</a></span>, and <span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span>.</p>
+      <p>You can also create indexes in structural .cdx files by copying from one or more standalone index (.idx) files using the <b>COPY INDEXES</b> command and omitting the <b>TO</b> clause.</p>
+      <h3 class="procedureSubHeading">To create in index in a structural .cdx file from an .idx file</h3><div class="subSection"><ol><li>
+            
+              <p>Use the <b>COPY INDEXES</b> command to specify one or more names of .idx files. To include each index key from all open .idx files, use the <b>ALL</b> keyword.</p>
+            
+          </li><li>
+            
+              <p>Omit the <b>TO</b> clause. </p>
+            
+          </li></ol></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/e10add95-2f2e-4258-9994-dc735c14ca6b.htm">COPY INDEXES Command</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/364cfc78-0c85-4ec3-86e4-cbe3961979e4.htm">How to: Create Less Frequently Used Indexes</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Create Indexes (Visual FoxPro)">
+</OBJECT>

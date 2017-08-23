@@ -1,0 +1,213 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Performance Improvement on Updates and Deletes</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Performance Improvement on Updates and Deletes</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can speed up Update and Delete statements by:  </p>
+    <ul><li>
+        <p>Adding timestamps to your remote tables.</p>
+      </li><li>
+        <p>Using the CompareMemo property.</p>
+      </li><li>
+        <p>Using manual transaction mode.</p>
+      </li><li>
+        <p>Using stored procedures on a remote server.</p>
+      </li><li>
+        <p>Batching updates.</p>
+      </li></ul>
+  <h1 class="heading">Adding Timestamps</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can improve performance when you update, insert, or delete data in a remote table that contains many fields by adding a timestamp field to the remote table, if your server provides the Timestamp field type.</p>
+      <p>The presence of a timestamp field in a remote table allows you to use the Visual FoxPro SQL WhereType update option DB_KEYANDTIMESTAMP. This option saves processing time because Visual FoxPro compares only two fields in your view, the key field and the timestamp field, against a remote table to detect update conflicts. By comparing only two fields, rather than all the updatable fields (with the DB_KEYANDUPDATABLE option) or all the modified fields (with the DB_KEYANDMODIFIED option), the DB_KEYANDTIMESTAMP option reduces the time it takes to update remote data. For more information on WhereType options, see <a href="/html/3b456fd8-70f4-4a04-bc2d-18b17da0f414.htm">Managing Updates by Using Views</a>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The DB_KEYANDTIMESTAMP option compares the key and timestamp fields only when your remote table contains a timestamp field. If you use the DB_KEYANDTIMESTAMP option against a remote table that doesn't contain a timestamp field, Visual FoxPro compares the key fields only.</p>
+      </td></tr></table></div>
+      <p>The Upsizing Wizard can automatically add timestamp fields as appropriate to tables you export. For more information, see "Timestamp Columns" in <a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>If you do something that alters the structure of a view's base table, such as adding a timestamp field, you might need to re-create the view. The fields in a view definition are stored in the database, and any changes to the base tables for a view after the view is used aren't reflected in the view definition until you re-create the view.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Excluding Memo Fields from the Update WHERE Clause</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Whenever appropriate, you can speed updates by preventing view memo fields (fields of type Memo, General, or Picture) from being compared against their base table counterparts. By default, the CompareMemo property is set to true (.T.), which automatically includes memo fields in the SQL WHERE clause generated when you create an updatable view. You can set the CompareMemo property to false (.F.) to exclude memos from the SQL WHERE clause.</p>
+    </div><h1 class="heading">Using Transactions</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>For optimum performance, use manual transaction mode and manage transactions yourself. Manual transaction mode allows you to control when you commit a group of transactions, which enables the server to process more statements quickly.</p>
+      <p>Automatic transaction mode is more time-consuming, because by default every single update statement is wrapped in a separate transaction. This method provides maximum control over each individual update statement, but also increases overhead.</p>
+      <p>You can improve performance in automatic transaction mode by increasing the setting of the BatchUpdateCount property on the view or cursor. When you use a large BatchUpdateCount setting, many update statements are batched in a single update statement, which is then wrapped in a single transaction. However, if any statement in the batch fails, the entire batch is rolled back.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>The BatchUpdateCount property isn't supported by some servers; you should test this property against each remote server before deploying it in your application.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Using Server-Stored Procedures</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>You can create stored procedures on the server, which are precompiled and therefore run very quickly. You can execute stored procedures, send parameters with SQL pass-through, and move additional processing to the server as appropriate for your application.</p>
+      <p>For example, you might want to collect user input locally and then execute a SQL pass-through query to send the data to the server, calling the appropriate stored procedure. To do this, you might want to create a form on a local cursor or array to collect data and then write code that constructs a <a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( )</a> statement by using the name of the stored procedure and the parameters to be supplied. You could then add this code to the Click event of a command button titled "OK" or "Commit." When the user chooses the button, the SQLEXEC( ) statement runs. Using stored procedures on a remote server to update remote data can be more efficient, because the stored procedures are compiled on the server.</p>
+    </div><h1 class="heading">Batching Updates</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>If your application updates a number of records, you might want to batch updates so they're handled more efficiently by the network and server. Update or Insert statements are batched before being sent to the server, according to the setting of the BatchUpdateCount property of the view. The default value is 1, which means that each record is sent to the server with an update statement. You can reduce network traffic by increasing the value to package multiple updates in a statement.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>The BatchUpdateCount property isn't supported by some servers; you should test this property against each remote server before deploying it in your application.</p>
+      </td></tr></table></div>
+      <p>To use this feature efficiently, the view connection should be set to Buffering mode 5, for optimistic table buffering, and changes ideally should be confined to the same fields in each row of the cursor. You can use <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> to set the BatchUpdateCount property for the view definition; to change the value for an active view cursor, use <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+    </div><h1 class="heading">Optimizing Performance of Updates and Deletes</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>You can use the following guidelines for setting view and connection properties to optimize performance of updates and deletes. The BatchSize property on your view has the greatest influence on performance.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Object
+            </th>
+            <th>
+              Property
+            </th>
+            <th>
+              Setting
+            </th>
+            <th>
+              Notes
+            </th>
+          </tr><tr>
+          <td>
+            <p>View</p>
+          </td>
+          <td>
+            <p>BatchUpdateCount</p>
+          </td>
+          <td>
+            <p>10 – 30 rows</p>
+          </td>
+          <td>
+            <p>Set a higher value for smaller-sized updates.1 Set to increase performance by up to 50%. The default is 1.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Connection</p>
+          </td>
+          <td>
+            <p>Asynchronous</p>
+          </td>
+          <td>
+            <p>(.F.)</p>
+          </td>
+          <td>
+            <p>Use synchronous connections to increase performance up to 50%, unless you want to be able to cancel SQL statements while executing on the server. The default is synchronous.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Connection </p>
+          </td>
+          <td>
+            <p>WaitTime</p>
+          </td>
+          <td>
+            <p>N/A</p>
+          </td>
+          <td>
+            <p>To increase performance in asynchronous mode, use a shorter wait time; to reduce network traffic, increase the wait time.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Connection</p>
+          </td>
+          <td>
+            <p>PacketSize</p>
+          </td>
+          <td>
+            <p>4K to 12K</p>
+          </td>
+          <td>
+            <p>Has little effect on performance.</p>
+          </td>
+        </tr></table></div>
+      <p>1 Your best value also depends on the speed of your server.</p>
+      <p>Actual performance depends greatly on your system configuration and application requirements. </p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/515161b6-f2e8-423a-affa-8f87854b114a.htm">How to: Optimize View Performance</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/37be2d46-457e-4555-a10a-a7a530dc1ffe.htm">Form Acceleration</a></span><br /><span class="linkTerms"><a href="/html/16427f5e-812b-4462-a2f2-1d9e3c9a4ee0.htm">Query and View Acceleration</a></span><br /><span class="linkTerms"><a href="/html/f9f24def-0e38-4024-9d38-252340b3fae9.htm">Optimizing Connections</a></span><br /><span class="linkTerms"><a href="/html/0bfcf4ac-c66d-4085-9740-0fbfe1c74718.htm">Speeding Up Data Retrieval</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ea88b84a-e912-4f11-b6d0-b8ab7f38052a.htm">Optimizing Client/Server Performance</a></span><br /><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Performance Improvement on Updates and Deletes">
+</OBJECT>

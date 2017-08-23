@@ -1,0 +1,142 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Extend Forms with Form Sets</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Extend Forms with Form Sets</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can manipulate multiple forms as a group by including them in a form set. A form set has these benefits:  </p>
+    <ul><li>
+        <p>You can show or hide all the forms in a form set at one time.</p>
+      </li><li>
+        <p>You can visually arrange multiple forms at once to control their relative positions.</p>
+      </li><li>
+        <p>Because all the forms in a form set are defined in a single .scx file with a single data environment, you can automatically synchronize record pointers in multiple forms. If you change the record pointer in a parent table in one form, the child records in another form are updated and displayed. </p>
+        <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+          <p>All the forms and all the objects on the forms are loaded when you run the form set. Loading many forms with a number of controls might take several seconds.</p>
+        </td></tr></table></div>
+      </li></ul>
+  <h1 class="heading">Creating a New Form Set</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>A form set is a parent container for one or more forms. When you are in the <span class="linkTerms"><a href="/html/4c6826b0-d49e-4f97-b18c-4670533600c7.htm">Form Designer</a></span>, you can create a form set.</p>
+      <h3 class="procedureSubHeading">To create a form set</h3><div class="subSection"><ul><li>
+            
+              <p>From the <b>Form</b> menu, choose <b>Create Formset</b>.</p>
+            
+          </li></ul></div>
+      <p>If you don't want to work with multiple forms as a group of forms, you don't need to create a form set. Once you've created a form set, you can add forms to it.</p>
+    </div><h1 class="heading">Adding and Removing Forms</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Once you've created a form set, you can add new forms and remove forms.</p>
+      <h3 class="procedureSubHeading">To add additional forms to a form set</h3><div class="subSection"><ul><li>
+            
+              <p>From the <b>Form</b> menu, choose <b>Add New Form</b>.</p>
+            
+          </li></ul></div>
+      <h3 class="procedureSubHeading">To remove a form from a form set</h3><div class="subSection"><ol><li>
+            
+              <p>In the <b>Form</b> box at the bottom of the <span class="linkTerms"><a href="/html/4c6826b0-d49e-4f97-b18c-4670533600c7.htm">Form Designer</a></span>, select the form.</p>
+            
+          </li><li>
+            
+              <p>From the <b>Form</b> menu, choose <b>Remove Form</b>.</p>
+            
+          </li></ol></div>
+      <p>If you have a single form in a form set, you can remove the form set so that you have only the form.</p>
+      <h3 class="procedureSubHeading">To remove a form set</h3><div class="subSection"><ul><li>
+            
+              <p>From the <b>Form</b> menu, choose <b>Remove Formset</b>.</p>
+            
+          </li></ul></div>
+      <p>Forms are saved in table format to a file with an .scx extension. When you create a form, the .scx table contains a record for the form, a record for the data environment, and two records for internal use. A record is added for each object you add to the form or to the data environment. If you create a form set, an additional record is added for the form set and for each new form. The parent container of each form is the form set. The parent container of each control is the form that it is placed on.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>When you run a form set, you may not want all forms in the form set initially visible. Set the <a href="/html/206a9044-c88a-490b-910a-344c4760a14c.htm">Visible</a> property to false (.F.) for forms you don't want displayed when the form set runs. Set the Visible property to true (.T.) when you want the forms displayed.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/ac5ec2c3-585c-418f-b96b-97dfd46a38d6.htm">How to: Add a Menu to a Top-Level Form</a></span><br /><span class="linkTerms"><a href="/html/46303a96-544a-431a-abd6-10a757e21590.htm">How to: Add Visual FoxPro Containers</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/4c6826b0-d49e-4f97-b18c-4670533600c7.htm">Form Designer</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/8cf9459c-0430-48db-8271-769fa5db76d3.htm">Adding Objects to Forms</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/adb21354-5dde-4f55-b92a-df0c53810385.htm">Creating Forms</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Extend Forms with Form Sets">
+</OBJECT>

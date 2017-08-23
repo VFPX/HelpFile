@@ -1,0 +1,523 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Handling Errors During Report Runs</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Handling Errors During Report Runs</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro 9.0 provides significant enhancements to the process of creating output, including new opportunities to invoke application code during the native Report System's internal data-handling and output-rendering procedures.  To adequately provide users with the ability to develop such programs, Visual FoxPro 9.0 also enhances error-reporting and debugging during a report run.</p>
+    <p>This topic covers error-handling features with special significance for reporting, and examines different strategies for handling abnormal conclusions of report runs.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Application components such as the Report Output Application and Report Preview Application partner with the Visual FoxPro Report System during output processing.  They function as factories to provide appropriate object references to the Report Engine.  Although these components may trigger errors and require debugging, they are not active during the internal report run, which spans processing events from the <span class="linkTerms"><a href="/html/cf2497e6-44ab-44ba-a319-7fefc8a2dc59.htm">BeforeReport Event</a></span> to the <span class="linkTerms"><a href="/html/a9548831-e80d-477c-bfde-e5253df5850d.htm">AfterReport Event</a></span>.  You can debug any issues with these components similarly to any other Visual FoxPro application; they are not covered by this topic.  For more information about the sequence of events in a report run, see <span class="linkTerms"><a href="/html/223a5d97-3d68-4e70-8bde-9c15b8f9ce62.htm">Understanding Visual FoxPro Object-Assisted Reporting</a></span>.</p>
+    </td></tr></table></div>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>You can use all standard Visual FoxPro debugging tools, such as the <span class="linkTerms"><a href="/html/a65f602b-607e-42f4-a9fb-bfd2fc2665a7.htm">Trace Window</a></span>, when examining your reporting code.  You will also find the <span class="linkTerms"><a href="/html/4f9bb713-9055-4778-9649-a3cf64216b05.htm">ReportListener Debug Foundation Class</a></span> useful as you investigate report event sequences.</p>
+    </td></tr></table></div>
+  <h1 class="heading">Strategies for error-handling during a report run</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Because Visual FoxPro's output processing sequence can include extensive user code, you may need to end a report run before it finishes due to a code error.  You may also want to end a report run prematurely because an end-user wants to interrupt the report.  Additionally, an external error handler may detect a reason to end your application, while a report run is in process.</p>
+      <p>In all these situations, you can call the ReportListener CancelReport method to make sure Visual FoxPro does any special cleanup, such as closing a print queue, necessary to end the report, and your application, safely.  See <span class="linkTerms"><a href="/html/72a6022e-fe56-4407-90fb-9b719c0b0f9f.htm">CancelReport Method</a></span> for more information.  </p>
+      <p>The <span class="linkTerms"><a href="/html/6ddf0bcf-901f-47b1-a2be-6ad8afaa1541.htm">ReportListener User Feedback Foundation Class</a></span> provides a good model for canceling a report in response to an end-user request. See the <span class="linkTerms"><a href="/html/227beb2b-56af-424c-92d8-89e3b6069d6c.htm">DoMessage Method</a></span> topic for the code in this class' CancelReport Method.  Notice that the method issues a <b>NODEFAULT</b> if the end-user opts to resume running the report in response to a dialog box.  Your code can follow a similar strategy in response to recoverable errors.  For critical errors, you may prefer to end the report unilaterally, and end the application following report clean-up.</p>
+      <p>You can check to see whether the report ended normally using the SYS(2024) function.  This function will return "Y" during a report run, through the conclusion of the Unload Event, if the report did not complete its run normally.  At this point, the internal Visual FoxPro Report System processing has concluded.  If you determine that the abnormal end to the report run did not occur as a response to an end-user's request, you can safely <b>CANCEL</b> or <b>QUIT</b> or request similar handling from an external application object. For more information, see <span class="linkTerms"><a href="/html/98f228bf-7449-437a-a230-69d20525b50f.htm">Microsoft Visual FoxPro Technical Support</a></span>.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Example 1: Cancelling a report</h3><div class="subSection" xmlns="">
+          <p>In the following example, an error occurs in a ReportListener's BeforeReport event, and its Error event responds by calling the class' CancelReport method.  The UnLoadReport event code reports the value of SYS(2024) as "Y," as a result of the Error event's action.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If the error occurred during the LoadReport event, SYS(2024) would not return "Y."  No internal processing has occurred as yet, so there would be nothing for the Report Engine to clean up.</p>
+          </td></tr></table></div>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS errorListener as ReportListener
+  PROCEDURE BeforeReport()
+    REPORT FORM ? 
+  ENDPROC
+  PROCEDURE Error(nError, cMethod, nLine)
+     WAIT WINDOW MESSAGE() 
+     * MESSAGE() will report:
+     * Report contains a nesting error.
+     THIS.CancelReport()
+  ENDPROC
+  PROCEDURE UnloadReport()
+     WAIT WINDOW SYS(2024)
+     * SYS(2024) will report: "Y"
+  ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 2: Ending an application as a result of report error</h3><div class="subSection" xmlns="">
+          <p>In the example above, the ReportListener-derived class handles the error.  You may prefer to bubble the error event to an external application handler for determination of appropriate action.  In this case, the external application needs to know that a report run was in progress when the error occurred, so it can cancel the report properly before ending the application. </p>
+          <p>To determine that a report run is in progress in external code, use the SYS(2040) function.  For more information, see <span class="linkTerms"><a href="/html/f1094785-5169-4f87-913c-44cdc79fd16b.htm">SYS(2040) - Detect Report Status</a></span>.</p>
+          <p>The following example checks the return value of SYS(2040) in an <span class="linkTerms"><a href="/html/833fefcd-01e7-423b-998e-611a14e7c163.htm">ON ERROR Command</a></span> handler.  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PUBLIC oApp
+oApp = CREATEOBJECT("MyApp")
+ON ERROR oApp.ErrorHandler()
+WAIT WINDOW "Some processing here..."
+REPORT FORM ? OBJECT oApp.oE
+WAIT WINDOW ;
+  "Some more processing here, " + ;
+  "will not occur because of error..."  
+DEFINE CLASS MyApp AS Custom
+   oE = NULL
+   PROCEDURE Init
+      THIS.oE = CREATEOBJECT("errorListener")
+   ENDPROC
+   PROCEDURE ErrorHandler
+     MESSAGEBOX("Error! " + MESSAGE())   
+     IF SYS(2040) # "0"
+       THIS.oE.cancelReport()
+     ENDIF
+    IF _VFP.StartMode = 0
+       CANCEL
+    ELSE
+       QUIT
+    ENDIF
+  ENDPROC
+ENDDEFINE    
+DEFINE CLASS errorListener as ReportListener
+  PROCEDURE BeforeBand()
+    * parameters are missing
+  ENDPROC
+  PROCEDURE CancelReport()
+    DODEFAULT()
+    MESSAGEBOX("Cancelling Report!")
+  ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 3: Canceling a report during application shutdown</h3><div class="subSection" xmlns="">
+          <p>You can use a similar strategy in an <b>ON SHUTDOWN</b> handler if it is possible for this handler to be called during a report run. The <b>ON SHUTDOWN</b> handler needs a reference to the appropriate ReportListener object, just as the application object in the example above does.  For more information, see <span class="linkTerms"><a href="/html/9ab3af21-8cd6-4a18-b40b-f789b802aef7.htm">ON SHUTDOWN Command</a></span>.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>Timers do not fire during a report or label run.  However, it is often possible for end-users to decide to close your application while Visual FoxPro is generating output.  Therefore, do not assume that the need to cancel a report is always associated with an error. </p>
+          </td></tr></table></div>
+          <p>You can use the following simple example to verify this capability.  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PUBLIC rl
+ON SHUTDOWN DO MyShutdown
+rl = CREATEOBJECT("reportListener")
+REPORT FORM ? OBJECT rl  &amp;&amp; use a long report!
+* use the close box on the main Visual FoxPro
+* window while the report runs.
+PROCEDURE MyShutDown
+  IF SYS(2040) # "0"
+     MESSAGEBOX("Now Cancelling Report!")
+     rl.CancelReport()
+  ENDIF
+  ON SHUTDOWN
+  IF _VFP.StartMode = 0
+     CANCEL
+  ELSE
+     QUIT
+  ENDIF
+ENDPROC
+</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 4: Using a ReportListener's Error event</h3><div class="subSection" xmlns="">
+          <p>In two of the three examples above, the ReportListener class does not have Error event code.  If you include Error event-handling in a ReportListener class, as shown in the first example, this code can decide to handle, or bubble, any error it receives.  </p>
+          <p>If the Error event handles an error, it can safely use <b>CANCEL</b> or <b>QUIT</b>.  You can use these commands in other ReportListener events or methods as well.  Be sure to invoke the ReportListener's CancelReport() method before issuing the <b>CANCEL</b> or <b>QUIT</b> statement, however.</p>
+          <p>In the next example, the ReportListener class uses its Error event to handle the error, and then ends the report immediately.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>The ReportListener's Error event will not handle errors that occur during a report run but outside the ReportListener's own code, such as an error in a user-defined function (UDF) within the report or an error in a report expression. For this reason, having ReportListener Error event code does not free your external error handler of the responsibility to be aware of reporting errors. A combination of approaches is necessary to handle all types of errors that may occur in the course of a report run.</p>
+          </td></tr></table></div>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL oE
+oE = CREATEOBJECT("errorListener")
+WAIT WINDOW "Some processing here..."
+REPORT FORM ? OBJECT oE
+WAIT WINDOW ;
+  "Some more processing here, " + ;
+  "will not occur because of error..."  
+  
+DEFINE CLASS errorListener as ReportListener
+  PROCEDURE BeforeBand()
+    * parameters are missing
+  ENDPROC
+  PROCEDURE Error(nError, cMethod, nLine)
+   WAIT WINDOW "Error occured! " + CHR(13) + ;
+               "SYS(2024) before CancelReport: " + SYS(2024) 
+   THIS.CancelReport()  
+   CANCEL
+  ENDPROC
+  PROCEDURE CancelReport()
+    IF SYS(2040) # "0"
+       MESSAGEBOX("Cancelling Report!") 
+       DODEFAULT()
+       WAIT WINDOW "SYS(2024) is now: " + SYS(2024) 
+    ENDIF
+  ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 5: Using structured error handling with reports</h3><div class="subSection" xmlns="">
+          <p>As a final strategy, you can use structured error handling with reports.  When you run the sample code below, however, notice that your code does not get to the CATCH construct until after the report run has ended, from the Report System's perspective.  Although you can use the CancelReport method, the user code you run in this method should be designed to run safely whether or not a report is actually in progress.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL oE
+TRY
+  oE = CREATEOBJECT("errorListener")
+  WAIT WINDOW "Some processing here..."
+  REPORT FORM ? OBJECT oE
+  WAIT WINDOW ;
+  "Some more processing here, " + ;
+  "will not occur because of error..."  
+CATCH WHEN .T.
+   WAIT WINDOW "An error occured! " + CHR(13) + ;
+               "SYS(2024)=" + SYS(2024) + CHR(13) + ;
+               "SYS(2040)=" + SYS(2040)
+   * SYS(2024) will report "N"
+   * SYS(2040) will report "0"
+   oE.CancelReport()
+ENDTRY
+   
+DEFINE CLASS errorListener as ReportListener
+  PROCEDURE BeforeBand()
+    * parameters are missing
+  ENDPROC
+  PROCEDURE CancelReport()
+    IF SYS(2040) = "0"
+       MESSAGEBOX("No report in progress, " + CHR(13) + ;
+                  "but this method can still do user cleanup!")
+       NODEFAULT
+    ELSE
+       MESSAGEBOX("Cancelling Report!") 
+       DODEFAULT()
+    ENDIF
+  ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+        </div>
+    </sections></div><h1 class="heading">Errors during a report run that do not occur in lines of code</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>In Visual FoxPro 9.0 and all earlier versions, it is possible for errors to occur during report runs that are not specifically associated with a traceable line of user code. Such errors include report expressions or report variables that the Report Engine cannot resolve, as well as difficulties initializing the report's Data Environment.  </p>
+      <p>Visual FoxPro 9.0 maintains backward-compatibility with its handling of such errors, as described in this section.</p>
+      <p>When an error occurs outside user code, Visual FoxPro's internal error handling does not offer you an opportunity to suspend the report, because there is no line of code on which to suspend.  </p>
+      <p>If you do not have an <b>ON ERROR</b> handler or a <b>TRY… ENDTRY</b> construct in place, Visual FoxPro does not invoke your error handling until after it does its internal cleanup and ends the report run.  </p>
+      <p>As demonstrated in the examples in this topic, the value of the <b>MESSAGE()</b> function is available if it occurs in ReportListener code or other user code you invoke during a report run.  However, if the error is not associated with a line of code, <b>MESSAGE()</b> is not assigned until after the Report Engine concludes its cleanup.  </p>
+      <p>If an error is not associated with a line of code, the value of <b>MESSAGE()</b> is not assigned at all unless you have some form of error-handling in place at the time the <b>REPORT FORM</b> or <b>LABEL</b> command occurs.  If you do not have an error handler, and if you have used the <b>CLEAR ERROR</b> command before the report run, <b>MESSAGE()</b> is still empty after the report run.  If you have not used <b>CLEAR ERROR</b>, <b>MESSAGE()</b> retains its previous value.</p>
+    </div><h1 class="heading">Commands not supported during a report run</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>To error-handle well, you should start by planning to use only commands that are safe to use during a report run.</p>
+      <p>The Visual FoxPro commands in the table below are all unsupported during internal output processing, between the BeforeReport event and AfterReport event (inclusive).  </p>
+      <p>Not all the errors in this table will generate an immediate error, but use of these commands during output processing leads to unpredictable results. </p>
+      <p>These commands are unsupported whether they occur:</p>
+      <ul><li>
+          <p>Directly in ReportListener event code.</p>
+        </li><li>
+          <p>In additional code invoked by a ReportListener, such as code in a procedure library.</p>
+        </li><li>
+          <p>In the command window while execution is suspended.</p>
+        </li><li>
+          <p>Using code invoked directly in report or label expressions, such as user-defined functions (UDFs).  </p>
+        </li></ul>
+      <p>In some cases, as indicated in the table, the commands are also not supported in the ReportListener's <span class="linkTerms"><a href="/html/1ffb4915-3e38-4aab-bbd8-7567b7561a1c.htm">LoadReport Event</a></span> and <span class="linkTerms"><a href="/html/8fa78476-e4a6-4b9b-b5a3-80043e73ed4c.htm">UnloadReport Event</a></span>.  These two <i>framing events</i> provide user hooks at each end of the internal processing run. </p>
+      <p>As a final, exceptional case, while the <span class="linkTerms"><a href="/html/10e876bb-83c2-4309-8adf-cdd9f565d658.htm">OutputPage Method</a></span> may be running after the report run concludes, if called by a PreviewContainer object, this method may need access to resources built into the application, such as image files, to perform its task.  For this reason, using commands such as <b>CLEAR ALL</b> that might unload the calling application from memory are not supported until the preview concludes.  When the <b>REPORT FORM</b> or <b>LABEL</b> command includes the <b>NOWAIT</b> keyword, the preview concludes at the time the preview window closes, unless the user chooses to print from preview.  If the user chooses to print, the preview concludes at the time Visual FoxPro finishes sending the report output to the printer. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>In addition to the commands listed below, all commands that change sessions, work areas, record pointers, or other attributes of the data on which the <b>REPORT FORM</b> and <b>LABEL</b> commands act, should be used with caution.  As in previous versions of Visual FoxPro, it is the responsibility of the user to restore the state of the data appropriately when using these commands, with the understanding that other ReportListeners and additional user code, as well as the internal Report Engine, may be affected by their changes.  For example, although the <b>BROWSE</b> command does not appear in this table, it has potential to change the record pointer, trigger additional code attached through user-defined functions (UDFs), and affect data relationships, so it should be used with caution.</p>
+      </td></tr></table></div>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Command(s)</b>
+              
+            </th>
+            <th>
+              
+                <b>Supported in </b>
+              
+              
+                <b>LoadReport and UnloadReport</b>
+              
+              
+                <b>events?</b>
+              
+            </th>
+            <th>
+              
+                <b>Remarks</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <b>CLEAR ALL</b>
+            </p>
+            <p>
+              <b>RELEASE ALL</b>
+            </p>
+            <p>
+              <b>CLOSE ALL</b>
+            </p>
+          </td>
+          <td>
+            <p>No</p>
+          </td>
+          <td>
+            <p>This restriction is primarily to preserve the ReportListener reference and data tables as expected by the Report Engine during its processing of the report scope. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>RETRY</b>
+            </p>
+            <p>
+              <b>RETURN TO MASTER</b>
+            </p>
+            <p>
+              <b>RETURN TO</b> <span class="parameter">&lt;Procedure Name&gt;</span></p>
+          </td>
+          <td>
+            <p>No</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>?, ??, ???</b>
+            </p>
+            <p>
+              <b>\, \ </b>
+            </p>
+            <p>
+              <b>@... SAY</b>
+            </p>
+            <p>
+              <b>EJECT, EJECT PAGE</b>
+            </p>
+            <p>
+              <b>PRINTJOB… ENDPRINTJOB</b>
+            </p>
+            <p>
+              <b>LIST, DISPLAY, TYPE</b>
+            </p>
+            <p>
+              <b>SET DEVICE,PRINTER</b>
+            </p>
+          </td>
+          <td>
+            <p>Yes</p>
+          </td>
+          <td>
+            <p>These output commands are supported during the output run if the target device for the output run is different from the target device for the output command.  For example, if your <b>REPORT FORM</b> command has a <b>PREVIEW</b> clause, you can <b>LIST MEMO TO</b> <span class="parameter">&lt;filename&gt;</span> during the report run.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>BEGIN TRANSACTION</b> and additional transaction-related commands</p>
+          </td>
+          <td>
+            <p>Yes</p>
+          </td>
+          <td>
+            <p>Transaction commands are supported if the transaction is concluded within one invoked procedure or one ReportListener event.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>MODIFY/CREATE CLASS, FORM, LABEL, REPORT </b>[…]</p>
+          </td>
+          <td>
+            <p>Yes</p>
+          </td>
+          <td>
+            <p>All commands that invoke interactive Visual FoxPro Designers are unsupported, whether modal or invoked with the <b>NOWAIT</b> keyword.  You can invoke a text editor (<b>MODIFY FILE</b> or <b>COMMAND</b>).</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>REPORT FORM</b>
+            </p>
+            <p>
+              <b>LABEL</b>
+            </p>
+          </td>
+          <td>
+            <p>No</p>
+          </td>
+          <td>
+            <p>
+              <b>REPORT FORM</b> and <b>LABEL</b> commands cannot be nested.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Errors associated with the Visual FoxPro Report System</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>The following table provides a list of errors that can occur for reasons specific to the run-time processing of reports and labels.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Error message and number</b>
+              
+            </th>
+            <th>
+              
+                <b>Cause or scenario</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/ed3f0d92-f41c-418e-8de4-ed4d4a5a9af1.htm">"name" is not an object (Error 1924)</a></span>
+            </p>
+          </td>
+          <td>
+            <p>The Engine received a <span class="linkTerms"><a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT FORM Command</a></span> or <span class="linkTerms"><a href="/html/3876aeab-209d-42b0-9ebd-033284c74adb.htm">LABEL Command</a></span> with an <b>OBJECT</b><span class="parameter"> &lt;ref&gt;</span> clause and <span class="parameter">&lt;ref&gt;</span> was not an object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/4dd186cd-426b-43de-81da-56ab25db9b54.htm">Class definition "name" is not found (Error 1733)</a></span>
+            </p>
+          </td>
+          <td>
+            <p>The Engine received a NULL reference as the result of an <b>OBJECT TYPE</b> <span class="parameter">&lt;N&gt; </span>clause on a <b>REPORT FORM</b> or <b>LABEL</b> command, indicating that the application specified in the <b>_REPORTOUTPUT</b> system variable could not resolve this value to a <span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span> object reference.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/b22d1df8-8bf5-4264-9414-874cecb4bf33.htm">Data type is invalid for this property (Error 1732)</a></span>
+            </p>
+          </td>
+          <td>
+            <p>The Engine an <b>OBJECT TYPE</b> <span class="parameter">&lt;N&gt; </span>clause on a <b>REPORT FORM</b> or <b>LABEL</b> command, and the <span class="parameter">&lt;N&gt;</span> parameter was not of numeric type.  This error may also occur in connection with use of the OutputPage method, discussed below.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/1f2a0f8e-a3f1-4d0e-8f8f-24150b10d914.htm">Report contains a nesting error (Error 1645)</a></span>
+            </p>
+          </td>
+          <td>
+            <p>A <b>REPORT FORM</b> or <b>LABEL</b> command was invoked during another report or label run.  Note that this error still occurs if the nested command uses backward-compatible report mode, if a different report is requested, or if the nested command includes a reference to a different ReportListener object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/6c288860-0ce2-49d9-b448-439286cfe3f5.htm">Syntax error (Error 10)</a></span>
+            </p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/5d6e4527-8b6f-4f39-a670-c3397eff3bfd.htm">SET REPORTBEHAVIOR Command</a></span> was issued with an incorrect parameter.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/1dcb1595-4498-46d4-8c3c-f037df9802ba.htm">The current object does not inherit from class "name" (Error 1935)</a></span>
+            </p>
+          </td>
+          <td>
+            <p>The Engine received an object reference that does not inherit from the Visual FoxPro ReportListener base class.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/fca5d457-e761-4e21-be21-b6722fee8462.htm">Variable "variable" is not found (Error 12)</a></span>
+            </p>
+          </td>
+          <td>
+            <p>The Engine received an <b>OBJECT TYPE</b> <span class="parameter">&lt;N&gt; </span>clause on a <b>REPORT FORM</b> or <b>LABEL</b> command, and the application specified in the <b>_REPORTOUTPUT</b> system variable could not be found or the variable was empty. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/ce81454e-6e05-4f40-b451-78558980389f.htm">Must specify additional parameters (Error 94)</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/cf97a0ea-4684-4952-adb0-302a077814a0.htm">Function argument value, type, or count is invalid (Error 11)</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/b22d1df8-8bf5-4264-9414-874cecb4bf33.htm">Data type is invalid for this property (Error 1732)</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/ea9ddd9e-68ee-4f28-a91b-44cbbad8914c.htm">Error writing to file "file" (Error 1105)</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/c63aec2a-5ce8-4677-b277-5d29b958fac0.htm">Output page "page" is not available (Error 2194)</a></span>
+            </p>
+          </td>
+          <td>
+            <p>The errors in this group all indicate that the ReportListener's OutputPage method was invoked incorrectly.  For more information, see <span class="linkTerms"><a href="/html/10e876bb-83c2-4309-8adf-cdd9f565d658.htm">OutputPage Method</a></span>.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/2344b71b-14c0-4125-b001-b5fbb7bd1f05.htm">TRY...CATCH...FINALLY Command</a></span><br /><span class="linkTerms"><a href="/html/ae5f6da1-8aa7-450f-905c-60d5cd0a5c3c.htm">Debugging and Error-Handling Language</a></span><br /><span class="linkTerms"><a href="/html/26998e17-648e-4196-a0f8-0683c30d2f45.htm">Error Event (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/0f641b55-7cf2-4409-866d-37c9a3f63945.htm">CANCEL Command</a></span><br /><span class="linkTerms"><a href="/html/eacb2c2d-0800-4769-8c06-fbdae38fedee.htm">QUIT Command</a></span><br /><span class="linkTerms"><a href="/html/d7508b67-4d24-4ddd-ad92-6a1e17d19a98.htm">MESSAGE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/b89737d7-7dac-455e-9088-fa0ec6c93b98.htm">CLEAR Commands</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/220ead6b-fd59-49d7-94e3-6270a91e6807.htm">Structured Error Handling</a></span><br /><span class="linkTerms"><a href="/html/2904a3c2-10ce-41cb-b031-ee3600dacc96.htm">Class and Object Error Handling</a></span><br /><span class="linkTerms"><a href="/html/9b4782b2-1bcc-4774-b66f-2bb15381d587.htm">Handling Run-Time Errors</a></span><br /><span class="linkTerms"><a href="/html/a00d44be-85b4-4f2a-b2ac-bb947694a634.htm">Error Handler Priority</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Handling Errors During Report Runs">
+</OBJECT>

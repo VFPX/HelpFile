@@ -1,0 +1,160 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>WCHILD( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">WCHILD( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Returns either the number of child windows in a parent window or the names of the child windows in the order in which they are stacked in the parent window.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+WCHILD([<span class="parameter">WindowName</span>] [<span class="parameter">nChildWindow</span>])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">WindowName</span>
+        </span></dt><dd>
+          <p>Specifies a window other than the active output window for which WCHILD( ) returns the number of child windows. The number of child windows in the specified window is returned if you include just a window name without the numeric expression <span class="parameter">nChildWindow</span>. </p>
+          <p>If you include both <span class="parameter">WindowName</span> and <span class="parameter">nChildWindow</span>, WCHILD( ) returns the names of the child windows in the specified window. If you include both <span class="parameter">WindowName</span> and <span class="parameter">nChildWindow</span>, separate <span class="parameter">WindowName</span> and <span class="parameter">nChildWindow</span> with a comma.   </p>
+          <p>You can also include the empty string in <span class="parameter">WindowName</span> to specify the main Visual FoxPro window. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nChildWindow</span>
+        </span></dt><dd>
+          <p>Specifies a numeric expression included to return the names of child windows in the active output window when you omit <span class="parameter">WindowName</span>.</p>
+          <p>The numeric expression <span class="parameter">nChildWindow</span> can be 0 or any positive value. The name of the child window at the bottom of the stack of child windows in the current output window is returned if <span class="parameter">nChildWindow</span> is 0.   </p>
+          <p>If <span class="parameter">nChildWindow</span> is a positive number, WCHILD( ) returns the name of the next child window in the window stack. The name of next child window in the stack is returned if you issue WCHILD( ) again with a positive number, and so on. The empty string is returned if WCHILD( ) is called more times than the number of child windows in the parent window. For more information on window stacking, see <a href="/html/5a38e8ab-6e54-4387-95c6-0a84eb3ef70e.htm">ACTIVATE WINDOW</a>.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>In Visual FoxPro for Windows, if the main Visual FoxPro window is active, all windows are children of the main Visual FoxPro window. In Visual FoxPro, toolbars that are not docked in the border of the main Visual FoxPro window are children of the main Visual FoxPro window. Issuing a series of WCHILD() functions with positive numbers returns the names of the active windows and toolbars.</p>
+          </td></tr></table></div>
+          <p>If you include both <span class="parameter">WindowName</span> and <span class="parameter">nChildWindow</span>, separate <span class="parameter">WindowName</span> and <span class="parameter">nChildWindow</span> with a comma. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Character or Numeric</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>You can create a window (the parent window) and place other windows (child windows) inside. Including the IN or IN WINDOW clause in DEFINE WINDOW creates a child window inside the parent window. A child window created and activated inside a parent window cannot be moved outside the parent window. If the parent window is moved, the child window moves with it.</p>
+      <p>The number of child windows in the active output window is returned if you issue WCHILD( ) without any arguments.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5a38e8ab-6e54-4387-95c6-0a84eb3ef70e.htm">ACTIVATE WINDOW Command</a></span><br /><span class="linkTerms"><a href="/html/400d1a36-63d5-496d-a54d-a57c2632f4ae.htm">DEFINE WINDOW Command</a></span><br /><span class="linkTerms"><a href="/html/480ba87d-aede-4e56-987b-f7aa8fe94544.htm">WPARENT( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="WCHILD( ) Function">
+<param name="ALink Name" value="WCHILD">
+</OBJECT>

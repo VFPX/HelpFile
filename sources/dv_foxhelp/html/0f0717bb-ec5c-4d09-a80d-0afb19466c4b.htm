@@ -1,0 +1,129 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Access and Assign Methods</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Access and Assign Methods</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro supports Access and Assign methods, which are user-defined procedures or functions that have the same name as a class property and have the suffix <b>_ACCESS</b> or <b>_ASSIGN</b> appended to the procedure or function name. You can use Access and Assign methods to execute code when querying the value of a property or attempting to change the property's value. Visual FoxPro executes Access and Assign methods only when querying or changing property values at run time, not design time. You can create Access and Assign methods separately and independently of each other. </p>
+    <p>Access and Assign methods provide the following benefits:  </p>
+    <ul><li>
+        <p>You can create a public interface for a class or object that separates the interface from the implementation.</p>
+      </li><li>
+        <p>You can easily implement property validation.</p>
+      </li><li>
+        <p>You can easily protect properties in subclassed ActiveX controls.</p>
+      </li></ul>
+    <p>Visual FoxPro executes code in an Access method when querying the value of a property, typically by using the property in an object reference, storing the property value to a variable, or displaying the property value with the question mark (<b>?</b>) command. </p>
+    <p>Visual FoxPro executes code in an Assign method when you attempt to change the property value, typically by using the <b>STORE</b> command or <b>=</b> operator to assign a new value to the property.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>You can create Access and Assign methods for most native Visual FoxPro properties. You can create Assign methods for properties that are read-only; however, the method never executes. Visual FoxPro does not support the Assign method for the <b>Value</b> property for controls nor does it support Access and Assign methods for native properties, events, or methods of ActiveX controls. However, Visual FoxPro supports Access and Assign methods for properties, events, and methods of the Visual FoxPro OLE Container in which an ActiveX control is contained.</p>
+    </td></tr></table></div>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Access and Assign methods for member arrays do not fire when accessing the array using a native array function such as ASCAN().</p>
+    </td></tr></table></div>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>The Assign method will fire for certain native properties when their value is queried and not changed. These include dimensional properties such as Top, Left, Height, Width as well as a few others like Visible. This is due to how Visual FoxPro handles these properties internally.</p>
+    </td></tr></table></div>
+    <p>Visual FoxPro treats Access and Assign methods as Protected at run time, so they cannot be accessed outside of the class definition. However, when you are in the Class Designer, Visual FoxPro treats these Access and Assign methods in a special way. When you drop an object onto a container, such as a command button onto a form, Visual FoxPro usually marks Protected methods of such objects as read-only and not modifiable in the designer. However, you can edit Access and Assign methods of such objects in the Class Designer.</p>
+  <h1 class="heading">THIS_ACCESS Methods</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can create <b>THIS_ACCESS</b> methods to execute code when changing the value for an object member or querying the object member. The <b>THIS_ACCESS</b> method must always return an object reference; otherwise, Visual FoxPro generates an error. Typically, the method returns the object reference, <b>THIS</b>. The <b>THIS_ACCESS</b> method must also include a parameter to accept the name of the object member that is changed or queried.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p><b>THIS_ACCESS</b> is not intended as a global replacement for Access and Assign methods. It only provides information about the object member that is accessed or queried. Unlike an Access or Assign method, <b>THIS_ACCESS</b> does not provide control over values returned to specific object members.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/9c764956-8eec-4728-aee5-a2e12126921e.htm">How to: Create Access and Assign Methods</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/7f106091-a2c8-42aa-a8b5-dbeecb1f9502.htm">Working with Classes in Visual FoxPro</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Access and Assign Methods">
+</OBJECT>

@@ -1,0 +1,185 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SET ORDER Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SET ORDER Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Designates a controlling index file or tag for a table.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Visual FoxPro does not support <b>SET ORDER</b> for binary indexes.</p>
+    </td></tr></table></div>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SET ORDER TO [<span class="parameter">nIndexNumber</span> | <span class="parameter">IDXIndexFileName</span> | [TAG] <span class="parameter">TagName</span> 
+   [OF <span class="parameter">CDXFileName</span>] [IN <span class="parameter">nWorkArea</span> | <span class="parameter">cTableAlias</span>]
+   [ASCENDING | DESCENDING]]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nIndexNumber</span>
+        </span></dt><dd>
+          <p>Specifies the number of the controlling index file or tag. <span class="parameter">nIndexNumber</span> refers to the index files as they are listed in USE or SET INDEX. Open .idx files are numbered first in the order in which they appear in USE or SET INDEX. Tags in the structural .cdx file (if one exists) are then numbered in the order in which they were created. Finally, tags in any open independent .cdx files are numbered in the order in which they were created.</p>
+          <p>The following example illustrates how different index file types and tags are numbered. (The file names are for illustration only and don't necessarily exist.) A table named <code>video.dbf</code> is opened with three indexes (<code>title.idx</code>, <code>costs.cdx</code>, and <code>rating.idx</code>) in the first work area with this command:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE video INDEX title.idx, costs.cdx, rating.idx IN 1</pre></td></tr></table></span></div>
+          <p>The <code>video</code> table has a structural compound index file (<code>video.cdx</code>) with two tags, <code>NUMBERSOLD</code> and <code>YEARSOLD</code>. The structural .cdx file is automatically opened when <code>video</code> is opened.   </p>
+          <p>Since .idx files are numbered first, issue SET ORDER TO 1 to make <code>title.idx</code> the controlling index and SET ORDER TO 2 to make <code>rating.idx</code> the controlling index:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET ORDER TO 1
+Controlling index: C:\FOX30\TITLE.IDX 
+SET ORDER TO 2
+Controlling index: C:\FOX30\RATING.IDX </pre></td></tr></table></span></div>
+          <p>The tags in <code>video.cdx</code> are numbered next:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET ORDER TO 3
+Controlling index: C:\FOX30\VIDEO.CDX  Tag: NUMBERSOLD 
+SET ORDER TO 4
+Controlling index: C:\FOX30\VIDEO.CDX  Tag: YEARSOLD </pre></td></tr></table></span></div>
+          <p>Finally, the tags in the independent file, <code>costs.cdx</code>, are numbered:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET ORDER TO 5
+Controlling index: C:\FOX30\COSTS.CDX  Tag: RENTALCOST
+SET ORDER TO 6
+Controlling index: C:\FOX30\COSTS.CDX  Tag: BUYCOST</pre></td></tr></table></span></div>
+          <p>
+            <span class="parameter">nIndexNumber</span> can also be 0. If you issue SET ORDER TO 0, all index files remain open and are updated when records are added, deleted or modified. However, the records in the table are displayed and accessed in record number order and not in an indexed order. Issuing SET ORDER TO without additional arguments is identical to issuing SET ORDER TO 0.   </p>
+          <p>If <span class="parameter">nIndexNumber</span> is greater than the number of .idx files and .cdx file tags, Visual FoxPro generates an error message. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">IDXIndexFileName</span>
+        </span></dt><dd>
+          <p>Specifies an .idx file as the controlling index file.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[TAG] <span class="parameter">TagName</span>[OF <span class="parameter">CDXFileName</span>] </span></dt><dd>
+          <p>Specifies a tag of a .cdx file as the controlling tag. The tag name can be from a structural .cdx file or any open independent .cdx file.</p>
+          <p>If identical tag names exist in open independent .cdx files, use OF <span class="parameter">CDXFileName</span> to specify the .cdx file containing the tag.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The .idx file takes precedence if duplicate .idx file and tag names exist.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN <span class="parameter">nWorkArea</span>| <span class="parameter">cTableAlias</span></span></dt><dd>
+          <p>Designates a controlling index file or tag for a table open in a work area other than the currently selected work area. <span class="parameter">nWorkArea</span> specifies the work area number and <span class="parameter">cTableAlias</span> specifies the alias for a table.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ASCENDING | DESCENDING </span></dt><dd>
+          <p>Displays and allows access to table records in ascending or descending order. Including ASCENDING or DESCENDING doesn't change the index file or tag in any way.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>A table can have many index files open simultaneously. However, only one single-index (.idx) file (the controlling index file) or tag from a compound index (.cdx) file (the controlling tag) determines the order in which the records in a table are displayed or accessed. SET ORDER makes it possible for you to designate the controlling index file or tag. Certain commands (SEEK, for example) use the controlling index file or tag to search for records.</p>
+      <p>You can open index files with a table by including the INDEX clause in the USE command. If a table has an associated structural .cdx file, that file is automatically opened with the table. After a table has been opened, you can open and close index files for the table using SET INDEX.</p>
+      <p>By default, SET ORDER designates the controlling index or controlling tag for the table open in the currently selected work area.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span><br /><span class="linkTerms"><a href="/html/9559c6c6-5a55-4408-8a25-c1f4a0bc0616.htm">ORDER( ) Function</a></span><br /><span class="linkTerms"><a href="/html/ece160fa-3278-4d22-8906-58b581689643.htm">DESCENDING( ) Function</a></span><br /><span class="linkTerms"><a href="/html/b0166019-d7d2-4322-8a7f-d3986987a71e.htm">SET INDEX Command</a></span><br /><span class="linkTerms"><a href="/html/1334aa6b-38e0-4fcd-a174-3c4f5c964155.htm">SET Command Overview</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SET ORDER Command">
+<param name="ALink Name" value="SET ORDER">
+</OBJECT>

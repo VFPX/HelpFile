@@ -1,0 +1,163 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Autoincrementing Field Values in Tables</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Autoincrementing Field Values in Tables</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can specify that integer fields from database tables and free tables contain values that increment automatically. A table can contain multiple integer fields that contain automatically incrementing values. Autoincrementing is not supported for local, remote, or offline views. </p>
+    <p>When you add a field with automatically incrementing values to a table that did not contain one, the values begin incrementing automatically with the next row that is added in the table. Previous rows in the table are not updated with automatically incrementing values; therefore, make sure that no conflicts occur as a result.</p>
+    <p>For more information about how to set automatically incrementing field values, see <a href="/html/d4fd7029-4f84-45ee-b0de-75eb1dc45bd3.htm">How to: Set Autoincrementing Field Values</a>.</p>
+    <p>The following sections contain more information about areas of Visual FoxPro affected by automatically incrementing field values:
+</p>
+    <ul><li>
+        <p>
+          <a href="#fogrfautoincrementingfieldvaluesintablesanchor1">Table Structure Changes for Autoincrementing Field Values</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fogrfautoincrementingfieldvaluesintablesanchor2">Considerations for Autoincrementing Field Values</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fogrfautoincrementingfieldvaluesintablesanchor3">Local Views and Autoincrementing Field Values</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fogrfautoincrementingfieldvaluesintablesanchor4">Buffered Tables and Autoincrementing Field Values</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fogrfautoincrementingfieldvaluesintablesanchor5">Record Locking and Autoincrementing Field Values</a>
+        </p>
+      </li></ul>
+  <a name="fogrfautoincrementingfieldvaluesintablesanchor1"></a><h1 class="heading">Table Structure Changes for Autoincrementing Field Values</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When you activate automatically incrementing values for any field in a table, Visual FoxPro sets byte 0 to 0x31 for the file type "Visual FoxPro, Autoincrement enabled" in the table (.dbf) header record structure. Visual FoxPro sets byte 18, bytes 19 to 22, and byte 23 in the field subrecords structure to the following values, respectively:
+</p>
+      <ul><li>
+          <p>0x0C for the autoincrementing column.</p>
+        </li><li>
+          <p>Next value.</p>
+        </li><li>
+          <p>Step value.</p>
+        </li></ul>
+      <p>For more information, see <a href="/html/465e7a94-51b7-4e0c-98f9-432864fe5bcc.htm">Table File Structure</a>.</p>
+    </div><a name="fogrfautoincrementingfieldvaluesintablesanchor2"></a><h1 class="heading">Considerations for Autoincrementing Field Values</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>A field that contains automatically incrementing values becomes read-only and cannot be changed with an insert, update, or replace operation. Attempting to update such a field generates an error message unless you set the cursor AutoIncError property using the <b>CURSORSETPROP( )</b> function to False (.F.) or turn the error message off by using the <b>SET AUTOINCERROR</b> command. For more information, see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a> and <a href="/html/1cff1135-a24f-46e7-bcb2-2271d4b8c133.htm">SET AUTOINCERROR Command</a>.</p>
+      <p>Tables containing automatically incrementing field values append table-buffered records approximately 35% slower than tables without automatically incrementing field values, which might affect performance. When using table buffering, the table header is locked when the record is appended.</p>
+      <p>Visual FoxPro does not manage gaps in generated sequences. Gaps can be caused by reverting an appended or inserted record or by failing to update the base table and so on. In all cases, the unused value is lost, and the next generated value remains the same as if the append or insert operation succeeded.</p>
+      <p>Versions prior to Visual FoxPro 8.0 cannot recognize tables that use automatically incrementing field values. If you remove autoincrementing for fields, the current state containing the last incrementing and incremental values is cleared from the table (.dbf) field subrecord and discarded. The table (.dbf) type is restored to the current Visual FoxPro type value. The automatically incrementing values stored previously in each record remain.</p>
+    </div><a name="fogrfautoincrementingfieldvaluesintablesanchor3"></a><h1 class="heading">Local Views and Autoincrementing Field Values</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Views do not "inherit" autoincrementing behavior of the base table, and the fields in the view that represent autoincrementing fields in the base table are read/write. Autoincrementing field values occur in the base table when the row or rows are updated in the base table. If you want to refresh the view with the autoincrementing field value previously generated, you must use the <b>REQUERY( )</b> function. For more information, <a href="/html/73805e2d-c331-4fd2-b4cb-18e9e53a81a7.htm">REQUERY( ) Function</a>.</p>
+    </div><a name="fogrfautoincrementingfieldvaluesintablesanchor4"></a><h1 class="heading">Buffered Tables and Autoincrementing Field Values</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro does not perform any autoincrementing management relative to buffered tables. All appended and inserted records have autoincrementing field values generated regardless of whether table or row buffering is active. In the case of buffering, when the <b>TABLEUDPATE( )</b> function is called, the base table is updated with the previously generated value. If the update does not occur, such as when calling the <b>TABLEREVERT( )</b> function, any autoincrementing field values that are generated are discarded, thus resulting in gaps in the sequence.</p>
+    </div><a name="fogrfautoincrementingfieldvaluesintablesanchor5"></a><h1 class="heading">Record Locking and Autoincrementing Field Values</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>When you turn on autoincrementing values for a field, the start and incremental values Next Value and Step are stored in the table (.dbf) header in the unused or reserved portion of the field subrecord for the specified field. Next Value is stored as a 4-byte integer. The Step value is stored as a 1-byte integer with a maximum value of 255. The value actually used to increment the field value is the sum of the value stored in the .dbf header and the incremental value. The operation sequence occurs as follows:
+</p>
+      <ul><li>
+          <p>Perform an insert or append operation.</p>
+        </li><li>
+          <p>Lock header.</p>
+        </li><li>
+          <p>Increase the currently stored increment value by the Step value and apply to the field.</p>
+        </li><li>
+          <p>Store the new value, which is the value of the newly added record, in the .dbf file header.</p>
+        </li><li>
+          <p>Unlock header when insert or append operation completes. The header contains the last incremented value.</p>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/25531062-a27e-47b0-b753-f5ecec809a19.htm">How to: Choose Data Types</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/86ee6d44-482a-48f4-8b2c-18607a08f3fe.htm">Working with Fields</a></span><br /><span class="linkTerms"><a href="/html/e72c1fd6-0b60-4dbd-9000-0ffecfb637fa.htm">Working with Tables (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Autoincrementing Field Values in Tables">
+</OBJECT>

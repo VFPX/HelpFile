@@ -1,0 +1,202 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Using SQL Server Input/Output Parameters</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Using SQL Server Input/Output Parameters</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can use input/output parameters to pass values between Visual FoxPro and SQL Server. Input/output parameters are available only using SQL pass-through; they can't be used in views.</p>
+    <p>The following table provides an example using input/output parameters to pass values from Visual FoxPro to a SQL Server stored procedure, returning the result to a Visual FoxPro variable.</p>
+    <div class="labelheading"><b>Using Input/Output Parameters with a SQL Server Stored Procedure</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Code
+          </th>
+          <th>
+            Comments
+          </th>
+        </tr><tr>
+        <td>
+          <p>
+            <code>resultCode = SQLExec(connHand,</code>
+          </p>
+          <p>
+            <code>   "CREATE PROCEDURE sp_test;</code>
+          </p>
+          <p>
+            <code>      @mult1 int, @mult2 int, @result int;</code>
+          </p>
+          <p>
+            <code>   OUTPUT AS SELECT</code>
+          </p>
+          <p>
+            <code>      @result = @mult1 * @mult2")</code>
+          </p>
+        </td>
+        <td>
+          <p>Create a stored procedure, sp_test, that multiplies two variables (<code>mult1</code> and <code>mult2</code>), then stores the resulting amount in the variable <code>result</code>.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>
+            <code>outParam = 0</code>
+          </p>
+        </td>
+        <td>
+          <p>Create a Visual FoxPro variable to receive the output parameter value when it's passed from SQL Server to Visual FoxPro.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>
+            <code>resultCode = SQLExec(connHand, ;</code>
+          </p>
+          <p>
+            <code>"{CALL sp_test (2, 4, ?@outParam)}")</code>
+          </p>
+        </td>
+        <td>
+          <p>Execute the SQL Server stored procedure, passing the values '2' and '4' to be multiplied together in the stored procedure.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>
+            <code>? "outParam =", outParam  &amp;&amp; the value is 8</code>
+          </p>
+        </td>
+        <td>
+          <p>Display the value of the output parameter.</p>
+        </td>
+      </tr></table></div>
+  <h1 class="heading">Defining Parameters</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The syntax for output parameters is:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>?@parameter_name</pre></td></tr></table></span></div>
+      <p>When you implement input/output parameters, define the Visual FoxPro variables you want to include in your SQL pass-through command before you use the variables in the SQL statement. To successfully send and receive information with input/output parameters, you must define:  </p>
+      <ul><li>
+          <p>A stored procedure parameter, with an output type, that returns a value. </p>
+          <p>For example, if your stored procedure parameter is <code>@result</code>, you must assign an output type, such as <code>int</code>, to <code>@result</code>, and you must assign a value to <code>@result</code>. </p>
+        </li><li>
+          <p>An output parameter (<b>@</b><i>parameter_name</i>) expression that evaluates to an existing Visual FoxPro variable. </p>
+          <p>For example, if your output parameter expression is <code>?@outParam</code>, your application must have defined the Visual FoxPro variable <code>outParam</code>.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If you don't use an output parameter, either in Visual FoxPro or in the stored procedure, or you don't define a Visual FoxPro variable to receive the return value, the Visual FoxPro parameter value will not change.</p>
+          </td></tr></table></div>
+        </li></ul>
+    </div><h1 class="heading">Converting Data Types</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro converts returned variable values using the following rules:  </p>
+      <ul><li>
+          <p>Floating point data type (N, F, B) variables are converted to N.</p>
+        </li><li>
+          <p>The display size is set to 20.</p>
+        </li><li>
+          <p>The decimal setting is set to the current session setting. The decimal setting affects only the default display format, and doesn't affect the decimal precision.</p>
+        </li><li>
+          <p>Date and time variables (D, T) are converted to time (T) variables.</p>
+        </li></ul>
+      <p>You can't use Memo, General, Picture, or NULL data types in input/output parameters.</p>
+      <p>If your application uses cursor fields as parameters, Visual FoxPro will attempt to convert the result back to the original field data type.</p>
+    </div><h1 class="heading">Returning Parameter Values</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Input/output parameters are available only after the last result set of a statement has been fetched. This means that input/output values are returned to Visual FoxPro only after:  </p>
+      <ul><li>
+          <p>
+            <a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( )</a> returns (1) in batch mode </p>
+          <p>-or- </p>
+        </li><li>
+          <p>
+            <a href="/html/b21a0d31-b1db-44f5-b5e1-266356406903.htm">SQLMORERESULTS( )</a> returns (2) in non-batch mode.</p>
+        </li></ul>
+      <p>If your SQLEXEC( ) statement requests multiple result sets, the output parameters are only guaranteed to be available after the last result set has been fetched from the data source.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/4eea94fd-20be-4c50-9c83-87769525d97c.htm">How to: Create a Parameterized Query</a></span><br /><span class="linkTerms"><a href="/html/670d0ff7-3f45-4088-a9b0-45992a519fcb.htm">How to: Return Multiple Result Sets</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c9d098df-6241-45d2-9d81-1f49ad9b3641.htm">Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/7a4c60ae-5309-4014-87ec-08ce277eede4.htm">Planning Client/Server Applications</a></span><br /><span class="linkTerms"><a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a></span><br /><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Using SQL Server Input/Output Parameters">
+</OBJECT>

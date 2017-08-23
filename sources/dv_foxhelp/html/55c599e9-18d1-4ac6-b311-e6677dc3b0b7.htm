@@ -1,0 +1,1106 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>CAST( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">CAST( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Converts an expression from one data type to another.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+CAST(<span class="parameter">eExpression</span> AS <span class="parameter">cDataType</span> [(<span class="parameter">nFieldWidth</span> [, <span class="parameter">nPrecision</span>])]
+   [NULL | NOT NULL])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">eExpression</span>
+        </span></dt><dd>
+          <p>Specifies a data expression, usually in a SQL statement, that you want to convert to another data type. <span class="parameter">eExpression</span> can be a field, calculated field, or other type of expression.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cDataType</span>
+        </span></dt><dd>
+          <p>Specifies the valid name of or letter representing the target data type name. <span class="parameter">cDataType</span> can also be an expression that evaluates to a valid data type name or letter representing a valid data type. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If you specify an expression for <span class="parameter">cDataType</span>, you must enclose the expression you specify for <span class="parameter">cDataType</span> with parentheses.</p>
+          </td></tr></table></div>
+          <p>Some field data types require that you specify a value for <span class="parameter">nFieldWidth</span>, <span class="parameter">nPrecision</span>, or both. The following table lists values for <span class="parameter">cDataType</span> and whether <span class="parameter">nFieldWidth</span> and <span class="parameter">nPrecision</span> apply.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cDataType</span>
+                  
+                </th>
+                <th>
+                  Data type
+                </th>
+                <th>
+                  
+                    <span class="parameter">nFieldWidth</span>
+                  
+                </th>
+                <th>
+                  
+                    <span class="parameter">nPrecision</span>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>W, Blob</p>
+              </td>
+              <td>
+                <p>Blob</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>C, Char, Character</p>
+              </td>
+              <td>
+                <p>Character</p>
+              </td>
+              <td>
+                <p>Yes</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Y, Currency</p>
+              </td>
+              <td>
+                <p>Currency</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>D, Date</p>
+              </td>
+              <td>
+                <p>Date</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>T, DateTime</p>
+              </td>
+              <td>
+                <p>DateTime</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>B, Double</p>
+              </td>
+              <td>
+                <p>Double</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+              <td>
+                <p>Yes</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>F, Float</p>
+              </td>
+              <td>
+                <p>Floating</p>
+              </td>
+              <td>
+                <p>Yes</p>
+              </td>
+              <td>
+                <p>Yes</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>G, General</p>
+              </td>
+              <td>
+                <p>General</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>I, Int, Integer</p>
+              </td>
+              <td>
+                <p>Integer</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>L, Logical</p>
+              </td>
+              <td>
+                <p>Logical</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>M, Memo</p>
+              </td>
+              <td>
+                <p>Memo</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>N, Num, Numeric</p>
+              </td>
+              <td>
+                <p>Numeric</p>
+              </td>
+              <td>
+                <p>Yes</p>
+              </td>
+              <td>
+                <p>Yes</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Q, Varbinary</p>
+              </td>
+              <td>
+                <p>Varbinary</p>
+              </td>
+              <td>
+                <p>Yes</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>V, Varchar</p>
+              </td>
+              <td>
+                <p>Varchar</p>
+              </td>
+              <td>
+                <p>Yes</p>
+              </td>
+              <td>
+                <p>No</p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nFieldWidth</span>
+        </span></dt><dd>
+          <p>Specifies the field width for certain data types. Visual FoxPro disregards <span class="parameter">nFieldWidth</span> for the following data types: D, T, I, Y, L, M, G, and W. If <span class="parameter">nFieldWidth</span> is not specified, default values are used, for example, as defined by the <b>CREATE TABLE</b> command. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nPrecision</span>
+        </span></dt><dd>
+          <p>Specifies the number of decimal place precision for certain data types. Visual FoxPro disregards <span class="parameter">nPrecision</span> for the following data types: C, D, T, I, Y, L, M, G, V, Q, and W. </p>
+          <p>If <span class="parameter">nPrecision</span> is not included for the <b>Numeric</b> or <b>Float</b> data type, the default is zero (0), which is no decimal places. If <span class="parameter">nPrecision</span> is not included for the Double data type, <span class="parameter">nPrecision</span> defaults to the number of decimal place precision set by the <b>SET DECIMALS</b> command. If <span class="parameter">nPrecision</span> is not specified for any other data type, default values are used, for example, as defined by the <b>CREATE TABLE</b> command.  </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NULL | NOT NULL </span></dt><dd>
+          <p>Specifies whether to permit null values in the field. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If one or more fields can contain null values, the maximum number of fields the table can contain is reduced from 255 to 254.</p>
+          </td></tr></table></div>
+          <p>If <b>NULL</b> or <b>NOT NULL</b> is not specified, it is inherited from the expression. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The following table shows conversions supported by the <b>CAST( )</b> function. The vertical axis lists the source data type, and the horizontal axis lists the target data type. The following letters describe the level of conversion supported:  </p>
+      <ul><li>
+          <p>F - Full conversion without loss of data</p>
+        </li><li>
+          <p>P - Partial conversion with possible loss of data</p>
+        </li><li>
+          <p>N - Not supported</p>
+        </li></ul>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Type
+            </th>
+            <th>
+              C
+            </th>
+            <th>
+              D
+            </th>
+            <th>
+              T
+            </th>
+            <th>
+              N
+            </th>
+            <th>
+              F
+            </th>
+            <th>
+              I
+            </th>
+            <th>
+              B
+            </th>
+            <th>
+              Y
+            </th>
+            <th>
+              L
+            </th>
+            <th>
+              M
+            </th>
+            <th>
+              G
+            </th>
+            <th>
+              V
+            </th>
+            <th>
+              Q
+            </th>
+            <th>
+              W
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <b>C</b>
+            </p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>D</b>
+            </p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>T</b>
+            </p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>N</b>
+            </p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>F</b>
+            </p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>I</b>
+            </p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>B</b>
+            </p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Y</b>
+            </p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>L</b>
+            </p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>M</b>
+            </p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>G</b>
+            </p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>V</b>
+            </p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Q</b>
+            </p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>W</b>
+            </p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>N</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>F</p>
+          </td>
+        </tr></table></div>
+      <p>If you specify decimal precision, conversions between numeric data types, for example, <b>Numeric</b>, <b>Float</b>, <b>Currency</b>, and <b>Double</b>, to <b>Integer</b> data type might result in loss of precision.</p>
+      <p>For conversions to <b>Character</b>, <b>Varchar</b>, and <b>Varbinary</b> data types, if the specified field width is less than that of the original data, Visual FoxPro truncates values to fit the field width. For conversions to <b>Character</b> data type, if the specified width is greater than that of the original data, Visual FoxPro pads the field with spaces to the right of the value.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example uses the SQL <b>SELECT</b> command to retrieve data from the Product_ID field in the Products table from the Visual FoxPro sample database, TestData.dbc. The example uses the <b>CAST( )</b> function to convert the results returned from the expression unit_Cost * in_Stock, which have <b>Currency</b> type, as a value with <b>Numeric</b> type with a field width of 8 and a decimal precision of 2.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR ALL
+OPEN DATABASE HOME(2) + 'Data\Testdata.dbc'
+SELECT Product_ID, CAST(unit_Cost * in_Stock AS Numeric(8,2)) FROM Products</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/25531062-a27e-47b0-b753-f5ecec809a19.htm">How to: Choose Data Types</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/6eba4777-c4ac-4909-906d-3a91ac990b0a.htm">Data Conversion Functions</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/c101845f-d0a1-4f86-b1ba-225929032da6.htm">Data Type Conversion Control</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/b353259f-ae44-4c20-9b4c-53741595d66c.htm">Data and Field Types</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="CAST( ) Function">
+<param name="ALink Name" value="CAST">
+</OBJECT>

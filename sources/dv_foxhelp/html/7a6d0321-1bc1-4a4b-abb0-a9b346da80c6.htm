@@ -1,0 +1,179 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SET SKIP Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SET SKIP Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Creates a one-to-many relationship among tables.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SET SKIP TO [<span class="parameter">TableAlias1</span> [, <span class="parameter">TableAlias2</span>] ...]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">TO <span class="parameter">TableAlias1</span>[, <span class="parameter">TableAlias2</span>] ... </span></dt><dd>
+          <p>Specifies the aliases of multiple child tables. These are used to create a one-to-many relationship with a parent table. Use commas to separate the aliases. In commands that support a scope (DISPLAY, LIST, and so on), records in the parent table are repeated for each corresponding record in the child table.</p>
+          <p>Use SET SKIP TO without additional arguments to remove the one-to-many relationship from the parent table open in the currently selected work area. Any one-to-one relationships remain in effect. One-to-one relationships can be removed with SET RELATION TO. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Using SET RELATION, you can establish relations between tables open in different work areas. When the record pointer is moved in the parent table, the record pointer in the child table moves to the first corresponding record. The relational expression in SET RELATION determines where the record pointer moves in the child table. A one-to-one relation is created — for each record in the parent table, the record pointer moves to the first matching record in the child table. If a matching record can't be found in the child table, the record pointer in the child table moves to the end of the table.</p>
+      <p>Frequently, a child table contains multiple records that correspond to one record in the parent table. SET SKIP lets you establish a one-to-many relationship between one record in the parent table and multiple records in the child table. When you skip through the parent table, the record pointer remains on the same parent record until the record pointer moves through all related records in the child table.</p>
+      <p>To establish a one-to-many relationship, first create the relationship between the parent and child table with SET RELATION. Then, issue SET SKIP to create a one-to-many relationship.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">This example below finds all occurrences in three tables where each item in the first field are the same. It does this by using scanning the first table, which has a relation into a second, which table has a relation into a third. The first table then does a SET SKIP for the other two tables. A SET SKIP on the second table has no effect. It affects only the table being scanned (replaced, etc.). In the example, eight matches are found.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+* Creates parent table with values a and b in Name field
+CREATE TABLE Parent FREE (Name C(1), Val C(10))
+INSERT INTO Parent VALUES ('a', 'Parent.a1')
+INSERT INTO Parent VALUES ('b', 'Parent.b1')
+SELECT 0     &amp;&amp; Child1 will have two a's and two b's
+CREATE TABLE Child1 FREE (Name1 C(1), Val C(10))
+INSERT INTO Child1 VALUES ('a', 'Child1.a1')
+INSERT INTO Child1 VALUES ('b', 'Child1.b1')
+INSERT INTO Child1 VALUES ('b', 'Child1.b2')
+INSERT INTO Child1 VALUES ('a', 'Child1.a2')
+INDEX ON Name1 TAG tagName   &amp;&amp; The tag name is irrelevant
+SELECT 0  &amp;&amp; Child2 will have two a's and two b's
+CREATE TABLE Child2 FREE (Name2 C(1), Val C(10))
+INSERT INTO Child2 VALUES ('b', 'Child1.b1')
+INSERT INTO Child2 VALUES ('b', 'Child1.b2')
+INSERT INTO Child2 VALUES ('a', 'Child1.a1')
+INSERT INTO Child2 VALUES ('a', 'Child1.a2')
+INDEX ON Name2 TAG tagName     &amp;&amp; The tag name is irrelevant
+SELECT Child1
+SET RELATION TO Name1 INTO Child2
+SELECT Parent
+SET RELATION TO Name INTO Child1
+SET SKIP TO Child1, Child2 &amp;&amp; Parent gets both skips.
+           &amp;&amp; Otherwise, only four record triplets 
+           &amp;&amp; would be listed.
+SCAN ALL  &amp;&amp; There will be eight triplets: four a's and four b's
+   ? Parent.Val, Child1.Val, Child2.Val
+ENDSCAN</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/679b0838-fe0a-458c-bffe-ed2117136dd1.htm">RELATION( ) Function</a></span><br /><span class="linkTerms"><a href="/html/dd0c045b-9749-405d-9d60-0169bede1b3d.htm">SET RELATION Command</a></span><br /><span class="linkTerms"><a href="/html/1c473072-7070-489e-83b6-a35c8a4c4a42.htm">SKIP Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SET SKIP Command">
+<param name="ALink Name" value="SET SKIP">
+</OBJECT>

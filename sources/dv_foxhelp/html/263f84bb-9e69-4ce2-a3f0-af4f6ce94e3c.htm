@@ -1,0 +1,222 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Create IntelliSense Scripts</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Create IntelliSense Scripts</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can create IntelliSense scripts for items in the IntelliSense table. Creating IntelliSense scripts make it possible for commands, functions, or properties to run certain code, for example, to open a value editor when you want to assign values to certain properties. For more information, see <span class="linkTerms"><a href="/html/fa9d83b2-1cf0-46a4-8ff4-1276d95c2fb9.htm">IntelliSense Table Structure</a></span>.</p>
+    <p>The following sections describe different ways for creating and referencing scripts:  </p>
+    <ul><li>
+        <p>
+          <a href="#fotskcreateintellisensescriptsanchor1">Creating or Referencing Scripts for Multiple Items</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fotskcreateintellisensescriptsanchor2">Referencing Scripts for Single Items</a>
+        </p>
+      </li></ul>
+  <a name="fotskcreateintellisensescriptsanchor1"></a><h1 class="heading">Creating or Referencing Scripts for Multiple Items</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>In the IntelliSense table, you can create Script record whose Data field contains a custom procedure or Visual FoxPro code that other IntelliSense records can run, or you can store code in the Data field of an item that runs for that item only. Though the Data field generally contains code that other IntelliSense records run, it can also store metadata used by scripts. The <b>FoxCode</b> parameter object passes this metadata automatically to a script. For details about the <b>FoxCode</b> object, see <span class="linkTerms"><a href="/html/8e2e09b8-5f0b-4d63-9561-128c3ffdece2.htm">FoxCode Object Reference</a></span>.</p>
+      <h3 class="procedureSubHeading">To create IntelliSense scripts that other IntelliSense records can run</h3><div class="subSection"><ol><li>
+            
+              <p>Open the IntelliSense table in the FoxCode.dbf file using the IntelliSense Manager or programmatically.</p>
+            
+          </li><li>
+            
+              <p>Create a record in the IntelliSense table for a Script item.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Abbrev</b> field of the Script item, type the keyword that you want other records to use as part of the script reference for running the script.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Data</b> field of the Script item, type the Visual FoxPro code you want for other IntelliSense records to run. </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>Code in the Data field must contain a <b>PARAMETERS</b> or <b>LPARAMETERS</b> statement to accommodate the <b>FoxCode</b> object reference. Each IntelliSense script must contain a parameter that IntelliSense passes to the <b>FoxCode</b> parameter object. The <b>FoxCode</b> parameter object contains metadata describing how the script was called, including the source record in the IntelliSense table. For more information, see the description for the Script item type in <span class="linkTerms"><a href="/html/fa9d83b2-1cf0-46a4-8ff4-1276d95c2fb9.htm">IntelliSense Table Structure</a></span>.</p>
+              </td></tr></table></div>
+            
+          </li><li>
+            
+              <p>In the <b>Cmd</b> field of items that run the script, type a script reference, which encloses the script keyword from the <b>Abbrev</b> field of the Script item with opening and closing braces ({}). </p>
+            
+          </li></ol></div>
+      <p>For example, typing the following text in the Abbrev field of the Script item designates the text as the script keyword:</p>
+      <p>
+        <code>Picture</code>
+      </p>
+      <p>Inserting the following code in the Data field of the Script item displays the Open Picture dialog box:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LPARAMETERS oFoxcode  &amp;&amp; Required statement.
+LOCAL lcPicture
+oFoxcode.valuetype="V"
+lcPicture = getpict()
+IF LEN(lcPicture) &gt; 0 
+   lcPicture = ['] + lcPicture+ [']
+ENDIF
+RETURN lcPicture</pre></td></tr></table></span></div>
+      <p>Typing the following text, which is the script keyword enclosed with opening and closing braces ({}), in the Cmd field of other IntelliSense records designates the text as the script reference:</p>
+      <p>
+        <code>{picture}</code>
+      </p>
+      <h3 class="procedureSubHeading">To reference existing IntelliSense scripts from other IntelliSense records</h3><div class="subSection"><ol><li>
+            
+              <p>In the IntelliSense table, find the Script item you want to use.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Abbrev</b> field of the Script item, find the keyword that you want to use as part of the script reference.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Cmd</b> field of the IntelliSense record that runs the script, type the keyword from the <b>Abbrev</b> field in the Script item enclosed by opening and closing braces ({}).</p>
+            
+          </li></ol></div>
+    </div><a name="fotskcreateintellisensescriptsanchor2"></a><h1 class="heading">Referencing Scripts for Single Items</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Except in Typing and COM Component items, when the Cmd field of an IntelliSense record contains only opening and closing braces with no script keyword, typing the text in the Abbrev field of that item runs any code that exists in the Data field of the same item.</p>
+      <h3 class="procedureSubHeading">To create scripts for single IntelliSense records</h3><div class="subSection"><ol><li>
+            
+              <p>In the IntelliSense table, find the item you want to create a script for.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Data</b> field of the item, type the Visual FoxPro code you want the item to run.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Cmd</b> field of the item, type opening and closing braces ({}) without a space between them.</p>
+            
+          </li></ol></div>
+      <p>For example, the following table illustrates an example code in the Data field of a Command item that runs when IntelliSense functionality is activated for that Command item only.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Field Name
+            </th>
+            <th>
+              Example
+            </th>
+          </tr><tr>
+          <td>
+            <p>Type</p>
+          </td>
+          <td>
+            <p>C</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Abbrev</p>
+          </td>
+          <td>
+            <p>NOW</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Cmd</p>
+          </td>
+          <td>
+            <p>{}</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Data</p>
+          </td>
+          <td>
+            <p>(Stored in a memo field) </p>
+            <p>
+              <code>LPARAMETERS oFoxCode</code>
+            </p>
+            <p>
+              <code>RETURN TRANSFORM(DATE( ))</code>
+            </p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/c88d813a-bc7f-4989-8afd-59942be9ffe3.htm">How to: Edit IntelliSense Records</a></span><br /><span class="linkTerms"><a href="/html/c076ff4f-0504-4fc2-abf1-6bab689762e6.htm">How to: Restore the Default IntelliSense Table</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/9fe1e22d-203c-49a4-9e62-cb7b6d3e6d10.htm">Customizing IntelliSense in Visual FoxPro</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Create IntelliSense Scripts">
+</OBJECT>

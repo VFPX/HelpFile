@@ -1,0 +1,213 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Understanding Visual FoxPro Object-Assisted Reporting</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Understanding Visual FoxPro Object-Assisted Reporting</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro 9 introduces an <i>object-assisted</i> architecture for reporting. Using this architecture and your existing report forms you can enhance the reporting process in many ways, such as:</p>
+    <ul><li>
+        <p>Generating multiple output results during a single report run.</p>
+      </li><li>
+        <p>Improving printed and preview quality.</p>
+      </li><li>
+        <p>Connecting multiple report runs together to achieve one output result.</p>
+      </li><li>
+        <p>Adjusting the report content dynamically while processing data.</p>
+      </li><li>
+        <p>Generating new types of output not available previously.</p>
+      </li></ul>
+    <p>This topic discusses the objects that work together to provide these enhancements, and describes what happens during an object-assisted report run.</p>
+    <p>Visual FoxPro 9's Report System is best described as <i>object-assisted</i> rather than <i>object-oriented</i>.  The Report Engine is not an object.  However, when you use the new architecture, the Engine delegates much of its work to objects.  </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p> The Report Designer also does not incorporate references to Visual FoxPro classes defined in visual class libraries (.vcx files) or programs (.prg files) as layout elements.  However, using the new design-time architecture, you can use instances of Visual FoxPro classes to define attributes of report layout elements.  These template classes can be attached to the report definition, and dynamically provide formatting changes and method code at run time.  For more information, see <span class="linkTerms"><a href="/html/d64130c7-bb9a-4191-b8b6-4ba430185fe8.htm">Report XML MemberData Extensions</a></span>.</p>
+    </td></tr></table></div>
+  <h1 class="heading">Run-time Output Architecture</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>In earlier versions of Visual FoxPro the Report Engine was <i>monolithic</i>. It handled all processing as a single unit.  When you designed a report you had the ability to attach some code at various points, primarily when the Report Engine began to process, or finished processing, a report layout band.  </p>
+      <p>In Visual FoxPro 9, the Report Engine handles the movement of the record pointer through your report's data scope, and evaluates expressions.  It delegates the process of rendering the results to a new Visual FoxPro baseclass, ReportListener.  Because you can derive classes from ReportListener, you can affect the rendering of each individual object in a report on a much more granular level than before.  For more information, see <span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span>.</p>
+      <img src="../local/Local_2103075027_foxproreportingengineoverview.gif" alt="Visual FoxPro Reporting Engine Overview graphic"></img>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">How to Invoke Object-Assisted Reporting</h3><div class="subSection" xmlns="">
+          <p>You can use the <b>OBJECT [TYPE</b> <span class="parameter">&lt;N&gt;</span><b>]</b> clause on the <b>REPORT FORM</b> or <b>LABEL</b> command to tell the Report Engine what ReportListener-derived object or object type to use. You can also tell the Report Engine to use an application whose name is stored to a system variable, <b>_REPORTOUTPUT</b>, to nominate an appropriate object for you.  If you have <b>SET REPORTBEHAVIOR</b> to the value <code>90</code>, the Report Engine automatically requests the application whose name is stored in <b>_REPORTOUTPUT</b> for an object, each time you issue a <b>REPORT FORM</b> or <b>LABEL</b> command. </p>
+          <img src="../local/Local_1245076765_foxproreportengineprintpath1.gif" alt="Visual FoxPro Reporting Engine Print Path I graphi"></img>
+          <p>If you have invoked a <b>REPORT FORM</b> or <b>LABEL</b> command with the intention of providing an on-screen preview, the Report System invokes another object, the <b>PreviewContainer</b>, to display the preview, after they finish their jobs of evaluating and rendering the report contents.  Because the PreviewContainer is a Visual FoxPro object instance, you can create previews to match a wide variety of specifications and customize them for your applications.  For more information about how to create an object matching the requirements of a PreviewContainer, see <span class="linkTerms"><a href="/html/66975043-814c-4886-901c-53d3924ca1bb.htm">The Preview Container API</a></span>.</p>
+          <img src="../local/Local_-1166517818_foxproreportenginepreviewpath1.gif" alt="Visual FoxPro Reporting Engine Preview Path I grap"></img>
+        </div>
+      <h3 class="subHeading" xmlns="">Report System Processing Modes</h3><div class="subSection" xmlns="">
+          <p>The ReportListener processes a report or label in two different modes, depending on the value of its <span class="linkTerms"><a href="/html/ad1bf074-a169-4fd4-b160-c39bdd8c8402.htm">ListenerType Property</a></span>. You can think of these two modes as <i>print-appropriate</i> and <i>preview-appropriate</i>, or <i>page-at-a-time</i> and <i>all-pages-at-once</i>.  </p>
+          <p>In both modes, your ReportListener-derived class has an opportunity to affect the rendering of each layout element, as each element in each band is processed.  The modes differ in how, and when, your derived class gets access to the rendered results, or output pages, prepared by the ReportListener baseclass.  </p>
+          <p>In page-at-a-time mode, the ReportListener triggers an OutputPage event as it prepares each page, at the same time as it sends each page to the printer or print queue. Your derived class has access only to the page that has just been prepared, and only at that time.  This mode is efficient if you only need access to each page once.  For example, you might be saving each page to disk as an image.  For full information on the capabilities and options available, see <span class="linkTerms"><a href="/html/10e876bb-83c2-4309-8adf-cdd9f565d658.htm">OutputPage Method</a></span>.</p>
+          <img src="../local/Local_1245076766_foxproreportengineprintpath2.gif" alt="Visual FoxPro Reporting Engine Print Path II graph"></img>
+          <p>In the second, all-pages-at-once mode, the ReportListener prepares all pages for rendering and caches them. It does not trigger OutputPage events while it prepares the pages. When the report run concludes, you can invoke the OutputPage method to access any page included in the output, by page number.  You can request pages in any order, multiple times.  </p>
+          <img src="../local/Local_-1166517819_foxproreportenginepreviewpath2.gif" alt="Visual FoxPro Reporting Engine Preview Path II gra"></img>
+          <p>The report is now completely prepared and ready for previewing.  At this point, if you have specified a value of <code>1</code> for ReportListener's Listenertype property, the ReportListener invokes the object referenced in its PreviewContainer property to display the preview.  </p>
+          <p>You can store a reference to any object fulfilling the requirements of the PreviewContainer API in this property. If it does not already have an object reference, the Reportlistener requests an appropriate object reference from an application whose name is stored in another system variable, <b>_REPORTPREVIEW</b>.  </p>
+          <img src="../local/Local_-1166517820_foxproreportenginepreviewpath3.gif" alt="Visual FoxPro Reporting Engine Preview Path III gr"></img>
+          <p>When the entire report is prepared, the ReportListener uses the PreviewContainer's SetReport method.  This action gives the PreviewContainer a reference to the ReportListener, and indicates that the ReportListener's readiness for preview.  The PreviewContainer takes control of the reporting process at this point.  It uses the ReportListener's OutputPage method to request the pages required for display, as the user navigates through the report.</p>
+          <p>For more information about how to leverage the default Report Preview Application or write a replacement, see <span class="linkTerms"><a href="/html/1f297a3c-a6ef-4a14-89a7-14dd7611c2c3.htm">Extending Report Preview Functionality</a></span>. </p>
+          <p>If the user decides to print from the preview interface, the PreviewContainer calls the ReportListener's OnPreviewClose method with appropriate instructions.  The ReportListener resumes control, and prints the cache of pages it previously prepared.  For more information, see <span class="linkTerms"><a href="/html/481b543d-7a57-4a98-91ed-96ec3bac29ca.htm">OnPreviewClose Method</a></span>.</p>
+          <p>This section has given you a tour of the objects that cooperate in Visual FoxPro object-assisted mode reporting.  The next section discusses the events that occur during a report run, while the Report Engine and ReportListener prepare and render the report contents. It gives you the information you need to assess the report status, and write appropriate code, during different stages of preparation.</p>
+        </div>
+    </sections></div><h1 class="heading">Run-time Output Processing</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The following processing narrative describes the full report run. As described in the previous section, there are several ways you can ensure that a <b>REPORT FORM</b> or <b>LABEL</b> command is processed with an object reference.  The different ways of invoking object-assisted reporting do not change the event sequence described in this section.</p>
+      <p>The Report Engine and ReportListener baseclass process the report in a series of events that begins just before the BeforeReport event and finishes just after the AfterReport event.  The ReportListener baseclass also provides two external, or <i>framing,</i> events, LoadReport and UnloadReport that allow your code to pre- and post- process the report. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>For full information about ReportListener member events, refer to the various entries <span class="linkTerms"><a href="/html/a713cbaf-16a7-4d6c-8478-3822006a1d69.htm">ReportListener Object Properties, Methods, and Events</a></span>.</p>
+      </td></tr></table></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Beginning the report run</h3><div class="subSection" xmlns="">
+          <p>When a <b>REPORT FORM</b> or <b>LABEL</b> command is processed, the Report Engine first checks to see if a previous command included the <b>NOPAGEEJECT</b> keyword.  This keyword indicates that multiple reports are being processed together and that some output is already in the queue for eventual display or printing.  </p>
+          <p>If there was no previous <b>NOPAGEJECT</b>, the ReportListener's OutputPageCount property value is reset to <code>0</code>. </p>
+          <p>The Report Engine next creates the ReportListener's special data session and provides its DataSessionID value to the ReportListener, using the ReportListener's FRXDataSession property.  It also assigns the ReportListener's CommandClauses property; although not all CommandClauses properties are immediately available.  For more information, see <span class="linkTerms"><a href="/html/f5f90b33-e6ae-4139-9d13-be1495a87cf6.htm">CommandClauses Property</a></span>.</p>
+          <p>The Engine now invokes the ReportListener's LoadReport event and evaluates the return value of any user code you provide in this event.  If LoadReport returns a value of False (<code>.F.</code>), report processing does not continue.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>If you want to make changes to the report or label table or to the current printer driver, LoadReport is your opportunity to do so.  You can also dynamically change the value of the ReportListener.CommandClauses.Prompt member and other output-target-related ReportListener.CommandClauses members.</p>
+          </td></tr></table></div>
+          <p>After LoadReport, the Engine is ready to investigate the contents of the report or label table.  If specified in the table, the Engine prepares a private data session to hold the report data.  It stores the DataSessionID value for the data to be processed during the report in the ReportListener's CurrentDataSession property.  </p>
+          <p>The Report Engine now switches to the FRXDataSession and provides a read-only copy of the report or label table, using the alias <code>FRX</code>, in this session.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>The Report Engine and ReportListener do not use this copy of the report or label definition table; in fact, they never switch to this session again during the course of the report run.  The Report Engine reads the contents of the table into a separate structure for its own use.</p>
+          </td></tr></table></div>
+          <p>The Report Engine switches the data session back to the CurrentDataSession containing the data to be processed during the report run.  It is now ready to begin its internal processing. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>In this section, you have learned about two data sessions used during a report run (the CurrentDataSession and FRXDataSession). These two data sessions are most critical to understand as you begin to write ReportListener code. However, other data sessions may be involved in the report run.  A later section of this topic describes the relevant types of data sessions in more detail.</p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Beginning the report run's internal processing</h3><div class="subSection" xmlns="">
+          <p>If the ReportListener is set to a ListenerType value of <code>1</code> (printing), and if you have used the <b>PROMPT</b> clause on the report or label processing command, or if you have set the ReportListener.CommandClauses.Prompt value to <code>.T.</code> in the LoadReport event, the <b>Print Setup</b> dialog box is displayed at this time.  The initial values in this dialog box reflect any <b>RANGE</b> instructions you used on the processing command; however the effective print <b>RANGE</b> for the report, and the values of related ReportListener.CommandClauses members, may be altered by user choices in the dialog box. </p>
+          <p>When the user closes the dialog box, the Report Engine opens the print queue, if required, unless the user canceled the print run.  It also checks the current printer settings (even if no printing is requested) to determine the current page dimensions.  If you used the NODIALOG keyword on the processing command but did not set the ReportListener.QuietMode property to True (<code>.T.</code>), the property is automatically set to True (<code>.T.</code>) for the balance of the report run. The Report Engine next calls the BeforeReport event.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>We have now reached the sequence of events that comprises the Visual FoxPro native report run.  The ReportListener GetPageHeight and GetPageWidth methods have valid return values.  All CommandClauses members are prepared. You can use the ReportListener's CancelReport method from now until the end of AfterReport, if you need to interrupt and prematurely end the report run.</p>
+          </td></tr></table></div>
+          <p>After BeforeReport, the Report Engine and ReportListener do their initial evaluation of various aspects of the report or label table.  For example, they check to see whether you have used the system variable <b>_PAGETOTAL</b> in report expressions.  If so, the ReportListener's TwoPassProcess property value is set to True (<code>.T.</code>).  The ReportListener's CurrentPass property value is also set to <code>0</code> at this time.  For more information, see <span class="linkTerms"><a href="/html/969267ef-a2cd-4922-9abe-bb3f3cbd0b60.htm">CurrentPass Property</a></span> and <span class="linkTerms"><a href="/html/1528b967-0bb4-4741-bbbd-347ef1cf45f2.htm">TwoPassProcess Property</a></span>.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You can set the TwoPassProcess property's value to True (<code>.T.</code>) manually if you want to force two passes to occur.  The ReportListener will respect this manual assignment if you set it before calling the <b>REPORT FORM</b> or <b>LABEL</b> command, in the LoadReport event, or the BeforeReport event.  </p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Handling report content</h3><div class="subSection" xmlns="">
+          <p>The Report Engine and ReportListener have finished their setup phase.  They now process all the band events relevant to the report. Between each band's BeforeBand and AfterBand Events, they process each layout element belonging to the band.  Each layout element has the following potential events:</p>
+          <ul><li>
+              <p>An EvaluateContents event, if it is a Field or Expression element.</p>
+            </li><li>
+              <p>An AdjustObjectSize event, if it is a Shape or Image element.  If the Shape or Image does not fit on the page, it is possible for this event to be repeated in additional attempts on subsequent pages.</p>
+            </li><li>
+              <p>Zero to many Render events, for all types of layout elements.  An element does not trigger a Render event if its Print When expression evaluates to True (<code>.T.</code>). Otherwise, it triggers at least one Render event and potentially more, if it spans bands and pages.</p>
+            </li></ul>
+          <p>If the ReportListener.TwoPassProcess property is True (<code>.T.</code>), the Report Engine and ReportListener run through all the band and element events twice.  The first time, they evaluate expressions and placement on output pages without actually rendering anything.  This is a <i>pre-processing</i>, or <i>calculation pass</i>.  It allows the Report Engine to calculate a _PAGETOTAL value for use in rendering output on the second, or <i>rendering</i>, pass.  The pre-processing pass also provides an opportunity for your code to calculate other values.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>You can use the <span class="linkTerms"><a href="/html/4f9bb713-9055-4778-9649-a3cf64216b05.htm">ReportListener Debug Foundation Class</a></span> to examine the report run event processing closely.  Use the class's Verbose property to examine the contents of the ReportListener's CommandClauses member at different points in the result, and receive extended information about various methods' object parameters.</p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Ending the report run</h3><div class="subSection" xmlns="">
+          <p>The final report band processed is either a Page Footer band or a Summary band; even if you use the ReportListener's CancelReport method, the Report System finishes processing a full page before interrupting the report.</p>
+          <p>After the final report band processes, the ReportListener and Report Engine begin clean-up procedures.</p>
+          <p>The report's private data session, if any, is closed before the AfterReport event occurs.  To ensure that the ReportListener always has a valid data session to which it can return, if the report used a private data session, the ReportListener's CurrentDataSession is reset to <code>1</code>, the default value, at this time.  If the report did not have a private data session, the CurrentDataSession is outside the Report System's control, and does not change.</p>
+          <p>The ReportListener's AfterReport event is invoked next.  Following AfterReport, natively-provided output is finalized.  If a print stream was opened for this output, it is closed now.  At this time, the CancelReport method ceases to have any effect on internal processing; there is no more "report run" from the Report Engine's point of view.</p>
+          <p>The ReportListener.QuietMode property value is restored to False (<code>.F.</code>), if it was turned out temporarily as a result of the <b>NODIALOG</b> keyword.</p>
+          <p>If the ReportListener.ListenerType property value is 1, the ReportListener invokes the PreviewContainer to display the report output at this point, followed by UnloadReport after the PreviewContainer returns control to the ReportListener.  If the ListenerType property value is not <code>1</code>, the ReportListener's UnloadReport method occurs immediately.  </p>
+          <p>After the UnloadReport event, the Engine closes the special data session in which it opened a copy of the report or label table.  It resets the ReportListener.FRXDataSession property to its default value, <code>-1</code>, at this time, signifying that there is no valid session fulfilling this purpose between report runs.</p>
+          <p>The ReportListener.TwoPassProcess is reset to its default value of <code>.F.</code>.  By putting this property back into its default state, the ReportListener makes it possible for you to explicitly re-assign this value before the next time you use the ReportListener instance.  The ReportListener.CurrentPass property value is not reset; its current value gives you a way to assess what happened on the previous report run.</p>
+          <p>Unless you used the <b>NOPAGEEJECT</b> keyword on this report run, the ReportListener GetPageWidth and GetPageHeight methods stop proving useful values at this point.</p>
+        </div>
+    </sections></div><h1 class="heading">Data Sessions Associated with Object-Assisted Report Runs</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When each ReportListener event begins, the data session is the one in which the ReportListener object was originally created.  This data session is not always the same data session in which you issued the REPORT FORM or LABEL command.  The <span class="linkTerms"><a href="/html/ad251059-3de1-4928-992c-ddb8be50fce8.htm">ReportListener Base Foundation Class</a></span> uses the term <i>ListenerDataSession</i>, with an associated protected member property, to describe and manipulate the data session in which it originated.  </p>
+      <p>In the framing events of the report run (LoadReport and UnloadReport), you should return to the ListenerDataSession upon completing any code sequence that switches data session.  The Report Engine will expect to find the ReportListener object in this state at the conclusion of these events.  Refer to <span class="linkTerms"><a href="/html/650419ee-d0c5-439a-b452-87b694f1024e.htm">SET DATASESSION Command</a></span> for more information about switching between data sessions.</p>
+      <p>As events progress through the other report events and the Report Engine's internal processing, your ReportListener code normally switches between the data sessions indicated by the ReportListener's <span class="linkTerms"><a href="/html/25c6a3e7-b6c8-4b9b-a3c6-99a84717ab10.htm">CurrentDataSession Property</a></span> and <span class="linkTerms"><a href="/html/7219ea0f-0505-47f9-b6a8-b93142057fa3.htm">FRXDataSession Property</a></span>. Switching between these two data sessions allows you to reference the report's data files as well as the copy of the report or label table as you generate output, as needed.  </p>
+      <p>The Report Engine also provides you with information about a fourth data session: the data session in which you issued the REPORT FORM or LABEL command.  You find this DataSessionID value as a StartDataSession member property of the <span class="linkTerms"><a href="/html/f5f90b33-e6ae-4139-9d13-be1495a87cf6.htm">CommandClauses Property</a></span> object. You do not normally need to reference this fourth data session in ReportListener code.  It is provided in case you need to reference the environment in which the command occurred.  For example, you might want to check the setting of a session-scoped environmental setting such as <b>SET("DELETED")</b>.  For more information, see <span class="linkTerms"><a href="/html/7e728b83-d644-4872-951b-6c7e15368d99.htm">Customizing the Environment of a Data Session</a></span>.</p>
+      <p>The REPORT FORM or LABEL command's StartDataSession may be the same data session as the one referenced by the ReportListener's CurrentDataSession property.  However, if the report table specifies a private data session for the report run, the CurrentDataSession and StartDataSession are not the same.  The StartDataSession may also be the session in which the ReportListener was created, if your ReportListener object is scoped to a form or session object.  However, a ReportListener is often global in scope, for example created by the Report Output Application or by a manager object belonging to your application.  In this case, the StartDataSession and ListenerDataSession are unrelated.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/aec29e01-39c1-4cce-983d-4c536f71626d.htm">How to: Use Data Sessions</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/36753dd4-25b1-412c-854b-256f84e49388.htm">_REPORTOUTPUT System Variable</a></span><br /><span class="linkTerms"><a href="/html/7e0ce0ab-435d-480c-9729-534c0c5a7a4c.htm">_REPORTPREVIEW System Variable</a></span><br /><span class="linkTerms"><a href="/html/cae69569-02c2-4339-8e0c-ad6ced66f6d9.htm">_PAGETOTAL System Variable</a></span><br /><span class="linkTerms"><a href="/html/fa26e69e-1b60-4266-83e6-ab436ecc987b.htm">_PAGENO System Variable</a></span><br /><span class="linkTerms"><a href="/html/1532e732-75f4-4717-83fa-63ebf1bee5fa.htm">Session Object</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/5ba2f0f6-c515-4d48-83b6-5de8e13537ea.htm">Handling Errors During Report Runs</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Understanding Visual FoxPro Object-Assisted Reporting">
+</OBJECT>

@@ -1,0 +1,166 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Visual FoxPro as an Application Back End</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Visual FoxPro as an Application Back End</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>A different way to integrate Visual FoxPro into an enterprise solution is to use it as one component, but not necessarily as the primary application. In effect, you'd be treating it as a back end for an application written using another product. In this case, the user wouldn't directly see Visual FoxPro. Instead, the application's user interface would be written using tools in the other application, and would communicate with Visual FoxPro in the background to get or manipulate data.</p>
+    <p>Visual FoxPro works well in this role because it can make available its database engine, which provides rapid data access to other applications. In addition, Visual FoxPro can make its objects and command sets available to other programs, including custom objects that you create.</p>
+  <h1 class="heading">Making Visual FoxPro Data Available to Other Programs</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>One way for an enterprise-wide application to take advantage of Visual FoxPro is to use the Visual FoxPro database engine for storing and managing data. This provides high-performance storage and query capability to other programs.</p>
+      <p>Programs can connect to Visual FoxPro data using the Visual FoxPro OLE DB provider. This provider exposes the Visual FoxPro database engine to standard Visual FoxPro SQL commands.</p>
+      <p>For example, an application might use Microsoft Excel as a calculation tool for complex data analysis. If the data to be manipulated is highly fluid, it might make sense not to store it in a worksheet, but in a database. The worksheet could then be written to use the Visual FoxPro OLE DB provider to connect to the database, extract the relevant information, and display it in a worksheet for further processing.</p>
+      <p>Another example might be a kiosk application, such as an information stand at an airport or convention center. You could create the information display using a multimedia authoring program. But if some of the data in the application changed often, it would be cumbersome to change pages in the presentation. Instead, the presentation program could connect to a Visual FoxPro database using the OLE DB provider, and then extract data at run time.</p>
+      <p>For more information, see the Visual FoxPro OLE DB provider help topics.</p>
+    </div><h1 class="heading">Making Visual FoxPro Objects and Commands Available to Other Programs</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>In addition to making Visual FoxPro data available to other programs as part of an enterprise solution, you can expose Visual FoxPro objects and commands. Other applications can call the methods and set properties of objects in Visual FoxPro, including not only the base objects, but objects defined in custom classes.</p>
+      <p>For example, you can create an application in Microsoft Excel that stores data in a Visual FoxPro database. In addition to simply reading and writing the data, Microsoft Excel can call Visual FoxPro commands to display a form as a dialog box. One use might be to gather data for a parameterized view.</p>
+      <p>Another way to expose Visual FoxPro objects is to create an Automation server. This allows you to create application-specific objects that can perform almost any function that you can program Visual FoxPro to accomplish, with the further advantage that you can distribute the server.</p>
+      <p>One use for a custom server is to create an object that includes a set of business rules that ensure the integrity of data that another application passes to it. For example, you can create an object in Visual FoxPro for storing employee information that not only validates that the application has passed valid employee information, but checks the user's access level to ensure that the user has security access to make the employee changes.</p>
+      <p>A custom server can also expose an object that incorporates complex logic for updating or reading information. For example, an order entry object might not only be able to store the order, but could also maintain a transaction log of orders, update inventory, calculate a sales commission, and so on.</p>
+      <p>This type of Automation server is ideal for creating the middle layer of a three-tiered enterprise application. In this model, the data forms the lowest level and the application forms the highest. The functionality is in the middle, and provides a specific, application-independent view of the data that incorporates business rules (or other data processing capabilities) that don't properly belong with the data or with the application alone.</p>
+      <p>For information about creating custom Automation servers, see <a href="/html/b1ca676d-68a8-4ebe-aa68-ce6ac2083c59.htm">How to: Create Automation Servers</a> in <a href="/html/66d47bc7-f93b-483b-b39f-ebcc9e0a1be4.htm">Sharing Information and Adding OLE</a>.</p>
+    </div><h1 class="heading">Creating a Data Warehouse Using Visual FoxPro</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>In addition to creating your application in Visual FoxPro, you can use the program to create and maintain a data warehouse, or version of your data that is optimized for reporting. To create a data warehouse, you make a copy of the data required for reporting, and then make it available to users who need it. By maintaining this data separately from your live data, you can:
+</p>
+      <ul><li>
+          <p>Structure it to make reporting easier or faster than if users created reports from the live data.</p>
+        </li><li>
+          <p>Place data for reports in a location separate from the live data, which reduces contention for data, improves performance, and can make data available to users who shouldn't see live data for security purposes.</p>
+        </li></ul>
+      <p>A data warehouse is a snapshot of the data at the time you create it. You refresh the data in the warehouse periodically, scheduling the update according to the reporting needs for your application.</p>
+      <p>For example, imagine that you're creating an application to manage a library, including an inventory of materials. During the day, the system is in constant use as patrons check materials in and out, and query the system to locate or reserve books. In addition to managing these individual transactions, librarians want to be able to analyze their library, to determine facts such as what materials are the most popular, what books are overdue, and so on.</p>
+      <p>To help with the analysis, the application can create a data warehouse out of the transaction information. The application can warehouse the data periodically, perhaps every night, and the librarians can create queries without affecting the performance of the system during the day. In addition, the data warehouse can exclude details about the patrons using the library, because this information isn't required for the analysis and might be considered confidential information.</p>
+      <p>To get the most benefit from a data warehouse, you create it on a server separate from the live data. If the live data and data warehouse are on the same server, you can still get the benefit of having optimized data in the warehouse. However, as users make queries against the warehouse, they can generate a large amount of network traffic, which might affect performance of the live system.</p>
+      <p>When you create the data warehouse, you can simply copy the live files over to parallel files in the data warehouse. Alternatively, you can restructure the data in the warehouse to optimize it for reporting. For example, you might create indexes for the warehouse data that reduce reporting overheard.</p>
+      <p>As another example, data in the live application should be normalized in order to avoid data duplication. However, in the data warehouse it might be useful to combine tables that would otherwise be separate; this can eliminate the need to join tables, making it easier for less experienced users to create reports.</p>
+      <p>You can also match the level of detail in the data warehouse to the reporting requirements of your application. For the most flexibility, you should store the same level of detail in the data warehouse as you have in the live data. However, if users wanted to create only summary reports (such as spreadsheets or charts), you could roll up detail data from the application and store only summary data in the data warehouse.</p>
+    </div><h1 class="heading">Using Visual FoxPro as a World Wide Web Search Engine</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>If your enterprise solution involves creating a World Wide Web server for the Internet, you can incorporate Visual FoxPro into the application as a search engine. This allows you to make the power of your Visual FoxPro database available to anyone who can access your Web server, whether on the Internet or via a company intranet.</p>
+      <p>For example, imagine that as part of your company-wide intranet you want to make available an employee directory. Employees could point their browsers to a "Search for Employee" page, which would display a page that looks like a Visual FoxPro form, containing text boxes to enter criteria. To perform a search, users would enter the employee's name, phone extension, department, position, or any other information they had available, and then choose a Search Now button. In a moment or two they would see a listing of the employees who met the search criteria. They could then save this listing as a text file that could then be imported into another program, such as a word processor.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Understanding Visual FoxPro as a Web Search Engine</h3><div class="subSection" xmlns="">
+          <p>In general, in order to use Visual FoxPro as an information server for the Web, you need these components:
+</p>
+          <ul><li>
+              <p>An existing Web server with HTTP service, running on Microsoft Windows NT or Windows 2000 operating system.</p>
+            </li><li>
+              <p>A Visual FoxPro application that can be called as an Automation server. This application can run on any server accessible to the Web server.</p>
+            </li><li>
+              <p>A means for displaying search results, which usually consists of a Web page template into which you can insert data.</p>
+            </li></ul>
+          <p>The usual sequence of events that involve a Visual FoxPro search on the Web are these:
+</p>
+          <ol><li>
+              <p>The user displays your application's search page by pointing a Web browser to it. The search page includes any text and graphics that you want, plus text boxes in which users can enter search text.</p>
+            </li><li>
+              <p>The user chooses a "Search Now" button. The data from the completed form is sent to the Web server for processing, along with the name of your Web page search application.</p>
+            </li><li>
+              <p>The Web server calls your application using ISAPI (Internet Server API) protocol, passing to it a parameter containing the search information.</p>
+            </li><li>
+              <p>Your application searches the database. When it gets results, it inserts them into a Web page template, and then sends the Web page back to the server as a stream of characters.</p>
+            </li><li>
+              <p>The Web server sends the results page to the browser that initiated the search.</p>
+            </li><li>
+              <p>The browser displays the results page for the user.</p>
+            </li></ol>
+          <p>If you've created Web pages, most of the steps in this process are probably familiar. For example, you might already know how to create Web pages. Even if you aren't already familiar with Web page design, you'd probably find the process of creating these pages relatively easy.</p>
+          <p>For an example of how to use Visual FoxPro as a Web search engine, see the sample Foxisapi.dll in the Visual FoxPro ...\Samples\Servers\Foxisapi directory. Refer to the Readme.txt file in that directory for details about how to run the example.</p>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/b1ca676d-68a8-4ebe-aa68-ce6ac2083c59.htm">How to: Create Automation Servers</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/19f94aaf-2a14-40d7-89b5-d469b94c2ad2.htm">Design Considerations</a></span><br /><span class="linkTerms"><a href="/html/e7320bd3-f412-466d-8f7b-a9db093db605.htm">Visual FoxPro as an Application Front End</a></span><br /><span class="linkTerms"><a href="/html/34f670aa-3cbe-4d74-ad0f-8575aadab2de.htm">Planning Enterprise Applications</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/66d47bc7-f93b-483b-b39f-ebcc9e0a1be4.htm">Sharing Information and Adding OLE</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Visual FoxPro as an Application Back End">
+</OBJECT>

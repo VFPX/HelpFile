@@ -1,0 +1,126 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Optimizing Applications in Multiuser Environments</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Optimizing Applications in Multiuser Environments</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When writing applications for a multiuser environment, paying attention to performance is particularly important because inefficiencies can multiply. When multiple users access data, your application must handle concurrency and network access issues. </p>
+    <p>You can use the following suggestions to improve performance and handle these issues:
+</p>
+    <ul><li>
+        <p>Use table indexing and sorting appropriately.</p>
+      </li><li>
+        <p>Adjust the interval for lock attempts.</p>
+      </li><li>
+        <p>Use transaction processing efficiently.</p>
+      </li></ul>
+    <p>You might also benefit from the suggestions for working with data stored on remote servers. For details, see <a href="/html/3d0d7c35-77c3-4930-8829-4d6e1da12359.htm">Optimizing Access to Remote Data</a>.</p>
+  <h1 class="heading">Indexing and Sorting Tables Appropriately</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When the data in a table is relatively static, processing sorted tables sequentially without setting an order improves performance. However, this does not mean that sorted tables cannot or should not take advantage of index files, for example, the <b>SEEK</b> command requires an index and locates records quickly. However, after you find a record using the <b>SEEK</b> command you can turn ordering off. </p>
+    </div><h1 class="heading">Adjusting the Interval for Lock Attempts</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>If your application attempts to lock a record or table and is unsuccessful, you can specify that Visual FoxPro repeat the attempt automatically after a small interval. However, each lock attempt results in network traffic, adding congestion to any existing network traffic, and results in overall diminished performance for all users. To help avoid this scenario, you can call the <b>SYS(3051) - Set Lock Retry Interval </b>function to adjust the interval between lock attempts. Using a larger interval, which results in fewer retries per second, reduces network traffic and increases performance.</p>
+      <p>For more information, see <a href="/html/1eac4a6e-a854-4fb0-921a-91e53d09eb40.htm">SYS(3051) - Set Lock Retry Interval</a>.</p>
+    </div><h1 class="heading">Using Transaction Processing Efficiently</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When using transaction processing, design transactions so that they minimize their impact on other users. Transactions should begin and end as close to the actual data update as possible. An ideal transaction contains only data update statements.</p>
+      <p>When you append records to a table, Visual FoxPro locks the table header. The header remains locked for the duration of the transaction, preventing other users from also appending records. While a transaction remains open, any locks set during the transaction remain locked until the transaction is committed or rolled back. Even if you call an explicit <b>UNLOCK</b> command, locks remain until you call the <b>END TRANSACTION</b> command or <b>ROLLBACK</b> command. For more information, see <a href="/html/1949c546-100e-41b1-b768-4a53d112be24.htm">UNLOCK Command</a>, <a href="/html/73bf4877-61c4-4519-9759-4e0ad5cff7c7.htm">END TRANSACTION Command</a>, and <a href="/html/a42e8f03-1f50-4173-82e7-160c65e6aecb.htm">ROLLBACK Command</a>.</p>
+      <p>For example, suppose you add transaction processing to table updates made from a form. Instead of opening a transaction, running the form, and then committing the transaction when the form is closed, put transaction processing statements in the <b>Click</b> event code for a Save command button as shown in the following lines of sample code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BEGIN TRANSACTION
+UPDATE Products SET reorder_amt = 0 WHERE discontinued = .T.
+END TRANSACTION</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/378f1d4f-1c1d-43c2-ba38-e24f76da3539.htm">Optimizing Visual FoxPro in a Multiuser Environment</a></span><br /><span class="linkTerms"><a href="/html/3d0d7c35-77c3-4930-8829-4d6e1da12359.htm">Optimizing Access to Remote Data</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Optimizing Applications in Multiuser Environments">
+</OBJECT>

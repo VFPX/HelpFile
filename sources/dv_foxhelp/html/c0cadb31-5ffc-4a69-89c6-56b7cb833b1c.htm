@@ -1,0 +1,152 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Main Files in Applications</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Main Files in Applications</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The main file in an application can be a program or a form. Though the best choice for a main file is a program (.prg) file, you can combine the functionality of a main program and the user interface that the user initially sees by using a form. When users run your application, Visual FoxPro launches the main file in your application and runs all other components as needed.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>If you use a program file as the main file in your application, make sure that it contains commands to handle the major tasks in your application. However, the main file does not need to issue commands directly to accomplish all the tasks. For example, the main file can call procedures or functions to handle tasks such as initializing the environment and cleaning up memory.</p>
+      <p>The following list contains and describes major tasks and the order to perform them in a main program file:
+</p>
+      <ol><li>
+          <p>Initialize the environment for the application by opening databases, declaring variables, and so on. For more information, see <a href="/html/42ba3171-3602-456f-b1b3-288f66472ada.htm">How to: Initialize the Environment</a>.</p>
+        </li><li>
+          <p>Establish and display the initial user interface by calling a menu or form.
+</p>
+          <p>The initial user interface can be a menu, form, or any other user component. Sometimes, an application displays login box to request user credentials before displaying the opening menu or form. 
+</p>
+          <p>You can initiate the user interface in the main program by using the <b>DO</b> command to run a menu or the <b>DO FORM</b> command to run a form. For example, the following line of code runs a form called Startup:
+</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO FORM BeginApp.scx</pre></td></tr></table></span></div>
+          <p>For more information, see <a href="/html/c4dda428-55f2-4610-9d0f-bccc53023a41.htm">DO Command</a> and <a href="/html/a727f12a-4d9f-45ca-aa01-c1bea7de9749.htm">DO FORM Command</a>.
+</p>
+        </li><li>
+          <p>Detect and respond to user actions by establishing and control the event loop using the <b>READ EVENTS</b> command. For more information, see <a href="/html/20fe8641-e263-4c6a-ae34-e8032987c404.htm">How to: Control the Event Loop</a>.</p>
+        </li><li>
+          <p>End event processing when the user quits the application using a menu command, such as an Exit command, or an Exit button. For more information, see <a href="/html/20fe8641-e263-4c6a-ae34-e8032987c404.htm">How to: Control the Event Loop</a>.</p>
+        </li><li>
+          <p>Restore the environment when the user quits the application.
+</p>
+          <p>Typically, it is recommended that you save default settings of the environment in public variables, a custom class, or as properties of an application object so that you can restore these values when quitting the application. 
+</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>If you initialize the environment using a different program than the one you use to restore it, make sure you can access the values you stored. For example, suppose you initialize the environment by calling one procedure but restore the environment by calling another. Make sure to store the values you want to restore in public variables, custom classes, or as properties of an application object.</p>
+          </td></tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Variable names used with macro substitution should not contain the <code>m.</code> prefix because the period assumes variable concatenation and produces a syntax error.</p>
+          </td></tr></table></div>
+        </li></ol>
+      <p>For example, a main program file might contain the following lines of code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO SETUP.PRG
+DO MAINMENU.MPR
+READ EVENTS
+DO CLEANUP.PRG</pre></td></tr></table></span></div>
+      <p>These lines of code perform the following tasks:
+</p>
+      <ul><li>
+          <p>Run a setup program to initialize the environment</p>
+        </li><li>
+          <p>Run a menu file to display an application menu.</p>
+        </li><li>
+          <p>Call <b>READ EVENTS</b> to establish the event loop.</p>
+        </li><li>
+          <p>Run a cleanup program to restore the environment.</p>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/0691ffc4-004f-4219-8074-734c41f10e17.htm">How to: Set the Starting Point</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/502440d4-5037-4ef9-a68f-a0fbe58843e3.htm">Working with Programs</a></span><br /><span class="linkTerms"><a href="/html/23c31bf8-0736-493d-9d21-3fd54abc309c.htm">Working with Forms</a></span><br /><span class="linkTerms"><a href="/html/48601210-e705-468b-bd07-9b02f9259475.htm">Configuring an Application</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Main Files in Applications">
+</OBJECT>

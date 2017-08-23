@@ -1,0 +1,538 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Filer.dll</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Filer.dll</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Located in the Visual FoxPro \Tools\Filer directory, Filer.dll is a base component that provides a file and text search engine without a user interface. You can distribute Filer.dll and its companion files, Filer.ico, Filer.scx, and Filer.sct, with your Visual FoxPro run-time applications. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>These files are unsupported. Technical support is not available for problems you encounter when using these files.</p>
+    </td></tr></table></div>
+    <p>For more information about using Filer.dll, see the following sections:
+</p>
+    <ul><li>
+        <p>
+          <a href="#newfilerdllanchor1">Creating a Filer Object</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#newfilerdllanchor3">Creating a User Interface for Filer</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#newfilerdllanchor2">Using Filer Object Properties and Methods</a>
+        </p>
+      </li></ul>
+  <a name="newfilerdllanchor1"></a><h1 class="heading">Creating a Filer Object</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can use Filer.dll to programmatically create an instance of Filer to search for and manipulate files without any input from a user. Filer.dll also includes support for searching text strings in files and opening multiple files for editing. </p>
+      <p>Filer.dll is a COM object and supports Automation. Therefore, you can create an instance of Filer for other Automation servers such as Microsoft Visual Basic and Microsoft Excel. </p>
+      <h3 class="procedureSubHeading">To create an instance of the Filer search engine</h3><div class="subSection"><ul><li>
+            
+              <p>Include the following line of code to create an instance of Filer. 
+</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oMyFiler = CREATEOBJECT('Filer.FileUtil')</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>To create an instance of Filer for other Automation servers, you can use similar syntax.</p>
+    </div><a name="newfilerdllanchor3"></a><h1 class="heading">Creating a User Interface for Filer</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro includes a sample form, Filer.scx (and Filer.sct), to show how you can create a user interface for Filer. When you run the form, the File Finder dialog box appears, and Filer is added to the Visual FoxPro Tools menu for the current Visual FoxPro session. </p>
+      <h3 class="procedureSubHeading">To run the Filer form</h3><div class="subSection"><ul><li>
+            
+              <p>Run the <b>DO FORM</b> command as follows:
+</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO FORM (HOME(1) + 'Tools\Filer\Filer.scx')</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>For more information, see <a href="/html/5fa80446-af64-452d-a1bc-e2ea00194dff.htm">File Finder Dialog Box</a>. </p>
+      <h3 class="procedureSubHeading">To view the code behind or modify the Filer form</h3><div class="subSection"><ul><li>
+            
+              <p>Run the <b>MODIFY FORM</b> command as follows:
+</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>MODIFY FORM (HOME(1) + 'Tools\Filer\Filer.scx')</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+    </div><a name="newfilerdllanchor2"></a><h1 class="heading">Using Filer Object Properties and Methods</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The Filer object has properties and methods that you can use, for example, to specify file search conditions and run a file search. </p>
+      <p>When running a file search using the Filer method, Find, a Files collection object is created. The Files collection object has properties that you can use to determine information about the files that match search conditions. The Files collection object also has methods you can use to open or delete matching files.</p>
+      <p>The following example demonstrates how you can search for and open text files from Visual FoxPro.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oMyFiler = CREATEOBJECT('Filer.FileUtil')
+oMyFiler.SearchPath = HOME() &amp;&amp; Point search path to home directory.
+oMyFiler.FileExpression = '*.TXT' &amp;&amp; Specify text file search.
+oMyFiler.Find(0) &amp;&amp; Search and discard last collection
+FOR nFileCount = 1 TO oMyFiler.Files.Count
+   oMyFiler.Files.Item(nFileCount).Edit &amp;&amp; Open files.
+ENDFOR</pre></td></tr></table></span></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Filer Object Properties</h3><div class="subSection" xmlns="">
+          <p>The following table describes the properties associated with the Filer object.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Property
+                </th>
+                <th>
+                  Data Type
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>SearchPath</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The folder from which the search starts. Universal naming conventions (UNC) are supported.
+Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FileExpression</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The file search mask that can include multiple masks separated by semicolons (;). For example, the file search mask *.scx; *.sct specifies to search for all files with the extensions .scx and .sct.
+The default file search mask is *.*.
+Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SubFolder</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>A numeric value that specifies if a recursive search is performed from the folder specified with the SearchPath property.
+If SubFolder is 0, the file search is performed only in the folder specified with the SearchPath property. If SubFolder is 1, the file search is performed in the folder specified with the SearchPath property and all its subfolders. Note that the Filer ignores System folders.
+The default value is 0.
+Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SearchText1</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>A text string to search for in the files that match the file search mask specified by the FileExpression property.
+The default value is the empty string.
+Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SearchText2</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>An additional text string to search for in the files that match the file search mask specified by the FileExpression property. Ignored if SearchText1 contains the empty string.
+The default value is the empty string.
+Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SearchText3</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>An additional text string to search for in the files that match the file search mask specified by the FileExpression property. Ignored if SearchText1 and SearchText2 contain the empty string.
+The default value is the empty string.
+Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>IgnoreCase</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>A numeric value specifying whether or not case is ignored for text in the text strings specified in SearchText1, SearchText2, and SearchText3. If IgnoreCase is 0, case isn't ignored (upper- and lower-case are significant). If IgnoreCase is 1, case is ignored.
+The default value is 1.
+Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>WholeWords</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>A numeric value specifying whether or not the text in the text strings specified in SearchText1, SearchText2, and SearchText3 must match whole words for the search to be successful. If WholeWords is 0, the text in the text strings do not have to match whole words for the search to be successful. If WholeWords is 1, the text in the text strings must match whole words for the search to be successful.
+The default value is 0.
+Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SearchAnd</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>A numeric value specifying whether or not all the text in the text strings specified in SearchText1, SearchText2, and SearchText3 must match for the search to be successful. If SearchAnd is 0, the search is successful if any of the text in the text strings matches. If SearchAnd is 1, the search is successful only if all of the text in the text strings matches.
+The default value is 0.
+Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Editor</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The editor in which files are opened with the Files collection Open method. Ignored if the IsHostedByFox property is 1.
+The default editor is Notepad.
+Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>IsHostedByFox</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>A numeric value indicating the client that instantiated Filer.dll. If IsHostedByFox is 1, the client is Visual FoxPro, and the Visual FoxPro editor is used to open files. If IsHostedByFox is 0, the client is an application other than Visual FoxPro, and the editor used to open files is specified by the Editor property.
+The default value is 1 in Visual FoxPro.
+Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SortBy</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>A numeric value that specifies the order in which the Files collection is sorted. The following table lists the values for the SortBy property and the order in which the files are sorted.
+0   No order
+1   Path and file name
+2   File name
+3   File extension
+4   File size
+5   File last write date
+6   File last access date
+7   File creation date
+8   File attributes
+The default value is 1.
+Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SortDirection</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>A numeric value that specifies if the Files collection is sorted in ascending or descending order. If SortDirection is 0, the Files collection is sorted in ascending order. If SortDirection is 1, the Files collection is sorted in descending order.
+The default value is 0.
+Read/write.</p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Filer Object Methods</h3><div class="subSection" xmlns="">
+          <p>The following table describes the methods associated with the Filer object.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Method
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>Find(<i>nValue</i>)</p>
+              </td>
+              <td>
+                <p>A method that performs the file search and creates a Files collection. The Find method contains a numeric value indicating the number files in the Files collection.</p>
+                <p>
+                  <i>nValue</i> is a numeric value that specifies if Files collections from previous searches are discarded. If <i>nValue</i> is 0, the Files collections from previous searches are discarded. If <i>nValue</i> is 1, the Files collection created by the current search is appended to the previous searches.</p>
+                <p>Note that <i>nValue</i> is not optional.</p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Files Collection Objects</h3><div class="subSection" xmlns="">
+          <p>The following table describes the object references associated with the Files collection.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Object
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>Item(<i>nValue</i>)</p>
+              </td>
+              <td>
+                <p>An object reference to a file in the Files collection. <i>nValue</i> is an index to a file in the Files collection. <i>nValue</i> begins at 1, and continues to the number of files in the Files collection. You can use the Count property, described below, to determine the number of files in the Files collection.</p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Files Collection Properties</h3><div class="subSection" xmlns="">
+          <p>The following table describes the properties associated with the Files collection.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Property
+                </th>
+                <th>
+                  Data Type
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>Count</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>Contains the number of files in the Files collection.
+Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Name</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The name of the file, excluding the path.
+Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Size</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The size of the file in bytes.
+Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SizeHigh</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The high 4 bytes of the file size if the file size is greater than 4 gigabytes.
+Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Attr</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The Windows file attributes for a file. The following is a list of numeric values for typical file attributes.
+0   No attributes set
+1   Read-Only
+2   Hidden
+4   System
+32   Archived
+The value of Attr can be the sum of several file attributes. For example, if Attr is 7 (1+2+4), the file is a read-only, hidden system file.
+For more information about the other file attributes for which Attr returns values, see the GetFileAttributes function described in the Microsoft Developer's Network library.
+Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DateTime</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The time stamp assigned by Windows to a file when it is created.
+The integer portion of the time stamp is the number of days since 12/30/1899, and the remainder is the fractional remainder of the day from which you can determine the time when the file was created.
+The Filer form, Filer.scx, contains a user-defined method called GetTime that demonstrates how you can determine the date and time a file was created from the DateTime property.
+Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>LastAccessTime</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The time stamp assigned by Windows to a file when it is was last accessed.
+Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>LastWriteTime</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>The time stamp assigned by Windows to a file when it is was last written to.
+Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>AlternateName</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The short name of the file if the file name is longer than the MS-DOS® 8.3 character naming convention.
+Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Path</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>The full path to file.
+Read-only.</p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Files Collection Methods</h3><div class="subSection" xmlns="">
+          <p>The following table describes the methods associated with the Files collection.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Method
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>Edit</p>
+              </td>
+              <td>
+                <p>Opens the specified file for editing. If the IsHostedByFox property is 1 (the default for Visual FoxPro), the file is opened in the Visual FoxPro editor. If the IsHostedByFox property is 0, the file is opened in the editor specified with the Editor property (NotePad by default).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Delete</p>
+              </td>
+              <td>
+                <p>Deletes the specified file from disk. The file isn't placed in the Recycling Bin.</p>
+              </td>
+            </tr></table></div>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/932a73fb-6354-402b-bbb2-08386d41fdae.htm">CREATEOBJECT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/a727f12a-4d9f-45ca-aa01-c1bea7de9749.htm">DO FORM Command</a></span><br /><span class="linkTerms"><a href="/html/589df263-68a2-4a04-8f1e-9e41aef624af.htm">MODIFY FORM Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/d4e67d3d-4d57-4b94-b908-3f1154ebd0f6.htm">Utility Programs</a></span><br /><span class="linkTerms"><a href="/html/f065a4a0-42b3-4c5a-95dc-659f91ad398b.htm">Development Productivity Tools</a></span><br /><span class="linkTerms"><a href="/html/08c896ea-fc01-40b9-a3a5-37160521d180.htm">Automation and COM Servers</a></span><br /><span class="linkTerms"><a href="/html/44a57df6-33fa-419a-a650-542f2ad28148.htm">Distributing Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Filer.dll">
+</OBJECT>

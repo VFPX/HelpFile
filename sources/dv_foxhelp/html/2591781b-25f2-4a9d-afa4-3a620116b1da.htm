@@ -1,0 +1,862 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>MemberData Extensibility</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">MemberData Extensibility</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro 9.0 provides extended metadata attributes for class members. Through this new extensibility model, you now have the ability to extend the functionality of class properties, methods, and events, allowing you to create design-time enhancements such as the following:</p>
+    <ul><li>
+        <p>Specify a custom property editor.</p>
+      </li><li>
+        <p>Add a property, event, or method to the new Favorites tab in the Properties window.</p>
+      </li><li>
+        <p>Control the display (capitalization) of a custom property or method in the Properties window and IntelliSense.</p>
+      </li><li>
+        <p>Extend with user-defined attributes.</p>
+      </li></ul>
+  <h1 class="heading">MemberData Extensible Model</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Extensibility is provided through MemberData which uses an XML string to specify the metadata settings for class properties and methods. </p>
+      <p>The customization you add to _MemberData is at the class and global levels. The class level always overrides the global level. At the class level, support is handled by the <span class="linkTerms"><a href="/html/58210a8f-d472-4a38-a9f3-caf58c0914b3.htm">_MemberData Property</a></span>. This property contains an XML string with the actual member metadata. As a property, it is inherited and overridden by subclasses. At the global level, MemberData is specified in special Foxcode.dbf records.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">MemberData Inheritance</h3><div class="subSection" xmlns="">
+          <p>The inheritance structure for MemberData traverses the following path:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Class -&gt; Container -&gt; Global</pre></td></tr></table></span></div>
+          <p>The inheritance behavior is similar to (but not the same as) standard object-oriented programming inheritance. Visual FoxPro will first look for MemberData at the Class level along the parent hierarchy. If the particular MemberData attribute or tag is not found, then the Containership hierarchy is searched (from inner container to outer). Finally, if the search is not successful at the Container level, then MemberData is searched for at the Global level (the table specified in the _FOXCODE system variable). It is important to understand that searching occurs for a particular attribute or tag within the MemberData XML (not just the existence of MemberData itself). Therefore, it is possible to have MemberData that spans multiple locations. The following example illustrates this.</p>
+          <p>A form (Myform) containing a pageframe (Mypageframe) that has a button (Mycmd) which is inherited from _commandbutton in FFC\_base.vcx has a property called “Myprop” with MemberData associated with it. The MemberData Hierarchy for Myprop is as follows:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>** Class Level - Mycmd (Myclasses.vcx)
+&lt;memberdata name="Myprop" display="MYProp" type="property"/&gt;
+** Class Level - _commandbutton (_base.vcx)
+&lt;memberdata name="Myprop" display="MYPROP" type="property"/&gt;
+** Container Level - mypageframe (myclasses.vcx)
+&lt;memberdata name="Myprop" favorites="True" display="myPRop" type="property"/&gt;
+** Container Level - myform (myclasses.vcx)
+&lt;memberdata name="Myprop" favorites="False" helpfile="Myhelp.chm" type="property"/&gt;
+** Global Level - foxcode.dbf
+&lt;memberdata name="Myprop" type="property" display="MYPROP" script="DO (_CODESENSE) WITH 'RunPropertyEditor','','MYPROP'"/&gt;</pre></td></tr></table></span></div>
+          <p>Based on the priority of (Class -&gt; Container -&gt; Global), the current values for Myprop MemberData settings are as follows:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>display="MYProp"
+favorites="True"
+script="DO (_CODESENSE) WITH 'RunPropertyEditor','','myprop'"
+helpfile="myhelp.chm"   (note: this is a custom user-defined attribute)</pre></td></tr></table></span></div>
+        <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <h4 class="subHeading" xmlns="">Remarks</h4><div class="subSection" xmlns="">
+              <p>MemberData can contain XML as defined by the MemberData XSD Schema described below.</p>
+              <p>MemberData is case-sensitive. Attributes such as Favorites must be specified as “favorites.” Values are also case-sensitive (e.g., favorites=”True”).</p>
+              <p>MemberData does not need to be set for each defined attribute or tag. If a particular requested MemberData attribute or tag is not found at the current level, other MemberData along the inheritance path is searched.</p>
+              <p>If the MemberData XML contains an Override attribute set to True, additional inheritance path searching is suspended beyond that point.</p>
+              <p>If the MemberData is not valid XML, the entire XML is ignored and the search continues along the inheritance path.</p>
+              <p>If an entry in MemberData does not contain a valid value (e.g., favorites=”123”), the entry is ignored. However, the search is also suspended (similar to having Override attribute set to True).</p>
+            </div>
+        </sections></div>
+    </sections></div><h1 class="heading">FOXCODE.dbf, the Global Store</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>FOXCODE.dbf, the global store, is a Visual FoxPro table that stores IntelliSense information. If a property or method specified in the _MEMBERDATA property cannot be found in its inheritance tree, FOXCODE.dbf is searched. Because FOXCODE.dbf is a global store, any property or method setting applies to all Visual FoxPro properties or methods unless the _MEMBERDATA property is used to override the FOXCODE.dbf settings.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>For events, only the <b>favorites</b> attribute is recognized. The <b>favorites</b> attribute determines if a property, event, or method appears in the Favorites tab in the Properties window.</p>
+      </td></tr></table></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">FOXCODE.dbf MEMBERDATA Format</h3><div class="subSection" xmlns="">
+          <p>The following table describes the format in which MemberData information is stored in FOXCODE.dbf. Each MemberData entry requires a single record with a Type field set of "E."</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Field Name</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Value</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Type</p>
+              </td>
+              <td>
+                <p>E</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Abbrev</p>
+              </td>
+              <td>
+                <p>&lt;name&gt;</p>
+              </td>
+              <td>
+                <p>Name of the property, event<sup>1</sup>, or method.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Cmd</p>
+              </td>
+              <td>
+                <p>{command}</p>
+              </td>
+              <td>
+                <p>Script to run for the property or method.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Tip</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+              <td>
+                <p>MemberData XML string for the property or method.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Data</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+              <td>
+                <p>Contents of the script to run for a custom property editor.</p>
+              </td>
+            </tr></table></div>
+          <p>
+            <sup>1</sup> For events, only the <b>favorites</b> attribute is stored. The attribute is specified in the MemberData XML string in the Tip field.</p>
+        </div>
+    </sections></div><h1 class="heading">MemberData XML Content Definition</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The following table lists the reserved XML elements and attributes recognized by Visual FoxPro 9.0. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>You can include MemberData XML with your own custom elements and attributes which Visual FoxPro will preserve but ignore.</p>
+      </td></tr></table></div>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Element</b>
+              
+            </th>
+            <th>
+              
+                <b>Attribute</b>
+              
+            </th>
+            <th>
+              
+                <b>Parent</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>VFPData</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>Root element denoting the metadata for a class.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>memberdata</p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>VFPData</p>
+          </td>
+          <td>
+            <p>An element containing metadata for a specific member. A member is defined as a property or method.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>memberdata</p>
+          </td>
+          <td>
+            <p>
+              <b>name</b>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>Name of the member (for example, Caption or MyProperty).</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>memberdata</p>
+          </td>
+          <td>
+            <p>
+              <b>type</b>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>Property, event, or method.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>memberdata</p>
+          </td>
+          <td>
+            <p>
+              <b>display</b>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>Visual representation of member. This affects the display in the Properties window as well as in IntelliSense.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>memberdata</p>
+          </td>
+          <td>
+            <p>
+              <b>favorites</b>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>True or False.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>memberdata</p>
+          </td>
+          <td>
+            <p>
+              <b>override</b>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>True or False.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>memberdata</p>
+          </td>
+          <td>
+            <p>
+              <b>script</b>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>Script method to execute.</p>
+          </td>
+        </tr></table></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">MemberData XSD Schema</h3><div class="subSection" xmlns="">
+          <p>The following is the MemberData XSD schema Visual FoxPro employs. Descriptions of special attributes are included in the schema.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The VFP MemberData schema shown below includes two MemberData document variants: a sequence of <code>memberdata</code> elements supported for use with Visual FoxPro classes, and a sequence of <code>reportdata</code> elements supported for use in extending the Visual FoxPro Reporting System.  Visual FoxPro does not use <code>reportdata</code> elements directly, but the parallel document design allows you to use similar mechanisms to parse both types of extensions and store them in a common global store.  Like class memberdata, reporting MemberData can be used both at design time and run time. For more information, see <span class="linkTerms"><a href="/html/d64130c7-bb9a-4191-b8b6-4ba430185fe8.htm">Report XML MemberData Extensions</a></span>.</p>
+          </td></tr></table></div>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  elementFormDefault="qualified" attributeFormDefault="unqualified"&gt;
+ &lt;xs:element name="VFPData"&gt;
+  &lt;xs:complexType&gt;
+   &lt;xs:choice&gt;
+    &lt;xs:sequence&gt;
+     &lt;xs:element name="reportdata" maxOccurs="unbounded"&gt;
+      &lt;xs:complexType&gt;
+       &lt;xs:attributeGroup ref="Common"/&gt;
+       &lt;xs:attributeGroup ref="ReportTemplate"/&gt;
+       &lt;xs:anyAttribute processContents="lax"/&gt;
+      &lt;/xs:complexType&gt;
+     &lt;/xs:element&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:sequence&gt;
+    
+     &lt;xs:element name="memberdata" maxOccurs="unbounded"&gt;
+      &lt;xs:complexType&gt;
+       &lt;xs:attributeGroup ref="Common"/&gt;
+       &lt;xs:attributeGroup ref="PropertySheet"/&gt;
+       &lt;xs:anyAttribute processContents="lax"/&gt;
+      &lt;/xs:complexType&gt;
+     &lt;/xs:element&gt;
+    &lt;/xs:sequence&gt;
+   &lt;/xs:choice&gt;
+  &lt;/xs:complexType&gt;
+ &lt;/xs:element&gt;
+ 
+ &lt;xs:annotation&gt;
+  &lt;xs:documentation&gt;
+  You can add extension attributes as required.
+  &lt;/xs:documentation&gt;
+  &lt;xs:documentation&gt;
+Use the name and ref attributes of the Common attribute group to 
+declare that certain rows "belong" to you. Use the script attribute of 
+the Common attribute group for design-time scripting.
+  &lt;/xs:documentation&gt;
+   &lt;/xs:annotation&gt;
+   
+ &lt;xs:attributeGroup name="Common"&gt;
+  &lt;xs:attribute name="name" type="xs:string" use="required"/&gt;
+  &lt;xs:attribute name="type" type="xs:string"/&gt;
+  &lt;xs:attribute name="script" type="xs:string"/&gt;
+ &lt;/xs:attributeGroup&gt;
+&lt;xs:annotation&gt;
+&lt;xs:documentation&gt;
+The ReportTemplate-specific execute attribute is a script run at 
+runtime (by Listeners) whereas the Common script attribute is 
+potentially run by design-time tools. The declass and declasslib 
+attributes are looked for in the header record's template information, 
+not individual DataEnvironment related object records. The class and 
+classlib attributes in the header record are not used, and can be 
+leveraged for a custom helper class for report builders or listeners as 
+desired. Class and classlib attributes in layout objects are meant for 
+use in run-time and design-time templating. You can use these template 
+classes to build custom rendering objects at runtime or to assign 
+common style attributes at design-time, or both. 
+&lt;/xs:documentation&gt;
+ &lt;/xs:annotation&gt;
+ &lt;xs:attributeGroup name="ReportTemplate"&gt;
+  &lt;xs:attribute name="class" type="xs:string"/&gt;
+  &lt;xs:attribute name="classlib" type="xs:string"/&gt;
+  &lt;xs:attribute name="declass" type="xs:string"/&gt;
+  &lt;xs:attribute name="declasslib" type="xs:string"/&gt;
+  &lt;xs:attribute name="execute" type="xs:string"/&gt;
+  &lt;xs:attribute name="execwhen" type="xs:string"/&gt;
+ &lt;/xs:attributeGroup&gt;
+ 
+ 
+ &lt;xs:attributeGroup name="PropertySheet"&gt;
+  &lt;xs:attribute name="override" type="xs:boolean"/&gt;
+  &lt;xs:attribute name="display" type="xs:string"/&gt;
+  &lt;xs:attribute name="favorites" type="xs:boolean"/&gt;
+ &lt;/xs:attributeGroup&gt;
+&lt;/xs:schema&gt;</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">MemberData Example</h3><div class="subSection" xmlns="">
+          <p>The following is an example MemberData XML string that demonstrates the use of the reserved Visual FoxPro 9.0 XML elements and attributes. The first section adds the <b>BorderStyle</b> property to the Favorites tab in the Properties window and displays the property name in upper-case.</p>
+          <p>The second section creates a custom property named MyProperty that is also added to the Favorites tab in the Properties window. The script named MyPropertyScript is executed when the ellipsis button for the custom property is chosen or you double-click the property.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;?xml version="1.0" encoding="Windows-1252" standalone="yes"?&gt;
+&lt;VFPData&gt;
+&lt;memberdata name="borderstyle" type="property" favorites="True" display="BORDERSTYLE"override="False"/&gt;
+&lt;memberdata name="MyProperty" type="property" display="MyProperty" favorites="True" override="False" script="MyPropertyScript"/&gt;
+&lt;/VFPData&gt;</pre></td></tr></table></span></div>
+        </div>
+    </sections></div><h1 class="heading">Custom Property Editors</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>You can create your own custom property editor in Visual FoxPro 9.0. Your custom property editor can be run by selecting the property in the Properties window and then choosing the <b>ellipsi</b>s <b>(…)</b> button or by double-clicking the property. The ellipsis button is only displayed when a property has a custom property editor.</p>
+      <p>Visual FoxPro supports custom property editors in the following manner:</p>
+      <ul><li>
+          <p>When the Properties window is opened, Visual FoxPro looks at the _MemberData property and its inheritance tree. If a value for the script attribute exists for a property and the script is valid, the ellipses button is displayed for the property.</p>
+        </li><li>
+          <p>The script is executed when the ellipsis button for the custom property is chosen or you double-click the property.</p>
+        </li><li>
+          <p>Custom and native Visual FoxPro properties can have custom property editors. For native Visual FoxPro properties, the script must return the proper data type and value for the property, otherwise an error is generated.</p>
+        </li><li>
+          <p>A custom property editor will override the native Visual FoxPro property editor (for example, the Color Picker for the <b>ForeColor</b> property).</p>
+        </li><li>
+          <p>Like the Visual FoxPro builder applications, a custom Property editor is responsible for setting the correct property value. A custom Property editor should use the <span class="linkTerms"><a href="/html/c51ad113-c5fb-42ec-aa07-fe6c7b1d0927.htm">ASELOBJ( ) Function</a></span> to return a reference to the selected object or objects. Property editors should work in a similar manner as the Visual FoxPro builder applications, and should hide the Properties window if it is not docked. For more information about custom builder applications, see <span class="linkTerms"><a href="/html/ac066bcf-6f53-4a88-8723-04fb7cbd0325.htm">How to: Specify a Builder Application with Builder.dbf</a></span> with Builder.dbf.</p>
+        </li></ul>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Custom Property Editor Menu Hooks</h3><div class="subSection" xmlns="">
+          <p>You can execute your own custom property editor when you choose the <b>MemberData Editor…</b> option from the <b>Form</b> menu, or when you right-click a property, event, or method and choose the <b>Add to Favorites…</b> option in the shortcut menu.</p>
+          <p>When you choose the <b>MemberData Editor…</b> option from the <b>Form</b> menu, four parameters are passed to the application specified in the <span class="linkTerms"><a href="/html/712ebab2-3807-4896-b32d-5f0116dfa7f1.htm">_BUILDER System Variable</a></span>. The following table describes the type of data passed to the parameters in the Builder application.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Parameter Number</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>Top level object (container) reference.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>"MemberData" text string.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>3</p>
+              </td>
+              <td>
+                <p>Numeric value, 0 for the class designer, 1 for the form designer.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>Name of the property, event, or method selected as a text string.</p>
+              </td>
+            </tr></table></div>
+          <p>For example, choosing the <b>MemberData Editor…</b> option from the <b>Form</b> menu is identical to executing the following command:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO (_BUILDER) WITH oForm, "MemberData", 1</pre></td></tr></table></span></div>
+          <p>If no property is selected or the Properties window is closed, the last parameter will contain an empty string. If the Properties window is closed, the base object is passed as the first parameter. If multiple objects are selected, only the first one is passed as the first parameter.</p>
+          <p>When you choose the <b>Add to Favorites…</b> option in the shortcut menu, four parameters are passed to the application specified in the <span class="linkTerms"><a href="/html/712ebab2-3807-4896-b32d-5f0116dfa7f1.htm">_BUILDER System Variable</a></span>. The following table describes the type of data passed to the parameters in the Builder application.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Parameter</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>Top level object (container) reference.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>"MemberData" text string.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>3</p>
+              </td>
+              <td>
+                <p>Numeric value, 10 for the class designer, 11 for the form designer.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>Name of the property, event, or method selected as a text string.</p>
+              </td>
+            </tr></table></div>
+          <p>For example, choosing the <b>Add to Favorites…</b> option in the shortcut menu when the Caption property is selected in the Property window is identical to executing the following command:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO (_BUILDER) WITH oForm, "MemberData", 11, "Caption"</pre></td></tr></table></span></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The <b>Add to Favorites…</b> option in the shortcut menu is disabled when the Properties window is open for the Visual FoxPro _SCREEN application system variable.</p>
+          </td></tr></table></div>
+        </div>
+    </sections></div><h1 class="heading">MemberDataEditor.app</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro includes a Member Data Editor application, MemberDataEditor.app, which lets you easily edit member metadata for properties, events, and method. When the Properties window is open, you can run MemberDataEditor.app by choosing the <b>MemberData Editor…</b> option from the <b>Form</b> menu.</p>
+      <p>The MemberDataEditor.app allows you to do the following:</p>
+      <ul><li>
+          <p>Create MemberData for a property or method.</p>
+        </li><li>
+          <p>Specify if the MemberData is global (MemberData is written to FoxCode.dbf).</p>
+        </li><li>
+          <p>Specify if the MemberData overrides the global MemberData attributes.</p>
+        </li><li>
+          <p>Specify if default behavior is used for unspecified property or method attributes.</p>
+        </li><li>
+          <p>Add a property, event, or method to the Favorites tab in the Properties window.</p>
+        </li><li>
+          <p>Create a script (Visual FoxPro code) for a property or method.</p>
+        </li><li>
+          <p>Specify how a property or method is displayed in the Properties window, and specify display defaults.</p>
+        </li><li>
+          <p>Specify how XML elements are formatted.</p>
+        </li></ul>
+      <p>For more information, see <span class="linkTerms"><a href="/html/827700f9-982e-4c14-a574-5de21412cffc.htm">MemberData Editor</a></span>.</p>
+    </div><h1 class="heading">Foxcode.dbf Script Hooks</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>Several new script records can be added to _FOXCODE (FoxCode.dbf) that contain special scripts (Visual FoxPro code) that are called during design time. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The script records are not included in the default _FOXCODE table. You can find <b>Visual FoxPro Menu Scripts</b> in the Solution Samples application under <b>New in Visual FoxPro 9.0</b>. For more information about the application, see <span class="linkTerms"><a href="/html/62b67b04-f582-4e03-9980-4e81e09ec222.htm">How to: Run Visual FoxPro Solution Samples</a></span>.</p>
+      </td></tr></table></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">_GetMemberData Script</h3><div class="subSection" xmlns="">
+          <p>The _GetMemberData script can be used by a custom property editor to add a _MEMBERDATA property to a container or controls when they are opened in the Form or Class designers. The _GetMemberData script is called for the following events:</p>
+          <ul><li>
+              <p>When the Form or Class Designer is opened.</p>
+            </li><li>
+              <p>When a new control is added to the Form or Class Designer.</p>
+            </li><li>
+              <p>When a control is selected in the Form or Class Designer, or a container is clicked to select it.</p>
+            </li></ul>
+          <p>The following table lists the fields and field values in the Foxcode.dbf record.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Field Name</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Value</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Type</p>
+              </td>
+              <td>
+                <p>E</p>
+              </td>
+              <td>
+                <p>Indicates that the item is a property or method that has member metadata.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Abbrev</p>
+              </td>
+              <td>
+                <p>_GETMEMBERDATA</p>
+              </td>
+              <td>
+                <p>Indicates this is the record for a _GetMemberData script.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Data</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+              <td>
+                <p>Script to run for the property or method.</p>
+              </td>
+            </tr></table></div>
+          <p>The _GetMemberData script is not passed any parameters.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The _GetMemberData script can use the <span class="linkTerms"><a href="/html/c51ad113-c5fb-42ec-aa07-fe6c7b1d0927.htm">ASELOBJ( ) Function</a></span> to obtain an object reference for the currently selected control or container.</p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">MenuHit Script</h3><div class="subSection" xmlns="">
+          <p>The MenuHit script is called when a Visual FoxPro system menu is chosen. It can be used to override an existing Visual FoxPro dialog box with a custom dialog box.</p>
+          <p>The following table lists the fields and field values in the Foxcode.dbf record.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Field Name</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Value</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Type</p>
+              </td>
+              <td>
+                <p>S</p>
+              </td>
+              <td>
+                <p>Indicates that the item is a script.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Abbrev</p>
+              </td>
+              <td>
+                <p>MENUHIT</p>
+              </td>
+              <td>
+                <p>Indicates this is the MenuHit script record.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Data</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+              <td>
+                <p>Script (Visual FoxPro code) to run for the custom dialog box.</p>
+              </td>
+            </tr></table></div>
+          <p>The MenuHit script is passed a single parameter as an object containing the property values:</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Parameter</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>UserTyped</p>
+              </td>
+              <td>
+                <p>The internal Visual FoxPro system menu title from which the menu item was selected. The empty string is passed to this parameter if the menu is a shortcut menu.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>MenuItem</p>
+              </td>
+              <td>
+                <p>The internal Visual FoxPro name of the chosen menu item.</p>
+              </td>
+            </tr></table></div>
+          <p>See <span class="linkTerms"><a href="/html/071a0d58-c66e-4a8b-8080-e3a130f2e435.htm">System Menu Names</a></span> for a listing of the internal Visual FoxPro system menu names.</p>
+          <p>To prevent Visual FoxPro from handling the menu, set the parameter object's ValueType property to <span class="parameter">V</span> or <span class="parameter">L</span>.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Since _Foxcode supports a single MenuHit script record and it is possible that you may want to handle multiple menu items with your own custom scripts, it is recommended that you create a default MenuHit handler record that can call other records. The <b>Foxcode menu scripts</b> Solution Sample contains a recommended generic Menuhit script that you can use.</p>
+          </td></tr></table></div>
+          <p>The following is an example script for the MenuHit record that you can use for looking up other records in _Foxcode whose Type field = "M", Abbrev field is name of menu and Data field contains script to execute. This is the same script installed for both MenuHit and MenuContext scripts by the <b>Foxcode menu scripts</b> Solution Sample.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LPARAMETERS toParameter
+LOCAL lnSelect, lcCode, llReturn, lScriptHandled, lcSaveUdfParms
+TRY
+* First try FoxCode lookup for Type="M" records
+lnSelect = SELECT()
+SELECT 0
+USE (_FOXCODE) AGAIN SHARE ORDER 1
+IF SEEK('M' + PADR(UPPER(toParameter.MenuItem), LEN(ABBREV)))
+lcCode = DATA
+ENDIF
+USE
+SELECT (lnSelect)
+IF NOT EMPTY(lcCode)
+llReturn = EXECSCRIPT(lcCode, toParameter)
+lScriptHandled=.T.
+ENDIF
+* Handle by passing to external routine as specified in Tip field
+IF !lScriptHandled
+lcProgram = ALLTRIM(toParameter.Tip)
+IF FILE(lcProgram)
+lcSaveUdfParms=SET("Udfparms")
+SET UDFPARMS TO REFERENCE
+DO (lcProgram) WITH toParameter,llReturn
+SET UDFPARMS TO &amp;lcSaveUdfParms
+ENDIF
+ENDIF
+* Custom script successful so let's disable native behavior
+IF llReturn
+toParameter.ValueType = 'V'
+ENDIF
+CATCH
+ENDTRY
+RETURN llReturn</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">MenuContext Script</h3><div class="subSection" xmlns="">
+          <p>The MenuContext script can be used to override an existing Visual FoxPro shortcut menu with a custom shortcut menu, and is called just before a Visual FoxPro shortcut menu is displayed. A shortcut menu is displayed by right-clicking a window or object.</p>
+          <p>The following table lists the fields and field values in the Foxcode.dbf record.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Field Name</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Value</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Type</p>
+              </td>
+              <td>
+                <p>S</p>
+              </td>
+              <td>
+                <p>Indicates that the item is a script.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Abbrev</p>
+              </td>
+              <td>
+                <p>MENUCONTEXT</p>
+              </td>
+              <td>
+                <p>Indicates this is the MenuContext script record.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Data</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+              <td>
+                <p>Script (Visual FoxPro code) to run for the custom shortcut menu.</p>
+              </td>
+            </tr></table></div>
+          <p>The MenuContext script is passed a single parameter which is an object containing properties that can be referenced by the script including the following:</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Parameter</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Items</p>
+              </td>
+              <td>
+                <p>An array of items in the shortcut menu.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>UserTyped</p>
+              </td>
+              <td>
+                <p>Indicates additional information, if available, related to context of the shortcut menu.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>MenuItem</p>
+              </td>
+              <td>
+                <p>An internal Visual FoxPro menu ID for the shortcut menu.</p>
+              </td>
+            </tr></table></div>
+          <p>To suppress the Visual FoxPro shortcut menu from appearing, set the parameter object's ValueType property to <span class="parameter">V</span> or <span class="parameter">L</span>. You can use the <span class="linkTerms"><a href="/html/c0ce4ebf-5abe-425f-a522-76b5255aec23.htm">DEFINE MENU Command</a></span> with the SHORTCUT option to create a custom shortcut menu.</p>
+          <p>
+            <b>Note</b>   Since _Foxcode supports a single MenuContext script record and it is possible that you may want to handle multiple shortcut menus with your own custom scripts, it is recommended that you create a default MenuContext handler record that can call other records. The <b>Foxcode menu scripts</b> Solution Sample contains a recommended generic MenuContext script that you can use. See the MenuHit section above for this code.</p>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/58210a8f-d472-4a38-a9f3-caf58c0914b3.htm">_MemberData Property</a></span><br /><span class="linkTerms"><a href="/html/fa9d83b2-1cf0-46a4-8ff4-1276d95c2fb9.htm">IntelliSense Table Structure</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="MemberData Extensibility">
+</OBJECT>

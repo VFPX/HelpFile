@@ -1,0 +1,387 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>TABLEUPDATE( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">TABLEUPDATE( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Commits changes made to a buffered row, a buffered table, cursor, or cursor adapter.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+TABLEUPDATE( [<span class="parameter">nRows</span> [, <span class="parameter">lForce</span>]] [, <span class="parameter">cTableAlias</span> | <span class="parameter">nWorkArea</span>] [, <span class="parameter">cErrorArray</span>] )</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nRows</span>
+        </span></dt><dd>
+          <p>Specifies which changes made to the table or cursor should be committed. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Visual FoxPro enables Optimistic Row Buffering by default for those cursors associated with a <b>CursorAdapter</b> object.</p>
+          </td></tr></table></div>
+          <p>The following table describes the values for <span class="parameter">nRows</span>.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nRows</span>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>0 </p>
+              </td>
+              <td>
+                <p>If row or table buffering is enabled, commit only the changes made to the current row in the cursor. (Default)</p>
+                <p>When working with <b>CursorAdapter</b> objects, Visual FoxPro executes the appropriate command in the <a href="/html/5b4e71a4-576e-421d-952f-d80cecd1bdb8.htm">InsertCmd</a>, <a href="/html/e6b20267-ed13-4bda-a96b-c236e1121ebb.htm">UpdateCmd</a>, or <a href="/html/8955944e-d039-4510-9578-3ac100556456.htm">DeleteCmd</a> property for that row only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1 </p>
+              </td>
+              <td>
+                <p>If table buffering is enabled, commit changes made to all records to the table or cursor. </p>
+                <p>If row buffering is enabled, commit only changes made to the current record in the table or cursor.</p>
+                <p>When working with <b>CursorAdapter</b> objects, Visual FoxPro executes the appropriate commands in the <b>InsertCmd</b>, <b>UpdateCmd</b>, and <b>DeleteCmd</b> properties for each affected row.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>Commit changes made to the table or cursor in the same manner as when <span class="parameter">nRows</span> = 1. However, an error does not occur when a change cannot be committed. Visual FoxPro continues to process any remaining records in the table or cursor. </p>
+                <p>If <span class="parameter">cErrorArray</span> is included, an array containing error information is created when an error occurs.</p>
+              </td>
+            </tr></table></div>
+          <p>For compatibility with previous Visual FoxPro applications, the <span class="parameter">nRows</span> parameter also accepts False (.F.) and True (.T.) instead of 0 and 1 respectively.</p>
+          <p>When specifying 0 or 1 for <span class="parameter">nRows</span>, the record pointer remains on the record where changes could not be committed. To determine why the changes could not be committed, use the <a href="/html/cf8d9a30-f8dc-4181-bebd-1181c3554308.htm">AERROR( )</a> function.   </p>
+          <p>When working with <b>CursorAdapter</b> objects and specifying 1 or 2 for <span class="parameter">nRows</span>, all changes made to the cursor in the following <b>CursorAdapter</b> events must be committed during the same call to <b>TABLEUPDATE( )</b> unless an error occurs:</p>
+          <ul><li>
+              <p>
+                <b>BeforeInsert</b>
+              </p>
+            </li><li>
+              <p>
+                <b>AfterInsert</b>
+              </p>
+            </li><li>
+              <p>
+                <b>BeforeDelete</b>
+              </p>
+            </li><li>
+              <p>
+                <b>AfterDelete</b>
+              </p>
+            </li><li>
+              <p>
+                <b>BeforeUpdate</b>
+              </p>
+            </li><li>
+              <p>
+                <b>AfterUpdate</b>
+              </p>
+            </li></ul>
+          <p>Visual FoxPro passes the values of <span class="parameter">nRows</span> to the <b>CursorAdapter</b> <a href="/html/746dfa9e-23e2-4b54-ae62-fb6adba52320.htm">BeforeCursorUpdate</a> event.  </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">lForce</span>
+        </span></dt><dd>
+          <p>Determines whether Visual FoxPro overwrites changes made to the table or cursor by another user on a network. </p>
+          <p>The following table describes the values for <span class="parameter">lForce</span>.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">lForce</span>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>False (.F.)</p>
+              </td>
+              <td>
+                <p>Commits changes to the table or cursor, starting with the first record and continuing towards the end of the table or cursor. (Default)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>True (.T.)</p>
+              </td>
+              <td>
+                <p>Overwrites any changes made to the table or cursor by another user on a network. The <b>WHERE</b> clause uses only key fields.</p>
+              </td>
+            </tr></table></div>
+          <p>When working with <b>CursorAdapter</b> objects, Visual FoxPro passes the value of <span class="parameter">lForce</span> to the following <b>CursorAdapter</b> events:   </p>
+          <ul><li>
+              <p>
+                <a href="/html/746dfa9e-23e2-4b54-ae62-fb6adba52320.htm">BeforeCursorUpdate</a>
+              </p>
+            </li><li>
+              <p>
+                <a href="/html/7333852e-fc6b-46d8-839c-1a8c6fffa743.htm">BeforeInsert</a>
+              </p>
+            </li><li>
+              <p>
+                <a href="/html/113f1421-daeb-4af4-b884-216289493eb9.htm">BeforeUpdate</a>
+              </p>
+            </li><li>
+              <p>
+                <a href="/html/db25daab-c321-488f-84e9-f6e1e523e67c.htm">BeforeDelete</a>
+              </p>
+            </li><li>
+              <p>
+                <a href="/html/5182e48a-3de7-4ad7-afaa-82297c05925b.htm">AfterInsert</a>
+              </p>
+            </li><li>
+              <p>
+                <a href="/html/bb4216af-0960-4ffd-8263-0a31f7b1bf06.htm">AfterUpdate</a>
+              </p>
+            </li><li>
+              <p>
+                <a href="/html/4decbc3b-c935-49ae-a6d1-c2116850e237.htm">AfterDelete</a>
+              </p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cTableAlias</span>
+        </span></dt><dd>
+          <p>Specifies the alias of the table or cursor in which the changes are committed. If you include a table or cursor alias, you must include the <span class="parameter">lForce</span> argument.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nWorkArea</span>
+        </span></dt><dd>
+          <p>Specifies the work area of the table or cursor in which the changes are committed. If you include a work area, you must include the <span class="parameter">lForce</span> argument.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cErrorArray</span>
+        </span></dt><dd>
+          <p>Specifies the name of an array created when <span class="parameter">nRows</span> = 2 and changes to a record cannot be committed. The array contains a single column containing the record numbers of the records for which changes could not be committed. If you include an array name, you must include either a table or cursor alias <span class="parameter">cTableAlias</span> or a work area number <span class="parameter">nWorkArea</span>.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If an error other than a simple commit error occurs while updating records, the first element of <span class="parameter">cErrorArray</span> will contain –1, and you can then use <b>AERROR( )</b> to determine the why the changes could not be committed.</p>
+          </td></tr></table></div>
+          <p>Visual FoxPro passes the value of <span class="parameter">cErrorArray</span>, when it exists, to the <b>CursorAdapter</b> <a href="/html/86d3c801-c454-4398-9b96-0631d8c40dcf.htm">AfterCursorUpdate</a> event. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Logical data type. <b>TABLEUPDATE( )</b> returns True (.T.) if changes to all records are committed. </p>
+      <p>Otherwise, <b>TABLEUPDATE( )</b> returns False (.F.) indicating a failure. An ON ERROR routine isn't executed. The <a href="/html/cf8d9a30-f8dc-4181-bebd-1181c3554308.htm">AERROR( ) function</a> can be used to retrieve information about the cause of the failure.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p><b>TABLEUPDATE( )</b> always returns True (.T.) when you are updating data, using Table Buffering, and updating the table or tables in the data source from multiple clients when setting <b>BatchUpdateCount</b> to a value greater than 1. Therefore, avoid setting <b>BatchUpdateCount</b> to a value greater than 1 in these scenarios.</p>
+      </td></tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>
+        <b>TABLEUPDATE( )</b> cannot commit changes made to a table or cursor that does not have row or table buffering enabled. If you issue <b>TABLEUPDATE( )</b> and row or table buffering is not enabled, Visual FoxPro generates an error message. However, <b>TABLEUPDATE( )</b> can still commit changes to a table or cursor that has validation rules. To enable or disable row and table buffering, use <b>CURSORSETPROP( )</b>.</p>
+      <p>Changes are committed to the table or cursor open in the currently selected work area if <b>TABLEUPDATE( )</b> is issued without the optional <span class="parameter">cTableAlias</span> or <span class="parameter">nWorkArea</span> arguments.</p>
+      <p>If table buffering is used and multiple records are updated, <b>TABLEUPDATE( )</b> moves the record pointer to the last record updated.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Calling <b>TABLEUPDATE( )</b> for a local table or view that does not use key fields generates a long <b>WHERE</b> clause to find the update row. The default number of fields supported in the <b>WHERE</b> clause is 40. If you receive the error <a href="/html/7cc55d5f-b07c-4e63-ba7e-8cf26372f0ee.htm">SQL: Statement too long (Error 1812)</a>, you should either use a key field for the update or increase the complexity of the <b>WHERE</b> clause with <a href="/html/0bb1bcde-9289-4992-8b3b-6df637f44944.htm">SYS(3055)</a>. If you use the <b>SYS(3055)</b> function, increase its value to a number that is eight times the number of fields in the table as shown in the following example:</p>
+      </td></tr></table></div>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SYS(3055, 8 * MIN(40, FCOUNT( ))</pre></td></tr></table></span></div>
+      <p>When performing a batched <b>TABLEUPDATE( )</b> operation, due to the way that Open Database Connectivity (ODBC) behaves, Visual FoxPro is unable to detect conflicts when no error is generated by the server, yet nothing is updated, for example, no row matches the <b>WHERE</b> clause. This can occur when you use <span class="parameter">WhereType</span> set to DB_KEYANDUPDATABLE, DB_KEYANDMODIFIED, or DB_KEYANDTIMESTAMP, and another user has changed one of the underlying values in the <b>WHERE</b> clause such that the row is not found by the update statement.</p>
+      <p>
+        <b>Interaction with CursorAdapter Objects</b>   The following behaviors apply when working with <b>CursorAdapter</b> objects:  </p>
+      <ul><li>
+          <p>
+            <b>TABLEUPDATE( )</b> operates only on the cursor associated with the <b>CursorAdapter</b> object.</p>
+        </li><li>
+          <p>
+            <b>TABLEUPDATE( )</b> executes commands according to the data source type and those stored in the <b>CursorAdapter</b> <b>InsertCmd</b>, <b>UpdateCmd</b>, or <b>DeleteCmd</b> properties against the current cursor row or rows as appropriate. </p>
+        </li><li>
+          <p>
+            <b>TABLEUPDATE( )</b> passes the value of <code>GETFLDSTATE(1)</code> to the following <b>CursorAdapter</b> events of each row affected: </p>
+          <ul><li>
+              <p>
+                <a href="/html/7333852e-fc6b-46d8-839c-1a8c6fffa743.htm">BeforeInsert</a>
+              </p>
+            </li><li>
+              <p>
+                <a href="/html/113f1421-daeb-4af4-b884-216289493eb9.htm">BeforeUpdate</a>
+              </p>
+            </li><li>
+              <p>
+                <a href="/html/db25daab-c321-488f-84e9-f6e1e523e67c.htm">BeforeDelete</a>
+              </p>
+            </li></ul>
+          <p>For more information about <b>GETFLDSTATE( )</b>, see <a href="/html/d52447bd-56d6-423f-80cf-ce73008bd2ea.htm">GETFLDSTATE( ) Function</a>. </p>
+        </li><li>
+          <p>The successful completion of <b>TABLEUPDATE( )</b> resets the field states according to usual <b>TABLEUPDATE( )</b><b> </b>behavior.</p>
+        </li><li>
+          <p>When table buffering is enabled, you can move away from the current record in the following <b>CursorAdapter</b> events: </p>
+          <ul><li>
+              <p>
+                <a href="/html/7333852e-fc6b-46d8-839c-1a8c6fffa743.htm">BeforeInsert</a>
+              </p>
+            </li><li>
+              <p>
+                <a href="/html/5182e48a-3de7-4ad7-afaa-82297c05925b.htm">AfterInsert</a>
+              </p>
+            </li><li>
+              <p>
+                <a href="/html/113f1421-daeb-4af4-b884-216289493eb9.htm">BeforeUpdate</a>
+              </p>
+            </li><li>
+              <p>
+                <a href="/html/bb4216af-0960-4ffd-8263-0a31f7b1bf06.htm">AfterUpdate</a>
+              </p>
+            </li><li>
+              <p>
+                <a href="/html/db25daab-c321-488f-84e9-f6e1e523e67c.htm">BeforeDelete</a>
+              </p>
+            </li><li>
+              <p>
+                <a href="/html/4decbc3b-c935-49ae-a6d1-c2116850e237.htm">AfterDelete</a>
+              </p>
+            </li></ul>
+          <p>You can also modify data in the cursor. This functionality supports scenarios such as retrieving the autoincrement value from the base table and inserting it into the cursor. When this scenario occurs, the <b>CursorAdapter</b> object should automatically return to the record whose changes are about to be committed after the event has occurred and commit the changes.  </p>
+          <p>In Visual FoxPro 9.0, you cannot issue the <span class="linkTerms"><a href="/html/0fdd3838-1de5-4e54-8e4e-acb3d3e8b3bf.htm">TABLEREVERT( ) Function</a></span> when a TABLEUPDATE( ) is in operation.</p>
+          <p>Typically, the CursorAdapter object uses the transaction management functionality provided by the ADO or ODBC API's and Visual FoxPro closes transactions when the TABLEUPDATE( ) function completes successfully. However, if you want to send transaction management commands directly to the backend, you can set the UseTransactions property of the CursorAdaptor object to False (.F.) and the CursorAdapter does not use transactions to send Insert, Update, or Delete commands.</p>
+        </li></ul>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example demonstrates how you can use <b>TABLEUPDATE( )</b> to commit changes made to a buffered table. A table named <code>employees</code> is created, and a SQL <b>INSERT</b> statement inserts the value "Smith" into the <code>cLastName</code> field.</p>
+        <p xmlns="">
+          <b>MULTILOCKS</b> is set to <code>ON</code>, which is a requirement for table buffering. <b>CURSORSETPROP( )</b> is used to set the buffering mode to Optimistic Table Buffering (5).</p>
+        <p xmlns="">The original value of the <code>cLastName</code> field (Smith) is displayed, and the <code>cLastName</code> field is modified with <b>REPLACE</b>. The new value of the <code>cLastName</code> field (Jones) is displayed. <b>TABLEUPDATE( )</b><b> </b>is used to commit changes to the table (<b>TABLEREVERT( )</b> could be issued instead to discard the changes). The updated value of the <code>cLastName</code> field (Jones) is then displayed.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+CREATE TABLE employee (cLastName C(10))
+SET MULTILOCKS ON  &amp;&amp; Must turn on for table buffering.
+= CURSORSETPROP('Buffering', 5, 'employee' )  &amp;&amp; Enable table buffering.
+INSERT INTO employee (cLastName) VALUES ('Smith')
+CLEAR
+? 'Original cLastName value: '
+?? cLastName  &amp;&amp; Displays current cLastName value (Smith).
+REPLACE cLastName WITH 'Jones'
+? 'New cLastName value: '
+?? cLastName  &amp;&amp; Displays new cLastName value (Jones).
+= TABLEUPDATE(.T.)  &amp;&amp; Commits changes.
+? 'Updated cLastName value: '
+?? cLastName  &amp;&amp; Displays current cLastName value (Jones).</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/d4dc65e0-a039-40ac-8df4-508a60a77228.htm">CURVAL( ) Function</a></span><br /><span class="linkTerms"><a href="/html/fa81be19-03be-4e02-8af1-74f8c521b766.htm">OLDVAL( ) Function</a></span><br /><span class="linkTerms"><a href="/html/0fdd3838-1de5-4e54-8e4e-acb3d3e8b3bf.htm">TABLEREVERT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/634a112c-47c6-4e85-a304-5b5085632eec.htm">Cursor Object</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="TABLEUPDATE( ) Function">
+<param name="ALink Name" value="TABLEUPDATE">
+</OBJECT>

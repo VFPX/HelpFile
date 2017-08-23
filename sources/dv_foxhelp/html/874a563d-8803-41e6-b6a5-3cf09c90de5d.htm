@@ -1,0 +1,146 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Change the Number of Tabs at Run Time Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Change the Number of Tabs at Run Time Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File:</b> ...\Samples\Solution\Controls\Pgframe\Pfsam1.scx</p>
+    <p>This sample illustrates using a page frame with tabs. The number of tabs changes dynamically when a user chooses a new value in a spinner. When the user selects a tab, a list box displays values specific to the tab.</p>
+  <h3 class="procedureSubHeading">To change the number of tabs at run time</h3><div class="subSection"><ul><li>
+        
+          <p>Set the PageCount property to the desired number of pages.</p>
+        
+      </li></ul>
+      
+        <p>The list box in this sample is positioned on the form, not on any of the pages in the page frame. This placement makes it possible for you to have a single control visible in all of your pages.</p>
+        <p>Two user-defined form methods set the captions on the tabs and make sure the values in the list box match: UpdateList and SetCaption.</p>
+      
+    </div><h1 class="heading">UpdateList Method</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>UpdateList is called when the number of tabs changes and when the user selects a new tab.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL lnPage, lcHigh, lcLow
+#define NO_MATCH_LOC 'No Matching Names for '
+DIMENSION THISFORM.aCustomers[1,2]
+lnPage = THISFORM.pgfRolodex.activepage
+THISFORM.aCustomers[1,1] = NO_MATCH_LOC + ;
+   THISFORM.pgfRolodex.Pages(lnPage).Caption
+THISFORM.aCustomers[1,2] = ""
+lcHigh = substr(THISFORM.pgfrolodex.Pages(lnPage).caption,3,1)
+lcLow = substr(THISFORM.pgfrolodex.Pages(lnPage).caption,1,1)
+SELECT company, phone FROM customer;
+   WHERE company &lt;= lcHigh and company =&gt; lcLow;
+   ORDER BY company;
+   INTO ARRAY THISFORM.aCustomers
+   
+THISFORM.lstCustomers.Requery
+THISFORM.lstCustomers.Value = 1</pre></td></tr></table></span></div>
+    </div><h1 class="heading">SetCaption Method</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>SetCaption is called in the spinner's UpClick and DownClick events to calculate what captions should appear on the tabs. </p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.LockScreen = .T.
+FOR n = 1 to THISFORM.pgfRolodex.PageCount
+   FirstLetter = SUBSTR(THISFORM.Alphabet,((n - 1)*ROUND(LEN(THISFORM.Alphabet)/THISFORM.pgfRolodex.PageCount,0))+1,1)
+   IF n = THISFORM.pgfRolodex.PageCount   &amp;&amp;last page
+      LastLetter = right(THISFORM.Alphabet,1)
+   ELSE
+      LastLetter = SUBSTR(THISFORM.Alphabet,((n)*ROUND(LEN(THISFORM.Alphabet)/THISFORM.pgfRolodex.PageCount,0)),1)
+   ENDIF
+   THISFORM.pgfRolodex.Pages(n).Caption = FirstLetter + "-" + LastLetter
+ENDFOR
+THISFORM.LockScreen = .F.</pre></td></tr></table></span></div>
+      <p>Alphabet is a user-defined form property that is used to determine the captions for each tab. To get the same functionality in different languages, set the Alphabet property to a string containing all the letters in the target language alphabet.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/df8f9af9-a19e-4047-a8ce-e47227fed9d6.htm">Display Different Pages without Tabs Sample</a></span><br /><span class="linkTerms"><a href="/html/348fec52-e48a-489f-86fb-0b0ac888ba69.htm">Solution Samples</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/909bc1e6-7b98-4527-a57f-c99f0ce4fc6f.htm">Controls Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Change the Number of Tabs at Run Time Sample">
+<param name="Alink Name" value="vfp.1231515">
+</OBJECT>

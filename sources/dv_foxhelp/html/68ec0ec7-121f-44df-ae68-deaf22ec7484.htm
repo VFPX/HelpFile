@@ -1,0 +1,118 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Set the Maximum Number of Records Downloaded</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Set the Maximum Number of Records Downloaded</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can control the amount of data downloaded when you open a view by setting the MaxRecords property. When Visual FoxPro sends a SQL statement to the data source to create a view, the data source builds and stores a result set. The MaxRecords property specifies the maximum number of rows fetched from the remote result set into your view. The default setting is –1, which downloads all rows in the result set.</p>
+  <h3 class="procedureSubHeading">To control the number of rows downloaded into a view</h3><div class="subSection"><ol><li>
+        
+          <p>From the <b>Tools</b> menu, choose <b>Options</b> and select the <b>Remote Data</b> tab; then in the <b>Remote view defaults</b> area, next to the <b>Maximum records to fetch</b> box, clear <b>All</b>, enter a value in the text box, and then choose <b>OK</b>. </p>
+          <p>-or- </p>
+        
+      </li><li>
+        
+          <p>Use the MaxRecords property of the <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> or <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a> function.</p>
+        
+      </li></ol>
+      
+        <p>For example, the following code alters the view definition to limit the number of rows downloaded into the view to 50, regardless of the size of the result set built on the remote data source:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE testdata
+USE VIEW remote_customer_view
+?DBSETPROP ('Remote_customer_view', ;    'View','MaxRecords', 50)</pre></td></tr></table></span></div>
+        <p>You can use the <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a> function to set the MaxRecords limit for an active view.</p>
+        <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+          <p>You can't use the MaxRecords property to stop a runaway query, because the MaxRecords property doesn't control the building of the result set. Use the QueryTimeOut property to control the execution time on the remote data source.</p>
+        </td></tr></table></div>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/515161b6-f2e8-423a-affa-8f87854b114a.htm">How to: Optimize View Performance</a></span><br /><span class="linkTerms"><a href="/html/f974ca23-5b4f-4e5d-919b-e7119a79ab46.htm">How to: Optimize Filters and Joins</a></span><br /><span class="linkTerms"><a href="/html/f5b2d063-c8c2-4ada-bf3a-b599409cb41c.htm">How to: Create Queries (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/7a2c187e-f76a-4c89-a0bb-5899a04d558a.htm">How to: Share Connections for Multiple Remote Views</a></span><br /><span class="linkTerms"><a href="/html/231ec44b-c39b-4921-bfa8-6f702821f9f4.htm">How to: Test a Connection for Availability</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Set the Maximum Number of Records Downloaded">
+</OBJECT>

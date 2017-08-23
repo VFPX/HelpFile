@@ -1,0 +1,149 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>XML Web Service - Client Detail Dialog Box</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">XML Web Service - Client Detail Dialog Box</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Makes it possible for you to specify the control, or client, to which you want to bind the results of the XML Web service operation. When calling an XML Web service operation, the results can be bound to a specific control on the form. You can then assign the return value, or the parameter as passed by reference, to a property of the control. Usually, you assign this return value to the <b>Value</b> or <b>Caption</b> property so that the user can see the results.</p>
+    <p>This dialog box appears when you click Add or Edit in the Clients group on the Operations tab of the XML Web Service Builder. For more information, see <a href="/html/3a6ba375-fa9d-43ff-b5fb-04b35f9a4919.htm">Operations Tab, XML Web Service Builder</a>.  </p>
+    <dl><dt><span class="nonLinkTerms">
+        <b>Select control</b>
+      </span></dt><dd>
+        <p>Displays and specifies controls or objects available on the current form to which you want to bind the results of the XML Web service operation. </p>
+        <p>If your XML Web service returns a simple data type, you might want to select a text box or label. You can bind an operation that returns an ADO.NET DataSet, which is a complex type, to a grid. For <b>DataEnvironment</b> objects, you can select a <b>CursorAdapter</b> object and bind the operation results to its <b>CursorFill</b> method, which is typical for XML Web service operations that return ADO.NET DataSets. </p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Control property used to assign the Web service results</b>
+      </span></dt><dd>
+        <p>Displays and specifies the property of the selected control to which you want to bind the operation results. When the operation is called, the results are assigned to the property.</p>
+        <p>For a <b>TextBox</b> control, you usually choose the <b>Value</b> property; however, if the operation returns an ADO.NET DataSet, you might want to use the <b>ControlSource</b> property.   </p>
+        <p>For a <b>Label</b> control, the <b>Caption</b> property is selected by default.    </p>
+        <p>For a <b>Grid</b> control, and if the operation returns an ADO.NET DataSet, you might want to use the <b>RecordSource</b> property. </p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Binding control to the Web service return value or parameter</b>
+      </span></dt><dd>
+        <p>Specifies the XML Web service parameter source to which the control property is bound. </p>
+        <p>The ReturnValue setting is selected as the default. However, you can also specify an operation parameter as the source. This can be useful for operations that have parameters passed by reference. It is also sometimes useful to display the original input value, for example, by using the <b>Label</b> <b>Caption</b> property. </p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Client description</b>
+      </span></dt><dd>
+        <p>Specifies a name you want to use for the client. (Optional)</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Name of binding property</b>
+      </span></dt><dd>
+        <p>Specifies the name of a custom property you want to use as the event source for triggering the XML Web service operation call and subsequent control binding. This option is set to BindMe by default. However, all custom properties and methods of the control are included in the list for you to select another if desired.</p>
+        <p>If a <b>CursorAdapter</b> object is selected, the <b>CursorFill</b> method is selected by default so that the event causes a cursor to be created after calling the XML Web service. This is useful for operations that return an ADO.NET DataSet because the XML Web service enables the DataSet to be imported into <b>CursorAdapter</b> object, through an <b>XMLAdapter</b> object, which is used by the <b>CursorAdapter</b> <b>CursorFill</b> method.   </p>
+        <p>XML Web service operations are called using Visual FoxPro event binding capabilities. At run time, a property specified by the Name of binding property option is added to the control. The added property serves as the event source and is bound to the InvokeClient method of the XML Web service. When the value of the binding property is set to True (.T.), an event occurs and calls the InvokeClient method, which in turn, calls the XML Web service operation. After the operation is called, the return value is set to the control property specified. You can also specify a custom method instead of a custom property. Calling this custom method triggers an event that calls the InvokeClient delegate. </p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Invoke at startup</b>
+      </span></dt><dd>
+        <p>Specifies that the XML Web service is called and the control is bound when the form or class is first instantiated.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Always call Web service</b>
+      </span></dt><dd>
+        <p>Specifies that each control makes its own call to the XML Web service operation to which it is bound.</p>
+        <p>The XML Web service control (wshandler) has the capability to detect when multiple client calls occur for the same operation. For performance, multiple clients reuse the results of an operation when those clients are called simultaneously, such as when the form or class is first instantiated.    </p>
+        <p>For example, suppose you have a <b>TextBox</b> control that binds an operation's results to its <b>Value</b> property and a <b>Label</b> control that binds the first parameter, an input value, of the same operation to its <b>Caption</b> property. When the form or class instantiates, and both clients are called, only a single call to the XML Web service operation usually occurs. However, by selecting Always call Web service, you can specify that all clients make their own calls to the same operation. This also occurs if a client manually calls the operation when the form or class instantiates. </p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Complex Types</b>
+      </span></dt><dd>
+        <p>Displays a dialog box that makes it possible for you to set additional options when binding to operations that return complex types, such as an ADO.NET DataSet or XMLDOMNodeList. For more informatin, see <a href="/html/64f5e5ce-200b-420c-b3bb-7df5d8e39667.htm">XML Web Service - Complex Types Dialog Box</a>.</p>
+      </dd></dl>
+  <h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/3a6ba375-fa9d-43ff-b5fb-04b35f9a4919.htm">Operations Tab, XML Web Service Builder</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/add2e5cc-7210-44c2-9c33-8ad2527d7dbf.htm">Dialog Boxes (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="XML Web Service - Client Detail Dialog Box">
+<param name="Alink Name" value="vfp.1231133">
+<param name="ALink Name" value="XML Web Service - Client Detail">
+</OBJECT>

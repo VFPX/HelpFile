@@ -1,0 +1,246 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Text Editor and Clipboard Manipulation Routines</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Text Editor and Clipboard Manipulation Routines</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>These API routines allow you to manipulate the Visual FoxPro text editor, the file open in the text editor, and the clipboard.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/a561bea2-81b0-465d-9825-ef8c3990e05b.htm">_EdActive( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Hides or shows the selection range or insertion point.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/347b010c-9fa0-4480-a75b-05aa2b38f7ca.htm">_EdCloseFile( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Closes the specified file while saving without asking, prompting before saving, or saving as another file.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/db313bf7-328a-49c7-926b-0cb916fe5f84.htm">_EdCopy( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Copies selected area to the clipboard.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/8e0447b2-d148-43b8-963d-8ef3eacb0b04.htm">_EdCut( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Copies selected area to the clipboard and deletes it from the editor.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/ec0fa1e7-4845-4073-a5ed-278be12d8b8b.htm">_EdDelete( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Deletes the selected area. If there is no selection, deletes character at current pos.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/599ddaa4-d127-4e9d-bab8-c407166e4633.htm">_EdGetChar( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Gets the character at EDPOS.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/8b724063-e6b0-423c-b4d9-039d0ba3478a.htm">_EdGetEnv( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Reads various editor settings.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/2acd8746-c94a-42c8-91e3-7b25b69160aa.htm">_EdGetLineNum( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Returns the line number for the position EDPOS.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/2c12143a-458f-4adb-adb4-34dc40f4aeda.htm">_EdGetLinePos( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Returns the EDPOS for the beginning of the line EDLINE.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/1588d370-e74f-47b5-96c1-7db60240f726.htm">_EdGetPos( ) API Library Routine</a></span>)</span></dt><dd>
+          <p>Returns current editor POS, or returns anchor point if there's a selection.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/85a4b08e-636e-41a2-8ab4-63bf35c0ec46.htm">_EdGetStr( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Gets the text between EDPOS and EDPOS inclusive, and places it in TEXT.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/1816aa0a-7561-4c7a-bbe1-8d0a8ace82c8.htm">_EdIndent( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Indents the selected text by <span class="parameter">int</span> tab stops. <span class="parameter">Int</span> can be negative in order to format a hanging indent.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/6250b45e-1d15-47bf-ab4a-767c2378d0e1.htm">_EdInsert( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Inserts BYTES of TEXT.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/4c0a85a0-6cee-45d4-8c9b-e97e2a87f3bc.htm">_EdLastError( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Returns the error number of the last editor error.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/68b2ad74-112e-4585-aaf9-c3dd91f2bd21.htm">_EdOpenFile( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Starts an editor session on this file.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/bf23abeb-4c49-4eac-a7b6-c67b6c680551.htm">_EdPaste( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Copies clipboard text into the editor at current position.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/419402d9-ecad-4bcd-8129-ec25b2b36ab1.htm">_EdPosInView( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Returns TRUE if the editor position is visible.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/996af41b-5074-47bb-8f70-37ec7bce17a0.htm">_EdRedo( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Redoes the most recent undo.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/27dfb875-c260-4f1f-9da4-5d3c618bcae8.htm">_EdRevert( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Reverts to a saved file.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/bda04e21-654a-4ed0-a876-f65724f2fb5a.htm">_EdSave( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Saves the file without closing the editing window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/cd4f772a-072a-4816-bfaa-93c3ccb05cdb.htm">_EdScrollToPos( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Makes sure that EDPOS passed is on the screen, but doesn't move insertion point. BOOL means center EDPOS vertically.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/3f5db899-11dc-4ef3-a3f4-b01691c2afe3.htm">_EdScrollToSel( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Makes sure the selection anchor point is on the screen. BOOL means center anchor point vertically.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/ab73246f-a085-4877-b129-1754d8f364b7.htm">_EdSelect( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Selects the range from EDPOS to EDPOS. To move the insertion point, set both EDPOSes the same.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/3a1bdd77-69f2-4b4b-b2d9-dd0a16cefaba.htm">_EdSendKey( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Simulates key press given by <span class="parameter">int</span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/d55ddaa2-25c6-4e62-a56a-7e4973b691c5.htm">_EdSetEnv( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Sets various editor settings.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/6ca6f184-84bd-4967-ac59-ea66ef3e7398.htm">_EdSetPos( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Moves insertion point, and has side affect of unselecting anything currently selected.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/199a1fb8-5eef-49da-9a1b-23539a45a108.htm">_EdSkipLines( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Moves insertion point from EDPOS to beginning of line <span class="parameter">int</span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/3aab2391-8db8-47e5-b1a4-077e1a9f4d10.htm">_EdUndo( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Undoes the most recent changes.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/21116307-9cc0-473a-a541-735a634e2e26.htm">_EdUndoOn( ) API Library Routine</a></span>
+        </span></dt><dd>
+          <p>Groups the actions performed after _EdUndoOn( ) is passed until it is passed again as a single action for undo purposes.</p>
+        </dd></dl>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/8c8b7a75-75ae-4a31-95ce-5b1ea7fc7a7d.htm">API Library Construction</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Text Editor and Clipboard Manipulation Routines">
+</OBJECT>

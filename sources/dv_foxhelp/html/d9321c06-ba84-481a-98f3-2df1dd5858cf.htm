@@ -1,0 +1,136 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Grid Highlighting, Column Resizing, and Header Images Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Grid Highlighting, Column Resizing, and Header Images Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File: </b>...\Samples\Solution\Toledo\Griders.scx</p>
+    <p>This sample demonstrates how you can perform the following actions:
+</p>
+    <ul><li>
+        <p>Select style and colors for grid highlighting.</p>
+      </li><li>
+        <p>Resize columns automatically to the width of data in the column. </p>
+      </li><li>
+        <p>Lock the first grid column so that it does not scroll. </p>
+      </li><li>
+        <p>Specify images in column headers.</p>
+      </li></ul>
+  <h1 class="heading">Selecting Grid Highlight Styles</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can use highlighting styles to control how highlighting appears and behaves in a grid when you select rows and the focus moves from the grid. To set highlighting styles, use the <b>Grid</b> <b>HighlightStyle</b> property. </p>
+      <p>In the sample, to set the <b>HighlightStyle</b>, select a style in the combo box on the form. The combo box contains the following code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ThisForm.grdCustomers.HighlightStyle = VAL(this.Value)</pre></td></tr></table></span></div>
+      <p>For more information about <b>HighlightStyle</b>, see <a href="/html/4f67d7a1-b5be-4717-9a29-9d2f8e1c3641.htm">HighlightStyle Property</a>.</p>
+      <p>You can also set highlighting colors. For more information, see <a href="/html/980238df-a4cd-45c9-9181-d014b36f86fc.htm">HighlightBackColor Property</a>, <a href="/html/81f097bf-dec2-41ca-a8c5-536d4f559484.htm">HighlightForeColor Property</a>, <a href="/html/52f1bd74-b81d-4006-8bb0-f3fd6f108acf.htm">SelectedItemBackColor Property</a>, and <a href="/html/b931d352-1ba2-41b5-abd1-6b2c804c3c46.htm">SelectedItemForeColor Property</a>.</p>
+    </div><h1 class="heading">Fitting Columns to Width of Data</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>This sample resizes grid columns automatically to fit the width of data in the column using the <b>Grid</b> <b>AutoFit</b> method as follows:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ThisForm.grdCustomers.AutoFit() </pre></td></tr></table></span></div>
+      <p>You can also resize grid columns by double-clicking the upper-left corner of the grid. To resize an individual column automatically, double-click the dividing line on right side of the column. You can control this behavior using the <b>Grid</b> <b>AllowAutoColumnFit</b> property. </p>
+      <p>For more information, see <a href="/html/7b555e0a-bd2b-46fe-974b-768f84d00e91.htm">AutoFit Method</a> and <a href="/html/48136136-2321-46b9-b172-bd9d0a3b513a.htm">AllowAutoColumnFit Property</a>.</p>
+    </div><h1 class="heading">Locking Grid Columns</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can lock columns so the columns remain fixed when the scrolling horizontally across a grid by using the <b>Grid</b> <b>LockColumns</b> property.</p>
+      <p>In the sample, you can lock the first column in the grid by setting <code>grdCustomers.LockColumns</code> to 1 as in the following code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ThisForm.grdCustomers.LockColumns = 1</pre></td></tr></table></span></div>
+      <p>You can also lock the Customer ID column by clicking the column header. The pushpin in the column header indicates whether the column is locked. To lock individual columns, right-click the area between the column headers.</p>
+      <p>For more information, see <a href="/html/13235002-b82c-4cac-a272-8c38b56f3147.htm">LockColumns Property</a> and <a href="/html/76c833d0-5981-4833-8e92-0f671d477f6a.htm">LockColumnsLeft Property</a>. </p>
+    </div><h1 class="heading">Displaying Images in Column Headers</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>You can specify an image for a column header using the <b>Picture</b> property and set image orientation using the <b>Header</b> <b>Alignment</b> property. </p>
+      <p>In the sample, an image appears in the Company Name column header to indicate the direction of the sort order in the column. Clicking the column header displays different images to indicate ascending or descending sort order. </p>
+      <p>For more information, see <a href="/html/3de62792-34eb-49e3-8009-2921654c94c7.htm">Picture Property</a> and <a href="/html/8c351247-e41f-4bd2-8f0a-425ff25bdf29.htm">Alignment Property</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/909bc1e6-7b98-4527-a57f-c99f0ce4fc6f.htm">Controls Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Grid Highlighting, Column Resizing, and Header Images Sample">
+<param name="Alink Name" value="vfp.1231676">
+</OBJECT>

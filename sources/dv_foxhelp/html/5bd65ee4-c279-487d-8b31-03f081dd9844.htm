@@ -1,0 +1,894 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>FRX Cursor Foundation Class</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">FRX Cursor Foundation Class</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>This class provides methods to translate and manipulate various values in Label (lbx) and Report (frx) files.</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            
+              <b>Category</b>
+            
+          </th>
+          <th>
+            
+              <b>Reporting</b>
+            
+          </th>
+        </tr><tr>
+        <td>
+          <p>Default Catalog</p>
+        </td>
+        <td>
+          <p>Visual FoxPro Catalog\Foundation Classes\Output\Output Helper Classes</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Class</p>
+        </td>
+        <td>
+          <p>frxCursor</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Base Class</p>
+        </td>
+        <td>
+          <p>Custom</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Class Library</p>
+        </td>
+        <td>
+          <p>_FrxCursor.vcx</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Parent Class</p>
+        </td>
+        <td>
+          <p>Custom</p>
+        </td>
+      </tr></table></div>
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>This class exposes the algorithms used by ReportOutput.APP, ReportBuilder.APP, and ReportPreview.APP to interpret various printing values and Report (frx) and Label (lbx) table values.  </p>
+      <p>It is primarily useful for developers extending Visual FoxPro reporting functionality.  For more information, see <span class="linkTerms"><a href="/html/ed7d4b83-ec91-42fc-8ec5-97b59ea81cb8.htm">Extending Report Functionality in Visual FoxPro</a></span>. </p>
+      <p>FrxCursor helps you handle many details of the Report and Label file format that are otherwise obscure and, in many cases, very complex. The topic <span class="linkTerms"><a href="/html/e62ce8ab-f156-45d2-a0b9-11562e5dbcef.htm">Understanding and Extending Report Structure</a></span> will give you important details on this file format. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Important </th></tr><tr><td>
+        <p>Many methods of this class use a measurement unit known as a <i>FRU</i>.  FRUs are FoxPro report units, specified as 1/10000 inch.  This unit is the internal unit used by the Visual FoxPro Report Designer to store layout measurements and position.  The methods of FrxCursor help you convert FRUs into units you can use more easily in other environments.</p>
+      </td></tr></table></div>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Properties, Events, Methods</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>binStringToInt method</p>
+          </td>
+          <td>
+            <p>Returns the numeric equivalent of binary data encoded as a string of bytes.</p>
+            <p>
+              <b>Syntax:</b> <code>binStringToInt(cBytes)</code></p>
+            <p>
+              <b>Return:</b> integer</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cBytes</span> provides the string of bytes for which the method returns the numeric equivalent. For example: </p>
+            <p>
+              <code>? oFrxCursor.BinStringToInt("ABC")</code>
+            </p>
+            <p>
+              <code>* displays 4407873</code>
+            </p>
+            <p>An example of this method being called can be found in <span class="linkTerms"><a href="/html/7d95e928-3bea-4c3c-bba6-1a84ff4b2510.htm">Report Protection Flags</a></span>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>binToInt method</p>
+          </td>
+          <td>
+            <p>Converts a string of 1's and 0's into an integer.</p>
+            <p>
+              <b>Syntax:</b> <code>binToInt(cString)</code></p>
+            <p>
+              <b>Return:</b> integer</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cString</span> provides the string of 1's and 0's for which the method returns the integer equivalent. For example:</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? oFrxCursor.BinToInt(;
+   "00000000000000000000000001111011")
+* displays 123</pre></td></tr></table></span></div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>charsetToLocale method</p>
+          </td>
+          <td>
+            <p>Converts a given fontcharset value to a candidate locale Id for use with the STRCONV() function. Parameters: nCharSet</p>
+            <p>
+              <b>Syntax:</b> <code>charsetToLocale(nCharSet)</code></p>
+            <p>
+              <b>Return:</b> integer</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">nCharSet</span> provides the fontcharset value to be converted.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>createBandCursor method</p>
+          </td>
+          <td>
+            <p>Creates a cursor with alias "bands" from the FRX cursor, containing useful info about the bands in the report.</p>
+            <p>
+              <b>Syntax:</b> <code>createBandCursor([cFrxAlias]</code></p>
+            <p>
+              <b>Return:</b> logical</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cFrxalias</span> provides the alias of the open Report table (frx) from which the "bands" cursor data should be derived.  If the argument is omitted, the method assumes an alias of "FRX".</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>createCalcResetOnCursor method</p>
+          </td>
+          <td>
+            <p>Creates a cursor (alias "reset_on") containing records of information for each option in the Report Designer's Calculation Reset combobox. Refer to the <span class="linkTerms"><a href="/html/571372b0-13b0-4e3f-8753-1dc1298e720a.htm">Calculate Tab, Report Control Properties Dialog Box (Report Builder)</a></span> topic for information on the available values.</p>
+            <p>
+              <b>Syntax:</b> <code>createCalcResetOnCursor( )</code></p>
+            <p>
+              <b>Return:</b> logical</p>
+            <p>
+              <b>Arguments: </b>
+              <span class="parameter">none.</span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>createDefaultPrintEnvCursor method</p>
+          </td>
+          <td>
+            <p>Creates a one-record cursor with the same structure as the FRX, with the default printer environment data loaded into EXPR, TAG, and TAG2 fields. </p>
+            <p>
+              <b>Syntax:</b> <code>createDefaultPrintEnvCursor( [cFrxAlias</code></p>
+            <p>
+              <code>[, cDestAlias ]])</code>
+            </p>
+            <p>
+              <b>Return:</b> logical</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cFrxAlias</span> provides the alias of the open Report table (frx) from which the structure is derived.</p>
+            <p>
+              <span class="parameter">cDestAlias</span> provides the alias for the one-record cursor the method creates. </p>
+            <p>The default aliases are "FRX" and "defPrnEnv."</p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>The FRX source cursor's structure can have custom fields along with the standard Report table structure, and these fields will be duplicated in the resulting target (defPrnEnv) structure.  Refer to <span class="linkTerms"><a href="/html/e62ce8ab-f156-45d2-a0b9-11562e5dbcef.htm">Understanding and Extending Report Structure</a></span> for more information.</p>
+            </td></tr></table></div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>createGroupCursor method</p>
+          </td>
+          <td>
+            <p>Creates a cursor with the alias "groups," derived from the FRX cursor, containing useful info about the report data grouping.</p>
+            <p>
+              <b>Syntax:</b> <code>createGroupCursor( [cFrxAlias])</code></p>
+            <p>
+              <b>Return:</b> logical</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cFrxAlias</span> provides the alias of the open Report table (frx) from which the structure is derived.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>createObjectCursor method</p>
+          </td>
+          <td>
+            <p>Creates a cursor with the alias "objects" from the FRX cursor, containing useful info about the layout objects in the report. Calls the createBandCursor method if necessary.</p>
+            <p>
+              <b>Syntax:</b> <code>createObjectCursor( [cFrxAlias[,cDestAlias [,iOption[,lRuntime]]]])</code></p>
+            <p>
+              <b>Return:</b> logical</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cFrxAlias</span> provides the alias of the open Report table (frx) from which the structure is derived. The default is <code>"frx"</code>.</p>
+            <p>
+              <span class="parameter">cDestAlias</span> specifies the destination alias of the cursor which will be created. The default is <code>"objects"</code>.</p>
+            <p>
+              <span class="parameter">iOption</span> has the following possible values:</p>
+            <p>
+              <b>iOption = 0</b>  Default value if the argument is not included.  Method includes all objects in frx, ignoring grouped items.</p>
+            <p>
+              <b>iOption = 1</b>  Includes only selected/CURPOS=.T. records in the cursor. </p>
+            <p>
+              <b>iOption = 2</b>  Includes all objects, showing grouped items as a single group record. </p>
+            <p>
+              <b>iOption = 3</b>  Provides a breakdown of grouped records. Note that some records included in a group may be marked <b>deleted()</b>. You can use <b>SET DELETED ON</b> to omit these records.</p>
+            <p>
+              <span class="parameter">lRuntime</span> specifies that the object cursor should use report run-time values for each object's start band and end band. The default value is .F. which specifies that the band location values are correct as determined by the Report Designer layout engine. The report run-time engine uses different algorithms to determine which band a report layout element starts and ends in.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>createVariableCursor method</p>
+          </td>
+          <td>
+            <p>Creates a cursor with the alias "vars" derived from the FRX cursor, containing useful info about the report variables defined in the report.</p>
+            <p>
+              <b>Syntax:</b> <code>createVariableCursor( [cFrxAlias])</code></p>
+            <p>
+              <b>Return:</b> logical</p>
+            <p>
+              <b>Arguments: </b>
+              <span class="parameter">cFrxAlias</span> provides the alias of the open Report table (frx) from which the structure is derived.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>fruToPixels method</p>
+          </td>
+          <td>
+            <p>Returns the size in pixels of a given number of FRUs.</p>
+            <p>
+              <b>Syntax:</b> <code>fruToPixels(iValue)</code></p>
+            <p>
+              <b>Return:</b> numeric (number of Pixels)</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">iValue</span> is an integer value providing the number of FRUs to be converted to a number of pixels.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>getBandFor method</p>
+          </td>
+          <td>
+            <p>Returns an object representing the start or end band for a given object record.  Since an object can span multiple report layout bands, this method provides either the start or end band in which the object is anchored.  It uses the vertical offset position of the layout object to determine the correct bands.</p>
+            <p>
+              <b>Syntax:</b> <code>getBandFor(cUniqueID [,lStart])</code></p>
+            <p>
+              <b>Return:</b> band object (the object represents the data in the FRX describing the relevant band)</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cUniqueID</span> is the FRX UniqueID value of the object for which you want band information.  <span class="parameter">lStart</span> indicates whether you want the start or end band. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>getFruTextHeight method</p>
+          </td>
+          <td>
+            <p>Returns the height in FRUs of a text string displayed using a font with specified attributes.</p>
+            <p>
+              <b>Syntax:</b> <code>getFruTextHeight(cText,cTypeFace,iSize[, cStyle])</code></p>
+            <p>
+              <b>Return:</b>   integer value in FRUs.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cText</span> is the string you want to measure.  </p>
+            <p>
+              <span class="parameter">cTypeFace</span> is the name of the font.</p>
+            <p>
+              <span class="parameter">iSize</span> is the point size of the font.  </p>
+            <p>
+              <span class="parameter">cStyle</span> provides the styles you want to apply to the string, using the same values you would pass to the <b>GETFONT( )</b> function.  For more information, For more information, see <span class="linkTerms"><a href="/html/a991294d-961d-440c-9524-7cf736bc8a0c.htm">AFONT( ) Function</a></span>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>getFruTextWidth method</p>
+          </td>
+          <td>
+            <p>Returns the width in FRUs of a text string displayed using a font with specified attributes.</p>
+            <p>
+              <b>Syntax:</b> <code>getFruTextWidth(cText,cTypeFace,iSize[, cStyle])</code></p>
+            <p>
+              <b>Return:</b>  <b> </b>integer value in FRUs.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cText</span> is the string you wish to measure.  <span class="parameter">cTypeFace</span> is the name of the font.</p>
+            <p>
+              <span class="parameter">iSize</span> is the point size of the font.  </p>
+            <p>
+              <span class="parameter">cStyle</span> provides the styles you want to apply to the string, using the same values you would pass to the <b>GETFONT( )</b> function.  For more information, For more information, see <span class="linkTerms"><a href="/html/a991294d-961d-440c-9524-7cf736bc8a0c.htm">AFONT( ) Function</a></span></p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>getFrxTimeStamp method</p>
+          </td>
+          <td>
+            <p>Returns a time stamp for a given date/time, formulated according to the standards used in Visual FoxPro system tables (frx and lbx files, for reports and labels).</p>
+            <p>
+              <b>Syntax:</b> <code>getFrxTimeStamp([vDateTime]) </code><b>Return:</b>  <b> </b>integer </p>
+            <p>
+              <b>Arguments:</b> </p>
+            <p>
+              <span class="parameter">vDateTime</span> is an optional argument of either Date or DateTime type.  If you omit the argument, the method uses the current <b>DATETIME( )</b> value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>getMetadataDomDoc method</p>
+          </td>
+          <td>
+            <p>Returns an MSXml.DomDocument object containing the XML report memberdata for the current record in the FRX.  If the STYLE field for the current record is empty, this method returns an empty template document of the appropriate XML schema.</p>
+            <p>
+              <b>Syntax:</b> <code>getMetadataDomDoc( [cFrxAlias])</code></p>
+            <p>
+              <b>Return: </b>MSXml.DomDocument object, or NULL if the FRX alias is not <b>USED()</b>.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cFrxAlias</span> provides the alias of the open Report table (frx) from which the structure is derived.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>getObjectsInBand method</p>
+          </td>
+          <td>
+            <p>Returns a Collection of UNIQUEID values for each object that is contained by the specified Band. </p>
+            <p>
+              <b>Syntax:</b> <code>getObjectsInBand( cBandID [,lRecno])</code></p>
+            <p>
+              <b>Return: </b>Object of Collection type, holding either UNIQUEID values for the selected layout objects or <b>RECNO()</b> values for the layout objects.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cFrxAlias</span> provides the alias of the open Report table (frx) from which the structure is derived.</p>
+            <p>
+              <span class="parameter">lRecno</span> indicates which type of values you want to have in the Collection. If you pass a second parameter of <code>.T.</code>, the collection is of FRX Record Numbers rather than the values in the UNIQUEID field.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>getReportAttribute method</p>
+          </td>
+          <td>
+            <p>Returns a given attribute of the report header. </p>
+            <p>
+              <b>Syntax:</b> <code>getReportAttribute( cAttributeType, [,lAlternate])</code></p>
+            <p>
+              <b>Return: </b>a Report attribute based on the argument supplied in the method call.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cAttributeType</span> indicates the type of Report attribute value you want to receive. </p>
+            <p>The following <span class="parameter">cAttributeType</span> values are supported (case-insensitive):</p>
+            <p>
+              <b>"UNITS"</b> Returns an integer value indicating the units, as stored in the Frx.RULER field.</p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>This argument value can also return an associated string, representing the units, if you include the <span class="parameter">lAlternate</span> argument with a value of <code>.T.</code>. For example, the following method call results in a return value of <code>"Inches"</code>:<code> oFrxCursor.getReportAttribute("UNITS",1) </code></p>
+            </td></tr></table></div>
+            <p>
+              <b>"MULTICOLUMN"</b> Returns a logical value.</p>
+            <p>
+              <b>"COLUMNCOUNT"</b> Returns an integer value.</p>
+            <p>
+              <b>"PROTECTION"</b> Returns a binary character string, which can be parsed to evaluate the different types of Report protection associated with this report on a global level.  For more information, see <span class="linkTerms"><a href="/html/06bd5839-da09-4e34-a0f4-10bc66da8b4e.htm">Setting Protection for Reports</a></span></p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>getSelectedObjectCount method</p>
+          </td>
+          <td>
+            <p>Returns the number of currently selected objects (objects with the CURPOS field value <code>set to .T.</code>) in the FRX cursor.</p>
+            <p>
+              <b>Syntax:</b> <code>getSelectedObjectCount( )</code></p>
+            <p>
+              <b>Return: </b>integer.</p>
+            <p>
+              <b>Arguments: </b>
+              <span class="parameter">none.</span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>getTargetTypeText method</p>
+          </td>
+          <td>
+            <p>Returns a description of an FRX object's type, given the type and code values as stored in the FRX OBJTYPE and OBJCODE fields.</p>
+            <p>
+              <b>Syntax:</b> <code>getTargetTypeText(iType[,iCode])</code></p>
+            <p>
+              <b>Return: </b>String.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">iType</span> provides the object's OBJTYPE value.  If you omit this argument, or if you provide a value that is not one of the known OBJTYPE values, this method returns the string <code>Unknown Target type.</code> </p>
+            <p>
+              <span class="parameter">iCode</span> provides the subsidiary OBJCODE value, used for FRX records with more than one type of record using the same OBJTYPE (primarily layout band records).</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>getTimeStampString method</p>
+          </td>
+          <td>
+            <p>Converts a Visual FoxPro time stamp into a readable string.</p>
+            <p>
+              <b>Syntax:</b> <code>getTimeStampString(iDateTimeStamp)</code></p>
+            <p>
+              <b>Return: </b>String.</p>
+            <p>
+              <b>Arguments: </b>
+              <span class="parameter">iDateTimeStamp</span> is an integer in the format used by Visual FoxPro to store datetime stamps in system files (frx and lbx files, for reports and labels).  For example:</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? oFrxCursor.GetTimeStampString(819103384)
+* displays: 06/18/04 04:52:48 PM</pre></td></tr></table></span></div>
+            <p>
+              <b>Tip</b>   You can also use this method to examine the datetime stamp values in Visual FoxPro class libraries (vcx files).</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>getUnitValueFromFru method</p>
+          </td>
+          <td>
+            <p>Returns a given unit value for a given value in FRUs, depending on the units. </p>
+            <p>
+              <b>Syntax:</b> <code>getUnitValueFromFru(nFruValue, iUnits)</code></p>
+            <p>
+              <b>Return:</b> numeric.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">nFruValue</span> is a number of FRUs, which may have decimal places.</p>
+            <p>
+              <span class="parameter">iUnits</span> is an integer indicating the type of unit for which you want to receive the converted value.  This value is determined by the integer values used in a report (frx) or label (lbx) table to specify ruler units.  See <span class="linkTerms"><a href="/html/e62ce8ab-f156-45d2-a0b9-11562e5dbcef.htm">Understanding and Extending Report Structure</a></span> for more information.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>hasBand method</p>
+          </td>
+          <td>
+            <p>Returns <code>.T.</code> if the report contains a band of the given type you specify.</p>
+            <p>
+              <b>Syntax:</b> <code>hasBand(iObjCode)</code></p>
+            <p>
+              <b>Return: </b>logical.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">iObjCode</span> is an integer indicating the type of optional band for which you are checking.</p>
+            <p>
+              <b>Tip</b>   Use this method to check for band types that do not occur in every report. For example, you can check for the existence of a Group band or a Summary band.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>hasDetailHeader method</p>
+          </td>
+          <td>
+            <p>Returns <code>.T.</code> if the specified detail band record has an associated detail header record.</p>
+            <p>
+              <b>Syntax:</b> <code>hasDetailHeader(cDetailBandID)</code></p>
+            <p>
+              <b>Return: </b>logical.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cDetailBandID</span> is a string matching the Frx.UNIQUEID field value for the detail band you are investigating.</p>
+            <p>
+              <b>Tip</b>   Detail Header and Detail Footer bands are optional.  If you receive a .T. value for a Detail band, however, you can be certain that both Detail Header and Detail Footer bands are present; these bands are always paired.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>hasProtectionFlag method</p>
+          </td>
+          <td>
+            <p>Returns <code>.T.</code> if the specified binary data has a specific flag set.</p>
+            <p>
+              <b>Syntax:</b> <code>hasProtectionFlag(cBytes,iFlag)</code></p>
+            <p>
+              <b>Return: </b>logical.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cBytes</span> is a string evaluated by this method as a series of bytes.  </p>
+            <p>
+              <span class="parameter">iFlag</span> is the bit value representing a type of report protection for which you are checking the report or report layout object. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>insertBand method</p>
+          </td>
+          <td>
+            <p>Inserts a band of a given type into the currently selected work area. This method assumes that a valid FRX cursor is already selected and that its record pointer is located at the correct location for the insert operation.</p>
+            <p>
+              <b>Syntax:</b> <code>insertBand(iObjCode)</code></p>
+            <p>
+              <b>Return: </b>logical.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">iObjCode</span> indicates the type of band record you want to insert in the FRX table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>insertDataEnvRecord method</p>
+          </td>
+          <td>
+            <p>Inserts a data environment object record into an FRX cursor. This method assumes that the record pointer is appropriately located. </p>
+            <p>
+              <b>Syntax:</b> <code>insertDataEnvRecord(cID,cName,cExpr,cCode)</code></p>
+            <p>
+              <b>Return: </b>logical.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">cID</span> is the unique ID value for the new record's UniqueID column.</p>
+            <p>
+              <span class="parameter">cName</span> is the value for the new record's Name column.</p>
+            <p>
+              <span class="parameter">cExpr</span> is a list of name-value pairs to be included in the new record's Expr column.</p>
+            <p>
+              <span class="parameter">cCode</span> is the text of method code to be included in the new record's Tag column.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>insertDetailBand method</p>
+          </td>
+          <td>
+            <p>Inserts a Detail band into the currently selected work area. This method assumes that a valid FRX cursor is already selected and that its record pointer is located at the correct location for a Detail band record.</p>
+            <p>
+              <b>Syntax:</b> <code>insertDetailBand()</code></p>
+            <p>
+              <b>Return: </b>logical.</p>
+            <p>
+              <b>Arguments: </b>
+              <span class="parameter">none</span>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>insertDetailHeaderFooter method</p>
+          </td>
+          <td>
+            <p>Inserts a Detail Header and Detail Footer band into an FRX cursor in the currently selected work area. This method assumes that a valid FRX cursor is already selected, and that its record pointer is located on a Detail band record that does not currently have Detail Header and Detail Footer bands.</p>
+            <p>
+              <b>Syntax:</b> <code>insertDetailHeaderFooterBand()</code></p>
+            <p>
+              <b>Return: </b>logical.</p>
+            <p>
+              <b>Arguments: </b>
+              <span class="parameter">none</span>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>insertSummaryBand method</p>
+          </td>
+          <td>
+            <p>Inserts a Summary band into the currently selected work area. This method assumes that a valid FRX cursor is already selected and that that the FRX cursor does not already have a Summary band record.</p>
+            <p>
+              <b>Syntax:</b> <code>insertSummaryBand(lNewPage, lPageHeader, lPageFooter)</code></p>
+            <p>
+              <b>Return: </b>logical.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">lNewPage</span> indicates whether the Summary band should start a new page. </p>
+            <p>If the Summary band starts a new page, <span class="parameter">lPageHeader</span> indicates whether the Summary page should have a Page Header band and <span class="parameter">lPageFooter</span> indicates whether the Summary page should have a Page Footer band.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>insertTitleBand method</p>
+          </td>
+          <td>
+            <p>Inserts a Title band into the currently selected work area. This method assumes that a valid FRX cursor is already selected and the FRX does not already have a Title band.</p>
+            <p>
+              <b>Syntax:</b> <code>insertTitleBand(lNewPage)</code></p>
+            <p>
+              <b>Return: </b>logical.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">lNewPage</span> indicates whether the Summary band should start a new page.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>intToBin method</p>
+          </td>
+          <td>
+            <p>Converts an integer into a string of 1's and 0's.</p>
+            <p>
+              <b>Syntax:</b> <code>intToBin(iInteger)</code></p>
+            <p>
+              <b>Return:</b> String.</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">iInteger</span> provides the integer for which the method returns a string of 1's and 0's.  For example:</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? oFrxCursor.IntToBin(123)
+* displays 
+* 00000000000000000000000001111011</pre></td></tr></table></span></div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>intToBinString method</p>
+          </td>
+          <td>
+            <p>Returns a binary value encoded as a string of bytes for the integer you specify.</p>
+            <p>
+              <b>Syntax:</b> <code>intToBinString(iInteger)</code></p>
+            <p>
+              <b>Return:</b> String (cBytes).</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">iInteger</span> provides the integer for which the method returns a string of 1's and 0's.  For example:</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? oFrxCursor.IntToBinString(4407873)
+* displays ABC</pre></td></tr></table></span></div>
+            <p>An example of this method being called can be found in <span class="linkTerms"><a href="/html/7d95e928-3bea-4c3c-bba6-1a84ff4b2510.htm">Report Protection Flags</a></span>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>pixelsToFru method</p>
+          </td>
+          <td>
+            <p>Returns the size in FRUs of a given number of pixels.</p>
+            <p>
+              <b>Syntax:</b> <code>pixelsToFru(iValue)</code></p>
+            <p>
+              <b>Return:</b> numeric (number of FRUs)</p>
+            <p>
+              <b>Arguments: </b>
+            </p>
+            <p>
+              <span class="parameter">iValue</span> is an integer value providing the number of pixels to be converted to a number of FRUs.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>popPrintEnv method</p>
+          </td>
+          <td>
+            <p>Restores the printer environment from a previously saved cursor. This method assumes that the previously saved cursor is currently selected.</p>
+            <p>
+              <b>Syntax:</b> <code>popPrintEnv()</code></p>
+            <p>
+              <b>Return:</b> logical.</p>
+            <p>
+              <b>Arguments:</b> <span class="parameter">none.</span></p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>pushPrintEnvToCursor method</p>
+          </td>
+          <td>
+            <p>Saves the current printer environment to a cursor, which is created by this method.</p>
+            <p>
+              <b>Syntax:</b> <code>pushPrintEnvToCursor(cSavedInAlias)</code></p>
+            <p>
+              <b>Return:</b> logical.</p>
+            <p>
+              <b>Arguments:</b> <span class="parameter">cSavedInAlias</span> provides the alias of the cursor you want to create, and to which you want the printer environment saved.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>screenDPI property</p>
+          </td>
+          <td>
+            <p>The DPI of the Report Designer. In VFP9 this is hard coded to 96, regardless of the actual display's DPI.</p>
+            <p>
+              <b>Default:</b> 96</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>setColumnCount method</p>
+          </td>
+          <td>
+            <p>Adds or removes columns (and column header/footer records) from the FRX cursor.  This method assumes the FRX cursor is selected. </p>
+            <p>
+              <b>Syntax:</b> <code>setColumnCount(iColumns)</code></p>
+            <p>
+              <b>Return:</b> logical.</p>
+            <p>
+              <b>Arguments:</b> <span class="parameter">iColumns</span> sets the number of columns for the report layout.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>stripQuotes method</p>
+          </td>
+          <td>
+            <p>Returns a string with embraced string delimiters removed. </p>
+            <p>
+              <b>Syntax:</b> <code>stripQuotes(cString)</code></p>
+            <p>
+              <b>Return:</b> string.</p>
+            <p>
+              <b>Arguments:</b> <span class="parameter">cString</span> is the value from which you want to strip delimiters.</p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>This method strips delimiting double-quotation marks (<code>"</code>) and single-quotation marks (<code>'</code>) but does not strip square brackets (<code>[</code> and <code>]</code>). It is designed to remove the delimiters that may have been placed in an FRX column's value by the native Report Designer.  If square brackets delimit the value, the Report Designer did not add them.</p>
+            </td></tr></table></div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>synchObjectPositions method</p>
+          </td>
+          <td>
+            <p>Resets non-deleted objects in the FRX relative to the start of the band they are in after bands have been resized or repositioned in the layout. This method assumes that FrxCursor's bands and objects cursors have been created, that the currently selected table is a cursor of FRX structure, and that the method does not need to restore the record pointer after processing the records in the cursor. </p>
+            <p>
+              <b>Syntax:</b> <code>synchObjectPositions()</code></p>
+            <p>
+              <b>Return:</b> logical.</p>
+            <p>
+              <b>Arguments: </b>
+              <span class="parameter">none</span>.</p>
+          </td>
+        </tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">This example changes the width of a field in a Report table record, to accommodate a different expression in this field.  </p>
+        <p xmlns="">It uses the FrxCursor.getFruTextWidth() method to determine the correct width for the new contents of the field.  Then it uses the FrxCursor.getFrxTimeStamp() method to update the timestamp for this record.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE OBJTYPE_FIELD           8
+LOCAL iWidth, oFrxCursor
+oFrxCursor = NEWOBJECT("FrxCursor", "_FrxCursor")
+USE My.FRX
+LOCATE FOR objtype = OBJTYPE_FIELD AND ;
+           UPPER(ALLTRIM(Expr)) == "DATE()"
+IF FOUND()
+   iWidth = FrxCursor.getFruTextWidth(TRANSFORM(DATETIME()), ;
+                                       fontface,fontsize)
+   REPLACE Expr WITH "DATETIME()", ;
+           Width WITH iWidth, ;
+           Timestamp WITH FrxCursor.getFrxTimeStamp()
+ENDIF</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/005682e4-5892-4e65-bcc3-2b64213e3fcc.htm">Guidelines for Using Visual FoxPro Foundation Classes</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/dbc4b061-74ad-4780-89bf-0e5d461be849.htm">Extending Reports at Design Time</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="FRX Cursor Foundation Class">
+</OBJECT>

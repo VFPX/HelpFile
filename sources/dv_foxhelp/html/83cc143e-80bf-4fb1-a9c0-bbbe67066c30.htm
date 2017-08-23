@@ -1,0 +1,192 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>LOCK( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">LOCK( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Attempts to lock one or more records in a table.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+LOCK([<span class="parameter">nWorkArea</span> | <span class="parameter">cTableAlias</span>]|
+ [<span class="parameter">cRecordNumberList</span>, <span class="parameter">nWorkArea</span> | <span class="parameter">cTableAlias</span>])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nWorkArea</span>| <span class="parameter">cTableAlias</span></span></dt><dd>
+          <p>Attempts a lock on the current record in a table open in a specific work area. <span class="parameter">nWorkArea</span> specifies the work area number and <span class="parameter">cTableAlias</span> specifies the table alias. If you do not specify a work area or table alias, LOCK( ) attempts to lock the current record in the table in the current work area.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cRecordNumberList</span>
+        </span></dt><dd>
+          <p>Specifies a list of one or more record numbers which you must include to attempt to lock multiple records. SET MULTILOCKS must be ON and you must include the work area or alias of the table for which you are attempting to place multiple record locks.</p>
+          <p>LOCK( ) attempts to lock all of the records you specify. The record numbers specified with <span class="parameter">cRecordNumberList</span> are separated by commas. For example, to attempt record locks on the first four records in a table, <span class="parameter">cRecordNumberList</span> must contain 1,2,3,4.   </p>
+          <p>You can also lock multiple records by moving the record pointer to the record you would like to lock, issuing LOCK( ) or RLOCK( ) and then repeating these steps for each additional record.   </p>
+          <p>In Visual FoxPro, you can specify 0 as a record number. Specifying 0 makes it possible for you to attempt to lock the table header.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Keep the table header locked for as short a time as possible because other users cannot add records to the table when the table header is locked.</p>
+          </td></tr></table></div>
+          <p>Release the table header lock with UNLOCK RECORD 0, UNLOCK or UNLOCK ALL.   </p>
+          <p>If all the records specified in <span class="parameter">cRecordNumbers</span> are successfully locked, LOCK( ) returns true (.T.). If even one of the records specified with <span class="parameter">cRecordNumbers</span> cannot be locked, LOCK( ) returns false (.F.) and none of the records are locked. However, any existing record locks remain in place. Multiple record locking is an additive process. Placing additional record locks does not release locks on other records.   </p>
+          <p>The maximum number of records that can be locked in each work area is approximately 8,000. It is always faster to lock the entire table rather than even a small number of records. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Logical</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>LOCK( ) is identical to RLOCK( ).</p>
+      <p>Changes to explicitly locked records aren't saved until the record is unlocked or the record pointer is moved.</p>
+      <p>If the lock or locks are successfully placed, LOCK( ) returns true (.T.). Locked records are available for both read and write access to the user who placed the locks; they are available for read-only access to all other users on the network.</p>
+      <p>Executing LOCK( ) does not guarantee that the record lock or locks will be successfully placed. A record lock cannot be placed on a record already locked by another user or in a table locked by another user. If the record lock or locks cannot be placed for any reason, LOCK( ) returns false (.F.).</p>
+      <p>By default, LOCK( ) makes one attempt to lock a record. Use SET REPROCESS to automatically retry a record lock when the first attempt fails. SET REPROCESS determines the number of lock attempts or the length of time during which lock attempts are made when the initial lock attempt is unsuccessful. For more information, see <a href="/html/cc56eb65-6621-4d12-8192-ca38042d16a5.htm">SET REPROCESS</a>.</p>
+      <p>SET MULTILOCKS determines whether you can lock multiple records in a table. If SET MULTILOCKS is OFF (the default), you can lock only a single record in a table. When SET MULTILOCKS is ON, you can lock multiple records in a table. For more information, see <a href="/html/6f017b16-28bb-4fcb-93b1-ca08e674f7ac.htm">SET MULTILOCKS</a>.</p>
+      <p>
+        <b>Unlocking Records</b>   A table record can be unlocked only by the user who placed the lock. You can release record locks by issuing UNLOCK, closing the table, or exiting Visual FoxPro.</p>
+      <p>UNLOCK can be used to release record locks in the current work area, a specific work area, or in all work areas. For more information, see <a href="/html/1949c546-100e-41b1-b768-4a53d112be24.htm">UNLOCK</a>.</p>
+      <p>Switching SET MULTILOCKS from ON to OFF or from OFF to ON implicitly performs UNLOCK ALL — all record locks in all work areas are released.</p>
+      <p>Tables can be closed with USE, CLEAR ALL, or CLOSE DATABASES.</p>
+      <p>For more information about record and file locking and sharing tables on a network, see <a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a>.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example locks and unlocks the first four records in the <code>customer</code> and <code>employee</code> tables.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'data\testdata')
+SET REPROCESS TO 3 AUTOMATIC
+STORE '1,2,3,4' TO gcRecList
+gcOldExc = SET('EXCLUSIVE')
+SET EXCLUSIVE OFF
+SELECT 0
+USE employee  &amp;&amp; Open Employee table
+SELECT 0
+USE customer  &amp;&amp; Open Customer table
+? LOCK('1,2,3,4', 'customer')  &amp;&amp; Lock 1st 4 records in customer
+? RLOCK(gcRecList, 'employee')  &amp;&amp; Lock 1st 4 records in employee
+UNLOCK IN customer
+UNLOCK IN employee
+SET EXCLUSIVE &amp;gcOldExc</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/b89737d7-7dac-455e-9088-fa0ec6c93b98.htm">CLEAR Commands</a></span><br /><span class="linkTerms"><a href="/html/510d1838-e8cb-471b-8f92-e3409ba7a271.htm">CLOSE Commands</a></span><br /><span class="linkTerms"><a href="/html/76c905e2-77c6-4c45-8f9b-bad3c021c590.htm">FLOCK( ) Function</a></span><br /><span class="linkTerms"><a href="/html/5878c5e3-9e76-4445-8919-3b94f6e40765.htm">RLOCK( ) Function</a></span><br /><span class="linkTerms"><a href="/html/6f017b16-28bb-4fcb-93b1-ca08e674f7ac.htm">SET MULTILOCKS Command</a></span><br /><span class="linkTerms"><a href="/html/cc56eb65-6621-4d12-8192-ca38042d16a5.htm">SET REPROCESS Command</a></span><br /><span class="linkTerms"><a href="/html/1949c546-100e-41b1-b768-4a53d112be24.htm">UNLOCK Command</a></span><br /><span class="linkTerms"><a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a></span><br /><span class="linkTerms"><a href="/html/ec48d46f-d8e4-4116-a3e1-116043135031.htm">ISFLOCKED( ) Function</a></span><br /><span class="linkTerms"><a href="/html/45465b8e-88e8-41e2-8a0a-57a089f5cd20.htm">ISRLOCKED( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="LOCK( ) Function">
+<param name="ALink Name" value="LOCK">
+</OBJECT>

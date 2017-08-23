@@ -1,0 +1,404 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Object Browser Window</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Object Browser Window</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The Object Browser displays the classes, properties, methods, events, and constants available for COM object libraries. You can use it to find and use objects you create, as well as objects from other applications.</p>
+    <p>To launch the Object Browser from the Tools menu, choose Object Browser and open a COM library to view.</p>
+    <p>The Object Browser application is referenced by _OBJECTBROWSER system variable (which by default references objectbrowser.app). You can set this from the File Locations tab of the Options dialog box.  </p>
+    <dl><dt><span class="nonLinkTerms">
+        <b>Classes &amp; Members pane</b>
+      </span></dt><dd>
+        <p>Lists the classes, members, interfaces, enums, constants, and other information available from the class type library. To display members of each category, expand the category.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Members pane</b>
+      </span></dt><dd>
+        <p>Lists the member details of the selected item in the Classes &amp; Members pane. If a class is selected, its events, methods, and properties are displayed. </p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Description pane</b>
+      </span></dt><dd>
+        <p>Displays the definition of the selected item, prototype syntax, and a hyperlink to the class, library, or type to which the item belongs. Some members have hyperlinks to their parent class. When an interface is selected, the description pane includes the Interface ID number.</p>
+        <p>You can copy or drag text from the description pane to the editing window. </p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Open Type Library button</b>
+      </span></dt><dd>
+        <p>Displays the Open Type Library dialog box so you can select a particular COM Component or ActiveX Control. To display a list of recently opened libraries, click the down arrow.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Open Type Library dialog box</b>
+      </span></dt><dd>
+        <p>Appears when you click the Open Type Library button or right-click the Object Browser and then click Open.</p>
+        <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+              <th>
+                Name
+              </th>
+              <th>
+                Description
+              </th>
+            </tr><tr>
+            <td>
+              <p>Recent History tab</p>
+            </td>
+            <td>
+              <p>Displays a list of recently opened libraries. To add a library to the Object Browser, select the check box next to the library. To clear all content in the Recent History list, click Clear History.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>COM Libraries tab</p>
+            </td>
+            <td>
+              <p>Shows a list of all available COM class libraries on your system. The list includes libraries for COM components and ActiveX controls. </p>
+              <p>The first time you click this tab, the COM libraries are read from your system registry and cached to a local FoxRefs.dbf table. When you click the tab again, libraries are read from this table. </p>
+              <p>To reload all class libraries from your system, click the Refresh button. To select and load an individual library (.tlb, .ocx, .olb, .dll, .exe), click Browse to open a file picker dialog box.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Current Selection Tab</p>
+            </td>
+            <td>
+              <p>Displays a list of all open libraries. </p>
+              <p>To close individual libraries, clear the check box next to the library name. To close all libraries, click Close All.</p>
+            </td>
+          </tr></table></div>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Back button</b>
+      </span></dt><dd>
+        <p>Moves selection focus back to the last item that you viewed. </p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Forward button</b>
+      </span></dt><dd>
+        <p>Moves selection focus to the item you were viewing before clicking the Back button. </p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Refresh button</b>
+      </span></dt><dd>
+        <p>Refreshes the contents of the Object Browser by reloading the selected libraries. This is useful for frequently changing COM components under development. Additionally, cached libraries are refreshed.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Copy button</b>
+      </span></dt><dd>
+        <p>Makes it possible for you to copy the selected item in the current list. If there is no explicit selection in the Description pane, the entire text is copied.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Find button</b>
+      </span></dt><dd>
+        <p>Displays the Find view so you can enter a specific text string to search for within the libraries opened in the Object Browser.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Find view</b>
+      </span></dt><dd>
+        <p>Expands at the top of the Object Browser when you click the Find button. Use the Find view to search for a specific text phrase in the library.</p>
+        <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+              <th>
+                Name
+              </th>
+              <th>
+                Description
+              </th>
+            </tr><tr>
+            <td>
+              <p>Look for: textbox</p>
+            </td>
+            <td>
+              <p>Enter text for which to search. The default search includes all opened libraries, all their members, and any item that contains the search text. </p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Go button</p>
+            </td>
+            <td>
+              <p>Click button to search for text entered in the text box. When you click this button a new node is added for each opened library to the Classes &amp; Members pane with expression "(Search: &lt;searchtext&gt;)" appended to the end of the library. You can refine search using the Advanced view. </p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Switch to advanced find... link</p>
+            </td>
+            <td>
+              <p>Displays additional search options to perform a more refined search.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Libraries dropdown</p>
+            </td>
+            <td>
+              <p>Limits search to all opened libraries or just a single one. Advanced Find view only.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Scope dropdown</p>
+            </td>
+            <td>
+              <p>Limits search to members of all libraries or just a single one. The list of available options includes Classes, Constants, Enums, Interfaces, Methods, Events, and Properties. Advanced Find view only.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Options dropdown</p>
+            </td>
+            <td>
+              <p>Determines how text search is made. Options include Contained in, Starts with, and Exactly like. Advanced Find view only.</p>
+            </td>
+          </tr></table></div>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Options button</b>
+      </span></dt><dd>
+        <p>Displays the Options dialog box so that you can control various display options. You can also set custom add-ins for use with the Object Browser.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Display Options tab, Options dialog box </b>
+      </span></dt><dd>
+        <p>This tab in the Options dialog box makes it possible for you to control the visual aspects of the Object Browser.</p>
+        <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+              <th>
+                Name
+              </th>
+              <th>
+                Description
+              </th>
+            </tr><tr>
+            <td>
+              <p>Highlight Potential Sources of Events check box</p>
+            </td>
+            <td>
+              <p>Specifies whether a potential source of events (interface or method) is highlighted.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Highlight Default Items check box</p>
+            </td>
+            <td>
+              <p>Specifies whether default items are highlighted using a bold font style.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Display Hidden Items check box</p>
+            </td>
+            <td>
+              <p>Specifies whether hidden items (such as interface, methods, and properties) are displayed.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Auto Expand Details check box</p>
+            </td>
+            <td>
+              <p>Specifies whether top-level items in the detail pain are expanded automatically.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Auto Drill Down Details check box</p>
+            </td>
+            <td>
+              <p>Specifies whether complex hierarchies in the Methods pane (such as methods and properties for each interface) are expanded automatically.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Display VTable Interfaces check box</p>
+            </td>
+            <td>
+              <p>Specifies whether VTable based interfaces and their members are displayed.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>List all interfaces defining a method, event, or property in detail check box</p>
+            </td>
+            <td>
+              <p>Specifies whether all interfaces defining a method or property are listed in the Description pane.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Display properties that start with an underscore (_) check box</p>
+            </td>
+            <td>
+              <p>Properties that start with an underscore are usually placeholders for enums (a collections of constants). For this reason, they are not displayed by default.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Display members that are defined in IUnknown or IDispatch check box </p>
+            </td>
+            <td>
+              <p>All COM objects have methods that are defined in the IDispatch and IUnknown interfaces. These methods must be there to work in a COM environment; however, they usually are not useful directly to the Visual FoxPro developer.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>List members parameters in detail check box</p>
+            </td>
+            <td>
+              <p>Method parameters can be listed directly in the Members pane. However, note that the parameters are listed in more detail in the Description pane.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>List interfaces in class details check box</p>
+            </td>
+            <td>
+              <p>All creatable classes are based on one or more interfaces. Often interfaces listed in the Members pane simply show the same information as the entire class, but sometimes they provide more insight.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Show Interface Inheritance structure check box</p>
+            </td>
+            <td>
+              <p>Specifies whether inherited interfaces shall be displayed in the Members pane.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Font button</p>
+            </td>
+            <td>
+              <p>Specifies font for interface elements of the Object Browser.</p>
+            </td>
+          </tr></table></div>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Add Ins tab, Options dialog box </b>
+      </span></dt><dd>
+        <p>This tab in the Options dialog box makes it possible for you to add custom add-ins.</p>
+        <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+              <th>
+                Name
+              </th>
+              <th>
+                Description
+              </th>
+            </tr><tr>
+            <td>
+              <p>Install Add-In button</p>
+            </td>
+            <td>
+              <p>Installs a new add-in.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Installed Add-Ins list</p>
+            </td>
+            <td>
+              <p>Displays all loaded add-ins.</p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>Remove button</p>
+            </td>
+            <td>
+              <p>This button is displayed in the Add-Ins list next to an installed add-in. Click this button to remove an add-in. The add-in file is not actually deleted.</p>
+            </td>
+          </tr></table></div>
+      </dd></dl><dl><dt><span class="nonLinkTerms">
+        <b>Help button</b>
+      </span></dt><dd>
+        <p>Displays documentation on the selected member. In addition, you can press F1.</p>
+      </dd></dl>
+  <h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/be797e96-7fe7-4ada-b422-3159dafb4e7b.htm">How to: View Type Library Information</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/9790da25-0754-4f3d-acf6-44b50bea097c.htm">Using the Object Browser</a></span><br /><span class="linkTerms"><a href="/html/5bfd4f8d-0324-4a75-904c-330eea767a3d.htm">Class Browser Window</a></span><br /><span class="linkTerms"><a href="/html/588fa1db-17ee-4578-9ee3-952e7a62aaaf.htm">_ObjectBrowser System Variable</a></span><br /><span class="linkTerms"><a href="/html/42b84eb0-a6fc-4ccd-abc2-1f9ffc853471.htm">DEFINE CLASS Command</a></span><br /><span class="linkTerms"><a href="/html/81422070-37ef-492f-b813-9b40bcaed762.htm">EVENTHANDLER( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6172fcb3-8b8b-4fd2-a55e-2dba9bb8a8cb.htm">Windows (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Object Browser Window">
+<param name="Alink Name" value="vfp.1230985">
+</OBJECT>

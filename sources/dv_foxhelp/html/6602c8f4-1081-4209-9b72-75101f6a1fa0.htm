@@ -1,0 +1,226 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>EXTERNAL Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">EXTERNAL Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Alerts the <span class="linkTerms"><a href="/html/93e1d13b-c029-47eb-b140-c119ff44f10d.htm">Project Manager Window</a></span> to an undefined reference.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+EXTERNAL FILE <span class="parameter">FileList</span> | ARRAY <span class="parameter">ArrayList</span>
+   | CLASS | FORM | LABEL | LIBRARY | MENU
+   | PROCEDURE | QUERY | REPORT | SCREEN | TABLE</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">FILE <span class="parameter">FileList</span></span></dt><dd>
+          <p>Specifies that the file you include in an indirect file reference or macro substitution is a stand-alone file, such as a text file, .BMP bitmap file, and so on. <span class="parameter">FileList</span> may contain a list of file names separated by commas.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ARRAY <span class="parameter">ArrayList</span></span></dt><dd>
+          <p>When an array is created in a program and then used in a lower-level program, include ARRAY with the array name in the lower-level program. <span class="parameter">ArrayList</span> may contain a list of array names separated by commas.</p>
+          <p>In the following example, the first program creates an array named <code>gaInvoice</code>. The array is initialized and a lower-level program named <code>dispinvo</code> is called. <code>dispinvo</code> displays the contents of the array created in the higher-level program. The command EXTERNAL ARRAY GAINVOICE is included to alert the Project Manager.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DIMENSION gaInvoice(4)
+STORE 'Paid' TO gaInvoice
+DO dispinvo
+*** Program dispinvo ***
+PROCEDURE dispinvo
+EXTERNAL ARRAY gaInvoice
+? gaInvoice(1)
+? gaInvoice(2)
+? gaInvoice(3)
+? gaInvoice(4)
+RETURN
+*** End of dispinvo program ***</pre></td></tr></table></span></div>
+          <p>When an array is passed to a user-defined function or procedure, the corresponding array in the user-defined function or procedure must be identified to the Project Manager. Include the ARRAY option with the name of the array included in the PARAMETER statement.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DIMENSION gaArrayOne(2)      &amp;&amp; Create an array
+EXTERNAL ARRAY gaArrayTwo   &amp;&amp; Name of the array used in the UDF
+SET TALK OFF
+STORE 10 TO gaArrayOne(1)
+STORE  2 TO gaArrayOne(2)
+= ADDTWO(@gaArrayOne)      &amp;&amp; Pass the array by reference to a UDF
+FUNCTION ADDTWO
+PARAMETER gaArrayTwo
+CLEAR
+gaArrayTwo(1) = gaArrayTwo(1) + 2
+gaArrayTwo(2) = gaArrayTwo(2) + 2
+? gaArrayTwo(1)
+? gaArrayTwo(2)</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CLASS </span></dt><dd>
+          <p>Specifies that the file you include in an indirect file reference or macro substitution is a visual class library.  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>EXTERNAL CLASS myvclass  &amp;&amp; CLASS myvclass must exist
+STORE 'myvclass' TO gcClassFile
+MODIFY CLASS (gcClassFile)</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FORM </span></dt><dd>
+          <p>If a Form definition file is included in an indirect file reference or macro substitution, include FORM and the Form file name. FORM is identical to SCREEN.  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>EXTERNAL FORM dataentr  &amp;&amp; FORM dataentr must exist
+STORE 'dataentr' TO gcFormFile
+DO FORM (gcFormFile)</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">LABEL </span></dt><dd>
+          <p>Specifies that the file you include in an indirect file reference or macro substitution is a label definition file.  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>EXTERNAL LABEL Maillabl     &amp;&amp; LABEL FORM Maillabl must exist
+STORE 'Maillabl' TO gcLabelFile
+LABEL FORM (gcLabelFile) PREVIEW </pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">LIBRARY </span></dt><dd>
+          <p>Include LIBRARY when a library file is referenced by indirect file referencing or macro substitution in SET LIBRARY.  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>EXTERNAL LIBRARY regress  &amp;&amp; LIBRARY regress must exist
+STORE 'regress' TO gcStatFunc
+SET LIBRARY TO (gcStatFunc)</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MENU </span></dt><dd>
+          <p>If a menu definition file is included in an indirect file reference or macro substitution, include MENU and the menu file name.  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>EXTERNAL MENU pickfile  &amp;&amp; MENU pickfile must exist
+STORE 'pickfile' TO gcSysMenPad
+MODIFY MENU (gcSysMenPad)</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">PROCEDURE </span></dt><dd>
+          <p>Identifies an external procedure or user-defined function.  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>EXTERNAL PROCEDURE delblank     &amp;&amp; PROCEDURE delblank must exist
+STORE 'delblank' TO gcTrimBlanks
+DO (gcTrimBlanks) WITH 'A B C D E'</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">QUERY </span></dt><dd>
+          <p>Specifies that the file you include in an indirect file reference or macro substitution is a query file.  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>EXTERNAL QUERY sales  &amp;&amp; QUERY sales must exist
+STORE 'sales.qpr' TO gcSalesFile
+DO (gcSalesFile)</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">REPORT </span></dt><dd>
+          <p>Specifies that the file you include in an indirect file reference or macro substitution is a report definition file.  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>EXTERNAL REPORT overdue     &amp;&amp; REPORT overdue must exist
+STORE 'overdue' TO gcReportFile
+REPORT FORM (gcReportFile) PREVIEW</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SCREEN </span></dt><dd>
+          <p>If a form definition file is included in an indirect file reference or macro substitution, include SCREEN and the screen file name. SCREEN is identical to FORM.  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>EXTERNAL SCREEN dataentr  &amp;&amp; SCREEN dataentr must exist
+STORE 'dataentr' TO gcScreenFile
+MODIFY SCREEN (gcScreenFile)</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TABLE </span></dt><dd>
+          <p>Specifies that the file you include in an indirect file reference or macro substitution is a Visual FoxPro table.  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>EXTERNAL TABLE customer &amp;&amp; Table customer must exist
+STORE 'customer' TO gcMyTable
+USE (gcMyTable)</pre></td></tr></table></span></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Use EXTERNAL to include files and to resolve undefined references in a project created by the Project Manager. EXTERNAL is used only by the Project Manager and is ignored during program execution.</p>
+      <p>For more information on creating projects with the Project Manager, see <span class="linkTerms"><a href="/html/842d4132-cdb3-4c0f-a25f-405322751018.htm">Compiling an Application</a></span>.</p>
+      <p>Files whose names you specify with EXTERNAL are included in a project by the Project Manager. You must include CLASS, FILE, FORM, LABEL, LIBRARY, MENU, PROCEDURE, QUERY, REPORT, SCREEN, or TABLE before the file name or a set of file names separated with commas to tell the Project Manager the type of files to include in the project.</p>
+      <p>The Project Manager must also be alerted to file names contained in a name expression or macro substitution. This ensures that all necessary files are included in a project when the project is built. It must also be alerted to arrays that are created in another procedure or user-defined function.</p>
+      <p>For more information on name expressions and macro substitution, see <span class="linkTerms"><a href="/html/58f5798b-92e8-4c5b-ad97-73877f98da6f.htm">&amp; Command</a></span>. Whenever possible, use a name expression instead of macro substitution to improve performance.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/c18c5bb8-d2b4-4d6f-bf1a-2a0fb8b5b04e.htm">BUILD APP Command</a></span><br /><span class="linkTerms"><a href="/html/8d2c0796-23a7-45c8-a166-637152839f76.htm">BUILD PROJECT Command</a></span><br /><span class="linkTerms"><a href="/html/93e1d13b-c029-47eb-b140-c119ff44f10d.htm">Project Manager Window</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="EXTERNAL Command">
+<param name="ALink Name" value="EXTERNAL">
+</OBJECT>

@@ -1,0 +1,164 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Overriding and Calling Parent Class Code</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Overriding and Calling Parent Class Code</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you create a class, the class inherits all the properties, methods, and events of the parent class automatically. For example, if code exists for an event in the parent class, that code executes when the event occurs for an object based on a subclass created from the parent class. </p>
+    <p>The following sections describe how you can override or execute method or event code from the parent class:
+</p>
+    <ul><li>
+        <p>
+          <a href="#foconoverridingcallingparentclasscodeanchor1">Overriding Parent Class Code</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#foconoverridingcallingparentclasscodeanchor2">Calling Parent Class Code</a>
+        </p>
+      </li></ul>
+  <a name="foconoverridingcallingparentclasscodeanchor1"></a><h1 class="heading">Overriding Parent Class Code</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Usually, you want to add functionality to a new class or the object created from that class in addition to the original functionality. However, you can override the method or event code inherited from the parent. For example, suppose you create a subclass or add an object based on the subclass to a container, such as a form. You can write new code for the <b>Click</b> event of the class to override the event code in the parent class. In both cases, the new code, not the original code, is executed at run time.</p>
+      <p>You can also prevent the default behavior of the base class from occurring in a subclass's method or event. To prevent base class behavior, include the <b>NODEFAULT</b> keyword in the method or event code that you add. </p>
+      <p>For example, the following program uses the <b>NODEFAULT</b> keyword in a text box's <b>KeyPress</b> event to prevent the typed characters from displaying in the text box:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frmKeyExample = CREATEOBJECT("test")
+frmKeyExample.Show
+READ EVENTS
+DEFINE CLASS myForm AS FORM
+   ADD OBJECT text1 AS TEXTBOX
+   PROCEDURE text1.KeyPress
+      PARAMETERS nKeyCode, nShiftAltCtrl
+      NODEFAULT
+      IF BETWEEN(nKeyCode, 65, 122) &amp;&amp; Between 'A' and 'z'
+         This.Value = ALLTRIM(This.Value) + "*"
+         ACTIVATE SCREEN      &amp;&amp; Send output to main Visual FoxPro window.
+         ?? CHR(nKeyCode)
+      ENDIF
+   ENDPROC
+   PROCEDURE Destroy
+      CLEAR EVENTS
+   ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+    </div><a name="foconoverridingcallingparentclasscodeanchor2"></a><h1 class="heading">Calling Parent Class Code</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can optimize class design by adding and executing code at different levels in the class or container hierarchy. </p>
+      <p>To execute method or event code in the parent class in addition to code for the same method or event in the subclass, precede the subclass's method or event code with the <b>DODEFAULT( )</b> function or the scope resolution operator (<b>::</b>). </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>When you use the <b>DODEFAULT( )</b> function, you do not need to know the name of the parent class. However, to determine all the classes in an object's class hierarchy, use the <b>ACLASS( )</b> function. For more information, see <a href="/html/f9e0b0e2-d736-4d3e-b91c-8190d2c1129c.htm">ACLASS( ) Function</a>.</p>
+      </td></tr></table></div>
+      <p>For example, suppose you have a class named cmdGoBottom based on the <b>CommandButton</b> class that has the following code in its <b>Click</b> event:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>GO BOTTOM
+THISFORM.Refresh</pre></td></tr></table></span></div>
+      <p>This code moves the table record pointer to the bottom of the table. When you create a command button, for example, cmdGoBottom1, based on the cmdGoBottom class and add it to a form, you might decide to execute the code in parent class's <b>Click</b> event and display a message indicating that the table record pointer is positioned at the bottom of the table. Suppose you add only the following line of code to cmdGoBottom1's <b>Click</b> event to display the message, "At the Bottom of the Table":</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>WAIT WINDOW "At the Bottom of the Table" TIMEOUT 1</pre></td></tr></table></span></div>
+      <p>When you run the form, the message displays; however, the record pointer does not move because the code in cmdGoBottom1's <b>Click</b> event overrides that of the parent class. To make sure that the code in the parent class's <b>Click</b> event also executes, include the following lines of code instead in cmdGoBottom1's <b>Click</b> event:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DODEFAULT( )
+WAIT WINDOW "At the Bottom of the Table" TIMEOUT 1</pre></td></tr></table></span></div>
+      <p>The following lines of code in the cmdGoBottom1's <b>Click</b> event show how to accomplish the same task using the scope resolution operator (<b>::</b>) and the name of the parent class:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>cmdGoBottom::Click()
+WAIT WINDOW "At the Bottom of the Table" TIMEOUT 1</pre></td></tr></table></span></div>
+      <p>As another example, the Buttons.vcx visual class library in the Visual FoxPro ...\Samples\Classes directory contains two command button classes: cmdOK and cmdCancel. Suppose a command button created from the cmdOK class exists on a form. The code in the <b>Click</b> event of the command button releases the form when you click the button. However, the cmdCancel command button class is a subclass of the cmdOK class. Suppose you wanted to discard changes made to a table when you click a command button created from the cmdCancel class. You can add functionality to the <b>Click</b> event of the cmdCancel class that calls the method code in the cmdOK class by using the following sample code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF USED( ) AND CURSORGETPROP("Buffering") != 1
+   TABLEREVERT(.T.)
+ENDIF
+DODEFAULT( )</pre></td></tr></table></span></div>
+      <p>The code added to the cmdCancel class reverts changes to the table using the <b>TABLEREVERT( )</b> function before it uses the <b>DODEFAULT( ) </b>function to call the code in cmdOK class to release the form.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>You do not need to add the <b>TABLEUPDATE( )</b> function to the cmdOK class because changes are written to a buffered table by default when the table closes.</p>
+      </td></tr></table></div>
+      <p>For more information, see <a href="/html/a587b685-14d8-44c2-86d7-da3b81391df0.htm">DODEFAULT( ) Function</a> and <a href="/html/060ee886-18bc-41dd-b12d-27fc7669b9b8.htm">:: Scope Resolution Operator</a>. </p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/99cb7aab-d67f-4715-a3b7-bda2a08b1e39.htm">Overriding Default Property Settings</a></span><br /><span class="linkTerms"><a href="/html/7f106091-a2c8-42aa-a8b5-dbeecb1f9502.htm">Working with Classes in Visual FoxPro</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Overriding and Calling Parent Class Code">
+</OBJECT>

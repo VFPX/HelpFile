@@ -1,0 +1,215 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>ToXML Method</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">ToXML Method</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Generates XML to a file or memory variable.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+<span class="parameter">XMLAdapter</span>.ToXML( <span class="parameter">cXMLDocument</span> [, <span class="parameter">cSchemaLocation </span>[, <span class="parameter">lFile </span>[, <span class="parameter">lIncludeBefore </span>[, <span class="parameter">lChangesOnly</span> ]]]] )</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cXMLDocument</span>
+        </span></dt><dd>
+          <p>Specifies the file or memory variable name for the XML document.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cSchemaLocation</span>
+        </span></dt><dd>
+          <p>Specifies the location for a reference to external schema. The default value of <span class="parameter">cSchemaLocation</span> is empty (""). If <span class="parameter">cSchemaLocation</span> is empty and external schema has been generated, the value of <b>XMLAdapterXMLSchemaLocation</b> is used as the external schema reference.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">lFile</span>
+        </span></dt><dd>
+          <p>Specifies whether <span class="parameter">cXMLDocument</span> is a file. The default value of <span class="parameter">lFile</span> is False (.F.).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">lIncludeBefore</span>
+        </span></dt><dd>
+          <p>Specifies whether to include the <span class="parameter">diffgr:before</span> section in the DiffGram. The <span class="parameter">diffgr:before</span> section contains the original version of a row. The default value of <span class="parameter">lIncludeBefore</span> is False (.F.). </p>
+          <p>If <span class="parameter">lIncludeBefore</span> is True (.T.), Visual FoxPro filters deleted records, regardless of the current filter setting, such as <code>SET FILTER TO NOT DELETED( )</code> and <code>SET DELETED ON</code> or <code>OFF</code>. All deleted records in the table buffer are inserted in the <span class="parameter">diffgr:before</span> section but have no matching row in the DiffGram <span class="parameter">DataInstance</span> block.   </p>
+          <p>Although you might want to hide deleted rows by using a filter, the DiffGram indicates which rows were deleted so that the data source can be correctly updated.   </p>
+          <p>Visual FoxPro disregards <span class="parameter">lIncludeBefore</span><i> </i>if the <b>XMLAdapter IsDiffGram</b> property is False (.F.).  </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">lChangesOnly</span>
+        </span></dt><dd>
+          <p>Specifies whether the XML should contain changes only. </p>
+          <p>Visual FoxPro disregards <span class="parameter">lChangesOnly</span><i> </i>if the <b>XMLAdapter IsDiffGram</b> property is False (.F.) or if <span class="parameter">lIncludeBefore</span> is False (.F.). </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Applies To: <a href="/html/0e51628a-7e55-4025-8e92-cc1b6edee2fc.htm">XMLAdapter Class</a></p>
+      <p>If the <b>XMLTable Alias</b> property is empty, no XML elements are generated for that <b>XMLTable</b> object, however, the table is included in the schema if one is generated.</p>
+      <p>For character fields, Visual FoxPro fills any remaining space in the field with white space (0x20). When <b>ToXML</b> maps character fields to binary fields and performs encoding, <b>ToXML</b> encodes the trailing white space regardless of the value for the <b>XMLAdapter PreserveWhiteSpace</b> property.</p>
+      <p>The following <b>XMLAdapter</b> property settings affect how <b>ToXML</b> is executed:  </p>
+      <ul><li>
+          <p>
+            <span class="linkTerms"><a href="/html/a024991a-1762-4d51-b479-5783a21f31c5.htm">ForceCloseTag Property</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/9ec60be3-71db-4fa5-9597-9fffa2cd64cc.htm">FormattedOutput Property</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/e3d51dfa-b07e-40fc-9418-78895de40c8a.htm">PreserveWhiteSpace Property</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/54242c71-32a4-4ed6-af84-32f75d8a7022.htm">RespectCursorCP Property</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/54a6718a-37b5-4099-89a8-8f7cde48167b.htm">RespectNesting Property</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/007c38c8-7a1d-4487-99b8-c024276e3c27.htm">UseCodePage Property</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/44e26cb0-b469-48aa-9213-7dd24072ddeb.htm">UTF8Encoded Property</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/d58c661c-022c-4532-b09c-2d8c7135cbfb.htm">XMLNameIsXPath Property</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/97d57b8a-d935-4f1d-84cf-8510db8acbdb.htm">XMLSchemaLocation Property</a></span>
+          </p>
+        </li></ul>
+      <p>
+        <b>Nested XML</b>   When the <b>XMLAdapter RespectNesting</b> property is True (.T.) and a relationship between the tables is specified, <b>ToXML</b> generates nested XML. Nesting is not supported if the <span class="parameter">IChangesOnly</span> parameter is set to True (.T.). </p>
+      <p>
+        <b>XML Encoding</b>   When the <b>XMLAdapter RespectCursorCP</b> property is True (.T.), <b>XMLAdapter UTF8Encoded</b> is False (.F.), and two or more table aliases are referenced in the <b>Tables</b> collection, those tables should use the same code page. If you also set the <b>UseCodePage</b> property, the results generated by <b>ToXML</b> varies. See <b>UseCodePage</b> property for a table that shows the results.</p>
+      <p>
+        <b>Numeric Overflow Conditions</b>   An <b>XMLAdapter</b> object does not load XML containing Visual FoxPro-type numeric overflow conditions, for example, <code>*****.**</code>, in the place of a <b>Numeric</b> or <b>Integer</b> value. The Microsoft XML Core Services (MSXML) parser causes an error similar to the following:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Error 2110 (XML Error): XML Error: XML Parse error: The value of '***' is invalid according to its data type.
+The element: 'myfield' has an invalid value according to its data type.
+Line 7, Position 17.
+   &lt;myfield&gt;***&lt;/myfield&gt;</pre></td></tr></table></span></div>
+      <p>If the <b>XMLNameIsXpath</b> property is True (.T.) for <b>XMLAdapter</b> or <b>XMLTable</b> object and the <b>XMLName</b> property is not empty, <b>ToXML</b> fails. <b>ToXML</b> ignores <b>XMLField</b> objects that use <b>XPath</b> expressions.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5f4dbe0b-44e1-4697-b933-cbfa2039d844.htm">XMLAdapter Object Properties, Methods, and Events</a></span><br /><span class="linkTerms"><a href="/html/80ddb391-cd44-4ea6-b2ae-e2a479db1f59.htm">IsDiffGram Property</a></span><br /><span class="linkTerms"><a href="/html/89579449-d82b-421b-b8bc-aaa2efed0a87.htm">Alias Property</a></span><br /><span class="linkTerms"><a href="/html/1270863b-32b1-4bbc-a9c2-175a07db9c3b.htm">XMLTable Class</a></span><br /><span class="linkTerms"><a href="/html/7856580c-a8f2-4f45-8bbc-29f69a3ab203.htm">Tables Collection (XMLAdapter)</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ca97d4ab-ef98-482f-aeb0-a3840f1d96d5.htm">Methods (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="ToXML Method">
+<param name="ALink Name" value="ToXML">
+<param name="Alink Name" value="vfp.50001184">
+</OBJECT>

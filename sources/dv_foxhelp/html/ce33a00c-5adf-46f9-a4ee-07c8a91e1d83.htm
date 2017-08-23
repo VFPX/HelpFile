@@ -1,0 +1,1009 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Mapping Visual FoxPro Databases to SQL Server Databases</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Mapping Visual FoxPro Databases to SQL Server Databases</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The following sections contain information about mapping a Visual FoxPro database to a SQL Server database:</p>
+  <a name="MappingObjects"></a><h1 class="heading">Mapping Objects</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>A Visual FoxPro database maps directly to a SQL Server database. When upsizing a Visual FoxPro database to a server, the SQL Server Upsizing Wizard creates server objects with as much as the same functionality possible as the Visual FoxPro database. </p>
+      <p>Mapping some Visual FoxPro objects to server objects is very straightforward. Visual FoxPro databases, tables, fields, defaults, and indexes map on a direct one-to-one basis to SQL Server databases, tables, fields, defaults, and indexes. A Visual FoxPro table maps to a SQL Server table with the exception of part of its data dictionary. </p>
+      <p>However, not all local objects map directly to server objects. Validation rules and referential integrity in Visual FoxPro are part of the data dictionary and are enforced at the engine level. SQL Server validation rules and referential integrity are not part of the data dictionary and are enforced through code bound to a table. These differences, as well as design decisions made by the SQL Server Upsizing Wizard mean that much of the Visual FoxPro data dictionary cannot be mapped directly to SQL Server constructs.</p>
+      <p>The following table summarizes how objects are mapped from Visual FoxPro to SQL Server.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Visual FoxPro objects
+            </th>
+            <th>
+              SQL Server objects
+            </th>
+          </tr><tr>
+          <td>
+            <p>Database</p>
+          </td>
+          <td>
+            <p>Database</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Table</p>
+          </td>
+          <td>
+            <p>Table</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Indexes</p>
+          </td>
+          <td>
+            <p>Indexes</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Field</p>
+          </td>
+          <td>
+            <p>Field</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Default</p>
+          </td>
+          <td>
+            <p>Default</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Table validation rule</p>
+          </td>
+          <td>
+            <p>SQL Server stored procedures called from UPDATE and INSERT triggers</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Field validation rule</p>
+          </td>
+          <td>
+            <p>SQL Server stored procedures called from UPDATE and INSERT triggers</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Persistent relationships (where used for referential integrity constraints)</p>
+          </td>
+          <td>
+            <p>Update, Insert, and Delete triggers or table constraints</p>
+          </td>
+        </tr></table></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Naming Conventions for Upsized Objects</h3><div class="subSection" xmlns="">
+          <p>When migrating objects to a data source, the SQL Server Upsizing Wizard creates named objects on the server. The wizard uses prefixes for objects that need new names, for example, defaults and rules, because no such standalone object existed in Visual FoxPro. A table name and then a field name, if appropriate, follow the prefix. This naming convention makes it possible for all objects of the same kind to have the same prefix and sort together when viewed with data source administration tools. Objects created on the same table also group together when viewed.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If SQL Server naming conventions are violated, database, table, index, and field names might change during upsizing. SQL Server names must be 30 characters or less, and the first character must be a letter or the symbol "@". The remaining characters may be numbers, letters, or the "$", "#", and "_" symbols; no spaces are allowed. The SQL Server Upsizing Wizard replaces any illegal characters with the "_" symbol. Any names that are identical to SQL Server reserved words are given a suffix of "_". For example, FROM and GROUP become FROM_ and GROUP_. The SQL Server Upsizing Wizard also places the "_" symbol in front of object names that begin with a number.</p>
+          </td></tr></table></div>
+          <p>The SQL Server Upsizing Wizard gives each upsized table the same name as the local table unless the table name contains a space or is a keyword for the data source.</p>
+          <p>Field names and data types are automatically translated into SQL Server fields when a Visual FoxPro table is exported by the SQL Server Upsizing Wizard.</p>
+          <p>The following table illustrates how Visual FoxPro data types map to SQL Server data types.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Abbreviation
+                </th>
+                <th>
+                  Visual FoxPro data type
+                </th>
+                <th>
+                  SQL Server data type
+                </th>
+              </tr><tr>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>
+                  <b>Character</b>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <code>char</code>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Y</p>
+              </td>
+              <td>
+                <p>
+                  <b>Currency</b>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <code>money</code>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>D</p>
+              </td>
+              <td>
+                <p>
+                  <b>Date</b>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <code>datetime</code>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>T</p>
+              </td>
+              <td>
+                <p>
+                  <b>DateTime</b>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <code>datetime</code>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>B</p>
+              </td>
+              <td>
+                <p>
+                  <b>Double</b>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <code>float</code>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>F</p>
+              </td>
+              <td>
+                <p>
+                  <b>Float</b>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <code>float</code>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>G</p>
+              </td>
+              <td>
+                <p>
+                  <b>General</b>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <code>image</code>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>I</p>
+              </td>
+              <td>
+                <p>
+                  <b>Integer</b>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <code>int</code>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>
+                  <b>Logical</b>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <code>bit</code>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>M</p>
+              </td>
+              <td>
+                <p>
+                  <b>Memo</b>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <code>text</code>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>M (Binary)</p>
+              </td>
+              <td>
+                <p>
+                  <b>Memo</b> (Binary)</p>
+              </td>
+              <td>
+                <p>
+                  <code>image</code>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>C (Binary)</p>
+              </td>
+              <td>
+                <p>
+                  <b>Character</b> (Binary)</p>
+              </td>
+              <td>
+                <p>
+                  <code>binary</code>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>
+                  <b>Numeric</b>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <code>float</code>
+                </p>
+              </td>
+            </tr></table></div>
+          <p>Timestamp columns are created using the Transact-SQL timestamp data type. When you select the Timestamp column checkbox for a specific table in Step 4 - Map Field Data Types, the SQL Server Upsizing Wizard creates a timestamp field for that table.</p>
+          <p>If a table contains one or more memo (M) or picture (P) fields, the SQL Server Upsizing Wizard selects the Timestamp column check box for that table by default and creates a timestamp field on the upsized version of the table.</p>
+          <p>Identity columns are created using the Transact-SQL IDENTITY property fields.</p>
+        </div>
+    </sections></div><a name="MappingViews"></a><h1 class="heading">Mapping Views</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>If you select Create Remote Views On Tables, the SQL Server Upsizing Wizard creates remote views and gives them many of the properties of the fields in the original local table.</p>
+    </div><a name="MappingSQLServerDefaults"></a><h1 class="heading">Mapping SQL Server Defaults</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>A Visual FoxPro default expression maps directly to a single SQL Server default. The SQL Server Upsizing Wizard attempts to create a SQL Server default based on the default expression for a Visual FoxPro field. If the default is successfully created, the SQL Server Upsizing Wizard binds it to the appropriate SQL Server field. The upsizing report on fields indicates if the SQL Server Upsizing Wizard was successful in translating the Visual FoxPro expression to SQL Server Transact-SQL. For more information, see <span class="linkTerms"><a href="#Mapping Expressions">Mapping Expressions</a></span>.</p>
+      <p>While SQL Server and Visual FoxPro defaults are largely similar, there are some differences in the way defaults are created and behave in the two products. SQL Server defaults are stand-alone objects, independent of any particular field or table. Once a default has been created, it can be used by, or bound, to any number of different fields.</p>
+      <p>Though Visual FoxPro logical fields accept null values, SQL Server do not accept them. To manage this difference, the SQL Server Upsizing Wizard automatically creates and binds a default value called "UW ZeroDefault" to each exported logical field whether or not you chose to export defaults. This default sets the value of the server field to 0 (False (.F.) in Visual FoxPro) when you do not supply a value.</p>
+      <p>If the local Visual FoxPro table contains a default value for a logical field that sets the field equal to True (.T.), the SQL Server Upsizing Wizard does not bind the UW_ZeroDefault default to the server table. Instead, the wizard creates a default that sets the field equal to 1 and names the default according to the naming conventions outlined earlier in this topic.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>SQL Server defaults behave differently than Visual FoxPro defaults.</p>
+      </td></tr></table></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Naming Conventions for Defaults</h3><div class="subSection" xmlns="">
+          <p>The SQL Server Upsizing Wizard names defaults using the prefix "Dflt_" plus the table name and field name. For example, a default value for an order amount field in a customer table might be named "Dflt_Customer_Ordamt" on the server. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If combining the prefix with the table and field names causes the default name to exceed 30 characters, Visual FoxPro truncates the excess characters.</p>
+          </td></tr></table></div>
+          <p>Fields with a default expression of zero are bound to a default named "UW ZeroDefault". If two or more fields have the same non-zero default expression, the SQL Server Upsizing Wizard creates two defaults with two different names but are functionally identical.</p>
+        </div>
+    </sections></div><a name="IndexConversion"></a><h1 class="heading">Index Conversion</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>SQL Server and Visual FoxPro indexes are very similar. The following table shows how Visual FoxPro index types convert to SQL Server index types.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Visual FoxPro index type
+            </th>
+            <th>
+              SQL Server index type
+            </th>
+          </tr><tr>
+          <td>
+            <p>Primary</p>
+          </td>
+          <td>
+            <p>Clustered Unique</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Candidate</p>
+          </td>
+          <td>
+            <p>Unique</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Unique</p>
+            <p>Regular</p>
+          </td>
+          <td>
+            <p>Non-unique</p>
+          </td>
+        </tr></table></div>
+      <p>The SQL Server Upsizing Wizard uses Visual FoxPro tag names as names for indexes on SQL Server. If the tag name is a reserved word on the server, the wizard alters the tag name by appending the "_" character.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>SQL Server does not support ascending or descending indexes or permit expressions within server indexes. The SQL Server Upsizing Wizard removes Visual FoxPro expressions from index expressions as the index is upsized; only field names are sent to the server.</p>
+      </td></tr></table></div>
+    </div><a name="MappingTriggers"></a><h1 class="heading">Mapping Triggers</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>A SQL Server trigger is a series of Transact-SQL statements associated with a particular SQL Server table. When you choose to upsize Validation rules and Relationships in Step 8, the SQL Server Upsizing Wizard converts Visual FoxPro field- and record-level validation rules and persistent table relationships into stored procedures that are called from SQL Server triggers. Each server trigger can contain code to emulate the functionality of several validation and referential integrity rules.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The SQL Server Upsizing Wizard does not upsize Visual FoxPro triggers.</p>
+      </td></tr></table></div>
+      <p>A server table can have three triggers, one for each of the commands that can modify data in the table: UPDATE, INSERT, and DELETE. The trigger is automatically executed when the associated command is carried out.</p>
+      <p>The following table describes the triggers created by the SQL Server Upsizing Wizard. Any specific trigger might contain code to emulate some or all of the Visual FoxPro functionality listed.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Trigger
+            </th>
+            <th>
+              Visual FoxPro functionality emulated
+            </th>
+          </tr><tr>
+          <td>
+            <p>UPDATE</p>
+          </td>
+          <td>
+            <p>Validation rules (field and record-level validation)</p>
+            <p>Referential integrity</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>INSERT</p>
+          </td>
+          <td>
+            <p>Validation rules (field and record-level validation)</p>
+            <p>Referential integrity (child table triggers only)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DELETE (Parent table only)</p>
+          </td>
+          <td>
+            <p>Referential integrity</p>
+          </td>
+        </tr></table></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Naming Conventions for Triggers</h3><div class="subSection" xmlns="">
+          <p>The SQL Server Upsizing Wizard names server triggers by combining a prefix that indicates the type of trigger being created with the table name of the SQL Server table to which the trigger belongs. The prefix ("TrigU_" for UPDATE triggers, "TrigD_" for DELETE triggers, and "TrigI_" for INSERT triggers) is placed in front of the table name. For example, the UPDATE trigger on the Customer table might be called <code>TrigU_Customer</code>.</p>
+        </div>
+    </sections></div><a name="ExportingValidationRules"></a><h1 class="heading">Exporting Validation Rules</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>The SQL Server Upsizing Wizard can export Visual FoxPro field- and record-level validation rules, which it converts to stored procedures on SQL Server. The wizard names field-level rules by combining a prefix "vrf" (for "validation rule, field") with the names of the table and the field; an example might be <code>vrf_customer_lname</code>. Table validation rules are named with the prefix "vrt" (for "validation rule, table") plus the name of the table, to create a name such as <code>vrt_customer</code>.</p>
+      <p>The SQL Server Upsizing Wizard uses triggers that call stored procedures rather than SQL Server rules to enforce field level validation because SQL Server rules don't allow you to display custom error messages. For more information about SQL Server rules, see the CREATE RULE command in your SQL Server documentation.</p>
+    </div><a name="ExportingReferentialIntegrity"></a><h1 class="heading">Exporting Referential Integrity</h1><div id="sectionSection6" class="seeAlsoNoToggleSection">
+      <p>Your Visual FoxPro application supports referential integrity through triggers on UPDATE, DELETE, and INSERT events on persistent table relationships that are enforced at the engine level. You can choose to implement referential integrity constraints on SQL Server using either of two methods:</p>
+      <ul><li>
+          <p>Trigger-based referential integrity.</p>
+        </li><li>
+          <p>Declarative referential integrity.</p>
+        </li></ul>
+      <p>When you choose trigger-based referential integrity, the SQL Server Upsizing Wizard creates triggers that include the Transact-SQL code required to duplicate Visual FoxPro referential integrity constraints. If you choose to implement declarative referential integrity, the SQL Server Upsizing Wizard creates SQL Server constraints using the ALTER TABLE command with the CONSTRAINT keyword.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Trigger-Based Referential Integrity</h3><div class="subSection" xmlns="">
+          <p>In the trigger-based method, referential integrity is enforced on SQL Server by Transact-SQL code in triggers. You can use triggers to provide restrictions on UPDATE, DELETE, and INSERT statements, and to cascade changes resulting from DELETE and INSERT statements.</p>
+          <p>The SQL Server Upsizing Wizard creates SQL Server triggers by evaluating the Visual FoxPro triggers used to enforce referential integrity on persistent relationships in your Visual FoxPro database. </p>
+          <p>A Visual FoxPro persistent relationship used in a referential integrity constraint can become up to four triggers on a SQL Server data source: two for the parent table and two for the child table.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If only one of the tables in a relationship is upsized, or if referential integrity is not enforced in Visual FoxPro, the relationship is not exported.</p>
+          </td></tr></table></div>
+          <p>The following table lists the mapping between Visual FoxPro Referential Integrity constraints and the SQL Server triggers generated by the SQL Server Upsizing Wizard.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Visual FoxPro Referential Integrity constraint
+                </th>
+                <th>
+                  SQL Server trigger
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>UPDATE</p>
+              </td>
+              <td>
+                <p>Cascade</p>
+              </td>
+              <td>
+                <p>Cascade UPDATE trigger.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>UPDATE</p>
+              </td>
+              <td>
+                <p>Restrict</p>
+              </td>
+              <td>
+                <p>Restrict UPDATE trigger.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>UPDATE</p>
+              </td>
+              <td>
+                <p>Ignore</p>
+              </td>
+              <td>
+                <p>No trigger generated.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>INSERT</p>
+              </td>
+              <td>
+                <p>Restrict</p>
+              </td>
+              <td>
+                <p>Restrict INSERT trigger.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>INSERT</p>
+              </td>
+              <td>
+                <p>Ignore</p>
+              </td>
+              <td>
+                <p>No trigger generated.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DELETE</p>
+              </td>
+              <td>
+                <p>Cascade</p>
+              </td>
+              <td>
+                <p>Cascade DELETE trigger.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DELETE</p>
+              </td>
+              <td>
+                <p>Restrict</p>
+              </td>
+              <td>
+                <p>Restrict DELETE trigger.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DELETE</p>
+              </td>
+              <td>
+                <p>Ignore</p>
+              </td>
+              <td>
+                <p>No trigger generated.</p>
+              </td>
+            </tr></table></div>
+        <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <h4 class="subHeading" xmlns="">Parent Table</h4><div class="subSection" xmlns="">
+              <p>The SQL Server Upsizing Wizard creates an UPDATE trigger that either prevents the user from changing the parent table's primary key or cascades that change through the child table, depending on the type of relationship that was created in Visual FoxPro.</p>
+              <p>The SQL Server Upsizing Wizard also creates a DELETE trigger that prevents the user from deleting a record with related child records, or that deletes the child records, again depending on the type of relationship between the tables in Visual FoxPro.</p>
+            </div>
+          <h4 class="subHeading" xmlns="">Child Table</h4><div class="subSection" xmlns="">
+              <p>The SQL Server Upsizing Wizard creates an UPDATE trigger that prevents the user from making changes to the foreign key that would orphan the record. Similarly, an INSERT trigger is created to prevent the user from adding a new record that has no parent.</p>
+            </div>
+          <h4 class="subHeading" xmlns="">Custom Error Values</h4><div class="subSection" xmlns="">
+              <p>At run time, if the referential integrity established by the SQL Server Upsizing Wizard-created triggers is violated, SQL Server places a custom error value into the @@ERROR variable. Potential error values are defined by the SQL Server Upsizing Wizard as a part of the trigger code. The specific error value returned at run time depends on whether the user was attempting to update, insert, or delete.</p>
+              <p>The following table lists the error numbers generated for each action.</p>
+              <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                    <th>
+                      Action
+                    </th>
+                    <th>
+                      SQL Server error number
+                    </th>
+                  </tr><tr>
+                  <td>
+                    <p>Violated validation rule</p>
+                  </td>
+                  <td>
+                    <p>44444</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>Attempted delete</p>
+                  </td>
+                  <td>
+                    <p>44445</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>Attempted update</p>
+                  </td>
+                  <td>
+                    <p>44446</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>Attempted insert</p>
+                  </td>
+                  <td>
+                    <p>44447</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>Update or Delete statement affected more than one row; statement is automatically rolled back</p>
+                  </td>
+                  <td>
+                    <p>44448</p>
+                  </td>
+                </tr></table></div>
+            </div>
+        </sections></div>
+      <h3 class="subHeading" xmlns="">Declarative Referential Integrity</h3><div class="subSection" xmlns="">
+          <p>If you choose to implement declarative referential integrity, the SQL Server Upsizing Wizard creates SQL Server constraints using the ALTER TABLE command with the CONSTRAINT keyword. The parent table constraint uses the PRIMARY KEY keyword. The child table constraint uses the FOREIGN KEY and REFERENCES keywords. Declarative referential integrity is supported at the RESTRICT, RESTRICT updates, and RESTRICT deletes levels.</p>
+          <p>You can use SQL Server constraints to provide restrictions on UPDATE, DELETE, and INSERT statements.</p>
+        </div>
+    </sections></div><a name="MappingExpressions"></a><h1 class="heading">Mapping Expressions</h1><div id="sectionSection7" class="seeAlsoNoToggleSection">
+      <p>Although Visual FoxPro and Transact-SQL have some functions in common, many Visual FoxPro functions are not supported by SQL Server. </p>
+      <p>The following table lists those expressions that are the same between Visual FoxPro and SQL server.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <td>
+            <p>
+              <b>CEILING( )</b>
+            </p>
+          </td>
+          <td>
+            <p>
+              <b>LOG( )</b>
+            </p>
+          </td>
+          <td>
+            <p>
+              <b>LOWER( )</b>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>LTRIM( )</b>
+            </p>
+          </td>
+          <td>
+            <p>
+              <b>RIGHT( )</b>
+            </p>
+          </td>
+          <td>
+            <p>
+              <b>RTRIM( )</b>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>SOUNDEX( )</b>
+            </p>
+          </td>
+          <td>
+            <p>
+              <b>SPACE( )</b>
+            </p>
+          </td>
+          <td>
+            <p>
+              <b>STR( )</b>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>STUFF( )</b>
+            </p>
+          </td>
+          <td>
+            <p>
+              <b>UPPER( )</b>
+            </p>
+          </td>
+          <td>
+            <p>
+              <b> </b>
+            </p>
+          </td>
+        </tr></table></div>
+      <p>The following table describes the expression mapping that the SQL Server Upsizing Wizard uses to attempt converting Visual FoxPro expressions in field and record-level validation rules and default values to Transact-SQL.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Visual FoxPro expression
+            </th>
+            <th>
+              SQL Server expression
+            </th>
+          </tr><tr>
+          <td>
+            <p>True (.T.)</p>
+          </td>
+          <td>
+            <p>1</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>False (.F.)</p>
+          </td>
+          <td>
+            <p>0</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>#</p>
+          </td>
+          <td>
+            <p>&lt;&gt;</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>.AND.</p>
+          </td>
+          <td>
+            <p>AND</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>.NOT.</p>
+          </td>
+          <td>
+            <p>NOT</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>.NULL.</p>
+          </td>
+          <td>
+            <p>NULL</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>.OR.</p>
+          </td>
+          <td>
+            <p>OR</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>=&lt;</p>
+          </td>
+          <td>
+            <p>&lt;=</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>=&gt;</p>
+          </td>
+          <td>
+            <p>&gt;=</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>ASC( )</b>
+            </p>
+          </td>
+          <td>
+            <p>ASCII( )</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>AT( )</b>
+            </p>
+          </td>
+          <td>
+            <p>CHARINDEX( )</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>CDOW( )</b>
+            </p>
+          </td>
+          <td>
+            <p>DATENAME(dw, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>CHR( )</b>
+            </p>
+          </td>
+          <td>
+            <p>CHAR( )</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>CMONTH( )</b>
+            </p>
+          </td>
+          <td>
+            <p>DATENAME(mm, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>CTOD( )</b>
+            </p>
+          </td>
+          <td>
+            <p>CONVERT(datetime, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>CTOT( )</b>
+            </p>
+          </td>
+          <td>
+            <p>CONVERT(datetime, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>DATE( )</b>
+            </p>
+          </td>
+          <td>
+            <p>GETDATE( )</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>DATETIME( )</b>
+            </p>
+          </td>
+          <td>
+            <p>GETDATE( )</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>DAY( )</b>
+            </p>
+          </td>
+          <td>
+            <p>DATEPART(dd, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>DOW( )</b>
+            </p>
+          </td>
+          <td>
+            <p>DATEPART(dw, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>DTOC( )</b>
+            </p>
+          </td>
+          <td>
+            <p>CONVERT(varchar, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>DTOR( )</b>
+            </p>
+          </td>
+          <td>
+            <p>RADIANS( )</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>DTOT( )</b>
+            </p>
+          </td>
+          <td>
+            <p>CONVERT(datetime, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>HOUR( )</b>
+            </p>
+          </td>
+          <td>
+            <p>DATEPART(hh, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>LIKE( )</b>
+            </p>
+          </td>
+          <td>
+            <p>PATINDEX( )</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>MINUTE( )</b>
+            </p>
+          </td>
+          <td>
+            <p>DATEPART(mi, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>MONTH( )</b>
+            </p>
+          </td>
+          <td>
+            <p>DATEPART(mm, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>MTON( )</b>
+            </p>
+          </td>
+          <td>
+            <p>CONVERT(money, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>NTOM( )</b>
+            </p>
+          </td>
+          <td>
+            <p>CONVERT(float, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>RTOD( )</b>
+            </p>
+          </td>
+          <td>
+            <p>DEGREES( )</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>SUBSTR( )</b>
+            </p>
+          </td>
+          <td>
+            <p>SUBSTRING( )</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>TTOC( )</b>
+            </p>
+          </td>
+          <td>
+            <p>CONVERT(char, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>TTOC( )</b>
+            </p>
+          </td>
+          <td>
+            <p>CONVERT(datetime, ...)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>YEAR( )</b>
+            </p>
+          </td>
+          <td>
+            <p>DATEPART(yy, ...)</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/264f75d7-95e9-42b6-a319-d79988261a81.htm">How to: Start the SQL Server Upsizing Wizard</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/607ab194-ce6b-4b0a-be4f-3f0d93ff760b.htm">How the SQL Server Upsizing Wizard Works</a></span><br /><span class="linkTerms"><a href="/html/bb523fee-c542-42f4-a8ed-3d75251fe62c.htm">SQL Server Upsizing Process Completion</a></span><br /><span class="linkTerms"><a href="/html/d2bf8742-0693-4ffb-af77-ae8ea8ec126a.htm">Database Creation with Upsizing Wizards</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Mapping Visual FoxPro Databases to SQL Server Databases">
+</OBJECT>

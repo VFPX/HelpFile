@@ -1,0 +1,105 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Error building key for index "name". (Error 2199)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Error building key for index "name". (Error 2199)</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>This error is generated when index key truncation is about to occur, typically during index creation or modification such as with the <b>INDEX</b> command. This can happen with use of a key that contains an expression involving a Memo field, whose length in not fixed, such as in the following example:</p>
+    <p>
+      <code>INDEX ON charfld1 + memofld1 TAG mytag</code>
+    </p>
+    <p>An index file with truncated index keys is a source for potentially incorrect data results. Visual FoxPro does not allow for key truncation during index creation or modification. When index key truncation is about to occur, this error is reported. If you desire key truncation, you should adjust the index expression to explicitly truncate the key.</p>
+    <p>Due to issues associated with key truncation, the SQL engine (such as during a SQL SELECT command or View creation) might fail to build a temporary index to optimize a join evaluation if it is unable to accurately determine the maximum size of the key. This might cause the join to be evaluated as a Cartesian product and as a result could impact performance. To allow you to diagnose this issue, a message is included in the SQL ShowPlan, which is controlled by the <b>SYS(3054)</b> function. When this function value is greater than or equal to 11, the message "Error building temporary index" is included in the ShowPlan to indicate the key truncation problem. You can fix this problem by adjusting join conditions to make the key size more explicit and to allow the temporary index to be built successfully.</p>
+    <p>Occasionally, the SQL engine will build a temporary composite index (this is a special index created internally by the product and is not supported through the INDEX command). In this case, some parts of the index may cause key truncation, while others might not. During the first attempt to build the index, those parts which cause problems are identified. The offensive parts are then removed from the key and the index is built again without them. The SQL ShowPlan will indicate this problem, but it is still possible that the join can still be optimized using valid parts only.</p>
+  <h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/400a0198-cac5-4abd-8e2d-79564a75742d.htm">SYS(3054) - Rushmore Query Optimization Level</a></span><br /><span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span><br /><span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/6dd78277-4a9d-4482-8ea5-42c0db850d99.htm">Join Conditions for Tables, Queries, and Views</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Error building key for index "name". (Error 2199)">
+<param name="Alink Name" value="vfp.70001199">
+</OBJECT>

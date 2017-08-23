@@ -1,0 +1,151 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Identifying Relationships</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Identifying Relationships</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Once you've divided your information into tables, you need a way to tell Visual FoxPro how to bring it back together again in meaningful ways. For example, the following form includes information from several tables.</p>
+    <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">The Order Entry form uses information from several tables.</caption></caption></b><br></br></div><img src="../local/Local_-309638637_afd05009.gif" alt="FoxPro Order Entry Form"></img>
+    <p>Visual FoxPro is a relational database management system. That means you store related data in separate tables. Then you define relationships between the tables and Visual FoxPro uses the relationships to find associated information stored in your database.</p>
+    <p>For example, suppose that you want to phone an employee with questions about a sale the employee made. Employee phone numbers are recorded in the Employee table; sales are recorded in the Orders table. When you tell Visual FoxPro which sale you're interested in, Visual FoxPro can look up the phone number based on the relationship between the two tables. It works because Employee_id, the primary key for the Employee table, is also a field in the Orders table. In database terminology, the Employee_id field in the Orders table is called a foreign key, because it refers to a primary key from a different, or foreign, table.</p>
+    <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Employee_id field as primary key for Employee table and foreign key for Orders table</caption></caption></b><br></br></div><img src="../local/Local_-309638533_afd05010.gif" alt="FoxPro Employee And Orders Keys"></img>
+    <p>So, to set up a relationship between two tables — Table A and Table B — you add one table's primary key to the other table, so that it appears in both tables. But how do you decide which table's primary key to use? To set up the relationship correctly, you must first determine the nature of the relationship. There are three types of relationships between tables:
+</p>
+    <ul><li>
+        <p>One-to-many relationships</p>
+      </li><li>
+        <p>Many-to-many relationships</p>
+      </li><li>
+        <p>One-to-one relationships</p>
+      </li></ul>
+    <p>The following examples present each type of relationship and explain how to design your tables so that Visual FoxPro can associate the data correctly. The purpose of each example is to explain how you determine the relationships between your tables and how you decide which fields belong in the tables to support those relationships — it doesn't describe how to use the Visual FoxPro interface to relate tables.</p>
+  <h1 class="heading">Example</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>A one-to-many relationship is the most common type of relationship in a relational database. In a one-to-many relationship, a record in Table A can have more than one matching record in Table B, but a record in Table B has, at most, one matching record in Table A.</p>
+      <p>For example, the Category and Products tables in the Tasmanian Traders database have a one-to-many relationship.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">A one-to-many relationship</caption></caption></b><br></br></div><img src="../local/Local_-309638534_afd05011.gif" alt="FoxPro Category Products"></img>
+      <p>To set up the relationship, you add the field or fields that make up the primary key on the "one" side of the relationship to the table on the "many" side of the relationship. You use a primary or candidate index key for the "one" side of the relationship, and a regular index key for the "many" side. In this case, you would add the Category_id field from the Category table to the Products table, because one category includes many products. Visual FoxPro uses the category ID number to locate the correct category for each product.</p>
+      <p>For more information, see <a href="/html/e72c1fd6-0b60-4dbd-9000-0ffecfb637fa.htm">Working with Tables</a>.</p>
+    </div><h1 class="heading">Example</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>In a many-to-many relationship, a record in Table A can have more than one matching record in Table B, and a record in Table B can have more than one matching record in Table A. This type of relationship requires changes in your database design before you can correctly specify the relationship to Visual FoxPro.</p>
+      <p>To detect many-to-many relationships between your tables, it's important that you look at both directions of the relationship. For example, consider the relationship between orders and products in the Tasmanian Traders business. One order can include more than one product. So for each record in the Orders table, there can be many records in the Products table. But that's not the whole story. Each product can appear on many orders. So for each record in the Products table, there can be many records in the Orders table.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">A many-to-many relationship</caption></caption></b><br></br></div><img src="../local/Local_-309638535_afd05012.gif" alt="FoxPro Order Entry Fields"></img>
+      <p>The subjects of the two tables — orders and products — have a many-to-many relationship. This presents a challenge in database design. To understand the problem, imagine what would happen if you tried to set up the relationship between the two tables by adding the Product_id field to the Orders table. To have more than one product per order, you need more than one record in the Orders table per order. You'd be repeating order information over and over for each record that relates to a single order — an inefficient design that could lead to inaccurate data. You run into the same problem if you put the Order_id field in the Products table — you'd have more than one record in the Products table for each product. To solve this problem, create a third table that breaks down the many-to-many relationship into two one-to-many relationships. This third table is called a junction table, because it acts as the junction between two tables. You put the primary key from each of the two tables into the junction table.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">The Order_Line_Items table creates a one-to-many link between Orders and Products</caption></caption></b><br></br></div><img src="../local/Local_-309638536_afd05013.gif" alt="FoxPro Order Product Keys"></img>
+      <p>A junction table might hold only the two primary keys from the tables it links together or, as in the Order_Line_Items table, the junction table might hold additional information.</p>
+      <p>Each record in the Order_Line_Items table represents one line item on an order. The Order_Line_Items table's primary key consists of two fields — the foreign keys from the Orders and Products tables. The Order_id field alone doesn't work as the primary key for this table, because one order can have many line items. The order ID is repeated for each line item on an order, so the field doesn't contain unique values. The Product_id field alone doesn't work either, because one product can appear on many different orders. But together the two fields in the junction table always produce a unique value for each record. The junction table does not require its own primary key.</p>
+      <p>In the Tasmanian Traders database, the Orders table and the Products table aren't related to each other directly. Instead, they are related indirectly through the Order_Line_Items table. The many-to-many relationship between orders and products is represented in the database using two one-to-many relationships:
+</p>
+      <ul><li>
+          <p>The Orders and Order_Line_Items tables have a one-to-many relationship. Each order can have more than one line item, but each line item is connected to only one order.</p>
+        </li><li>
+          <p>The Products and Order_Line_Items tables have a one-to-many relationship. Each product can have many line items associated with it, but each line item refers to only one product.</p>
+        </li></ul>
+    </div><h1 class="heading">Example</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>In a one-to-one relationship, a record in Table A can have no more than one matching record in Table B, and a record in Table B can have no more than one matching record in Table A. This type of relationship is unusual and might call for some changes in your database design.</p>
+      <p>One-to-one relationships between tables are unusual because in many cases, the information in the two tables can simply be combined into one table. For example, suppose you created a table, called Ping-Pong Players, to track information about a Tasmanian Traders Ping-Pong fundraising event. Because the ping-pong players are all employees of Tasmanian Traders, this table has a one-to-one relationship with the Employee table in the Tasmanian Traders database.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">A one-to-one relationship</caption></caption></b><br></br></div><img src="../local/Local_-309638529_afd05014.gif" alt="FoxPro Employee ID sample"></img>
+      <p>You could add all the fields from the Ping-Pong Players table to the Employee table. But the Ping-Pong Players table tracks a one-time event, and you won't need the information after the event is over. Additionally, not all employees play Ping-Pong, so if these fields were in the Employee table, they would be empty for many records. For these reasons, it makes sense to create a separate table.</p>
+      <p>When you detect the need for a one-to-one relationship in your database, consider whether you can put the information together in one table. For example, in the Employee table, one employee can have one manager, who is also an employee. You can add a field for the manager's id number. To pull the information together later, you can use a self-join in your query or view. You don't need a separate table to resolve the one-to-one relationship. If you don't want to do that for some reason, here's how to set up the one-to-one relationship between two tables:
+</p>
+      <ul><li>
+          <p>If the two tables have the same subject, you can probably set up the relationship by using the same primary key field in both tables.</p>
+        </li><li>
+          <p>If the two tables have different subjects with different primary keys, choose one of the tables (either one) and put its primary key field in the other table as a foreign key.</p>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/e92a93ce-b885-41ab-93fc-1b849dfba4c4.htm">Designing Databases</a></span><br /><span class="linkTerms"><a href="/html/acbcbb01-6290-4201-b378-fabfbcbcd644.htm">Developing Databases</a></span><br /><span class="linkTerms"><a href="/html/e72c1fd6-0b60-4dbd-9000-0ffecfb637fa.htm">Working with Tables (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Identifying Relationships">
+</OBJECT>

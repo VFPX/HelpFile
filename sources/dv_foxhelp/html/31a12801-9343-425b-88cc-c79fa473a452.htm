@@ -1,0 +1,620 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Basic Programming Concepts</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Basic Programming Concepts</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you write a program, you can store data and manipulate it with a series of instructions. Data and data storage containers are the basic building blocks in programs, and you use commands, functions, and operators to manipulate data and data storage containers.</p>
+  <h1 class="heading">Storing Data</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The data that you work with can include amounts of time, money, and countable items, as well as dates, names, descriptions, and so on. Each piece of data is a certain type: it belongs to a category of data that you manipulate in similar ways. You could work directly with this data without storing it, but you would lose most of the flexibility and power of Visual FoxPro. Visual FoxPro provides numerous storage containers to extend your ability to easily manipulate data.</p>
+      <p>Data types determine how data is stored and how it can be used. You can multiply two numbers together, but you can't multiply characters. You can print characters in uppercase, but you can't print numbers in uppercase. Some of the primary data types in Visual FoxPro are listed in the following table.</p>
+      <div class="labelheading"><b>Data Types</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Type
+            </th>
+            <th>
+              Examples
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f0945c58-08e4-46fc-a15b-e1714a064d91.htm">Numeric</a>
+            </p>
+          </td>
+          <td>
+            <p>123 3.1415 – 7</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9d346afb-3b45-4178-85e2-68298ba4507f.htm">Character</a>
+            </p>
+          </td>
+          <td>
+            <p>"Test String" "123" "01/01/98"</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/d33381bc-3b27-43e1-a19b-2bae4b4a42a9.htm">Logical</a>
+            </p>
+          </td>
+          <td>
+            <p>.T. .F.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/e1245351-12ff-44d0-802c-1c50d6add54e.htm">Date</a>
+            </p>
+            <p>
+              <a href="/html/6a5e9942-dcda-4705-b2d2-46b35dfa6526.htm">DateTime</a>
+            </p>
+          </td>
+          <td>
+            <p>{^1998-01-01}</p>
+            <p>{^1998-01-01 12:30:00 p}</p>
+          </td>
+        </tr></table></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Data Containers</h3><div class="subSection" xmlns="">
+          <p>Data containers allow you to perform the same operations on multiple pieces of data. For example, you add the hours an employee has worked, multiply them by the hourly wage, and then deduct the taxes to determine the amount of pay the employee has earned. You'll have to perform these operations for every employee and every pay period. If you store this information in containers, and perform the operations on the containers, you can just replace the old data with new data and run the same program again. This table lists some of the main containers for data in Visual FoxPro.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Type
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>
+                  <a href="/html/6df8e881-c39e-4fb1-87e3-6aa074d0d2d0.htm">Variables</a>
+                </p>
+              </td>
+              <td>
+                <p>Single elements of data stored in your computer's RAM (Random Access Memory).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Table <a href="/html/c4790bfb-3312-4b6a-9a88-e6bde21d323e.htm">Records</a></p>
+              </td>
+              <td>
+                <p>Multiple rows of predetermined fields, each of which can contain a predefined piece of data. Tables are saved to disk.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <a href="/html/e58df646-1f73-4cfb-9793-1b86f76e919a.htm">Arrays</a>
+                </p>
+              </td>
+              <td>
+                <p>Multiple elements of data stored in RAM.</p>
+              </td>
+            </tr></table></div>
+        </div>
+    </sections></div><h1 class="heading">Manipulating Data</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Containers and data types give you the building blocks you need to manipulate data. The final pieces are operators, functions, and commands.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Using Operators</h3><div class="subSection" xmlns="">
+          <p>Operators tie data together. Here are the most common operators in Visual FoxPro.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Operator
+                </th>
+                <th>
+                  Valid Data Types
+                </th>
+                <th>
+                  Example
+                </th>
+                <th>
+                  Result
+                </th>
+              </tr><tr>
+              <td>
+                <p>=</p>
+              </td>
+              <td>
+                <p>All</p>
+              </td>
+              <td>
+                <p>
+                  <code>? n = 7</code>
+                </p>
+              </td>
+              <td>
+                <p>Prints .T. if the value stored in the variable <code>n</code> is 7, .F. otherwise</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>+</p>
+              </td>
+              <td>
+                <p>Numeric, Character, Date, DateTime</p>
+              </td>
+              <td>
+                <p>
+                  <code>? "Fox" + "Pro"</code>
+                </p>
+              </td>
+              <td>
+                <p>Prints "FoxPro"</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>! or <code>NOT</code></p>
+              </td>
+              <td>
+                <p>Logical</p>
+              </td>
+              <td>
+                <p>
+                  <code>? !.T.</code>
+                </p>
+              </td>
+              <td>
+                <p>Prints .F.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>*, /</p>
+              </td>
+              <td>
+                <p>Numeric</p>
+              </td>
+              <td>
+                <p>
+                  <code>? 5 * 5</code>
+                </p>
+                <p>
+                  <code>? 25 / 5</code>
+                </p>
+              </td>
+              <td>
+                <p>Prints 25 Prints 5</p>
+              </td>
+            </tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>A question mark (?) in front of an expression causes a new line character and the results of the expression to be printed in the active output window, which is usually the main Visual FoxPro window.</p>
+          </td></tr></table></div>
+          <p>Remember that you must use the same type of data with any one operator. The following statements store two numeric pieces of data to two variables. The variables have been given names that start with <code>n</code> so we can tell at a glance that they contain numeric data, but you could name them with any combination of alphanumeric characters and underscores.</p>
+          <p>
+            <code>nFirst = 123</code>
+          </p>
+          <p>
+            <code>nSecond = 45</code>
+          </p>
+          <p>The following statements store two pieces of character data to two variables. The variables have been given names that start with <code>c</code> to indicate that they contain character data.</p>
+          <p>
+            <code>cFirst = "123"</code>
+          </p>
+          <p>
+            <code>cSecond = "45"</code>
+          </p>
+          <p>The following two operations, addition and concatenation, yield different results because the type of data in the variables is different.</p>
+          <p>
+            <code>? nFirst + nSecond</code>
+          </p>
+          <p>
+            <code>? cFirst + cSecond</code>
+          </p>
+        <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <h4 class="subHeading" xmlns="">Output</h4><div class="subSection" xmlns="">
+              <p>
+                <code>168</code>
+              </p>
+              <p>
+                <code>12345</code>
+              </p>
+              <p>Because <code>cFirst</code> is character data and <code>nSecond</code> is numeric data, you get a data type mismatch error if you try the following command:</p>
+              <p>
+                <code>? cFirst + nSecond</code>
+              </p>
+              <p>You can avoid this problem by using conversion functions. For example, STR( ) returns the character equivalent of a numeric value and VAL( ) returns the numeric equivalent of a character string of numbers. These functions and LTRIM( ), which removes leading spaces, enable you to perform the following operations:</p>
+              <p>
+                <code>? cFirst + LTRIM(STR(nSecond))</code>
+              </p>
+              <p>
+                <code>? VAL(cFirst) + nSecond</code>
+              </p>
+            </div>
+          <h4 class="subHeading" xmlns="">Output</h4><div class="subSection" xmlns="">
+              <p>
+                <code>12345</code>
+              </p>
+              <p>
+                <code>168</code>
+              </p>
+            </div>
+        </sections></div>
+      <h3 class="subHeading" xmlns="">Using Commands</h3><div class="subSection" xmlns="">
+          <p>A command causes a certain action to be performed. Each command has a specific syntax, which indicates what must be included in order for the command to work. There are also optional clauses associated with commands that allow you to specify in more detail what you want.</p>
+          <p>For example, the USE command allows you to open and close tables.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  USE Syntax
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>
+                  <a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE</a>
+                </p>
+              </td>
+              <td>
+                <p>Closes the table in the current work area.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>USE customer</code>
+                </p>
+              </td>
+              <td>
+                <p>Opens the CUSTOMER table in the current work area, closing any table that was already open in the work area.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>USE customer IN 0</code>
+                </p>
+              </td>
+              <td>
+                <p>Opens the CUSTOMER table in the next available work area.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>USE customer IN 0 ;</code>
+                </p>
+                <p>
+                  <code>  ALIAS mycust</code>
+                </p>
+              </td>
+              <td>
+                <p>Opens the CUSTOMER table in the next available work area and assigns the work area an alias of <code>mycust</code>.</p>
+              </td>
+            </tr></table></div>
+          <p>The following table shows some examples of commands.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Command
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>
+                  <a href="/html/9c5000b8-3c35-4690-b7b8-07299f84b794.htm">DELETE</a>
+                </p>
+              </td>
+              <td>
+                <p>Marks specified records in a table for deletion.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <a href="/html/7f52db34-68fc-4f9e-abca-fa3f7f02ca19.htm">REPLACE</a>
+                </p>
+              </td>
+              <td>
+                <p>Replaces the value stored in record field with a new value.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <a href="/html/21117980-58f1-47b0-9384-05e0172f7af7.htm">Go</a>
+                </p>
+              </td>
+              <td>
+                <p>Positions the record pointer to a specific location in the table.</p>
+              </td>
+            </tr></table></div>
+        </div>
+    </sections></div><h1 class="heading">Controlling Program Flow</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro includes a special category of commands that "wrap around" other commands and functions, determining when and how often the other commands and functions are executed. These commands allow conditional branching and looping, two very powerful programming tools. The following program illustrates conditional branches and loops. These concepts are described in more detail after the example.</p>
+      <p>Suppose that you had 10,000 employees and wanted to give everybody making $30,000 or more a 3 percent raise, and everybody making under $30,000 a 6 percent raise. The following sample program accomplishes this task.</p>
+      <p>This program assumes that a table with a numeric field named <code>salary</code> is open in the current work area. For information about work areas, see "Using Multiple Tables" in <a href="/html/e72c1fd6-0b60-4dbd-9000-0ffecfb637fa.htm">Working with Tables</a>.</p>
+      <div class="labelheading"><b>Sample Program to Increase Employee Salaries</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>SCAN</code>
+            </p>
+          </td>
+          <td>
+            <p>The code between SCAN and ENDSCAN is executed as many times as there are records in the table. Each time the code is executed, the record pointer moves to the next record in the table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   IF salary &gt;= 30000.00</code>
+            </p>
+            <p>
+              <code>      REPLACE salary WITH ;</code>
+            </p>
+            <p>
+              <code>         salary * 1.03</code>
+            </p>
+          </td>
+          <td>
+            <p>For each record, if the salary is greater than or equal to 30,000, replace this value with a new salary that is 3% higher.</p>
+            <p>The semicolon (;) after WITH indicates that the command is continued on the next line.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   ELSE</code>
+            </p>
+            <p>
+              <code>      REPLACE salary WITH ;</code>
+            </p>
+            <p>
+              <code>         salary * 1.06</code>
+            </p>
+          </td>
+          <td>
+            <p>For each record, if the salary is not greater than or equal to 30,000, replace this value with a new salary that is 6% higher.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   ENDIF</code>
+            </p>
+            <p>
+              <code>ENDSCAN</code>
+            </p>
+          </td>
+          <td>
+            <p>End of the conditional IF statement.</p>
+            <p>End of the code that is executed for each record in the table.</p>
+          </td>
+        </tr></table></div>
+      <p>This example uses both conditional branching and looping commands to control the flow of the program.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Conditional Branching</h3><div class="subSection" xmlns="">
+          <p>Conditional branching allows you to test conditions and then, depending on the results of that test, perform different operations. There are two commands in Visual FoxPro that allow conditional branching:  </p>
+          <ul><li>
+              <p>IF ... ELSE ... ENDIF</p>
+            </li><li>
+              <p>DO CASE ... ENDCASE</p>
+            </li></ul>
+          <p>The code between the initial statement and the ENDIF or ENDCASE statement is executed only if a logical condition evaluates to true (.T.). In the example program, the IF command is used to distinguish between two states: either the salary is $30,000 or more, or it isn't. Different actions are taken depending on the state.</p>
+          <p>In the following example, if the value stored in the variable <code>nWaterTemp</code> is less than 100, no action is taken:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* set a logical variable to true if a condition is met.
+IF nWaterTemp &gt;= 100
+   lBoiling = .T.
+ENDIF</pre></td></tr></table></span></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>An asterisk at the beginning of a line in a program indicates that the line is a comment. Comments help the programmer remember what each segment of code is designed to do, but are ignored by Visual FoxPro.</p>
+          </td></tr></table></div>
+          <p>If there are several possible conditions to check for, a DO CASE ... ENDCASE block can be more efficient and easier to keep track of than multiple IF statements.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Looping</h3><div class="subSection" xmlns="">
+          <p>Looping allows you to execute one or more lines of code as many times as you need to. There are three commands in Visual FoxPro that allow looping:  </p>
+          <ul><li>
+              <p>DO WHILE ... ENDDO</p>
+            </li><li>
+              <p>FOR ... ENDFOR</p>
+            </li><li>
+              <p>FOR EACH ... ENDFOR</p>
+            </li><li>
+              <p>SCAN ... ENDSCAN</p>
+            </li></ul>
+          <p>Use SCAN when you are performing a series of actions for each record in a table, as in the example program just described. The SCAN loop enables you to write the code once and have it executed for each record as the record pointer moves through the table.</p>
+          <p>Use FOR when you know how many times the section of code needs to be executed. For example, you know there are a specific number of fields in a table. Because the Visual FoxPro function FCOUNT( ) returns this number, you can use a FOR loop to print the names of all the fields in the table:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>FOR nCnt = 1 TO FCOUNT( )
+   ? FIELD(nCnt)
+ENDFOR</pre></td></tr></table></span></div>
+          <p>Use DO WHILE when you want to execute a section of code as long as a certain condition is met. You might not know how many times the code will have to execute, but you know when it should stop executing. For example, let's assume you have a table with people's names and initials, and you want to use the initials to look people up. You would have a problem the first time you tried to add a person who had the same initials as someone else already in your table.</p>
+          <p>To solve the problem, you could add a number to the initials. For example, Michael Suyama's identification code could be MS. The next person with the same initials, Margaret Sun, would be MS1. If you then added Michelle Smith to the table, her identification code would be MS2. A DO WHILE loop enables you to find the right number to append to the initials.</p>
+          <div class="labelheading"><b>Sample Program with DO WHILE to Generate a Unique ID</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Code
+                </th>
+                <th>
+                  Comments
+                </th>
+              </tr><tr>
+              <td>
+                <p>
+                  <code>nHere = RECNO()</code>
+                </p>
+              </td>
+              <td>
+                <p>Save the location of the record.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>cInitials = LEFT(firstname,1) + ;</code>
+                </p>
+                <p>
+                  <code>   LEFT(lastname,1)</code>
+                </p>
+                <p>
+                  <code>nSuffix = 0</code>
+                </p>
+                <p>
+                </p>
+              </td>
+              <td>
+                <p>Get the person's initials from the first letters of the <code>firstname</code> and <code>lastname</code> fields.</p>
+                <p>Establish a variable to hold the number to be added to the end of a person's initials if necessary.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>LOCATE FOR person_id = cInitials</code>
+                </p>
+              </td>
+              <td>
+                <p>See if there is another person in the table with the same initials.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>DO WHILE FOUND( )</code>
+                </p>
+              </td>
+              <td>
+                <p>If another record in the table has a person_id value that is the same as <code>cInitials</code>, the FOUND( ) function returns true (.T.) and the code in the DO WHILE loop executes. If no match is found, the next line of code to be executed is the line following ENDDO.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>   nSuffix = nSuffix + 1</code>
+                </p>
+                <p>
+                  <code>   cInitials = ;</code>
+                </p>
+                <p>
+                  <code>      LEFT(cInitials,2);</code>
+                </p>
+                <p>
+                  <code>      + ALLTRIM(STR(nSuffix))</code>
+                </p>
+              </td>
+              <td>
+                <p>Prepare a fresh suffix and append it to the end of the initials.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>   CONTINUE</code>
+                </p>
+              </td>
+              <td>
+                <p>CONTINUE causes the last LOCATE command to be evaluated again. The program checks to see if the new value in <code>cInitials</code> already exists in the person_id field of another record. If so, FOUND( ) will still return .T. and the code in the DO WHILE loop will execute again. If the new value in <code>cInitials</code> is indeed unique, FOUND( ) will return .F. and program execution continues with the line of code following ENDDO.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>ENDDO</code>
+                </p>
+              </td>
+              <td>
+                <p>End of the DO WHILE loop.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>GOTO nHere</code>
+                </p>
+                <p>
+                  <code>REPLACE person_id WITH cInitials</code>
+                </p>
+              </td>
+              <td>
+                <p>Return to the record and store the unique identification code in the <code>person_id</code> field.</p>
+              </td>
+            </tr></table></div>
+          <p>Because you don't know beforehand how many times you'll find matching identification codes already in use, you use the DO WHILE loop.</p>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/c61f2d7e-2317-477e-9bf9-fa900c1bcac9.htm">SCAN ... ENDSCAN Command</a></span><br /><span class="linkTerms"><a href="/html/a7f9db76-2eaf-479d-94e9-ce15b4dac39d.htm">FOR ... ENDFOR Command</a></span><br /><span class="linkTerms"><a href="/html/e32603d6-0fe2-4149-a8c8-6db8d4cee78f.htm">DO WHILE ... ENDDO Command</a></span><br /><span class="linkTerms"><a href="/html/8bd1c885-dae5-4ecf-b88d-160942fd6bd2.htm">IF ... ENDIF Command</a></span><br /><span class="linkTerms"><a href="/html/85acf00a-9435-4308-96c5-a900f513eb20.htm">DO CASE ... ENDCASE Command</a></span><br /><span class="linkTerms"><a href="/html/e6109205-e91d-440f-b5ae-d2ccaa78c602.htm">GETDIR( ) Function</a></span><br /><span class="linkTerms"><a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/925ef3b8-48dc-4ea1-9112-a7afc2d9161e.htm">Object-Oriented Programming</a></span><br /><span class="linkTerms"><a href="/html/e72c1fd6-0b60-4dbd-9000-0ffecfb637fa.htm">Working with Tables (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Basic Programming Concepts">
+</OBJECT>

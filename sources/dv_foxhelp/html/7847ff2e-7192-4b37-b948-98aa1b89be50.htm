@@ -1,0 +1,118 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Developing and Modifying Databases in Teams</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Developing and Modifying Databases in Teams</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>In addition to working together with projects and project files, your team must be able to share information in databases. Working with databases as a team involves not only the issues of ordinary concurrency control for data in tables, but the need to be able to share database control information as well.</p>
+    <p>For several developers to work with a database at the same time, they must be able to share the database (.dbc) file. In Visual FoxPro, the .dbc file can be shared between developers as an ordinary data table. The .dbc file must therefore be stored centrally with the tables making up the database. Developers shouldn't keep local copies of a .dbc file because changes that they make to the database will not be reflected in other developers' versions of the file.</p>
+    <p>If you do need to change the .dbc file, note the following restrictions:
+</p>
+    <ul><li>
+        <p>Developers cannot modify the same database element (such as a table structure, view, or connection) at the same time. When a developer modifies a database element, Visual FoxPro locks its entry in the .dbc file; other users can read the entry (that is, they can issue a USE command), but they cannot modify it (MODIFY STRUCTURE).</p>
+      </li><li>
+        <p>If a database element is in use, you cannot modify its structure. For example, if one developer has a table open, no other developer can modify its structure.</p>
+      </li><li>
+        <p>If you call the <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> function to change the properties of a database, the function puts a write lock on the object being updated. If there's a lock conflict, DBSETPROP( ) follows the rules established with <a href="/html/cc56eb65-6621-4d12-8192-ca38042d16a5.htm">SET REPROCESS</a>.</p>
+      </li></ul>
+  <h1 class="heading">Working with Views and Connections</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Views and connections work somewhat differently than tables. When you're first defining the view, Visual FoxPro uses the tables in a database, but doesn't lock them. However, because the tables are in use, other developers cannot modify their structures.</p>
+      <p>From the time you first save a new view or connection definition, Visual FoxPro locks it exclusively until you close the View or Connection Designer. In other words, as long as you have the view or connection open in a designer, it's locked exclusively. While the view is locked, no one else can modify it.</p>
+      <p>When you use a view, its structure is cached locally. This ensures that if the view is modified while you're using it — for example, if you call REFRESH( ) or REQUERY( ) — your form or report continues to run correctly.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/fcda33fa-44b7-4998-81f4-b05f52a5622c.htm">How to: Display File and Project Information</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/d2212673-7c95-4e7f-9dec-80ac9dbc2594.htm">Managing Files in a Source-Controlled Project</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/f2dd131c-01a8-44d0-bfc8-f437a9524df7.htm">Developing Class Libraries in Teams</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/cd842662-a8cb-436b-87c4-825d69b5d7af.htm">Planning for Team Development Projects</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Developing and Modifying Databases in Teams">
+</OBJECT>

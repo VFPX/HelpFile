@@ -1,0 +1,207 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Example of Manipulating Objects</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Example of Manipulating Objects</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The following example sets properties and calls event code from various objects within a form set. The example includes two forms, frmLeft and frmRight, in a formset.</p>
+    <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Sample form set in the Form Designer</caption></caption></b><br></br></div><img src="../local/Local_-309782282_afd09011.gif" alt="FoxProLeftFormTextInput screenshot"></img>
+    <p>The two check boxes and the command button on frmLeft have event code associated with them. The name of the text box on frmLeft is <code>txtInput</code>.</p>
+    <div class="labelheading"><b>Event Code for Objects in LeftForm</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Object
+          </th>
+          <th>
+            Event
+          </th>
+          <th>
+            Code
+          </th>
+        </tr><tr>
+        <td>
+          <p>chkItalic</p>
+        </td>
+        <td>
+          <p>Click</p>
+        </td>
+        <td>
+          <p>
+            <code>THISFORM.txtInput.FontItalic = ;</code>
+          </p>
+          <p>
+            <code>   THIS.Value</code>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>chkBold</p>
+        </td>
+        <td>
+          <p>Click</p>
+        </td>
+        <td>
+          <p>
+            <code>THIS.txtInput.FontBold = THIS.Value</code>
+          </p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>cmdClear</p>
+        </td>
+        <td>
+          <p>Click</p>
+        </td>
+        <td>
+          <p>
+            <code>THISFORM.txtInput.Value = ""</code>
+          </p>
+          <p>
+            <code>THISFORM.txtInput.FontBold = .F.</code>
+          </p>
+          <p>
+            <code>THISFORM.txtInput.FontItalic = .F.</code>
+          </p>
+          <p>
+            <code>THISFORM.chkItalic.Value = .F.</code>
+          </p>
+          <p>
+            <code>THISFORM.chkBold.Value = .F.</code>
+          </p>
+          <p>
+          </p>
+        </td>
+      </tr></table></div>
+  <h1 class="heading">Setting a Property of Another Control on the Same Form</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can set the properties of one control from within the event code of another by using the THISFORM keyword or the <a href="/html/53c8d4ce-eade-4b2c-a0e4-82cf0c7b3373.htm">Parent</a> property. The following two commands are executed when a user initially clicks on the Italic and the Bold check boxes, setting the appropriate text box properties:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.txtInput.FontItalic = .T.
+THIS.Parent.txtInput.FontBold = .T.</pre></td></tr></table></span></div>
+      <p>In this case, THISFORM and THIS.Parent can be used interchangeably.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Sample form set at run time</caption></caption></b><br></br></div><img src="../local/Local_-309782283_afd09012.gif" alt="FoxProLeftFormUserInput screenshot"></img>
+      <p>The code in the click event for <code>cmdClear</code> uses THISFORM to reset the values of the other controls on the form.</p>
+    </div><h1 class="heading">Setting Another Form's Properties</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can also set properties of one form from another. Form2 contains five command buttons. The first button on the form has this code in its <a href="/html/514e4b37-03df-482c-9c9f-df2873f48aee.htm">Click</a> event:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORMSET.frmLeft.Caption = ;
+ ALLTRIM(ThisFormSet.frmLeft.txtInput.Value)</pre></td></tr></table></span></div>
+      <p>Notice that the form set and the form need to be referenced when setting properties from within a different form.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">User clicks "Change Left Form Caption" command button on Right Form</caption></caption></b><br></br></div><img src="../local/Local_-309782284_afd09013.gif" alt="FoxPro Object Form"></img>
+      <p>The click event code of the second command button on <code>frmRight</code> demonstrates setting a property of a form from within an object on the form:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORM.Caption = ;
+ ALLTRIM(ThisFormSet.frmLeft.txtInput.Value)</pre></td></tr></table></span></div>
+      <p>If the user chooses this button, the caption of frmRight changes to the value in the text box on frmLeft.</p>
+    </div><h1 class="heading">Accessing Objects on Different Forms</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The following code in the <a href="/html/514e4b37-03df-482c-9c9f-df2873f48aee.htm">Click</a> event of the Change Bold Setting command button changes the value of the Bold check box on frmLeft and calls the event code associated with this control.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORMSET.frmLeft.chkBold.Value = ;
+   NOT THISFORMSET.frmLeft.chkBold.Value
+THISFORMSET.frmLeft.chkBold.InteractiveChange</pre></td></tr></table></span></div>
+      <p>The last line of the example calls the <a href="/html/f320bc9d-4e0e-47cf-974c-4c4882240ddb.htm">InteractiveChange</a> event of <code>chkBold</code>. You could also call this procedure with the following command:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THISFORMSET.frmForm1.chkBold.InteractiveChange( )</pre></td></tr></table></span></div>
+      <p>If this procedure call is omitted, the value of the check box changes, but the <a href="/html/847b1aa1-69ea-41a4-8b27-2639684e6d96.htm">FontBold</a> property of the text box is never changed.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">User clicks "Change Bold Setting" command button on Right Form</caption></caption></b><br></br></div><img src="../local/Local_-309782285_afd09014.gif" alt="FoxPro Object Form Settings"></img>
+    </div><h1 class="heading">Checking Properties and Calling Method Code of Another Form</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>The following code in the <a href="/html/514e4b37-03df-482c-9c9f-df2873f48aee.htm">Click</a> event of the Hide Left Form command button hides or shows frmLeft, depending on the value of the <a href="/html/206a9044-c88a-490b-910a-344c4760a14c.htm">Visible</a> property, and changes the button caption as appropriate:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF ThisFormSet.frmLeft.Visible
+   ThisFormSet.frmLeft.Hide
+   THIS.Caption = "Show Left Form"
+ELSE
+   ThisFormSet.frmLeft.Show
+   THIS.Caption = "Hide Left Form"
+ENDIF</pre></td></tr></table></span></div>
+      <p>Notice that the THIS keyword is used within event code of a control to reference properties of the control.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">User clicks Hide Left Form command button on Right Form</caption></caption></b><br></br></div><img src="../local/Local_-309782286_afd09015.gif" alt="FoxProRightForm screenshot"></img>
+      <p>The following command in the Click event of the Quit command button releases the form set, causing both forms to close:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>RELEASE ThisFormSet</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/5ddc5fc8-f915-4553-8a5b-558845d48b6c.htm">How to: Set Properties at Run Time</a></span><br /><span class="linkTerms"><a href="/html/19c08db1-f70c-473f-ab2a-e7e56528c2df.htm">How to: Hide a Form</a></span><br /><span class="linkTerms"><a href="/html/788a44bc-a066-42c8-b448-7854fc1dfb9f.htm">How to: Pass Parameters to a Form</a></span><br /><span class="linkTerms"><a href="/html/4065d662-45dd-4bb2-8828-86e58c8b0a7f.htm">How to: Save a Form as HTML</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/23c31bf8-0736-493d-9d21-3fd54abc309c.htm">Working with Forms</a></span><br /><span class="linkTerms"><a href="/html/158bfe62-3d7b-49b4-a28a-51b3a08f64da.htm">Manipulating Objects</a></span><br /><span class="linkTerms"><a href="/html/adb21354-5dde-4f55-b92a-df0c53810385.htm">Creating Forms</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Example of Manipulating Objects">
+</OBJECT>

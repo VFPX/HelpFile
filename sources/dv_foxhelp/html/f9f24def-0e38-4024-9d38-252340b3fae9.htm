@@ -1,0 +1,122 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Optimizing Connections</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Optimizing Connections</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Establishing a connection uses time and memory on both the client and the server. When you optimize connections, you balance your need for high performance against the resource requirements of your application.</p>
+    <p>The number of connections used by Visual FoxPro depends on whether you force the closing of unused connections, and how you set the length of the connection idle timeout.</p>
+  <h1 class="heading">Using Shared Connections</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can use connections exclusively or share a connection. Each method has its benefits. When you use a connection exclusively, your application experiences no contentions for connection resources once a connection is established. If each result set uses an exclusive connection, you can also intermingle asynchronous processing on multiple result sets.</p>
+      <p>When you use a shared connection, you have one connection for multiple result sets. You must serialize data manipulation operations on the result sets sharing the same connection, and design the application to test the connection for busyness any time conflicts might occur. For information on sharing a connection, see <a href="/html/7a2c187e-f76a-4c89-a0bb-5899a04d558a.htm">How to: Share Connections for Multiple Remote Views</a>.</p>
+    </div><h1 class="heading">Controlling Connection Timeouts</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>If your application doesn't take any action for a long time, you can reduce connection use by setting the IdleTimeout property on the connection. The IdleTimeout property controls the interval of time connections are allowed to idle before they're closed by Visual FoxPro. By default, connections wait indefinitely and are not deactivated until specifically closed by the user.</p>
+      <p>You set the idle time for a connection definition with the IdleTimeout property of the <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> function; you can set the IdleTimeout property for an active connection with the <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a> function.</p>
+      <p>Visual FoxPro closes connections even if Browse windows and forms displaying remote data are still open, and then automatically reconnects when the connection is needed again. However, Visual FoxPro cannot close a connection if:
+</p>
+      <ul><li>
+          <p>Results of a query from the server are pending.</p>
+        </li><li>
+          <p>The connection is in manual transaction mode. You must commit or roll back the transaction and switch to automatic transaction mode before the connection can be closed.</p>
+        </li></ul>
+      <p>You set the transaction mode for a connection definition with the Transactions property of the DBSETPROP( ) function; you can set the transaction mode for an active connection with the SQLSETPROP( ) function.</p>
+    </div><h1 class="heading">Releasing Connections</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can improve performance by closing connections that your application is no longer using. Connections are closed automatically for you when you close a view. If the connection is shared by multiple views, Visual FoxPro closes the connection when the last view using the connection is closed.</p>
+      <p>You can control the connection for a query manually if you don't want to update the data in a cursor. Use a SQL pass-through query to select the data you need into a local cursor and then close the connection.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/0bfcf4ac-c66d-4085-9740-0fbfe1c74718.htm">Speeding Up Data Retrieval</a></span><br /><span class="linkTerms"><a href="/html/16427f5e-812b-4462-a2f2-1d9e3c9a4ee0.htm">Query and View Acceleration</a></span><br /><span class="linkTerms"><a href="/html/8768af89-384b-40e3-b5fc-f59552f674ef.htm">Performance Improvement on Updates and Deletes</a></span><br /><span class="linkTerms"><a href="/html/37be2d46-457e-4555-a10a-a7a530dc1ffe.htm">Form Acceleration</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ea88b84a-e912-4f11-b6d0-b8ab7f38052a.htm">Optimizing Client/Server Performance</a></span><br /><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Optimizing Connections">
+</OBJECT>

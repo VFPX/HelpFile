@@ -1,0 +1,658 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Considerations for SQL SELECT Statements</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Considerations for SQL SELECT Statements</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When creating queries and views with SQL <b>SELECT</b> statements, be aware of the following considerations, conventions, and restrictions.   </p>
+    <ul><li>
+        <p>
+          <a href="#fogrfconsiderationsforsqlselectstatementsanchor3">User-Defined Functions in SQL SELECT Statements</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fogrfconsiderationsforsqlselectstatementsanchor2">Aggregate Functions</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fogrfconsiderationsforsqlselectstatementsanchor1">Rules Applied to Column Names</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#fogrfconsiderationsforsqlselectstatementsanchor4">UNION Operations</a>
+        </p>
+      </li></ul>
+  <a name="fogrfconsiderationsforsqlselectstatementsanchor3"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>User-Defined Functions in SQL SELECT Statements</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>You can specify expressions containing user-defined functions for <span class="parameter">Select_Item</span> in SQL <b>SELECT</b> statements. However, note the following recommendations and restrictions when using user-defined functions in SQL <b>SELECT</b> statements:  </p>
+      <ul><li>
+          <p>Use API and user-defined functions written in C or assembly language instead of performing high-volume manipulations with user-defined functions. The speed at which user-defined functions are executed can limit the speed of operations performed with SQL <b>SELECT</b>. </p>
+        </li><li>
+          <p>Assume nothing about the Visual FoxPro input/output (I/O) or table environment when using user-defined functions in SQL <b>SELECT</b>. In general, you do not know which work area is selected, the name of the current table, or even the names of the fields being processed. The value of these variables depends on the precise location in the optimization process where the user-defined function is called.</p>
+        </li><li>
+          <p>Do not change the Visual FoxPro I/O or table environment in user-defined functions called in SQL <b>SELECT</b>. In general, the results can be unpredictable.</p>
+        </li><li>
+          <p>Use the argument list that is passed to the function when it is called as the only reliable way to pass values to user-defined functions in SQL <b>SELECT</b>.</p>
+        </li><li>
+          <p>Understand that "forbidden" manipulations might provide results in one version of Visual FoxPro but might not work in later versions.</p>
+        </li></ul>
+      <p>Outside of these restrictions, user-defined functions are acceptable in SQL <b>SELECT</b> statements. However, remember that using SQL <b>SELECT</b> in general might slow performance. </p>
+      <p>For more information about user-defined functions, see <span class="linkTerms"><a href="/html/f8dde7e9-6ba8-4f65-a797-8cbbcde1f89d.htm">User-Defined Procedures and Functions</a></span>.</p>
+    </div><a name="fogrfconsiderationsforsqlselectstatementsanchor2"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Aggregate Functions</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>You can use aggregate functions with a <span class="parameter">Select_Item</span> that is a field or an expression involving a field or within a filter condition in the <b>HAVING</b> clause. However, you cannot nest aggregate functions. </p>
+      <p>The following table lists aggregate functions you can use in SQL <b>SELECT</b> statements.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Aggregate function
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>AVG( )</p>
+          </td>
+          <td>
+            <p>Averages a column of numeric data.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>COUNT( ) or CNT( )</p>
+          </td>
+          <td>
+            <p>Counts the number of select items in a column. COUNT(*) counts the number of rows in the query output.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>MIN( )</p>
+          </td>
+          <td>
+            <p>Determines the smallest value of <span class="parameter">Select_Item</span> in a column.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>MAX( )</p>
+          </td>
+          <td>
+            <p>Determines the largest value of <span class="parameter">Select_Item</span> in a column.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SUM( )</p>
+          </td>
+          <td>
+            <p>Totals a column of numeric data.</p>
+          </td>
+        </tr></table></div>
+      <p>The following example creates a query that displays output column names as described:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT AVG(TAlias1.order_amt), MIN(TAlias1.order_amt) ;
+   FROM Orders AS TAlias1</pre></td></tr></table></span></div>
+      <p>For more information about the aggregate functions you can use with <b>SELECT</b> statements, see <a href="/html/e8b6141a-899d-4d11-9ccb-30868c64a3b1.htm">MIN( ) Function</a>, <a href="/html/beb3b4e1-1953-49c9-9302-bed3d1251d9a.htm">MAX( ) Function</a>, and the <a href="/html/4f6a1667-7ede-46e8-9b65-62a05f9182de.htm">CALCULATE Command</a>, which contains information about the AVG( ), COUNT( ) or CNT( ), and SUM( ) functions.</p>
+    </div><a name="fogrfconsiderationsforsqlselectstatementsanchor1"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2)" tabindex="0"><img id="sectionToggle2" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Rules Applied to Column Names</span></h1><div id="sectionSection2" class="section" name="collapseableSection" style="display: none;">
+      <p>The following rules apply when you specify a column with the <b>AS</b> clause to display results in a separate column:  </p>
+      <ul><li>
+          <p>If <span class="parameter">Select_Item</span> is a field with a unique name, the output column name is the field's name.</p>
+        </li><li>
+          <p>If more than one <span class="parameter">Select_Item</span> has the same name, an underscore (_) and a letter are appended to the end of the output column name.  </p>
+          <p>For example, if a SQL <b>SELECT</b> statement specifies to display the Cust_ID fields for two tables, Customer and Orders, the column names displayed are <span class="parameter">FieldName</span>_a and <span class="parameter">FieldName</span>_b, or in this example, Cust_ID_a and Cust_Id_b. The following example creates a query that displays column names as described:  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT TAlias1.cust_id, TAlias2.cust_id ;
+   FROM Customer AS TAlias1, Orders AS TAlias2 ;
+   WHERE TAlias1.cust_id = TAlias2.cust_id</pre></td></tr></table></span></div>
+          <p>In a free table, if more than one SQL <b>SELECT</b> item has the same name, and the name has 10 or more characters, the name is truncated to add a number. For example, an output column name such as Department would appear as Department and Departmen2.  </p>
+        </li><li>
+          <p>If <span class="parameter">Select_Item</span> is an expression, the output column name appears as Exp_1. Additional output column names appear as Exp_2, Exp_3, and so on. The following example creates a query that displays output column names as described: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT TAlias1.postalcode+"-1234", TAlias2.postalcode+"-5678" ;
+   FROM Customer AS TAlias1, Orders AS TAlias2 ;
+   WHERE TAlias1.cust_id = TAlias2.cust_id</pre></td></tr></table></span></div>
+        </li><li>
+          <p>If an aggregate function, such as <b>COUNT( )</b>, is used with <span class="parameter">Select_Item</span>, the output column is named Cnt_<span class="parameter">FieldName</span>. If more than one <span class="parameter">Select_Item</span> is used with aggregate functions, the output columns are named <span class="parameter">AggregateFunction</span>_<span class="parameter">FieldName</span> with the aggregate function names abbreviated as needed. The following example creates a query that displays output column names as described: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT COUNT(order_id), SUM(order_net)FROM Orders </pre></td></tr></table></span></div>
+          <p>For more information about aggregate functions, see <a href="#fogrfconsiderationsforsqlselectstatementsanchor2">Aggregate Functions</a>. </p>
+        </li></ul>
+    </div><a name="fogrfconsiderationsforsqlselectstatementsanchor4"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle3)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle3)" tabindex="0"><img id="sectionToggle3" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>UNION Operations</span></h1><div id="sectionSection3" class="section" name="collapseableSection" style="display: none;">
+      <p>When performing <b>UNION</b> operations between SQL <b>SELECT</b> statements using the <b>UNION</b> clause, be aware of the following considerations and restrictions:</p>
+      <ul><li>
+          <p>All select lists in the statements that are being combined with <b>UNION</b> must have the same number of expressions (column names, arithmetic expressions, aggregate functions, and so on).</p>
+        </li><li>
+          <p>Corresponding columns in the result sets that are being combined with <b>UNION</b>, or any subset of columns used in individual queries, must be of the same data type, have an implicit data conversion possible between the two data types, or have an explicit conversion supplied. For example, a <b>UNION</b> between a column of datetime data type and one of binary data type will not work unless an explicit conversion is supplied. However, a <b>UNION</b> will work between a column of money data type and one of int data type, because they can be implicitly converted. </p>
+          <p>Columns of the xml data type must be equivalent. All columns must be either typed to an XML schema, or untyped. If typed, they must be typed to the same XML schema collection. </p>
+        </li><li>
+          <p>The column names in the table that result from UNION are taken from the first individual query in the UNION statement. To refer to a column in the result set by a new name (for example, in an ORDER BY clause), the column must be referred to that way in the first SELECT.</p>
+        </li><li>
+          <p>Corresponding result set columns in the individual statements that are being combined with UNION must occur in the same order, because UNION compares the columns one-to-one in the order given in the individual queries.</p>
+          <p>When different data types are combined in a UNION operation, they are converted by using the rules of data type precedence. In the previous example, the int values are converted to float, because float has a higher precedence than int.</p>
+        </li></ul>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Data Type Conversion and Precedence in UNION Operations</h3><div class="subSection" xmlns="">
+          <p>Prior to Visual FoxPro 8.0, you needed to perform explicit data type conversion when performing <b>UNION</b> operations in SQL <b>SELECT</b> statements between two fields of different types. However, Visual FoxPro supports implicit data type conversion for the data types that support it. </p>
+          <p>Explicit data type conversion requires you to use Visual FoxPro conversion functions, such as <b>CTOD( )</b>, while implicit conversions do not require you to use such conversion functions. </p>
+          <p>When Visual FoxPro combines two columns of different data types in a <b>UNION</b> operation, the data type with the lower precedence is converted to the data type with the higher precedence. For field properties, <b>NULL</b> takes higher precedence over <b>NOT NULL</b>. </p>
+          <p>The following table shows all the explicit and implicit data type conversions permitted for Visual FoxPro table data types.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Data type
+                </th>
+                <th>
+                  Implicit conversion
+                </th>
+                <th>
+                  Explicit conversion
+                </th>
+              </tr><tr>
+              <td>
+                <p>Character</p>
+              </td>
+              <td>
+                <p>Character (Binary)</p>
+              </td>
+              <td>
+                <p>CTOD( ), CTOT( ), VAL( ), CTOBIN( )</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Character (Binary)</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Currency</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+              <td>
+                <p>MTON( )</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Date</p>
+              </td>
+              <td>
+                <p>DateTime</p>
+              </td>
+              <td>
+                <p>DTOC( ), DTOS( ), DTOT( )</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DateTime</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+              <td>
+                <p>TTOC( ), TTOD( )</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Double</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+              <td>
+                <p>STR( ), VAL( )</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Float</p>
+              </td>
+              <td>
+                <p>Numeric</p>
+              </td>
+              <td>
+                <p>NTOM( ), STR( ), INT( )</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Integer</p>
+              </td>
+              <td>
+                <p>Numeric, Float, Double, Currency</p>
+              </td>
+              <td>
+                <p>BINTOC( )</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Logical</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Numeric</p>
+              </td>
+              <td>
+                <p>Float</p>
+              </td>
+              <td>
+                <p>NTOM( ), STR( ), INT( )</p>
+              </td>
+            </tr></table></div>
+          <p>The following table illustrates implicit conversion results from a <b>UNION</b> operation between two fields. </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Data type 1
+                </th>
+                <th>
+                  Data type 2
+                </th>
+                <th>
+                  Data type expected
+                </th>
+              </tr><tr>
+              <td>
+                <p>Character (N)</p>
+              </td>
+              <td>
+                <p>Character (X)</p>
+              </td>
+              <td>
+                <p>Character (MAX(N,X))</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Character (N)</p>
+              </td>
+              <td>
+                <p>Character Binary (X)</p>
+              </td>
+              <td>
+                <p>Character Binary (MAX(N,X))</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Character (N)</p>
+              </td>
+              <td>
+                <p>Memo</p>
+              </td>
+              <td>
+                <p>Memo</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Character Binary (N)</p>
+              </td>
+              <td>
+                <p>Character Binary (X)</p>
+              </td>
+              <td>
+                <p>Character Binary (MAX(N,X))</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Character Binary (N) </p>
+              </td>
+              <td>
+                <p>Memo</p>
+              </td>
+              <td>
+                <p>Memo</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Currency</p>
+              </td>
+              <td>
+                <p>Currency</p>
+              </td>
+              <td>
+                <p>Currency</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Date</p>
+              </td>
+              <td>
+                <p>Date</p>
+              </td>
+              <td>
+                <p>Date</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Date</p>
+              </td>
+              <td>
+                <p>DateTime</p>
+              </td>
+              <td>
+                <p>DateTime</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DateTime</p>
+              </td>
+              <td>
+                <p>DateTime</p>
+              </td>
+              <td>
+                <p>DateTime</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Double (N)</p>
+              </td>
+              <td>
+                <p>Float (X,Y)</p>
+              </td>
+              <td>
+                <p>Float (MAX(MAX(8,Y),2))</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Double (N)</p>
+              </td>
+              <td>
+                <p>Integer</p>
+              </td>
+              <td>
+                <p>Double (N)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Double (N)</p>
+              </td>
+              <td>
+                <p>Numeric (X,Y)</p>
+              </td>
+              <td>
+                <p>Double (MAX(MAX(8,Y),2))</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Double (X)</p>
+              </td>
+              <td>
+                <p>Double (Y)</p>
+              </td>
+              <td>
+                <p>Double (MAX(X,Y))</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Float (N,M)</p>
+              </td>
+              <td>
+                <p>Double (X)</p>
+              </td>
+              <td>
+                <p>Float (20, MAX(M,X))</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Float (N,M)</p>
+              </td>
+              <td>
+                <p>Float (X,Y)</p>
+              </td>
+              <td>
+                <p>Float (MAX(N,M), MAX(X,Y))</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Float (N,M)</p>
+              </td>
+              <td>
+                <p>Numeric (X,Y)</p>
+              </td>
+              <td>
+                <p>Float (MAX (N,X), MAX(M,Y))</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Integer</p>
+              </td>
+              <td>
+                <p>Currency</p>
+              </td>
+              <td>
+                <p>Currency</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Integer</p>
+              </td>
+              <td>
+                <p>Double (X)</p>
+              </td>
+              <td>
+                <p>Double (X)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Integer</p>
+              </td>
+              <td>
+                <p>Float (X,Y)</p>
+              </td>
+              <td>
+                <p>Float (MAX(11,X), Y)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Integer</p>
+              </td>
+              <td>
+                <p>Integer</p>
+              </td>
+              <td>
+                <p>Integer</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Integer</p>
+              </td>
+              <td>
+                <p>Numeric (X,Y)</p>
+              </td>
+              <td>
+                <p>Numeric (MAX(11,X), Y)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Logical</p>
+              </td>
+              <td>
+                <p>Logical</p>
+              </td>
+              <td>
+                <p>Logical</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Numeric (N,M)</p>
+              </td>
+              <td>
+                <p>Double (X)</p>
+              </td>
+              <td>
+                <p>Numeric (20, MAX(M,X))</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Numeric (N,M)</p>
+              </td>
+              <td>
+                <p>Float (X,Y)</p>
+              </td>
+              <td>
+                <p>Float (MAX(N,X), MAX(M,Y))</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Numeric (N,M)</p>
+              </td>
+              <td>
+                <p>Numeric (X,Y)</p>
+              </td>
+              <td>
+                <p>Numeric (MAX(N,X), MAX(M,Y))</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Varchar (X)</p>
+              </td>
+              <td>
+                <p>Character (Y)</p>
+              </td>
+              <td>
+                <p>Varchar (MAX(X,Y))</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Varchar Binary (X)</p>
+              </td>
+              <td>
+                <p>Character Binary (Y)</p>
+              </td>
+              <td>
+                <p>Varchar Binary (MAX(X,Y))</p>
+              </td>
+            </tr></table></div>
+          <p>For more information about data types and conversion functions, see <a href="/html/b353259f-ae44-4c20-9b4c-53741595d66c.htm">Data and Field Types</a> and <a href="/html/6eba4777-c4ac-4909-906d-3a91ac990b0a.htm">Data Conversion Functions</a>.</p>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/e2e80200-9767-4204-a73b-082286a5571a.htm">General Reference</a></span><br /><span class="linkTerms"><a href="/html/ccb3a0ad-7fe4-4267-ba42-aa9918ed1f21.htm">Working with Queries</a></span><br /><span class="linkTerms"><a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Considerations for SQL SELECT Statements">
+</OBJECT>

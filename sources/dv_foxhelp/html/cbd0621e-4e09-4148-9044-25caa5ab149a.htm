@@ -1,0 +1,133 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Perform Tasks with Commands</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Perform Tasks with Commands</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When a menu or menu item is selected, it performs a task, such as displaying a form, a toolbar, or another menu system. To perform a task, a menu or menu item must execute a Visual FoxPro command. The command can be contained in one line, or it can be a procedure call.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>If you expect to use a set of commands in several places, write a procedure. The procedure should be explicitly named and written in the menu cleanup code, or somewhere where it can be referenced by any menu or object. For more information, see <span class="linkTerms"><a href="/html/024352d8-5712-4203-8f6c-23d2b973246a.htm">How to: Perform Tasks with Procedures</a></span>.</p>
+    </td></tr></table></div>
+    <p>A command can be any valid Visual FoxPro command, including a call to a program that exists on your path or a procedure defined in the Cleanup option of the <span class="linkTerms"><a href="/html/c6469e24-d0fb-4d32-83f2-be8fd97729df.htm">General Options Dialog Box</a></span>. For more information, see <span class="linkTerms"><a href="/html/88713525-768a-4862-9444-a52802900ad7.htm">How to: Customize a Menu System</a></span>.</p>
+  <h3 class="procedureSubHeading">To assign a command to a menu or menu item</h3><div class="subSection"><ol><li>
+        
+          <p>In the <b>Prompt</b> column, select the appropriate menu title or menu item.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Result</b> box, select <b>Command</b>.</p>
+        
+      </li><li>
+        
+          <p>In the box to the right of the <b>Result</b> box, type the appropriate command:</p>
+        
+      </li></ol>
+      
+        <p>If the command calls a procedure in the menu's cleanup code, use the <a href="/html/c4dda428-55f2-4610-9d0f-bccc53023a41.htm">DO</a> command with the following syntax:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO <i>procname</i> IN <i>menuname</i></pre></td></tr></table></span></div>
+        <p>In this syntax, <i>menuname</i> specifies the location of the procedure. This is the name of the menu file and must have the .mpr extension. If you don't specify the location in <i>menuname</i>, you must specify it with <a href="/html/93f1eabe-abc5-4906-8894-75233b64c806.htm">SET PROCEDURE</a> TO <i>menuname</i>.mpr, if the procedure is in the menu cleanup code.</p>
+      
+    </div><h1 class="heading">Displaying Forms and Dialog Boxes</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>From a menu or menu item, you can display a compiled form or dialog box by calling it with a command or procedure. </p>
+      <h3 class="procedureSubHeading">To display a form or dialog box</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <b>DO FORM</b> command with the form's name.</p>
+            
+          </li></ul></div>
+      <p>For example, to display a form named "Orders," use the following command:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO FORM Orders</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>When you create a menu or menu item that displays a form or dialog box, put three dots at the end of the prompt to indicate that more user input is required.</p>
+      </td></tr></table></div>
+      <p>If you create a custom toolbar for an application, you can display it by calling it from a menu or menu item. For details, see <span class="linkTerms"><a href="/html/18f2b40a-6c13-4f57-b28e-ac3e0e21e083.htm">Creating Custom Toolbars</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/688b7789-69bf-4fb2-8be8-58ad8346e175.htm">How to: Enable and Disable Menu Items</a></span><br /><span class="linkTerms"><a href="/html/024352d8-5712-4203-8f6c-23d2b973246a.htm">How to: Perform Tasks with Procedures</a></span><br /><span class="linkTerms"><a href="/html/f500549c-df62-4297-9b54-8b5098ceba8b.htm">How to: Add Setup Code to a Menu System</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/21eaee88-6fbe-452b-839d-aa519d16892c.htm">Designing Menus and Toolbars</a></span><br /><span class="linkTerms"><a href="/html/842d4132-cdb3-4c0f-a25f-405322751018.htm">Compiling an Application</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Perform Tasks with Commands">
+</OBJECT>

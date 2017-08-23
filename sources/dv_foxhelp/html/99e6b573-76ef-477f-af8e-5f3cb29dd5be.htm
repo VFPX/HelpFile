@@ -1,0 +1,211 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Optimizing Visual FoxPro Startup Speed</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Optimizing Visual FoxPro Startup Speed</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Though Visual FoxPro is always fast, you can optimize the startup and operating speed. This section describes enhancing Visual FoxPro performance by managing startup speed and optimizing SET commands.</p>
+  <h1 class="heading">Managing Startup Speed</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The time required to load and start Visual FoxPro relates to the physical size of Visual FoxPro, the length of the PATH statement in effect, the number of items to be found at startup, and other factors. You can control the load size, the search path, component file locations, and the startup SET command values of Visual FoxPro.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Managing File Locations</h3><div class="subSection" xmlns="">
+          <p>Visual FoxPro stores the FoxUser.dbf file, which contains user settings, in the user's Application Data directory by default. You can display this location by typing <code>? HOME(7)</code> in the Command window. Visual FoxPro searches for the FoxUser.dbf and Config.fpw files in the following places:
+</p>
+          <ul><li>
+              <p>In the startup application or executable file, if any. 
+</p>
+              <p>For example, you can start a Visual FoxPro application by typing the following code on the command line:
+</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>
+                <i>VFPversionNumber</i>.exe <i>MyApp</i>.app</pre></td></tr></table></span></div>
+              <p> – or –
+					</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>VFP<i>versionNumber</i>.exe <i>MyApp</i>.exe</pre></td></tr></table></span></div>
+              <p>If the startup application or executable file contains a Config.fpw file, the configuration file is always used. You can override settings in a Config.fpw file that are bound inside an application by specifying an external Config.fpw file, using the -C command-line switch when starting an application or Visual FoxPro.
+</p>
+            </li><li>
+              <p>In the working directory.</p>
+            </li><li>
+              <p>Along the path established with the PATH environment variable.</p>
+            </li><li>
+              <p>In the directory containing Visual FoxPro.</p>
+            </li></ul>
+        </div>
+      <h3 class="subHeading" xmlns="">Controlling File Loading</h3><div class="subSection" xmlns="">
+          <p>You can also speed startup by preventing Visual FoxPro from loading files you don't plan to use. If your application does not use the FoxUser or FoxHelp file, disable them in the Config.fpw file by using the following commands:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>RESOURCE = OFF
+HELP = OFF</pre></td></tr></table></span></div>
+          <p>Visual FoxPro seeks all other Visual FoxPro components (GENXTAB, CONVERT, and so on) only in the Visual FoxPro directory. If you place components elsewhere, you must explicitly identify the path to those components in your Config.fpw file. For example, you might specify these locations:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_TRANSPORT = c:\migrate\transport.prg
+_GENXTAB = c:\crosstab\genxtab.prg
+_FOXREF = c:\coderefs\foxref.app</pre></td></tr></table></span></div>
+          <p>You can use the environment variable FOXPROWCFG to explicitly specify the location of Config.fpw. For details about the FOXPROWCFG variable, see <a href="/html/4d5ad8fb-f7a7-416d-9076-cf6f53cbdb89.htm">Customizing the Visual FoxPro Environment</a>.</p>
+        </div>
+    </sections></div><h1 class="heading">Optimizing the Load Size of Visual FoxPro</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>If you don't plan on using any of the Visual FoxPro components listed previously, set them to an empty string to speed startup.</p>
+      <p>To optimize the load size of Visual FoxPro, use the following syntax:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>
+        <i>cFileVariable</i> <b>=</b> ""</pre></td></tr></table></span></div>
+      <p>Replace <i>cFileVariable</i> with _TRANSPORT, _CONVERT, or other variables as appropriate.</p>
+    </div><h1 class="heading">Optimizing Key SET Commands</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can optimize the operation of Visual FoxPro by tuning the values of certain SET commands.</p>
+      <p>The following table shows SET commands that have the greatest effect on performance, and their settings for maximum performance. You can specify SET command values by including them in the Config.fpw file, by typing them in the Command window, or by setting them in the Options dialog box.</p>
+      <div class="labelheading"><b>Command Settings for Maximum Performance</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              SET Command
+            </th>
+            <th>
+              Performance Setting
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/50481ef8-c338-4def-ae13-4da7f4a40748.htm">SET ESCAPE Command</a>
+            </p>
+          </td>
+          <td>
+            <p>ON</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a>
+            </p>
+          </td>
+          <td>
+            <p>ON</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f90c43b8-a72d-40ed-8832-85eb7e07dd9b.htm">SET REFRESH Command</a>
+            </p>
+          </td>
+          <td>
+            <p>0,0</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/737fa94e-e1a7-4f98-a6bb-2a33e15ca729.htm">SET SYSMENU Command</a>
+            </p>
+          </td>
+          <td>
+            <p>DEFAULT</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9049d9e4-9174-4ea3-8980-3171c48f6f9f.htm">SET TALK Command</a>
+            </p>
+          </td>
+          <td>
+            <p>OFF</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/3d506b1b-3962-4403-82c0-c9616dad9149.htm">SET VIEW Command</a>
+            </p>
+          </td>
+          <td>
+            <p>OFF</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/50481ef8-c338-4def-ae13-4da7f4a40748.htm">SET ESCAPE Command</a></span><br /><span class="linkTerms"><a href="/html/f90c43b8-a72d-40ed-8832-85eb7e07dd9b.htm">SET REFRESH Command</a></span><br /><span class="linkTerms"><a href="/html/737fa94e-e1a7-4f98-a6bb-2a33e15ca729.htm">SET SYSMENU Command</a></span><br /><span class="linkTerms"><a href="/html/b6357e87-9f16-406c-832c-398bb2bcea87.htm">Command Window (Visual FoxPro)</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/378f1d4f-1c1d-43c2-ba38-e24f76da3539.htm">Optimizing Visual FoxPro in a Multiuser Environment</a></span><br /><span class="linkTerms"><a href="/html/03aa9f64-db4a-4465-acef-3ca2016a8a0a.htm">Optimizing the Operating Environment</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c43a1e26-abb8-486a-9e59-a8c188a882cc.htm">Optimizing Your System</a></span><br /><span class="linkTerms"><a href="/html/4d5ad8fb-f7a7-416d-9076-cf6f53cbdb89.htm">Customizing the Visual FoxPro Environment</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Optimizing Visual FoxPro Startup Speed">
+</OBJECT>

@@ -1,0 +1,222 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>XML Data in Visual FoxPro</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">XML Data in Visual FoxPro</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can work with XML data in Visual FoxPro by importing or exporting XML documents using the Visual FoxPro functions or <b>XMLAdapter</b> objects. The following sections introduce valid, or "well-formed", XML documents and XML schemas, which help explain requirements for working with XML data in Visual FoxPro:  </p>
+    <ul><li>
+        <p>
+          <a href="#foconxmldatainvisualfoxproanchor1">Well-Formed XML Docments</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#foconxmldatainvisualfoxproanchor2">Support for XML Schemas</a>
+        </p>
+      </li></ul>
+  <a name="foconxmldatainvisualfoxproanchor1"></a><h1 class="heading">Well-Formed XML Docments</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>XML documents are valid when they are "well-formed". Visual FoxPro produces XML documents that are well-formed. A well-formed document conforms to the basic rules of XML:  </p>
+      <ul><li>
+          <p>Each XML document must have a unique root element, which is an element that encompasses the entire document. </p>
+        </li><li>
+          <p>All start and end tags match. XML tags are case-sensitive. </p>
+        </li><li>
+          <p>For each start tag, a corresponding end tag exists. A special shorthand tag can denote empty elements. </p>
+        </li><li>
+          <p>Elements do not overlap. In other words, start and end tags must be properly nested within other elements. </p>
+        </li><li>
+          <p>Certain reserved characters are part of the XML syntax and are not interpreted as they are if used in the data portion of an element. The following table lists special character sequences, or entities, used to substitute for these reserved characters.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Character 
+                </th>
+                <th>
+                  Data type
+                </th>
+                <th>
+                  Entity encoding
+                </th>
+              </tr><tr>
+              <td>
+                <p>&amp;   (ampersand) &lt;   (left angle bracket) &gt;   (right angle bracket) "   (quotation mark)  '   (apostrophe) </p>
+              </td>
+              <td>
+                <p>String String String String String</p>
+              </td>
+              <td>
+                <p>Replace with &amp;amp; Replace with &amp;lt; Replace with &amp;gt; Replace with &amp;quot; Replace with &amp;apos;</p>
+              </td>
+            </tr></table></div>
+          <p>For other data types, the following table lists rules for entity encoding. </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Data type
+                </th>
+                <th>
+                  Character and entity encoding
+                </th>
+              </tr><tr>
+              <td>
+                <p>Date</p>
+              </td>
+              <td>
+                <p>Must follow the ISO 8601 format</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Numbers</p>
+              </td>
+              <td>
+                <p>Punctuation must use U.S. English rules. For example, you must use a period as a decimal separator. Numbers can include exponents.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Boolean</p>
+              </td>
+              <td>
+                <p>False = 0, True = 1. (SQL XML returns 0 and1)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>BLOB</p>
+              </td>
+              <td>
+                <p>Use MIME Base64 encoding</p>
+              </td>
+            </tr></table></div>
+        </li></ul>
+      <p>The following example shows a well-formed XML document:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;?xml version="1.0"?&gt;
+&lt;Data&gt;
+&lt;ORDER&gt;
+ &lt;CUSTOMER&gt;Mary Baker&lt;/CUSTOMER&gt;
+  &lt;ITEM&gt;Coho Winery&amp;apos;s Chablis&lt;/ITEM&gt;
+ &lt;PRICE&gt;$10.00&lt;/PRICE&gt;
+ &lt;QUANTITY&gt;1 Bottle&lt;/QUANTITY&gt;
+ &lt;/ORDER&gt;
+&lt;/Data&gt;</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>You can use white space throughout the document to enhance readability.</p>
+      </td></tr></table></div>
+      <p>In the example, the code illustrates certain parts of the XML document:  </p>
+      <ul><li>
+          <p>&lt;?xml version="1.0"?&gt; </p>
+          <p>Declares the XML document and provides the version number. This declaration is optional but recommended in any XML document. </p>
+        </li><li>
+          <p>&lt;ORDER&gt; </p>
+          <p>Specifies the root element that encompasses the entire document. </p>
+        </li><li>
+          <p>&lt;CUSTOMER&gt; ... &lt;/CUSTOMER&gt; </p>
+          <p>Specifies a start and end tag set, which describes an element of data, in this case, the customer's name.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Each tag set has both start and end tags, is case sensitive, and is properly nested. When the data is imported by the receiving application, the entity &amp;apos is transformed to an apostrophe ('). The apostrophe has a special purpose in an XML document and might be misinterpreted if used directly in text. The converted data is displayed as <i>Coho Winery's Chablis</i>.</p>
+          </td></tr></table></div>
+        </li></ul>
+    </div><a name="foconxmldatainvisualfoxproanchor2"></a><h1 class="heading">Support for XML Schemas</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>XML schemas can help define the rules and structure for XML documents. Visual FoxPro can interpret XML files with or without schemas. However, Visual FoxPro supports XML Schema Definition (XSD), which is a basic infrastructure for describing the type and structure of XML documents. An XML schema definition serves several purposes:  </p>
+      <ul><li>
+          <p>Describes the structure of data in a common format that customers, other Web browsers, and any number of XML-enabled software programs can recognize. </p>
+        </li><li>
+          <p>Defines the rules of an XML data document, including element names and data types, which elements can appear in combination, and which attributes are available for each element. </p>
+        </li><li>
+          <p>Provide a model for an XML data document by defining the arrangement of tags and text within all documents referencing the schema. </p>
+        </li></ul>
+      <p>By using an XML schema, you can ensure that any XML document used to import or export data contains specific data and conforms to a defined structure. When you specify a schema when exporting XML from Visual FoxPro, the exported XML documents are considered valid XML. This means that in addition to being well-formed, the documents conform to a defined schema. You can also provide a schema to other businesses and applications so that they can structure XML data they provide to you as well as provide their schema to you. </p>
+      <p>In particular, Visual FoxPro supports the W3C XSD schema format. The XSD schema format is based on the W3C Recommendation of the XSD Schema specification. For more information, see <b>http://www.w3.org/TR/2001/REC-xmlschema-0-20010502/</b> and related documents.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/eefa2d03-b928-46ae-a87b-676c3f0f6061.htm">XML Functions</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/1b079e17-218f-4fc1-8fea-c4098831c09d.htm">Converting Between XML and Visual FoxPro Data</a></span><br /><span class="linkTerms"><a href="/html/eb5f9e49-00fe-4827-8608-dfe12e3f6d5e.htm">XML Functionality Using XMLAdapters</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b353259f-ae44-4c20-9b4c-53741595d66c.htm">Data and Field Types</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="XML Data in Visual FoxPro">
+</OBJECT>

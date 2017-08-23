@@ -1,0 +1,165 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>CREATE FORM Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">CREATE FORM Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Opens the <b>Form Designer</b>.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+CREATE FORM [<span class="parameter">FormName</span> | ?] [AS <span class="parameter">cClassName</span> FROM <span class="parameter">cClassLibraryName</span> | ?]
+   [NOWAIT] [SAVE] [DEFAULT] [[WINDOW <span class="parameter">WindowName1</span>] [IN [WINDOW]
+            <span class="parameter">WindowName2</span> | IN SCREEN]]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">FormName</span>
+        </span></dt><dd>
+          <p>Specifies the file name for the form. If you don't specify an extension for the file name, Visual FoxPro automatically assigns an .scx extension. If a form file with the name you specify already exists, you are asked if you want to overwrite the existing file (if SET SAFETY is set to ON).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">? </span></dt><dd>
+          <p>Displays the Create dialog box from which you can choose a form or enter the name of a new form to create.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">AS <span class="parameter">cClassName</span>FROM <span class="parameter">cClassLibraryName</span>| ? </span></dt><dd>
+          <p>Creates a new form from a form class in a .vcx visual class library. <span class="parameter">cClassName</span> specifies the name of the user-defined form class from which the new form is created. An error is generated if <span class="parameter">cClassName</span> isn't based on a form. <span class="parameter">cClassLibraryName</span> specifies the name of the .vcx visual class library containing the form class specified with <span class="parameter">cClassName</span>. Include ? to display the Open dialog box, allowing you to specify the visual class library.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOWAIT </span></dt><dd>
+          <p>Continues program execution after the Form Designer has been opened. The program doesn't wait for the Form Designer to be closed, but continues execution on the program line immediately following the line that contains CREATE FORM NOWAIT. If you omit NOWAIT, when CREATE FORM is issued in a program, the Form Designer is opened and program execution pauses until the Form Designer is closed.</p>
+          <p>Including NOWAIT has no effect on CREATE FORM when it is issued in the Command window. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SAVE </span></dt><dd>
+          <p>When issued in a program, leaves the Form Designer open after another window is brought forward. Including the SAVE option has no effect when issued from the Command window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DEFAULT </span></dt><dd>
+          <p>Specifies that the Form Designer is opened with the default Visual FoxPro form template, overriding a default form template specified on the <b>Forms</b> tab of the <b>Options</b> dialog.</p>
+          <p>For additional information about form templates, see <span class="linkTerms"><a href="/html/adb21354-5dde-4f55-b92a-df0c53810385.htm">Creating Forms</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WINDOW <span class="parameter">WindowName1</span></span></dt><dd>
+          <p>Specifies a window whose characteristics the Form Designer takes on. For example, if the window is created with the FLOAT option of DEFINE WINDOW, the Form Designer can be moved. The window need not be active or visible, but it must be defined.</p>
+          <p>The Form Designer has a default size that can be larger than the window from which it takes its characteristics. In this case, the Form Designer still assumes the characteristics of the window in which it is placed. The upper-left corner of the Form Designer is placed at the same coordinates as the upper-left corner of the window, and extends beyond the window's borders. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN [WINDOW] <span class="parameter">WindowName2</span></span></dt><dd>
+          <p>Specifies a parent window in which the <b>Form Designer</b> is opened. The <b>Form Designer</b> doesn't assume the characteristics of the parent window and cannot be moved outside the parent window. If the parent window is moved, the <b>Form Designer</b> moves with it.</p>
+          <p>The parent window must first be defined with DEFINE WINDOW, and must be visible, to access the <b>Form Designer</b>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN SCREEN </span></dt><dd>
+          <p>Specifies that the <b>Form Designer</b> is explicitly opened in the main Visual FoxPro window, after the <b>Form Designer</b> has been placed in a parent window. The <b>Form Designer</b> is placed in a parent window by including the IN WINDOW clause.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Issuing CREATE FORM without any additional arguments opens a new form in the <b>Form Designer</b>. When you exit the Form Designer, you are prompted to save the form with a different name.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/6834d682-c0e1-41c5-96c5-f2689e1e8ecb.htm">_BROWSER System Variable</a></span><br /><span class="linkTerms"><a href="/html/1d0841ea-f61e-4ee2-ab55-d531feee5f21.htm">COMPILE Command</a></span><br /><span class="linkTerms"><a href="/html/a727f12a-4d9f-45ca-aa01-c1bea7de9749.htm">DO FORM Command</a></span><br /><span class="linkTerms"><a href="/html/7e89eb63-2192-43a9-9bb5-6d0bbcb9779c.htm">GETPEM( ) Function</a></span><br /><span class="linkTerms"><a href="/html/1c81a6ae-dad3-4d45-89aa-8cce723d0577.htm">_INCLUDE System Variable</a></span><br /><span class="linkTerms"><a href="/html/589df263-68a2-4a04-8f1e-9e41aef624af.htm">MODIFY FORM Command</a></span><br /><span class="linkTerms"><a href="/html/1a82169f-fe6a-4631-a9c3-d106d127046b.htm">PEMSTATUS( ) Function</a></span><br /><span class="linkTerms"><a href="/html/1532e732-75f4-4717-83fa-63ebf1bee5fa.htm">Session Object</a></span><br /><span class="linkTerms"><a href="/html/17550fe3-7c3a-4fba-ab3f-6e53113a3c27.htm">SYS(1269) - Property Information</a></span><br /><span class="linkTerms"><a href="/html/0591bca1-bc6a-4a21-bf42-86f025e4c8cc.htm">SYS(1270) - Object Location</a></span><br /><span class="linkTerms"><a href="/html/d85ce8a1-7d57-4834-a9c4-ef0d84903e1f.htm">SYS(1271) - Object's .SCX File</a></span><br /><span class="linkTerms"><a href="/html/5011f1c9-9b64-4591-8ab6-54f2c9209b3a.htm">SYS(1272) - Object Hierarchy</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="CREATE FORM Command">
+<param name="ALink Name" value="CREATE FORM">
+</OBJECT>

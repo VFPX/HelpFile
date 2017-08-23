@@ -1,0 +1,358 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>REPORT FORM Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">REPORT FORM Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Displays or prints a report specified by a report definition (.frx) file, for example, created with the <b>CREATE REPORT</b> or <b>MODIFY REPORT</b> command.</p>
+    <p>The <b>REPORT FORM</b> command can interpret Visual FoxPro label files (lbx format) as well as report files.  You can also use <b>REPORT FORM</b> to run character-based report files created in FoxPro for MS-DOS.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+REPORT FORM <span class="parameter">FileName1</span> | ? [ENVIRONMENT] [<span class="parameter">Scope</span>] 
+   [FOR <span class="parameter">lExpression1</span>] [WHILE <span class="parameter">lExpression2</span>] [NOOPTIMIZE]
+   [RANGE <span class="parameter">nStartPage</span> [, <span class="parameter">nEndPage</span>]]
+   [HEADING <span class="parameter">cHeadingText</span>] [SUMMARY] [NORESET] [PLAIN]
+   [NOCONSOLE | OFF] [PDSETUP] 
+   [NAME <span class="parameter">ObjectName</span>] 
+   [OBJECT <span class="parameter">oReportListener</span> | TYPE <span class="parameter">iExpression</span>]
+   [TO <span class="parameter">OutputDestination</span> [NODIALOG]] 
+   [PREVIEW [<span class="parameter">PreviewDestination</span>] [NOWAIT] [WINDOW <span class="parameter">WindowName</span>]]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">FileName1 </span>| ? </span></dt><dd>
+          <p>Specifies the name of a report definition (.frx) file or displays the <b>Open</b> dialog box so you can choose an .frx file. By default, the report displays in the current output window.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The default file name extension for a report definition file is .frx. If the .frx file is not in the default directory or folder, you must include file name with the path. Starting with Visual FoxPro 7.0, <span class="parameter">FileName1</span> is included in the status message, which appears when you include the <b>TO</b> clause. To suppress the status message, see the description for the <b>TO</b> clause.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[ENVIRONMENT] </span></dt><dd>
+          <p>Opens and restores all tables and relations in the data environment associated with the report even when <b>AutoOpenTables</b> is set to False (.F.). </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The <b>ENVIRONMENT</b> keyword is included for backward compatibility, for example, reports converted from earlier versions of FoxPro, such as 2.<span class="parameter">x</span> reports. </p>
+          </td></tr></table></div>
+          <p>To restore the data environment associated with a Visual FoxPro report, set the data environment's <b>AutoOpenTables</b> property to True (.T.) (default). To make sure that the report environment is closed when the report has finished printing, set the data environment's <b>AutoCloseTables</b> property to True (.T.) (default). For more information, see <span class="linkTerms"><a href="/html/2d8c85b7-9aac-4c20-9ca0-7a1eec2efede.htm">AutoOpenTables Property</a></span> and <span class="linkTerms"><a href="/html/f9177a4d-e35c-487a-a458-700e537fe4c7.htm">AutoCloseTables Property</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[<span class="parameter">Scope</span>] </span></dt><dd>
+          <p>Specifies a range of records to include in the report. Only the records that fall within the scope range are included in the report. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p> When you include a <span class="parameter">Scope</span> clause, the scope operates only on the table in the active work area.</p>
+          </td></tr></table></div>
+          <p>The following table lists possible values for <span class="parameter">Scope</span>.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Scope</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>ALL</p>
+              </td>
+              <td>
+                <p>Include all records. (Default)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>NEXT <span class="parameter">nRecords</span></p>
+              </td>
+              <td>
+                <p>Include the next <span class="parameter">nRecords</span> number of records beginning with the current record. </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>RECORD <span class="parameter">nRecordNumber</span></p>
+              </td>
+              <td>
+                <p>Include only the specified record.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>REST</p>
+              </td>
+              <td>
+                <p>Include a range of records beginning with the current record and ending with the last record.</p>
+              </td>
+            </tr></table></div>
+          <p>For more information on scope clauses, see <span class="linkTerms"><a href="/html/c8d51e13-0119-4fc5-a0df-b6a9ab7997bb.htm">Scope Clauses</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[FOR <span class="parameter">lExpression1</span>] </span></dt><dd>
+          <p>Prints data only in those records for which the logical expression specified by <span class="parameter">lExpression1</span> evaluates to Tue (.T.). By including the <b>FOR</b> clause, you can exclude records you do not want to print.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>If <span class="parameter">lExpression1</span> is an optimizable expression, Rushmore Query Optimization optimizes <b>REPORT FORM</b> with the <b>FOR</b> clause. For best performance, use an optimizable expression in the <b>FOR</b> clause. For more information, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span><span class="parameter">.</span></p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[WHILE <span class="parameter">lExpression2</span>] </span></dt><dd>
+          <p>Prints data only while the logical expression specified by <span class="parameter">lExpression2</span> evaluates to True (.T.).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[NOOPTIMIZE] </span></dt><dd>
+          <p>Prevents Rushmore optimization for <b>REPORT FORM</b>. </p>
+          <p>For more information, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[RANGE <span class="parameter">nStartPage </span>[, <span class="parameter">nEndPage</span>]] </span></dt><dd>
+          <p>Specifies a range of pages to print or other output. </p>
+          <p>The <span class="parameter">nStartPage</span> parameter specifies the first page to print, while the <span class="parameter">nEndPage</span> parameter specifies the last page to print. If <span class="parameter">nEndPage</span> is omitted, the last page to print defaults to 32,767. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p><b>RANGE</b> selects pages for output, while scope clauses, <b>FOR</b>, and <b>WHILE</b> clauses select records. These selection criteria do not have an effect if you choose to print from preview, unless you have specified <i>object-assisted mode</i> by using the <b>OBJECT</b> clause or <b>SET REPORTBEHAVIOR 90</b>. In object-assisted mode, you can print either the full <b>RANGE</b> you specified on the original <b>REPORT FORM</b> command or some subset of that page range, using the ReportListener.CommandClauses's PrintPageCurrent, PrintRangeFrom, and PrintRangeTo members.  For more information, see <span class="linkTerms"><a href="/html/481b543d-7a57-4a98-91ed-96ec3bac29ca.htm">OnPreviewClose Method</a></span>.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[HEADING <span class="parameter">cHeadingText</span>] </span></dt><dd>
+          <p>Specifies text to place as an additional heading on each page of the report. If you include the <b>HEADING</b> clause and <b>PLAIN</b> keyword, the <b>PLAIN</b> keyword takes precedence.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[SUMMARY] </span></dt><dd>
+          <p>Suppresses detail line printing so that only totals and subtotals print.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[NORESET] </span></dt><dd>
+          <p>Specifies that the <b>_PAGENO</b> and <b>_PAGETOTAL</b> system variables are not reset. The page count for the current report begins at the current values of these two variables. For more information, see <span class="linkTerms"><a href="/html/fa26e69e-1b60-4266-83e6-ab436ecc987b.htm">_PAGENO System Variable</a></span> and <span class="linkTerms"><a href="/html/cae69569-02c2-4339-8e0c-ad6ced66f6d9.htm">_PAGETOTAL System Variable</a></span>.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If you use the <b>NORESET</b> and <b>RANGE</b> keywords together, you must calculate beforehand which pages to print.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[PLAIN] </span></dt><dd>
+          <p>Suppresses page headings except at the beginning of the report.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[NOCONSOLE | OFF] </span></dt><dd>
+          <p>Suppresses displaying the report in the main Visual FoxPro window or a user-defined window when printing the report or sending it to a file.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>When you use Visual FoxPro 9.0's object-assisted output mode, <b>REPORT FORM</b> does not display the contents of your report to the current output window, so the <b>NOCONSOLE</b> and <b>OFF</b> keywords have no effect on native behavior.  However, the keywords are available in the ReportListener.CommandClauses object.  You can evaluate them in your ReportListener derived classes, and opt to suppress a display of report content or other user feedback based on their contents.  For more information, see <span class="linkTerms"><a href="/html/f5f90b33-e6ae-4139-9d13-be1495a87cf6.htm">CommandClauses Property</a></span>.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[PDSETUP] </span></dt><dd>
+          <p>Loads a printer driver setup.</p>
+          <p>You can include <b>PDSETUP</b> to use a printer driver setup for printing character-based reports created in FoxPro for MS-DOS. <b>PDSETUP</b> is ignored when you print graphics-based reports created in Visual FoxPro. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[NAME <span class="parameter">ObjectName</span>] </span></dt><dd>
+          <p>Specifies an object variable name for the data environment associated with the report. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The data environment and the objects in the data environment have properties and methods, such as the <b>AddObject</b> method, that need to be set or called at run time. The object variable provides access to these properties and methods. </p>
+          </td></tr></table></div>
+          <p>If you omit the <b>NAME</b> clause, Visual FoxPro uses the name of the report file, which can be referenced in code associated with events, by default. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[OBJECT <span class="parameter">oReportListener</span> | TYPE <span class="parameter">iExpression </span>]</span></dt><dd>
+          <p>Invokes Visual FoxPro's object-assisted output mode.  Use either an object reference to an object derived from the ReportListener base class, or a numeric value specifying a type of output.  The <b>OBJECT</b> clause on an individual <b>REPORT FORM</b> command takes precedence over the current setting of <b>SET REPORTBEHAVIOR</b>.  For more information, see <span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span>, <span class="linkTerms"><a href="/html/ad1bf074-a169-4fd4-b160-c39bdd8c8402.htm">ListenerType Property</a></span>, and <span class="linkTerms"><a href="/html/1886c1da-b3df-4833-a768-980bdd34a364.htm">OutputType Property (Visual FoxPro)</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[TO <span class="parameter">OutputDestination </span>[NODIALOG]] </span></dt><dd>
+          <p>Specifies an output destination for the report. To suppress status messages that appear at run time, include the <b>NODIALOG</b> keyword.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>In output-assisted output mode, <b>NODIALOG</b> sets the ReportListener object's QuietMode property to <code>.T.</code> for the duration of the report run.  For more information, see <span class="linkTerms"><a href="/html/2e63fc3d-36e2-4f7d-a689-c31062e5dd27.htm">QuietMode Property</a></span>.</p>
+          </td></tr></table></div>
+          <p>The following table describes the possible values of <span class="parameter">OutputDestination</span>.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>OutputDestination</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>[PRINTER [PROMPT] [NOPAGEEJECT] [NOEJECT]]</p>
+              </td>
+              <td>
+                <p>Sends the report to the printer. </p>
+                <p>To display the <b>Print</b> dialog box before printing starts, include the <b>PROMPT</b> keyword. In object-assisted mode, the options enabled in the <b>Print</b> dialog box are affected by the ReportListener.CommandClauses.PrintPageCurrent member value.</p>
+                <p>To specify that Visual FoxPro does not force a sheet eject at the end of a report and leaves the print job open, include the <b>NOPAGEEJECT</b> keyword. The next report printed is added to the open print job.</p>
+                <p>You must make sure that the last report run does not have a <b>NOPAGEEJECT</b> clause so the print job can be closed. </p>
+                <p>
+                  <b>NOPAGEEJECT</b> is valid only during program execution.  It is disregarded when issued in the Command window. Changing between page orientations, such as landscape to portrait, between reports is not supported. </p>
+                <p>You can chain multiple reports using <b>NOPAGEEJECT</b> and have page numbers continue from one report to the next.  This is a useful technique for tasks such as faxing reports.  </p>
+                <p>The <b>REPORT FORM</b> command also allows a <b>NOEJECT</b> keyword, which Visual FoxPro no longer supports but was used in older DOS versions of FoxPro and FoxBASE+.  This keyword does not perform any function but does not trigger an error.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>[FILE] <span class="parameter">FileName2</span> [[ADDITIVE] ASCII]</p>
+              </td>
+              <td>
+                <p>Specifies the name of a text file to send the report to. The default file name extension for file created is .txt.</p>
+                <p>When you omit the <b>ASCII</b> keyword or use Visual FoxPro's object-assisted output mode writes PostScript or other printer codes to the text file along with the content of your report. To create an ASCII text file from the report definition file, <b>SET REPORTBEHAVIOR 80</b> and include the <b>ASCII</b> keyword. </p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>When you include the <b>ASCII</b> keyword, you can process a report on a computer that has no printer driver setups installed.  Without the <b>ASCII</b> keyword, a <b>REPORT FORM</b> command issued on a computer that has no printer driver setups installed generates an error.</p>
+                </td></tr></table></div>
+                <p>An ASCII file contains only text.  If the report is a character-based layout definition created in FoxPro for MS-DOS, dashes, and plus signs may be included to represent lines and shapes.  Otherwise, any font or color settings, graphics, lines, rectangles, or rounded rectangles in the report definition file do not appear in the ASCII text file.  You can specify the number of characters to place on each line and the number of lines to place on each page by using the <b>_ASCIICOLS</b> and <b>_ASCIIROWS</b> system variables. The default values for these system variables correspond to a standard portrait page. For more information, see <span class="linkTerms"><a href="/html/9e630acc-e5f6-499f-8d26-36aa5b86068c.htm">_ASCIICOLS System Variable</a></span> and <span class="linkTerms"><a href="/html/3776cca2-202e-4016-a287-2c00b885692f.htm">_ASCIIROWS System Variable</a></span>. </p>
+                <p>To append new content to an <b>ASCII</b> file instead of overwriting it, precede the <b>ASCII</b> keyword with the <b>ADDITIVE</b> keyword. The <b>ADDITIVE</b> and ASCII keywords must be specified in the order shown.  </p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[PREVIEW [ <span class="parameter">PreviewDestination</span>] [NOWAIT][WINDOW <span class="parameter">WindowName</span>]]</span></dt><dd>
+          <p>Displays the report in preview window instead of printing the report. By default, the preview window is modal but provides access to the Print Preview toolbar. The <b>NOWAIT</b> keyword specifies that Visual FoxPro does not wait at run time for the preview window to close before continuing program execution.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>Character-based reports and labels created in FoxPro MS-DOS have a special character-based preview window.  This mechanism is not affected by <b>SET REPORTBEHAVIOR</b> and does not support the <b>OBJECT</b> clause or <b>WINDOW</b>-related clauses.</p>
+          </td></tr></table></div>
+          <p>If you include <b>WINDOW</b> &lt;<span class="parameter">WindowName</span>&gt;, the preview window assumes the characteristics of the window, such as title, size, and so on, you specify with <span class="parameter">WindowName</span>.  <span class="parameter">WindowName</span> can be the name property of a form object, or it can be a variable referencing a window created with <b>DEFINE WINDOW</b>. For more information, see <span class="linkTerms"><a href="/html/400d1a36-63d5-496d-a54d-a57c2632f4ae.htm">DEFINE WINDOW Command</a></span>.</p>
+          <p>The following table describes possible values for <span class="parameter">PreviewDestination</span>. You can use the <b>WINDOW</b> clause alone or in combination with either <span class="parameter">PreviewDestination</span>.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>PreviewDestination</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>[IN WINDOW <span class="parameter">WindowName</span>]</p>
+              </td>
+              <td>
+                <p>Specifies a window for previewing a report. </p>
+                <p>If you include <b>IN WINDOW</b> &lt;<span class="parameter">WindowName</span>&gt;, the report is previewed in the window you specify with <span class="parameter">WindowName</span>.  </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>IN SCREEN</p>
+              </td>
+              <td>
+                <p>Specifies that the preview displays in the main Visual FoxPro window and cannot be moved outside it.</p>
+              </td>
+            </tr></table></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>When you use Visual FoxPro's object-assisted output mode, all the clauses of the REPORT FORM command are available to your ReportListener in its CommandClauses member object, with the exception of record selection clauses (scope,<b> FOR</b>, and <b>WHILE</b>).  You can use the CommandClauses.RecordTotal attribute for information about the scope of the report run, or assign these values to your ReportListener object before running your report.  The <span class="linkTerms"><a href="/html/f5f90b33-e6ae-4139-9d13-be1495a87cf6.htm">CommandClauses Property</a></span> topic gives you more information about how each clause is represented in the CommandClauses member object.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Examples</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Example 1</h3><div class="subSection" xmlns="">
+          <p>The following example shows how to run a batch report print job with two reports. Visual FoxPro runs through the set of reports twice to obtain a total page count, which is stored in the <b>_PAGETOTAL</b> system variable for enabling Page X of Y expressions in the report layouts.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You can ensure that the report runs through twice by including <b>_PAGETOTAL</b> in your report expressions.  If you do not need _PAGETOTAL but would like the two passes to run for other calculations, you can use object-assisted output mode and set the ReportListener TwoPassProcess property to <code>.T.</code>.  For more information, see <span class="linkTerms"><a href="/html/1528b967-0bb4-4741-bbbd-347ef1cf45f2.htm">TwoPassProcess Property</a></span>.</p>
+          </td></tr></table></div>
+          <p>
+            <b>NORESET</b> specifies that page numbers continue printing with the next report. <b>NOPAGEEJECT</b> specifies that the first page of the second report continue printing on the reverse side of the last page of the first report. </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>REPORT FORM myReport1.frx TO PRINTER NOPAGEEJECT
+REPORT FORM myReport2.frx TO PRINTER NORESET
+MESSAGEBOX("You printed " + ;
+   TRANSFORM(_PAGETOTAL)+" pages.")</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 2</h3><div class="subSection" xmlns="">
+          <p>The following example shows how you can view a preview before sending the report to a printer.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>REPORT FORM myReport1.frx TO PRINTER PROMPT NODIALOG PREVIEW</pre></td></tr></table></span></div>
+          <p>To make the preview window modeless, the following code includes the <b>NOWAIT</b> keyword:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>REPORT FORM myReport1.frx PREVIEW NOWAIT</pre></td></tr></table></span></div>
+          <p>To preview the results in a specific window, the following code includes the <b>WINDOW</b> clause to specify a window named MyWindow that you previously created with the <b>DEFINE WINDOW</b> command: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>REPORT FORM myReport1.frx PREVIEW WINDOW MyWindow</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 3</h3><div class="subSection" xmlns="">
+          <p>The following example shows how to send a report to an ASCII file. The <b>_ASCIIROWS</b> and <b>_ASCIICOLS</b> system variables define the number of lines and characters per line on the ASCII page. The <b>REPORT FORM</b> command prints a report named MyReport.frx to an ASCII file name MyFile.txt.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET REPORTBEHAVIOR 80
+_ASCIIROWS = nLines
+_ASCIICOLS = nChars
+REPORT FORM MyReport.frx TO FILE MyFile.txt ASCII</pre></td></tr></table></span></div>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/2a6cb4a1-564c-4787-9952-cf85f7476ac2.htm">CREATE REPORT Command</a></span><br /><span class="linkTerms"><a href="/html/c348d33f-8294-48a9-964b-3cdbd699927b.htm">MODIFY REPORT Command</a></span><br /><span class="linkTerms"><a href="/html/19f2a679-bbf3-4343-9ad8-fd20824e8198.htm">DataEnvironment Object</a></span><br /><span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span><br /><span class="linkTerms"><a href="/html/5d6e4527-8b6f-4f39-a670-c3397eff3bfd.htm">SET REPORTBEHAVIOR Command</a></span><br /><span class="linkTerms"><a href="/html/3876aeab-209d-42b0-9ebd-033284c74adb.htm">LABEL Command</a></span><br /><span class="linkTerms"><a href="/html/66975043-814c-4886-901c-53d3924ca1bb.htm">The Preview Container API</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="REPORT FORM Command">
+<param name="ALink Name" value="REPORT FORM">
+</OBJECT>

@@ -1,0 +1,192 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Run-Time OLE Drag-and-Drop Support</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Run-Time OLE Drag-and-Drop Support</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>OLE drag-and-drop support is available at run time for Visual FoxPro controls and the text editor. The controls and the text editor support OLE drag-and-drop interactively at run time, and the controls provide programmatic support at run time. The <a href="/html/396a5dec-b4c8-4efa-aa38-89e22913e60b.htm">DataObject object</a> provides programmatic OLE drag-and-drop support for the controls.</p>
+    <p>Two modes of OLE drag-and-drop are available for Visual FoxPro controls: intrinsic mode and manual mode. In intrinsic mode, Visual FoxPro intrinsically handles an OLE drag-and-drop operation. In manual mode, OLE drag-and-drop operations are handled programmatically. The events that occur are determined by the OLE drag-and-drop mode. For more information, see the section, "Intrinsic and Manual OLE drag-and-drop Modes."</p>
+  <h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Drag and Drop in Previous Versions of Visual FoxPro</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>Previous versions of Visual FoxPro supported programmatic drag-and-drop for controls, making it possible for you to move controls on a form. This form of drag and drop is still supported. If you use the default settings for the OLEDragMode and OLEDropMode properties, your existing applications will run as before without any changes.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>The DataObject Object</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>The <a href="/html/396a5dec-b4c8-4efa-aa38-89e22913e60b.htm">DataObject object</a> is a container for data being transferred from an OLE drag source to an OLE drop target, and exists only for the duration of an OLE drag-and-drop operation. The DataObject object cannot be created programmatically and references to it become invalid once the OLE drag-and-drop operation is completed. The DataObject is passed as the oDataObject parameter in the OLEStartDrag, OLEDragOver, OLEDragDrop, and OLESetData events.</p>
+      <p>The DataObject can store multiple sets of data, each in a different format. The existence of a specific format in the DataObject can be determined with the GetFormat method. See the <a href="/html/443bbd08-85c8-4123-ba51-1745941b46ec.htm">GetFormat Method</a> for a listing of the formats supported by the DataObject.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">DataObject Object Methods</h3><div class="subSection" xmlns="">
+          <p>The DataObject object has methods that make it possible for you to programmatically manipulate the data being dragged and dropped. The following table lists the methods available at run time for the DataObject.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Method
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>
+                  <a href="/html/aa633bc4-6311-4e66-a1ce-b17039868c8d.htm">ClearData</a>
+                </p>
+              </td>
+              <td>
+                <p>Clears all data and data formats from the OLE drag-and-drop DataObject object.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <a href="/html/de33338d-e638-414c-b058-4ee43a148baf.htm">GetData</a>
+                </p>
+              </td>
+              <td>
+                <p>Retrieves data from the OLE drag-and-drop DataObject object.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <a href="/html/443bbd08-85c8-4123-ba51-1745941b46ec.htm">GetFormat</a>
+                </p>
+              </td>
+              <td>
+                <p>Determines whether data in a specified format is available on the OLE drag-and-drop DataObject.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <a href="/html/67d84f63-f614-4140-a684-594e4ee2e45f.htm">SetData</a>
+                </p>
+              </td>
+              <td>
+                <p>Places data and its format on the OLE drag-and-drop DataObject.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <a href="/html/41ff8659-e8a7-4044-9669-973b4fb0e10e.htm">SetFormat</a>
+                </p>
+              </td>
+              <td>
+                <p>Places a data format without data on the OLE drag-and-drop DataObject.</p>
+              </td>
+            </tr></table></div>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/3ae23a84-48ec-4e05-b9b2-680ceea7db94.htm">Design-Time OLE Drag-and-Drop Support</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/2d8cb3e1-df20-4304-8326-d3d469002652.htm">Interoperability and the Internet</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Run-Time OLE Drag-and-Drop Support">
+</OBJECT>

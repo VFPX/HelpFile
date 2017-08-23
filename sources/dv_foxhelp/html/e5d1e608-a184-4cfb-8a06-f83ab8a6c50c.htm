@@ -1,0 +1,226 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SCATTER Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SCATTER Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Copies data from the current record to a set of variables, to an array, or an object. </p>
+    <p>
+      <b>SCATTER</b> and <b>COPY TO ARRAY</b> behave similarly. <b>SCATTER</b> copies only a single and current record into an array or a set of variables and automatically creates the array or variables if they do not already exist. <b>COPY TO ARRAY</b> copies multiple records into an array. For more information, see <span class="linkTerms"><a href="/html/977adad9-d33e-4f01-8f63-244fd066d832.htm">COPY TO ARRAY Command</a></span>.</p>
+    <p>To copy variables or array elements to table records, use the <span class="linkTerms"><a href="/html/059d1397-f71d-4cd7-9d0e-1d443155bc95.htm">GATHER Command</a></span>.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SCATTER [FIELDS <span class="parameter">FieldNameList</span> | FIELDS LIKE <span class="parameter">Skeleton</span>
+   | FIELDS EXCEPT <span class="parameter">Skeleton</span>] [MEMO] [BLANK]
+   TO <span class="parameter">ArrayName</span> | TO <span class="parameter">ArrayName</span> | MEMVAR
+   | NAME <span class="parameter">ObjectName</span> [ADDITIVE]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">FIELDS <span class="parameter">FieldNameList</span></span></dt><dd>
+          <p>Specifies the fields whose values are to be copied to the variables or the array. </p>
+          <p>
+            <b>SCATTER</b> disregards memo fields by default; however, you can include memo fields in the field list by following the field list with the <b>MEMO</b> keyword. However, <b>SCATTER</b> disregards general fields even when you include the <b>MEMO</b> keyword.   </p>
+          <p>Omitting <b>FIELDS</b> <span class="parameter">FieldNameList </span>copies values from all fields. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS LIKE <span class="parameter">Skeleton </span>| FIELDS EXCEPT <span class="parameter">Skeleton</span></span></dt><dd>
+          <p>Copies fields matching or excluding <span class="parameter">Skeleton</span> to variables or an array. You can include the <b>LIKE</b> or <b>EXCEPT</b> clause or both. </p>
+          <p>To copy values of fields matching <span class="parameter">Skeleton</span> to variables or an array, use <b>LIKE</b> <span class="parameter">Skeleton</span>. To copy values of all fields except those matching <span class="parameter">Skeleton</span> to variables or an array, use <b>EXCEPT</b> <span class="parameter">Skeleton</span>. <span class="parameter">Skeleton</span> supports wildcard characters. For example, to copy the values from all fields that begin with the letters A and P to variables or an array, use the following lines of code:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SCATTER FIELDS LIKE A*,P* TO myArray</pre></td></tr></table></span></div>
+          <p>The <b>LIKE</b> clause can be combined with the <b>EXCEPT</b> clause:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SCATTER FIELDS LIKE A*,P* EXCEPT PARTNO* TO myArray</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MEMO </span></dt><dd>
+          <p>Specifies that the field list include one or more memo fields. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Your computer must have sufficient memory to scatter large memo fields to variables or to an array. Visual FoxPro generates an error message if your computer lacks sufficient memory. <b>SCATTER</b> does not copy data from a memo field if it is too large to fit in memory nor does it copy from any additional memo fields in the field list. If <b>SCATTER</b> does not succeed for a memo field, the value of the variable or array element is set to False (.F.). </p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TO <span class="parameter">ArrayName</span></span></dt><dd>
+          <p>Specifies an array to which the record contents are copied. Starting with the first field, <b>SCATTER</b> copies the contents of each field into each element of the array in sequential order.</p>
+          <p>If the array you specify contains more elements than the number of fields, the extra array elements remain unchanged. <b>SCATTER</b> automatically creates a new array if the array does not already exist, or if it contains fewer elements than the number of fields. The array elements have the same size and data types as the corresponding fields. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TO <span class="parameter">ArrayName</span> </span></dt><dd>
+          <p>Creates an array with empty elements, which are the same size and type as the fields in the table.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MEMVAR </span></dt><dd>
+          <p>Scatters the data to a set of variables instead of an array. <b>SCATTER</b> creates one variable for each field in the table and fills each variable with data from the corresponding field in the current record, assigning to the variable the same name, size, and type as its field.</p>
+          <p>
+            <b>SCATTER</b> creates a variable for each field in the field list if a field list is included.   </p>
+          <p>To reference a variable that has the same name as a field in the current table, preface the variable name with the <code>m.</code> qualifier.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+            <p>Do not include the word <b>TO</b> with <b>MEMVAR</b>. Visual FoxPro creates an array named <code>MEMVAR</code> if you include the word <b>TO</b>.</p>
+          </td></tr></table></div>
+          <p>Include the <b>BLANK</b> keyword to create a set of empty variables. Each variable is assigned the same name, data type, and size as its field. If a field list is included, a variable is created for each field in the field list.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NAME <span class="parameter">ObjectName</span> [ADDITIVE] </span></dt><dd>
+          <p>Creates an object whose properties have the same names as fields in the table. </p>
+          <p>To copy the value of each field in the table to each object property, do not include the <b>BLANK</b> keyword. To leave the properties empty, include the <b>BLANK</b> keyword. For a description of what the empty properties contain, based on the corresponding field type, see <span class="linkTerms"><a href="/html/714bd634-6f29-4024-856b-7b669f0a4350.htm">EMPTY( ) Function</a></span>. Properties are not created for general fields that exist in the table.   </p>
+          <p>To update the property values of an existing and valid Visual FoxPro object specified by <span class="parameter">ObjectName</span>, but not COM objects, with values from the current record, include the <b>ADDITIVE</b> keyword. If the object does not exist, Visual FoxPro creates the object automatically. You cannot use the <b>ADDITIVE</b> keyword without the <b>NAME</b> clause. Doing so generates an error.   </p>
+          <p>Using <b>BLANK</b> with <b>ADDITIVE</b> omits the values for existing properties that have matching field names. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>If properties corresponding to field names do not exist for the object, <b>SCATTER...NAME ADDITIVE</b> automatically creates them. However, <b>SCATTER</b> might not create all the necessary properties because some might be marked as <b>Hidden</b> or <b>Protected</b>. If Visual FoxPro cannot create or set a property, it generates an error. For example, you can have a field name that matches a native Visual FoxPro object property name as long as the field and property data types are the same. However, Visual FoxPro generates an error if the field name matches a method, event, or object name. </p>
+      <p>You can avoid problems by using an object created by <b>SCATTER...NAME</b> and not one derived from a Visual FoxPro class. Unlike when <b>SCATTER</b> is used with only <b>NAME</b>, Visual FoxPro does not overwrite the existing object to create a new object. </p>
+      <p>
+        <b>SCATTER...NAME</b>
+        <b> </b>
+        <b>ADDITIVE</b> does not generate an error when a read-only property cannot be set for a field in the table. However, the value of the property remains unchanged.</p>
+      <p>To reference a property in an object that has the same name as an open table, preface the property name with the <code>m.</code> qualifier. The following example displays the value of the <code>Company</code> field in the <code>Customer</code> table followed by the value of the <code>Company</code> property for the <code>Customer</code> object:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE Customer
+SCATTER NAME Customer
+? Customer.Company  &amp;&amp; Returns the table value
+? m.Customer.Company  &amp;&amp; Returns the object property value</pre></td></tr></table></span></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Examples</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Example 1</h3><div class="subSection" xmlns="">
+          <p>This example uses <b>SCATTER</b> to create a set of variables based on the fields in the test table. Each field is then assigned a value and a new blank record is added to the table. The data is copied to the table using the <b>GATHER</b> command.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CREATE TABLE Test FREE ;
+   (Object C(10), Color C(16), SqFt n(6,2))
+SCATTER MEMVAR BLANK
+m.Object="Box"
+m.Color="Red"
+m.SqFt=12.5
+APPEND BLANK
+GATHER MEMVAR
+BROWSE</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 2</h3><div class="subSection" xmlns="">
+          <p>This example uses <b>SCATTER</b> along with the <b>NAME</b> clause to create an object with properties based on the fields in the table. The object's properties are then assigned values and a new blank record is added to the table. The data is copied to the new record using <b>GATHER</b> with the <b>NAME</b> clause.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CREATE TABLE Test FREE ;
+   (Object C(10), Color C(16), SqFt n(6,2))
+SCATTER NAME oTest BLANK
+oTest.Object="Box"
+oTest.Color="Red"
+oTest.SqFt=12.5
+APPEND BLANK
+GATHER NAME oTest
+RELEASE oTest
+BROWSE</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 3</h3><div class="subSection" xmlns="">
+          <p>Suppose you have two or more tables or cursors and wish to create an object that combines the data from those cursors. The following example selects the <code>Customer</code> table and uses <b>SCATTER...NAME</b> to create the <code>oCustomer</code> object and its properties from fields in the <code>Customer</code> table. <b>SCATTER...NAME...ADDITIVE</b> then updates the values from the <code>ReportDate</code> and <code>Rating</code> fields in the <code>CreditHistory</code> table and the <code>CookieText</code> and <code>SessionId</code> fields in the <code>MySessionTable</code> table in the <code>oCustomer</code> object or creates those properties if they do not exist.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT Customer
+SCATTER NAME oCustomer
+SELECT CreditHistory
+SCATTER FIELDS ReportDate, Rating NAME oCustomer ADDITIVE
+SELECT MySessionTable
+SCATTER FIELDS CookieText, SessionId NAME oCustomer ADDITIVE</pre></td></tr></table></span></div>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/9105b2f8-0648-4fad-8d59-a2dbd9859d8e.htm">ALINES( ) Function</a></span><br /><span class="linkTerms"><a href="/html/5b11bd53-12f9-4727-9ae3-f5a7d3d21274.htm">APPEND FROM ARRAY Command</a></span><br /><span class="linkTerms"><a href="/html/446153cb-5971-4802-bc0b-ebaf1baf687e.htm">DECLARE Command</a></span><br /><span class="linkTerms"><a href="/html/17270153-1977-40bc-9f17-ab0132b20e90.htm">DIMENSION Command</a></span><br /><span class="linkTerms"><a href="/html/059d1397-f71d-4cd7-9d0e-1d443155bc95.htm">GATHER Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SCATTER Command">
+<param name="ALink Name" value="SCATTER">
+</OBJECT>

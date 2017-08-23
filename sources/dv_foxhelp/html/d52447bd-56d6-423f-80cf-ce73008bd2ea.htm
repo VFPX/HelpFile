@@ -1,0 +1,250 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>GETFLDSTATE( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">GETFLDSTATE( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Returns a numeric value indicating if a field in a table or cursor has been modified or had a record appended, or if the deleted status of the current record has been changed.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+GETFLDSTATE(<span class="parameter">cFieldName</span> | <span class="parameter">nFieldNumber</span> [, <span class="parameter">cTableAlias</span> | <span class="parameter">nWorkArea</span>])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cFieldName</span>| <span class="parameter">nFieldNumber</span></span></dt><dd>
+          <p>Specifies the name of the field or the number of the field for which the modification status is returned. The field number <span class="parameter">nFieldNumber</span> corresponds to the position of the field in the table or cursor structure. DISPLAY STRUCTURE or FIELD( ) can be used to determine a field's number.</p>
+          <p>You can specify –1 for <span class="parameter">nFieldNumber</span> to return a character string consisting of deletion and modification status values for all fields in the table or cursor. For example, if a table has five fields and only the first field has been changed, GETFLDSTATE( ) returns <code>121111</code>.</p>
+          <p>The 1 in the first position indicates the deletion status has not been changed.   </p>
+          <p>You can also include 0 for <span class="parameter">nFieldNumber</span> to determine if the deletion status of the current record has changed since the table or cursor was opened.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Using GETFLDSTATE() only determines if the deletion status of the current record has changed. For example, if you mark a record for deletion and then recall it, GETFLDSTATE() indicates the deletion status has changed even though the record's deletion status has returned to its original state. Use DELETED() to determine the current deletion status of a record.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cTableAlias</span>
+        </span></dt><dd>
+          <p>Specifies the alias of the table or cursor for which the field modification or record deletion status is returned.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nWorkArea</span>
+        </span></dt><dd>
+          <p>Specifies the work area of the table or cursor for which the field modification or record deletion status is returned.</p>
+          <p>If you do not specify an alias or work area, GETFLDSTATE( ) returns a value for a field in the currently selected table or cursor. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Numeric, Character, or .NULL.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The following table lists the character return values and the corresponding modification or deletion status.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Return value
+            </th>
+            <th>
+              Modification or deletion status
+            </th>
+          </tr><tr>
+          <td>
+            <p>1</p>
+          </td>
+          <td>
+            <p>Field has not been modified or deletion status has not changed.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>2</p>
+          </td>
+          <td>
+            <p>Field has been modified or deletion status has changed.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>3</p>
+          </td>
+          <td>
+            <p>Field in an appended record has not been modified or deletion status has not changed for the appended record.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>4</p>
+          </td>
+          <td>
+            <p>Field in an appended record has been modified or deletion status has changed for the appended record.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>.NULL.</p>
+          </td>
+          <td>
+            <p>At EOF( )</p>
+          </td>
+        </tr></table></div>
+      <p>Row or table buffering must first be enabled with CURSORSETPROP( ) for GETFLDSTATE( ) to operate on local tables.</p>
+      <p>The modification or deletion status is returned for the table or cursor open in the currently selected work area if GETFLDSTATE( ) is issued without the optional <span class="parameter">cTableAlias</span> or <span class="parameter">nWorkArea</span> arguments.</p>
+      <p>Any change in a field will cause GETFLDSTATE() to return a value showing that the field has been modified, whether the change is explicit or implicit. An example of an explicit modification would be including the field in a REPLACE or INSERT INTO command. An implicit modification occurs in a field that has a default value when any command is issued that adds a new record.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example 1</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>The following example demonstrates how you can use GETFLDSTATE( ) to determine if the contents of a field have changed. MULTILOCKS is set to ON, a requirement for table buffering. The <code>customer</code> table in the <code>testdata</code> database is opened, and CURSORSETPROP( ) is then used to set the buffering mode to optimistic table buffering (5).</p>
+      <p>GETFLDSTATE( ) is issued to display a value (1) corresponding to the unmodified state of the <code>cust_id</code> field before it is modified. The <code>cust_id</code> field is modified with REPLACE, and GETFLDSTATE( ) is issued again to display a value (2) corresponding to the modified state of the <code>cust_id</code> field. TABLEREVERT( ) is used to return the table to its original state, and GETFLDSTATE( ) is issued again to display a value (1) corresponding to the original state of the <code>cust_id</code> field.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+CLEAR
+SET MULTILOCKS ON         &amp;&amp; Allow table buffering
+OPEN DATABASE (HOME(2) + 'data\testdata')
+USE Customer             &amp;&amp; Open customer table
+=CURSORSETPROP("Buffering",5,"customer")  &amp;&amp; Enable table buffering
+* Get field state on original cust_id field and display state
+nState=<b>GETFLDSTATE(</b>"cust_id"<b>)</b>
+DO DisplayState WITH nState, "Original"
+* Change field contents and display state
+REPLACE cust_id    WITH "***"
+nState=<b>GETFLDSTATE(</b>"cust_id"<b>)</b>
+DO DisplayState WITH nState, "After Replace"
+* Discard table changes and display state
+= TABLEREVERT(.T.)        &amp;&amp; Discard all table changes
+nState=<b>GETFLDSTATE(</b>"cust_id"<b>)</b>
+DO DisplayState WITH nState, "After Revert"
+PROCEDURE DisplayState
+PARAMETER nState,cOperation
+DO CASE
+   CASE nState=1
+      =MESSAGEBOX("Field has not been modified",0,cOperation)
+   OTHERWISE
+      =MESSAGEBOX("Field has been modified",0,cOperation)
+ENDCASE
+</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example 2</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>The following example shows the difference in behavior between fields with and without default values.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET MULTILOCKS ON
+CREATE DATABASE example
+CREATE TABLE customer (cust_id C(6),state C(2) DEFAULT "FL")
+CLOSE TABLES
+USE customer
+=CURSORSETPROP("Buffering",5,"customer")
+APPEND BLANK
+?GETFLDSTATE("cust_id")     &amp;&amp; Returns 3, field in an appended record has
+                            &amp;&amp; not been modified.
+?GETFLDSTATE("state")    &amp;&amp; Returns 4, field in an appended record has
+                         &amp;&amp; been modified.
+</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/d4dc65e0-a039-40ac-8df4-508a60a77228.htm">CURVAL( ) Function</a></span><br /><span class="linkTerms"><a href="/html/bed9eb67-ee75-435b-8918-41751169cf5a.htm">DELETED( ) Function</a></span><br /><span class="linkTerms"><a href="/html/3b06200c-6cd4-498c-ba62-c958bef98d65.htm">FIELD( ) Function</a></span><br /><span class="linkTerms"><a href="/html/fa81be19-03be-4e02-8af1-74f8c521b766.htm">OLDVAL( ) Function</a></span><br /><span class="linkTerms"><a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/4ef6b1d8-13f8-4947-b4a0-573589d83380.htm">SETFLDSTATE( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="GETFLDSTATE( ) Function">
+<param name="ALink Name" value="GETFLDSTATE">
+</OBJECT>

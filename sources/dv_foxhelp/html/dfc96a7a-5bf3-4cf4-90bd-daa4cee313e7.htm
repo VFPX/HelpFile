@@ -1,0 +1,1063 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Data Explorer Task Pane</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Data Explorer Task Pane</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The Data Explorer Task Pane is used to open data connections and to log on to servers and explore their databases. You can right-click on nodes to perform various actions against the data elements represented by those nodes. You can drag nodes from Data Explorer and drop them onto Visual FoxPro designers and editors. This creates new data controls on forms or code that is preconfigured to reference the item dropped.</p>
+    <p>To access the Data Explorer Task Pane, select <b>Task Pane</b> on the <b>Tools</b> menu to bring up the <b>Task Pane Manager</b>. Choose the Data Explorer Task Pane from the <b>Task Panes</b> drop-down list box at the top.</p>
+    <p>The Data Explorer is also a stand-alone application and can be run outside of the Task Pane manager. To run the Data Explorer as a separate application, execute the following command from the Command window.</p>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO HOME() + DATAEXPLORER.APP</pre></td></tr></table></span></div>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>The Data Explorer stores your connections and settings in a table named DataExplorer.dbf, which is stored in your user data directory (see <a href="/html/7266f399-d690-4dbb-82e8-9fa1429b013e.htm">HOME(7)</a>).</p>
+    </td></tr></table></div>
+  <h1 class="heading">Using the Data Explorer</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The Data Explorer is very easy to use. It has a simple interface that makes viewing and working with remote data easy. The basic operation of the Data Explorer is as follows:</p>
+      <ul><li>
+          <p>You create a connection to your remote data such as a SQL Server database. This is done using the <b>Add Connection</b> button.</p>
+        </li><li>
+          <p>The connection appears as a node under the Connections root node and is persisted for future use.</p>
+        </li><li>
+          <p>You can expand nodes and view all the components of your data connection. When you select a node, detailed information about that node is shown in the description pane at the bottom.</p>
+        </li><li>
+          <p>You can right-click on individual nodes to perform actions such as browsing a table, examining a view definition or editing a stored procedure.</p>
+        </li><li>
+          <p>You can drag-and-drop nodes to Visual FoxPro editors and have code added for that specific node. You can also drag-and-drop to a form designer and have an appropriate control dropped to represent the node.</p>
+        </li></ul>
+      <p>Use the Data Explorer to perform different actions with your remote data. The following is a list of some of the more common actions:</p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Add a new connection</b>
+        </span></dt><dd>
+          <p>Add a new connection to your remote data source by clicking <b>Add Connection </b>or by right-clicking the <b>Connections</b> root node and selecting the <b>Add Connection…</b> menu item. When the <b>Add Connection</b> dialog box appears, select a connection type. After choosing a connection type, you will be asked for more details about your data source. If you select a SQL or ADO Connection type, you will be prompted with a <b>Connection Properties</b> dialog box.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Access an existing SQL Server</b>
+        </span></dt><dd>
+          <p>The SQL Servers root node is a convenient way for you to explore and access SQL Servers available from your network. Simply click on the root node to expand and view all available servers.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>It is often more convenient to create a separate connection for a specific SQL Server database than to access it from the SQL Servers root node. A separate connection will also provide quicker access.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Modify an existing connection</b>
+        </span></dt><dd>
+          <p>Once the connection is added to the Data Explorer, it is persisted so that it is available the next time you launch Visual FoxPro. You can make modifications to the connection by right-clicking the connection node and selecting the <b>Properties</b> menu item.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Work with Databases</b>
+        </span></dt><dd>
+          <p>If you select a SQL Server connection type, the nodes beneath the connection will be databases. With databases, you can expand the node to see various items including tables, views, stored procedures and functions. </p>
+          <p>If using a SQL or ADO connection, you can drag and drop a database node to a program and code will be inserted that handles the connection and sets up a <b>CursorAdapter</b> object to retrieve data.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Work with Tables</b>
+        </span></dt><dd>
+          <p>You can expand the Tables node to see a list of all the tables in your data source. Information about that table, such as the owner or location, is displayed in the description pane. You can further expand a table node to view its fields.</p>
+          <p>To view the data, you can right-click the desired table node and select the <b>Browse</b> menu.</p>
+          <p>To run a more advanced query, select the <b>Run Query</b> menu.</p>
+          <p>If you are working with a Fox table, you can right-click and select <b>Design</b> to open the Table Designer.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Through the extensibility architecture, you can add design support for remote data sources such as SQL Server.</p>
+          </td></tr></table></div>
+          <p>When you drag and drop a table to a form or class designer, a <b>Grid</b> control for that table is added.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You will still need to add code or data environment objects to connect to the remote data source.</p>
+          </td></tr></table></div>
+          <p>When you drag and drop a table to an edit window, code is inserted to view that table:</p>
+          <ul><li>
+              <p>If you drag from a Fox table, a simple SELECT statement is inserted. </p>
+            </li><li>
+              <p>If you drag from a SQL or ADO connection, code is also inserted that handles the connection and sets up a <b>CursorAdapter</b> object to retrieve data.</p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Work with Views</b>
+        </span></dt><dd>
+          <p>You can expand the Views node to see a list of all views in your data source. Information about that view, such as the owner, is displayed in the description pane. You can further expand a view node to see its fields.</p>
+          <p>To view the data, you can right-click the desired node and select the <b>Browse</b> menu.</p>
+          <p>To run a more advanced query, select the <b>Run Query</b> menu.</p>
+          <p>To see the definition of that view, select the <b>View Definition </b>menu.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Certain connection types, such as an ADO connection to SQL Server, may not display this option.</p>
+          </td></tr></table></div>
+          <p>If you are working with a Fox view, you can right-click and select <b>Design</b> to open the View Designer.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Through the extensibility architecture, you can add design support for remote data sources such as SQL Server.</p>
+          </td></tr></table></div>
+          <p>When you drag and drop a view to a form or class designer, a <b>Grid</b> control for that view is added.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You will still need to add code or data environment objects to connect to the remote data source.</p>
+          </td></tr></table></div>
+          <p>When you drag and drop a view to an edit window, code is inserted to browse that view:</p>
+          <ul><li>
+              <p>If you drag from a Fox view, a simple SELECT statement is inserted. </p>
+            </li><li>
+              <p>If you drag from a SQL or ADO connection, code is also inserted that handles the connection and sets up a <b>CursorAdapter</b> object to retrieve data.</p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Work with Fields</b>
+        </span></dt><dd>
+          <p>You can expand a Table or View node to see a list of its fields. Information about that field, such as the data type, is displayed in the description pane. If <b>Column Info</b> is checked for that connection, the data type is displayed in the field node.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Certain connection types may not support displaying field detail.</p>
+          </td></tr></table></div>
+          <p>To run a query, select the <b>Run Query</b> menu.</p>
+          <p>When you drag and drop a field to a form or class designer, a <b>Textbox</b> control for that field is added.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You will still need to add code or data environment objects to connect to the remote data source.</p>
+          </td></tr></table></div>
+          <p>When you drag and drop a field to an edit window, code is inserted to browse that field:</p>
+          <ul><li>
+              <p>If you drag from a Fox field, a simple SELECT statement is inserted.</p>
+            </li><li>
+              <p>If you drag from a SQL or ADO connection, code is also inserted that handles the connection and sets up a <b>CursorAdapter</b> object to retrieve data.</p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Working with Stored Procedures</b>
+        </span></dt><dd>
+          <p>You can expand the Stored Procedures node to see a list of all stored procedures in your data source. Information about the stored procedure, such as the owner, is displayed in the description pane. You can further expand an individual stored procedure node to see its parameters.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Certain connection types, may not support this option.</p>
+          </td></tr></table></div>
+          <p>To execute the stored procedure, you can right-click that node and select the <b>Run Stored Procedure </b>menu. If the stored procedure requires parameters, a dialog box prompts you to enter parameters. The results are displayed in the Run Query window where you can modify and execute your procedure again.</p>
+          <p>To execute your procedure with more control over the calling syntax, select the <b>Run Query</b> menu.</p>
+          <p>To see the definition of the procedure, select the <b>View Definition </b>menu.</p>
+          <p>To edit a procedure, select the <b>Edit Procedure</b> menu.</p>
+          <p>To delete a procedure, select the <b>Delete Procedure</b> menu.</p>
+          <p>To add a new procedure, select the <b>New Procedure</b> menu.</p>
+          <p>You can drag and drop a SQL or ADO connection stored procedure to an edit window. When you do this, code is inserted that handles the connection and calls the procedure. For SQL connection procedures, code is also included to set up a <b>CursorAdapter</b> object to retrieve data from the stored procedure.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Work with Functions</b>
+        </span></dt><dd>
+          <p>You can expand the Functions node to see a list of all functions in your data source. Information about the function, such as the owner, is displayed in the description pane. You can further expand an individual function node to see its parameters.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Certain connection types, such as a Fox connection, may not support this option.</p>
+          </td></tr></table></div>
+          <p>To call the function, you can right-click the desired node and select the <b>Run Stored Procedure </b>menu. If the stored procedure requires parameters, a dialog box prompts you to enter parameters. The results are displayed in the Run Query window where you can modify and execute your procedure again.</p>
+          <p>To execute your function with more control over the calling syntax, select the <b>Run Query</b> menu.</p>
+          <p>To see the definition of the function, select the <b>View Definition </b>menu.</p>
+          <p>To edit a procedure, select the <b>Edit Function</b> menu.</p>
+          <p>To delete a procedure, select the <b>Delete Function</b> menu.</p>
+          <p>To add a new procedure, select the <b>New Function</b> menu.</p>
+          <p>You can drag and drop a SQL or ADO connection function to an edit window. When you do this, code is inserted that handles the connection and calls the function.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Use the Run Query Window</b>
+        </span></dt><dd>
+          <p>When you select the <b>Run Query</b> menu item, the Run Query window displays and contains commands of relevance to the selected node.</p>
+          <p>For example, if you open the Run Query window for a table, the edit box contains a <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT</a> statement for that table. If you choose a stored procedure, an EXEC statement (applicable to SQL) will be shown.</p>
+          <p>With the Run Query window, you can type in a query, run it to see the results and perform additional add-in tasks such as copying the results to the clipboard.</p>
+          <p>To run a query, enter in a query command such as SELECT or EXEC statement and click the <b>Run</b> button. The results will be displayed in the lower portion of the window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Set a Filter</b>
+        </span></dt><dd>
+          <p>You can select the <b>Filter</b> menu to set a filter to display only child nodes that match or do not match the specified criteria. For example, you may want to filter for all tables that begin with "sys" to exclude system tables.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Refresh Data Nodes</b>
+        </span></dt><dd>
+          <p>If you right-click a node, you can select the <b>Refresh</b> menu to have all child nodes refreshed.</p>
+        </dd></dl>
+    </div><h1 class="heading">Add Connection Dialog Box</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The <b>Add Connection</b> button brings up the <b>Add Connection</b> dialog box so that you can create a new persisted connection. You can choose from SQL Server, Visual FoxPro or ADO data sources. The following types are available in this dialog box:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Connection Type</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>SQL Server</p>
+          </td>
+          <td>
+            <p>A connection to a SQL Server. The connection node will display separate nodes for each database in that server.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SQL Database</p>
+          </td>
+          <td>
+            <p>A connection to a SQL Server database.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>FoxPro Directory</p>
+          </td>
+          <td>
+            <p>A connection to a directory. The connection node displays separate nodes for each Visual FoxPro database (.dbc).</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>FoxPro Database</p>
+          </td>
+          <td>
+            <p>A connection to a Visual FoxPro database.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>FoxPro Table</p>
+          </td>
+          <td>
+            <p>A connection to a Visual FoxPro table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ADO Connection</p>
+          </td>
+          <td>
+            <p>A connection to an ADO data source. </p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>If you are creating ADO Connections to SQL Server, it is recommended that you instead use one of the SQL Server connection types since there is more functionality available, such as additional shortcut menu items.</p>
+            </td></tr></table></div>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">SQL Connection Properties Dialog Box</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The <b>SQL Connection Properties</b> dialog box is used to specify connection information to a SQL Server database. This dialog box appears when you first create a SQL connection for either the <b>SQL Server</b> or <b>SQL Database</b> connection type. You can bring this dialog box up later and make changes once the connection is created by right-clicking the specific connection node and selecting the <b>Properties</b> menu item.</p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Server Name</b>
+        </span></dt><dd>
+          <p>You can type the SQL Server name in the combo box directly or select one from the drop-down list box. The drop-down list box contains the same list of servers that appear under the <b>SQL Servers</b> node.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Database</b>
+        </span></dt><dd>
+          <p>Once you have chosen a SQL Server, you can pick a database for your connection. This option is only available for a <b>SQL Database</b> connection. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You may be prompted to enter a Login/Password combination if the current Trusted Connection does not permit access to the list of databases for the selected server.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Use Trusted Connection</b>
+        </span></dt><dd>
+          <p>Select this to use your Windows login credentials to connect to the SQL Server.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Login</b>
+        </span></dt><dd>
+          <p>If you uncheck <b>Use Trusted Connection</b>, you can specify a SQL login name to use for the connection.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Password</b>
+        </span></dt><dd>
+          <p>If you uncheck <b>Use Trusted Connection</b>, you can specify a SQL login password to use for the connection.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Connection Timeout</b>
+        </span></dt><dd>
+          <p>Specifies the time to wait (seconds) before returning a connection time-out error. If you specify 0, the wait is indefinite and no time-out error is returned. The value can be from 0 to 600. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>This is equivalent to using <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP(0, “ConnectTimeOut”, nTimeout)</a> before establishing the connection.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Query Timeout</b>
+        </span></dt><dd>
+          <p>Specifies the time to wait (seconds) before returning a general time-out error. If you specify 0, the wait is indefinite and no time-out error is returned. The value can be from 0 to 600.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>This is equivalent to using <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP(nHandle, “QueryTimeOut”, nTimeout)</a> before executing the query.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Show Column Info</b>
+        </span></dt><dd>
+          <p>Displays the column type and length next to the column name on each column node.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Sort Objects</b>
+        </span></dt><dd>
+          <p>Sort objects beneath the connection by name.</p>
+        </dd></dl>
+    </div><h1 class="heading">ADO Connection Properties Dialog Box</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>The <b>ADO Connection Properties</b> dialog box is used to specify connection information to an ADO data source (OLE DB Provider). This dialog box appears when you first create an ADO connection. You can open this dialog box later and make changes once the connection is created by right-clicking the specific connection node and selecting the <b>Properties</b> menu item.</p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Use DSN</b>
+        </span></dt><dd>
+          <p>Specify a connection using an existing DSN. Enter the necessary OLE DB Provider information by select an available data source from the drop-down list box and optionally entering a User ID and Password.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Use Connection String</b>
+        </span></dt><dd>
+          <p>Enter a valid connection string. The <b>Build</b> button is available to assist in generating the connection string. This button opens the standard <b>Data Link Properties</b> dialog box where you can chose a registered OLE DB Provider.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Connection Timeout</b>
+        </span></dt><dd>
+          <p>Specifies the time to wait (seconds) before returning a connection time out error. If you specify 0, the wait is indefinite and no time out error is returned. The value can be from 0 to 600. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>This is equivalent to using <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP(0, “ConnectTimeOut”, nTimeout)</a> before establishing the connection.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Query Timeout</b>
+        </span></dt><dd>
+          <p>Specifies the time to wait (seconds) before returning a general time out error. If you specify 0, the wait is indefinite and no time out error is returned. The value can be from 0 to 600.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>This is equivalent to using <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP(nHandle, “QueryTimeOut”, nTimeout)</a> before executing the query.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Show Column Info</b>
+        </span></dt><dd>
+          <p>Displays the column type and length next to the column name on each column node.</p>
+        </dd></dl>
+    </div><h1 class="heading">Run Query Window</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>The Run Query window is a core part of the Data Explorer. It allows you to execute queries against the selected data node. You can also execute stored procedures and functions. To run a query, perform the following steps:</p>
+      <ul><li>
+          <p>Right-click a data node whose data you want to query and select the <b>Run Query</b> menu.</p>
+        </li><li>
+          <p>If text is in the top edit box, you can click the <b>Run</b> button to execute the query. If no text is displayed, enter a query such as a <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT statement</a> and click <b>Run</b>.</p>
+        </li><li>
+          <p>The results of your query will appear in the bottom half of the Run Query window in a grid. If the query was unsuccessful, an error will appear in the lower results pane. You can edit your query to fix the problem and click <b>Run</b> to requery.</p>
+        </li><li>
+          <p>The Run Query window also allows you to execute stored procedures and functions. If these return result sets, such as from SQL Server, they will be displayed in a grid. Otherwise, the results are stored in the results pane.</p>
+        </li><li>
+          <p>The Run Query window supports add-in extensibility that allows for custom actions against the query or the data results. Add-ins which are managed using the <b>Add-In Manager</b> (<b>Options</b> dialog box), appear as buttons above the query edit box and results pane. You can also access add-ins by right-clicking the query edit box.</p>
+        </li></ul>
+      <p>The following add-ins are included with Visual FoxPro and can be modified using the Add-In Manager:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Add-In</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>Save Query</p>
+          </td>
+          <td>
+            <p>You can save your current query text to a text file with a .SQL extension. </p>
+            <p>This is a query add-in.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Load Query</p>
+          </td>
+          <td>
+            <p>You can load a previously saved query from a text file. </p>
+            <p>This is a query add-in.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Format for VFP</p>
+          </td>
+          <td>
+            <p>This modifies the current query to add a continuation character (;) to the end of all lines, remove any blank lines, and convert any SQL "--" comments to "&amp;&amp;".</p>
+            <p>In addition, all brackets surrounding words are removed. This is useful if you have a SQL statement originally written for SQL Server and want to run it against Visual FoxPro data.</p>
+            <p>For example, the following query:</p>
+            <p>
+              <code>SELECT [au_lname] </code>
+            </p>
+            <p>
+              <code>FROM [pubs] -- retrieve all last names</code>
+            </p>
+            <p>is reformatted as:</p>
+            <p>
+              <code>SELECT au_lname ;</code>
+            </p>
+            <p>
+              <code>FROM pubs &amp;&amp; retrieve all last names</code>
+            </p>
+            <p>This is a query add-in.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Format for SQL</p>
+          </td>
+          <td>
+            <p>This modifies the current query to remove any end-of-line continuation characters (;), convert any VFP comment lines that begin with "*" to SQL comment lines beginning with "--", change double quotes to single quotes, and change double equals (==) to single equals (=).</p>
+            <p>This is useful if you are modifying a query originally written to go against VFP data to run against SQL Server data.</p>
+            <p>This is a query add-in.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Clipboard to Variable</p>
+          </td>
+          <td>
+            <p>Copy query to clipboard formatted with variable assignment.</p>
+            <p>This is a query add-in.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Clipboard to TEXT/ENDT</p>
+          </td>
+          <td>
+            <p>Copy query to clipboard formatted with <span class="linkTerms"><a href="/html/40efc4ac-180a-4072-b6fa-591a154a98f1.htm">TEXT ... ENDTEXT Command</a></span>.</p>
+            <p>This is a query add-in.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Copy Results to Clipboard.</p>
+          </td>
+          <td>
+            <p>The data displayed in the grid is copied to the clipboard.</p>
+            <p>This is a data result add-in.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Options Dialog Box</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <ul><li>
+          <p>The Options dialog box allows you to customize the Data Explorer and connection behaviors.</p>
+        </li></ul>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Font</b>
+        </span></dt><dd>
+          <p>Sets the default font used by the Data Explorer.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Show Description Pane</b>
+        </span></dt><dd>
+          <p>Displays a description pane at the bottom of the Data Explorer.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Show Column Info</b>
+        </span></dt><dd>
+          <p>Shows column data type info in column nodes. This is the default setting for new connections. You can change this later in the <b>Connection Properties</b> dialog box. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If the description pane is visible, column data type info is displayed there for the selected column.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Manage Add-Ins</b>
+        </span></dt><dd>
+          <p>Opens the Add-Ins Manager.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Manage Menus</b>
+        </span></dt><dd>
+          <p>Opens the Menu Manager.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Manage DragDrop</b>
+        </span></dt><dd>
+          <p>Opens the DragDrop Manager.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Restore to Default</b>
+        </span></dt><dd>
+          <p>Restores the Data Explorer to its default settings.</p>
+          <p>A backup of the original DataExplorer.dbf table is made with the name DataExplorerBackup_xx.dbf, where xx is a sequential number so that prior backups are not overwritten.</p>
+        </dd></dl>
+    </div><h1 class="heading">Add-In Manager</h1><div id="sectionSection6" class="seeAlsoNoToggleSection">
+      <p>The <b>Run Query</b> window lets you add new and customize existing add-ins for working with your queries as well as the query data results. These add-ins appear in the Run Query window as buttons. Add-Ins are stored in your DataExplorer.dbf settings table.</p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Query Add-Ins</b>
+        </span></dt><dd>
+          <p>Add-Ins that appear at the top of the Run Query window and apply to the query.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Data Results Add-Ins</b>
+        </span></dt><dd>
+          <p>Add-Ins that appear toward the bottom of the Run Query window and apply to the results that appear after the query is run.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Add-In List</b>
+        </span></dt><dd>
+          <p>List of all registered Add-Ins. When you select an add-in, its details appear in the controls to the right. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>New</b>
+        </span></dt><dd>
+          <p>Creates a new add-in.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Delete</b>
+        </span></dt><dd>
+          <p>Removes an add-in.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Move Up/Move Down</b>
+        </span></dt><dd>
+          <p>Use the arrows to move a selected add-in up or down in the list order. This controls the position the add-in appears in the Run Query window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Add-In</b>
+        </span></dt><dd>
+          <p>Specifies the full descriptive name of the add-in.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Abbreviated Name</b>
+        </span></dt><dd>
+          <p>Specifies how the add-in is displayed in the menu bar.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Select Image</b>
+        </span></dt><dd>
+          <p>Select the image to be associated with the currently selected add-in.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Script Code Editbox</b>
+        </span></dt><dd>
+          <p>Specifies the code to execute when the add-in is selected. The script must accept one parameter, which is an object containing the query text, a reference to the data management object, and a reference to the DataExplorer engine.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Modify</b>
+        </span></dt><dd>
+          <p>Brings up editor window to modify script if you want a larger edit window.</p>
+        </dd></dl>
+    </div><h1 class="heading">Menu Manager</h1><div id="sectionSection7" class="seeAlsoNoToggleSection">
+      <p>The Menu Manager lets you customize shortcut menus items available for specific nodes. Menus are stored in your DataExplorer.dbf settings table.</p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Menu List</b>
+        </span></dt><dd>
+          <p>List of all registered menus. When you select a menu, its details appear in the controls to the right.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>New</b>
+        </span></dt><dd>
+          <p>Creates a new shortcut menu item.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Copy </b>
+        </span></dt><dd>
+          <p>Creates a new shortcut menu item using definition from selected item.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Delete</b>
+        </span></dt><dd>
+          <p>Deletes a shortcut menu item.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Move Up/Move Down</b>
+        </span></dt><dd>
+          <p>Use the arrows to move a selected menu up or down in the list order. This controls the position the menu item appears in a node's shortcut menu.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Caption</b>
+        </span></dt><dd>
+          <p>Specifies the name of the custom menu as it appears on the context menu of node. Use “\-“ to create a menu separator.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Additional Info</b>
+        </span></dt><dd>
+          <p>Allows you to easily categorize menu items. This is displayed as the second column in the list of menu items.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Template</b>
+        </span></dt><dd>
+          <p>Optional template of code that can be referenced in the menu's script code. Click the <b>Modify</b> button to open the code in an edit window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Display Only</b>
+        </span></dt><dd>
+          <p>This page lets you control which nodes will display the menu. The <b>Display only…</b> text box lets you include a comma-separated list of node names (classes) that can display the menu. You can specify an asterisk at the end of any node name to specify any nodes that begin with the text.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Code to Determine…</b>
+        </span></dt><dd>
+          <p>Code that is executed for specified node classes included in the <b>Display Only</b> text box that can further be used to filter whether a menu is displayed or not. This is particularly useful if you want to limit a menu to only certain Providers with ADO Connections.</p>
+          <p>The code must accept a single object parameter containing information about the node.</p>
+          <p>Click the <b>Modify</b> button to open the code in an edit window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Script To Run</b>
+        </span></dt><dd>
+          <p>Code to execute when the menu item is selected.</p>
+          <p>The code must accept a single object parameter containing information about the node.</p>
+          <p>Click the <b>Modify</b> button to bring up the code in an edit window.</p>
+        </dd></dl>
+    </div><h1 class="heading">DragDrop Manager</h1><div id="sectionSection8" class="seeAlsoNoToggleSection">
+      <p>The DragDrop Manager lets you customize the drag-and-drop behavior for specified nodes. Drag-and-drop actions are stored in your DataExplorer.dbf settings table.</p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>DragDrop Item List</b>
+        </span></dt><dd>
+          <p>List of all registered drag-and-drop actions. When you select an item, its details appear in the controls to the right.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>New</b>
+        </span></dt><dd>
+          <p>Creates a new drag-and-drop item.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Copy </b>
+        </span></dt><dd>
+          <p>Creates a new drag-and-drop item using definition from selected item.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Delete</b>
+        </span></dt><dd>
+          <p>Deletes a drag-and-drop item.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Move Up/Move Down</b>
+        </span></dt><dd>
+          <p>Use the arrows to move a selected item up or down in the list order. This controls the order in which action's code is executed.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Caption</b>
+        </span></dt><dd>
+          <p>Specifies the name of the drag-and-drop item for future reference.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Template</b>
+        </span></dt><dd>
+          <p>Optional template of code that can be referenced in the script code. Click the <b>Modify</b> button to open the code in an edit window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Execute Only</b>
+        </span></dt><dd>
+          <p>Specifies a comma-separated list of node names to apply the drag-and-drop action. If this is left blank then the node check is not performed. You can include an asterisk at the end of any node name to specify any nodes that begin with the text.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Script To Run</b>
+        </span></dt><dd>
+          <p>Code to execute when you drag and drop from a node to edit window.</p>
+          <p>The code must accept a single object parameter containing information about the node. If you want to specify text to insert, you need to set the parameter object’s <b>DropText </b>property.</p>
+          <p>Click the <b>Modify</b> button to open the code in an edit window.</p>
+        </dd></dl>
+    </div><h1 class="heading">Extending the Data Explorer</h1><div id="sectionSection9" class="seeAlsoNoToggleSection">
+      <p>The Data Explorer that ships with Visual FoxPro includes support for many core remote data needs. With the extensibility architecture, you can add additional capabilities not currently available such as the ability to modify remote tables or views through a custom designer. Additionally, you can add support for new remote data sources as they become available in the future (such as new versions of SQL Server).</p>
+      <p>The Data Explorer can be extended by adding, removing, or swapping in node classes or connection manager classes. Each of these is defined in the DataExplorer table which is located in the user data directory (see <a href="/html/7266f399-d690-4dbb-82e8-9fa1429b013e.htm">HOME(7)</a>). If the table is not found, then it is automatically created using the DataExplorerDefault.dbf table that is bound into the DataExplorer application.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If you want to make modifications or enhancements to the Data Explorer, you can find the source in XSource.zip contained in the Tools\XSource folder.</p>
+      </td></tr></table></div>
+      <dl><dt><span class="nonLinkTerms">
+          <b>DataExplorer.dbf</b>
+        </span></dt><dd>
+          <p>Much of the Data Explorer extensibility is handled through this table so that you do not need to make modifications to the DataExplorer.app file. All of the customizations that are set by the various managers in the <b>Options</b> dialog box stored in this table.</p>
+          <p>The following table contains details on extending the Data Explorer settings table:</p>
+        </dd></dl>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Fieldname</b>
+              
+            </th>
+            <th>
+              
+                <b>Type</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>UniqueID</p>
+          </td>
+          <td>
+            <p>C(25)</p>
+          </td>
+          <td>
+            <p>A unique ID for the record created.  This should be in the format of: vendor.id</p>
+            <p>For example: microsoft.textscraps</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DefType</p>
+          </td>
+          <td>
+            <p>C(1)</p>
+          </td>
+          <td>
+            <p>The record definition:</p>
+            <ul><li>
+                <p>R = Root</p>
+              </li><li>
+                <p>S = Data Source</p>
+              </li><li>
+                <p>C = Connection</p>
+              </li><li>
+                <p>M = Menu</p>
+              </li><li>
+                <p>P = Picture</p>
+              </li><li>
+                <p>T = Template</p>
+              </li><li>
+                <p>Q = Query Add-in</p>
+              </li><li>
+                <p>Z = Data Add-in</p>
+              </li><li>
+                <p>E = Expanded Info</p>
+              </li><li>
+                <p>Y = Drop Action, Code Window</p>
+              </li><li>
+                <p>V = Drop Action, Design Surface</p>
+              </li></ul>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ConnType</p>
+          </td>
+          <td>
+            <p>C(25)</p>
+          </td>
+          <td>
+            <p>Connection type for a user created connection.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ConnName</p>
+          </td>
+          <td>
+            <p>C(100)</p>
+          </td>
+          <td>
+            <p>Name of the connection.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ConnInfo</p>
+          </td>
+          <td>
+            <p>M</p>
+          </td>
+          <td>
+            <p>Connection info.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ClassName</p>
+          </td>
+          <td>
+            <p>M</p>
+          </td>
+          <td>
+            <p>Name of class.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ClassLib</p>
+          </td>
+          <td>
+            <p>M</p>
+          </td>
+          <td>
+            <p>Name and location of class library.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ScriptCode</p>
+          </td>
+          <td>
+            <p>M</p>
+          </td>
+          <td>
+            <p>Script code to run.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DisplayOrd</p>
+          </td>
+          <td>
+            <p>I</p>
+          </td>
+          <td>
+            <p>Display order.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Options</p>
+          </td>
+          <td>
+            <p>M</p>
+          </td>
+          <td>
+            <p>Optional data for specific DefType record.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OptionData</p>
+          </td>
+          <td>
+            <p>M</p>
+          </td>
+          <td>
+            <p>Contains node settings that can be customized by the user. This applies to Connection and Root nodes. For connections, connection properties are stored in this field.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Template</p>
+          </td>
+          <td>
+            <p>M</p>
+          </td>
+          <td>
+            <p>Can be used by add-ins.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>WhenNodes</p>
+          </td>
+          <td>
+            <p>M</p>
+          </td>
+          <td>
+            <p>Comma-delimited list of nodes that a menu add-in applies to.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>WhenCode</p>
+          </td>
+          <td>
+            <p>M</p>
+          </td>
+          <td>
+            <p>Script code to execute when determining if a menu add-in should be displayed.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>AddinImage</p>
+          </td>
+          <td>
+            <p>W</p>
+          </td>
+          <td>
+            <p>Image to display for add-in.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Inactive</p>
+          </td>
+          <td>
+            <p>L</p>
+          </td>
+          <td>
+            <p>If set to TRUE (.T.), then record is ignored.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>User</p>
+          </td>
+          <td>
+            <p>M</p>
+          </td>
+          <td>
+            <p>User-defined.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Modified</p>
+          </td>
+          <td>
+            <p>T</p>
+          </td>
+          <td>
+            <p>Last modified.</p>
+          </td>
+        </tr></table></div>
+      <p>The following table contains details about the different <b>DefType </b>field values in the Data Explorer table:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>DefType Value</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>R</p>
+          </td>
+          <td>
+            <p>Root. Contains detail about root node. Data Connections and SQL Servers are the pre-defined root nodes.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>S</p>
+          </td>
+          <td>
+            <p>Data Source. Specifies a valid connection type that can be made.  The following columns are utilized:</p>
+            <ul><li>
+                <p>ConnName - friendly name of the data source such as "SQL Server."</p>
+              </li><li>
+                <p>ClassName - name of class that is responsible for representing the node. This class should derive from IConnectionNode of TreeNodes.prg.</p>
+              </li><li>
+                <p>ClassLib - name and location of the class library where ClassName can be found.</p>
+              </li></ul>
+          </td>
+        </tr><tr>
+          <td>
+            <p>C</p>
+          </td>
+          <td>
+            <p>Connection. Contains a user created connection.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>M</p>
+          </td>
+          <td>
+            <p>Menu. Specifies a right-click menu option that is available for a node.</p>
+            <ul><li>
+                <p>ConnName - name of the menu option as it appears on the right-click menu.</p>
+              </li><li>
+                <p>ScriptCode - code to run when this menu option is selected. </p>
+              </li><li>
+                <p>WhenNodes - comma-delimited list of nodes the menu add-in applies to.</p>
+              </li><li>
+                <p>WhenCode - code to execute to determine if menu should be displayed (only called if passes the WhenNodes test).</p>
+              </li><li>
+                <p>Template - additional information that can be used by the menu item.</p>
+              </li><li>
+                <p>DisplayOrd - relative order menu item should be displayed on the shortcut menu.</p>
+              </li></ul>
+            <p>If the first word of ScriptCode is 'THIS.', then the DataExplorer assumes it is a method of the data management class and will run only if it finds the specified method name to be a member of that object.</p>
+            <p>If the DataExplorer finds a method called <b>&lt;MethodName&gt;Okay()</b>, then the DataExplorer calls this method first to determine if the menu option should be visible or not (and returns TRUE if it should be included).</p>
+            <p>If the first word of ScriptCode is not ‘THIS.’ then the run the code is executed normally.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>P</p>
+          </td>
+          <td>
+            <p>Picture. Contains image used to represent a certain node.</p>
+            <p>ConnInfo - relative location of picture, such as "bitmaps\column.bmp."</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>T</p>
+          </td>
+          <td>
+            <p>Template (reserved for future).</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Q</p>
+          </td>
+          <td>
+            <p>Query Add-In. This is a Run Query window query add-in that appears as a button towards top of window or from the shortcut menu. The following fields are used.</p>
+            <ul><li>
+                <p>ConnName - name of the menu option as it appears on the right-click menu and in the add-in bar.</p>
+              </li><li>
+                <p>ConnInfo - descriptive name of the add-in as it appears in a tooltip.</p>
+              </li><li>
+                <p>ScriptCode - code to run when this menu option is selected.</p>
+              </li><li>
+                <p>DisplayOrd - relative order add-in should be displayed on the menu.</p>
+              </li></ul>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Z</p>
+          </td>
+          <td>
+            <p>Data Add-In. This is a Run Query window data add-in that appears as a button towards bottom of window. See Query Add-In above for more detail on fields used.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>E</p>
+          </td>
+          <td>
+            <p>Expanded Info (reserved for future). Stores which nodes are expanded when the Data Explorer is closed so that these same nodes can be expanded when restarted. This information is stored in the OptionData column.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Y</p>
+          </td>
+          <td>
+            <p>DragDrop Action for Code Window. </p>
+            <ul><li>
+                <p>ConnName - name of the DragDrop action as it appears in the DragDrop Manager.</p>
+              </li><li>
+                <p>ScriptCode - code to run for DragDrop action. </p>
+              </li><li>
+                <p>WhenNodes - comma-delimited list of nodes the DragDrop action applies to.</p>
+              </li><li>
+                <p>Template - additional information that can be used by the DragDrop action.</p>
+              </li><li>
+                <p>DisplayOrd - relative order the DragDrop action is executed.</p>
+              </li></ul>
+          </td>
+        </tr><tr>
+          <td>
+            <p>V</p>
+          </td>
+          <td>
+            <p>DragDrop Action for Design Surface. See previous item for details.</p>
+          </td>
+        </tr></table></div>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Customizing ADO Connections</b>
+        </span></dt><dd>
+          <p>The Data Explorer contains support for generic ADO connection handling. However, you may want to customize for a specific connection type. In fact, the Data Explorer contains an example of this using Oracle. Here are steps you need to do to add this type of customization:</p>
+          <ul><li>
+              <p>Create a new class based on the core ADO Data Management class. Here is an example of the Oracle one in Datamgmt_Oracle.prg:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS OracleDatabaseMgmt AS ADODatabaseMgmt OF DataMgmt_ADO.prg</pre></td></tr></table></span></div>
+              <p>In this class, you can specify behaviors such as how to populate nodes or right-click menu functionality.</p>
+              <p>You can rebuild the DataExplorer.app with your new class or just leave it external.</p>
+            </li><li>
+              <p>You need to reference this class in your DataExplorer.dbf so it can be used. To do this: </p>
+              <ul><li>
+                  <p>Open the DataExplorer.dbf table from your HOME(7) location and locate the ADO Connection record (Deftype="S"). </p>
+                </li><li>
+                  <p>Open the ScriptCode memo field </p>
+                </li><li>
+                  <p>Add another CASE statement to existing code (below) for your specific provider along with the custom class information.</p>
+                  <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LPARAMETERS oParam, oConn
+IF TYPE("oConn") == 'O' AND !ISNULL(oConn) 
+      DO CASE
+      CASE ATC("ORACLE", oConn.DBMSName) &gt; 0
+      oParam.DataMgmtClass = "OracleDatabaseMgmt"
+      oParam.DataMgmtClassLibrary = "DataMgmt_Oracle.prg"
+            oParam.ProviderName = "ORACLE"
+      CASE ATC("SQL Server", oConn.DBMSName) &gt; 0
+            oParam.ProviderName = "SQLSERVER"
+      CASE ATC("FOXPRO", oConn.DBMSName) &gt; 0
+            oParam.ProviderName = "FOXPRO"
+      ENDCASE
+ENDIF</pre></td></tr></table></span></div>
+                </li></ul>
+            </li><li>
+              <p>To add custom right-click menu and drag-and-drop functionality, use the specific managers available from the <b>Options</b> dialog box. For hints, take a look at the existing items in the various managers.</p>
+            </li></ul>
+        </dd></dl>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/1f25f5d2-f67a-4a67-adeb-68d72300a31e.htm">Task Pane Manager</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Data Explorer Task Pane">
+<param name="Alink Name" value="vfp.1231201">
+</OBJECT>

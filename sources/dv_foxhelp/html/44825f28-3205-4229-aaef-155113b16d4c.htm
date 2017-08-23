@@ -1,0 +1,483 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>ReportListener Utility and File-handling Foundation Class</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">ReportListener Utility and File-handling Foundation Class</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The UtilityReportListener class adds run-time configuration options and file handling (filename verification, file writing) to the core services provided by its parent class, _ReportListener.  This class also supplies access to an instance of FrxCursor, a class leveraged from the Report Builder Application, with appropriate error handling if it cannot be found.  </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>UtilityReportListener does not require FrxCursor to function; it just provides transparent management of an instance of this class when requested by a subclass.  It is up to subclasses to decide when and if they need this instance, and whether or not they can survive its absence if it is not available at run time.</p>
+    </td></tr></table></div>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            
+              <b>Category</b>
+            
+          </th>
+          <th>
+            
+              <b>Reporting</b>
+            
+          </th>
+        </tr><tr>
+        <td>
+          <p>Default Catalog</p>
+        </td>
+        <td>
+          <p>Visual FoxPro Catalog\Foundation Classes\Output\Report Listeners</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Class</p>
+        </td>
+        <td>
+          <p>UtilityReportListener</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Base Class</p>
+        </td>
+        <td>
+          <p>ReportListener</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Class Library</p>
+        </td>
+        <td>
+          <p>_REPORTLISTENER.vcx</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Parent Class</p>
+        </td>
+        <td>
+          <p>FXListener (<span class="linkTerms"><a href="/html/006d6c9a-9ac5-475d-9d14-38ffacc59970.htm">ReportListener FXListener Foundation Class</a></span>)</p>
+        </td>
+      </tr></table></div>
+  <h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>UtilityReportListener and its Configuration Table</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>UtilityReportListener reads records from a configuration table to initialize various ReportListener values and behavior.  You can choose to have UtilityReportListener perform these tasks when the class initializes, at the start of each report run, or both.  You can also call its setConfiguration method explicitly at other times.</p>
+      <p>UtilityReportListener's run-time configuration features leverage the same configuration table format as the Report Output Application uses to register custom ReportListeners for different ListenerType values.  For information about how the Report Output Application uses this table, see <span class="linkTerms"><a href="/html/8e6bfe13-c83f-4c73-9037-689fbdb7c7db.htm">Report Output Application</a></span>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The classes use the same configuration table format as Report Output Application, but not necessarily the same table.   To determine the behavior you want for an instance of a class deriving from UtilityReportListener, use the properties and methods of the class to specify that behavior in the table the object uses, not the table Report Output Application uses.</p>
+      </td></tr></table></div>
+      <p>If you instantiate this class outside the Report Output Application, and if the configuration table does not appear to be available, it creates the appropriate table structure.  If the class is built into a module (APP, DLL, EXE), it creates this table in the same directory as the module; otherwise, it will create the table in the same directory as the class library (VCX).</p>
+      <p>UtilityReportListener and its subclasses use the OBJTYPE field in the configuration table to determine which records belong to them, and to what use the records should be put.  These classes reserve a range of values in the OBJTYPE field, set at 1000 to 1999.  </p>
+      <p>Each subclass uses a single value in this range, determined by UtilityReportListener's configurationObjType property, to designate records in the table it wishes to use for configuration purposes.  UtilityReportListener uses a constant value in REPORTLISTENER.H to set its own value.</p>
+      <p>Configuration tasks can set any property or invoke any method in your UtilityReportListener subclass. Records in the configuration table with the correct configurationObjType value set class properties or invoke class method code according to the following configuration table usage.  </p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Field</b>
+              
+            </th>
+            <th>
+              
+                <b>Usage</b>
+              
+            </th>
+            <th>
+              
+                <b>Remarks</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>OBJTYPE</p>
+          </td>
+          <td>
+            <p>THIS.ConfigurationObjType</p>
+          </td>
+          <td>
+            <p>Determines which records in the table UtilityReportListener reads to set configuration values or trigger configuration method code.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJCODE</p>
+          </td>
+          <td>
+            <p>Precedence</p>
+          </td>
+          <td>
+            <p>Determines the order in which UtilityReportListener executes the configuration records' instructions.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJNAME</p>
+          </td>
+          <td>
+            <p>Property or Method</p>
+          </td>
+          <td>
+            <p>UtilityReportListener checks OBJNAME for PEMSTATUS (existence and type).</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJVALUE</p>
+          </td>
+          <td>
+            <p>Value or Arguments</p>
+          </td>
+          <td>
+            <p>If the OBJNAME value is a valid property name, UtilityReportListener uses this code to set the property value using OBJVALUE:</p>
+            <p>
+              <code>STORE EVAL(ObjValue) TO (“THIS.”+ObjName)</code>
+            </p>
+            <p>If the OBJNAME value is a valid method name for the class, UtilityReportListener executes this code:</p>
+            <p>
+              <code>EVAL(“THIS.”+ObjName+”(“+ObjValue+”)”</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJINFO</p>
+          </td>
+          <td>
+            <p>Not used</p>
+          </td>
+          <td>
+            <p>Reserved for user docs, comments.  See the <b>Tip</b> below for an example.</p>
+          </td>
+        </tr></table></div>
+      <p>UtilityReportlistener ignores records with blank OBJNAME or OBJVALUE, and records marked <b>DELETED()</b>, whether they have the correct OBJTYPE value or not.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>When UtilityReportListener generates a configuration table it provides two deleted records to show proper syntax for configuration records, using the following code:</p>
+      </td></tr></table></div>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>INSERT INTO (ALIAS()) VALUES ;
+  (OUTPUTCLASS_OBJTYPE_CONFIG,0,
+   'DoMessage','"Welcome to the demo run!",64',
+   'Sample initialization/config method call')
+DELETE NEXT 1
+INSERT INTO (ALIAS()) VALUES ;
+  (OUTPUTCLASS_OBJTYPE_CONFIG,0,
+   'TargetFileName','"xxx"',
+   'Sample initialization/config property')
+DELETE NEXT 1</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>You will probably not instantiate this class directly; you will instantiate one of the classes that derive from it, such as HtmlListener.   These derived classes take advantage of UtilityReportListener's base features, which are file-handling and access to an FrxCursor object instance.  They also expose UtilityReportListener's configuration table feature so you can customize their behavior at run time, in many cases, without needing to specify these changes in your code or deriving subclasses from them.</p>
+      <p>The following table lists public properties and methods added by this class to its parent class, _ReportListener.  </p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Properties and methods</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>configurationObjtype Property</p>
+          </td>
+          <td>
+            <p>Holds the reserved value used to indicate that a configuration table row provides dynamic configuration information at run time.</p>
+            <p>
+              <b>Default </b>
+              <code>1000</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>createConfigTable Method</p>
+          </td>
+          <td>
+            <p>Creates a configuration table on demand. </p>
+            <p>
+              <b>Syntax:</b> <code>createConfigTable(cDBF [, lOverWrite] )</code></p>
+            <p>
+              <b>Return Values:</b> cDBF</p>
+            <p>
+              <b>Parameters: </b>
+            </p>
+            <p>
+              <span class="parameter">cDBF</span> is the fully-qualified filename of the configuration table. </p>
+            <p>
+              <span class="parameter">lOverWrite</span> indicates whether you want to overwrite the configuration table if it already exists.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>frxCursor Property</p>
+          </td>
+          <td>
+            <p>Holds a reference to an FRXCursor helper object to aid in run-time calculations related to FRX metadata and structure. </p>
+            <p>
+              <b>Default </b>
+              <code>.NULL.</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>getConfigTable Method</p>
+          </td>
+          <td>
+            <p>Assesses and provides the name of the current configuration table, optionally creating it on disk if it is not available.</p>
+            <p>
+              <b>Syntax: </b>
+              <code>getConfigTable(lForceExternal)</code>
+            </p>
+            <p>
+              <b>Return Values:</b> cDBF</p>
+            <p>
+              <b>Parameters: </b>
+            </p>
+            <p>If you set <span class="parameter">lForceExternal</span> to .T., this indicates that you want to have an external table written to disk, even if the class can find a built-in version of the table in its code module (APP, EXE, or DLL).</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>getPathForExternals Method</p>
+          </td>
+          <td>
+            <p>Determines the location at which the current configuration table and any other required external files will be expected. </p>
+            <p>
+              <b>Syntax: </b>
+              <code>getPathForExternals()</code>
+            </p>
+            <p>
+              <b>Return Values:</b> cPath</p>
+            <p>
+              <b>Parameters: </b>
+              <span class="parameter">None</span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>loadFrxCursor Property</p>
+          </td>
+          <td>
+            <p>Determines whether this class should dynamically load an instance of the helper class.</p>
+            <p>
+              <b>Default </b>
+              <code>.F.</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>readConfiguration Property</p>
+          </td>
+          <td>
+            <p>Indicates the conditions under which SetConfiguration code will run. </p>
+            <p>0=never</p>
+            <p>1 = when the class instance Init runs</p>
+            <p>2 = when the class instance runs BeforeReport</p>
+            <p>3 = at both Init and BeforeReport</p>
+            <p>
+              <b>Default </b>
+              <code>0</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>setConfiguration Method</p>
+          </td>
+          <td>
+            <p>Checks the current configuration table for dynamic information in records of appropriate type, and executes these instructions if found. </p>
+            <p>
+              <b>Syntax: </b>
+              <code>SetConfiguration()</code>
+            </p>
+            <p>
+              <b>Return Values:</b> None</p>
+            <p>
+              <b>Parameters: </b>
+              <span class="parameter">None</span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>targetFileExt Property</p>
+          </td>
+          <td>
+            <p>Provides the default file extension for file output.</p>
+            <p>
+              <b>Default </b>
+              <code>"TXT"</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>targetFileName Property</p>
+          </td>
+          <td>
+            <p>Provides the filename to which output will be written. A unique name is generated for the class instance, which will be overwritten for successive report runs if not adjusted by the user. </p>
+            <p>
+              <b>Default </b>
+              <code>FORCEPATH (SYS(2015),SYS(2023))</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>targetHandle Property</p>
+          </td>
+          <td>
+            <p>Provides a low-level file handle, to which output is written directly when the class provides raw data to the file, otherwise reserves the file during the report run so other applications do not write to it.</p>
+            <p>
+              <b>Default </b>
+              <code>-1</code>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>verifyConfigTable Method</p>
+          </td>
+          <td>
+            <p>Ascertains that the format and contents of the configuration meet requirements, adjusting it if necessary.</p>
+            <p>
+              <b>Syntax: </b>
+              <code>verifyConfigTable(cAlias [, cFailureMsgTable [, cFailureMsgIndexes]])</code>
+            </p>
+            <p>
+              <b>Return Values:</b> logical</p>
+            <p>
+              <b>Parameters: </b>
+            </p>
+            <p>
+              <span class="parameter">cAlias</span> is the alias of the table you want to validate.  The table must already be opened under this alias when you call the method.</p>
+            <p>
+              <span class="parameter">cFailureMsgTable</span> provides an optional alternative message to display if the nominated table cannot be verified as having valid configuration table format.  If you do not supply this message, UtilityReportListener uses a string constant #DEFINEd in REPORTLISTENERS_LOCS.H.</p>
+            <p>
+              <span class="parameter">cFailureMsgIndexes</span> provides an optional alternative message to display if the table does not have appropriate indexes. If you do not supply this message, UtilityReportListener uses a string constant #DEFINEd in REPORTLISTENERS_LOCS.H.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>verifyTargetFile Method</p>
+          </td>
+          <td>
+            <p>Assures that the nominated filename and its network location are available at the beginning of a file-based report run. </p>
+            <p>
+              <b>Syntax: </b>
+              <code>verifyTargetFile()</code>
+            </p>
+            <p>
+              <b>Return Values:</b> None</p>
+            <p>
+              <b>Parameters: </b>
+              <span class="parameter">None</span>
+            </p>
+          </td>
+        </tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><span class="linkTerms"><a href="/html/ad251059-3de1-4928-992c-ddb8be50fce8.htm">ReportListener Base Foundation Class</a></span><br /><span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/005682e4-5892-4e65-bcc3-2b64213e3fcc.htm">Guidelines for Using Visual FoxPro Foundation Classes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="ReportListener Utility and File-handling Foundation Class">
+</OBJECT>

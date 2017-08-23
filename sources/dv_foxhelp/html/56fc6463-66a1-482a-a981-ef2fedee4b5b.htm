@@ -1,0 +1,520 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Locking Data</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Locking Data</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>If you share access to files, you must also manage access to data by locking tables and records. Locks, unlike access permissions, can provide both long- and short-term control of data. Visual FoxPro provides both automatic and manual locking.</p>
+  <h1 class="heading">Choosing Record or Table Locks</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Record locking, whether automatic or manual, prevents one user from writing to a record that's currently being written to by another user. Table locking prevents other users from writing to, but not reading from, an entire table. Because table locking prohibits other users from updating records in a table, it should only be used sparingly.</p>
+    </div><h1 class="heading">Choosing Automatic or Manual Locks</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>In addition to record or table locking, you can also choose automatic or manual locking. Many Visual FoxPro commands automatically attempt to lock a record or a table before the command is executed. If the record or table is successfully locked, the command is executed and the lock is released.</p>
+      <div class="labelheading"><b>Commands that Automatically Lock Records and Tables</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Command
+            </th>
+            <th>
+              Scope of lock
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/3c5a454a-67ec-48a8-8290-18dd0e8a97ea.htm">ALTER TABLE</a>
+            </p>
+          </td>
+          <td>
+            <p>Entire table</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/7210015f-dc18-451e-97d7-c1c3b86d5a2a.htm">APPEND</a>
+            </p>
+          </td>
+          <td>
+            <p>Table header</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/7210015f-dc18-451e-97d7-c1c3b86d5a2a.htm">APPEND BLANK</a>
+            </p>
+          </td>
+          <td>
+            <p>Table header</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/c426861f-e5ef-44ae-96a6-8dbc7a4a2ad5.htm">APPEND FROM</a>
+            </p>
+          </td>
+          <td>
+            <p>Table header</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/5b11bd53-12f9-4727-9ae3-f5a7d3d21274.htm">APPEND FROM ARRAY</a>
+            </p>
+          </td>
+          <td>
+            <p>Table header</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f169f542-85c0-4c7e-8f03-daf3efeab856.htm">APPEND MEMO</a>
+            </p>
+          </td>
+          <td>
+            <p>Current record</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/8b44de23-12a4-4c9c-a95d-202b6bc06352.htm">BLANK</a>
+            </p>
+          </td>
+          <td>
+            <p>Current record</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/8f9cae61-2a9a-4893-8325-40426b907de8.htm">BROWSE</a>, <a href="/html/cffc4866-c609-426f-95a5-e45587122aa8.htm">CHANGE</a> and <a href="/html/83b52869-8201-4d60-a6b5-35bcd8e1c12f.htm">EDIT</a></p>
+          </td>
+          <td>
+            <p>Current record and all records from aliased fields in related tables once editing of a field begins</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>
+            </p>
+          </td>
+          <td>
+            <p>Depends on parameters</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9c5000b8-3c35-4690-b7b8-07299f84b794.htm">DELETE</a>
+            </p>
+          </td>
+          <td>
+            <p>Current record</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9c5000b8-3c35-4690-b7b8-07299f84b794.htm">DELETE NEXT 1</a>
+            </p>
+          </td>
+          <td>
+            <p>Current record</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9c5000b8-3c35-4690-b7b8-07299f84b794.htm">DELETE RECORD n</a>
+            </p>
+          </td>
+          <td>
+            <p>Record <i>n</i></p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9c5000b8-3c35-4690-b7b8-07299f84b794.htm">DELETE</a> of more than one record</p>
+          </td>
+          <td>
+            <p>Entire table</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f31dbf64-3691-4ab0-a6b0-7ed1b3a42208.htm">DELETE – SQL</a>
+            </p>
+          </td>
+          <td>
+            <p>Current record</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/059d1397-f71d-4cd7-9d0e-1d443155bc95.htm">GATHER</a>
+            </p>
+          </td>
+          <td>
+            <p>Current record</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9f33867b-fcdd-49ec-b71f-962affad7f9e.htm">INSERT</a>
+            </p>
+          </td>
+          <td>
+            <p>Entire table</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f9d15b20-eb9d-4c37-8d4a-d9d02c01eb56.htm">INSERT - SQL</a>
+            </p>
+          </td>
+          <td>
+            <p>Table header</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/8c02e1cc-7d0f-4564-a1e7-3152dec20998.htm">MODIFY MEMO</a>
+            </p>
+          </td>
+          <td>
+            <p>Current record when editing begins</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/d22dec87-7592-4af2-a507-55b93338ad55.htm">READ</a>
+            </p>
+          </td>
+          <td>
+            <p>Current record and all records from aliased fields</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/e4f80973-79dc-4fd7-b716-805050b9c752.htm">RECALL</a>
+            </p>
+          </td>
+          <td>
+            <p>Current record</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/e4f80973-79dc-4fd7-b716-805050b9c752.htm">RECALL</a> NEXT 1</p>
+          </td>
+          <td>
+            <p>Current record</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/e4f80973-79dc-4fd7-b716-805050b9c752.htm">RECALL</a> RECORD <i>n</i></p>
+          </td>
+          <td>
+            <p>Record <i>n</i></p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/e4f80973-79dc-4fd7-b716-805050b9c752.htm">RECALL</a> of more than one record</p>
+          </td>
+          <td>
+            <p>Entire table</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/7f52db34-68fc-4f9e-abca-fa3f7f02ca19.htm">REPLACE</a>
+            </p>
+          </td>
+          <td>
+            <p>Current record and all records from aliased fields</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/7f52db34-68fc-4f9e-abca-fa3f7f02ca19.htm">REPLACE</a> NEXT 1</p>
+          </td>
+          <td>
+            <p>Current record and all records from aliased fields</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/7f52db34-68fc-4f9e-abca-fa3f7f02ca19.htm">REPLACE</a> RECORD <i>n</i></p>
+          </td>
+          <td>
+            <p>Record <i>n</i> and all records from aliased fields</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/7f52db34-68fc-4f9e-abca-fa3f7f02ca19.htm">REPLACE</a> of more than one record</p>
+          </td>
+          <td>
+            <p>Entire table and all files from aliased fields</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9750a2a6-7e90-43d8-915a-408e331c3373.htm">SHOW GETS</a>
+            </p>
+          </td>
+          <td>
+            <p>Current record and all records referenced by aliased fields</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( )</a>
+            </p>
+          </td>
+          <td>
+            <p>Depends on buffering</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/a2119ce4-980d-4682-8fc6-88b6caefa2f7.htm">UPDATE</a>
+            </p>
+          </td>
+          <td>
+            <p>Entire table</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/56137e46-cad2-4473-8e8e-367d2ca63334.htm">UPDATE – SQL</a>
+            </p>
+          </td>
+          <td>
+            <p>Entire table</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Record Lock Characteristics</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Commands that attempt record locks are less restrictive than commands that lock tables. When you lock a record, other users can still add or delete other records. If a record or table is already locked by another user, an attempted record or table lock fails. Commands that attempt to lock the current record return the error, "Record is in use by another," if the record cannot be locked.</p>
+      <p>The <a href="/html/8f9cae61-2a9a-4893-8325-40426b907de8.htm">BROWSE</a>, <a href="/html/cffc4866-c609-426f-95a5-e45587122aa8.htm">CHANGE</a>, <a href="/html/83b52869-8201-4d60-a6b5-35bcd8e1c12f.htm">EDIT</a>, and <a href="/html/8c02e1cc-7d0f-4564-a1e7-3152dec20998.htm">MODIFY MEMO</a> commands do not lock a record until you edit the record. If you're editing fields from records in related tables, the related records are locked if possible. The lock attempt fails if the current record or any of the related records are also locked by another user. If the lock attempt is successful, you can edit the record; the lock is released when you move to another record or activate another window.</p>
+    </div><h1 class="heading">Header and Table Lock Characteristics</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Some Visual FoxPro commands lock an entire table while others only lock a table header. Commands that lock the entire table are more intrusive than commands that only lock the table header. When you lock the table header, other users cannot add records, but they can still change data in fields.</p>
+      <p>Users can share the table without causing a conflict when you issue the <a href="/html/7210015f-dc18-451e-97d7-c1c3b86d5a2a.htm">APPEND BLANK</a> command, but an error can occur while another user is also appending a BLANK record to the table. You can trap for the error, "File is in use by another," which is returned when two or more users execute APPEND BLANK simultaneously. Commands that lock an entire table return the error, "File is in use by another," if the table cannot be locked. To cancel the attempted lock, press ESC.</p>
+    </div><h1 class="heading">Automatic Locking</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>In the following example, the user automatically locks the table header by appending records from another table, even though <code>customer</code> was opened as a shared file:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET EXCLUSIVE OFF
+USE customer
+APPEND FROM oldcust FOR status = "OPEN"</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Manual Locking</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>You can manually lock a record or a table using one of the following locking functions:
+</p>
+      <ul><li>
+          <p>
+            <a href="/html/5878c5e3-9e76-4445-8919-3b94f6e40765.htm">RLOCK( ) Function</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/83cc143e-80bf-4fb1-a9c0-bbbe67066c30.htm">LOCK( ) Function</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/76c905e2-77c6-4c45-8f9b-bad3c021c590.htm">FLOCK( ) Function</a>
+          </p>
+        </li></ul>
+      <p>The LOCK( ) and RLOCK( ) functions can apply to a table header. If you provide 0 as the record to LOCK( ) or RLOCK( ) and the test indicates the header is unlocked, the function locks the header and returns true (.T.).</p>
+      <p>Once you lock a record or table, be sure to release the lock by using the <a href="/html/1949c546-100e-41b1-b768-4a53d112be24.htm">UNLOCK</a> command as soon as possible to provide access to other users.</p>
+      <p>These manual locking functions perform the following actions:
+</p>
+      <ul><li>
+          <p>Test the lock status of the record or table.</p>
+        </li><li>
+          <p>If the test indicates the record is unlocked, lock the record or table and return true (.T.).</p>
+        </li><li>
+          <p>If the record or table cannot be locked, attempt to lock the record or table again, depending on the current setting of <a href="/html/cc56eb65-6621-4d12-8192-ca38042d16a5.htm">SET REPROCESS</a>.</p>
+        </li><li>
+          <p>Return true (.T.) or false (.F.), indicating whether the lock attempt was successful.
+</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>If you want to test the lock status of a record in your session without locking the record, use the <a href="/html/45465b8e-88e8-41e2-8a0a-57a089f5cd20.htm">ISRLOCKED( )</a> or <a href="/html/ec48d46f-d8e4-4116-a3e1-116043135031.htm">ISFLOCKED( )</a> function.</p>
+          </td></tr></table></div>
+        </li></ul>
+      <p>If an attempt to lock a record or table fails, the SET REPROCESS command and your current error routine determine if the lock is attempted again. SET REPROCESS affects the result of an unsuccessful lock attempt. You can control the number of lock attempts or the length of time a lock is attempted with SET REPROCESS.</p>
+      <p>The following example opens the <code>customer</code> table for shared access and uses FLOCK( ) to attempt to lock the table. If the table is successfully locked, REPLACE ALL updates every record in the table. UNLOCK releases the file lock. If the file cannot be locked because another user has locked the file or a record in the file, a message is displayed.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET EXCLUSIVE OFF
+SET REPROCESS TO 0
+USE customer    &amp;&amp; Open table shared
+IF FLOCK()
+ REPLACE ALL contact ;    &amp;&amp; Replace and unlock
+  WITH UPPER(contact) 
+ UNLOCK   
+ELSE  &amp;&amp; Output message
+ WAIT "File in use by another." WINDOW NOWAIT
+ENDIF</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Unlocking Data</h1><div id="sectionSection6" class="seeAlsoNoToggleSection">
+      <p>After you establish a record or file lock and complete a data operation in a shared environment, you should release the lock as soon as possible. There are several ways to release locks. In some cases, simply moving to the next record is enough to unlock the data. Other situations require explicit commands.</p>
+      <p>To unlock a record that's been automatically locked, you need only move the record pointer, even if you set MULTILOCKS ON. You must explicitly remove a lock from a record that you've manually locked; simply moving the record pointer is not enough.</p>
+      <p>The following table describes the effects of commands on manual and automatic record and table locks.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Command
+            </th>
+            <th>
+              Effect
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/1949c546-100e-41b1-b768-4a53d112be24.htm">UNLOCK</a>
+            </p>
+          </td>
+          <td>
+            <p>Releases record and file locks in the current work area.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/1949c546-100e-41b1-b768-4a53d112be24.htm">UNLOCK ALL</a>
+            </p>
+          </td>
+          <td>
+            <p>Releases all locks in all work areas in the current session.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/6f017b16-28bb-4fcb-93b1-ca08e674f7ac.htm">SET MULTILOCKS OFF</a>
+            </p>
+          </td>
+          <td>
+            <p>Enables automatic release of the current lock as a new lock is secured.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/76c905e2-77c6-4c45-8f9b-bad3c021c590.htm">FLOCK( )</a>
+            </p>
+          </td>
+          <td>
+            <p>Releases all record locks in the affected file before locking the file.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/b89737d7-7dac-455e-9088-fa0ec6c93b98.htm">CLEAR ALL</a>, <a href="/html/510d1838-e8cb-471b-8f92-e3409ba7a271.htm">CLOSE ALL</a>,<a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE</a>, <a href="/html/eacb2c2d-0800-4769-8c06-fbdae38fedee.htm">QUIT</a></p>
+          </td>
+          <td>
+            <p>Releases all record and file locks.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/73bf4877-61c4-4519-9759-4e0ad5cff7c7.htm">END TRANSACTION</a>
+            </p>
+          </td>
+          <td>
+            <p>Releases automatic locks.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( )</a>
+            </p>
+          </td>
+          <td>
+            <p>Releases all locks after updating the table.</p>
+          </td>
+        </tr></table></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+        <p>If a record was automatically locked in a user-defined function and you move the record pointer off and then back on the record, the lock will be released. Use table buffering to avoid this problem.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/aec29e01-39c1-4cce-983d-4c536f71626d.htm">How to: Use Data Sessions</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5878c5e3-9e76-4445-8919-3b94f6e40765.htm">RLOCK( ) Function</a></span><br /><span class="linkTerms"><a href="/html/83cc143e-80bf-4fb1-a9c0-bbbe67066c30.htm">LOCK( ) Function</a></span><br /><span class="linkTerms"><a href="/html/76c905e2-77c6-4c45-8f9b-bad3c021c590.htm">FLOCK( ) Function</a></span><br /><span class="linkTerms"><a href="/html/1949c546-100e-41b1-b768-4a53d112be24.htm">UNLOCK Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/f3eff628-41b3-45cd-856d-2d97fd2fed05.htm">Controlling Access to Data</a></span><br /><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Locking Data">
+</OBJECT>

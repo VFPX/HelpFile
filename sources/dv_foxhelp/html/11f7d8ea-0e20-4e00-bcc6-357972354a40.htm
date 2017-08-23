@@ -1,0 +1,169 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SQL Server Upsizing Wizard Preparation</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SQL Server Upsizing Wizard Preparation</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Before you run the SQL Server Upsizing Wizard, you must prepare both the client and server sides.</p>
+  <h1 class="heading">Preparing the SQL Server Side</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Before upsizing, you must ensure that you have necessary permissions on the server, estimate the size of your database, and check that the server has sufficient disk space. There are also special preparations for upsizing to multiple disks or devices.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Checking Free Disk Space</h3><div class="subSection" xmlns="">
+          <p>Make sure you have enough disk space on the server.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+            <p>If the SQL Server Upsizing Wizard runs out of disk space on the server, it halts, leaving a partial database and any devices it created on the server. You can remove devices, databases, and tables with the SQL Server Administration tool.</p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Setting Permissions on SQL Server Databases</h3><div class="subSection" xmlns="">
+          <p>In order to run the SQL Server Upsizing Wizard, you must have certain permissions on the SQL server to which you will be upsizing. The permissions you need depend on the tasks you want to accomplish.  </p>
+          <ul><li>
+              <p>To upsize to an existing database, you need CREATE TABLE and CREATE DEFAULT permissions.</p>
+            </li><li>
+              <p>To build a new database, you need CREATE DATABASE and SELECT permissions on the system tables in the master database.</p>
+            </li><li>
+              <p>To create new devices, you must be a system administrator.</p>
+            </li></ul>
+          <p>For more information on granting server permissions, see your SQL Server documentation.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Estimating SQL Server Database and Device Size</h3><div class="subSection" xmlns="">
+          <p>When you create a new database, the SQL Server Upsizing Wizard asks you to select devices for your database and log. It also asks you to set the size of the database and your devices.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Estimating SQL Server Database Size</h3><div class="subSection" xmlns="">
+          <p>When SQL Server creates a database, it sets aside a fixed amount of space for that database on one or more devices. Not all this space is necessarily used by the database — the database size simply limits how large a database can grow before it runs out of space.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You can increase the size of a SQL Server database after it's created. For more information, see the ALTER DATABASE command in your SQL Server documentation.</p>
+          </td></tr></table></div>
+          <p>To estimate the space needed for your database, calculate the total size of your Visual FoxPro .dbf files for the tables you want to upsize plus the rate at which your new SQL Server database will grow. In general, every megabyte of Visual FoxPro data requires at least 1.3 to 1.5 MB in the SQL Server.</p>
+          <p>If you have ample disk space on your server, multiply the size of your Visual FoxPro tables by two. This ensures that the SQL Server Upsizing Wizard has enough space to upsize your database and also leaves some room to grow. If you expect to add a lot of data to the database, increase the multiple.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Estimating SQL Server Device Sizes</h3><div class="subSection" xmlns="">
+          <p>All SQL Server databases and logs are placed on devices. A device is both a logical location at which to put databases and logs, and a physical file. When a device is created, SQL Server creates a file, thus reserving a set amount of disk space for its own use.</p>
+          <p>The SQL Server Upsizing Wizard displays the amount of free space available on the existing SQL Server devices. Select a device that has at least enough free space for your estimated database size.</p>
+          <p>If no existing devices have enough free space, you can use the SQL Server Upsizing Wizard to create a new device. New devices should be at least as big as your estimated database size. If possible, make the device larger than your database size, so you can expand your database later, or place other databases or logs on the same device.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Device size cannot be changed. Make sure you create sufficiently large devices.</p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Using Multiple SQL Server Disks or Devices</h3><div class="subSection" xmlns="">
+          <p>In most cases, the SQL Server Upsizing Wizard provides more than enough control over SQL Server devices. However, if your server has multiple disks or if you want to place a database or log on multiple devices, you might want to create devices before running the SQL Server Upsizing Wizard.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Servers with Multiple Physical Disks</h3><div class="subSection" xmlns="">
+          <p>If your server has more than one physical hard disk, you might want to place your database on one disk and the database log on a different disk. In the event of a disk failure, you'll be more likely to recover your database if the log and the database are stored on different physical disks.</p>
+          <p>The SQL Server Upsizing Wizard allows you to create new devices but only on one physical disk — the same disk as the Master database device.</p>
+          <p>To place a database and log on separate disks, make sure you have devices that are big enough on both disks, creating new devices if necessary. Then run the SQL Server Upsizing Wizard.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Placing Databases or Logs on Multiple Devices</h3><div class="subSection" xmlns="">
+          <p>SQL Server allows databases and logs to span several devices. However, the SQL Server Upsizing Wizard allows you to specify only one device for your database and one device for the log.</p>
+          <p>If you want to specify multiple devices for a database or log, make those devices (and no other devices) the default devices. Then run the SQL Server Upsizing Wizard and choose Default for the database or log device.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If the new SQL Server database or log sizes don't require using all the default devices, SQL Server uses only the devices necessary to accommodate the database or log.</p>
+          </td></tr></table></div>
+        </div>
+    </sections></div><h1 class="heading">Preparing the Client</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Before upsizing, you must have access to a SQL Server through an ODBC data source or named connection. You must also have a Visual FoxPro database, which you should back up before running the SQL Server Upsizing Wizard.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Creating an ODBC Data Source or Named Connection</h3><div class="subSection" xmlns="">
+          <p>When you create a new remote database, you select an ODBC data source or named connection in your Visual FoxPro database that accesses the SQL Server to which you want to upsize. Because you can't proceed through the Upsizing Wizard until you select a named connection or data source, you should create the appropriate named connection or data source before you start the upsizing process.</p>
+          <p>For information on creating a named connection, see <a href="/html/f9fd12f1-a3b4-4f39-855a-3bb7475d8be3.htm">How to: Define Connections to Remote Data Sources</a>. If you want to create an ODBC data source, run the ODBC Administrator. For information on setting up ODBC data sources, see <a href="/html/a23374b6-0a6c-4e42-a098-22f2f56a5b2d.htm">How to: Set Up an ODBC Data Source</a>.</p>
+        </div>
+    </sections></div><h1 class="heading">Backing Up Your Database</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>It's a good idea to create a backup copy of your database (.dbc, .dct, and .dcx files) before upsizing. While the SQL Server Upsizing Wizard doesn't modify .dbf files, it does operate on the .dbc directly by opening the .dbc as a table at times and indirectly by renaming tables and views when creating new remote views. If you back up your database, you can revert your database to its original pre-upsizing state by overwriting the upsized .dbc, .dct, and .dcx files with the original backup copies, which reverses the renaming and creation of new views.</p>
+    </div><h1 class="heading">Closing Tables</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>The SQL Server Upsizing Wizard attempts to exclusively open all the tables in the database to be upsized; if any tables are already open and shared, the wizard closes them and reopens them exclusively. Opening tables exclusively before upsizing protects against other users attempting to modify records in the tables you're exporting during data export. If any tables can't be opened exclusively, the SQL Server Upsizing Wizard displays a message; those tables are not available for upsizing.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/264f75d7-95e9-42b6-a319-d79988261a81.htm">How to: Start the SQL Server Upsizing Wizard</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/d2bf8742-0693-4ffb-af77-ae8ea8ec126a.htm">Database Creation with Upsizing Wizards</a></span><br /><span class="linkTerms"><a href="/html/607ab194-ce6b-4b0a-be4f-3f0d93ff760b.htm">How the SQL Server Upsizing Wizard Works</a></span><br /><span class="linkTerms"><a href="/html/bb523fee-c542-42f4-a8ed-3d75251fe62c.htm">SQL Server Upsizing Process Completion</a></span><br /><span class="linkTerms"><a href="/html/8b6a8cfa-f5f8-45c3-9710-c8ddee36faf4.htm">Goals for Prototyping</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SQL Server Upsizing Wizard Preparation">
+</OBJECT>

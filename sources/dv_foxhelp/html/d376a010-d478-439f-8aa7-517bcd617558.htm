@@ -1,0 +1,160 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SET CENTURY Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SET CENTURY Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Determines whether Microsoft Visual FoxPro displays the century portion of date expressions and how Visual FoxPro interprets dates that specify only 2 digit years. </p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SET CENTURY ON | OFF | TO [<span class="parameter">nCentury</span> [ROLLOVER <span class="parameter">nYear</span>]]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">ON </span></dt><dd>
+          <p>Specifies a four-digit year in a format that includes 10 characters (including date delimiters).</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>To provide year 2000 compliance, it's recommended that you always set SET CENTURY to ON. </p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">OFF </span></dt><dd>
+          <p>(Default) Specifies a two-digit year in a format that includes eight characters and assumes the twentieth century for date calculations.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TO <span class="parameter">nCentury</span></span></dt><dd>
+          <p>A number from 1 to 99 that specifies the current century. When a date has a two digit year, <span class="parameter">nCentury</span> determines in which century the year occurs. The ROLLOVER value determines whether the year is in <span class="parameter">nCentury</span> or the century following <span class="parameter">nCentury</span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ROLLOVER <span class="parameter">nYear</span></span></dt><dd>
+          <p>A number from 0 to 99 that specifies the year equal to and above which is the current century and below which is the next century. The default value for <span class="parameter">nYear</span> is the last two digits of the current year plus 50 years - if the current year is 1998, <span class="parameter">nYear</span> is 48, the last two digits of 2048 (1998 + 50).</p>
+          <p>Note that the rollover value only determines the century for a date entered without a century portion - an ambiguous date format that is not recommended.   </p>
+          <p>For example, if the current year is 1998 and <span class="parameter">nYear</span> is the default (48), any date entered without a century portion and a year of 48 or greater is considered to be in the current century (the 20th century). Any date entered without a century portion but with a year before 48 is considered to be in the next century (the 21st century). </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Use SET CENTURY to specify how date variables and functions are displayed.</p>
+      <p>Issue SET CENTURY TO without any additional arguments to restore the default century to the current century and ROLLOVER to the default value of the current year plus 50 years. In Visual FoxPro 5.0, issuing SET CENTURY TO without any additional arguments sets the century to 19 and ROLLOVER to zero.</p>
+      <p>SET CENTURY is scoped to the current data session. New data sessions are initialized to the default values as specified above, ignoring the value of SET CENTURY for the current data session.</p>
+      <p>SET CENTURY TO ROLLOVER is available in Visual FoxPro 5.0 and later, and makes it possible for you to control the assumed year for dates used when the setting is SET CENTURY OFF. It also allows for a rollover value since many applications contain dates that span multiple centuries. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>SET CENTURY OFF always implies dates in the 20th century. However, the SET CENTURY TO syntax takes precedence over this setting. So, with Visual FoxPro 5.0 and later, the SET CENTURY ON/OFF setting only controls the number of digits displayed.</p>
+      </td></tr></table></div>
+      <p>The value of SET CENTURY TO is scoped to the current data session. </p>
+      <p>In Visual FoxPro 5.0, issuing SET CENTURY TO without additional parameters sets the century to the current century –1 and rollover to zero if the two-digit year of the system date is less than 50. Century is set to the current century if the two-digit system date is greater than 50. For example, if the current year were 1998, <span class="parameter">nYear</span> would be 48, the last two digits of 2048 (1998 + 50).</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/c5f29ec4-794b-4ad5-bf33-f806a334f365.htm">DATE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/650419ee-d0c5-439a-b452-87b694f1024e.htm">SET DATASESSION Command</a></span><br /><span class="linkTerms"><a href="/html/6391fe34-8fba-4fc0-9cfc-258fe0276509.htm">SET STRICTDATE Command</a></span><br /><span class="linkTerms"><a href="/html/45018e26-0fce-4f5e-9502-adbc53487a6b.htm">SET SYSFORMATS Command</a></span><br /><span class="linkTerms"><a href="/html/0ff1d93c-c4d4-446b-aff7-b3668b48f758.htm">YEAR( ) Function</a></span><br /><span class="linkTerms"><a href="/html/1334aa6b-38e0-4fcd-a174-3c4f5c964155.htm">SET Command Overview</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SET CENTURY Command">
+<param name="ALink Name" value="SET CENTURY">
+</OBJECT>

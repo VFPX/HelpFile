@@ -1,0 +1,378 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Managing Conflicts When Updating Data</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Managing Conflicts When Updating Data</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Whether you choose buffering, transactions, or views, you must manage conflicts during the update process. Managing conflicts encountered in multiuser environments can require extensive and repetitive code. A complete conflict management routine performs the following:  </p>
+    <ul><li>
+        <p>Detects a conflict.</p>
+      </li><li>
+        <p>Identifies the nature and location of the conflict.</p>
+      </li><li>
+        <p>Provides enough information so that the user can intelligently resolve the conflict.</p>
+      </li></ul>
+    <p>For an example of a conflict management routine, see the data checker class in Samples.vcx, located in the Visual FoxPro ...\Samples\Classes directory. Just add the class to a form and call the CheckConflicts method before any operation that writes buffered data to the table, for example moving the record pointer if you're using row buffering, closing a table, or issuing TABLEUPDATE( ).</p>
+  <h1 class="heading">Managing Buffering Conflicts</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can make data update operations more efficient by carefully choosing how and when to open, buffer, and lock data in a multiuser environment. You should limit the time a record or table is subject to access conflicts. Still, you must anticipate and manage the inevitable conflicts that result. A <i>conflict</i> occurs when one user tries to lock a record or table that's currently locked by another user. Two users cannot lock the same record or table at the same time.</p>
+      <p>Your application should contain a routine to manage these conflicts. If your application doesn't have a conflict routine, the system can lock up. A <i>deadlock</i> occurs when one user has locked a record or a table and tries to lock another record that's locked by a second user who, in turn, is trying to lock the record that's locked by the first user. While such occurrences are rare, the longer that a record or table is locked, the greater the chance of deadlock.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Trapping Errors</h3><div class="subSection" xmlns="">
+          <p>Designing a multiuser application or adding network support to a single-user system requires that you deal with collisions and trap for errors. Using Visual FoxPro record and table buffers simplifies some of this work.</p>
+          <p>If you attempt to lock a record or table already locked by another user, Visual FoxPro returns an error message. You can use <a href="/html/cc56eb65-6621-4d12-8192-ca38042d16a5.htm">SET REPROCESS</a> to automatically deal with unsuccessful lock attempts. This command, in combination with an <a href="/html/833fefcd-01e7-423b-998e-611a14e7c163.htm">ON ERROR</a> routine and the <a href="/html/b74b696c-f6ed-4602-a4b7-943756338b01.htm">RETRY</a> command, enables you to continue or cancel the lock attempts.</p>
+          <p>The following example demonstrates automatic reprocessing of a failed operation, using SET REPROCESS.</p>
+          <div class="labelheading"><b>Using SET REPROCESS and ON ERROR to Manage User Collisions</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Code
+                </th>
+                <th>
+                  Comment
+                </th>
+              </tr><tr>
+              <td>
+                <p>
+                  <code>ON ERROR DO err_fix WITH ERROR(),MESSAGE()</code>
+                </p>
+                <p>
+                  <code>SET EXCLUSIVE OFF   </code>
+                </p>
+                <p>
+                  <code>SET REPROCESS TO AUTOMATIC</code>
+                </p>
+                <p>
+                  <code>USE customer</code>
+                </p>
+                <p>
+                  <code>IF !FILE('cus_copy.dbf')</code>
+                </p>
+                <p>
+                  <code>   COPY TO cus_copy</code>
+                </p>
+                <p>
+                  <code>ENDIF</code>
+                </p>
+              </td>
+              <td>
+                <p>This routine runs if an error occurs. Open the files non-exclusively. Reprocessing of unsuccessful locks is automatic. Open the table. Create the APPEND FROM table if needed.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>DO app_blank</code>
+                </p>
+                <p>
+                  <code>DO rep_next</code>
+                </p>
+                <p>
+                  <code>DO rep_all</code>
+                </p>
+                <p>
+                  <code>DO rep_curr</code>
+                </p>
+                <p>
+                  <code>DO add_recs</code>
+                </p>
+              </td>
+              <td>
+                <p>The main routine starts here. These commands are examples of codes that could be executed in the course of your program.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>ON ERROR</code>
+                </p>
+              </td>
+              <td>
+                <p>The main routine ends here.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>PROCEDURE app_blank      </code>
+                </p>
+                <p>
+                  <code>   APPEND BLANK</code>
+                </p>
+                <p>
+                  <code>RETURN</code>
+                </p>
+                <p>
+                  <code>ENDPROC</code>
+                </p>
+              </td>
+              <td>
+                <p>Routine to append a blank record.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>PROCEDURE rep_next</code>
+                </p>
+                <p>
+                  <code>   REPLACE NEXT 1 contact WITH ;</code>
+                </p>
+                <p>
+                  <code>      PROPER(contact)</code>
+                </p>
+                <p>
+                  <code>RETURN</code>
+                </p>
+                <p>
+                  <code>ENDPROC</code>
+                </p>
+              </td>
+              <td>
+                <p>Routine to replace data in the current record.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>PROCEDURE rep_all      </code>
+                </p>
+                <p>
+                  <code>   REPLACE ALL contact WITH ;</code>
+                </p>
+                <p>
+                  <code>      PROPER(contact)</code>
+                </p>
+                <p>
+                  <code>   GO TOP</code>
+                </p>
+                <p>
+                  <code>RETURN</code>
+                </p>
+                <p>
+                  <code>ENDPROC</code>
+                </p>
+              </td>
+              <td>
+                <p>Routine to replace data in all records.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>PROCEDURE rep_curr      </code>
+                </p>
+                <p>
+                  <code>   REPLACE contact WITH PROPER(contact)</code>
+                </p>
+                <p>
+                  <code>RETURN</code>
+                </p>
+                <p>
+                  <code>ENDPROC</code>
+                </p>
+              </td>
+              <td>
+                <p>Routine to replace data in the current record.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>PROCEDURE add_recs      </code>
+                </p>
+                <p>
+                  <code>   APPEND FROM cus_copy</code>
+                </p>
+                <p>
+                  <code>RETURN</code>
+                </p>
+                <p>
+                  <code>ENDPROC</code>
+                </p>
+              </td>
+              <td>
+                <p>Routine to append records from another file.</p>
+              </td>
+            </tr></table></div>
+          <p>The following example demonstrates an error procedure that starts when the user presses ESC.</p>
+          <div class="labelheading"><b>Error Handling Using the ESC Key</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Code
+                </th>
+                <th>
+                  Comment
+                </th>
+              </tr><tr>
+              <td>
+                <p>
+                  <code>PROCEDURE err_fix</code>
+                </p>
+                <p>
+                  <code>   PARAMETERS errnum, msg</code>
+                </p>
+              </td>
+              <td>
+                <p>This program is called when an error is encountered and the user escapes from the wait process.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>DO CASE</code>
+                </p>
+              </td>
+              <td>
+                <p>Figure out what kind of error this is. Is it "File is in use by another"?</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>   CASE errnum = 108      </code>
+                </p>
+                <p>
+                  <code>      line1 = "File cannot be locked."</code>
+                </p>
+                <p>
+                  <code>      line2 = "Try again later..."</code>
+                </p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>   CASE errnum = 109 .OR. errnum = 130</code>
+                </p>
+                <p>
+                  <code>      line1 = "Record cannot be locked."</code>
+                </p>
+                <p>
+                  <code>      line2 = "Try again later."</code>
+                </p>
+              </td>
+              <td>
+                <p>Or "Record is in use by another"?</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>   OTHERWISE            </code>
+                </p>
+                <p>
+                  <code>      line1 = msg + " "</code>
+                </p>
+                <p>
+                  <code>      line2 = ;</code>
+                </p>
+                <p>
+                  <code>         "See your system administrator."</code>
+                </p>
+                <p>
+                  <code>ENDCASE</code>
+                </p>
+              </td>
+              <td>
+                <p>Or is it unknown?</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>=MESSAGEBOX( line1 + line2, 48, "Error!" )</code>
+                </p>
+                <p>
+                  <code>RETURN                  </code>
+                </p>
+              </td>
+              <td>
+                <p>Display the error message in a dialog box with an exclamation point and an OK button.</p>
+              </td>
+            </tr></table></div>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/cc56eb65-6621-4d12-8192-ca38042d16a5.htm">SET REPROCESS Command</a></span><br /><span class="linkTerms"><a href="/html/833fefcd-01e7-423b-998e-611a14e7c163.htm">ON ERROR Command</a></span><br /><span class="linkTerms"><a href="/html/b74b696c-f6ed-4602-a4b7-943756338b01.htm">RETRY Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c3ac4a1d-4c23-40ba-8715-e9ce9438cf62.htm">Updating Data</a></span><br /><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Managing Conflicts When Updating Data">
+</OBJECT>

@@ -1,0 +1,578 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Leveraging the Default Preview Container</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Leveraging the Default Preview Container</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>To facilitate the SET REPORTBEHAVIOR 90 setting, Visual FoxPro ships with a default preview container factory application, ReportPreview.App. It is located in the HOME() directory along with the other tools, and is referenced by default in the _REPORTPREVIEW system variable.</p>
+    <p>This topic describes the capabilities of the Preview Container component delivered by ReportPreview.App, additional to the standard Preview Container API.</p>
+  <h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Prerequisites</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <ul><li>
+          <p>
+            <span class="linkTerms"><a href="/html/66975043-814c-4886-901c-53d3924ca1bb.htm">The Preview Container API</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/7e0ce0ab-435d-480c-9729-534c0c5a7a4c.htm">_REPORTPREVIEW System Variable</a></span>
+          </p>
+        </li></ul>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Object Diagram</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>The following illustration shows the object diagram of the default preview container as it exists after the report engine has called the <code>Show()</code> method. Prior to that point, the <code>oForm</code> and <code>oForm.Toolbar</code> member objects may not have been instantiated:</p>
+      <img src="../local/Local_383798799_foxpropreviewobject.gif" alt="Visual FoxPro Preview Object Diagram graphic"></img>
+      <p>A proxy object is used because in order to support numerous clauses of the <b>REPORT FORM… PREVIEW</b> command in object-assisted mode, the preview may instantiate one of a number of specific form classes derived from the parent class frxPreviewForm as its <code>oForm</code> reference:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Class Name</b>
+              
+            </th>
+            <th>
+              
+                <b>Derived From</b>
+              
+            </th>
+            <th>
+              
+                <b>Notes</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>Form</code>
+            </p>
+          </td>
+          <td>
+            <p>n/a</p>
+          </td>
+          <td>
+            <p>Visual FoxPro base form class</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>frxBaseForm</code>
+            </p>
+          </td>
+          <td>
+            <p>
+              <code>Form</code>
+            </p>
+          </td>
+          <td>
+            <p>Implements error handling and large font support.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>frxPreviewForm</code>
+            </p>
+          </td>
+          <td>
+            <p>
+              <code>frxBaseForm</code>
+            </p>
+          </td>
+          <td>
+            <p>Implements the Preview Container API.</p>
+            <p>.ShowWindow = 1 - in top-level form</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>frxPreviewAsTopForm</code>
+            </p>
+          </td>
+          <td>
+            <p>
+              <code>frxPreviewForm</code>
+            </p>
+          </td>
+          <td>
+            <p>.ShowWindow = 2 - As top-level form</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>frxPreviewInScreen</code>
+            </p>
+          </td>
+          <td>
+            <p>
+              <code>frxPreviewForm</code>
+            </p>
+          </td>
+          <td>
+            <p>.ShowWindow = 0 - In Screen</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>frxPreviewInDesktop</code>
+            </p>
+          </td>
+          <td>
+            <p>
+              <code>frxPreviewForm</code>
+            </p>
+          </td>
+          <td>
+            <p>.Desktop = .T.</p>
+          </td>
+        </tr></table></div>
+      <p>The properties and methods described below are members of the frxPreviewProxy object.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2)" tabindex="0"><img id="sectionToggle2" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Additional Properties and Methods</span></h1><div id="sectionSection2" class="section" name="collapseableSection" style="display: none;">
+      <p>In addition to the standard preview container API, the default component returned by ReportPreview.App exposes other properties and methods that can be used to control the appearance of the Preview window when object-assisted reporting mode is used.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Properties</h3><div class="subSection" xmlns="">
+          <p>These properties control the initial state of the preview window only. If set to non-default values, these properties take precedence over any preferences restored from the resource file.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Property Name</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Type</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Top</p>
+              </td>
+              <td>
+                <p>I</p>
+              </td>
+              <td>
+                <p>Specifies the vertical offset from the top of the main Visual FoxPro window of the of the preview form, in pixels.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Left</p>
+              </td>
+              <td>
+                <p>I</p>
+              </td>
+              <td>
+                <p>Specifies the left horizontal offset from the left side of the main Visual FoxPro window of the of the preview form, in pixels.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Width</p>
+              </td>
+              <td>
+                <p>I</p>
+              </td>
+              <td>
+                <p>Specifies the horizontal size of the preview form in pixels.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Height</p>
+              </td>
+              <td>
+                <p>I</p>
+              </td>
+              <td>
+                <p>Specifies the vertical size of the of the preview form, in pixels.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ToolbarIsVisible</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Specifies that the preview window toolbar should be initially visible.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Caption</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>Specifies the caption of the preview window.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>CanvasCount</p>
+              </td>
+              <td>
+                <p>I</p>
+              </td>
+              <td>
+                <p>Specifies the initial number of pages rendered on the preview form. Valid values are 1, 2, or 4.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ZoomLevel</p>
+              </td>
+              <td>
+                <p>I</p>
+              </td>
+              <td>
+                <p>Specifies the initial zoom level of the preview window. Possible values are:</p>
+                <p>1 - 10%</p>
+                <p>2 - 25%</p>
+                <p>3 -50%</p>
+                <p>4 - 75%</p>
+                <p>5 - 100% (default)</p>
+                <p>6 - 150%</p>
+                <p>7 - 200%</p>
+                <p>8 - 300%</p>
+                <p>9 - 500%</p>
+                <p>10 - whole page</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>CurrentPage</p>
+              </td>
+              <td>
+                <p>I</p>
+              </td>
+              <td>
+                <p>Specifies the initial page to render on the preview form. The default is 1. If it is greater than the number of pages available the last page will be displayed.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>TopForm</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Specfies whether the preview form should be a standalone top form. This will force a modeless (NOWAIT) preview session, and the toolbar is automatically docked at the top of the form. Default value is false (<code>.F.</code>).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>TextOnToolbar</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Specifies that the toolbar buttons should show text captions. Default value is false (<code>.F.</code>).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>AllowPrintFromPreview</p>
+              </td>
+              <td>
+                <p>B</p>
+              </td>
+              <td>
+                <p>Specifies whether the Print button on the Preview tool bar or the Print command button on the short-cut menu is enabled for the Preview Container of the report listener object.</p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Methods</h3><div class="subSection" xmlns="">
+          <p>In addition to the methods specified by <span class="linkTerms"><a href="/html/66975043-814c-4886-901c-53d3924ca1bb.htm">The Preview Container API</a></span> , the default preview container also exposes all public methods of the base <b>Form</b> class.</p>
+          <p>The following additional methods can be called after the preview container is visible:</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Method</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>SetCurrentPage( <span class="parameter">iPageNo</span> )</p>
+              </td>
+              <td>
+                <p>Moves to a specific page number.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SetCanvasCount( <span class="parameter">iCount</span> )</p>
+              </td>
+              <td>
+                <p>Adjusts the number of pages rendered on the preview form.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SetZoomLevel( <span class="parameter">iLevel</span> )</p>
+              </td>
+              <td>
+                <p>Adjusts the scale of the rendered pages.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SetExtensionHandler( <span class="parameter">oRef</span> )</p>
+              </td>
+              <td>
+                <p>Assigns an extension handler (See below)</p>
+              </td>
+            </tr></table></div>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle3)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle3)" tabindex="0"><img id="sectionToggle3" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>The Extension Handler Interface</span></h1><div id="sectionSection3" class="section" name="collapseableSection" style="display: none;">
+      <p>The default preview container has a specific mechanism that allows you to modify or extend the functionality of the preview user interface without subclassing or recompiling the source code.</p>
+      <p>You use <b>SetExtensionHandler()</b> to pass the default preview container a reference to an object that implements a specific set of "hook" methods that are invoked at specific points.  See below for the API and sample usage.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Preview Extension Handler Properties</h3><div class="subSection" xmlns="">
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Property</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>PreviewForm</p>
+              </td>
+              <td>
+                <p>This is a back-reference to the preview form. If this property does not exist, it will be created by the default preview container via an ADDPROPERTY() call, and assigned a reference to the preview form. The preview container nulls out the back reference automatically before releasing to avoid an object reference loop that might prevent it from doing so.</p>
+                <p>Useful properties of .PreviewForm:</p>
+                <ul><li>
+                    <p>
+                      <code>.PreviewForm.oReport</code> references the active report listener</p>
+                  </li><li>
+                    <p>
+                      <code>.PreviewForm.Toolbar</code> references the preview form's toolbar object.</p>
+                  </li></ul>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Preview Extension Handler Methods</h3><div class="subSection" xmlns="">
+          <p>These methods must be implemented by a candidate Extension Handler.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Method</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>AddBarsToMenu( <span class="parameter">cPopupName</span>, <span class="parameter">iNextBarNum</span> )</p>
+              </td>
+              <td>
+                <p>This method is called from the preview form's RightClick() event, directly prior to the <code>ACTIVATE POPUP (m.cPopupName)</code> statement, so you can potentially remove menu bars or redefine them. </p>
+                <p>
+                  <span class="parameter">cPopupName</span> is the name of the popup.</p>
+                <p>
+                  <span class="parameter">iNextBarNum</span> is the next available bar number.</p>
+                <p>Because you cannot use the <code>THIS</code> keyword in a popup <code>ON SELECTION..</code> command, the preview form makes a reference to itself available in a variable oRef.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>HandledKeyPress( <span class="parameter">nKey</span>, <span class="parameter">nModifier</span> )</p>
+              </td>
+              <td>
+                <p>This method is called from the preview form's <b>Keypress()</b> event. Return true (<code>.T.</code>) if you wish to replace the default response to a specific key press. This method is called before the preview form's native keypress handling, so you may override selected keypress events.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Show( <span class="parameter">iStyle</span> )</p>
+              </td>
+              <td>
+                <p>This method is called from the preview form's <b>Show()</b> method. You will be able to manipulate the preview toolbar through the <code>THIS.PreviewForm.Toolbar</code> reference.  The toolbar actually gets created in the preview form's Init() event but as the extension handled has not been assigned at that point, the Show() is the best place for configuration and decoration code.</p>
+                <p>Note that the toolbar itself also has a <code>PreviewForm</code> back-reference to the preview form, so you could add command buttons with Click() code like <code>THIS.Parent.PreviewForm.ExtensionHandler.MyCustomMethod()</code>. </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Paint()</p>
+              </td>
+              <td>
+                <p>Called from the preview form's <b>Paint()</b> event, after the preview has finished rendering the pages.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Release()</p>
+              </td>
+              <td>
+                <p>Called from the preview form's <b>Release()</b> event. Returning false (<code>.F.</code>) from this method will prevent the preview form from closing.</p>
+              </td>
+            </tr></table></div>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle4)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle4)" tabindex="0"><img id="sectionToggle4" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example: Customizing the preview container using an Extension Handler</span></h1><div id="sectionSection4" class="section" name="collapseableSection" style="display: none;">
+      <p>The following example customizes the appearance of the preview window and also implements an extension handler that removes the ability to change the number of pages rendered simultaneously on the preview form.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Obtain an instance of the default preview container:
+pc = .NULL.
+DO (_REPORTPREVIEW) WITH pc
+* Set some initial properties:
+WITH pc
+    .Caption = "My Custom Preview Window"
+    .ZoomLevel = 4   &amp;&amp; 75%
+    .CanvasCount = 1
+ENDWITH
+* Create an instance of an Extension Handler:
+xh = NEWOBJECT("MyRetroPreview")
+* Assign it to the preview container:
+pc.SetExtensionHandler( m.xh )
+* Set up a report listener and give it our preview:
+rl = NEWOBJECT("Reportlistener")
+rl.ListenerType = 1
+rl.PreviewContainer = pc
+* Run a report:
+REPORT FORM (_SAMPLES+"\solution\reports\colors.frx") OBJECT rl 
+RETURN
+*---------------------------------------------
+* Extension Handler Class:
+*---------------------------------------------
+DEFINE CLASS MyRetroPreview AS Custom
+    PROCEDURE AddBarsToMenu( cPopup, iNextBar )
+        * Remove the option to change page count:
+        RELEASE BAR 8 OF (m.cPopup)
+    ENDPROC
+    PROCEDURE Show( iStyle )
+        * Remove the option to change page count:
+        THIS.PreviewForm.Toolbar.opgPageCount.Visible = .F.
+        THIS.PreviewForm.CanvasCount = 1
+    ENDPROC
+    PROCEDURE HandledKeyPress( nKeyCode, nShiftAltCtrl )
+        RETURN .F.
+    ENDPROC
+    PROCEDURE Paint()
+    ENDPROC
+    PROCEDURE Release()
+        RETURN .T.
+    ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle5)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle5)" tabindex="0"><img id="sectionToggle5" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Use of the Resource File</span></h1><div id="sectionSection5" class="section" name="collapseableSection" style="display: none;">
+      <p>The default preview container uses the current resource file (as returned by <code>SET("RESOURCE",1)</code> ) to remember the size, position, number of pages visible, zoom level, etc., for each report file.</p>
+      <p>The window and toolbar preferences are stored in the FOXUSER table with an ID of "9REPPREVIEW". Window and Toolbar position and size preferences are saved independently for each individual report file.  The position and state of the preview toolbar is common to all report previews.  If the resource file is not available, or read-only, then the window preferences are not saved.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/68ca355c-7494-4a8a-9baf-e525437adc8d.htm">Creating a Custom Preview Container</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5d6e4527-8b6f-4f39-a670-c3397eff3bfd.htm">SET REPORTBEHAVIOR Command</a></span><br /><span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/223a5d97-3d68-4e70-8bde-9c15b8f9ce62.htm">Understanding Visual FoxPro Object-Assisted Reporting</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Leveraging the Default Preview Container">
+</OBJECT>

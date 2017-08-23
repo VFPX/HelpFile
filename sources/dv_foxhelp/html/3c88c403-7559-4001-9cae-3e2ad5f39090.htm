@@ -1,0 +1,704 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Understanding Report Builder Events</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Understanding Report Builder Events</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro's Report and Label Designers expose selected user interface (UI) operations as <i>builder events</i> that can be intercepted and handled by a <i>report builder</i> application.</p>
+    <p>The builder application invoked by the designer is specified by the <span class="linkTerms"><a href="/html/66161092-cda2-4d9f-868c-26beaffa0841.htm">_REPORTBUILDER System Variable</a></span>, which by default references reportbuilder.app, located in the Visual FoxPro install directory. This application is invoked both from the Report Designer and the Label Designer - there is no corresponding "_LABELBUILDER" variable. In this topic and the ones that follow, you may assume that any discussion involving the Report Designer applies equally to the Label Designer.</p>
+    <p>The report builder application has the opportunity to augment or replace the native designer dialog boxes, and the entire underlying source file of the layout currently open in the Report Designer is available to the report builder as a cursor in a private data session.</p>
+    <p>If <b>_REPORTBUILDER</b> is empty or refers to a non-existent file, no error is raised. The designers will respond to user actions normally, as in previous versions of Visual FoxPro.</p>
+    <p>When a report builder event occurs, the Report Designer does the following:</p>
+    <ul><li>
+        <p>Creates a private data session.</p>
+      </li><li>
+        <p>Opens a copy of the source (.frx or lbx) file currently being edited in the designer, with the alias "FRX."</p>
+      </li><li>
+        <p>Invokes the application specified by _REPORTBUILDER, passing it four parameters.</p>
+      </li></ul>
+    <p>A report builder application must comply with the following API:</p>
+    <ul><li>
+        <p>It must accept at least four parameters (passed by reference) in the main program.</p>
+      </li><li>
+        <p>It must return a value to the Report Designer by changing the value of the first parameter.</p>
+      </li><li>
+        <p>It must be modal, because the designer will be waiting for the return value to indicate what action it should take next.</p>
+      </li></ul>
+  <h1 class="heading">Parameters passed from the Designer</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The Designer passes four parameters, by reference, to the builder application:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Index</b>
+              
+            </th>
+            <th>
+              
+                <b>Parameter</b>
+              
+            </th>
+            <th>
+              
+                <b>DataType</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>1</p>
+          </td>
+          <td>
+            <p>ReturnFlags</p>
+          </td>
+          <td>
+            <p>I</p>
+          </td>
+          <td>
+            <p>Passed by reference so that the builder application can return values to the Report or Label Designer.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>2</p>
+          </td>
+          <td>
+            <p>EventType</p>
+          </td>
+          <td>
+            <p>I</p>
+          </td>
+          <td>
+            <p>An integer representing the type of event that occurred.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>3</p>
+          </td>
+          <td>
+            <p>CommandClauses</p>
+          </td>
+          <td>
+            <p>O</p>
+          </td>
+          <td>
+            <p>An object (of <b>Empty</b> class) with properties indicating what clauses were used on the command that launched the designer.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>4</p>
+          </td>
+          <td>
+            <p>DesignerSessionId</p>
+          </td>
+          <td>
+            <p>I</p>
+          </td>
+          <td>
+            <p>The DataSession Id that the Report Designer is in.</p>
+          </td>
+        </tr></table></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">ReturnFlags</h3><div class="subSection" xmlns="">
+          <p>This passed-by-reference parameter is -1 when passed to the report builder, but the designer expects to receive a different value back. Possible return values consist of summed binary flags:</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  #define constant
+                </th>
+                <th>
+                  Bit number
+                </th>
+                <th>
+                  Bits
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>FRX_REPBLDR_HANDLE_EVENT</p>
+              </td>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>01</p>
+              </td>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>If set, this flag tells the Report Designer that the event has been handled by the report builder, and to suppress the default action the designer would normally do in response to the event. This flag is similar to the operation of <b>NODEFAULT</b> in Visual FoxPro method code.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_REPBLDR_RELOAD_CHANGES</p>
+              </td>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>10</p>
+              </td>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>If set, this flag tells the Report Designer that the builder made changes to the FRX cursor, and that the changes should be reloaded into the designer, and reflected in the layout.</p>
+              </td>
+            </tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The #define constants shown in the tables are defined in <b>foxpro_reporting.h</b> in the FFC\ directory under the Visual FoxPro home directory.</p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">EventType</h3><div class="subSection" xmlns="">
+          <p>This parameter is an enumerated type, representing the event that caused the Report Designer to invoke the report builder application.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  #define constant
+                </th>
+                <th>
+                  
+                    <b>Value</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Event Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_PROPERTIES</p>
+              </td>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>A <b>Properties</b> dialog box is being invoked, by double-clicking or a menu action.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_OBJECTCREATE</p>
+              </td>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>A control is being created in the layout.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>n/a</p>
+              </td>
+              <td>
+                <p>3</p>
+              </td>
+              <td>
+                <p>(Reserved for future use.)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_OBJECTREMOVE</p>
+              </td>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>A control is being removed from the layout by deletion or by CTRL-X/Cut.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_OBJECTPASTE</p>
+              </td>
+              <td>
+                <p>5</p>
+              </td>
+              <td>
+                <p>A control is being pasted into the layout from the clipboard.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_REPORTSAVE</p>
+              </td>
+              <td>
+                <p>6</p>
+              </td>
+              <td>
+                <p>The layout is being saved to disk.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_REPORTOPEN</p>
+              </td>
+              <td>
+                <p>7</p>
+              </td>
+              <td>
+                <p>The layout is being opened.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_REPORTCLOSE</p>
+              </td>
+              <td>
+                <p>8</p>
+              </td>
+              <td>
+                <p>The layout is being closed.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_DATAENV</p>
+              </td>
+              <td>
+                <p>9</p>
+              </td>
+              <td>
+                <p>The <b>Data Environment</b> window is being opened.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_PREVIEWMODE</p>
+              </td>
+              <td>
+                <p>10</p>
+              </td>
+              <td>
+                <p>The print preview mode is being invoked.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_OPTIONALBANDS</p>
+              </td>
+              <td>
+                <p>11</p>
+              </td>
+              <td>
+                <p>The <b>Optional Bands</b> dialog box is being invoked.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_DATAGROUPING</p>
+              </td>
+              <td>
+                <p>12</p>
+              </td>
+              <td>
+                <p>The <b>Data Grouping</b> dialog box is being invoked.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_VARIABLES</p>
+              </td>
+              <td>
+                <p>13</p>
+              </td>
+              <td>
+                <p>The <b>Variables</b> dialog box is being invoked.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_EDITINPLACE</p>
+              </td>
+              <td>
+                <p>14</p>
+              </td>
+              <td>
+                <p>CTRL-E was pressed on a selected <b>Label</b> control.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_SETGRIDSCALE</p>
+              </td>
+              <td>
+                <p>15</p>
+              </td>
+              <td>
+                <p>The <b>Set grid scale</b> dialog box is being invoked.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_OBJECTDROP</p>
+              </td>
+              <td>
+                <p>16</p>
+              </td>
+              <td>
+                <p>Object(s) are being created from a drag-and-drop operation from the <b>Data Environment</b> window, a <b>Database Container,</b> or a <b>Project</b> window.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_IMPORTDE</p>
+              </td>
+              <td>
+                <p>17</p>
+              </td>
+              <td>
+                <p>
+                  <b>Import data environment</b> was selected from the <b>Report</b> menu.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_PRINT</p>
+              </td>
+              <td>
+                <p>18</p>
+              </td>
+              <td>
+                <p>
+                  <b>Print</b> was selected from the <b>File</b> menu or <b>Run Report</b> was selected from the designer's context menu.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FRX_BLDR_EVENT_QUICKREPORT</p>
+              </td>
+              <td>
+                <p>19</p>
+              </td>
+              <td>
+                <p>
+                  <b>Quick Report</b> was selected from the <b>Report</b> menu.</p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">CommandClauses</h3><div class="subSection" xmlns="">
+          <p>This parameter is an object reference to an instance of an <b>Empty</b> class with a number of additional properties indicating the various possible clauses on the Visual FoxPro command that launched the Report or Label Designer:</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Property</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Data Type</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>AddTableToDE</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Indicates that the <b>Add table to data environment</b> check box is selected in the <b>Quick Report</b> dialog box.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Alias</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Indicates that the <b>ALIAS</b> keyword was specified in the <b>CREATE REPORT | LABEL FROM..</b> command, or that <b>Add alias</b> was checked in the Quick Report dialog box.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FieldList</p>
+              </td>
+              <td>
+                <p>O</p>
+              </td>
+              <td>
+                <p>Contains a collection of numeric field numbers, representing the field list of the quick report command.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>File</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>Contains the filename of the source (.frx or .lbx) file open in the Designer. This file may not actually exist if <b>CREATE REPORT</b> was used.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Form</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Indicates the layout of the quick report:</p>
+                <ul><li>
+                    <p>.T. if FORM layout was specified.</p>
+                  </li><li>
+                    <p>.F. if COLUMN layout was specified.</p>
+                  </li></ul>
+              </td>
+            </tr><tr>
+              <td>
+                <p>From</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>Contains the table name specified in the <b>CREATE REPORT FROM</b> &lt;<span class="parameter">filename</span>&gt; clause.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>InScreen</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Indicates that the <b>IN SCREEN</b> clause was used in the command.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>InWindow</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>Specifies the window name of the <b>IN</b> &lt;<span class="parameter">windowname</span>&gt; clause, if used.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>IsCreate</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Indicates the layout is newly created:</p>
+                <ul><li>
+                    <p>.T. if <b>CREATE</b> REPORT | LABEL.</p>
+                  </li><li>
+                    <p>.F. if <b>MODIFY</b> REPORT | LABEL.</p>
+                  </li></ul>
+              </td>
+            </tr><tr>
+              <td>
+                <p>IsReport</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Indicates the type of layout open in the Designer:</p>
+                <ul><li>
+                    <p>.T. if CREATE | MODIFY <b>REPORT.</b></p>
+                  </li><li>
+                    <p>.F. if CREATE | MODIFY <b>LABEL.</b></p>
+                  </li></ul>
+              </td>
+            </tr><tr>
+              <td>
+                <p>IsQuickReportFromMenu</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Indicates that the <b>Quick Report</b> option on the <b>Report</b> menu was invoked.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>NoEnvironment</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Specifies that the <b>NOENVIRONMENT</b> keyword was included in the command.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>NoOverwrite</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Specifies that the <b>NOOVERWRITE</b> keyword was included in the command.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>NoWait</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Specifies that the <b>NOWAIT</b> keyword was included in the command.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Protected</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Specifies that the <b>PROTECTED</b> keyword was included in the command.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Save</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Specifies that the <b>SAVE</b> keyword was included in the command.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Titles</p>
+              </td>
+              <td>
+                <p>L</p>
+              </td>
+              <td>
+                <p>Indicates that label controls should be added to the quick report layout.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Width</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>Specifies the number of columns specified on the quick report command.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Window</p>
+              </td>
+              <td>
+                <p>C</p>
+              </td>
+              <td>
+                <p>Contains the window name specified in the <b>WINDOW</b> &lt;<span class="parameter">windowname</span>&gt; clause of the command.</p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">DesignerSessionId</h3><div class="subSection" xmlns="">
+          <p>Because the report builder is invoked from inside a private data session, the Report or Label Designer also passes in the data session id of the data session that the designer is open in. This allows the report builder to switch to the designer's data session whenever it needs to access tables that might be open in the layout's data environment.</p>
+        </div>
+    </sections></div><h1 class="heading">The FRX Cursor</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>A working copy of the report file being edited will be open with the alias "FRX" in a private data session when the report builder application is called. Additionally:</p>
+      <ul><li>
+          <p>The record pointer will be located on the FRX record that represents the report layout object on which the event occurred. In some cases this might be the report header record itself, representing a report-specific event rather than a control-specific event.</p>
+        </li><li>
+          <p>Any records in the FRX cursor representing layout objects that are currently selected (highlighted with the mouse and showing object "handles") will have the CURPOS field set to .T..</p>
+        </li></ul>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The report header (record 1) may also have CURPOS=.T. because that is used to store the value of "Show Position" from the <b>View</b> menu option. If the builder application is required to identify how many objects are currently selected, it should use code similar to <code>COUNT FOR CURPOS AND RECNO() &gt; 1</code>.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/7161b49c-792d-4b6c-8219-cbe780af3dae.htm">How to: Configure the Report Builder's Event Handling</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/91d5dbf6-5294-468e-8ed6-b195d62603e5.htm">Report Builder Event Handler Registry Table</a></span><br /><span class="linkTerms"><a href="/html/b36f65c6-ccca-4d2e-b2d1-892d9978051c.htm">Report Properties Dialog Box (Report Builder)</a></span><br /><span class="linkTerms"><a href="/html/3496d4c5-858f-4784-a062-377e508f1596.htm">Multiple Selection Dialog Box (Report Builder)</a></span><br /><span class="linkTerms"><a href="/html/66161092-cda2-4d9f-868c-26beaffa0841.htm">_REPORTBUILDER System Variable</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/dbc4b061-74ad-4780-89bf-0e5d461be849.htm">Extending Reports at Design Time</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Understanding Report Builder Events">
+</OBJECT>

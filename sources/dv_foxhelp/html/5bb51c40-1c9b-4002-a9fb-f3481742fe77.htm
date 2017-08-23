@@ -1,0 +1,130 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>NULL as a Parameter</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">NULL as a Parameter</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Passing a null value as a parameter affects the behavior of many commands and functions in Visual FoxPro. The following general rules apply to null values passed to commands and functions:
+</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <ul><li>
+          <p>Commands generate errors when passed a null value.</p>
+        </li><li>
+          <p>Functions that accept .NULL. as a valid value propagate .NULL. to the result.</p>
+        </li><li>
+          <p>Functions that accept parameters that could be numeric values generate an error if you supply .NULL. for those parameters.
+</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>STORE .NULL. TO n
+USE Mytable ALIAS &amp;n            &amp;&amp; Expected a workarea 
+                              &amp;&amp; name or number
+? SUBSTR("Hello, world",n,5)   &amp;&amp; Expected a position
+                              &amp;&amp; in the string</pre></td></tr></table></span></div>
+        </li><li>
+          <p>
+            <a href="/html/17571b10-3976-427f-bc75-b96713cfbe7f.htm">ISBLANK( )</a>, <a href="/html/6b9f5087-97b1-4fc3-b1e7-04fed500da0c.htm">ISDIGIT( )</a>, <a href="/html/1aa83b10-3163-46a1-8760-05bcb0f039e0.htm">ISLOWER( )</a>, <a href="/html/e4e4e321-5ba6-4e2f-baec-249569caded2.htm">ISUPPER( )</a>, <a href="/html/9eed58c7-a2cb-47f4-8a57-0e7245704391.htm">ISALPHA( )</a>, and <a href="/html/714bd634-6f29-4024-856b-7b669f0a4350.htm">EMPTY</a> return false (.F.) when passed a null value. <a href="/html/dce94348-85af-42bb-a1c1-7c7c8982861e.htm">ISNULL( )</a> returns true (.T.) when passed a null value.</p>
+        </li><li>
+          <p>The commands <a href="/html/f9d15b20-eb9d-4c37-8d4a-d9d02c01eb56.htm">INSERT - SQL</a> and <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL</a> process null values through the IS NULL and IS NOT NULL clauses and, in the case of <a href="/html/9f33867b-fcdd-49ec-b71f-962affad7f9e.htm">INSERT</a>, <a href="/html/a2119ce4-980d-4682-8fc6-88b6caefa2f7.htm">UPDATE</a>, and <a href="/html/7f52db34-68fc-4f9e-abca-fa3f7f02ca19.htm">REPLACE</a>, place null values into records.</p>
+        </li><li>
+          <p>
+            <a href="/html/17c2b362-8646-41fc-a66d-6c80cf201b0d.htm">SQL</a> Aggregate functions ignore instead of propagate null values. </p>
+        </li><li>
+          <p>Visual FoxPro aggregate functions only propagate .NULL. if all supplied values are null values; otherwise, any null value is ignored.</p>
+        </li></ul>
+      <p>For more information on using null values in your application, see <a href="/html/e72c1fd6-0b60-4dbd-9000-0ffecfb637fa.htm">Working with Tables</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/714bd634-6f29-4024-856b-7b669f0a4350.htm">EMPTY( ) Function</a></span><br /><span class="linkTerms"><a href="/html/f9d15b20-eb9d-4c37-8d4a-d9d02c01eb56.htm">INSERT - SQL Command</a></span><br /><span class="linkTerms"><a href="/html/9eed58c7-a2cb-47f4-8a57-0e7245704391.htm">ISALPHA( ) Function</a></span><br /><span class="linkTerms"><a href="/html/17571b10-3976-427f-bc75-b96713cfbe7f.htm">ISBLANK( ) Function</a></span><br /><span class="linkTerms"><a href="/html/6b9f5087-97b1-4fc3-b1e7-04fed500da0c.htm">ISDIGIT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/1aa83b10-3163-46a1-8760-05bcb0f039e0.htm">ISLOWER( ) Function</a></span><br /><span class="linkTerms"><a href="/html/dce94348-85af-42bb-a1c1-7c7c8982861e.htm">ISNULL( ) Function</a></span><br /><span class="linkTerms"><a href="/html/e4e4e321-5ba6-4e2f-baec-249569caded2.htm">ISUPPER( ) Function</a></span><br /><span class="linkTerms"><a href="/html/7f52db34-68fc-4f9e-abca-fa3f7f02ca19.htm">REPLACE Command (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span><br /><span class="linkTerms"><a href="/html/17c2b362-8646-41fc-a66d-6c80cf201b0d.htm">SQL Commands and Functions</a></span><br /><span class="linkTerms"><a href="/html/a2119ce4-980d-4682-8fc6-88b6caefa2f7.htm">UPDATE Command</a></span><br /><span class="linkTerms"><a href="/html/6995da70-ab17-40ae-97fe-b310c5fb1654.htm">Null Value Handling</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/3f8e92c0-8848-4019-b241-7248af033c0b.htm">NULL as a Value</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c51ed992-43d5-4ff9-87db-3d81f50ca501.htm">Data Manipulation</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="NULL as a Parameter">
+</OBJECT>

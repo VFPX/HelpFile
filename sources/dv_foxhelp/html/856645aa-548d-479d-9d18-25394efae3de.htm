@@ -1,0 +1,217 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Controlling Data in Reports</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Controlling Data in Reports</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Before running a report or label, you set up the data needed by your report or label layout.  You provide data for reports and labels by choosing and making data sources available, controlling the records selected or filtered in those data sources, and sorting, ordering, and relating those records. </p>
+    <p>You can also manipulate data within reports by using report variables and calculated fields. Report variables and calculated fields store values that are dynamically calculated during the report run.  Your report layouts can display the results of these calculations as well as the data derived directly from your data sources.</p>
+  <h1 class="heading">Controlling Data Sources for Reports</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can provide data for reports and labels in a variety of ways, depending on which is best for your situation. </p>
+      <p>If you always run a report with the same data sources, you can define a data environment that is stored with the report, pointing to specific tables. Saving the data environment places additional records in the report or label definition table for all open tables and index files, index order, and any relationships between tables. The steps you use to define the data environment objects for a report or labels are the same as the process you use to define the data environment for a form. For more information, see <span class="linkTerms"><a href="/html/2aea05fc-aacb-42f9-9652-21fe581c46ed.htm">How to: Set the Data Environment</a></span>.</p>
+      <p>You can also make data available for a report by specifying the data sources using code every time you run a report, which is useful when running the same report with different data sources.  </p>
+      <p>The following table describes methods of making data available during a report run.  Choose the method that suits the way you want to use data sources.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>To</b>
+              
+            </th>
+            <th>
+              
+                <b>Add</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>Always use the same data sources.</p>
+          </td>
+          <td>
+            <p>Tables or views to the report's data environment.  </p>
+            <p>-OR-</p>
+            <p>A <b>DO</b> <span class="parameter">&lt;query&gt;</span> or SQL <b>SELECT</b> statement to the <b>Init</b> event of the report's data environment.</p>
+            <p>For more information, see <span class="linkTerms"><a href="/html/c4dda428-55f2-4610-9d0f-bccc53023a41.htm">DO Command</a></span>, <span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span>, and <span class="linkTerms"><a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init Event</a></span>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Use separate sets of data sources.</p>
+          </td>
+          <td>
+            <p>One or more <b>USE</b> <span class="parameter">&lt;table&gt;,</span> <b>USE</b> <span class="parameter">&lt;view&gt;</span>, <b>DO</b> <span class="parameter">&lt;query&gt;</span>, or SQL <b>SELECT</b> statements to <b>Click</b> event or other code that precedes a <b>REPORT</b> or <b>LABEL</b> command.</p>
+            <p>For more information, see <span class="linkTerms"><a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a></span> and <span class="linkTerms"><a href="/html/514e4b37-03df-482c-9c9f-df2873f48aee.htm">Click Event</a></span>. </p>
+          </td>
+        </tr></table></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Use aliases with the fields from the selected or driving table in the report only if you do not plan to use the report with data sources other than the original table. If you use a view or query as the data source and aliases are included in the report controls, sometimes the alias with which you designed the report might not be available at runtime.  An error such as "Alias 'X' not found" occurs when the report engine evaluates expressions including the alias. At other times, if the original table is actually open, the alias might be available but not selected for this report run.  In this case no error occurs, but the report displays the same record repeatedly on the report page.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Controlling Data Sessions for Reports</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>As part of deciding when and how to open data sources for a report, you determine whether to share these data sources with the report's environment.</p>
+      <p>Data sources for a report may be manipulated by your application before you run the report.  For example, you can create a form that allows the user to navigate through a customer table.  When the user clicks a <b>Print</b> button on your form, you run a report printing a current statement for the customer selected in the form.  In this scenario, you run the report in the same data session as the form.  </p>
+      <p>You can also choose to manipulate data for the report just before running the report, and completely independently of the report's surrounding environment.  For example, the same customer form might have a button or menu option to <b>Print a Sales Territory Summary</b>, requiring you to summarize data from a number of tables not used directly in this form.  In this scenario, you might choose to open the report data in a private data session.  When the report finishes printing, the form's data environment and the selected customer record are undisturbed.</p>
+      <p>For more information, see <span class="linkTerms"><a href="/html/75a48056-148b-405c-9220-f48cd5b514fd.htm">How to: Specify a Report's Data Session</a></span>.</p>
+    </div><h1 class="heading">Controlling Record Selection</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>By default, when you run a report against a table, each record in the table is processed.  The report evaluates expressions in the report layout for each record, displaying appropriate results.</p>
+      <p>You can control selection of the records that appear in the report through the data source, report print options, or both. </p>
+      <p>The following table describes how to control record selection in the report based on whether you use a data source or report print options.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>When using for record selection</b>
+              
+            </th>
+            <th>
+              
+                <b>Use</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>View or query</p>
+          </td>
+          <td>
+            <p>Conditions in the <b>Filter</b> tab of the View Designer or Query Designer. </p>
+            <p>For more information, see <span class="linkTerms"><a href="/html/0fc4c7c3-ee77-400c-86f7-0bc0c78f6543.htm">Filter Tab, Query and View Designers</a></span>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SQL <b>SELECT</b> statement</p>
+          </td>
+          <td>
+            <p>
+              <b>WHERE</b> or <b>HAVING</b> clause.</p>
+            <p>For more information, see <span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Report Designer</p>
+          </td>
+          <td>
+            <p>Setting in the <a href="/html/c84d2b1a-b12a-4676-b7e9-e1c409671138.htm">Print Options</a> dialog box.</p>
+            <p>For more information, see <span class="linkTerms"><a href="/html/6ffcb4d2-14ac-4cff-ae62-86cb4f04b8a0.htm">Report and Label Print Options Dialog Box</a></span>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>REPORT FORM</b> command</p>
+          </td>
+          <td>
+            <p>
+              <span class="parameter">Scope</span>, <b>FOR</b>, or <b>WHILE</b> expressions.</p>
+            <p>For more information, see <span class="linkTerms"><a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT FORM Command</a></span> and <span class="linkTerms"><a href="/html/9a5a4552-4da1-4166-9450-a882c4f864be.htm">Field and Record Manipulation</a></span>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Table</p>
+          </td>
+          <td>
+            <p>Filtered index.</p>
+            <p>For more information, see <span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span>.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Controlling Record Relationships</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Reports and labels process your selected records by moving the record pointer in the current work area. By setting up relationships between the table or view opened in the current work areas and other data sources, you can access other fields for use in report expressions.  You can set the relationships in code, using <b>SET RELATION</b> and <b>SET SKIP</b> commands, or by using <b>Relation</b> objects in the DataEnvironment.</p>
+      <p>When you refer to fields not in the current work area in report expressions, you prefix the field names with the alias under which the additional tables or views are open. Refer to <span class="linkTerms"><a href="/html/f66741e9-54b5-4069-824b-2e461e2b283e.htm">How to: Create and Use Table Aliases</a></span> for more information.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The table or view in the current work area drives the <b>REPORT FORM</b> or <b>LABEL FORM</b> and is often termed its <i>driving alias</i>. Tables or view in the related work areas are known as <i>target aliases</i> because these work areas are the targets of <b>SET RELATION</b> command. When you establish relationships between tables, you can change the way reports and labels move through your data, to account for multiple records in the target aliases that may be related to each record in the driving alias.  For example, a report on a table of invoice summary information may be related to multiple detail lines for each invoice.  See <span class="linkTerms"><a href="/html/8212149c-5f7f-4a6e-9487-a97a93db9a1c.htm">Working with Related Tables using Multiple Detail Bands in Reports</a></span> for information on coordinating multiple tables and relationships in reports.  </p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Controlling Record Order</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>The page layout for reports and labels does not actually sort and order data. It processes records in the same order that they exist in the data source. You must perform sorting with a view, index, or other form of data manipulation outside the layout. </p>
+      <p>For example, if the data source is a table, you can sort and order the data by setting an appropriate index for the table, using an ordered view in the data environment, or using a query as the data source to display the records in groups. You can create a table index using code, for example, using the <b>INDEX</b> command, or as part of the report's data environment. If the data source is a query, view, or SQL <b>SELECT</b> statement, you can use the <b>ORDER BY</b> clause.</p>
+      <p>If you do not use the report's data sources to control the record order, the only way to control record order through the report is through the <b>Order</b> property of a cursor in the data environment.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/2e4042a6-a74f-4f63-8dcb-81223ec45010.htm">Reports in Visual FoxPro</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/2235056d-6ffd-431a-b32f-b8dde2dd7127.htm">Working with Data in Reports</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Controlling Data in Reports">
+</OBJECT>

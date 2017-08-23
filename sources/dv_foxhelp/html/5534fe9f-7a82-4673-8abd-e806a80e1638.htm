@@ -1,0 +1,183 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Add New Items to a Combo Box Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Add New Items to a Combo Box Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File:</b> ...\Samples\Solution\Controls\Combobox\Lookup.scx</p>
+    <p>This sample illustrates adding user-entered text to a combo box drop-down and providing lookup capability.</p>
+  <h1 class="heading">Adding User Text to a Combo Box Drop-Down</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>A combo box makes it possible for a user to enter text or select an item from a drop-down list. You can also add the text a user types in the combo box as a new item in the drop-down list so the user won't have to type the same text multiple times.</p>
+      <p>There are multiple ways to add user text to the drop-down list of a combo box, depending on the RowSourceType property setting of the combo box. In this sample, the RowSourceType of the combo boxes is 1 - Value. If the value the user enters isn't already in the drop-down list for cboCombo, the following code adds a comma and the new value to the RowSource:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>cCountryName = ALLTRIM(Custs.Country)
+IF ATC(m.cCountryName,THIS.RowSource)=0 AND !EMPTY(m.cCountryName)
+   THIS.RowSource=THIS.RowSource+","+m.cCountryName 
+ENDIF</pre></td></tr></table></span></div>
+      <p>The combo box in the <a href="/html/f52d8f5b-8412-48b4-8fe6-924c142cbeb3.htm">Manipulate Text Programmatically Sample</a> example has a RowSourceType of 0 - None. The following code in the Valid event of cboSearchString in ...\Samples\Solution\Controls\TXT_EDT\Text.scx adds a user-entered value to the drop-down list of the combo box:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>IF !EMPTY(THIS.Text)
+   FOR i = 1 TO THIS.ListCount
+      IF THIS.List(i) = THIS.Text
+         RETURN
+      ENDIF
+   ENDFOR
+   THIS.AddItem(THIS.Text)
+ENDIF</pre></td></tr></table></span></div>
+      <p>If the RowSource of the combo box is an array, you need to add the user text to the array and call the Requery method of the combo box.</p>
+      <p>If the RowSource is a table or a cursor, you need to add a record, REPLACE the blank field with the user-entered value and Requery the combo box.</p>
+    </div><h1 class="heading">Provide Lookup Capability</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>In addition to illustrating how to add items to a combo box, this sample demonstrates three ways of making it possible for a user to filter a table for particular values. A user can do the following:
+</p>
+      <ul><li>
+          <p>Enter values in a combo box.</p>
+        </li><li>
+          <p>Select an item from a drop-down list.</p>
+        </li><li>
+          <p>Enter partial values in a combo box for incremental search.</p>
+        </li></ul>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Enter Values in a Combo Box</h3><div class="subSection" xmlns="">
+          <p>The key code is associated with the LostFocus event of cboCombo. After making sure that the user has entered a value, the LostFocus code selects the records that match the user's text and sets the RecordSource property of the grid to the result set.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>cDisplayValue = ALLTRIM(THIS.DisplayValue)
+IF THIS.Value = "(All)"
+   SELECT country AS location,* FROM CUSTOMER;
+      INTO CURSOR Custs
+   thisform.grdcust.recordsource = "Custs"
+ELSE
+   SELECT country AS location,* FROM CUSTOMER ;
+    WHERE UPPER(ALLTRIM(Customer.Country)) = UPPER(m.cDisplayValue);
+    INTO CURSOR Custs
+   THISFORM.grdCust.RecordSource = "Custs"
+ENDIF</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Select an Item from a Drop-down List</h3><div class="subSection" xmlns="">
+          <p>Basically the same lookup code is associated with the InteractiveChange event of cboDrop – if the Value of the combo box is "(All)", select all records into the cursor, otherwise, select the records that match the user's choice.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Enter Partial Values for Incremental Search</h3><div class="subSection" xmlns="">
+          <p>Code in the InteractiveChange event of cboIntSearch performs the lookup every time the user types a character in the combo box.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE DELKEY 127
+LPARAMETERS nKeyCode, nShiftAltCtrl
+LOCAL cDisplayValue
+IF nKeyCode = DELKEY
+   cDisplayValue = ALLTRIM(THIS.DisplayValue)
+   IF LEN(m.cDisplayValue)=1
+      cDisplayValue = ""
+   ELSE
+      cDisplayValue = LEFT(cDisplayValue,LEN(cDisplayValue)-1)
+   ENDIF
+ELSE
+   cDisplayValue = ALLTRIM(THIS.DisplayValue)+CHR(nKeyCode)
+ENDIF
+THISFORM.LockScreen = .T.
+DO CASE
+CASE EMPTY(m.cDisplayValue)
+   THISFORM.grdCust.RecordSource = " "
+CASE THIS.Value = "(All)"
+   SELECT country AS location,* FROM CUSTOMER;
+      INTO CURSOR Custs
+   THISFORM.grdCust.RecordSource = "Custs"
+OTHERWISE
+   SELECT country AS location,* FROM CUSTOMER ;
+    WHERE UPPER(ALLTRIM(Customer.Country)) = UPPER(m.cDisplayValue);
+    INTO CURSOR Custs
+   THISFORM.grdCust.RecordSource = "Custs"
+ENDCASE
+THISFORM.ResetCombos(THIS)
+THISFORM.LockScreen = .F.</pre></td></tr></table></span></div>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/d8aff82f-5721-47f5-a086-3ade4d04d9be.htm">Add Data Lookup Combo Boxes Sample</a></span><br /><span class="linkTerms"><a href="/html/ad0e4ac3-9ad0-4d5d-ba90-c7f717e1880c.htm">Allow Users to Choose List Values Sample</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/909bc1e6-7b98-4527-a57f-c99f0ce4fc6f.htm">Controls Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Add New Items to a Combo Box Sample">
+<param name="Alink Name" value="vfp.1231545">
+</OBJECT>

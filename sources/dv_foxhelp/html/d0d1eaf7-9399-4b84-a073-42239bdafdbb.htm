@@ -1,0 +1,152 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Event Binding for Visual FoxPro Objects</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Event Binding for Visual FoxPro Objects</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can use event binding to trigger events, properties, or methods of native Visual FoxPro objects from other Visual FoxPro objects using the following functions:  </p>
+    <ul><li>
+        <p>
+          <b>BINDEVENT( )</b>
+        </p>
+        <p>Associates an event from a native Visual FoxPro object with the method or event of another Visual FoxPro object. </p>
+      </li><li>
+        <p>
+          <b>UNBINDEVENTS( )</b>
+        </p>
+        <p>Detaches events previously bound to Visual FoxPro objects. </p>
+      </li><li>
+        <p>
+          <b>RAISEEVENT( )</b>
+        </p>
+        <p>Raises, or triggers, events for user-defined custom methods. You can also use <b>RAISEEVENT( )</b> for native events and methods. </p>
+      </li><li>
+        <p>
+          <b>AEVENTS( )</b>
+        </p>
+        <p>Retrieves information about the number of existing event bindings. </p>
+      </li></ul>
+    <p>For a solution sample demonstrating binding events, raising events programmatically, unbinding events, and retrieving events, see <a href="/html/191ff51b-b302-4a91-b463-ef0a7ff98375.htm">Binding, Raising, Unbinding, and Retrieving Events Sample</a>.</p>
+    <p>For information about binding events from Component Object Model (COM) objects, see <a href="/html/ffbb29bb-77ed-48c3-9161-19f56dd505b6.htm">Event Binding for COM Objects</a> and <a href="/html/81422070-37ef-492f-b813-9b40bcaed762.htm">EVENTHANDLER( ) Function</a>.</p>
+  <h1 class="heading">Binding an Event</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can use the <b>BINDEVENT( ) </b>function to attach, or bind, an event, method, or property from one Visual FoxPro object, or event source, to the method or event of another Visual FoxPro object, or the event handler. The method that handles the event acts as a "delegate" for the event handler.</p>
+      <p>You can bind to any valid Visual FoxPro object method or event, including the <b>Access</b> and <b>Assign</b> methods. However, both the event source and event handler must be valid Visual FoxPro objects. You cannot use COM objects or bind to methods of objects in collections referenced by the <b>_VFP</b> system variable because these collections also pass through COM.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>When you specify objects for event binding, make sure they are fully instantiated. Do not bind events, methods, or properties to an object in its <b>Load</b> or <b>Init</b> event because the object might not yet be fully instantiated and can cause the binding operation to fail.</p>
+      </td></tr></table></div>
+      <p>You can use the same object as both the event source and event handler. The following example shows how <code>Form1</code> acts as both source and handler: </p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BINDEVENT( Form1, "Resize", Form1, "myresize1" )</pre></td></tr></table></span></div>
+      <p>You can use different objects from the same class as the event source and handler. However, the event of an object that is used as both the event source and handler cannot be the same as the delegate method.</p>
+      <p>You can bind multiple event handlers to the same event source and event in an act referred to as "multi-casting." If multiple handlers exist for the same event, events occur in first in, first out (FIFO) order. </p>
+      <p>You can bind multiple delegate methods from an event handler to a particular event source and event. For example:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BINDEVENT( Form1, "Resize", oHandler, "myresize1" )
+BINDEVENT( Form1, "Resize", oHandler, "myresize2" )</pre></td></tr></table></span></div>
+      <p>You cannot bind to an event with parameters that are passed by reference. Though calling <b>BINDEVENT( )</b> succeeds, raising the event, for example, using <b>RAISEEVENT( )</b>, fails.</p>
+      <p>Visual FoxPro does not support event binding in designers such as the form and class designers, even though you can obtain object references using the <b>ASELOBJ( )</b> or <b>SYS(1270)</b> functions.</p>
+      <p>For more information, see <a href="/html/e0aaf535-c606-44bd-b7c1-7d0341331d8f.htm">BINDEVENT( ) Function</a>, <a href="/html/c51ad113-c5fb-42ec-aa07-fe6c7b1d0927.htm">ASELOBJ( ) Function</a>, and <a href="/html/0591bca1-bc6a-4a21-bf42-86f025e4c8cc.htm">SYS(1270) - Object Location</a>. For a sample, see <span class="linkTerms"><a href="/html/191ff51b-b302-4a91-b463-ef0a7ff98375.htm">Bind, Raise, Unbind, and Retrieve Events Sample</a></span>.</p>
+    </div><h1 class="heading">Unbinding an Event</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can use the <b>UNBINDEVENTS( ) </b>function to detach events, methods, and properties that were bound using the <b>BINDEVENT( )</b> function from native Visual FoxPro objects. <b>UNBINDEVENTS( )</b> returns the number of events that it unbinds if it succeeds. You can specify a Visual FoxPro object event source or an object reference, which can be used as the event source or event handler. </p>
+      <p>For more information, see <a href="/html/b64acd53-4196-48ce-9ab3-8da9dc8ed49a.htm">UNBINDEVENTS( ) Function</a>.</p>
+    </div><h1 class="heading">Raising an Event</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can use the <b>RAISEEVENT( )</b> function to raise, or trigger, events for custom and native methods. Directly calling methods does not make events occur, unless you set the appropriate flags when using <b>BINDEVENT( )</b> to attach events to other objects. Therefore, you need <b>RAISEEVENT( )</b> to trigger these events. </p>
+      <p>For more information, see <a href="/html/297f42e9-e402-4a4f-abad-15f180508f2a.htm">RAISEEVENT( ) Function</a>.</p>
+    </div><h1 class="heading">Retrieving Event Binding Information</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>You can use the <b>AEVENTS( )</b> function to retrieve the number of Visual FoxPro events that are currently bound to Visual FoxPro objects. Visual FoxPro stores the information in an array. Depending on the parameters you pass, <b>AEVENTS( )</b> returns either a single-element array containing an object reference to the event source or an array which represents each existing event binding as a row and contains information about the binding across five columns.</p>
+      <p>For more information, see <a href="/html/d8025938-9dc6-4091-840b-2770396946c8.htm">AEVENTS( ) Function</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/70c74abb-6b29-4696-822a-5301a48de671.htm">Event Binding for Objects</a></span><br /><span class="linkTerms"><a href="/html/d3087fe2-ae39-42b0-95a1-62618480a63b.htm">Understanding the Event Model</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Event Binding for Visual FoxPro Objects">
+</OBJECT>

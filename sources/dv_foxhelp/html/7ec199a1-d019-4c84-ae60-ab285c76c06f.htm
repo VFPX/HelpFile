@@ -1,0 +1,139 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Application Distribution Process</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Application Distribution Process</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The following list identifies the overall steps you need to follow to distribute a Visual FoxPro application:  </p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <ol><li>
+          <p>Create and debug the application using the Visual FoxPro development environment.</p>
+        </li><li>
+          <p>Prepare and customize your application for the run-time environment. For details, see <span class="linkTerms"><a href="/html/5f169eb2-ac64-4836-bd67-6572f33d8624.htm">Preparation for Distributing Applications</a></span>. </p>
+        </li><li>
+          <p>Make sure your project includes all the necessary files for your application, including any resource files, graphics files, or templates. For more information about the types of files you can include in your application and how to include files, see <span class="linkTerms"><a href="/html/9877952e-f860-41ef-a67e-e33af4c7970f.htm">Resource Files in Applications</a></span> and <span class="linkTerms"><a href="/html/c839f066-85f8-4e4b-a44b-d0bf776bacff.htm">How to: Include Files with Applications for Distribution</a></span>.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Required Runtime Files: Visual FoxPro requires inclusion of certain files in order for your runtime applications to function properly. The easiest way to include these files is by using a Windows Installer based tool for creating custom setups (such as InstallShield Express). By selecting the Microsoft Visual FoxPro 9.0 Runtime Libraries merge module, your setup contains the proper files necessary to run your custom Visual FoxPro 9.0 application. The core Visual FoxPro 9.0 merge module properly handles installation and registration for the following files:</p>
+          </td></tr></table></div>
+          <ul><li>
+              <p>vfp9r.dll</p>
+            </li><li>
+              <p>vfp9t.dll</p>
+            </li><li>
+              <p>vfp9renu.dll</p>
+            </li><li>
+              <p>msvcr71.dll</p>
+            </li><li>
+              <p>gdiplus.dll</p>
+              <p>Msvcr71.dll and gdiplus.dll files are part of separate merge modules, but are included automatically because of their dependency with the Visual FoxPro 9.0 Runtime libraries. Gdiplus.dll is only installed on platforms prior to Windows 2000 (for example, Windows 98).</p>
+              <p>If you require runtime support for an additional language, select the appropriate language merge module. These merge modules contain a specific language resource library (for example, vfp9rdeu.dll).</p>
+            </li></ul>
+        </li><li>
+          <p>Remove any restricted Visual FoxPro features or files from your application. Certain development environment features are not available in the run-time environment and need to be removed from your application. Make sure any files you plan to distribute meet the guidelines for redistributing files. For more information on restricted and distributable files, see <span class="linkTerms"><a href="/html/8b4b3584-e28e-498c-8c24-eb87968540dc.htm">Distributable and Restricted Visual FoxPro Features and Files</a></span>.</p>
+        </li><li>
+          <p>Build an application (.app), executable (.exe) file, or a COM component (automation server) with a .dll or .exe extension. For more information about building an application, see <span class="linkTerms"><a href="/html/842d4132-cdb3-4c0f-a25f-405322751018.htm">Compiling an Application</a></span>.</p>
+        </li><li>
+          <p>Create an installation package using a Windows Installer deployment program. For more information about creating installation packages, see <span class="linkTerms"><a href="/html/d906c831-cfde-4d4c-8b80-47041cff359b.htm">Walkthrough: Creating a Visual FoxPro Application Setup Program Using InstallShield</a></span>. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The setup creation program you use must use Windows Installer technology to create a Setup program (.msi) or merge modules (.msm) that are compatible with Microsoft Windows Installer. The Windows 2000 Logo guidelines require that setup programs be based on Windows Installer technology.</p>
+          </td></tr></table></div>
+        </li><li>
+          <p>Package and distribute your application disks and any printed documentation. Depending on the setup creation program you use, the program might create the disk images for you, or you might need to copy the files to the distribution location manually. Consult the documentation for the setup creation program for more information.</p>
+        </li></ol>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/5f169eb2-ac64-4836-bd67-6572f33d8624.htm">Preparation for Distributing Applications</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/44a57df6-33fa-419a-a650-542f2ad28148.htm">Distributing Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Application Distribution Process">
+</OBJECT>

@@ -1,0 +1,140 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Enable Buffering</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Enable Buffering</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can enable record and table buffering to protect data during updates.</p>
+  <h1 class="heading">Enabling Record Buffering</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Enable record buffering with the <span class="linkTerms"><a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a></span>.</p>
+      <h3 class="procedureSubHeading">To enable pessimistic record locking in the current work area</h3><div class="subSection"><ul><li>
+            
+              <p>Use this function and value: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CURSORSETPROP("Buffering", 2)</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>Visual FoxPro attempts to lock the record at the pointer location. If the lock is successful, Visual FoxPro places the record in a buffer and permits editing. When you move the record pointer or use the <span class="linkTerms"><a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( ) Function</a></span>, Visual FoxPro writes the buffered record to the original table.</p>
+      <h3 class="procedureSubHeading">To enable optimistic record locking in the current work area</h3><div class="subSection"><ul><li>
+            
+              <p>Use this function and value: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CURSORSETPROP("Buffering", 3) </pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>Visual FoxPro writes the record at the location of the pointer to a buffer and permits edits. When you move the record pointer or use the <span class="linkTerms"><a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( ) Function</a></span>, Visual FoxPro attempts a lock on the record. If the lock is successful, Visual FoxPro compares the current value of the record on the disk with the original buffer value. If these values are the same, the edits are written to the original table; if these values are different, Visual FoxPro generates an error.</p>
+    </div><h1 class="heading">Enabling Table Buffering</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Enable table buffering with the CURSORSETPROP( ) function.</p>
+      <h3 class="procedureSubHeading">To enable pessimistic locking of multiple records in the current work area</h3><div class="subSection"><ul><li>
+            
+              <p>Use this function and value: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CURSORSETPROP("Buffering", 4) </pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>Visual FoxPro attempts to lock the record at the pointer location. If the lock is successful, Visual FoxPro places the record in a buffer and permits editing. Use the <span class="linkTerms"><a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( ) Function</a></span> to write the buffered records to the original table.</p>
+      <h3 class="procedureSubHeading">To enable optimistic locking of multiple records in the current work area</h3><div class="subSection"><ul><li>
+            
+              <p>Use this function and value: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CURSORSETPROP("Buffering", 5)</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>Visual FoxPro writes the records to a buffer and permits edits until you use the <span class="linkTerms"><a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( ) Function</a></span>. Visual FoxPro then performs the following sequence on each record in the buffer:  </p>
+      <ol><li>
+          <p>Attempts a lock on each edited record.</p>
+        </li><li>
+          <p>Upon a successful lock, compares the current value of each record on the disk with the original buffer value.</p>
+        </li><li>
+          <p>Writes the edits to the original table if the comparison shows the values to be the same.</p>
+        </li><li>
+          <p>Generates an error if the values differ.</p>
+        </li></ol>
+      <p>When table buffering is enabled, Visual FoxPro attempts updates only after using the <span class="linkTerms"><a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( ) Function</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/8d95aef2-00d6-4a21-ba50-af1ba979eee7.htm">How to: Append and Delete Records in Table Buffers</a></span><br /><span class="linkTerms"><a href="/html/aec29e01-39c1-4cce-983d-4c536f71626d.htm">How to: Use Data Sessions</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/c94d4b30-e6aa-408c-a29d-6b27eb93674d.htm">Buffering Data</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c3ac4a1d-4c23-40ba-8715-e9ce9438cf62.htm">Updating Data</a></span><br /><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><span class="linkTerms"><a href="/html/f3eff628-41b3-45cd-856d-2d97fd2fed05.htm">Controlling Access to Data</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Enable Buffering">
+</OBJECT>

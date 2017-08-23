@@ -1,0 +1,359 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Data Session Manager Foundation Class</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Data Session Manager Foundation Class</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>This class is used to manage data sessions and handle data updates in all forms or formsets in the current data session. It enables an Application object to easily iterate through sessions to provide Windows-closing behavior during Exit or Shutdown. It also provides generic QueryUnload behavior for forms and formsets, and generic session-wide Update and Revert code. You can use it to evaluate whether any data has been changed in a session before you use your own conflict handling procedure. </p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Category
+          </th>
+          <th>
+            Application
+          </th>
+        </tr><tr>
+        <td>
+          <p>Default Catalog</p>
+        </td>
+        <td>
+          <p>Visual FoxPro Catalog\Foundation Classes\Application</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Class</p>
+        </td>
+        <td>
+          <p>_datassession</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Base Class</p>
+        </td>
+        <td>
+          <p>Custom</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Class Library</p>
+        </td>
+        <td>
+          <p>_app.vcx</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Parent Class</p>
+        </td>
+        <td>
+          <p>_custom</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Sample</p>
+        </td>
+        <td>
+          <p>...\Samples\Solution\Ffc\environ.scx</p>
+        </td>
+      </tr></table></div>
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>This class works with free tables as well as tables in databases. Observe the transactions limit (5).</p>
+      <p>To use, drop the class on a project or form or, from the <b>Component Gallery Item</b> shortcut menu, select <b>Add to Project</b> or <b>Add to Form</b>. When you add the class to a form, Visual FoxPro places the class on the form. You can then specify the appropriate property values and provide any necessary input and output objects. When you drop the class on a project, you can choose between adding the class or creating a subclass.</p>
+      <p>See <span class="linkTerms"><a href="/html/005682e4-5892-4e65-bcc3-2b64213e3fcc.htm">Guidelines for Using Visual FoxPro Foundation Classes</a></span> for more information on using foundation classes.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Properties, Events, Methods
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>iDataChangedMode property</p>
+          </td>
+          <td>
+            <p>Specifies the type of data change performed.</p>
+            <p>0 - Everything changed. 1 - Ignore view fields not in Updatefields list. 2- Ignore views not set to send updates.</p>
+            <p>
+              <b>Default: </b>0</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>iSavedSessionID property</p>
+          </td>
+          <td>
+            <p>Specifies integer value representing the ID of the saved session.</p>
+            <p>
+              <b>Default: </b>1</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>lSuccess property</p>
+          </td>
+          <td>
+            <p>Specifies whether the data operation (update) was successful.</p>
+            <p>
+              <b>Default: </b>.T.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>lUseTransactions property</p>
+          </td>
+          <td>
+            <p>Specifies whether to wrap the updating routine in a transaction.</p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>Only tables in a database container (.dbc) are affected in transactions.</p>
+            </td></tr></table></div>
+            <p>
+              <b>Default: </b>.T.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DataChanged method</p>
+          </td>
+          <td>
+            <p>Checks if data has changed.</p>
+            <p>
+              <b>Syntax: </b>
+              <code>DataChanged( )</code>
+            </p>
+            <p>
+              <b>Return:</b> none</p>
+            <p>
+              <b>Arguments: </b>none</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DataFlush method</p>
+          </td>
+          <td>
+            <p>Ensures that the active control will have its current contents "recognized" even if you choose to update from a toolbar button while a grid has the focus.</p>
+            <p>
+              <b>Syntax:</b> <code>DataFlush( )</code></p>
+            <p>
+              <b>Return:</b> none</p>
+            <p>
+              <b>Arguments: </b>none</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>GetActiveControlRef method</p>
+          </td>
+          <td>
+            <p>Returns the truly active control, <span class="parameter">loRealActiveControl</span>, in cases where the current active control is a Grid.</p>
+            <p>
+              <b>Syntax:</b> <code>GetActiveControlRef(toActiveControl)</code></p>
+            <p>
+              <b>Return:</b> <span class="parameter">loRealActiveControl</span></p>
+            <p>
+              <b>Arguments: </b>
+              <span class="parameter">toActiveControl</span> specifies the current control.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>GetMessageBoxTitle method</p>
+          </td>
+          <td>
+            <p>Returns a portion of the titlebar text specifying the name of the message.</p>
+            <p>
+              <b>Syntax:</b> <code>GetMessageBoxTitle( )</code></p>
+            <p>
+              <b>Return:</b> <span class="parameter">cTitlebarText</span></p>
+            <p>
+              <b>Arguments: </b>none</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>QueryUnload method</p>
+          </td>
+          <td>
+            <p>Provides dialog boxes to manage data change decisions.</p>
+            <p>
+              <b>Syntax: </b>
+              <code>QueryUnload(tlDataChangeAlreadyConfirmed, toForm, tlNoShow)</code>
+            </p>
+            <p>
+              <b>Return:</b> <span class="parameter">liResult </span></p>
+            <p>
+              <b>Arguments: </b>
+              <span class="parameter">tlDataChangeAlreadyConfirmed </span>specifies whether data has been changed. <span class="parameter">toForm </span>specifies the form.<span class="parameter">tlNoShow</span> specifies whether to display the form.<span class="parameter">liResult </span>specifies the MESSAGEBOX or value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>RestoreSessionID method</p>
+          </td>
+          <td>
+            <p>Restores the data session.</p>
+            <p>
+              <b>Syntax:</b> <code>RestoreSessionID</code></p>
+            <p>
+              <b>Return:</b> none</p>
+            <p>
+              <b>Arguments: </b>none</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Revert method</p>
+          </td>
+          <td>
+            <p>Reverts the session to original data.</p>
+            <p>
+              <b>Syntax:</b> <code>Revert(tlUserChoiceAlreadyConfirmed, tlDataChangeAlreadyConfirmed, toForm, tlNoShow)</code></p>
+            <p>
+              <b>Return:</b> none</p>
+            <p>
+              <b>Arguments: </b>
+              <span class="parameter">tlUserChoiceAlreadyConfirmed</span> specifies whether to display a confirmation dialog box.<span class="parameter">tlDataChangeAlreadyConfirmed</span> specifies whether to display a confirmation dialog box.<span class="parameter">toForm </span>specifies the form.<span class="parameter">tlNoShow</span> specifies whether to display the form.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SetSessionID method</p>
+          </td>
+          <td>
+            <p>Sets the data session.</p>
+            <p>
+              <b>Syntax:</b> <code>SetSessionID( )</code></p>
+            <p>
+              <b>Return:</b> none</p>
+            <p>
+              <b>Arguments: </b>none</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Update method</p>
+          </td>
+          <td>
+            <p>Updates data.</p>
+            <p>
+              <b>Syntax:</b> <code>Update(tlUserChoiceAlreadyConfirmed, tlDataChangeAlreadyConfirmed, toForm, tlNoShow)</code></p>
+            <p>
+              <b>Return:</b> none</p>
+            <p>
+              <b>Arguments: </b>
+              <span class="parameter">tlUserChoiceAlreadyConfirmed</span> specifies whether to display a confirmation dialog box.<span class="parameter">tlDataChangeAlreadyConfirmed</span> specifies whether to display a confirmation dialog box.<span class="parameter">toForm </span>specifies the form.<span class="parameter">tlNoShow</span> specifies whether to display the form.</p>
+          </td>
+        </tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/005682e4-5892-4e65-bcc3-2b64213e3fcc.htm">Guidelines for Using Visual FoxPro Foundation Classes</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/3abe5487-930b-4981-a8e8-1c09f9d7ec32.htm">Foundation Class Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Data Session Manager Foundation Class">
+<param name="Alink Name" value="vfp.2299965457">
+</OBJECT>

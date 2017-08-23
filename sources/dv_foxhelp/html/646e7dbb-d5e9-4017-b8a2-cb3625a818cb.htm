@@ -1,0 +1,466 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>XMLUPDATEGRAM( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">XMLUPDATEGRAM( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Mirrors changes made in a buffered table or cursor in an XML UpdateGram and returns a character string that contains the UpdateGram. </p>
+    <p>An XML UpdateGram represents the before and after conditions of the changed portion of a Visual FoxPro table or cursor. Through additional processes, you can use an UpdateGram to commit these changes to the data represented by the XML UpdateGram document.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>To use <b>XMLUPDATEGRAM( )</b>, you must use <b>SET MULTILOCKS ON</b> and enable table buffering.</p>
+    </td></tr></table></div>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>Before calling <b>XMLUPDATEGRAM( )</b>, you should specify the key field list by calling <b>CURSORSETPROP( )</b> with the <b>KeyFieldList</b> property against existing cursors and tables. If you do not specify key fields, both the before and after representations contains all the fields in the table. If you specify one or more key fields, only those fields appear in the before section. </p>
+    </td></tr></table></div>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+XMLUPDATEGRAM( [ <span class="parameter">cAliasList</span> [, <span class="parameter">nFlags</span> [, <span class="parameter">cSchemaLocation</span>]]])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cAliasList</span>
+        </span></dt><dd>
+          <p>Specifies a comma-separated list of open tables or cursors, listed either by name or work area numbers in any combination, to include in the XML UpdateGram. If you specify no value or an empty string ("") for <span class="parameter">cAliasList</span>, Visual FoxPro uses all open tables and cursors in the current data session that contain buffered changes.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nFlags</span>
+        </span></dt><dd>
+          <p>Specifies whether to return a formatted file. The following table lists the additive flags for <span class="parameter">nFlags</span>.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nFlag</span>
+                  
+                </th>
+                <th>
+                  Bit
+                </th>
+                <th>
+                  Output description
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>0000</p>
+              </td>
+              <td>
+                <p>(Default) Use UTF-8 formatted XML. </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>0001</p>
+              </td>
+              <td>
+                <p>Use unformatted, for example, continuous string XML.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>0010</p>
+              </td>
+              <td>
+                <p>Enclose empty elements with both open and closing elements, for example, &lt;cc04&gt;&lt;cc04/&gt;.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>0100</p>
+              </td>
+              <td>
+                <p>Preserve white space in fields.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>8</p>
+              </td>
+              <td>
+                <p>1000</p>
+              </td>
+              <td>
+                <p>Wrap Memo fields in CDATA sections.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>16</p>
+              </td>
+              <td>
+                <p>10000</p>
+              </td>
+              <td>
+                <p>Output encoding.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>32</p>
+              </td>
+              <td>
+                <p>100000</p>
+              </td>
+              <td>
+                <p>Output encoding.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>32768</p>
+              </td>
+              <td>
+                <p>none</p>
+              </td>
+              <td>
+                <p>Indicates that a code page should be used.</p>
+              </td>
+            </tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>When output encoding is UTF-8 (default), the XML Declaration does not contain an Encoding= attribute (no encoding attribute = UTF-8).</p>
+          </td></tr></table></div>
+          <p>When output encoding is set to default to the code page of the cursor or table, the encoding attribute will be written according to the following table.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Encoding flags are set by combining bits 4 and 5 (0010000).</p>
+          </td></tr></table></div>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Encoding flag
+                </th>
+                <th>
+                  Bits 4 and 5
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>+0</p>
+              </td>
+              <td>
+                <p>00</p>
+              </td>
+              <td>
+                <p>(Default) Windows 1252 </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>+16</p>
+              </td>
+              <td>
+                <p>01</p>
+              </td>
+              <td>
+                <p>Set output encoding attribute to the code page of the cursor.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>+32</p>
+              </td>
+              <td>
+                <p>10</p>
+              </td>
+              <td>
+                <p>Set output encoding attribute to UTF-8 (no character translation).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>+48</p>
+              </td>
+              <td>
+                <p>11</p>
+              </td>
+              <td>
+                <p>Set output encoding attribute to UTF-8 and translate double-byte characters to UTF-8.</p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cSchemaLocation</span>
+        </span></dt><dd>
+          <p>Specifies the name and location of the mapping schema, if it exists. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You must supply the mapping schema.</p>
+          </td></tr></table></div>
+          <p>For example, suppose you pass the a schema called <code>mySchema.xsd</code> to <span class="parameter">cSchemaLocation</span>, the UpdateGram created contains a mapping schema attirbute as it appears in the following XML:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;ROOT xmlns:updg="urn:schemas-microsoft-com:xml-updategram"&gt;
+  &lt;updg:sync mapping-schema="mySchema.xsd" &gt;
+    &lt;updg:before&gt;</pre></td></tr></table></span></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Character data type. <b>XMLUPDATEGRAM( )</b> returns a character string that contains the XML UpdateGram.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>You can use <b>XMLUPDATEGRAM( )</b> with the OLE DB Provider for Visual FoxPro. However, the <b>_VFP</b> <b>VFPXMLProgID</b> property is not supported because the <b>_VFP</b> system variable is not supported in the OLD EB Provider. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>To use the Visual FoxPro OLE DB Provider with <b>XMLUPDATEGRAM( )</b>, you must install MSXML 3.0 on the computer with the OLE DB Provider.</p>
+      </td></tr></table></div>
+      <p>SQL Server and Visual Studio support the DiffGram format for updating XML. However, SQL XML requires a mapping schema to support this format. Therefore, <b>XMLUPDATEGRAM( )</b> does not support this format.</p>
+      <p>To avoid possible errors generated by <b>XMLUPDATEGRAM( )</b> on tables containing <b>Memo</b> or <b>General</b> fields, use the <b>CURSORSETPROP( )</b> function. The following example shows how to include memo data in an XML UpdateGram by setting the <b>KeyFieldList</b> property using <b>CURSORSETPROP( )</b>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET MULTILOCKS ON
+CREATE CURSOR Test (mField M, cField I AUTOINC)
+INSERT INTO Test (mField) VALUES ("123456789")
+INSERT INTO Test (mField) VALUES ("23456789")
+INSERT INTO Test (mField) VALUES ("3456789")
+INSERT INTO Test (mField) VALUES ("456789")
+CURSORSETPROP("Buffering",5)
+CURSORSETPROP("keyfieldlist",'cField')
+UPDATE Test SET mField = "XXXXXXX" WHERE cField &lt; 3
+STRTOFILE(XMLUPDATEGRAM(),'xmlupdate.txt')
+MODIFY FILE xmlupdate.txt
+RETURN</pre></td></tr></table></span></div>
+      <p>To write memo data in the XML UpdateGram to SQL Server, you must use an explicit schema on the SQL Server and reference the schema in the XML UpdateGram. </p>
+      <p>Unlike the <b>CURSORTOXML( )</b> function, <b>XMLUPDATEGRAM( )</b> disregards <b>SET FIELDS</b> statements and reads from the underlying cursor directly. To change the table structure before calling<b> XMLUPDATEGRAM( )</b>, you must copy the data into a new cursor. For example, to change a <b>Numeric</b> field to a <b>Currency</b> field, the following example uses a SQL <b>SELECT</b> statement to create a new cursor and uses that cursor with <b>XMLUPDATEGRAM( )</b>. The example makes the Total_Price field a currency field, enables buffering with <b>CURSORSETPROP( )</b>, adds sales tax with the <b>REPLACE</b> command, and creates an XML UpdateGram using the <b>XMLUPDATEGRAM( )</b> function.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT OrderID, CustID, NTOM(Total_Price) as Total_Price;
+      FROM Orders INTO CURSOR New_Orders READWRITE 
+   CURSORSETPROP("Buffering", 5, "New_Orders")      
+   REPLACE Total_Price WITH (Total_Price * 1.083)   
+   cXMLUpdg = XMLUPDATEGRAM("New_Orders")      </pre></td></tr></table></span></div>
+      <p>When using flag 32768, the flag's 16 and 32 settings can affect which code page is applied depending on the type of data you are writing to XML. The following tables show the possible combinations of settings and the code page each combination applies.</p>
+      <p>For XML documents written with the 32768 flag set, the following code pages are applied.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <td>
+            <p>Flag 16</p>
+          </td>
+          <td>
+            <p>Flag 32</p>
+          </td>
+          <td>
+            <p>Flag 32768 is Set</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>XML documents: Window-1252.</p>
+            <p>Unicode data: code page 1252.</p>
+            <p>Character data: default code page, unless a field is marked as <b>NOCPTRANS</b>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>True (.T)</p>
+          </td>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>XML documents: Plus-<b>CodePage</b> property of the cursor. If XMLField <b>CodePage</b> property is greater than zero (0) and it doesn’t match the cursor’s code page, an error is reported.</p>
+            <p>Unicode data: the <b>Code page</b> property of the cursor object.</p>
+            <p>Character data: none. Raw data from the Visual FoxPro tables (.dbf) are used instead.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>Set</p>
+          </td>
+          <td>
+            <p>XML documents: UTF-8 code page.</p>
+            <p>Unicode data: UTF-8 code page.</p>
+            <p>Character data: Default code page unless field is marked as <b>NOCPTRANS</b>, in which case no additional character translation to UTF-8 occurs.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Set</p>
+          </td>
+          <td>
+            <p>Set</p>
+          </td>
+          <td>
+            <p>XML documents: UTF-8 code page.</p>
+            <p>Unicode data: UTF-8 code page.</p>
+            <p>Character data: default code page unless a field is marked as <b>NOCPTRANS</b>, in which case the data are translated to UTF-8 using the <b>SYS(3005)</b> setting.</p>
+          </td>
+        </tr></table></div>
+      <p>For XML documents written without setting the 32768 flag, the following code pages are applied.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <td>
+            <p>Flag 16</p>
+          </td>
+          <td>
+            <p>Flag 32</p>
+          </td>
+          <td>
+            <p>Without the 32768 flag</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>XML documents: Window-1252.</p>
+            <p>Unicode data: code page 1252.</p>
+            <p>Character data: default code page unless a field is marked as <b>NOCPTRANS</b>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>True (.T)</p>
+          </td>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>XML documents: <b>CodePage</b> property of the cursor.</p>
+            <p>Character data: none. Raw data from the Visual FoxPro tables (.dbf) are used instead.</p>
+            <p>Unicode data: code page property of the cursor object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>Set</p>
+          </td>
+          <td>
+            <p>XML documents: UTF-8 code page.</p>
+            <p>Unicode data: UTF-8 code page.</p>
+            <p>Character data: default code page unless field is marked as <b>NOCPTRANS</b>, in which case no additional character translation to UTF-8 occurs. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Set</p>
+          </td>
+          <td>
+            <p>Set</p>
+          </td>
+          <td>
+            <p>XML documents: UTF-8 code page.</p>
+            <p>Unicode data: UTF-8 code page.</p>
+            <p>Character data: default code page unless field is marked as <b>NOCPTRANS</b>, in which case, they are translated to UTF-8 using code page for the current <b>SYS(3005)</b> setting.</p>
+          </td>
+        </tr></table></div>
+      <p>For more information about converting XML to Visual FoxPro data, see <span class="linkTerms"><a href="/html/1b079e17-218f-4fc1-8fea-c4098831c09d.htm">Converting Between XML and Visual FoxPro Data</a></span>.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/b53b14fa-c1b0-4c29-82b1-3149adf53073.htm">CURSORTOXML( ) Function</a></span><br /><span class="linkTerms"><a href="/html/887e0f56-7ff2-4877-89ff-9bbccde7f2d6.htm">XMLTOCURSOR( ) Function</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/1b079e17-218f-4fc1-8fea-c4098831c09d.htm">Converting Between XML and Visual FoxPro Data</a></span><br /><span class="linkTerms"><a href="/html/ded6a107-d264-4c03-bbe7-4e88d9675d79.htm">XML Data in Visual FoxPro</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="XMLUPDATEGRAM( ) Function">
+<param name="ALink Name" value="XMLUPDATEGRAM">
+</OBJECT>

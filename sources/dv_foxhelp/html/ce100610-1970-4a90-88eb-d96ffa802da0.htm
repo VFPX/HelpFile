@@ -1,0 +1,161 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>KEYMATCH( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">KEYMATCH( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Searches an index tag or index file for an index key.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+KEYMATCH(<span class="parameter">eIndexKey</span> [, <span class="parameter">nIndexNumber</span> [, <span class="parameter">nWorkArea</span> | <span class="parameter">cTableAlias</span>]])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">eIndexKey</span>
+        </span></dt><dd>
+          <p>Specifies the index key that KEYMATCH( ) searches for. The index keys in an index file or index tag are determined by the index expression. An index expression is specified when an index file or index tag is created with INDEX. KEY( ) and SYS(14) can be used to return the index expressions for index files and index tags. For more information on creating index files, index expressions, and index keys, see <a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX</a>.</p>
+          <p>If you don't include any of the optional parameters, KEYMATCH( ) searches the master index file or master index tag for the index key you specify. If a master index file or index tag isn't in effect (for example, you've issued SET ORDER TO without any parameters to place the table in physical record order), Visual FoxPro generates an error message. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nIndexNumber</span>
+        </span></dt><dd>
+          <p>Specifies which index file or index tag is searched. <span class="parameter">nIndexNumber</span> is typically an integer that starts at 1 and is increased by 1 to search additional index tags.</p>
+          <p>If <span class="parameter">nIndexNumber</span> is 1, the master single-entry .idx index file or master index tag (if one is present) is searched.   </p>
+          <p>As <span class="parameter">nIndexNumber</span> increases, subsequent tags in the structural compound index (if one is present) are searched. The tags are searched in the order in which the tags were created in the structural compound index.   </p>
+          <p>As <span class="parameter">nIndexNumber</span> continues to increase and all the tags in the structural compound index have been searched, tags in any open independent compound indexes are then searched. The tags are searched in the order in which the tags were created in the independent compound indexes.   </p>
+          <p>An error message is generated if <span class="parameter">nIndexNumber</span> is greater than the total number of open single-entry .idx files and structural compound and independent compound index tags. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nWorkArea</span>| <span class="parameter">cTableAlias</span></span></dt><dd>
+          <p>Searches index files or tags open in another work area. <span class="parameter">nWorkArea</span> specifies the work area number and <span class="parameter">cTableAlias</span> specifies the table alias. If you omit the work area and alias, KEYMATCH( ) searches index files or tags open for the table in the current work area.</p>
+          <p>If no table has the alias you specify, Visual FoxPro generates an error message. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Logical</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>KEYMATCH( ) searches an index tag or index file for a specific index key and returns true (.T.) if the index key is found; otherwise, KEYMATCH( ) returns false (.F.). KEYMATCH( ) can be used to prevent duplicate index keys.</p>
+      <p>KEYMATCH( ) returns the record pointer to the record on which it was originally positioned before KEYMATCH( ) was issued.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span><br /><span class="linkTerms"><a href="/html/9d21c391-bcb2-415a-9949-f9504f2021b1.htm">INDEXSEEK( ) Function</a></span><br /><span class="linkTerms"><a href="/html/f256f6d2-b03f-41cb-af88-4fb4dce1dc9d.htm">KEY( ) Function</a></span><br /><span class="linkTerms"><a href="/html/b0166019-d7d2-4322-8a7f-d3986987a71e.htm">SET INDEX Command</a></span><br /><span class="linkTerms"><a href="/html/ed8cdfe9-7e01-43ab-8f52-0cfaaff85c83.htm">SYS(14) - Index Expression</a></span><br /><span class="linkTerms"><a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="KEYMATCH( ) Function">
+<param name="ALink Name" value="KEYMATCH">
+</OBJECT>

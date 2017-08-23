@@ -1,0 +1,372 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Controlling Visual FoxPro from Other Applications</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Controlling Visual FoxPro from Other Applications</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Because Visual FoxPro acts as a server (with level 2 compliance) as well as a client, applications that support Automation can create instances of Visual FoxPro, run Visual FoxPro commands, and access Visual FoxPro objects.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You control Visual FoxPro from other applications by using the Visual FoxPro Application object. An Application object is automatically created whenever Visual FoxPro is launched, either directly, through DDE or through Automation.</p>
+      <p>For example, the following lines of code in Visual Basic®, or a Microsoft Excel module create a reference to a Visual FoxPro application object:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Dim oFox as Object
+Set oFox = CreateObject("VisualFoxPro.Application")</pre></td></tr></table></span></div>
+      <p>Once you have a reference to the Visual FoxPro Application object, you can call methods associated with the application object and access other objects through the collection properties of the Application object.</p>
+      <div class="labelheading"><b>Application Object Methods</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <td>
+            <p>
+              <a href="/html/3e967abf-726f-474b-bdd5-fdc2b975561e.htm">DataToClip</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/b6f505ba-c374-453b-acda-d2f59dc56a16.htm">Help</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/c60e1051-ef2b-44ac-85ad-20381931bc48.htm">DoCmd</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/6ea7d17c-6e35-49d2-804f-7b007c0bb2dc.htm">Quit</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f5c27bb2-df5d-4e1c-a516-ca9aabf4acc9.htm">Eval</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/fd5a6994-0153-4316-bb0e-c8b03bb600b7.htm">RequestData</a>
+            </p>
+          </td>
+        </tr></table></div>
+      <p>The following example uses Visual Basic for Applications code in an Excel module to create a Visual FoxPro Application object, open a Visual FoxPro table, and add the results of a query to the active spreadsheet:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Sub FoxTest()
+Dim oFox as Object
+Set oFox = CreateObject("VisualFoxPro.Application")
+oFox.DoCmd "USE customer"
+oFox.DoCmd "SELECT contact, phone FROM customer 
+   WHERE country = " + Chr$(39) + USA+ Chr$(39) + " INTO CURSOR cust"
+oFox.DataToClip "cust",,3
+Range("A1:B1").Select
+ActiveSheet.Paste
+End Sub</pre></td></tr></table></span></div>
+    </div><h1 class="heading">The Visual FoxPro Application Object Model</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>An application object is automatically created whenever Visual FoxPro is launched, either directly, through Automation or DDE. This application object provides access to all other objects created in a Visual FoxPro session through Collection properties.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Visual FoxPro application object model</caption></caption></b><br></br></div><img src="../local/Local_-313092839_afd16010.gif" alt="Visual FoxPro application object model graphic"></img>
+    </div><h1 class="heading">Accessing Objects Through Collection Properties</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The Visual FoxPro application object and all container objects in Visual FoxPro have a count property and a collection property associated with them. The collection property is an array referencing each contained object. The count property is a numeric property indicating the number of contained objects.</p>
+      <p>The following table lists objects and the corresponding collection and count properties.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Object
+            </th>
+            <th>
+              Collection Property
+            </th>
+            <th>
+              Count Property
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/394305f5-b155-4606-be86-de326849c4a1.htm">Application</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/40c14565-d6cf-499e-b5db-565aba619a0d.htm">Objects</a>
+              <a href="/html/07bd66ba-d9ad-4913-86a2-c611d299a722.htm">Forms</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/3041c551-20de-4747-8d6f-32d7964c3ce1.htm">Count</a>
+              <a href="/html/04334b67-5dd6-484a-ac09-b9f36b499127.htm">FormCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/84d27300-b6ce-463d-b569-46dffc7fa48c.htm">FormSet</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/07bd66ba-d9ad-4913-86a2-c611d299a722.htm">Forms</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/04334b67-5dd6-484a-ac09-b9f36b499127.htm">FormCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/a7ff9dc8-6d63-498c-aab6-4ce664c25190.htm">Form</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/40c14565-d6cf-499e-b5db-565aba619a0d.htm">Objects</a>
+              <a href="/html/07a8567e-e2d0-4829-9471-856f5c9e5a7f.htm">Controls</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/3041c551-20de-4747-8d6f-32d7964c3ce1.htm">Count</a>
+              <a href="/html/e3f058b2-4f5f-4cf2-8fa5-43d2ea8bd4d6.htm">ControlCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/852d4c6e-2b5c-404b-ae44-90cdd79ebea5.htm">PageFrame</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/d445328d-88cf-417a-b105-8f1d6fdb420b.htm">Pages</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/9c9e7bc0-9bc0-4869-94d9-a33ae8c089d6.htm">PageCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/83a4017f-483a-4c8f-b63c-e16a58e011af.htm">Page</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/07a8567e-e2d0-4829-9471-856f5c9e5a7f.htm">Controls</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e3f058b2-4f5f-4cf2-8fa5-43d2ea8bd4d6.htm">ControlCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/0212bad2-48a3-49ae-98de-c71ba3af0ede.htm">Grid</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e8c42868-0eff-4363-a0d9-261b118dcc4a.htm">Columns</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/9b9270cb-27c5-470b-b889-5910309ef707.htm">ColumnCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/cb0db420-f1b3-46c9-9d57-2b1d63d429e8.htm">CommandGroup</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/8f21284e-ac1a-4f0b-8357-dff6b7f6d170.htm">Buttons</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/850d30c5-8a65-4689-ad21-621de0faf1e4.htm">ButtonCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/11e98c55-43b3-4c8b-a7a0-6427f31c2e68.htm">OptionGroup</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/8f21284e-ac1a-4f0b-8357-dff6b7f6d170.htm">Buttons</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/850d30c5-8a65-4689-ad21-621de0faf1e4.htm">ButtonCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/362c5c7d-2dd9-4c2c-8028-af188f9fe3d8.htm">Column</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/07a8567e-e2d0-4829-9471-856f5c9e5a7f.htm">Controls</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e3f058b2-4f5f-4cf2-8fa5-43d2ea8bd4d6.htm">ControlCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/b6fbb189-1e9a-47ed-b453-706c05a4b018.htm">ToolBar</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/07a8567e-e2d0-4829-9471-856f5c9e5a7f.htm">Controls</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e3f058b2-4f5f-4cf2-8fa5-43d2ea8bd4d6.htm">ControlCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/31b59b85-d92f-4a32-bc93-da8d637e2c3f.htm">Container</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/07a8567e-e2d0-4829-9471-856f5c9e5a7f.htm">Controls</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e3f058b2-4f5f-4cf2-8fa5-43d2ea8bd4d6.htm">ControlCount</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/c4372c70-c8c4-49ac-9daa-4c2f9a5647c3.htm">Control</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/07a8567e-e2d0-4829-9471-856f5c9e5a7f.htm">Controls</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e3f058b2-4f5f-4cf2-8fa5-43d2ea8bd4d6.htm">ControlCount</a>
+            </p>
+          </td>
+        </tr></table></div>
+      <p>These properties allow you to use a program loop to manage all or specific contained objects. For example, the following lines of code set the Visible property of all forms to True (.T.):</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>FOR EACH Form IN Application.Forms
+   Form.Visible = .T.
+ENDFOR</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/08c896ea-fc01-40b9-a3a5-37160521d180.htm">Automation and COM Servers</a></span><br /><span class="linkTerms"><a href="/html/66d47bc7-f93b-483b-b39f-ebcc9e0a1be4.htm">Sharing Information and Adding OLE</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Controlling Visual FoxPro from Other Applications">
+</OBJECT>

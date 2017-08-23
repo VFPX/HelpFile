@@ -1,0 +1,145 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Customize Queries Using SQL SELECT Statements</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Customize Queries Using SQL SELECT Statements</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you create a query in the Query Designer, Visual FoxPro actually uses a SQL <b>SELECT</b> statement to retrieve the information from the fields in the tables. SQL <b>SELECT</b> statements offer you a more powerful way to manipulate your query and provide more control over your query results and where the results are stored. To verify your query or add comments, you can display the SQL <b>SELECT</b> statement in the SQL window and modify it to further customize your query.</p>
+    <p>When you add queries to your application, you can use SQL <b>SELECT</b> statements to combine a variety of data sources, filter records more precisely, manipulate data, and sort the results. You can use SQL <b>SELECT</b> statements with queries created in the Query Designer, views in the View Designer, or in code for an event or procedure in a program (.prg) file. For more information about where you can use SQL <b>SELECT</b> statements and the SQL <b>SELECT</b> command, see <span class="linkTerms"><a href="/html/f5b2d063-c8c2-4ada-bf3a-b599409cb41c.htm">How to: Create Queries (Visual FoxPro)</a></span> and <span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span>.</p>
+  <h1 class="heading">Viewing SQL SELECT Statements Created by Queries</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can view the SQL statement that your query builds in the SQL window at any time while you create your query. By viewing the SQL statement created by the Query Designer, you can make sure the query is properly defined.</p>
+      <h3 class="procedureSubHeading">To view the SQL SELECT statement created by a query</h3><div class="subSection"><ol><li>
+            
+              <p>Create your query using the Query Designer. </p>
+            
+          </li><li>
+            
+              <p>On the <b>Query</b> menu, choose <b>View SQL</b>.</p>
+            
+          </li></ol></div>
+      <p>The SQL window opens to display the SQL <b>SELECT</b> statement your query created. The first statement is the SQL <b>SELECT</b> statement. For example, you can select all the records from the <code>Customer</code> table in the <code>TasTrade</code> database where the <code>country</code> field contains the value "Canada":</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT *;
+   FROM tastrade!customer;
+   WHERE Customer.country = Canada</pre></td></tr></table></span></div>
+      <p>The script for the SQL <b>SELECT</b> statement appearing in the SQL window is automatically generated when loading or modifying a query in the Query Designer. </p>
+      <p>To run the SQL <b>SELECT</b> statement immediately, enter the statement in the Command window. If you want each clause to appear on a separate line in the window, end each line except the last one with a semicolon (;) so that Visual FoxPro processes the command only after the last line. </p>
+      <p>To include the <b>SELECT</b> statement in code, copy the SQL <b>SELECT</b> statement into a .prg file.</p>
+    </div><h1 class="heading">Editing SQL SELECT Statements in the SQL Window</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>In the SQL window, you can edit the SQL <b>SELECT</b> statement for the query. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The Query Designer parses only the first SQL <b>SELECT</b> statement in the SQL window, the clauses directly involved with the <b>SELECT</b> statement, and the first comment appearing in the query. The Query Designer disregards all other text. </p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To edit the SQL SELECT statement in the SQL window</h3><div class="subSection"><ol><li>
+            
+              <p>Create or open a query.</p>
+            
+          </li><li>
+            
+              <p>Open the SQL window, and edit the SQL <b>SELECT</b> statement.</p>
+            
+          </li></ol></div>
+      <p>You can specify an asterisk, <i>table</i>.*, or a comma-delimited list of fields for the <b>SELECT </b>statement in the SQL window. For example, you can specify the SQL statement as <b>SELECT </b>*<b> FROM</b> or <b>SELECT</b> <i>field1</i>, <i>field2</i>, ... <b>FROM</b>. Your preferences are preserved during the loading or generation of the query. You can also include the same field multiple times in the <b>SELECT </b>list.</p>
+      <p>For more information about using syntax for the SQL <b>SELECT</b> command, see <span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span>.</p>
+    </div><h1 class="heading">Loading SQL SELECT Statement Changes into the Query Designer</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>After editing the SQL <b>SELECT</b> statement in the SQL window, you can reload the changes into the Query Designer. </p>
+      <h3 class="procedureSubHeading">To update the query in the Query Designer</h3><div class="subSection"><ul><li>
+            
+              <p>Close the SQL window.</p>
+            
+          </li></ul></div>
+      <p>You can also update the query by clicking the Query Designer to bring it to the foreground. </p>
+      <p>If the Query Designer cannot reload your changes after you make changes in the View SQL window, a dialog box appears and asks the following:</p>
+      <p>"View/Query designer is unable to reload your changes. Would you like to rebuild content from the designer?"</p>
+      <p>If you select Yes, your changes are discarded in the SQL window, and Visual FoxPro returns you to the Query Designer. If you select No, Visual FoxPro returns you to the SQL window.</p>
+      <p>To save a statement that cannot be parsed such as a call to a stored procedure, select No and click the Save button on the toolbar. Visual FoxPro saves the query. You can also click the Save button after entering the command in the SQL window to save the query. You do not need to click the Query Designer window, which causes the Query Designer to try to load and parse the query.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/b88036cd-3320-4ef0-aea1-985a34ab5c2a.htm">How to: Customize Queries</a></span><br /><span class="linkTerms"><a href="/html/b97f36b2-e45e-4bae-8d94-d473073aba31.htm">How to: Collect User Input with Queries</a></span><br /><span class="linkTerms"><a href="/html/b0a290f6-5c73-4cbc-a4e0-cb1078d1553f.htm">How to: Run Queries (Visual FoxPro)</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ccb3a0ad-7fe4-4267-ba42-aa9918ed1f21.htm">Working with Queries</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Customize Queries Using SQL SELECT Statements">
+</OBJECT>

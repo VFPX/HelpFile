@@ -1,0 +1,126 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Setting Configuration Options at Startup</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Setting Configuration Options at Startup</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can establish configuration settings when you first start the program, which allows you to override default settings. </p>
+  <h1 class="heading">Using SET Commands in Applications</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>One way to establish configuration settings is to issue one or more <b>SET</b> commands when your application starts. For example, to configure your system to display a clock in the status bar when the application starts, you can issue this <b>SET</b> command:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET CLOCK ON</pre></td></tr></table></span></div>
+      <p>The exact point at which you issue the <b>SET</b> command depends on your application. In general, you issue <b>SET</b> commands from your application's main program file, which is the program or form that controls access to the rest of your application. You can also issue <b>SET</b> commands from the <b>Load</b> or <b>Init</b> events of the form. If you are using private data sessions, it may be necessary to make these settings in the <a href="/html/79dea3ce-196e-4fa1-a873-80eb97b4e875.htm">BeforeOpenTables Event</a> of your <b>DataEnvironment</b> object. For details about specifying a main file for an application, see <a href="/html/842d4132-cdb3-4c0f-a25f-405322751018.htm">Compiling an Application</a><i>.</i></p>
+      <p>If your application has a form set as main in the project manager, and it then launches a menu, you can add <b>SETUP</b> commands by entering them in the menu's Setup option. For details see <a href="/html/f500549c-df62-4297-9b54-8b5098ceba8b.htm">How to: Add Setup Code to a Menu System</a> in <a href="/html/21eaee88-6fbe-452b-839d-aa519d16892c.htm">Designing Menus and Toolbars</a><i>.</i></p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>An efficient way to manage <b>SET</b> commands for startup is to create a procedure that contains all the commands that you want to issue. You can then call the procedure from the appropriate point in your application. Keeping all the <b>SETUP</b> commands in a single procedure makes it easier to debug and maintain your configuration settings. You can also put the code in the class on which your application object is based, or the class on which your forms are based.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Using a Configuration File</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>In addition to setting the Visual FoxPro environment using the Options dialog box or <b>SET</b> commands, you can establish preferred settings and save them in one or more configuration files. A Visual FoxPro configuration file is a text file in which you can specify values for <b>SET</b> commands, set system variables, and execute commands or call functions. Visual FoxPro reads the configuration file when starting up, establishing the settings and executing the commands in the file. Settings made in the configuration file override default settings made in the Options dialog box (and stored in the Windows registry).</p>
+      <p>Using a configuration file provides several advantages. You can:
+</p>
+      <ul><li>
+          <p>Override the default settings established in the Options dialog box.</p>
+        </li><li>
+          <p>Maintain several different configuration files, each with different settings, so that Visual FoxPro can load a configuration suitable to a particular user or project.</p>
+        </li><li>
+          <p>Make changes more easily than if you establish settings with the <b>SET</b> commands in the program initialization sequence.</p>
+        </li><li>
+          <p>Start a program or call a function automatically when Visual FoxPro starts.</p>
+        </li></ul>
+      <p>For instructions about working with configuration files, see <a href="/html/66169648-25ce-41de-993f-541643377b91.htm">How to: Create a Configuration File</a> and <a href="/html/5db3a25a-5d8d-4d93-a584-7c2a703c258f.htm">How to: Specify the Configuration File</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/61e54e58-1044-4d73-ad0d-2f9e89814d67.htm">How to: Use Command-Line Options When Starting Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/f500549c-df62-4297-9b54-8b5098ceba8b.htm">How to: Add Setup Code to a Menu System</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/2b188ebb-ac7c-4516-981e-4b3e844132c7.htm">_STARTUP System Variable</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/842d4132-cdb3-4c0f-a25f-405322751018.htm">Compiling an Application</a></span><br /><span class="linkTerms"><a href="/html/21eaee88-6fbe-452b-839d-aa519d16892c.htm">Designing Menus and Toolbars</a></span><br /><span class="linkTerms"><a href="/html/3c7d86e4-7ef2-471a-b53c-315f83186534.htm">Visual FoxPro Environment Settings</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Setting Configuration Options at Startup">
+</OBJECT>

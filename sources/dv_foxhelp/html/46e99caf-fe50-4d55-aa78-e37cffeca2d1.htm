@@ -1,0 +1,871 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Guide to Reporting Improvements</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Guide to Reporting Improvements</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro 9's Report System has undergone a thorough revision.  This topic sketches the broad outlines of the changes, and provides you with information about where to look for details.</p>
+    <p>The following main areas of enhancements to the Report System are covered in sections of this topic.</p>
+    <dl><dt><span class="nonLinkTerms">Design-time enhancements.</span></dt><dd>
+        <p>Multiple features and changes make designing reports in Visual FoxPro better for you and your end-users. The Report Builder Application re-organizes your design experience out-of-the-box. If you want to customize the design process, Report Builder dialog boxes and Report Designer events are fully exposed for you to do so.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">Multiple detail bands.</span></dt><dd>
+        <p>You can handle multiple child tables and data relationships more flexibly in the revised Report Designer. When you run multiple-detail-band reports, you can leverage the new bands, with associated detail headers and footers, both for appropriate presentation of these relationships and for more capable calculations.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">Object-assisted run-time report processing.</span></dt><dd>
+        <p>An entirely re-built output system, including a new base class, changes the way Visual FoxPro provides output report and label files at run time. Object-assisted reporting provides better-quality output, new types of output, and an open-architecture based on a new Visual FoxPro base class, the ReportListener. A programmable Report Preview interface interacts with ReportListeners to give you full control over report preview experience. The Report Preview Application provides improved out-of-the-box previewing facilities.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">Printing, rendering, and character-set-handling improvements.</span></dt><dd>
+        <p>Visual FoxPro 9 makes better use of the operating system's printing features and GDI+ rendering subsystem.  It also handles multiple locales and character sets better than previous versions. These changes are showcased in the Report System, and are accessible for use in custom code during report design and run-time processing.</p>
+      </dd></dl><dl><dt><span class="nonLinkTerms">Extensible use of report and label definition files (.frx and .lbx tables).</span></dt><dd>
+        <p>Visual FoxPro 9 handles your existing reports and labels without modification, while allowing you to add new features and behavior to these reports easily.  This backward-compatible, yet forward-thinking, migration strategy is made possible by the Report System's newly-flexible handling of the .frx and .lbx table structure. </p>
+      </dd></dl>
+  <h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Design-time Enhancements</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>Numerous changes in the Report System help you enhance the design-time experience for developers and end-users.  This section directs you to information about design-time improvements.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Report Designer Event Hooks and the Report Builder Application</h3><div class="subSection" xmlns="">
+          <p>The Report Designer now offers Report Builder Hooks, which enable you to intercept events occurring during a report or label design session to override and extend designer activity. The default Report Builder Application replaces many of the standard reporting dialog boxes with new ones written in Visual FoxPro code. Components of the Report Builder Application are exposed as Visual FoxPro Foundation Classes for your use.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>To learn about:</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Read:</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Report Builder Hooks</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/3c88c403-7559-4001-9cae-3e2ad5f39090.htm">Understanding Report Builder Events</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>How the Report Builder Application uses Report Builder Hooks</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/7161b49c-792d-4b6c-8219-cbe780af3dae.htm">How to: Configure the Report Builder's Event Handling</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>How to specify and distribute a Report Builder with your applications</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/66161092-cda2-4d9f-868c-26beaffa0841.htm">_REPORTBUILDER System Variable</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/de758f3c-c569-48e7-afa2-f8d45efe030d.htm">How to: Specify and Distribute ReportBuilder.App</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/8920ed3c-4d89-4fea-9cf0-1cc21395928a.htm">Including Report Files for Distribution</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Using Report Builder algorithms in your code</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/5bd65ee4-c279-487d-8b31-03f081dd9844.htm">FRX Cursor Foundation Class</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/2d699a43-bb61-4893-bdda-cbf2824990c3.htm">FRX Device Helper Foundation Class</a></span>
+                </p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Protection for End-User Design Sessions, and other Design-time Customization Opportunities</h3><div class="subSection" xmlns="">
+          <p>You can allow end-users to <b>MODIFY</b> and <b>CREATE</b> reports and labels, while setting limitations on what they can do in the Report Designer interface, using the new <b>PROTECTED</b> keyword. Protection is available individually by object and globally for the report.  You can change what end-users see on the designer layout surface, from complex expressions to simple labels or sample data, while working in <b>PROTECTED</b> design mode, using <b>Design-Time Captions.</b>  You can also provide helpful instructions, for both <b>PROTECTED</b> and standard design mode, by specifying <b>Tooltips</b> for report controls.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>To learn about:</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Read:</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Using the <b>PROTECTED</b> keyword</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/c348d33f-8294-48a9-964b-3cdbd699927b.htm">MODIFY REPORT Command</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/115e76bd-e92b-4f2f-a851-c35d8e88da56.htm">MODIFY LABEL Command</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Setting Protection in the Report or Label Designer, and what Protection settings do</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/06bd5839-da09-4e34-a0f4-10bc66da8b4e.htm">Setting Protection for Reports</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Protection settings exposed in Report or Label Dialog dialog boxes when you use the default Report Builder Application</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/4e957609-4394-4e64-9928-13b77ca18fed.htm">Protection Tab, Report Control Properties Dialog Box (Report Builder)</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/71d2d098-c1b7-4768-9399-ad9266621262.htm">Protection Tab, Report Properties Dialog Box (Report Builder)</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/49e7cbc4-7906-4c8f-84be-789791565cd6.htm">Protection Tab, Report Band Properties Dialog Box (Report Builder)</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Design-Time Captions</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/33821b95-1d27-4ca8-8dfd-1b7f145ceb3d.htm">How to: Add Design-time Captions to Field Controls</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ToolTips for Report Controls</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/e222c9d1-fc0e-4b28-9a69-2344d51f2380.htm">How to: Add Tooltips to Report Controls</a></span>
+                </p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Enhanced Data Environment Use in Reports</h3><div class="subSection" xmlns="">
+          <p>You can save the Data Environment you designed for a Report or Label as a visual class.  You can load a Data Environment into a Report or Label design from either a visual class or a previously-saved report or label.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>To learn about:</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Read:</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Saving a Report Data Environment</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/fe3c2b56-9e86-4d10-bb9e-b66d846d8b26.htm">How to: Save Report Data Environments as Classes</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Loading a Report Data Environment</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/4774be59-0811-4dc2-9d6c-7ba36cd463ae.htm">Data Environment Tab, Report Properties Dialog Box (Report Builder)</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/a4cea158-cf16-4ad3-b713-ad77799364c0.htm">How to: Load Data Environments for Reports</a></span>
+                </p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Miscellaneous Design Improvements</h3><div class="subSection" xmlns="">
+          <p>There have been numerous enhancements to the Report and Label Designers.  Some features are subtle changes to make design sessions more efficient and more enjoyable, and others improve your choices for resulting output.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>To learn about:</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Read:</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Improvements to the Report and Label Interactive Development Environment (IDE), such as:</p>
+                <ul><li>
+                    <p>Enhanced Report Designer toolbar, and easier access to the Report Designer Toolbar from the <b>View</b> menu</p>
+                  </li><li>
+                    <p>New global <b>Report Properties</b> context menu</p>
+                  </li><li>
+                    <p>Improvements and additions to existing context menus</p>
+                  </li><li>
+                    <p>Revised and extended <b>Report</b> menu</p>
+                  </li></ul>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/3e95a76f-1639-4466-8d57-846d86b327da.htm">Report Layout and Design</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Changes to global report and label design options</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/9c565d7a-1111-4859-be06-78536132679f.htm">Reports Tab, Options Dialog Box</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Using the new PictureVal property of the Image control to specify images in reports</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/73639c67-232f-4a9d-ada7-16c7fcffa7b4.htm">How to: Add Pictures to Reports</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/2c035350-434d-495a-9434-7dce6b279a04.htm">PictureVal Property</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>New picture template characters (<code>U</code> and <code>W</code>) and updated format instructions (<code>Z</code>, now supported for date and datetime data), useful in reports and labels</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/1f84a128-0157-472f-863b-0ed5f69d2dc5.htm">Format Expressions for Field Controls</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/1547a42a-e88f-4549-a82c-231a921ec689.htm">InputMask Property</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/e1c96289-3368-4546-84ce-8b1bd6163e43.htm">Format Property</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Receiving improved HTML output, which leverages run-time reporting enhancements,  when you choose <b>Save As HTML…</b> while designing a report or label</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/c6ff18fa-2b26-4785-9ef7-a11f2b01719d.htm">How to: Generate Output for Reports</a></span>
+                </p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+                  <p>Other Visual FoxPro components that invoke <span class="linkTerms"><a href="/html/355a8427-158d-4b90-aef6-52e0bd5bf65f.htm">Genhtml.prg</a></span>, the default <b>_GENHTML</b> implementation, automatically share the improved HTML output, although these components have not changed. These include the <span class="linkTerms"><a href="/html/56d090d6-5ed5-4963-b54a-dbdfa32e2e17.htm">FRX to HTML Foundation Class</a></span> and the <span class="linkTerms"><a href="/html/4d2ddfa7-3029-4a6e-8f9d-c2b72fa5b55e.htm">Output Object Foundation Class</a></span>.</p>
+                </td></tr></table></div>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Report document properties enable you to include information about the report in the report. Document properties are included as elements and attributes in XML and HTML output.</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/db893df5-f6d1-4cd9-9a45-b94be502d8e8.htm">How to: Add Document Properties to a Report</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/70d6af89-999a-4b33-bb5c-8279fc1a44ea.htm">Document Properties Tab, Report Properties Dialog Box (Report Builder)</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>You can dynamically change the properties of report controls at run time based on the evaluation of an expression.</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/5c3a37d0-2ca0-4f3a-99a1-b58af17a56d9.htm">How to: Dynamically Format Report Controls</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/a7e45ede-ccc7-41e5-86cd-cdfa0f7a5c8f.htm">Dynamics Tab, Report Control Properties Dialog Box (Report Builder)</a></span>
+                </p>
+              </td>
+            </tr></table></div>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Multiple Detail Bands</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>The Report Engine can now move through a scope of records multiple times. The records can represent related sets of detail lines in child tables, or they can be multiple passes through a single table. These multiple passes through a scope of records are represented as <i>multiple detail bands</i>. </p>
+      <p>Detail bands can have their own headers and footers, their own associated onEntry and onExit code, and their own associated report variables. Each detail band can be explicitly associated with a separate <i>target alias</i>, allowing you to control the number of entries in each detail band separately for related tables. </p>
+      <p>Multiple detail band reports provide many new ways you can represent data in reports and labels, and new ways you can calculate or summarize data, as you move through a record scope. </p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>To learn about:</b>
+              
+            </th>
+            <th>
+              
+                <b>Read:</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>Designing reports and labels with multiple detail bands and their associated headers and footers </p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/1c02a0d0-f240-48ac-9a0a-8b6c0135080e.htm">Optional Bands Dialog Box</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/bf4c21c6-bfdf-43cb-a0f0-ae7ac710a9a5.htm">Report Band Properties Dialog Box</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/afbcaba7-e634-4c5c-a84f-ae1bc4d22d34.htm">Band Tab, Report Band Properties Dialog Box (Report Builder)</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Handling multiple, related tables in report and label data</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/856645aa-548d-479d-9d18-25394efae3de.htm">Controlling Data in Reports</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/8212149c-5f7f-4a6e-9487-a97a93db9a1c.htm">Working with Related Tables using Multiple Detail Bands in Reports</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Associating report variables with detail bands</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/5ff00e9d-4cd7-444b-8268-714522ac7118.htm">How to: Reset Report Variables</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Comparing multiple groups and multiple detail bands</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/49265836-568c-4121-9aa1-789162d15091.htm">Report Bands</a></span>
+            </p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2)" tabindex="0"><img id="sectionToggle2" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Object-assisted Run-time Report Processing</span></h1><div id="sectionSection2" class="section" name="collapseableSection" style="display: none;">
+      <p>Visual FoxPro 9 has a new, <i>object-assisted</i> method of generating output from reports and labels. You can use your existing report and label layouts in object-assisted mode, to:</p>
+      <ul><li>
+          <p>Generate multiple types of output during one report run. </p>
+        </li><li>
+          <p>Connect multiple reports together as part of one output result. </p>
+        </li><li>
+          <p>Improve the quality of traditional report output.</p>
+        </li><li>
+          <p>Dynamically adjust the contents of a report while you process it.</p>
+        </li><li>
+          <p>Provide new types of output not available from earlier versions of Visual FoxPro. </p>
+        </li></ul>
+      <p>This section covers the array of run-time enhancements that work together to support object-assisted reporting mode.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Object-Assisted Architecture and ReportListener Base Class</h3><div class="subSection" xmlns="">
+          <p>The new ReportListener base class and supporting language enhancements are the heart of run-time reporting enhancements.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>To learn about:</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Read:</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Fundamentals of the architecture, how its components work together, and what happens during an object-assisted report run</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/223a5d97-3d68-4e70-8bde-9c15b8f9ce62.htm">Understanding Visual FoxPro Object-Assisted Reporting</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>The ReportListener base class and its members</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/a713cbaf-16a7-4d6c-8478-3822006a1d69.htm">ReportListener Object Properties, Methods, and Events</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Invoking object-assisted reporting mode automatically</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/5d6e4527-8b6f-4f39-a670-c3397eff3bfd.htm">SET REPORTBEHAVIOR Command</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/36753dd4-25b1-412c-854b-256f84e49388.htm">_REPORTOUTPUT System Variable</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/9c565d7a-1111-4859-be06-78536132679f.htm">Reports Tab, Options Dialog Box</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Invoking object-assisted reporting mode explicitly with Visual FoxPro commands</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT FORM Command</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/3876aeab-209d-42b0-9ebd-033284c74adb.htm">LABEL Command</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Debugging and error-handling object-assisted report runs</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/5ba2f0f6-c515-4d48-83b6-5de8e13537ea.htm">Handling Errors During Report Runs</a></span>
+                </p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Report Preview API and the Report Preview Application</h3><div class="subSection" xmlns="">
+          <p>Visual FoxPro 9's object-assisted reporting mode gives you complete control over report and label previews.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>To learn about:</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Read:</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>How object-assisted preview works</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/66975043-814c-4886-901c-53d3924ca1bb.htm">The Preview Container API</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/68ca355c-7494-4a8a-9baf-e525437adc8d.htm">Creating a Custom Preview Container</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>The default Report Preview Application</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/9f96f0e9-9b5d-423d-be13-3c905e963681.htm">Leveraging the Default Preview Container</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>How to specify and distribute Report Preview components with your applications</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/7e0ce0ab-435d-480c-9729-534c0c5a7a4c.htm">_REPORTPREVIEW System Variable</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/3c2c0407-c691-4183-9c2e-b96a00698b73.htm">How to: Specify and Distribute ReportPreview.App</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/8920ed3c-4d89-4fea-9cf0-1cc21395928a.htm">Including Report Files for Distribution</a></span>
+                </p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">New Types of Output and the Report Output Component Set</h3><div class="subSection" xmlns="">
+          <p>Because you can subclass ReportListener, you can create new types of output.  Visual FoxPro 9 supplies a Report Output Application to connect ReportListener subclasses with output types, as well as ReportListener-derived classes with enhanced output capabilities.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>To learn about:</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Read:</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Requirements for Report Output Application, and how Visual FoxPro uses Report Output Applications</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/36753dd4-25b1-412c-854b-256f84e49388.htm">_REPORTOUTPUT System Variable</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Features of the default Report Output Application</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/09b4791d-3a43-4bfa-b63e-f36aeec6f544.htm">Understanding the Report Output Application</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Specifying custom output handlers using the default Report Output Application</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/f31384bf-c40d-4fec-a8f7-99ff038c05ad.htm">How to: Specify an Alternate Report Output Registry Table</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/e99d0fbc-19c6-4418-9e7e-7e170e5cc975.htm">How to: Register Custom ReportListeners and Custom OutputTypes in the Report Output Registry Table</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/c26c975f-6e3d-40d9-aded-302214434df6.htm">Considerations for Creating New Report Output Types</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Understanding and configuring the Visual FoxPro Foundation Classes providing default ReportListener behavior for object-assisted preview and printing</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/6ddf0bcf-901f-47b1-a2be-6ad8afaa1541.htm">ReportListener User Feedback Foundation Class</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Understanding and configuring the Visual FoxPro Foundation Classes responsible for default XML and HTML output</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/9631e586-cecd-44de-8ef9-be5805625c59.htm">ReportListener XML Foundation Class</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/5f0a1dab-ce24-4c87-ac2e-cb9e631d0115.htm">ReportListener HTML Foundation Class</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Leveraging the full set of supported Report Output Foundation Classes and VFP Report Output XML format</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/46ce7cb2-a620-447d-9314-1ebba6e3e271.htm">ReportListener Foundation Classes</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/85f74bc8-b2a7-4ef5-8f2d-cd381c33331f.htm">Using VFP Report Output XML</a></span>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>How to specify and distribute Report Output components with your applications</p>
+              </td>
+              <td>
+                <p>
+                  <span class="linkTerms"><a href="/html/ba6158fb-968d-4f13-b389-b56241500f30.htm">How to: Specify and Distribute Report Output Application Components</a></span>
+                </p>
+                <p>
+                  <span class="linkTerms"><a href="/html/8920ed3c-4d89-4fea-9cf0-1cc21395928a.htm">Including Report Files for Distribution</a></span>
+                </p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Migration Strategies and Changes in Output Rendering</h3><div class="subSection" xmlns="">
+          <p>You can use the design-time changes to improve all reports and labels, whether you choose backward-compatible or object-assisted reporting mode at run time. </p>
+          <p>When evaluating whether to switch to object-assisted reporting mode at run time, first consider items on the <b>Reporting</b> list of <b>Important Changes</b> in the <span class="linkTerms"><a href="/html/1845aee0-11f6-4d09-bfbd-b1847476a3d1.htm">Changes in Functionality for the Current Release</a></span> topic, some of which are specific to this new method of creating output. .The topic includes a table of minor differences between backward-compatible and object-assisted reporting output.  You can examine what effects these changes might have on individual existing reports, and use the recommendations in the table to address them.  You will find additional details in the topic <span class="linkTerms"><a href="/html/e11b3ffe-ee6b-4af3-94f8-7a5ed30ea83d.htm">Using GDI+ in Reports</a></span>.</p>
+          <p>Once you have experimented with your current reports, you can decide on a migration strategy for output:</p>
+          <ul><li>
+              <p>You can switch applications over to use object-assisted reporting mode completely, by using the command <code>SET REPORTBEHAVIOR 90</code>. </p>
+            </li><li>
+              <p>You can use <code>SET REPORTBEHAVIOR 90</code> but preface specific REPORT FORM commands for reports with formatting issues with <code>SET REPORTBEHAVIOR 80</code>, returning your application to object-assisted mode afterwards.</p>
+            </li><li>
+              <p>You can use object-assisted mode all the time, but adjust your ReportListener-derived classes' behavior to suit specific needs.  For example, you could change the default setting of the ReportListener's <span class="linkTerms"><a href="/html/4b995974-861e-43c2-b285-daee41a65738.htm">DynamicLineHeight Property</a></span> to False (<code>.F.</code>).</p>
+            </li><li>
+              <p>You can leave <b>SET REPORTBEHAVIOR</b> at its default setting of <code>80</code>, and add an explicit <b>OBJECT</b> clause to specific reports at your leisure, as you have the opportunity to evaluate and adjust individual report and label layouts.</p>
+            </li></ul>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle3)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle3)" tabindex="0"><img id="sectionToggle3" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Printing, Rendering, and Character-set-handling Improvements</span></h1><div id="sectionSection3" class="section" name="collapseableSection" style="display: none;">
+      <p>General changes to Visual FoxPro's use of Windows' printing, rendering and font-handling support the improvements in the Report System's output. These changes enhance your ability to support multiple printers and multiple languages in reports.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>To learn about:</b>
+              
+            </th>
+            <th>
+              
+                <b>Read:</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>GDI+ features and their impact on native Visual FoxPro output</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/e11b3ffe-ee6b-4af3-94f8-7a5ed30ea83d.htm">Using GDI+ in Reports</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Visual FoxPro reporting enhancements that allow your code to use GDI+ in object-assisted reporting mode, and Visual FoxPro Foundation Classes to get you started</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/a3ed8bfc-a6a2-4c87-840d-a1fcaa3a2e3c.htm">GDIPlusGraphics Property</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/d84ca220-1017-4d03-92d0-907fb6f61f21.htm">Render Method</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/a8a60a3e-43d2-4f80-bdd0-89f5f68578ae.htm">GDI Plus API Wrapper Foundation Classes</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Making full use of multiple character sets, or language scripts, in reports, for single report layout elements, for report defaults, or globally in Visual FoxPro</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/53a11bb9-6a3b-4539-a343-ffd75ae45dbe.htm">GETFONT( ) Function</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/a505bf1b-3793-4ec9-8fc5-a2a7fb4de060.htm">Style Tab, Report Control Properties Dialog Box (Report Builder)</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/895f53a3-c631-45ce-a471-16a3636c5096.htm">How to: Change Page Settings for Reports</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/9c565d7a-1111-4859-be06-78536132679f.htm">Reports Tab, Options Dialog Box</a></span>
+            </p>
+            <p>
+              <span class="linkTerms"><a href="/html/fb7d8ca3-1e9b-4ee3-927e-dd0b5f2ae67d.htm">Reporting Features for International Applications</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Changes to page setup dialog boxes in Visual FoxPro, improvements in your programmatic access to them, and providing overrides to Printer Environment settings in report and label files</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/291ca481-a1bf-4a78-ac59-da3dfaba4037.htm">SYS(1037) - Page Setup Dialog Box</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Receiving improved information about the user's installed printers</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/95287c74-24b9-460b-bfec-4c78f5358417.htm">APRINTERS( ) Function</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Limiting a list of fonts to those appropriate for printer user</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/53a11bb9-6a3b-4539-a343-ffd75ae45dbe.htm">GETFONT( ) Function</a></span>
+            </p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle4)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle4)" tabindex="0"><img id="sectionToggle4" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Extensible Use of Report and Label Definition Files</span></h1><div id="sectionSection4" class="section" name="collapseableSection" style="display: none;">
+      <p>Underneath all the changes to the Visual FoxPro Report System, the Report Designer and Report Engine handle your report and label definitions using the same .frx and .lbx file structures as they did in previous versions.  They change the way they use certain fields, without making these reports and labels invalid in previous versions, and they also allow you to extend your use of existing fields or add custom fields.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>This change is critical to your ability to create extensions of the new reporting features.  For example, you might store two sets of ToolTips in two report extension fields, one set for use by developers and one for use by end-users.  In a Report Builder extension, you could evaluate whether the Designer was working in protected or standard mode, and replace the actual set of ToolTips from the appropriate extension field.  In previous versions, you could not add fields to report or label structure; the Designer and Engine would consider the table invalid.  You also could not add custom content to unused, standard fields in various report and label records safely, because the Report Designer removed such content.</p>
+      </td></tr></table></div>
+      <p>Visual FoxPro 9 provides a revised FILESPEC table for report and label files, with extensive information on the use of each column in earlier versions as well as current enhancements.</p>
+      <p>Visual FoxPro 9 also establishes a new, <i>structured metadata</i> format for use with reports.  This format is an XML document schema shared with the Class Designer's XML MemberData.  </p>
+      <p>The XML document format allows you to pack custom reporting information into a single report or label field.  The default Report Builder Application makes it easy to add Report XML MemberData to report and label records.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>To learn about:</b>
+              
+            </th>
+            <th>
+              
+                <b>Read:</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>How Visual FoxPro uses .frx and .lbx tables, and how to extend these structures</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/e62ce8ab-f156-45d2-a0b9-11562e5dbcef.htm">Understanding and Extending Report Structure</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>How to find and display the contents of the revised FILESPEC table, 60FRX.dbf</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/b9fde125-b9df-4688-bae7-7ae28ebd99ee.htm">Table Structures of Table Files (.dbc, .frx, .lbx, .mnx, .pjx, .scx, .vcx)</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>How you can edit the XML data using the Report Builder Application</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/0148d8e4-c41b-43ef-b164-cc1936db1826.htm">How to: Assign Structured Metadata to Report Controls</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>How you can use Report XML MemberData</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/d64130c7-bb9a-4191-b8b6-4ba430185fe8.htm">Report XML MemberData Extensions</a></span>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>The shared MemberData document schema</p>
+          </td>
+          <td>
+            <p>
+              <span class="linkTerms"><a href="/html/2591781b-25f2-4a9d-afa4-3a620116b1da.htm">MemberData Extensibility</a></span>
+            </p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/f8ce8cf6-5def-40d0-9dcb-65570d47ce92.htm">Data and XML Feature Enhancements</a></span><br /><span class="linkTerms"><a href="/html/6c75fbec-8d4a-4809-a521-c54802e59ea5.htm">SQL Language Improvements</a></span><br /><span class="linkTerms"><a href="/html/ec67c781-ea65-402c-9b5f-91697f2a0746.htm">Class Enhancements</a></span><br /><span class="linkTerms"><a href="/html/f988d7c6-f382-40dd-a51a-b5ab73eb08c7.htm">Language Enhancements</a></span><br /><span class="linkTerms"><a href="/html/eca7fa6d-ec9c-411a-b3ea-6f5d71991a70.htm">Interactive Development Environment (IDE) Enhancements</a></span><br /><span class="linkTerms"><a href="/html/3d8b88b7-28b8-4d71-a4a1-4da3f1a6dd70.htm">Enhancements to Visual FoxPro Designers</a></span><br /><span class="linkTerms"><a href="/html/ebf2f62e-2ae6-4e78-aeee-e4b322dfc9b9.htm">Miscellaneous Enhancements</a></span><br /><span class="linkTerms"><a href="/html/1845aee0-11f6-4d09-bfbd-b1847476a3d1.htm">Changes in Functionality for the Current Release</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/d18b257b-4e8c-4bd7-bc46-682526474e68.htm">What's New in Visual FoxPro</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Guide to Reporting Improvements">
+</OBJECT>

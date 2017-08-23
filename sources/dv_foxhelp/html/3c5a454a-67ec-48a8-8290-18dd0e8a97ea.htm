@@ -1,0 +1,527 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>ALTER TABLE - SQL Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">ALTER TABLE - SQL Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Programmatically modifies the structure of a table. There are several versions of the syntax.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+ALTER TABLE <span class="parameter">TableName1</span> ADD | ALTER [COLUMN] <span class="parameter">FieldName1</span> 
+      <span class="parameter">FieldType</span> [( <span class="parameter">nFieldWidth</span> [, <span class="parameter">nPrecision</span>])] [NULL | NOT NULL] [CHECK <span class="parameter">lExpression1</span> [ERROR <span class="parameter">cMessageText1</span>]] 
+   [AUTOINC [NEXTVALUE <span class="parameter">NextValue</span> [STEP <span class="parameter">StepValue</span>]]] [DEFAULT <span class="parameter">eExpression1</span>] 
+   [PRIMARY KEY | UNIQUE [COLLATE <span class="parameter">cCollateSequence</span>]] 
+   [REFERENCES <span class="parameter">TableName2</span> [TAG <span class="parameter">TagName1</span>]] [NOCPTRANS] [NOVALIDATE]</pre></td></tr></table></span><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+ALTER TABLE <span class="parameter">TableName1</span> ALTER [COLUMN] <span class="parameter">FieldName2</span> [NULL | NOT NULL] [SET DEFAULT <span class="parameter">eExpression2</span>] 
+   [SET CHECK <span class="parameter">lExpression2</span> [ERROR <span class="parameter">cMessageText2</span>]] [ DROP DEFAULT ] [ DROP CHECK ] [ NOVALIDATE ]</pre></td></tr></table></span><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+ALTER TABLE <span class="parameter">TableName1</span> [DROP [COLUMN] <span class="parameter">FieldName3</span>] 
+   [SET CHECK <span class="parameter">lExpression3 </span>[ERROR<span class="parameter">cMessageText3</span>]] [DROP CHECK] 
+   [ADD PRIMARY KEY <span class="parameter">eExpression3</span> [FOR <span class="parameter">lExpression4</span>] TAG TagName2
+   [COLLATE <span class="parameter">cCollateSequence</span>]] [DROP PRIMARY KEY] 
+   [ADD UNIQUE <span class="parameter">eExpression4</span> [[FOR <span class="parameter">lExpression5</span>] TAG <span class="parameter">TagName3</span> 
+      [COLLATE <span class="parameter">cCollateSequence</span>]]] [DROP UNIQUE TAG <span class="parameter">TagName4</span>] 
+   [ADD FOREIGN KEY [<span class="parameter">eExpression5</span>] [FOR <span class="parameter">lExpression6</span>] TAG <span class="parameter">TagName4</span> 
+      REFERENCES <span class="parameter">TableName4</span> [TAG <span class="parameter">TagName4</span>][COLLATE <span class="parameter">cCollateSequence</span>]
+      REFERENCES <span class="parameter">TableName2</span> [TAG <span class="parameter">TagName5</span>]] 
+   [DROP FOREIGN KEY TAG <span class="parameter">TagName6</span> [SAVE]] 
+   [RENAME COLUMN <span class="parameter">FieldName4</span> TO <span class="parameter">FieldName5</span>] [NOVALIDATE]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">ALTER TABLE <span class="parameter"> TableName1</span></span></dt><dd>
+          <p>Modifies the structure of a table. The <span class="parameter">TableName1</span> parameter specifies the name of the table to be modified.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ADD | ALTER [COLUMN] <span class="parameter">FieldName1</span></span></dt><dd>
+          <p>Specifies the name of the field to add or modify. </p>
+          <p>A single table can contain up to 255 fields. If one or more fields allow null values, the limit decreases by one field to 254 fields.   </p>
+          <p>Using <b>ALTER COLUMN</b> resets the collating sequence to the default. You should index the table again with the desired collating sequence after performing <b>ALTER COLUMN</b>. You can also use the <b>COLLATE</b> clause in the <b>ALTER TABLE</b> command when appropriate (primary key or foreign key). </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">FieldType</span>[( <span class="parameter">nFieldWidth</span>[, <span class="parameter">nPrecision</span>])] </span></dt><dd>
+          <p>Specifies the field type, field width, and field precision (number of decimal places) for the new or modified field.</p>
+          <p>
+            <span class="parameter">FieldType</span> can be a single letter indicating the field's data type, or a long name indicating the field's data type. Some field data types require that you specify <span class="parameter">nFieldWidth</span> or <span class="parameter">nPrecision</span>, or both. The following table lists the values for <span class="parameter">FieldType</span> and whether <span class="parameter">nFieldWidth</span> and <span class="parameter">nPrecision</span> are required:   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">FieldType</span>
+                  
+                </th>
+                <th>
+                  
+                    <span class="parameter">nFieldWidth</span>
+                  
+                </th>
+                <th>
+                  
+                    <span class="parameter">nPrecision</span>
+                  
+                </th>
+                <th>
+                  Data type
+                </th>
+              </tr><tr>
+              <td>
+                <p>W, Blob</p>
+              </td>
+              <td>
+                <p>-</p>
+              </td>
+              <td>
+                <p>-</p>
+              </td>
+              <td>
+                <p>
+                  <b>Blob</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>C, Char, Character</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>Character</b> field of width <span class="parameter">n</span></p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Y, Currency</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>Currency</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>D, Date</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>Date</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>T, DateTime</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>DateTime</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>B, Double</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>D</p>
+              </td>
+              <td>
+                <p>
+                  <b>Double</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>G, General</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>General</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>I, Int, Interger</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>Integer</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>L, Logical</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>Logical</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>M, Memo</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>Memo</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>N, Num, Numeric</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>D</p>
+              </td>
+              <td>
+                <p>
+                  <b>Numeric</b> field of width <span class="parameter">n</span> with <span class="parameter">d</span> decimal places</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>F, Float</p>
+              </td>
+              <td>
+                <p>N</p>
+              </td>
+              <td>
+                <p>D</p>
+              </td>
+              <td>
+                <p>Floating <b>Numeric</b> field of width <span class="parameter">n</span> with <span class="parameter">d</span> decimal places</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Q, Varbinary</p>
+              </td>
+              <td>
+                <p>n</p>
+              </td>
+              <td>
+                <p>-</p>
+              </td>
+              <td>
+                <p>
+                  <b>Varbinary</b> field of width <span class="parameter">n</span></p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>V, Varchar</p>
+              </td>
+              <td>
+                <p>n</p>
+              </td>
+              <td>
+                <p>-</p>
+              </td>
+              <td>
+                <p>
+                  <b>Varchar</b> field of width <span class="parameter">n</span></p>
+              </td>
+            </tr></table></div>
+          <p>The <span class="parameter">nFieldWidth</span> and <span class="parameter">nPrecision</span> parameters are ignored for the W, Y, D, T, G, I, L, and M types. If <span class="parameter">nPrecision</span> is not included for the N, F, or B types, the <span class="parameter">nPrecision</span> parameter defaults to zero (no decimal places). </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NULL | NOT NULL </span></dt><dd>
+          <p>Specifies whether null values are allowed in the field. <b>NULL</b> permits null values, while <b>NOT NULL</b> does not allow null values. If one or more fields can contain null values, the maximum number of fields the table can contain is reduced from 255 to 254.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Changing the structure of a field that is used by a binary index so that it can contain null values generates an error. </p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CHECK <span class="parameter">lExpression1</span></span></dt><dd>
+          <p>Specifies a validation rule for the field. The <span class="parameter">lExpression1</span> parameter must evaluate to a logical expression and can be a user-defined function or a stored procedure. Visual FoxPro checks the validation rule specified in the <b>CHECK</b> clause when a blank record is appended. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ERROR <span class="parameter">cMessageText1</span></span></dt><dd>
+          <p>Specifies an error message. Visual FoxPro displays this message when the validation rule specified with the <b>CHECK</b> clause generates an error. The message displays only when data is changed within a Browse window or Edit window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">AUTOINC [NEXTVALUE <span class="parameter"> NextValue</span>[STEP <span class="parameter"> StepValue</span>]] </span></dt><dd>
+          <p>Enables automatic incrementing for the field. <span class="parameter">NextValue</span> specifies the start value and can be a positive or a negative integer value ranging from 2,147,483,647 to -2,147,483,647. The default value is 1. You can set <span class="parameter">NextValue</span> using the Next Value spin box in Fields tab of the Table Designer.</p>
+          <p>
+            <span class="parameter">StepValue </span>specifies the increment value for the field and can be a positive, nonzero integer value ranging from 1 to 255. The default value is 1. You can set <span class="parameter">StepValue</span> using the Step spin box in the Fields tab of the Table Designer.   </p>
+          <p>Autoincrementing values cannot be <b>NULL</b>.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Tables containing automatically incrementing field values append table-buffered records approximately 35% slower than tables without automatically incrementing field values, which might affect performance. When using table buffering, the table header is locked when the record is appended.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DEFAULT <span class="parameter">eExpression1</span></span></dt><dd>
+          <p>Specifies a default value for the field specified in <span class="parameter">FieldName1</span>. The data type of <span class="parameter">eExpression1</span> must be the same as the data type for the field. </p>
+          <p>You cannot specify a default value if you use the <b>AUTOINC</b> clause to turn on autoincrementing for a field. Visual FoxPro generates an error message if you specify values for both the AUTOINC and DEFAULT clauses.  </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">PRIMARY KEY | UNIQUE </span></dt><dd>
+          <p>
+            <b>PRIMARY KEY</b> creates a primary index for the field specified in <span class="parameter">FieldName1</span>. <b>UNIQUE</b> creates a candidate index for the field specified in <span class="parameter">FieldName1</span>. The primary index tag or candidate index tag has the same name as the field. For more information about primary and candidate indexes, see <span class="linkTerms"><a href="/html/fe911859-3235-4349-82c7-fa16a16d5527.htm">Visual FoxPro Index Types</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">COLLATE <span class="parameter">cCollateSequence</span></span></dt><dd>
+          <p>Specifies a collation sequence other than the default setting, MACHINE. The <span class="parameter">cCollateSequence</span> parameter must be a valid Visual FoxPro collation sequence. For more information about setting collation sequences, see <span class="linkTerms"><a href="/html/e80b57ca-d622-49f6-bab9-bae40d8c764f.htm">Optimizing International Applications</a></span> and <span class="linkTerms"><a href="/html/77f8984a-1abf-4efc-b63f-bd1700a34c97.htm">SET COLLATE Command</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">REFERENCES <span class="parameter">TableName2</span>[TAG <span class="parameter">TagName1</span>] </span></dt><dd>
+          <p>Specifies the parent table to which a persistent relationship is established. The parent table cannot be a free table. </p>
+          <p>The <span class="parameter">TagName1</span> parameter clause specifies an index tag name for the parent table in <span class="parameter">TableName2</span>. Index tag names can contain up to 10 characters. If you omit the <b>TAG </b>clause, the relationship is established using the primary index key of the parent table. If the parent table does not have a primary index, Visual FoxPro generates an error. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOCPTRANS </span></dt><dd>
+          <p>Prevents translation to a different code page for <b>Character</b>, <b>Memo</b>, and <b>Varchar</b> fields. You can specify <b>NOCPTRANS</b> only for <b>Character</b>, <b>Memo</b>, and <b>Varchar</b> fields. This creates what appears as <b>Character</b> (Binary), <b>Memo</b> (Binary), and <b>Varchar</b> (Binary) data types in the Table Designer.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOVALIDATE </span></dt><dd>
+          <p>Specifies that Visual FoxPro allows changes to the table structure that can violate the data integrity of the table. By default, Visual FoxPro prevents <b>ALTER TABLE</b> from making such changes to the table structure. To override the default behavior, include the <b>NOVALIDATE</b> option.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ALTER [COLUMN] <span class="parameter">FieldName2</span></span></dt><dd>
+          <p>Specifies the name of a field to modify. You need to include multiple <b>ALTER COLUMN</b> clauses to change more than one property of a field in a single <b>ALTER TABLE</b> command. For more information about how <b>ALTER COLUMN</b> clauses are structured, see the examples in this topic.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SET DEFAULT <span class="parameter">eExpression2</span></span></dt><dd>
+          <p>Specifies a new default value for an existing field. The data type of <span class="parameter">eExpression2</span> must be the same as the data type for the field. </p>
+          <p>You cannot specify a default value if you use the <b>AUTOINC</b> clause to turn on autoincrementing for a field. Visual FoxPro generates an error message if you specify values for both the <b>AUTOINC</b> and <b>SET DEFAULT</b> clauses. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SET CHECK <span class="parameter">lExpression2</span></span></dt><dd>
+          <p>Specifies a new validation rule for an existing field. The <span class="parameter">lExpression2</span> parameter must evaluate to a logical expression and can be a user-defined function or a stored procedure.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ERROR <span class="parameter">cMessageText2</span></span></dt><dd>
+          <p>Specifies an error message for the field validation rule in <span class="parameter">lExpression2</span>. Visual FoxPro displays this message when the field validation rule generates an error. The message displays only when data is changed within a Browse window or Edit window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DROP DEFAULT </span></dt><dd>
+          <p>Removes the default value for an existing field.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DROP CHECK </span></dt><dd>
+          <p>Removes the validation rule for an existing field.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DROP [COLUMN] <span class="parameter">FieldName3</span></span></dt><dd>
+          <p>Specifies a field to remove from the table. Removing a field from the table also removes the field's default value setting and field validation rule.</p>
+          <p>If index key or trigger expressions reference the field, the expressions become invalid when the field is removed. In this case, an error is not generated when the field is removed, but the invalid index key or trigger expressions generate errors at run time. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SET CHECK <span class="parameter">lExpression3</span></span></dt><dd>
+          <p>Specifies the table validation rule. The <span class="parameter">lExpression3</span> parameter must evaluate to a logical expression and can be a user-defined function or a stored procedure.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ERROR <span class="parameter">cMessageText3</span></span></dt><dd>
+          <p>Specifies an error message for the table validation rule in <span class="parameter">lExpression3</span>. Visual FoxPro displays this message when the table validation rule generates an error. The message displays only when data is changed within a Browse window or Edit window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DROP CHECK </span></dt><dd>
+          <p>Removes the table validation rule.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ADD PRIMARY KEY <span class="parameter">eExpression3</span>[FOR <span class="parameter">lExpression4</span>] TAG <span class="parameter">TagName2</span></span></dt><dd>
+          <p>Adds a primary index to the table. The <span class="parameter">eExpression3</span> specifies the primary index key expression. </p>
+          <p>You can use <span class="parameter">lExpression4</span> to specify a filter expression where only records that satisfy the condition are available for display and access. Primary index keys are created in the index file just for those records that match the filter expression. You should avoid using the <b>FOR</b> clause to create a primary index; the uniqueness of a primary key is enforced only for those records that match the condition specified in the <b>FOR</b> clause. Instead, use the <b>INDEX</b> command with a <b>FOR</b> clause to create a filtered index.   </p>
+          <p>Rushmore Query Optimization optimizes an <b>ALTER TABLE ... FOR</b> <span class="parameter">lExpression4</span> command if the <span class="parameter">lExpression4</span> expression can be optimized. For the best performance, use an optimizable expression in the <b>FOR</b> clause. For more information, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>.</p>
+          <p>The <span class="parameter">TagName2</span> parameter specifies the name of the primary index tag. Index tag names can contain up to 10 characters. If you omit <b>TAG</b> <span class="parameter">TagName2</span>, and <span class="parameter">eExpression3</span> is a single field, the primary index tag has the same name as the field specified in <span class="parameter">eExpression3</span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DROP PRIMARY KEY </span></dt><dd>
+          <p>Removes the primary index and its index tag. A table can have only one primary key, so you do not need to specify the name of the primary key. Removing the primary index also deletes any persistent relations based on the primary key.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ADD UNIQUE <span class="parameter">eExpressio</span><i>n4</i>[TAG <span class="parameter">TagName3</span>[FOR <span class="parameter">lExpression5</span>]] </span></dt><dd>
+          <p>Adds a candidate index to the table. The <span class="parameter">eExpression4</span> parameter specifies the candidate index key expression. The <span class="parameter">TagName3</span> parameter specifies the name of the candidate index tag. Index tag names can contain up to 10 characters. If you omit <b>TAG</b> <span class="parameter">TagName3,</span> and if <span class="parameter">eExpression4</span> is a single field, the candidate index tag has the same name as the field specified in <span class="parameter">eExpression4</span>.</p>
+          <p>You can use the <span class="parameter">lExpression5</span> parameter to specify a filter expression where only records that satisfy the condition are available for display and access. Candidate index keys are created in the index file just for those records that match the filter expression.   </p>
+          <p>Rushmore optimizes an <b>ALTER TABLE ... FOR</b> <span class="parameter">lExpression5</span> command if the <span class="parameter">lExpression5</span> expression can be optimized. For the best performance, use an optimizable expression in the <b>FOR</b> clause. For more information, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DROP UNIQUE TAG <span class="parameter">TagName4</span></span></dt><dd>
+          <p>Removes the candidate index and its index tag. A table can have multiple candidate keys, so you must specify the name of the candidate index tag.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ADD FOREIGN KEY [ <span class="parameter">eExpression5</span>] TAG <span class="parameter">TagName4</span>[FOR <span class="parameter">lExpression6</span>] </span></dt><dd>
+          <p>Adds a foreign (non-primary) index to the table. The <span class="parameter">eExpression5</span> parameter specifies the foreign index key expression. The <span class="parameter">TagName4</span> parameter specifies the name of the foreign index tag. Index tag names can contain up to 10 characters.</p>
+          <p>You can use the <span class="parameter">lExpression6</span> parameter to specify a filter expression where only records that satisfy the condition are available for display and access. Foreign index keys are created in the index file just for those records that match the filter expression.   </p>
+          <p>Rushmore optimizes an <b>ALTER TABLE ... FOR</b> <span class="parameter">lExpression6</span> command if the <span class="parameter">lExpression6</span> expression can be optimized. For the best performance, use an optimizable expression in the <b>FOR</b> clause. For more information, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">REFERENCES <span class="parameter">TableName2</span>[TAG <span class="parameter">TagName5</span>] </span></dt><dd>
+          <p>Specifies the parent table to which a persistent relationship is established. You can use the <b>TAG</b> <span class="parameter">TagName5</span> clause to establish a relationship based on an existing index tag for the parent table. Index tag names can contain up to 10 characters. If you omit the <b>TAG</b> clause, Visual FoxPro establishes the relationship using the parent table's primary index tag.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DROP FOREIGN KEY TAG <span class="parameter">TagName6</span>[SAVE] </span></dt><dd>
+          <p>Deletes a foreign key whose index tag is <span class="parameter">TagName6</span>. You can use <b>SAVE</b> to keep the index tag in the structural index. If you omit <b>SAVE</b>, the index tag is deleted from the structural index.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">RENAME COLUMN <span class="parameter">FieldName4</span>TO <span class="parameter">FieldName5</span></span></dt><dd>
+          <p>Makes it possible for you to change the name of a field in the table. The <span class="parameter">FieldName4</span> parameter specifies the name of the field to be renamed. The <span class="parameter">FieldName5</span> paramter specifies the new name of the field.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+            <p>Exercise care when renaming table fields because index expressions, field and table validation rules, commands, functions, and so on might refer to the original field names.</p>
+          </td></tr></table></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>You can use <b>ALTER TABLE</b> to modify the structure of a table that has not been added to a database. However, Visual FoxPro generates an error if you include the <b>DEFAULT</b>, <b>FOREIGN KEY</b>, <b>PRIMARY KEY</b>, <b>REFERENCES</b>, or <b>SET</b> clauses when modifying a free table.</p>
+      <p>
+        <b>ALTER TABLE</b> might rebuild the table by creating a new table header and appending records to the table header. For example, changing the type or width of a field can cause the table to rebuild. </p>
+      <p>After a table is rebuilt, field validation rules are executed for any fields whose type or width is changed. If you change the type or width of any field in the table, the table rule is executed.</p>
+      <p>If you modify field or table validation rules for a table that has records, Visual FoxPro tests the new field or table validation rules against the existing data and issues a warning on the first occurrence of a field or table validation rule or of a trigger violation.</p>
+      <p>You cannot specify a value or expression in the <b>DEFAULT</b> clause if you turn on autoincrementing for a field.</p>
+      <p>To remove autoincrementing, use <b>ALTER TABLE - SQL</b> to change <b>COLUMN</b> but do not include the <b>AUTOINC</b> clause.</p>
+      <p>Field validation should remain enabled for autoincrementing fields. You might want to use validation to return a new autoincrementing value.</p>
+      <p>When you change a table that does not contain an autoincrementing field to include one, either by using <b>ALTER TABLE</b> or the Table Designer, autoincrementing begins with the next added row. Previous rows in the table are not updated with autoincrementing values starting with the first record. You need to make sure that no conflicts occur as a result.</p>
+      <p>
+        <b>ALTER TABLE</b> might not produce consistent results when used with Visual FoxPro cursors created by the <b>CREATE CURSOR</b> command. In particular, you can create a Visual FoxPro cursor with features, such as long field names, that are normally available only with tables that are part of a database container. <b>ALTER TABLE</b> saves a temporary copy of the cursor, so the rules that apply to free tables also apply, and any features requiring database support are lost or changed in an unpredictable manner. Therefore, you should generally avoid using <b>ALTER TABLE</b> with Visual FoxPro cursors unless you have tested and understood the outcome.</p>
+      <p>If you omit <b>NULL</b> and <b>NOT NULL</b>, the current setting of the <b>SET NULL</b> command determines if null values are allowed in the field. However, if you omit <b>NULL</b> and <b>NOT NULL</b> but include the <b>PRIMARY KEY</b> or <b>UNIQUE</b> clause, Visual FoxPro disregards the current setting of <b>SET NULL</b>, and the field defaults to <b>NOT NULL</b>.</p>
+      <p>Visual FoxPro generates an error if the validation rule specified in the <b>CHECK</b> clause does not allow for a blank field value in an appended record.</p>
+      <p>Null values and duplicate records are not permitted in a field used for a primary or candidate index. If you are creating a new field using <b>ADD COLUMN</b>, Visual FoxPro does not generate an error if you create a primary or candidate index for a field that supports null values. However, Visual FoxPro generates an error if you attempt to enter a null or duplicate value into a field used for a primary or candidate index.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Candidate indexes, created by including the <b>UNIQUE</b> option (provided for ANSI compatibility) in <b>CREATE TABLE – SQL</b> or <b>ALTER TABLE – SQL</b> commands, are not the same as indexes created in the <b>INDEX</b> command with the <b>UNIQUE</b> option. An index created in the <b>INDEX</b> command using the <b>UNIQUE</b> option allows duplicate index keys; candidate indexes do not allow duplicate index keys. For more information about the <b>UNIQUE</b> option in the <b>INDEX</b> command, see <span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span>. The term <b>CANDIDATE</b> is a synonym of <b>UNIQUE</b> and can be used instead if you choose.</p>
+      </td></tr></table></div>
+      <p>If you modify an existing field, and the primary index expression or candidate index expression consists of fields in the table, Visual FoxPro checks the fields to see if they contain null values or duplicate records. If they do, Visual FoxPro generates an error and the table is not altered.</p>
+      <p>If the table is converted to another code page, the fields for which <b>NOCPTRANS</b> has been specified are not translated.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    
+      
+        <p>Example 1 adds a field called <code>Fax</code> to a <code>Customer</code> table and allows the field to have null values.</p>
+        <p>Example 2 makes the <code>Cust_id</code> field the primary key of the <code>Customer</code> table.</p>
+        <p>Example 3 adds a field validation rule to the <code>Quantity</code> field of the <code>Orders</code> table so that values in the <code>Quantity</code> field must be non-negative.</p>
+        <p>Example 4 adds a one-to-many persistent relation between the <code>Customer</code> and <code>Orders</code> tables based on the primary key <code>Cust_id</code> in the <code>Customer</code> table and a new foreign key index <code>Cust_id</code> in the <code>Orders</code> table.</p>
+        <p>Example 5 removes the field validation rule from the <code>Quantity</code> field in the <code>Orders</code> table.</p>
+        <p>Example 6 removes the persistent relation between the <code>Customer</code> and <code>Orders</code> tables, but keeps the <code>Cust_id</code> index tag in the <code>Orders</code> table.</p>
+        <p>Example 7 adds a field called <code>Fax2</code> to the <code>Customer</code> table and prevents the field from containing null values. The new structure of the table is displayed. Two <b>ALTER COLUMN</b> clauses are used to allow the field to have null values and set the default value for the field to the null value. Note that multiple <b>ALTER COLUMN</b> clauses are required to change more than one property of a field in a single <b>ALTER TABLE</b> command. The new field is then removed from the table to restore the table to its original state.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Example 1
+SET PATH TO (HOME(2) + 'Data\')     &amp;&amp; Sets path to table.
+ALTER TABLE Customer ADD COLUMN Fax c(20) NULL
+* Example 2
+ALTER TABLE Customer ADD PRIMARY KEY Cust_id TAG Cust_id
+ALTER TABLE Customer ALTER COLUMN Cust_id Character(5) PRIMARY KEY
+* Example 3
+ALTER TABLE Orders;
+    ALTER COLUMN Quantity SET CHECK Quantity &gt;= 0;
+    ERROR "Quantities must be non-negative"
+* Example 4
+ALTER TABLE Orders;
+   ADD FOREIGN KEY Cust_id TAG Cust_id REFERENCES Customer
+* Example 5
+ALTER TABLE Orders ALTER COLUMN Quantity DROP CHECK
+* Example 6
+ALTER TABLE Orders DROP FOREIGN KEY TAG Cust_id SAVE
+* Example 7
+CLEAR
+ALTER TABLE Customer ADD COLUMN Fax2 c(20) NOT NULL
+DISPLAY STRUCTURE
+ALTER TABLE Customer;
+   ALTER COLUMN Fax2 NULL;
+   ALTER COLUMN Fax2 SET DEFAULT .NULL.
+ALTER TABLE Customer DROP COLUMN Fax2</pre></td></tr></table></span></div>
+      
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/c576b477-4cf5-4ad4-a115-6963867dd548.htm">AFIELDS( ) Function</a></span><br /><span class="linkTerms"><a href="/html/b14e5d95-5b1c-4cfa-a5ac-4093ea6211e0.htm">CREATE TABLE - SQL Command</a></span><br /><span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span><br /><span class="linkTerms"><a href="/html/871ce68a-2b9c-4f74-956d-9a0f163d966a.htm">MODIFY STRUCTURE Command</a></span><br /><span class="linkTerms"><a href="/html/167e24f6-0e6f-4cc1-a1a9-dffc9491d85a.htm">OPEN DATABASE Command</a></span><br /><span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/bd6eff0c-2ce5-43b7-ab29-f5360cd2f90e.htm">Autoincrementing Field Values in Tables</a></span><br /><span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="ALTER TABLE - SQL Command">
+<param name="ALink Name" value="ALTER TABLE - SQL">
+</OBJECT>

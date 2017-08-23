@@ -1,0 +1,157 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Optimizing Tables and Indexes</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Optimizing Tables and Indexes</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can speed access to data in tables by using indexes and by using buffering efficiently. In addition, you can use Rushmore Query Optimization technology to optimize your queries.</p>
+  <h1 class="heading">Using Indexes</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>To speed up access to data in a table, use an index. Adding an index to a table speeds up searches, especially if you're able to use Rushmore technology to optimize your search. Indexing also allows you to work with data in a particular order, such as viewing a customer table in order by last name.</p>
+      <p>If the records in a table have unique keys, create a primary or candidate index on the field. These types of indexes allow Visual FoxPro to validate the key at a low level, resulting in best performance.</p>
+      <p>In addition to indexing fields used for searching and sorting, you should also index any fields involved in a join. If you join two tables on fields that are not indexed, the join operation can take as much as hundreds of times longer.</p>
+      <p>An important feature of Visual FoxPro is that you can create an index on any expression. (In some database products, you can index only on fields.) This capability allows you to use indexes to optimize searching, sorting, or joining on combinations of fields, or on expressions derived from fields. For example, you can index a name field based on an expression that uses the <a href="/html/4e26db14-e4d3-4c54-b9fa-302183a9c309.htm">SOUNDEX( )</a> function. That way, your application can provide extremely quick access to names that sound alike.</p>
+      <p>When adding indexes to your tables, you must balance the benefit you get in retrieval times against a performance loss when updating the table. As you add more indexes to your table, updates and inserts to the table are slower because Visual FoxPro needs to update each index.</p>
+      <p>Finally, avoid using indexes on fields that contain only a few discrete values, such as a logical field. In these cases, the index contains only a small number of entries, and the overhead of maintaining the index probably outweighs the benefit it provides when searching.</p>
+      <p>For details about how to index effectively when using Rushmore technology, see <a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a>.</p>
+    </div><h1 class="heading">Optimizing Joins</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>When you create joins using <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL</a>, the following situations can degrade performance and produce unexpected results:
+</p>
+      <ul><li>
+          <p>Joining tables on data that is not a primary or unique key in one of the tables.</p>
+        </li><li>
+          <p>Joining tables containing empty fields.</p>
+        </li></ul>
+      <p>To avoid these situations, create joins based on the relationship between primary keys in one table and foreign keys in the other. If you create a join based on data that is not unique, the end result can be the product of two tables. For example, the following SELECT - SQL statement creates a join, which can produce a very large result:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT *;
+ FROM  tastrade!customer INNER JOIN tastrade!orders ;
+ ON  Customer.postal_code = Orders.postal_code</pre></td></tr></table></span></div>
+      <p>In the example, postal code uniquely identifies a location within a city, but has little value if your intent is to match customer rows and their order rows. The postal code doesn't necessarily uniquely identify a customer or an order. Instead, create a join using a statement such as the following:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT *;
+ FROM  tastrade!customer INNER JOIN tastrade!orders ;
+ ON  Customer.customer_id = Orders.customer_id</pre></td></tr></table></span></div>
+      <p>In this example, the field <code>customer_id</code> uniquely identifies a specific customer and the orders belonging to that customer, and therefore creates a result set that combines the customer row with each order row.</p>
+      <p>In addition, use caution when joining tables with empty fields because Visual FoxPro will match empty fields. However, Visual FoxPro doesn't match fields containing null. When creating a join, qualify the field expressions in the join condition by testing for an empty string.</p>
+      <p>For example, if you think that the customer id field in the Orders table might be empty, use a statement such as the following to filter out order records with no customer number:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT *;
+ FROM  tastrade!customer INNER JOIN tastrade!orders ;
+ ON  Customer.customer_id = Orders.customer_id; 
+ WHERE tastrade!orders &lt;&gt; ""</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>You can also test for an empty string using the <a href="/html/714bd634-6f29-4024-856b-7b669f0a4350.htm">EMPTY( )</a> function, but including a function call within the filter expression is not as fast as comparing to a constant value.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Using the Project Manager</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When you use the Project Manager, you can combine an unlimited number of programs and procedures into a single .app or .exe file. This can greatly increase program execution speed for a couple of reasons.</p>
+      <p>First, Visual FoxPro opens a program file and leaves it open. Later, when you issue a <a href="/html/c4dda428-55f2-4610-9d0f-bccc53023a41.htm">DO</a> command on a program contained in the file, Visual FoxPro doesn't need to open an additional file.</p>
+      <p>Second, an application of only one or two files reduces the number of files necessary in the working directory. The speed of all file operations increases as the operating system has fewer directory entries to examine when opening, renaming, or deleting files.</p>
+      <p>For information on using the Project Manager to create applications, see <a href="/html/842d4132-cdb3-4c0f-a25f-405322751018.htm">Compiling an Application</a>.</p>
+    </div><h1 class="heading">General Table and Index Optimization Hints</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>To create the fastest possible tables and indexes, follow the recommendations listed below.
+</p>
+      <ul><li>
+          <p>If record or table buffering is not enabled, use <a href="/html/f9d15b20-eb9d-4c37-8d4a-d9d02c01eb56.htm">INSERT - SQL</a> instead of APPEND BLANK followed by REPLACE, particularly with an indexed table in a multiuser environment, because indexes only need to be updated once.</p>
+        </li><li>
+          <p>If you need to append a large number of records to an indexed table, it might be faster to remove the index, append the records, and then re-create the index.</p>
+        </li><li>
+          <p>In SQL statements, avoid function calls if possible, especially in statements that will return more than one record, because the statement must be reevaluated (and the functions called again) for each record. If you are creating a SQL statement with variable data, use name expressions or macro substitution in favor of the EVALUATE( ) function. A better strategy yet is to construct the entire statement dynamically, not just individual clauses. For more information, see <a href="/html/089c2980-2586-465f-ae48-b1ceae975bea.htm">Using Macros</a> and <a href="/html/9acf55cd-bfaa-4266-8d5d-3617878ab291.htm">Creating Name Expressions</a>.</p>
+        </li><li>
+          <p>If you usually use a certain index order, you can improve performance by periodically sorting the table in this order.</p>
+        </li><li>
+          <p>Use .cdx instead of .idx files in multiuser environments because you can update one .cdx file faster than you can update multiple .idx files.</p>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/3f3c7751-db8b-43ad-9da6-7daa3f8eb8b5.htm">Optimizing Applications</a></span><br /><span class="linkTerms"><a href="/html/c43a1e26-abb8-486a-9e59-a8c188a882cc.htm">Optimizing Your System</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Optimizing Tables and Indexes">
+</OBJECT>

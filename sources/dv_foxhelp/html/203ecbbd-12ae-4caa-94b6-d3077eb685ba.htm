@@ -1,0 +1,456 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>CREATE CURSOR - SQL Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">CREATE CURSOR - SQL Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Creates a temporary table that exists until closed.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+CREATE CURSOR <span class="parameter">alias_name</span> 
+...[CODEPAGE=nCodePage]
+   (<span class="parameter">fname1</span> <span class="parameter">cFieldType </span>[(<span class="parameter">nFieldWidth</span> [, <span class="parameter">nPrecision</span>])] [NULL | NOT NULL] 
+   [CHECK <span class="parameter">lExpression</span> [ERROR <span class="parameter">cMessageText</span>]] 
+   [AUTOINC [NEXTVALUE <span class="parameter">NextValue</span> [STEP <span class="parameter">StepValue</span>]]]
+   [DEFAULT <span class="parameter">eExpression</span>] [UNIQUE [COLLATE cCollateSequence]]
+   [NOCPTRANS] [, <span class="parameter">fname2</span> ...]) 
+   | FROM ARRAY <span class="parameter">ArrayName</span></pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">alias_name</span>
+        </span></dt><dd>
+          <p>Specifies the name of the temporary table to create. The <span class="parameter">alias_name</span> parameter can be a name expression.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nCodePage</span>
+        </span></dt><dd>
+          <p>Specifies the code page to use. For a list of code pages, see <span class="linkTerms"><a href="/html/a3d7b0e0-8320-44b1-8983-17c30a78c6c4.htm">Code Pages Supported by Visual FoxPro</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">fname</span>
+        </span></dt><dd>
+          <p>Specifies the name of a field in the temporary table. Each <span class="parameter">fname</span> can be a name expression.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cFieldType</span>
+        </span></dt><dd>
+          <p>Specifies a single letter or a long name indicating the field's data type.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nFieldWidth</span>
+        </span></dt><dd>
+          <p>Specifies the width of the field specified with <span class="parameter">fname</span>. Some data types require that you specify a value for <span class="parameter">nFieldWidth</span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nPrecision</span>
+        </span></dt><dd>
+          <p>Specifies the number of decimal places for the specified data type. Some data types require that you specify a value for <span class="parameter">nPrecision</span>.</p>
+          <p>The following table shows the possible values for <span class="parameter">cFieldType</span>, <span class="parameter">nFieldWidth</span>, and <span class="parameter">nPrecision</span>.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cFieldType</span>
+                  
+                </th>
+                <th>
+                  
+                    <span class="parameter">nFieldWidth</span>
+                  
+                </th>
+                <th>
+                  
+                    <span class="parameter">nPrecision</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>W, Blob</p>
+              </td>
+              <td>
+                <p>-</p>
+              </td>
+              <td>
+                <p>-</p>
+              </td>
+              <td>
+                <p>
+                  <b>Blob</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>C, Char, Character</p>
+              </td>
+              <td>
+                <p>n</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>Character</b> field of width <span class="parameter">n</span></p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Y, Currency</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>Currency</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>D, Date</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>Date</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>T, DateTime</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>DateTime</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>B, Double</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>d</p>
+              </td>
+              <td>
+                <p>
+                  <b>Double</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>G, General</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>General</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>I, Int, Integer</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>Integer</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>L, Logical</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>Logical</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>M, Memo</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>–</p>
+              </td>
+              <td>
+                <p>
+                  <b>Memo</b>
+                </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>N, Num, Numeric</p>
+              </td>
+              <td>
+                <p>n</p>
+              </td>
+              <td>
+                <p>d</p>
+              </td>
+              <td>
+                <p>
+                  <b>Numeric</b> field of width <span class="parameter">n</span> with <span class="parameter">d</span> decimal places</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>F, Float</p>
+              </td>
+              <td>
+                <p>n</p>
+              </td>
+              <td>
+                <p>d</p>
+              </td>
+              <td>
+                <p>Floating <b>Numeric</b> field of width <span class="parameter">n</span> with <span class="parameter">d</span> decimal places</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Q, Varbinary</p>
+              </td>
+              <td>
+                <p>n</p>
+              </td>
+              <td>
+                <p>-</p>
+              </td>
+              <td>
+                <p>
+                  <b>Varbinary</b> field of width <span class="parameter">n</span></p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>V, Varchar</p>
+              </td>
+              <td>
+                <p>n</p>
+              </td>
+              <td>
+                <p>-</p>
+              </td>
+              <td>
+                <p>
+                  <b>Varchar</b> field of width <span class="parameter">n</span></p>
+              </td>
+            </tr></table></div>
+          <p>The<span class="parameter"> nFieldWidth</span> and <span class="parameter">nPrecision</span> parameters are ignored for W, Y, D, T, G, I, L, and M types. If <span class="parameter">nPrecision</span> is not included for the N, F, or B types, the <span class="parameter">nPrecision</span> parameter defaults to zero (no decimal places). </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NULL | NOT NULL </span></dt><dd>
+          <p>Specifies whether null values are allowed in the field. <b>NULL</b> permits null values, while <b>NOTNULL</b> does not allow null values. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CHECK <span class="parameter">lExpression</span></span></dt><dd>
+          <p>Specifies a validation rule for the field. The <span class="parameter">lExpression</span> parameter must evaluate to a logical expression and can be a user-defined function or a stored procedure. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ERROR <span class="parameter">cMessageText</span></span></dt><dd>
+          <p>Specifies an error message. Visual FoxPro displays this message when the validation rule specified in the <b>CHECK</b> clause generates an error. The message displays only when data is changed within a Browse window or Edit window.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">AUTOINC [NEXTVALUE <span class="parameter">NextValue </span>[STEP <span class="parameter">StepValue</span>]] </span></dt><dd>
+          <p>Enables autoincrementing for the field.</p>
+          <p>
+            <span class="parameter">NextValue</span> specifies the start value and can be a positive or a negative integer value ranging from 2,147,483,647 to -2,147,483,647. The default value is 1. You can set <span class="parameter">NextValue</span> using the <b>Next Value </b>box on the <b>Fields</b> tab in the Table Designer.</p>
+          <p>
+            <span class="parameter">StepValue</span> specifies the increment value for the field and can be a positive, nonzero integer value ranging from 1 to 255. The default value is 1. You can set <span class="parameter">StepValue</span> using the <b>Step</b> box on the <b>Fields</b> tab in the Table Designer.    </p>
+          <p>Autoincrementing values cannot be null (.NULL.).</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Tables containing automatically incrementing field values append table-buffered records approximately 35% slower than tables without automatically incrementing field values, which might affect performance. When using table buffering, the table header is locked when the record is appended. </p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DEFAULT <span class="parameter">eExpression</span></span></dt><dd>
+          <p>Specifies a default value for the field. The data type of <span class="parameter">eExpression</span> must be the same as the specified field's data type.</p>
+          <p>If you use the <b>AUTOINC</b> clause to turn on autoincrementing for a field and specify a default value, Visual FoxPro stores the default value in the table but does not use it. Visual FoxPro uses the default value if you use the <b>ALTER TABLE - SQL</b> command to remove autoincrementing for the field. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">UNIQUE </span></dt><dd>
+          <p>Creates a candidate index for the field. The candidate index tag has the same name as the field. For more information about candidate indexes, see <span class="linkTerms"><a href="/html/fe911859-3235-4349-82c7-fa16a16d5527.htm">Visual FoxPro Index Types</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">COLLATE <span class="parameter">cCollateSequence</span></span></dt><dd>
+          <p>Specifies a collation sequence other than the default setting, MACHINE. The <span class="parameter">cCollateSequence</span> parameter must be a valid Visual FoxPro collation sequence. For more information about setting collation sequences, see <span class="linkTerms"><a href="/html/e80b57ca-d622-49f6-bab9-bae40d8c764f.htm">Optimizing International Applications</a></span> and <span class="linkTerms"><a href="/html/77f8984a-1abf-4efc-b63f-bd1700a34c97.htm">SET COLLATE Command</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOCPTRANS </span></dt><dd>
+          <p>Prevents translation to a different code page for <b>Character</b>, <b>Memo</b>, and <b>Varchar</b> fields. You can specify <b>NOCPTRANS</b> only for <b>Character</b>, <b>Memo</b>, and <b>Varchar</b> fields.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FROM ARRAY <span class="parameter">ArrayName</span></span></dt><dd>
+          <p>Specifies the name of an existing array whose contents are the name, type, precision, and scale for each field in the temporary table. You can use the <b>FROM ARRAY</b> clause instead of specifying individual fields. For the proper format of the contents of the array, see <span class="linkTerms"><a href="/html/c576b477-4cf5-4ad4-a115-6963867dd548.htm">AFIELDS( ) Function</a></span>. </p>
+          <p>Autoincrementing is turned on when the step value is greater than 0. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>You can manipulate a temporary table created with <b>CREATE CURSOR</b> like any other table — you can browse and index it, and you can append and modify records. The temporary table opens in the lowest numbered available (unused) work area and can be accessed by its alias. Each field in the temporary table is defined with a name, type, precision, and scale. These definitions can be obtained from the command itself or from an array. The temporary table opens exclusively, regardless of the setting of <b>SET EXCLUSIVE</b>.</p>
+      <p>If you omit <b>NULL</b> and <b>NOT NULL</b>, the current setting of <b>SET</b> <b>NULL</b> determines if null values are allowed in the field. However, if you omit <b>NULL</b> and <b>NOT</b> <b>NULL</b> and include the <b>PRIMARY</b> <b>KEY</b> or <b>UNIQUE</b> clause, Visual FoxPro disregards the current setting of <b>SET</b> <b>NULL</b>, and the field defaults to <b>NOT</b> <b>NULL</b>.</p>
+      <p>Null values and duplicate records are not permitted in a field used for a candidate index. However, Visual FoxPro does not generate an error if you create a candidate index for a field that supports null values. Visual FoxPro generates an error if you attempt to enter a null or duplicate value into a field used for a candidate index.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Candidate indexes, created by including the <b>UNIQUE</b> option (provided for ANSI compatibility) in <b>CREATE TABLE – SQL</b> or <b>ALTER TABLE – SQL</b> commands, are not the same as indexes created in the <b>INDEX</b> command with the <b>UNIQUE</b> option. An index created in the <b>INDEX</b> command using the <b>UNIQUE</b> option allows duplicate index keys; candidate indexes do not allow duplicate index keys. For more information about the <b>UNIQUE</b> option in the <b>INDEX</b> command, see <span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span>.</p>
+      </td></tr></table></div>
+      <p>If the table is converted to another code page, the fields for which <b>NOCPTRANS</b> has been specified are not translated.</p>
+      <p>
+        <b>CREATE CURSOR...FROM ARRAY</b> recognizes all the fields available in the <b>AFIELDS( )</b> function and turns on autoincrementing in the cursor when the Step value is greater than zero.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    
+      
+        <p>The following example creates a cursor with the alias "employee." A blank record is appended, filled, and displayed with the <b>BROWSE</b> command.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+CLEAR
+CREATE CURSOR employee ;
+ (EmpID N(5), Name Character(20), Address C(30), City C(30), ;
+  PostalCode C(10), OfficeNo C(8) NULL, Specialty Memo)
+DISPLAY STRUCTURE
+WAIT WINDOW "Press a key to add a record."
+INSERT INTO employee (EmpId, Name, Address, City, PostalCode, ;
+   OfficeNo, Specialty);
+   VALUES (1002, "Dr. Bonnie Doren", "University of Oregon", "Eugene", ;
+   "98403", "", "Secondary Special Education")
+BROWSE
+* At this point you can copy this record to a permanent table.
+CLOSE ALL   &amp;&amp; Once the cursor closes, all data is flushed from memory.
+CLEAR</pre></td></tr></table></span></div>
+        <p>The following example uses <b>NOCPTRANS</b> to prevent translation to a different code page. The example creates a cursor named "mycursor" that contains two character fields and two memo fields. The second character field, "char2," and the second memo field, "memo2," include <b>NOCPTRANS</b> to prevent translation.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CREATE CURSOR mycursor (char1 C(10), char2 C(10) NOCPTRANS,;
+   memo1 M, memo2 M NOCPTRANS)</pre></td></tr></table></span></div>
+      
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/c576b477-4cf5-4ad4-a115-6963867dd548.htm">AFIELDS( ) Function</a></span><br /><span class="linkTerms"><a href="/html/0d4b251c-a5cf-4754-b2f8-c01a623463f0.htm">CREATE Command</a></span><br /><span class="linkTerms"><a href="/html/af6dbad4-9e4b-4343-abc7-fab66044f6e6.htm">CREATE QUERY Command</a></span><br /><span class="linkTerms"><a href="/html/b14e5d95-5b1c-4cfa-a5ac-4093ea6211e0.htm">CREATE TABLE - SQL Command</a></span><br /><span class="linkTerms"><a href="/html/f9d15b20-eb9d-4c37-8d4a-d9d02c01eb56.htm">INSERT - SQL Command</a></span><br /><span class="linkTerms"><a href="/html/e50de98c-0375-492c-a432-e667a1711b11.htm">MODIFY QUERY Command</a></span><br /><span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="CREATE CURSOR - SQL Command">
+<param name="ALink Name" value="CREATE CURSOR - SQL">
+</OBJECT>

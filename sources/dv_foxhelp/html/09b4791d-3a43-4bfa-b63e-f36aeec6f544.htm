@@ -1,0 +1,533 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Understanding the Report Output Application</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Understanding the Report Output Application</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The default Report Output Application (ReportOutput.app) fulfills the standard responsibilities of an application designated in the _REPORTOUTPUT variable.</p>
+    <ul><li>
+        <p>It accepts two parameters, expecting a numeric value as the first parameter.</p>
+      </li><li>
+        <p>It stores an object reference to an instance of a ReportListener-derived class to the variable it received as the second parameter.</p>
+      </li><li>
+        <p>The class for which it supplies an instance is determined by the value in the first parameter.</p>
+      </li><li>
+        <p>If successful in obtaining an object reference to an appropriate class, it assigns the value of the first parameter to the object's OutputType property.</p>
+      </li></ul>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>For full information on the requirements for a Report Output Application, refer to <span class="linkTerms"><a href="/html/36753dd4-25b1-412c-854b-256f84e49388.htm">_REPORTOUTPUT System Variable</a></span>.</p>
+    </td></tr></table></div>
+    <p>This topic covers details of the default Report Output Application's implementation of these requirements. It also describes some additional functionality supplied by the default Report Output Application.</p>
+  <h1 class="heading">ReportOutput.app ReportListener Reference Collection</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can explicitly assign a ReportListener object reference to a variable, if you call the Report Output Application using the following syntax:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL loRef
+do (_REPORTOUTPUT) with &lt;N&gt;, loRef
+IF ISNULL(loRef)
+   * the Report Output Application did
+   * not recognize the value &lt;N&gt;
+ELSE 
+   ? loref.outputtype
+   ? loref.class
+ENDIF</pre></td></tr></table></span></div>
+      <p>However, in many cases, ReportOutput.app provides a ReportListener object reference without your explicitly assigning the reference to a variable.  This situation occurs if you have set the value of <b>SET REPORTBEHAVIOR</b> to <code>90</code>, or if you use the <b>OBJECT TYPE</b> <span class="parameter">&lt;N&gt;</span> clause on your <b>REPORT FORM</b> or <b>LABEL</b> command.</p>
+      <p>ReportOutput.app maintains a public variable, <i>_oReportOutput</i>, derived from the Collection class.  It stores references to the ReportListener-derived objects, for which it has provided references, in this collection.  The collection scopes ReportListener references globally, so that they can be successfully re-used for multiple reports, regardless of how or where you ask for the reference.  </p>
+      <p>Providing consistent ReportListener scope, using ReportOutput.app's reference collection or a similar strategy, is required to support chaining multiple reports in one output result.  The reference collection also provides a convenient mechanism for retrieval of these object references, before and after the report run.  </p>
+      <p>You can retrieve the object reference from the collection by using the string value of the appropriate OutputType as the collection key:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE PRINT_MODE 0
+REPORT FORM ? OBJECT TYPE PRINT_MODE 
+LOCAL loRef
+loRef = _oReportOutput[TRANSFORM(PRINT_MODE)]
+? loRef.OutputType  &amp;&amp; will be 0
+? loRef.PageTotal &amp;&amp; will be the total of pages 
+                  &amp;&amp; from the last print run</pre></td></tr></table></span></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/2f70ca88-d15d-4b81-8b1a-c612a0c9ece6.htm">How to: Use the Report Output Application's Reference Collection</a></span>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Important </th></tr><tr><td>
+        <p>ReportOutput.app reserves the right to use additional key values in this collection for other uses besides ReportListener object references.  For example, if you designate a custom Report Output registry table, it stores the name of this table in the reference collection.  For more information, see <span class="linkTerms"><a href="/html/f31384bf-c40d-4fec-a8f7-99ff038c05ad.htm">How to: Specify an Alternate Report Output Registry Table</a></span>.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">ReportOutput.app Extended Parameters</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>ReportOutput.app extends the use of the two required _REPORTOUTPUT parameters, provides default behavior if the second parameter is not included, and adds an optional third parameter. The following represents appropriate syntax for ReportOutput.app</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO ReportOutput.app WITH ;
+   nListenerType [,eListenerReference [,eUnload]]</pre></td></tr></table></span></div>
+      <p>This section describes ReportOutput.app's treatment of each parameter.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">First Parameter: nListenerType</h3><div class="subSection" xmlns="">
+          <p>When evaluating its <span class="parameter">nListenerType</span> parameter, ReportOutput.App accepts all numbers greater than or equal to <code>-1</code>, the default value of ReportListener's ListenerType property, as instructions to provide a ReportListener reference of appropriate type.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If <span class="parameter">nListenerType</span> is a number but is not an integer value, ReportOutput.app accepts the value but uses the integer portion of the received value as the type requested.</p>
+          </td></tr></table></div>
+          <p>If <span class="parameter">nListenerType</span> is <code>-1</code>, it provides a reference to an object instanced from the ReportListener baseclass.  If it is greater than <code>-1</code>, ReportOutput.app begins an evaluation process to determine what ReportListener-derived class should provide the reference, as follows:</p>
+          <ul><li>
+              <p>ReportOutput.app first checks to see if it has a cached reference to an object previously provided for this value.  If it finds one, it re-uses this reference.</p>
+            </li><li>
+              <p>If no cached reference is available, ReportOutput.app checks its registry table for any user instructions that match this value.  The registry table is described in a later section of this topic.</p>
+            </li><li>
+              <p>If there are no user instructions available, it uses built-in defaults listed in the following table. </p>
+            </li></ul>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nListenerType</span> <b>value</b>
+                </th>
+                <th>
+                  
+                    <b>Default class providing ReportListener reference</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>ReportListener User Feedback Foundation Class</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>ReportListener User Feedback Foundation Class</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>ReportListener Baseclass</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>3</p>
+              </td>
+              <td>
+                <p>ReportListener Baseclass</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>ReportListener XML Foundation Class</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>5</p>
+              </td>
+              <td>
+                <p>ReportListener HTML Foundation Class</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>999</p>
+              </td>
+              <td>
+                <p>ReportListener Debug Foundation Class</p>
+              </td>
+            </tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>In the table, notice that a single ReportListener class may handle multiple <span class="parameter">nListenerType </span>values.  ReportOutput.app assigns the <span class="parameter">nListenerType</span> value it receives to the object's OutputType property.  This property value assignment is part of the specified requirements for any Report Output Application. If the object is an instance of a ReportListener-derived class, ReportOutput.app expects the object to decide whether to re-assign its own ListenerType property based on OutputType, or maintain the values separately.  If the object is an instance of the ReportListener baseclass, ReportOutput.app also assigns the <span class="parameter">nListenerType</span> value to the object's ListenerType property.  For more information, see <span class="linkTerms"><a href="/html/1886c1da-b3df-4833-a768-980bdd34a364.htm">OutputType Property (Visual FoxPro)</a></span> and <span class="linkTerms"><a href="/html/ad1bf074-a169-4fd4-b160-c39bdd8c8402.htm">ListenerType Property</a></span>.</p>
+          </td></tr></table></div>
+          <p>ReportOutput.app reserves all <span class="parameter">nListenerType</span> values less than <code>-1</code> to expose additional functionality beyond its specified responsibility to provide ReportListener references. Two such values, -100 and -200, are covered in a later section of this topic.  </p>
+        </div>
+      <h3 class="subHeading" xmlns="">Second Parameter: eListenerReference</h3><div class="subSection" xmlns="">
+          <p>ReportOutput.app treats its second parameter, <span class="parameter">eListenerReference</span> as optional.  If it is not received, ReportOutput.app simply caches a reference to an instance of the appropriate ReportListener class in its reference collection.  This behavior gives you the opportunity to set up various ReportListener references before you need them for reporting.</p>
+          <p>If it receives its <span class="parameter">eListenerReference</span> parameter, ReportOutput.app accepts either a declared variable, as shown in the example in the last section, or as a string representing the variable.  If you provide a string to represent the variable, and if the variable represented by the string does not already exist, ReportOutput.app initializes the variable as <b>PUBLIC</b>. </p>
+          <p>You can also use a string to ReportOutput.app in the <span class="parameter">eListenerReference</span> parameter if you want to assign a ReportListener to an object member.  For example:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE PREVIEW_MODE 1
+Ox = CREATEOBJECT("custom")
+Ox.addProperty("myReportListener")
+DO (_REPORTOUTPUT) WITH PREVIEW_MODE, "ox.myReportListener"
+REPORT FORM ? OBJECT ox.MyReportListener
+? ox.myReportListener.Name</pre></td></tr></table></span></div>
+          <p>If the object member does not exist but ReportOutput.app can verify that the object exists, the member is created.   It is capable of drilling down into object containership hierarchies for this purpose.  For example:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE PREVIEW_MODE 1
+Ox = CREATEOBJECT("form")
+Ox.addobject("myChildObject","custom")
+DO (_REPORTOUTPUT) WITH PREVIEW_MODE, "ox.myChildObject.RL"
+REPORT FORM ? OBJECT ox.myChildObject.RL
+? ox.myChildObject.RL.PageTotal</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Third Parameter: eUnload</h3><div class="subSection" xmlns="">
+          <p>You can release a ReportListener reference from ReportOutput.app's reference collection explicitly, as follows:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE PRINT_MODE 0
+_oReportOutput.Remove[TRANSFORM(PRINT_MODE))</pre></td></tr></table></span></div>
+          <p>However, ReportOutput.app provides a third parameter so you can ask the application to manage this reference for you, without addressing the collection directly.  The parameter allows you to explicitly release the reference or to release and immediately receive a new instance, as shown in the following example.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE PRINT_MODE 0
+#DEFINE OUTPUTAPP_LOADTYPE_RELOAD 2
+   DO (_reportoutput) WITH ;
+      PRINT_MODE , ox, OUTPUTAPP_LOADTYPE_RELOAD</pre></td></tr></table></span></div>
+          <p>The following are the recognized values for the <span class="parameter">eUnload</span> parameter.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">eUnload</span> <b>Parameter Value</b>
+                </th>
+                <th>
+                  
+                    <b>Usage</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Not passed, logical False (<code>.F.</code>), or passed but not logical or numeric type.</p>
+              </td>
+              <td>
+                <p>Ignored.  ReportOutput.app provides standard behavior:  it loads a ReportListener or performs other activity as determined by <span class="parameter">nListenerType</span> value.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Logical True (<code>.T.</code>) or numeric value <code>1</code>.</p>
+              </td>
+              <td>
+                <p>ReportOutput.app does not provide a ReportListener object reference.  It checks for a ReportListener object using a key determined by <span class="parameter">nListenerType</span>, and removes this ReportListener from its collection if found.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>All numeric values greater than <code>1</code>.</p>
+              </td>
+              <td>
+                <p>ReportOutput.app removes a reference for a ReportListener object from its collection, if found, and then re-loads the appropriate reference.  It stores this reference to the variable indicated in the <span class="parameter">eListenerReference</span> parameter.</p>
+              </td>
+            </tr></table></div>
+        </div>
+    </sections></div><h1 class="heading">ReportOutput.app ReportListener Registry Table</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>ReportOutput.app provides default ReportListener object references according to the table listing <span class="parameter">nListenerType</span> values and class names in the previous section. You can use a registry table to override these settings.</p>
+      <p>ReportOutput.app leverages the same configuration or registry table structure as the ReportListener Foundation Classes use to store their configuration information.  The following code shows you the base structure of this table.  You can add fields to this table of any type, and the order of the fields is not significant to Report Output Application components or the Foundation Classes.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CREATE TABLE (CONFIG_TABLE_NAME) ;
+   (objtype i, ;
+    objcode i, ;
+    objname v(60), ;
+    objvalue v(60), ;
+    objinfo m)    </pre></td></tr></table></span></div>
+      <p>Both ReportOutput.app and the ReportListener Foundation Classes provide facilities to create the table for you.  For more information on creating the table and designating it as your Report Output Application registry table, see <span class="linkTerms"><a href="/html/f31384bf-c40d-4fec-a8f7-99ff038c05ad.htm">How to: Specify an Alternate Report Output Registry Table</a></span>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>ReportOutput.app and the ReportListener Foundation Classes use this table structure differently, and require different indexes. However, it does not matter which component creates the table, or if you create it as a blank table, as shown in the sample code above.  Each component will create any records and indexes it needs, if pointed to that table.</p>
+      </td></tr></table></div>
+      <p>ReportOutput.app reserves the range <code>100-999</code> for Objtype field values in the configuration table.  It uses an Objtype field value of <code>100</code> to represent ReportListener class registry records.  The following table shows you ReportOutput.app's use of records in the table for ReportListener registry purposes.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Field</b>
+              
+            </th>
+            <th>
+              
+                <b>Usage</b>
+              
+            </th>
+            <th>
+              
+                <b>Remarks</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>OBJTYPE</p>
+          </td>
+          <td>
+            <p>100</p>
+          </td>
+          <td>
+            <p>A value of 100 in this field identifies a ReportListener registry record.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJCODE</p>
+          </td>
+          <td>
+            <p>nListenerType</p>
+          </td>
+          <td>
+            <p>The values in this field are matched against the first parameter you supply to ReportOutput.app.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJNAME</p>
+          </td>
+          <td>
+            <p>Class to instantiate</p>
+          </td>
+          <td>
+            <p>This class name may be ReportListener (the base class).</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJVALUE</p>
+          </td>
+          <td>
+            <p>Class library (.vcx) or procedure file (.prg) holding the class definition.</p>
+          </td>
+          <td>
+            <p>This value may be blank, if the class name is ReportListener.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJINFO</p>
+          </td>
+          <td>
+            <p>Module/Application containing library.</p>
+          </td>
+          <td>
+            <p>This value may be blank, if the class library or procedure file is bound into your application.</p>
+          </td>
+        </tr></table></div>
+      <p>ReportOutput.app specifies an Objtype field value of <code>110</code> to store other configuration information for its own use.  It uses records with an Objtype value of <code>110</code> and an Objcode value of <code>1</code> for filtering the ReportListener registry records based on user-specified criteria.  Records with an Objtype value of <code>110</code> and any other Objcode values are reserved for other configuration uses by ReportOutput.app, but are not currently used.</p>
+      <p>The following table describes ReportOutput.app's usage of registry table fields for filter records.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Field</b>
+              
+            </th>
+            <th>
+              
+                <b>Usage</b>
+              
+            </th>
+            <th>
+              
+                <b>Remarks</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>OBJTYPE</p>
+          </td>
+          <td>
+            <p>110</p>
+          </td>
+          <td>
+            <p>A value of 110 in this field identifies a ReportOutput.app configuration record.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJCODE</p>
+          </td>
+          <td>
+            <p>1 </p>
+          </td>
+          <td>
+            <p>A value of 1 in this field, for records with an Objtype value of 110, is a filter record. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJNAME</p>
+          </td>
+          <td>
+            <p>not used</p>
+          </td>
+          <td>
+            <p>Filter records ignore this field.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJVALUE</p>
+          </td>
+          <td>
+            <p>not used</p>
+          </td>
+          <td>
+            <p>Filter records ignore this field.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OBJINFO</p>
+          </td>
+          <td>
+            <p>Filter expression</p>
+          </td>
+          <td>
+            <p>The expression you put in this field is included in a <b>LOCATE</b> expression when searching the registry table for an appropriate class to provide for a given <span class="parameter">nListenerType</span> value.  The <b>LOCATE</b> command is constructed as follows:</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE OUTPUTAPP_OBJTYPE_LISTENER    100
+   LOCATE FOR ObjType = ;
+   OUTPUTAPP_OBJTYPE_LISTENER AND ;
+   (ObjCode = iType)  ;
+   &amp;cFilter ;
+   AND (NOT DELETED())</pre></td></tr></table></span></div>
+          </td>
+        </tr></table></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/e99d0fbc-19c6-4418-9e7e-7e170e5cc975.htm">How to: Register Custom ReportListeners and Custom OutputTypes in the Report Output Registry Table</a></span>.</p>
+    </div><h1 class="heading">ReportOutput.app Return Values</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>A Report Output Application must be modal, because it is required to return a value to Visual FoxPro's Report Engine as part of the Engine's processing of a REPORT FORM or LABEL command.  Visual FoxPro receives this return value using the parameter <span class="parameter">eListenerReference</span>, which is passed by reference; the native engine does not recognize a return value from ReportOutput.app.</p>
+      <p>However, ReportOutput.app does provide a return value if you call it as a function, representing success or failure in the task indicated by your <span class="parameter">nListenerType</span> parameter:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? ReportOutput(5, "oRL")
+* returns .T.
+DISPLAY MEMO LIKE oRL
+* Shows that the call above
+* declares the variable oRL PUBLIC if
+* it is not already in scope, 
+* because it was passed as a string
+* stores a reference to the HTMLListener
+* Foundation class in this variable.
+? ReportOutput(25,"oRlx")
+* returns .F.
+DISPLAY MEMO LIKE oRLx
+* Shows that the call above does
+* not declare the variable oRLx</pre></td></tr></table></span></div>
+    </div><h1 class="heading">ReportOutput.app Compile-time Adjustments</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>ReportOutput.app's source code is available in a zip file in the XSource folder in your Visual FoxPro \Tools directory.  For more information, see <span class="linkTerms"><a href="/html/9c12387d-6c8b-4fac-9da8-72d6ad2e0673.htm">XSource Folder</a></span>.</p>
+      <p>You can include the source code for ReportOutput.app in your applications. For more information, see <span class="linkTerms"><a href="/html/8920ed3c-4d89-4fea-9cf0-1cc21395928a.htm">Including Report Files for Distribution</a></span>.  When you follow this practice, you can edit the Report Output defined constants, found in the ReportOutput.h header file, to tune your application's reporting behavior.  </p>
+      <p>The table below provides a sample of the kinds of items available in the header file for adjustment.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>#DEFINEd constant</b>
+              
+            </th>
+            <th>
+              
+                <b>Default value</b>
+              
+            </th>
+            <th>
+              
+                <b>Edit this setting to change:</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>OUTPUTAPP_INTERNALDBF</p>
+          </td>
+          <td>
+            <p>"_ReportOutputConfig"</p>
+          </td>
+          <td>
+            <p>Name of built-in registry table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OUTPUTAPP_EXTERNALDBF</p>
+          </td>
+          <td>
+            <p>"OutputConfig"</p>
+          </td>
+          <td>
+            <p>Default name of registry table on disk.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OUTPUTAPP_REFVAR</p>
+          </td>
+          <td>
+            <p>_oReportOutput</p>
+          </td>
+          <td>
+            <p>Name of public variable for the reference collection.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OUTPUTAPP_BASELISTENER_CLASSLIB</p>
+          </td>
+          <td>
+            <p>"Listener.VCX"</p>
+          </td>
+          <td>
+            <p>Class library holding default ReportListener classes.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OUTPUTAPP_CLASS_PRINTLISTENER</p>
+          </td>
+          <td>
+            <p>"UpdateListener"</p>
+          </td>
+          <td>
+            <p>Class name used by default to handle <span class="parameter">eListenerType </span>value 0 (print).</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/c26c975f-6e3d-40d9-aded-302214434df6.htm">Considerations for Creating New Report Output Types</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/46ce7cb2-a620-447d-9314-1ebba6e3e271.htm">ReportListener Foundation Classes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Understanding the Report Output Application">
+</OBJECT>

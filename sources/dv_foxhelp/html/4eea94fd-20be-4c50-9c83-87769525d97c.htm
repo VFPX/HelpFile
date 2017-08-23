@@ -1,0 +1,129 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Create a Parameterized Query</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Create a Parameterized Query</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Just as you can create parameterized views using the <span class="linkTerms"><a href="/html/d9f7a435-663d-4523-9511-c847be4311ca.htm">Query and View Designers</a></span> or the language, you can create a parameterized SQL pass-through query.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <h3 class="procedureSubHeading">To create a parameterized query with SQL pass-through</h3><div class="subSection"><ul><li>
+            
+              <p>Precede a Visual FoxPro parameter with a question mark (?), and then include the parameter in a SQL string you send with <span class="linkTerms"><a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( ) Function</a></span>.</p>
+            
+          </li></ul></div>
+      <p>The parameter you supply is evaluated as a Visual FoxPro expression, and the value is sent as part of the view's SQL statement. If the evaluation fails, Visual FoxPro prompts for the parameter value.</p>
+      <p>For example, if you have the <code>customer</code> table from the <code>Testdata</code> database on a remote server, the following code creates a parameterized query that limits the view to those customers whose country matches the value supplied for the <code>cCountry</code> parameter:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? SQLEXEC(1,'SELECT * FROM customer WHERE customer.country = cCountry')</pre></td></tr></table></span></div>
+      <p>If you want to prompt the user for a parameter value, precede the parameter expression with a question mark (?). For more information, see <span class="linkTerms"><a href="/html/028ab955-0e39-459e-a26c-bdd39c0fb0b4.htm">How to: Create Parameterized Views</a></span>.</p>
+      <p>Your ODBC data source doesn't accept parameters in the following locations:  </p>
+      <ul><li>
+          <p>In a SELECT fields or tables list.</p>
+        </li><li>
+          <p>As both expressions in a comparison predicate.</p>
+        </li><li>
+          <p>As both operands of a binary operator.</p>
+        </li></ul>
+      <p>An ODBC data source will not accept parameters in the following locations in the WHERE or HAVING clause of a SELECT statement:  </p>
+      <ul><li>
+          <p>As both the first and second operands of a BETWEEN predicate.</p>
+        </li><li>
+          <p>As both the first and third operands of a BETWEEN predicate.</p>
+        </li><li>
+          <p>As both the expression and the first value of an IN predicate.</p>
+        </li><li>
+          <p>As the operand of a unary + or - operator.</p>
+        </li><li>
+          <p>As the argument of a SET function.</p>
+        </li></ul>
+      <p>For more information, see <span class="linkTerms"><a href="/html/83ad1bf1-999c-4abe-8871-0122610d845d.htm">Using SQL Server Input/Output Parameters</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/670d0ff7-3f45-4088-a9b0-45992a519fcb.htm">How to: Return Multiple Result Sets</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c9d098df-6241-45d2-9d81-1f49ad9b3641.htm">Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/7a4c60ae-5309-4014-87ec-08ce277eede4.htm">Planning Client/Server Applications</a></span><br /><span class="linkTerms"><a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a></span><br /><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Create a Parameterized Query">
+</OBJECT>

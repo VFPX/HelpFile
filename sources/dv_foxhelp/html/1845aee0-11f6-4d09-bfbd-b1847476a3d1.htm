@@ -1,0 +1,477 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Changes in Functionality for the Current Release</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Changes in Functionality for the Current Release</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro includes functionality that differs from previous versions and might affect existing code. These behavior changes are organized according to the following categories:  </p>
+    <ul><li>
+        <p>
+          <span class="linkTerms"><a href="#fogrfchangesinfunctionalityforthecurrentreleaseanchor1">Critical Changes</a></span>   Functionality changes most likely to affect existing code when running under this version of Visual FoxPro. It is extremely important that you read this section.</p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#fogrfchangesinfunctionalityforthecurrentreleaseanchor2">Important Changes</a></span>   Functionality changes that might affect existing code when running under this version of Visual FoxPro.</p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#fogrfchangesinfunctionalityforthecurrentreleaseanchor3">Miscellaneous Changes</a></span>   Functionality changes you should know about but are not likely to impact existing code.</p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#fogrfchangesinfunctionalityforthecurrentreleaseanchor4">Removed Items</a></span>   Features or files that existed in prior versions of Visual FoxPro but are no longer included.</p>
+      </li></ul>
+  <a name="fogrfchangesinfunctionalityforthecurrentreleaseanchor1"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Critical Changes</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>Critical behavior changes will most likely to affect existing code when running under this version of Visual FoxPro.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">SQL SELECT IN (Value_Set) Clause</h3><div class="subSection" xmlns="">
+          <p>In previous versions of Visual FoxPro, the <b>IN</b> (<span class="parameter">Value_Set</span>) clause for the <b>WHERE</b> clause in the SQL <b>SELECT</b> command is mapped to <b>INLIST( )</b> function. In the current release, Visual FoxPro might stop evaluating values and expressions in the <span class="parameter">Value_Set</span> list when the first match is found. Therefore, if the <b>IN</b> clause is not Rushmore-optimized, you can improve performance by placing values most likely to match in the beginning of the <span class="parameter">Value_Set</span> list. For more information, see the description for the <b>IN</b> clause in the <span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span> topic and the <span class="linkTerms"><a href="/html/b955d46c-7d65-49bf-9927-360c93951f46.htm">INLIST( ) Function</a></span>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Conversion of INLIST( ) Function in the Query Designer and View Designer</h3><div class="subSection" xmlns="">
+          <p>In previous versions of Visual FoxPro, the Query Designer and View Designer convert <b>INLIST( )</b> function calls in the <b>WHERE</b> clause of the SQL <b>SELECT</b> command into <b>IN</b> (<span class="parameter">Value_Set</span>) clauses. In the current release, this conversion no longer occurs due to the differences between <b>INLIST( )</b> and the SQL <b>IN</b> clause. <b>INLIST( )</b> remains restricted to 24 arguments. For more information, see the description for the <b>IN</b> clause in the <span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span> topic and the <span class="linkTerms"><a href="/html/b955d46c-7d65-49bf-9927-360c93951f46.htm">INLIST( ) Function</a></span>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Grids and RecordSource and ControlSource Properties</h3><div class="subSection" xmlns="">
+          <p>In Visual FoxPro 9.0 there is a change in <a href="/html/0212bad2-48a3-49ae-98de-c71ba3af0ede.htm">Grid control</a> behavior. When the <a href="/html/35fc073a-6840-4046-aa72-90f3c69b7f1e.htm">RecordSource property</a> for a Grid control is set, Visual FoxPro 9.0 resets all <a href="/html/76c0d810-a6e4-4076-aa91-0763a6dfe03b.htm">ControlSource properties</a> to the empty string ("") for all columns. In earlier versions of Visual FoxPro, the ControlSource properties were not properly reset, so problems could occur when a RecordSource with a different structure was later bound. This change may impact scenarios involving Access and Assign methods or <a href="/html/e0aaf535-c606-44bd-b7c1-7d0341331d8f.htm">BINDEVENT( ) function</a> calls made against a Grid column's ControlSource property.</p>
+        </div>
+    </sections></div><a name="fogrfchangesinfunctionalityforthecurrentreleaseanchor2"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Important Changes</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>Important changes might affect existing code when running under Visual FoxPro 9.0.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Reporting</h3><div class="subSection" xmlns="">
+          <p>Visual FoxPro contains many improvements for reporting. The following are behavior changes that could impact existing reports:</p>
+          <ul><li>
+              <p>The Report Designer and Engine now make use of extensible components. You can control or eliminate use of design-time extensions by altering the value of <span class="linkTerms"><a href="/html/66161092-cda2-4d9f-868c-26beaffa0841.htm">_REPORTBUILDER System Variable</a></span>.  You control run-time extension use with the <span class="linkTerms"><a href="/html/5d6e4527-8b6f-4f39-a670-c3397eff3bfd.htm">SET REPORTBEHAVIOR Command</a></span>.</p>
+            </li><li>
+              <p>In Visual FoxPro 9's new object-assisted reporting mode, report fields may need to be adjusted (widened) slightly. This is especially important for numeric data where a field that is not wide enough to display the entire number will show it instead as asterisks (<b>*****</b>).  For more information about the changes to the Report System that required this change, and features of the GDI+ rendering engine and other changes related to it, see <span class="linkTerms"><a href="/html/e11b3ffe-ee6b-4af3-94f8-7a5ed30ea83d.htm">Using GDI+ in Reports</a></span>.  For migration strategy and recommendations, see <span class="linkTerms"><a href="/html/46e99caf-fe50-4d55-aa78-e37cffeca2d1.htm">Guide to Reporting Improvements</a></span>.  </p>
+            </li><li>
+              <p>For a table of additional, minor rendering differences between backward-compatible reporting mode and object-assisted reporting mode, see the table below.</p>
+              <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                    <th>
+                      
+                        <b>Rendering feature</b>
+                      
+                    </th>
+                    <th>
+                      
+                        <b>Behavior in backward-compatible mode</b>
+                      
+                    </th>
+                    <th>
+                      
+                        <b>Behavior in object-assisted mode</b>
+                      
+                    </th>
+                    <th>
+                      
+                        <b>Recommendations</b>
+                      
+                    </th>
+                  </tr><tr>
+                  <td>
+                    <p>Tab stops (<code>CHR(9)</code> values included in report data)</p>
+                  </td>
+                  <td>
+                    <p>The width of a tab stop is determined by a number of characters in the font used. </p>
+                  </td>
+                  <td>
+                    <p>Tab stops are set at fixed-width positions, regardless of font.</p>
+                  </td>
+                  <td>
+                    <p>If you concatenated tabs with data in a stretching report layout element to create a table format within the element, you can often fulfill the same requirements using a second detail band in Visual FoxPro 9.  Alternatively, change the number of tabs you concatenate with your data.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>Special characters and word-wrapping</p>
+                  </td>
+                  <td>
+                    <p>Non-breaking spaces are not respected; they are treated as normal space characters.</p>
+                  </td>
+                  <td>
+                    <p>Special characters such as non-breaking spaces (<code>CHR(160)</code>) and soft hyphens (<code>CHR(173)</code>) are correctly interpreted.  As a result, words may wrap differently in output.</p>
+                  </td>
+                  <td>
+                    <p>Evaluate the results.  In most cases, users will appreciate the change, because it more faithfully representing their original intentions in the text.  If necessary, use the <span class="linkTerms"><a href="/html/3d50bd08-d455-4e80-aa5f-219ef489e87b.htm">CHRTRAN( ) Function</a></span> or <span class="linkTerms"><a href="/html/2051bf1d-dacc-47d2-a248-7a0a0de88f5f.htm">STRTRAN( ) Function</a></span> to replace these special characters with standard spaces and hyphens.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>Line spacing of multi-line objects</p>
+                  </td>
+                  <td>
+                    <p>Line spacing is determined by a formula that does not take font properties into consideration.  Lines in a multi-line object are individually rendered, so background colors for each line may appear to have a different width.</p>
+                  </td>
+                  <td>
+                    <p>GDI+ line spacing is dynamically determined using font characteristics.  A multi-line object is rendered as a single block of text.</p>
+                  </td>
+                  <td>
+                    <p>Evaluate the results.  In most cases, the change in line spaces will provide a more polished appearance, and in all cases this method of handling multi-line text provides better performance.  If a report depends on the old style of spacing lines, you can adjust the ReportListener's <span class="linkTerms"><a href="/html/4b995974-861e-43c2-b285-daee41a65738.htm">DynamicLineHeight Property</a></span> to revert to the old behavior.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>Cursor images (.CUR files)</p>
+                  </td>
+                  <td>
+                    <p>.CUR files can be used as image sources in reports.</p>
+                  </td>
+                  <td>
+                    <p>.CUR files are not supported as image sources.</p>
+                  </td>
+                  <td>
+                    <p>Convert the cursor file to another, supported image format.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>Shape (Rounded Rectangle) curvature</p>
+                  </td>
+                  <td>
+                    <p>Limited choices for curvature.</p>
+                  </td>
+                  <td>
+                    <p>More choices are available through the Report Builder Application dialog box interface, but some will not look the same way in backward-compatible mode and object-assisted mode.</p>
+                  </td>
+                  <td>
+                    <p>If reports have to run in both backward-compatible mode and object-assisted mode, or if they are designed in version 9.0 but must run in earlier versions, limit your choices of values of shape curvature to those allowed in the native <span class="linkTerms"><a href="/html/3c373386-539d-44f1-894c-37b5724cc961.htm">Round Rectangle Dialog Box</a></span>. If you are using the <span class="linkTerms"><a href="/html/a505bf1b-3793-4ec9-8fc5-a2a7fb4de060.htm">Style Tab, Report Control Properties Dialog Box (Report Builder)</a></span> to design such reports, use the values 12, 16, 24, 32, and 99, to represent the native buttons, selecting the buttons from left to right.  The default value in the Round Rectangle dialog box (second button) is 16.</p>
+                  </td>
+                </tr></table></div>
+            </li><li>
+              <p>When you create a Quick Report, by using the <span class="linkTerms"><a href="/html/2080c68e-0957-4498-87e7-531dc2248b6b.htm">CREATE REPORT - Quick Report Command</a></span> or by invoking the <b>Quick Report…</b> option on the <b>Report</b> menu, and if you have <code>SET REPORTBEHAVIOR 90</code>, the layout elements created by the Report Designer are sized differently from ones created for the same fields in previous versions.  This change handles the additional width required by the new rendering mechanism of the report engine. </p>
+            </li><li>
+              <p>If you use the <span class="linkTerms"><a href="/html/266ac2f6-a8e6-40de-bf76-dc7843c33795.htm">KEYBOARD Command</a></span> or <span class="linkTerms"><a href="/html/65739acc-c910-48d3-9656-a22583a6bf7e.htm">PLAY MACRO Command</a></span> statements to address options on the <b>Report</b> menu, you may need to revise the keystrokes in these statements, as the menu has been reorganized.</p>
+            </li><li>
+              <p>Reports may take longer to open in the Report Designer if the report was previously saved with the Printer Environment setting enabled. You can improve performance by unchecking the <b>Printer Environment</b> menu item from the <b>Report</b> menu and re-saving the report. The saved Printer Environment is not critical for functioning of a report and is typically not recommended.  Object-assisted report mode also respects different printers' resolution settings, so saving resolution information for one printer in your report may have adverse effects in an environment with printers that have different resolutions.   A saved Printer Environment may also have more adverse affects on <b>REPORT FORM</b> or <b>LABEL</b> commands invoked with the <b>TO FILE</b> option than they did in previous versions, if the associated printer setup is not available in the environment at runtime. In Visual FoxPro 9, the global default for this setting in the <span class="linkTerms"><a href="/html/9c565d7a-1111-4859-be06-78536132679f.htm">Reports Tab, Options Dialog Box</a></span>, and for reports created in executable applications (.exe files), has been changed to unchecked.</p>
+            </li><li>
+              <p>Because of changes to the way Visual FoxPro 9 uses current printer settings to determine items such as print resolution and page height dynamically, a <b>REPORT FORM</b> or <b>LABEL</b> command will not run in object-assisted mode if there are no available printer setups in the environment or if the print spooler has been stopped.   You will receive <span class="linkTerms"><a href="/html/ce88e455-70f6-4134-b01f-38db198c644b.htm">Error loading printer driver (Error 1958)</a></span>. If you need to run reports in an environment with no printer information, perhaps creating custom types of output that do not require printers, you can supply Visual FoxPro with the minimal set of information it needs to run your report by supplying a page height and page width from the appropriate Report Listener methods.  For more information, see <span class="linkTerms"><a href="/html/959e629d-f3a1-4a42-ba06-121caa876d47.htm">GetPageHeight Method</a></span> and <span class="linkTerms"><a href="/html/095652a4-5832-46e1-a168-c981a529ca3c.htm">GetPageWidth Method</a></span>.</p>
+            </li><li>
+              <p>By default, and by design, the Report Builder Application does not automatically show tables in the report's Data Environment when you build report expressions.  To better protect end-user design sessions, only tables you have explicitly opened, not all tables from the DataEnvironment, are available in the Expression Builder.  With this change, you have the opportunity to set up the design session's data exactly the way you want the end-user to see it, before you issue a <span class="linkTerms"><a href="/html/c348d33f-8294-48a9-964b-3cdbd699927b.htm">MODIFY REPORT Command</a></span> in your application.  If you prefer the Report Designer's old behavior, you can change the Report Builder Application to emulate it.  For more information, see <span class="linkTerms"><a href="/html/82564dfe-b4ae-4b0a-ad5e-99977421f57f.htm">How to: Replace the Report Builder's Expression Builder Dialog Box</a></span>.</p>
+            </li><li>
+              <p>The <b>ASCII</b> keyword on the <span class="linkTerms"><a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT FORM Command</a></span> is documented as following the <span class="parameter">&lt;filename&gt;</span> parameter of the <b>TO FILE</b> <span class="parameter">&lt;filename&gt;</span> clause. In earlier versions of Visual FoxPro, you could safely use the incorrect and unsupported syntax <b>TO FILE ASCII</b> <span class="parameter">&lt;filename&gt;</span> instead.  This incorrect syntax triggers an error in Visual FoxPro 9.  Note that the <b>ASCII</b> keyword has no effect on object-assisted mode output provided by the Report Engine, although a <span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span> can be written to implement it.</p>
+            </li><li>
+              <p>The keyword <b>NOCONSOLE</b> has no default meaning in object-assisted reporting mode, because ReportListeners do not echo their rendering output to the current output window by default.  However, a ReportListener can mimic backward-compatible mode in this respect, if desired.  Refer to <span class="linkTerms"><a href="/html/10e876bb-83c2-4309-8adf-cdd9f565d658.htm">OutputPage Method</a></span> for a complete example.</p>
+            </li><li>
+              <p>To facilitate development of run-time reporting extensions, the Report Engine now allows normal debugging procedures during a report run.  If your error handling routine assumes it is impossible for a report to be suspended, this assumption will now be challenged.  Refer to <span class="linkTerms"><a href="/html/5ba2f0f6-c515-4d48-83b6-5de8e13537ea.htm">Handling Errors During Report Runs</a></span> for a detailed look at the associated changes, and some suggestions for strategy.</p>
+            </li><li>
+              <p>
+                <b>REPORT FORM</b> and <b>LABEL</b> commands are no longer automatically prohibited as user-interface-related commands in COM objects compiled into DLLs, when you run the commands in object-assisted mode.  The restriction still applies to these commands when they are run in backward-compatible mode. (The topic <span class="linkTerms"><a href="/html/8d75ba95-f669-4091-9f80-8368ded51b29.htm">Selecting Process Types</a></span> explains why user-interface-related commands are prohibited in DLLs.)  This change is not applicable to multi-threaded DLLs.  A number of user-interface-related facilities also are not available in DLLs (whether single- or multi-threaded).  For example, the <span class="linkTerms"><a href="/html/bcfa88b6-7230-485e-be91-2a0381312422.htm">TXTWIDTH( ) Function</a></span> and <span class="linkTerms"><a href="/html/bff3b7da-b681-4281-bb1e-4b86f94aa5c8.htm">TextWidth Method</a></span> depend on a window handle to function, so they are not available in a DLL.  The <span class="linkTerms"><a href="/html/2080c68e-0957-4498-87e7-531dc2248b6b.htm">CREATE REPORT - Quick Report Command</a></span> relies on the same facilities as <b>TXTWIDTH()</b>, and therefore is not available in a DLL. However, in many instances, creating custom output using a ReportListener does not require any user-interface activity, so a <b>REPORT FORM</b> or <b>LABEL</b> command can now be used productively in a DLL.  Using the <span class="linkTerms"><a href="/html/28173103-711e-4073-ae22-e03fdacf4066.htm">SYS(2335) - Unattended Server Mode</a></span> function to trap for potential modal states, as well as the new <span class="linkTerms"><a href="/html/5e0472d9-46d2-471a-9740-7ee5702ee82a.htm">SET TABLEPROMPT Command</a></span>, is recommended.  Refer to <span class="linkTerms"><a href="/html/8c6a3e61-311d-48bd-a6cf-628e3f37f193.htm">Server Design Considerations and Limitations</a></span> for more information.</p>
+            </li><li>
+              <p>Changes have occurred to the handling of group headers and footers in multi-column reports, when the columns flow from left to right (<i>label-style</i> layout).  The revised behavior is more useful and behaves consistently with the new detail header and footer bands as well. For a description of the change, see <span class="linkTerms"><a href="/html/ab27815b-4b2d-41c4-bc97-4cefbef6ad10.htm">How to: Define Columns in Reports</a></span>.  </p>
+            </li><li>
+              <p>In previous versions, the <b>NOWAIT</b> keyword on the <b>REPORT FORM</b> and <b>LABEL</b> commands was not significant when the commands were issued in the <b>Command</b> window rather than in a program.  In Visual FoxPro 9's object-assisted mode, when previewing instructions are interpreted by the Report Preview Application, this keyword is significant no matter where you issue the command.  The Report Preview Application uses the <b>NOWAIT</b> keyword, consistently, as an instruction to provide a modeless preview form.  For more information about the Report Preview Application, see <span class="linkTerms"><a href="/html/1f297a3c-a6ef-4a14-89a7-14dd7611c2c3.htm">Extending Report Preview Functionality</a></span>.</p>
+            </li><li>
+              <p>Visual FoxPro 8 introduced the <b>NOPAGEEJECT</b> keyword on the <b>REPORT FORM</b> and <b>LABEL</b> commands, but applied the keyword only to printed output.  In Visual FoxPro 9, <b>NOPAGEEJECT</b> has significance for all output targets, including <b>PREVIEW</b>.  This keyword provides <i>chained</i> or continued report runs for multiple <b>REPORT FORM</b> and <b>LABEL</b> commands.  To facilitate this behavior in preview mode, and to allow you to apply customization instructions to multiple previews, the Report Output Application caches a single ReportListener object instance for preview output, causing a change in behavior for multiple modeless report commands (<b>REPORT FORM … PREVIEW NOWAIT</b>).  In the past, you used multiple <b>REPORT FORM… PREVIEW NOWAIT</b> statements in a sequence, your commands resulted in multiple report preview windows.  In Visual FoxPro 9, when <b>SET REPORTBEHAVIOR 90</b>, these commands will result in successive report previews being directed to a single report preview window.  </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+                <p>You can easily invoke the old behavior by creating multiple ReportListener object references and associating one with each separate <b>REPORT FORM</b> or <b>LABEL</b> command, using the <b>OBJECT</b> keyword.  For more information about using the <b>OBJECT</b> syntax, see <span class="linkTerms"><a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT FORM Command</a></span>.  For information about receiving multiple object references of the appropriate type from the Report Output Application, see <span class="linkTerms"><a href="/html/09b4791d-3a43-4bfa-b63e-f36aeec6f544.htm">Understanding the Report Output Application</a></span>.</p>
+              </td></tr></table></div>
+            </li><li>
+              <p>In the process of reviewing and overhauling the native Report Engine, a number of outstanding issues regarding band and layout element positioning were addressed.  For example, a field element marked to stretch and sized to take up more than one text line's height in the report layout might have inappropriately pushed its band's exit events to the next page in Visual FoxPro 8.  In Visual FoxPro 9, the band's exit events occur on the same page.  Additional revisions improve record-pointer-handling in footer bands, when bands stretch across pages. These changes are not specific to object-assisted output rendering. If you have relied on undocumented behavior providing exact band or layout control placement in a particular report, you should review that report's behavior in Visual FoxPro 9.</p>
+            </li></ul>
+        </div>
+      <h3 class="subHeading" xmlns="">Rushmore Optimization</h3><div class="subSection" xmlns="">
+          <p>When character values are indexed, all values are considered to be encoded using the table's code page. In previous versions of Visual FoxPro, when the current Visual FoxPro code page differed from a table's code page, any attempt to look for a character value within that table's index resulted in an implicit translation of the value from the current Visual FoxPro code page into the table's code page. This could cause SQL or other Rushmore optimizable commands to return or act upon incorrect records.</p>
+          <p>In Visual FoxPro 9 and later, by default, the optimization engine no longer uses existing character indexes for tables created with a non-current code page. Instead, Visual FoxPro builds temporary indexes to ensure correct results. This can result in a loss of optimization of SQL or other commands which were optimized in earlier VFP versions. To prevent this, ensure that the current Visual FoxPro code page returned by <span class="linkTerms"><a href="/html/29cbf933-0095-40be-a8a4-a9330e7a2523.htm">CPCURRENT( ) Function</a></span> matches the table's code page returned by <span class="linkTerms"><a href="/html/4bccff52-cbec-495f-aa32-bfadb6b1b3f6.htm">CPDBF( ) Function</a></span>. This requires either changing the current Visual FoxPro code page, or changing the table's code page. For information on specifying the current Visual FoxPro code page, see <span class="linkTerms"><a href="/html/01f8b1a1-72f4-4df7-8f60-e8b9b8c8d08c.htm">Understanding Code Pages in Visual FoxPro</a></span>. For information on specifying the code page for a table, see <span class="linkTerms"><a href="/html/fa3154e4-d0a5-45c0-82b7-1640fad1ffdf.htm">How to: Specify the Code Page of a .dbf File</a></span>. If you cannot change either the Visual FoxPro codepage or the table codepage to match, you can force optimization to work as it did in Visual FoxPro 8 and prior versions using the <span class="linkTerms"><a href="/html/23b309b9-92ce-410c-9dd1-227c7f59c047.htm">SET ENGINEBEHAVIOR Command</a></span> with either 80 or 70 as a parameter.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">SQL SELECT Statements</h3><div class="subSection" xmlns="">
+          <ul><li>
+              <p>A <span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span> containing DISTINCT and ORDER BY clauses in which the ORDER BY field is not in the SELECT field list will generate an error in Visual FoxPro 9.0 with SET ENGINEBEHAVIOR 90 (Error 1808: SQL: ORDER BY clause is invalid.). The following example shows this:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET ENGINEBEHAVIOR 90
+CREATE CURSOR foo (f1 int, f2 int)
+SELECT DISTINCT f1 FROM foo ORDER BY f2 INTO CURSOR res</pre></td></tr></table></span></div>
+            </li><li>
+              <p>A <span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span> containing DISTINCT and HAVING clauses in which the HAVING field is not in the SELECT field list will now generate an error in Visual FoxPro 9.0 with SET ENGINEBEHAVIOR 90 (Error 1803: SQL: HAVING clause is invalid.). An error is reported because the HAVING field is not in projection and DISTINCT is used. The following example shows this:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET ENGINEBEHAVIOR 90
+CREATE CURSOR foo (f1 int, f2 int)
+SELECT DISTINCT f1 FROM foo HAVING f2&gt;1 INTO CURSOR res</pre></td></tr></table></span></div>
+            </li><li>
+              <p>The number of UNION statements that can be used in a <span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span> is no longer limited to 9. Parentheses are not completely supported with UNION statements and unlike previous versions may generate an error. If two or more SELECT statements are enclosed in parenthesis, an error is generated during compile (Error 2196: Only a single SQL SELECT statement can be enclosed in parentheses.). This behavior is not tied to any <span class="linkTerms"><a href="/html/23b309b9-92ce-410c-9dd1-227c7f59c047.htm">SET ENGINEBEHAVIOR Command</a></span> level. The following example shows this error: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * FROM Table1 ;
+  UNION ;
+  (SELECT * FROM Table2 ;
+  UNION ;
+  SELECT * FROM Table3)</pre></td></tr></table></span></div>
+              <p>The following example compiles without an error:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT * FROM Table1 ;
+  UNION ;
+  (SELECT * FROM Table2) ;
+  UNION ;
+  (SELECT * FROM Table3)</pre></td></tr></table></span></div>
+            </li></ul>
+          <p>For more information, see <span class="linkTerms"><a href="/html/23b309b9-92ce-410c-9dd1-227c7f59c047.htm">SET ENGINEBEHAVIOR Command</a></span>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Disabling TABLEREVERT( ) Operations During TABLEUPDATE( ) Operations</h3><div class="subSection" xmlns="">
+          <p>For <b>CursorAdapters</b>, Visual FoxPro does not permit <b>TABLEREVERT( )</b> operations during  operations.</p>
+          <p>For more information, see <span class="linkTerms"><a href="/html/0fdd3838-1de5-4e54-8e4e-acb3d3e8b3bf.htm">TABLEREVERT( ) Function</a></span> and <span class="linkTerms"><a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( ) Function</a></span>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Index Key Truncation during Index Updates</h3><div class="subSection" xmlns="">
+          <p>An error (Error 2199) is now generated when index key truncation is about to occur, typically during index creation or modification. This can happen with use of a key that contains an expression involving a Memo field, whose length in not fixed, such as in the following example:</p>
+          <p>
+            <code>INDEX ON charfld1 + memofld1 TAG mytag</code>
+          </p>
+          <p>Similar issues can also occur with the SQL engine (such as during a SQL SELECT command or View creation) where it might fail to build a temporary index to optimize a join evaluation if it is unable to accurately determine the maximum size of the key.</p>
+          <p>For more information, see <span class="linkTerms"><a href="/html/445ece79-0514-44cb-bec7-04e87e694601.htm">Error building key for index "name". (Error 2199)</a></span>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Memo Field Corruption</h3><div class="subSection" xmlns="">
+          <p>Visual FoxPro will now detect if a Memo field in a class library (.vcx) or form (.scx) is corrupt when you try to open up that file in the designer. If the file contains a corrupt Memo field, an Error 41 such as following will occur:</p>
+          <p>
+            <b>Memo file &lt;path&gt;\myclass.VCT is missing or is invalid.</b>
+          </p>
+          <p>Additionally, similar Memo errors may occur if you have a Visual FoxPro table open and try to access contents of a corrupt Memo. The following sample code shows how you can detect the Error 41 memo file corruption:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>TRY
+  USE myTable EXCLUSIVE NOUPDATE 
+  SCAN
+    SCATTER MEMO MEMVAR
+  ENDSCAN
+CATCH TO loError
+  IF loError.ErrorNo=41
+    * handle error here
+  ENDIF
+ENDTRY
+USE IN myTable</pre></td></tr></table></span></div>
+          <p>While it is possible that loss of data may occur, the following sample code may assist in repairing some or the entire file:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ON ERROR *
+USE myclass.vcx
+COPY TO myclass_bkup.vcx&amp;&amp;backup
+COPY TO myclass2.vcx
+USE
+DELETE FILE myclass.vc*
+RENAME myclass2.vcx TO myclass.vcx
+RENAME myclass2.vct TO myclass.vct
+COMPILE CLASSLIB myclass.vcx
+ON ERROR</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Visual Form and Class Extended Property Support</h3><div class="subSection" xmlns="">
+          <p>Visual FoxPro 9 allows you to create custom properties in your visual class (SCX or VCX file) whose values can contain carriage returns and/or be of length greater than 255 characters. If you specify a property with a value like this through the Properties Window (i.e., the Zoom dialog box), Visual FoxPro will store it in a format such that you will no longer be able to edit that class in older versions of Visual FoxPro.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Class Definitions</h3><div class="subSection" xmlns="">
+          <p>The ability to have a property assignment set to instantiated object is no longer supported in a class definition and will generate an error. The following example shows this. </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL oCustom
+oCustom = CREATEOBJECT('cusTest')
+DEFINE CLASS cusTest AS CUSTOM
+    oRef = CREATEOBJECT('myclass')
+ENDDEFINE
+DEFINE CLASS myclass AS CUSTOM
+ENDDEFINE</pre></td></tr></table></span></div>
+          <p>You can instead assign a property to an instantiated object reference in the Init event of your class.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Merge Modules for Redistributable Components</h3><div class="subSection" xmlns="">
+          <p>Visual FoxPro includes merge modules (MSM files) for use in redistributing shared components with your runtime applications. Merge modules are used by applications that can create Windows Installer based setups. For example, Visual FoxPro ships with merge modules that contain the Visual FoxPro runtime libraries as well as some common components including a number of ActiveX controls.</p>
+          <p>For Visual FoxPro 9, the VFP9RUNTIME.MSM merge module contains the runtime libraries that you will need for your custom redistributable application. The VFP9RUNTIME.MSM merge module also has dependencies on the merge modules containing the Microsoft VC 7.1 runtime library (MSVCR71.DLL) and the GDI+ graphics library (GDIPLUS.DLL). Because of these dependencies, if you select the VFP9RUNTIME.MSM merge module in a Windows Installer tool such as InstallShield, the other dependent merge modules will automatically be selected as well.</p>
+          <p>
+            <b>Note</b>   For Windows XP and higher operating systems, Visual FoxPro uses the GDI+ graphics library that is installed in your Windows System folder.</p>
+          <p>For Visual FoxPro 9, the merge module containing the VC runtime library no longer installs to the Windows System directory. Instead, this file is installed to your application's directory. This is done in compliance with recommended component versioning strategies for Windows operating systems. The GDI+ library is installed into the same directory as your Visual FoxPro runtime libraries and is only installed on operating systems later than Windows XP (XP already includes the GDI+ library in its Windows System directory).</p>
+          <p>
+            <b>Tip</b>   There may be circumstances where you will want to install the VC or GDI+ library to another location such as the Windows System directory. You can do this with your Windows Installer application (e.g., InstallShield) by first selecting the merge module before selecting the VFP9RUNTIME.MSM one. Once you have selected a merge module, you can change its installation path.</p>
+          <p>There are new merge modules for MSXML3 and MSXML4 XML parser components. The MSXML 3.0 component consists of the following merge modules:</p>
+          <ul><li>
+              <p>MSXML 3.0 (msxml3_wim32.msm)</p>
+            </li><li>
+              <p>Msxml3 Exception INF Merge Module (msxml3inf_wim32.msm)</p>
+            </li><li>
+              <p>WebData std library (wdstddll_wim32.msm)</p>
+            </li></ul>
+          <p>There are two MSXML 4.0 modules that should be included with any custom setup:</p>
+          <ul><li>
+              <p>MSXML 4.0 (msxml4sxs32.msm)</p>
+            </li><li>
+              <p>MSXML 4.0 (msxml4sys32.msm)</p>
+            </li></ul>
+        </div>
+      <h3 class="subHeading" xmlns="">MTDLL Memory Allocation</h3><div class="subSection" xmlns="">
+          <p>Visual FoxPro contains a new <b>PROGCACHE</b> configuration file setting which specifies the amount of memory Visual FoxPro allocates at startup for running programs (program cache). This setting also determines memory allocated per thread for Visual FoxPro MTDLL COM Servers. In prior versions, this setting was not configurable and memory was allocated as a fixed program cache of a little over 9MB (144 * 64K). The new <b>PROGCACHE</b> setting allows you to set the exact size of the program cache or specify that dynamic memory allocation be used.</p>
+          <p>Since MTDLL COM Servers can use up a great amount of memory if many threads are created, it is important that memory be allocated more efficiently for these scenarios. In Visual FoxPro 9, the new default setting for MTDLL COM Servers is -2 (dynamic memory allocation). For more information, see <span class="linkTerms"><a href="/html/7d2c52b2-b8cc-421b-bfb8-28c9ba8e2ec1.htm">Special Terms for Configuration Files</a></span>.</p>
+        </div>
+    </sections></div><a name="fogrfchangesinfunctionalityforthecurrentreleaseanchor3"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2)" tabindex="0"><img id="sectionToggle2" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Miscellaneous Changes</span></h1><div id="sectionSection2" class="section" name="collapseableSection" style="display: none;">
+      <p>The following are miscellaneous changes that you should know about but are not likely to impact existing code.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">CursorAdapter Changes</h3><div class="subSection" xmlns="">
+          <p>In the current version of Visual FoxPro, the following behavior changes apply to the CursorAdapter object:</p>
+          <ul><li>
+              <p>You can no longer call <span class="linkTerms"><a href="/html/0fdd3838-1de5-4e54-8e4e-acb3d3e8b3bf.htm">TABLEREVERT( ) Function</a></span> while a <span class="linkTerms"><a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( ) Function</a></span> operation is in progress.</p>
+            </li><li>
+              <p>The <span class="linkTerms"><a href="/html/60b17f77-d5b9-4dfd-bb39-8501404a6cea.htm">ConversionFunc Property</a></span> setting is now respected during ADODB.Recordset based updates.</p>
+            </li><li>
+              <p>The target record is now kept current in the ADODB.Recordset during CursorAdapter.After… events.</p>
+            </li></ul>
+        </div>
+      <h3 class="subHeading" xmlns="">Grid SetFocus Supported for AllowCellSelection</h3><div class="subSection" xmlns="">
+          <p>You can now call a <b>Grid</b> control's <span class="linkTerms"><a href="/html/43f7fdfa-00fd-4587-859d-1ba07859d32a.htm">SetFocus Method</a></span> and have the Grid receive focus when the <span class="linkTerms"><a href="/html/d493213f-48d9-48ac-9a9a-e4c5e07c7182.htm">AllowCellSelection Property</a></span> is set to False (.F.) and the grid contains no records.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">EXECSCRIPT Function</h3><div class="subSection" xmlns="">
+          <p>The <span class="linkTerms"><a href="/html/e838fdae-d56c-437b-9e2c-80b6a6b10579.htm">EXECSCRIPT( ) Function</a></span> now allows you to pass parameters by reference.</p>
+          <p>Additionally, Visual FoxPro 9.0 tightens syntax validation of calls made from concatenation of parameters. The following code, which worked in prior versions of Visual FoxPro, now properly causes an error because the CHR(13) character breaks the call into two lines whereas it is supposed to be part of the parameter for the <b>EXECSCRIPT</b> call.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>  cRecPauseScript = "EXECSCRIPT('" + ;
+    "?123" + CHR(13) + ;
+    "?456" + ;
+    "')"
+  _VFP.DoCmd(cRecPauseScript)</pre></td></tr></table></span></div>
+          <p>To make a valid call that does not cause a syntax error, you can use the following code:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>  cRecPauseScript = "EXECSCRIPT('?123'+CHR(13)+ '?456')"
+  _VFP.DoCmd(cRecPauseScript)</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Listbox Control Click Event</h3><div class="subSection" xmlns="">
+          <p>In the current version of Visual FoxPro, the PageUp, PageDown, Home and End keyboard keys now cause a <b>Listbox</b> control's <b>Click</b> event to fire. In previous versions, these keys did not trigger the Click event to fire, unlike the arrow keys.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">PEMSTATUS( ) Function Returns False for Hidden Native Properties</h3><div class="subSection" xmlns="">
+          <p>In previous versions of Visual FoxPro, the <b>PEMSTATUS( )</b> function returned True (.T.) for hidden native properties of Visual FoxPro base classes when specifying a value of 5 for <span class="parameter">nAttribute</span>. In the current release, <b>PEMSTATUS( )</b> returns False (.F.) for these hidden native properties. For more information, see <span class="linkTerms"><a href="/html/1a82169f-fe6a-4631-a9c3-d106d127046b.htm">PEMSTATUS( ) Function</a></span>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Changes to Options Dialog Box</h3><div class="subSection" xmlns="">
+          <ul><li>
+              <p>In the Options dialog box, the List display count option has been moved from the Editor tab to the View tab. For more information, see <span class="linkTerms"><a href="/html/24853717-8586-4747-97a7-3c5cee39fc1e.htm">View Tab, Options Dialog Box</a></span>.</p>
+            </li><li>
+              <p>In previous versions of Visual FoxPro, you could output all the settings in the <span class="linkTerms"><a href="/html/a8286b0c-6b2c-4b8d-8e16-7db8dbda2a1f.htm">Options Dialog Box (Visual FoxPro)</a></span> to the Command Window by pressing the SHIFT key when choosing the <b>OK</b> button to close the dialog. In the current release, these settings are now sent to the <span class="linkTerms"><a href="/html/38a6071d-13a1-441c-8963-cf5670d2a1a0.htm">Debug Output Window</a></span>. The Debug Output window must be opened in order for the settings to be directed there.</p>
+            </li></ul>
+        </div>
+      <h3 class="subHeading" xmlns="">FOXRUN.PIF</h3><div class="subSection" xmlns="">
+          <p>The FOXRUN.PIF file that is used by the <span class="linkTerms"><a href="/html/720d4dbf-2afa-4f75-af08-bc667a5fb8e9.htm">RUN | ! Command</a></span> is no longer installed in the Visual FoxPro root directory. If Visual FoxPro detects the presence of a FOXRUN.PIF file during a RUN command, it will use COMMAND.COM to execute the specified RUN command. This may not be the desired SHELL program to use for a particular operating system, especially newer ones like Windows XP in which CMD.EXE is preferable.</p>
+          <p>The current behavior for a RUN command without the existence of a FOXRUN.PIF file is that the RUN command will use the SHELL program specified by the operating system COMSPEC environment variable. With Windows XP, you can view and edit this variable by right-clicking your computer desktop's My Computer icon and selecting the <b>Properties</b> dialog box (Advanced tab).</p>
+          <p>The FOXRUN.PIF file is still available in the Tools directory if you need it for a particular reason.</p>
+          <p>For more information, see <span class="linkTerms"><a href="/html/720d4dbf-2afa-4f75-af08-bc667a5fb8e9.htm">RUN | ! Command</a></span>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">SCATTER Command</h3><div class="subSection" xmlns="">
+          <p>The <b>SCATTER</b> command no longer allows for ambiguous use of both <span class="parameter">MEMVAR</span> and <span class="parameter">NAME</span> clauses in the same command. You can only include one of these clauses. In prior versions, the following code would not generate an error:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE HOME()+"SAMPLES\Data\customer.dbf"
+SCATTER MEMVAR NAME oCust</pre></td></tr></table></span></div>
+          <p>For more information, see <span class="linkTerms"><a href="/html/e5d1e608-a184-4cfb-8a06-f83ab8a6c50c.htm">SCATTER Command</a></span>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">SET DOHISTORY</h3><div class="subSection" xmlns="">
+          <p>The SET DOHISTORY command, which is included for backward compatibility, was updated to send output to the <span class="linkTerms"><a href="/html/38a6071d-13a1-441c-8963-cf5670d2a1a0.htm">Debug Output Window</a></span> instead of the Command Window as in prior versions.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">SCREEN ShowTips Property</h3><div class="subSection" xmlns="">
+          <p>The default value for _SCREEN <span class="linkTerms"><a href="/html/7607750c-5cb0-4b9b-96b8-ffbf8887a253.htm">ShowTips Property</a></span> has been changed from False (.F.) to True (.T.). This change was made because new Memo and Field Tips support is now dependent on this setting.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">AllowCellSelection Does Not Permit Deleting Grid Rows When Set to False</h3><div class="subSection" xmlns="">
+          <p>When the <span class="linkTerms"><a href="/html/d493213f-48d9-48ac-9a9a-e4c5e07c7182.htm">AllowCellSelection Property</a></span> is set to False (.F.) for a <b>Grid</b> control, you cannot select a row for deletion by clicking the deletion column. For more information, see <span class="linkTerms"><a href="/html/d493213f-48d9-48ac-9a9a-e4c5e07c7182.htm">AllowCellSelection Property</a></span>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Northwind Database</h3><div class="subSection" xmlns="">
+          <p>The sample Northwind database has been updated. Five of the stored procedures now include calls to the <span class="linkTerms"><a href="/html/97e8de55-a13f-4862-81c6-f3acad263b29.htm">SETRESULTSET( ) Function</a></span> so that the Visual FoxPro OLE DB Provider will return a cursor when they are executed.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Foundation Classes</h3><div class="subSection" xmlns="">
+          <p>The _ShellExecute class contained in the _Environ.vcx FFC class library has been updated to include an additional parameter in the ShellExecute method.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Wizards and Builders</h3><div class="subSection" xmlns="">
+          <p>The Wizard/Builder selection dialog box now properly hides deleted entries in the Wizard and Builder registration tables.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Specifying Western Language Script Values for GETFONT( ) Function</h3><div class="subSection" xmlns="">
+          <p>In versions prior to this release, passing <code>0</code> as the <span class="parameter">nFontCharSet</span> value for <b>GETFONT( )</b> opened the <b>Font Picker</b> dialog box and displayed the Script list as unavailable. You could not specify <code>0</code> (Western) as the language script value, and setting it to <code>1</code> (Default) sets <span class="parameter">nFontCharSet</span> to the default font setting only, which is determined by the operating system.</p>
+          <p>In this release, passing <code>0</code> to <b>GETFONT( )</b> opens the <b>Font Picker</b> dialog box with the Script list available and Western selected. The return value for <b>GETFONT( )</b> also includes the return value for <span class="parameter">nFontCharSet</span>.</p>
+        </div>
+    </sections></div><a name="fogrfchangesinfunctionalityforthecurrentreleaseanchor4"></a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle3)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle3)" tabindex="0"><img id="sectionToggle3" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Removed Items</span></h1><div id="sectionSection3" class="section" name="collapseableSection" style="display: none;">
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">HTML Help SDK</h3><div class="subSection" xmlns="">
+          <p>The HTML Help 1.3 SDK no longer ships with Visual FoxPro.</p>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/46e99caf-fe50-4d55-aa78-e37cffeca2d1.htm">Guide to Reporting Improvements</a></span><br /><span class="linkTerms"><a href="/html/f8ce8cf6-5def-40d0-9dcb-65570d47ce92.htm">Data and XML Feature Enhancements</a></span><br /><span class="linkTerms"><a href="/html/6c75fbec-8d4a-4809-a521-c54802e59ea5.htm">SQL Language Improvements</a></span><br /><span class="linkTerms"><a href="/html/ec67c781-ea65-402c-9b5f-91697f2a0746.htm">Class Enhancements</a></span><br /><span class="linkTerms"><a href="/html/f988d7c6-f382-40dd-a51a-b5ab73eb08c7.htm">Language Enhancements</a></span><br /><span class="linkTerms"><a href="/html/eca7fa6d-ec9c-411a-b3ea-6f5d71991a70.htm">Interactive Development Environment (IDE) Enhancements</a></span><br /><span class="linkTerms"><a href="/html/3d8b88b7-28b8-4d71-a4a1-4da3f1a6dd70.htm">Enhancements to Visual FoxPro Designers</a></span><br /><span class="linkTerms"><a href="/html/ebf2f62e-2ae6-4e78-aeee-e4b322dfc9b9.htm">Miscellaneous Enhancements</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/d18b257b-4e8c-4bd7-bc46-682526474e68.htm">What's New in Visual FoxPro</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Changes in Functionality for the Current Release">
+</OBJECT>

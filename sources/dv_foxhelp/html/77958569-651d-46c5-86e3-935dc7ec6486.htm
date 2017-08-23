@@ -1,0 +1,327 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>ADIR( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">ADIR( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Places information about files into an array and then returns the number of files.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+ADIR(<span class="parameter">ArrayName</span> [, <span class="parameter">cFileSkeleton</span> [, <span class="parameter">cAttribute </span>[<span class="parameter">, nFlag</span>]]])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">ArrayName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the array. If the array you include doesn't exist, Visual FoxPro automatically creates the array. If the array exists and isn't large enough to contain all the information, Visual FoxPro automatically increases the size of the array to accommodate the information. If the array is larger than necessary, Visual FoxPro truncates the array. If the array exists and <b>ADIR( )</b> returns 0 because no matching files are found, the array remains unchanged. If the array doesn't exist and <b>ADIR( )</b> returns 0, the array isn't created.</p>
+          <p>The following table describes the contents and data type of each column in the array:   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Column
+                </th>
+                <th>
+                  Array contents
+                </th>
+                <th>
+                  Data type
+                </th>
+              </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>File names</p>
+              </td>
+              <td>
+                <p>Character</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>File sizes</p>
+              </td>
+              <td>
+                <p>Numeric</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>3</p>
+              </td>
+              <td>
+                <p>Dates last modified</p>
+              </td>
+              <td>
+                <p>Date</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>Times last modified</p>
+              </td>
+              <td>
+                <p>Character</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>5</p>
+              </td>
+              <td>
+                <p>File attributes</p>
+              </td>
+              <td>
+                <p>Character</p>
+              </td>
+            </tr></table></div>
+          <p>The last array column contains the file attributes of the matching files. Each file attribute is expressed by a letter; a file can have more than one attribute. The following table indicates the file attribute represented by each letter:   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Letter
+                </th>
+                <th>
+                  Attribute
+                </th>
+              </tr><tr>
+              <td>
+                <p>A</p>
+              </td>
+              <td>
+                <p>Archive – Read/Write </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>H</p>
+              </td>
+              <td>
+                <p>Hidden</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>R</p>
+              </td>
+              <td>
+                <p>Read-only</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>S</p>
+              </td>
+              <td>
+                <p>System</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>D</p>
+              </td>
+              <td>
+                <p>Directory</p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cFileSkeleton</span>
+        </span></dt><dd>
+          <p>Specifies a file skeleton so you can store information about files with names or extensions that match a search criterion. For example, the criterion can be all tables, all text files, all files with names that have A as their first letter, and so on. Such general searches are done by including the wildcards * and ? in <span class="parameter">cFileSkeleton</span>. A question mark represents a single character; an asterisk represents any number of characters. You can use any number of wildcards in any position within the file skeleton.</p>
+          <p>You can specify a drive and/or directory to search for matching file names. If you don't specify a drive and a directory, Visual FoxPro places information about files in the current directory into the array. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cAttribute</span>
+        </span></dt><dd>
+          <p>Specifies the inclusion of subdirectories and hidden or system files.</p>
+          <p>
+            <span class="parameter">cAttribute</span> can contain any combination of D, H, and S. Including D returns subdirectory names of the current directory in addition to file names that match the file skeleton specified in <span class="parameter">cFileSkeleton</span>. Including H returns information about hidden files that match the file skeleton specified in <span class="parameter">cFileSkeleton</span>. Including S returns information about system files that match the file skeleton specified in <span class="parameter">cFileSkeleton</span>.   </p>
+          <p>Include an empty string in <span class="parameter">cFileSkeleton</span> to return just subdirectory names, hidden files or system files.   </p>
+          <p>You can include V in <span class="parameter">cAttribute</span> to return the volume name of the current drive. Only the volume name is returned to the array if V is included with D, H, or S. The volume name is stored in the first array element and the remainder of the array is truncated. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nFlag</span>
+        </span></dt><dd>
+          <p>Specifies whether the display provides DOS naming or actual case sensitivity.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nFlag</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>(Default) Display represents the full file name in uppercase</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>Display represents original Case in names</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>Display follows DOS 8+3 naming convention</p>
+              </td>
+            </tr></table></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Numeric</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>For each file, ADIR( ) places into the array the file name, size, date last modified, time last modified, and attributes.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example uses ADIR( ) to create an array containing database information. The names of the databases are then displayed.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+SET DEFAULT TO (HOME(2) + 'Data')
+gnDbcnumber = ADIR(gaDatabase, '*.DBC')  &amp;&amp; Create array
+CLEAR
+FOR nCount = 1 TO gnDbcnumber  &amp;&amp; Loop for number of databases
+   ? gaDatabase(nCount,1)  &amp;&amp; Display database names
+ENDFOR
+SET PATH TO HOME( )  &amp;&amp; Set path to Visual FoxPro directory</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/281f8451-8f91-4ea4-a750-b6484cb4c148.htm">ADEL( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/8593614e-fdfa-46da-bae8-ea7e85e3c412.htm">AELEMENT( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/c576b477-4cf5-4ad4-a115-6963867dd548.htm">AFIELDS( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/58867a98-4899-4436-abae-6ee6a07c7a52.htm">AINS( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/8496659e-83b9-4e08-847b-f93b1e791ee5.htm">ALEN( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/e617f070-1610-4d79-8251-cb24f07e272c.htm">ANETRESOURCES( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/169b2160-e94f-4a49-a05e-dd235d8e70ca.htm">ASCAN( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/db40f7c1-ce9b-4bd4-92b4-b584733f1bef.htm">ASORT( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/76044ae8-3278-4aad-82ce-47f7eaaf23fe.htm">ASUBSCRIPT( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/17270153-1977-40bc-9f17-ab0132b20e90.htm">DIMENSION Command</a></span><br />
+  <span class="linkTerms"><a href="/html/a26082f4-52e3-4923-9669-3a5e41a13d32.htm">DIR or DIRECTORY Command</a></span><br />
+  <span class="linkTerms"><a href="/html/535ee75c-fd43-4f41-a993-73a34f37a105.htm">DIRECTORY( ) Function</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />  
+  <h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="ADIR( ) Function">
+<param name="ALink Name" value="ADIR">
+</OBJECT>

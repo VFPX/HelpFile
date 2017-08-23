@@ -1,0 +1,248 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Register Custom ReportListeners and Custom OutputTypes in the Report Output Registry Table</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Register Custom ReportListeners and Custom OutputTypes in the Report Output Registry Table</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When it looks for a registered ReportListener, ReportOutput.app checks the records in its registry table with the value of 100 in the Objtype field and a value in the ObjCode field matching the first parameter it received. It ignores deleted records in the table, and uses registry records with a value of 110 in the ObjType field to apply additional filters limiting the records to be considered.  </p>
+    <p>When it has identified the correct record, ReportOutput.app uses the other fields in the record to instantiate a reference to your designated ReportListener-derived class.  </p>
+    <p>In this topic you learn how to create records in the registry table so ReportOutput.app can use them in this process.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>For more information about registry table structure and use, see <span class="linkTerms"><a href="/html/09b4791d-3a43-4bfa-b63e-f36aeec6f544.htm">Understanding the Report Output Application</a></span>.  For information about creating and specifying a registry table, see <span class="linkTerms"><a href="/html/f31384bf-c40d-4fec-a8f7-99ff038c05ad.htm">How to: Specify an Alternate Report Output Registry Table</a></span>.</p>
+    </td></tr></table></div>
+  <h3 class="procedureSubHeading">To add a new OBJECT TYPE value to the registry table</h3><div class="subSection"><ol><li>
+        
+          <p>Issue the following command to create ReportOutput.app's default registry table on disk:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO (_REPORTOUTPUT) WITH -100  &amp;&amp; Write registry file</pre></td></tr></table></span></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If the system variable <b>_REPORTOUTPUT</b> contains the name of a Report Output Application other than the default ReportOutput.app in your environment, substitute <code>HOME() + ReportOutput.app</code>, or similar code, to invoke the default Report Output Application.</p>
+          </td></tr></table></div>
+        
+      </li><li>
+        
+          <p>A <b>BROWSE</b> window appears with registry records for different components using this table.  </p>
+        
+      </li><li>
+        
+          <p>Examine the current record in the table.  This record is a deleted entry showing you how to create a registry record for new ReportListener entries. Notice that its Objtype value is <code>100</code>, indicating that it provides ReportListener-derived class information, and that its Objcode value is <code>999</code>, meaning that ReportOutput.app should use this record when asked for a ReportListener of type <code>999</code>.  Also, observe the name of the class in the Objname field (<code>DebugListener</code>).</p>
+        
+      </li><li>
+        
+          <p>From the <b>Table</b> menu popup, choose the <b>Recall Records…</b> option.  On the dialog that appears, click the <b>Recall</b> button.  The DebugListener record is now active.</p>
+        
+      </li><li>
+        
+          <p>Change the Objcode value to a different number, such as <code>55</code>.</p>
+        
+      </li><li>
+        
+          <p>Close the <b>BROWSE</b> window.</p>
+        
+      </li><li>
+        
+          <p>Issue the following command:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>REPORT FORM ? OBJECT TYPE 55 
+* substitute the number you used in the table if it was not 55</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>The <b>REPORT FORM</b> command generates debugging output.</p>
+        
+      </li><li>
+        
+          <p>Save the name of the current registry table for later use, using the following command.  For more information, see <span class="linkTerms"><a href="/html/2f70ca88-d15d-4b81-8b1a-c612a0c9ece6.htm">How to: Use the Report Output Application's Reference Collection</a></span>.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>lcOutputRegistry = _oReportOutput["-200"] &amp;&amp; current registry</pre></td></tr></table></span></div>
+        
+      </li></ol></div><h3 class="procedureSubHeading">To add a new class definition to the registry table</h3><div class="subSection"><ol><li>
+        
+          <p>Open the registry table you created earlier, and open a <b>BROWSE</b> window.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE (lcOutputRegistry) SHARED ALIAS MyRegistry
+BROWSE</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>From the <b>Table</b> menu popup, choose <b>Append New Record</b>.  The new record appears at the bottom of the Browse window.</p>
+        
+      </li><li>
+        
+          <p>Change the new record's Objtype value to <code>100</code>, indicating its use.  Change its Objcode value to a different value from the one you used earlier, for example <code>77</code>.</p>
+        
+      </li><li>
+        
+          <p>In the Objname field, use the name of a different ReportListener-derived class.  For example, you could use "<code>XMLDisplayListener</code>", a class delivered in the Foundation Class (FFC) folder.</p>
+        
+      </li><li>
+        
+          <p>In the Objvalue field, use the name of the class's class library.  The file extension is optional if the class library is a visual class library (.vcx) but required if the class library is a program (.prg).  If you used "<code>XMLDisplayListener</code>" above, you should use "<code>_ReportListener</code>" here.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>For this example, you can use the full path of the library in this field, or you can SET PATH TO (HOME() + "FFC") when you are ready to invoke ReportOutput.app.  However, when you distribute applications, you can build _ReportListener.VCX into your application file and it will be found without a path.</p>
+          </td></tr></table></div>
+        
+      </li><li>
+        
+          <p>Leave the Objinfo field blank unless the class library you used in the last step is built into an application (.app or .exe) outside your own code.  For example, in the DebugListener record, the Objinfo name holds the fully-pathed name of the Report Output Application, because the Objvalue field holds the name of the library built into ReportOutput.app.  If you used <code>"_ReportListener</code>" or "<code>_ReportListener.vcx</code>" from the FFC folder in Objvalue, this value should be blank.</p>
+        
+      </li><li>
+        
+          <p>Close the registry table.  (Although you opened it <b>SHARED</b>, in certain cases ReportOutput.app will require exclusive use of the table.) From the Command window:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE IN MyRegistry</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>Ensure that the class library you specified is available on your path, if you did not use its full path in the Objvalue field ealier. Then use your designated class with ReportOutput.app:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>REPORT FORM ? OBJECT TYPE 77 </pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>The <b>REPORT FORM</b> command generates output using the class you specified.</p>
+        
+      </li></ol></div><h3 class="procedureSubHeading">To filter records in the registry table</h3><div class="subSection"><ol><li>
+        
+          <p>Open the registry table you created earlier, and open a <b>BROWSE</b> window.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE (lcOutputRegistry) SHARED ALIAS MyRegistry
+BROWSE</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>Change the Objcode value for the class you specified in the last section to match the value you used for DebugListener earlier.  For example:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>GO BOTTOM
+REPLACE Objcode WITH 55</pre></td></tr></table></span></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You now have two classes registered with the same Output type value (<code>55</code>). By default, ReportOutput.app will use the first one it finds (in this case, <code>DebugListener</code>)..  In this procedure, you use a filter to take control of which record ReportOutput.app uses.</p>
+          </td></tr></table></div>
+        
+      </li><li>
+        
+          <p>From the <b>Table</b> menu popup, choose <b>Append New Record</b>.  The new record appears at the bottom of the Browse window.</p>
+        
+      </li><li>
+        
+          <p>Change the new record's Objtype value to <code>110</code>, the value specific to Report Output Application configuration records, and its Objcode value to <code>1</code>, the value specific to filter records. </p>
+        
+      </li><li>
+        
+          <p>Filter records do not use the Objname and Objvalue fields.  Use the following expression in the Objinfo field.  This expression indicates that you do not want to use any classes built in to the ReportOutput.app file, you only want to use external classes:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ATC("ReportOutput.APP",Objinfo) = 0</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>Close the registry table.</p>
+        
+      </li><li>
+        
+          <p>Ask the Report Output Application for a reference to ReportListener using this type.  The third parameter below ensures that any cached reference of this type from earlier attempts will be released and you will get a new evaluation of the appropriate class:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oRL = NULL
+DO (_REPORTOUTPUT) WITH 55, oRL, 2 &amp;&amp; reload</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>Verify that the class reference is the second class you added to the table (in the example, XMLDisplayListener):</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? oRL.Class</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>Open the registry table again, and change the Objcode value or make some other change so the record no longer qualifies as a filter:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE (lcOutputRegistry) SHARED ALIAS MyRegistry
+GO BOTTOM
+REPLACE Objcode WITH 2
+USE &amp;&amp; close the table again</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>Issue the same commands you used earlier, and observe that you receive a reference to DebugListener this time:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO (_REPORTOUTPUT) WITH 55, oRL, 2 &amp;&amp; reload
+? oRL.Class</pre></td></tr></table></span></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>Filters can be based on values in additional registry table fields, because user-defined fields are permitted in the table.  For example, you could have a logical field named CustPref, and filter on the value <code>CustPref</code>, signifying which class your application's end-user prefers to use.  To work as a filter, an expression has to be something appropriate to a <b>LOCATE</b> statement applied to the registry table.  The Report Output Application uses the filter in a <b>LOCATE</b> statement when it searches the registry table for a record for a ReportListener of appropriate output type. For more information about how the Report Output Application uses the Objinfo field to apply a filter, and about how it uses the rest of the registry table columns, see <span class="linkTerms"><a href="/html/09b4791d-3a43-4bfa-b63e-f36aeec6f544.htm">Understanding the Report Output Application</a></span>.</p>
+          </td></tr></table></div>
+        
+      </li></ol></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Register Custom ReportListeners and Custom OutputTypes in the Report Output Registry Table">
+</OBJECT>

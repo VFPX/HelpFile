@@ -1,0 +1,146 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Create Parameterized Views</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Create Parameterized Views</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can filter records for a view without creating separate views for each filter value by creating a parameterized view. A parameterized view uses a SQL <b>SELECT</b> statement containing a <b>WHERE</b> clause that specifies a filter expression with a parameter. The parameter accepts values that can be supplied later by prompting the user or programmatically. Parameter names can be any combination of alphabetic characters, numbers, and single quotes. </p>
+  <h3 class="procedureSubHeading">To specify a parameter for a filter</h3><div class="subSection"><ol><li>
+        
+          <p>Open the view in the <b>View Designer</b>, and click the <b>Filter</b> tab.</p>
+        
+      </li><li>
+        
+          <p>On the <b>Filter</b> tab, create a filter or select an existing filter.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Example</b> box, type the parameter name. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>To prompt for a parameter value when opening the view, precede the parameter name immediately with a question mark (?). When you open the view, the View Parameter dialog box appears and prompts you for a parameter value.</p>
+          </td></tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The parameter name you provide is evaluated as a Visual FoxPro expression. If the evaluation fails, Visual FoxPro prompts for a parameter value. The parameter value supplied is sent to the data source as part of the SQL <b>SELECT</b> statement. </p>
+          </td></tr></table></div>
+        
+      </li></ol></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>For more information, see <span class="linkTerms"><a href="/html/785acda9-c0ec-4fea-800d-9b63d778fa2c.htm">How to: Edit Views</a></span> and <span class="linkTerms"><a href="/html/0fc4c7c3-ee77-400c-86f7-0bc0c78f6543.htm">Filter Tab, Query and View Designers</a></span>.</p>
+      <h3 class="procedureSubHeading">To create a parameterized view programmatically</h3><div class="subSection"><ol><li>
+            
+              <p>Use the <b>CREATE SQL VIEW</b> command with the <b>AS</b> clause to specify a SQL <b>SELECT</b> statement.</p>
+            
+          </li><li>
+            
+              <p>In the <b>WHERE</b> clause of the SQL <b>SELECT</b> statement, include the filter expression containing the parameter name in the appropriate location.  </p>
+            
+          </li></ol></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/2a22b360-882b-4bc9-ab9d-b89be1e56dd1.htm">CREATE SQL VIEW Command</a></span> and <span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span>.</p>
+      <p>For example, the following code opens the sample Northwind database and creates a parameterized view that selects all records in the Customers table where the Country field matches the value supplied for the <code>cCountry</code> parameter:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE HOME(2) + "Northwind\Northwind"
+CREATE SQL VIEW Customer_Remote_View ;
+   AS SELECT * FROM Customers WHERE Customers.Country = ?cCountry</pre></td></tr></table></span></div>
+      <p>When the following code opens the view, Visual FoxPro displays the View Parameter dialog box to prompt for a parameter value. After you type a parameter value, a browse window opens to display the results:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE Customer_Remote_View
+BROWSE</pre></td></tr></table></span></div>
+      <p>The following code deletes the view from the Northwind database when you are finished:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DELETE VIEW Customer_Remote_View</pre></td></tr></table></span></div>
+      <p>You can pass the parameter value programmatically instead of prompting for a parameter value. The following code creates the same parameterized view but omits the question mark. The code later stores the value "Sweden" programmatically in <code>cCountry</code> as the parameter value. When you open the view, the parameter value is passed to the view, and a browse window opens to display the results:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE HOME(2) + "Northwind\Northwind"
+CREATE SQL VIEW Customer_Remote_View ;
+   AS SELECT * FROM Customers WHERE Customers.Country = cCountry
+cCountry = 'Sweden'
+USE Northwind!Customer_Remote_View
+BROWSE</pre></td></tr></table></span></div>
+      <p>The following code deletes the view from the Northwind database when you are finished:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DELETE VIEW Customer_Remote_View</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/785acda9-c0ec-4fea-800d-9b63d778fa2c.htm">How to: Edit Views</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/9d16b2e3-b104-4242-8a7a-dac3f02dfc13.htm">Displaying Data in Views</a></span><br /><span class="linkTerms"><a href="/html/04008d6d-1ffd-4555-bf6a-1c50f39b418f.htm">Managing Views</a></span><br /><span class="linkTerms"><a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Create Parameterized Views">
+</OBJECT>

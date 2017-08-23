@@ -1,0 +1,246 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Manage Multiple Instances of a Form</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Manage Multiple Instances of a Form</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									<a href="#codeExampleSection">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can have multiple instances of a class definition active at a time. For example, you can design one order form but have several open orders in your application. Each uses the same form definition but is displayed and manipulated individually.</p>
+    <p>When you have multiple instances of a form, the key points to remember are:  </p>
+    <ul><li>
+        <p>Create an array property in the launching form to hold the object variables associated with each instance of the multiple instance form. The easiest way to keep track of instance variables when you don't know ahead of time how many there will be is to use an array.</p>
+      </li><li>
+        <p>For the form that is to have multiple instances, set the <span class="linkTerms"><a href="/html/d047e2cc-0d8f-4cb5-aa0a-411714df58b3.htm">DataSession Property</a></span> to 2 – Private Data Session. A private data session provides a separate set of work areas for each instance of the form so that selected tables and record pointer positions are all independent.</p>
+      </li></ul>
+  <h1 class="heading">Example</h1><div id="codeExampleSection" class="section">
+    
+      
+        <p>The following example provides code that demonstrates creating multiple instances of a form. For the sake of brevity, this code is not optimized; it is intended only to present the concepts.</p>
+        <p>The following form launches multiple instances:</p>
+        <div class="labelheading"><b>Property Setting for Launch.scx</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+              <th>
+                Object
+              </th>
+              <th>
+                Property
+              </th>
+              <th>
+                Setting
+              </th>
+            </tr><tr>
+            <td>
+              <p>frmLaunch</p>
+            </td>
+            <td>
+              <p>aForms[1]</p>
+            </td>
+            <td>
+              <p>
+                <code>" "</code>
+              </p>
+            </td>
+          </tr></table></div>
+        <div class="labelheading"><b>Event Code for Launch.scx</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+              <th>
+                Object
+              </th>
+              <th>
+                Event
+              </th>
+              <th>
+                Code
+              </th>
+            </tr><tr>
+            <td>
+              <p>cmdQuit</p>
+            </td>
+            <td>
+              <p>
+                <a href="/html/514e4b37-03df-482c-9c9f-df2873f48aee.htm">Click</a>
+              </p>
+            </td>
+            <td>
+              <p>
+                <code>RELEASE THISFORM</code>
+              </p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>cmdLaunch</p>
+            </td>
+            <td>
+              <p>Click</p>
+            </td>
+            <td>
+              <p>
+                <code>nInstance = ALEN(THISFORM.aForms)</code>
+              </p>
+              <p>
+                <code>DO FORM Multi ;</code>
+              </p>
+              <p>
+                <code>  NAME THISFORM.aForms[nInstance] ;</code>
+              </p>
+              <p>
+                <code>  LINKED</code>
+              </p>
+              <p>
+                <code>DIMENSION ;</code>
+              </p>
+              <p>
+                <code>  THISFORM.aForms[nInstance + 1]</code>
+              </p>
+              <p>
+              </p>
+            </td>
+          </tr></table></div>
+        <p>In refining the code in this example, you could manage the array of form objects so that empty array elements reused as forms are closed and new forms are opened, rather than always redimensioning the array and increasing the number of elements by one.</p>
+        <p>The form that can have multiple instances is Multi.scx. The data environment for this form contains the Employee table.</p>
+        <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Multiple instances of Multi.scx</caption></caption></b><br></br></div><img src="../local/Local_-309782288_afd09017.gif" alt="FoxPro Launch Form Multiples"></img>
+        <div class="labelheading"><b>Property Setting for Multi.scx</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+              <th>
+                Object
+              </th>
+              <th>
+                Property
+              </th>
+              <th>
+                Setting
+              </th>
+            </tr><tr>
+            <td>
+              <p>txtFirstname</p>
+            </td>
+            <td>
+              <p>
+                <a href="/html/76c0d810-a6e4-4076-aa91-0763a6dfe03b.htm">ControlSource</a>
+              </p>
+            </td>
+            <td>
+              <p>
+                <code>Employee.first_name</code>
+              </p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>txtLastName</p>
+            </td>
+            <td>
+              <p>
+                <a href="/html/76c0d810-a6e4-4076-aa91-0763a6dfe03b.htm">ControlSource</a>
+              </p>
+            </td>
+            <td>
+              <p>
+                <code>Employee.last_name</code>
+              </p>
+            </td>
+          </tr><tr>
+            <td>
+              <p>frmMulti</p>
+            </td>
+            <td>
+              <p>
+                <a href="/html/d047e2cc-0d8f-4cb5-aa0a-411714df58b3.htm">DataSession</a>
+              </p>
+            </td>
+            <td>
+              <p>
+                <code>2 - Private Data Session</code>
+              </p>
+            </td>
+          </tr></table></div>
+        <p>When you choose Launch Form in the Launcher form, an instance of the Multi form is created. When you close the Launcher form, the property array aForms is released and all instances of Multi are destroyed.</p>
+        <p>Visual FoxPro provides some functions and properties to help you manage multiple instances of objects. For more information, see <span class="linkTerms"><a href="/html/cb3e9b17-3a6d-426b-bf17-1a18053e1f22.htm">AINSTANCE( ) Function</a></span>, <span class="linkTerms"><a href="/html/c767119d-d65a-4e94-a842-c5e8db912095.htm">AUSED( ) Function</a></span>, and <span class="linkTerms"><a href="/html/9123cd92-863a-403e-8db0-e87289ae520b.htm">DataSessionID Property</a></span>.</p>
+      
+    
+  </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/4065d662-45dd-4bb2-8828-86e58c8b0a7f.htm">How to: Save a Form as HTML</a></span><br /><span class="linkTerms"><a href="/html/baabc928-bb0c-4546-999a-2ed55a9ea4a9.htm">How to: Set the Design Area for a Form</a></span><br /><span class="linkTerms"><a href="/html/8e3040f2-6e04-4ede-b3be-bceac1b1c2a0.htm">How to: Create Forms with Local and Remote Data</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/d047e2cc-0d8f-4cb5-aa0a-411714df58b3.htm">DataSession Property</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/23c31bf8-0736-493d-9d21-3fd54abc309c.htm">Working with Forms</a></span><br /><span class="linkTerms"><a href="/html/adb21354-5dde-4f55-b92a-df0c53810385.htm">Creating Forms</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Manage Multiple Instances of a Form">
+</OBJECT>

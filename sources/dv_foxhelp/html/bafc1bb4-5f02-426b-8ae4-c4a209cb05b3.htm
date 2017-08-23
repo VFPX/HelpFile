@@ -1,0 +1,139 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Manipulating Offline Data</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Manipulating Offline Data</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>There are times when you might want to display, collect, or modify data independent of the host database. By using the offline view features in Visual FoxPro, you can use views to connect to a host database and create a subset of data for use offline. Then, working offline, you can use the view directly or through an application you create. When you are done, you can upload the changes stored in the view back to the host database.</p>
+    <p>Some scenarios where offline views are useful include:
+</p>
+    <ul><li>
+        <p>A data warehousing situation, where large databases are maintained centrally on MIS servers. If you are only interested in data pertaining to, for example, the Marketing department, you can construct a view including only the data that is relevant to you. You can then take the data offline, allow multiple users in the Marketing department to update the data, and then commit the changed data to the source database.</p>
+      </li><li>
+        <p>A geographically remote location which requires that you take a subset of data with you on a laptop, modify the data independently of the host database, then update the host database with the changed data at a later time.</p>
+      </li><li>
+        <p>Time-sensitive data. For example, you might want to update data reflecting employee pay raises before the new pay rates actually take effect.</p>
+      </li></ul>
+    <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Working with offline views</caption></caption></b><br></br></div><img src="../local/Local_-309676687_afd08006.gif" alt="FoxPro DataView"></img>
+    <p>Using the offline view, you can display and update data much as you do online with the same forms, reports, or applications. </p>
+    <p>To create and use view data offline, you can use the following language features:
+</p>
+    <ul><li>
+        <p>The <a href="/html/fa98fc4f-58cb-4796-abd3-8530f504b5b5.htm">CREATEOFFLINE( )</a> function.</p>
+      </li><li>
+        <p>The <a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE</a> <i>SQLViewName</i> command with the ADMIN and ONLINE clauses.
+</p>
+        <p>For example, the following code opens the <code>Showproducts</code> view:
+</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE Showproducts</pre></td></tr></table></span></div>
+      </li><li>
+        <p>The <a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE</a> function.</p>
+      </li><li>
+        <p>The <a href="/html/a40b2776-340a-4e2b-829c-ca35fddcdce1.htm">DROPOFFLINE( )</a> function.</p>
+      </li></ul>
+    <p>If you are not getting the subset of data that you expected, check the optimization settings for the remote view. If you set the MaxRecords property using the <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> function, only that many records appear in your views offline. However, if you include a Memo field in the field list of your view, it is automatically included in the result set even if FetchMemo is set to false (.F.).</p>
+    <p>If you plan to use the offline view on a machine other than the one on which you created the offline view, you must prepare the offline destination by creating a copy of the host database file (.dbc); making sure the ODBC data source used by the view exists on the destination machine; and analyzing your data requirements to determine the contents of the view you need.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Use the ODBC Administrator program to install data sources on a machine. You can access the ODBC Administrator program from either the Visual FoxPro program group or from the Control Panel.</p>
+    </td></tr></table></div>
+    <p>After you create the view for your offline data, you can use it as you would any view in your application: you can add, change, and delete records. Multiple users can access the offline view concurrently using the same database in shared mode. If you decide you do not want to keep any of the changes, you can revert the information to reflect the original information.</p>
+  <h1 class="heading">Administering Data Offline</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>In some cases — especially in a multiple-user environment where numerous people modify data — you might want to examine changes made to the offline view before committing the changes to the source database. With the <a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE</a> command and the ADMIN clause, you can see all changes that have been committed to a view since it was taken offline. You can then selectively revert changes that have been made without being connected to the data source. For example, the following code opens the view <code>Showproducts</code> in administrator mode:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE Showproducts ADMIN</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/d569c026-051b-4046-870c-24c578e0489b.htm">How to: Create Offline Views</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/5faff87d-e907-4fbb-a4a0-78763707d930.htm">Updating Data Using Transactions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Manipulating Offline Data">
+</OBJECT>

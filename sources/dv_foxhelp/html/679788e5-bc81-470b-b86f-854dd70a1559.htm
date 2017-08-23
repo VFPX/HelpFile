@@ -1,0 +1,137 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Considerations for Event Code</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Considerations for Event Code</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you add code to events, remember the following considerations:
+</p>
+    <ul><li>
+        <p>The set of events for Visual FoxPro base classes is fixed and cannot be extended.</p>
+      </li><li>
+        <p>Every class recognizes a set of fixed default events, which includes a minimum of the <b>Init</b>, <b>Destroy</b>, and <b>Error</b> events.</p>
+      </li><li>
+        <p>Containers do not process events associated with the controls they contain.</p>
+      </li><li>
+        <p>If no event code is associated with a control, Visual FoxPro checks whether code exists for the event higher up in the class hierarchy for the control.</p>
+      </li><li>
+        <p>The sequence of events can affect the location where you add code.</p>
+      </li></ul>
+    <p>The following sections contain more information about the last three considerations.</p>
+  <h1 class="heading">Events of Objects in Containers</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Each object, even those in containers, receives its events independently. For example, suppose a form contains a command button. When the user clicks the command button, only the <b>Click</b> event for the command button is triggered, not the form's <b>Click</b> event. Therefore, if code exists for a form's <b>Click</b> event but no code exists for the command button's <b>Click</b> event, nothing happens when the user clicks the button.</p>
+      <p>This consideration also applies to grid controls. A grid contains columns, which contain headers and controls. When an event occurs for an inner object, only the object associated with event recognizes the event. The higher-level container does not recognize the event.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>An exception to this rule exists. If event code exists for an option button group or a command button group, but no event code exists for the event of a particular option or button in the group, the group's event code is executed when the event for the particular option or button occurs.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Events of Controls from User-Defined Classes</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>When an event occurs for a control based on a user-defined class, Visual FoxPro checks the control for event code. If code exists in the control's event procedure, Visual FoxPro executes it. However, if no code exists in the control's event procedure, Visual FoxPro searches the next level up in the control's class hierarchy for code associated with that event. If Visual FoxPro finds code for the event, it executes that code and does not continue searching further up the hierarchy. </p>
+    </div><h1 class="heading">Event Sequence Considerations</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When determining where to add event code, remember the following considerations: 
+</p>
+      <ul><li>
+          <p>The <b>Init</b> event of a form occurs after all <b>Init</b> events for controls on the form occur. Therefore, you can include code in the form's <b>Init</b> event to manipulate any of the controls on the form before the form displays.</p>
+        </li><li>
+          <p>If you want to execute code when the value of a list box, combo box, or check box changes, add the code to the control's <b>InteractiveChange</b> event instead of the <b>Click</b> event. The <b>Click</b> event might not occur or might be called even if the value does not change.</p>
+        </li><li>
+          <p>When you drag a control, other mouse events are suspended. For example, the <b>MouseUp</b> and <b>MouseMove</b> events do not occur during a drag operation.</p>
+        </li><li>
+          <p>The <b>Valid</b> and <b>When</b> events return a value with True (.T.) as the default. If code returns False (.F.) or 0 in the <b>When</b> event, the control cannot receive focus. If code returns False (.F.) or 0 in the <b>Valid</b> event, focus cannot leave the control.</p>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/e84973a0-2060-47ad-adfc-52b472305ed2.htm">Events in Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/14fedca4-268d-4abb-af1f-091f5f5240c5.htm">Event Sequence in Visual FoxPro</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/d3087fe2-ae39-42b0-95a1-62618480a63b.htm">Understanding the Event Model</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Considerations for Event Code">
+</OBJECT>

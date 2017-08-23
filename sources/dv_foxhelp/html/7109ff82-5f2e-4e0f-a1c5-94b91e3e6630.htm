@@ -1,0 +1,242 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Collection Class</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Collection Class</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can use collections to group a set of related items, usually objects, which can be of any type. Collections provide a mechanism for working with objects stored in containers and include standard ways for accessing and iterating through objects in a collection. The <b>Collection</b> class functions as a true container class, even though it does not include the <b>AddObject</b> method like the <b>Form</b> and <b>PageFrame</b> classes.</p>
+    <p>The <b>Collection</b> class is a base class that you can subclass in program (.prg) or visual class library (.vcx) files.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+Collection</pre></td></tr></table></span></div></div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The position of an item in a collection can vary and change when changes occur in the collection.</p>
+      <p>Collections support the enumerations of items performed with the <b>FOR</b> <b>EACH</b> command based on the position of items. You can control the position of these items by using the <span class="parameter">eBeforeItem</span> or <span class="parameter">eAfterItem</span> parameters associated with the <b>Add</b> method for collection objects. You can use an index value of 1, or one-based enumeration, to refer to the first item in a collection, or you can use a key value by setting the <b>KeySort</b> property. Collections are one-based for consistency and compatibility with other internal Visual FoxPro collections. </p>
+      <p>Make sure that either all the items in a collection have keys or none of them have keys. Deciding whether all items have keys or do not have keys provides more efficient item searching when using the <b>Item</b> method for collection objects and the <b>FOR EACH</b> command. </p>
+      <p>You can use a collection in a Visual FoxPro Component Object Model (COM) server that other COM Servers can access.</p>
+      <p>You can hide the <b>Add</b> and <b>Remove</b> methods for collection objects from public use by subclassing the collection object and marking the subclassed members as <b>Hidden</b> or <b>Protected</b>. If you do so, you need to add the collection members in the <b>Init</b> event or via some other method. </p>
+      <p>Items that are added to collections have the same scope as any other memory variable. </p>
+      <p>Because <b>Collection</b> objects support default methods, for example, <b>Item (Collection Class)</b>, you need to be aware of the search order for these methods. A <b>Collection</b> object method takes precedence over a standard user-defined function (UDF) call. The following list shows the order in which Visual FoxPro searches for a function name:  </p>
+      <ul><li>
+          <p>Visual FoxPro native function</p>
+        </li><li>
+          <p>
+            <b>Collection</b> object default method</p>
+        </li><li>
+          <p>UDF defined in the local program (.prg) file</p>
+        </li><li>
+          <p>UDF defined in calling program (.prg) files</p>
+        </li><li>
+          <p>Named program in the application (.app or .exe) file</p>
+        </li><li>
+          <p>Named program along the <b>SET PATH</b> list</p>
+        </li></ul>
+      <p>When Visual FoxPro releases a collection, which contains object references, it also releases any objects in the collection if they are not referenced elsewhere. Make sure to release objects and any references to those objects from a collection before releasing the collection itself from memory.</p>
+      <p>Visual FoxPro does not support intrinsic type safety. Therefore, to enforce type safety with collections, you must provide it for the class.</p>
+      <p>A native Visual FoxPro collection is designed such that the Item method makes it possible for you to run user-defined code. The Visual FoxPro Debugger does not support the evaluation of object members that are implemented as method calls. Therefore, you cannot evaluate the items in a collection. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>To help debug a collection, you might write code such as the following examples, which add a member array named "Items" to reference each of the collection items:</p>
+      </td></tr></table></div>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL oCol AS Collection
+oCol=CREATEOBJECT("collection")
+oCol.Add(123)
+oCol.Add("AAA")
+oCol.Add(CREATEOBJECT("custom"))
+oCol.Add(CREATEOBJECT("session"))
+oCol.Add(CREATEOBJECT("collection"))
+oCol.Item(5).Add(456)
+oCol.Item(5).Add("BBB")
+oCol.Item(5).Add(CREATEOBJECT("session"))
+oCol.Item(5).Add(CREATEOBJECT("collection"))
+oCol.Item(5).Item(4).Add(789)
+oCol.Item(5).Item(4).Add("CCC")
+oCol.Item(5).Item(4).Add(CREATEOBJECT("session"))
+oCol.Item(5).Item(4).Add(CREATEOBJECT("Collection"))
+DebugCollection(oCol)
+DEBUG
+SUSPEND
+PROCEDURE DebugCollection(oCollection)
+   IF oCollection.Count=0
+      RETURN
+   ENDIF
+   oCollection.AddProperty("Items[1]")
+   DIMENSION oCollection.Items[oCollection.Count]
+   FOR i = 1 TO oCollection.Count
+      oCollection.Items[m.i]=oCollection.Item[m.i]
+      IF VARTYPE(oCollection.Item[m.i])="O" AND ;
+         oCollection.Item[m.i].BaseClass="Collection"
+         IF oCollection=oCollection.Item[m.i]
+            LOOP
+         ENDIF
+         DebugCollection(oCollection.Item[m.i])
+      ENDIF
+   ENDFOR
+ENDPROC</pre></td></tr></table></span></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    
+      
+        <p>At run time, the following example creates forms and a collection, adds forms to the collection using the <b>Collection</b> class <b>Add</b> method, displays the name of each form in the collection, and displays the number of forms in the collection:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>loForm1 = CREATEOBJECT("Form")
+loForm2 = CREATEOBJECT("Form")
+loCol = CREATEOBJECT("Collection")
+loCol.Add(loForm1)
+loCol.Add(loForm2)
+FOR EACH loObj IN loCol
+   ? loObj.Name
+ENDFOR
+? loCol.Count</pre></td></tr></table></span></div>
+        <p>The following example defines a <b>Form</b> class which adds text boxes, buttons objects, and a collection to the form. When added to the form at run time, the collection class adds all the objects on the form to itself. The example then iterates through the collection to adjust the position of the control and prints its name to the screen.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL loForm, loItem, lnTop
+loForm = CREATEOBJECT("myForm")
+lnTop=0
+FOR EACH loItem IN loForm.myCollection
+   TRY
+      loItem.Top = lnTop
+      lnTop=lnTop+20
+      ? loItem.Name
+   CATCH
+   ENDTRY
+ENDFOR
+loForm.Show(1)
+DEFINE CLASS myForm AS Form
+   AllowOutput=.F.
+   AutoCenter=.T.
+   ADD OBJECT myTextBox1 AS TextBox
+   ADD OBJECT myTextBox2 AS TextBox
+   ADD OBJECT myButton1 AS CommandButton
+   ADD OBJECT myButton2 AS CommandButton
+   ADD OBJECT myCollection AS col1
+ENDDEFINE
+DEFINE CLASS col1 AS Collection
+   PROCEDURE Init
+      FOR i = 1 TO THISFORM.Objects.Count
+         THIS.Add(THISFORM.Objects(m.i))
+      ENDFOR
+   ENDPROC 
+ENDDEFINE</pre></td></tr></table></span></div>
+        <p>For other examples using the <b>Add</b>, <b>Remove</b>, and <b>Item</b> methods of the <b>Collection</b> class, see <span class="linkTerms"><a href="/html/ae38d57a-8fb2-42e2-be17-bdddb8e732da.htm">Add Method (Collection Class)</a></span>, <span class="linkTerms"><a href="/html/2758cf89-5f74-4543-a43e-dca68c69f695.htm">Remove Method (Collection Class)</a></span>, and <span class="linkTerms"><a href="/html/3d6d88cb-99a9-4533-9667-f9213e21c448.htm">Item Method (Collection Class)</a></span>.</p>
+      
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/811ae32c-6fd9-4513-9ad7-46644080e1e9.htm">Collection Object Properties, Methods, and Events</a></span><br /><span class="linkTerms"><a href="/html/b21ba88f-aeda-48e0-a3c5-de9984020281.htm">FOR EACH ... ENDFOR Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/42cd01c1-54f0-40ac-b7f4-ef91d4211dfd.htm">Objects, Collections, and Classes</a></span><br /><span class="linkTerms"><a href="/html/08c896ea-fc01-40b9-a3a5-37160521d180.htm">Automation and COM Servers</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Collection Class">
+<param name="ALink Name" value="Collection">
+</OBJECT>

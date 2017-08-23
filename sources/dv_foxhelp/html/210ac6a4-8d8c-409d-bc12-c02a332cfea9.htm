@@ -1,0 +1,183 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Index Creation Based on Expressions</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Index Creation Based on Expressions</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can increase application performance by creating indexes based on expressions. Expressions can range from the simple to the complex depending upon the tasks you want to accomplish. You can perform different tasks by creating indexes with expressions as described in the following sections:
+</p>
+    <ul><li>
+        <p>
+          <a href="#dgindexing_on_expressionsanchor1">Indexes Based on Simple Expressions</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgindexing_on_expressionsanchor2">Indexes Based on Complex Expressions</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgindexing_on_expressionsanchor3">Fields with Null Values in Index Expressions</a>
+        </p>
+      </li></ul>
+    <p>You can also increase the speed for queries, reports, or other operations using index expressions that use Rushmore optimization. For more information, see <a href="/html/3f3c7751-db8b-43ad-9da6-7daa3f8eb8b5.htm">Optimizing Applications</a>. </p>
+  <a name="dgindexing_on_expressionsanchor1"></a><h1 class="heading">Indexes Based on Simple Expressions</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can create indexes using simple index expressions, which are based on a single field or the concatenation of two or more character fields. You can also create index expressions containing fields from another table.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>If you want to include fields with different data types in an index expression, convert any non-character fields to character fields by enclosing the field with the <b>STR( )</b> function. </p>
+      </td></tr></table></div>
+      <p>For example, suppose you want to organize records by a maximum order amount and then by company name. The following code converts the MaxOrdAmt field, which has type <b>Currency</b>, so it can be concatenated with the Company field, which has type <b>Character</b>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>STR(customer.maxordamt,20,4) + customer.company</pre></td></tr></table></span></div>
+      <p>For more information, see <a href="/html/970442f9-ac4f-401f-a027-03aa9f978054.htm">STR( ) Function</a>.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">One or More Fields in Index Expressions</h3><div class="subSection" xmlns="">
+          <p>When you include one or more fields in an index expression, you can perform the following tasks:
+</p>
+          <ul><li>
+              <p>Sort data in the order that the fields appear in the index expression. 
+</p>
+              <p>Visual FoxPro evaluates fields in the order that they appear in the expression. For example, suppose you want to view records in a customer table sorted by country, region, then customer ID. The following expression creates an index for the customer table by using a plus sign (+) to include multiple fields:
+</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>customer.country + customer.region + customer.cust_id</pre></td></tr></table></span></div>
+            </li><li>
+              <p>Prevent duplicate values in tables by using a primary or candidate index that includes one or more fields.
+</p>
+              <p>For more information about controlling duplicate values, see <a href="/html/726d741c-2733-4e1e-8416-284f6eb0f9f0.htm">Duplicate Values in Fields</a>.
+</p>
+            </li><li>
+              <p>Optimize performance and increase speed for queries and views with filters on more than one field by including more than one field in the index expression.
+</p>
+              <p>By including fields that change the least at the beginning of the expression, indexing can be limited to those fields whose values change more frequently. For example, suppose you want to organize records in a customer table by country, postal code within the country, and the company name within the postal code. In the following example, the Country field appears in the beginning of the list because it changes the least:
+</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>customer.country + customer.postal_code + customer.company</pre></td></tr></table></span></div>
+            </li></ul>
+        </div>
+      <h3 class="subHeading" xmlns="">Fields from Another Table in Index Expressions</h3><div class="subSection" xmlns="">
+          <p>You can create an index expression that refers to fields in another table, for example, one that is open in another work area. However, it is recommended that you store any index tag that refers to more than one table in a standalone index (.idx) file instead of the associated structural compound index (.cdx) file. When an index tag for one table refers to another table, Visual FoxPro does not permit opening the table associated with the .cdx file until you open the other table that the index tag references. </p>
+        </div>
+    </sections></div><a name="dgindexing_on_expressionsanchor2"></a><h1 class="heading">Indexes Based on Complex Expressions</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can create indexes using complex expressions, which can contain constants, Visual FoxPro functions, stored procedures, or user-defined functions. To take advantage of Rushmore Query Optimization, the index expression must exactly match the criteria. </p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Visual FoxPro Functions in Index Expressions</h3><div class="subSection" xmlns="">
+          <p>You can use Visual FoxPro functions in an index expression. </p>
+          <p>For example, you can use the <b>STR( )</b> function to convert a numeric value into a character string. Suppose you wanted to create an index for a customer table that combines the customer ID field with the maximum order amount field. You can convert the MaxOrdAmt field from a <b>Currency</b> field to a <b>Character</b> field using the following code:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>INDEX ON cust_id + STR(maxordamt, 8, 2) TAG custmaxord</pre></td></tr></table></span></div>
+          <p>If you want to reduce the size of indexes for fields with integer values, you can convert the integer values to a binary character representation using the <b>BINTOC( )</b> function. You can also convert the binary values to integer values using the <b>CTOBIN( )</b> function.</p>
+          <p>If you want to create an index to sort a table in chronological order, you can use the <b>DTOS( )</b> function to convert a date field to a character string. For example, suppose you wanted to access an employee table by the hire date and employee ID. The following example code creates the index expression that performs this task:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>INDEX ON DTOS(hire_date) + emp_id TAG id_hired</pre></td></tr></table></span></div>
+          <p>For more information, see <a href="/html/970442f9-ac4f-401f-a027-03aa9f978054.htm">STR( ) Function</a>, <a href="/html/c3b28578-7b4f-487f-9192-fb619ff83ad6.htm">BINTOC( ) Function</a>, <a href="/html/b1758fd8-354c-452d-a5f9-ca81292eb71e.htm">CTOBIN( ) Function</a>, and <a href="/html/1ee2bcd1-7313-4244-94e8-5680a4c94003.htm">DTOS( ) Function</a>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Stored Procedures or User-Defined Functions in Index Expressions</h3><div class="subSection" xmlns="">
+          <p>You can increase the power of an index by referencing a stored procedure or including a user-defined function (UDF) in the index expression. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Certain considerations exist when you include a UDF in an index expression. Referencing a stored procedure or using a UDF in an index expression increases the time required to create or update the index. For more information, see <a href="/html/576a2953-04ff-4a66-9e38-3a3d9c990b72.htm">Considerations for Creating Index Expressions</a>.</p>
+          </td></tr></table></div>
+          <p>For example, you can use a stored procedure to extract the street name from a single field that includes both the street number and street name. If the street number is always numeric, the stored procedure can return the character portion of the field and pad the field with spaces as needed to create a constant-length index key. You can then use this index key to access records in the table in street name order.</p>
+        </div>
+    </sections></div><a name="dgindexing_on_expressionsanchor3"></a><h1 class="heading">Fields with Null Values in Index Expressions</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can create indexes on fields that contain null values. Visual FoxPro inserts index expressions that evaluate to null (.NULL.) into the compound index (.cdx) or standalone index (.idx) file preceding index expressions that do not evaluate to null. Therefore, all null values appear at the beginning of the index.</p>
+      <p>For example, the following diagrams demonstrate one effect of indexing null values. Before an index is applied, the first diagram shows the Social Security field for the third and fifth records contain null (.NULL.) values, which indicate that Social Security numbers are either unknown or unavailable. </p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Null values appear in the SocSec field for two records.</caption></caption></b><br></br></div><img src="../local/Local_-309710498_afd07006.gif" alt="FoxPro Table Example"></img>
+      <p>The following example code creates an index using an index expression containing the Social Security field:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>INDEX ON SocSec + LastName + FirstName TAG MyIndex</pre></td></tr></table></span></div>
+      <p>When the index containing the Social Security field is applied, the table first displays those records that contain null values for Social Security numbers, sorted by last name in descending order, followed by the remaining records ordered by Social Security number.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Two entries exist for Alan Carter. However, because record number 5 contains a null value, record number 5 is indexed before record number 2.</p>
+      </td></tr></table></div>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Records that contain null SocSec values appear first.</caption></caption></b><br></br></div><img src="../local/Local_-309710497_afd07007.gif" alt="FoxPro Example Table Null"></img>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/1225f38b-2ed5-499e-b2c7-71b741bbe758.htm">How to: Create Indexes (Visual FoxPro)</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/576a2953-04ff-4a66-9e38-3a3d9c990b72.htm">Considerations for Creating Index Expressions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Index Creation Based on Expressions">
+</OBJECT>

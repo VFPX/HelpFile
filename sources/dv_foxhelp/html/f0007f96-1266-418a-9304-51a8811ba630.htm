@@ -1,0 +1,188 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Display Controls in Grid Columns</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Display Controls in Grid Columns</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>In addition to displaying field data in a grid, you can have controls in the columns of a grid so that you can present a user with embedded text boxes, check boxes, drop-down list boxes, spinners, and other controls. For example, if you have a logical field in a table, when you run the form, a user can tell which record values are true (.T.) and which record values are false (.F.) by seeing whether the check box is set. Changing the value is as easy as setting or clearing the check box.</p>
+    <p>You can add controls to grid columns interactively in the <span class="linkTerms"><a href="/html/4c6826b0-d49e-4f97-b18c-4670533600c7.htm">Form Designer</a></span> or write code to add the controls to the columns at run time.</p>
+  <h3 class="procedureSubHeading">To interactively add controls to a grid column</h3><div class="subSection"><ol><li>
+        
+          <p>Add a grid to a form.</p>
+        
+      </li><li>
+        
+          <p>In the <span class="linkTerms"><a href="/html/9e1a457b-616b-4cfb-b1ab-ce8208cc0793.htm">Properties Window (Visual FoxPro)</a></span>, set the ColumnCount property of the grid to the number of desired columns. </p>
+          <p>For example, type <b>2</b> for a two-column grid. </p>
+        
+      </li><li>
+        
+          <p>In the <b>Properties</b> window, select the parent column for the control from the Object box. </p>
+          <p>For example, select Column1 to add a control to Column1. The border of the grid changes to indicate that you are editing a contained object when you select the column. </p>
+        
+      </li><li>
+        
+          <p>Select the desired control on the <b>Form Controls</b> toolbar and click in the parent column. </p>
+          <p>The new control will not be displayed in the grid column in the <b>Form Designer</b>, but it will be visible at run time. </p>
+        
+      </li><li>
+        
+          <p>In the <b>Properties</b> window, make sure the control is displayed indented under the parent column in the <b>Object</b> box. </p>
+          <p>If the new control is a check box, set the Caption property of the check box to " " and the Sparse property of the column to false (.F.). </p>
+        
+      </li><li>
+        
+          <p>Set the ControlSource property of the parent column to the desired table field. </p>
+          <p>For example, the ControlSource of the column in the following illustration is <code>products.discontinu</code> from Testdata.dbc in the Visual FoxPro ...\Samples\Data directory. </p>
+        
+      </li><li>
+        
+          <p>Set the CurrentControl property of the parent column to the new control.</p>
+        
+      </li></ol></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When you run the form, the control is displayed in the grid column.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>If you want to be able to center a check box in a grid column, create a container class, add a check box to the container class, and adjust the position of the check box in the container class. Add the container class to the grid column and set the ControlSource of the check box to the desired field.</p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To remove controls from grid columns in the Form Designer</h3><div class="subSection"><ol><li>
+            
+              <p>In the <b>Object</b> box of the <span class="linkTerms"><a href="/html/9e1a457b-616b-4cfb-b1ab-ce8208cc0793.htm">Properties Window (Visual FoxPro)</a></span>, select the control.</p>
+            
+          </li><li>
+            
+              <p>Activate the <span class="linkTerms"><a href="/html/4c6826b0-d49e-4f97-b18c-4670533600c7.htm">Form Designer</a></span>. </p>
+              <p>If the <b>Properties</b> window is visible, the control name is displayed in the <b>Object</b> box. </p>
+            
+          </li><li>
+            
+              <p>Press the DELETE key.</p>
+            
+          </li></ol></div>
+      <p>You also can add controls to a grid column using the <span class="linkTerms"><a href="/html/1f5a8276-1fdd-4782-9539-eb8454cd68a4.htm">AddObject Method</a></span> in code.</p>
+      <h3 class="procedureSubHeading">To programmatically add controls to a grid column</h3><div class="subSection"><ul><li>
+            
+              <p>In the <span class="linkTerms"><a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init Event</a></span> of the grid, use the <span class="linkTerms"><a href="/html/1f5a8276-1fdd-4782-9539-eb8454cd68a4.htm">AddObject Method</a></span> to add the control to the grid column and set the <span class="linkTerms"><a href="/html/c5e097fc-473d-41f4-9633-a38dfb5de727.htm">CurrentControl Property</a></span> of the column.</p>
+            
+          </li></ul></div>
+      <p>For example, the following lines of code in the Init event of a grid add two controls to a grid column and specify one of them as the current control:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THIS.grcColumn1.AddObject("spnQuantity", "SPINNER")
+THIS.grcColumn1.AddObject("cboQuantity", "COMBOBOX")
+THIS.grcColumn1.CurrentControl = "spnQuantity"
+* The following lines of code make sure the control is visible
+* and is diplayed in every row in the grid
+THIS.grcColumn1.spnQuantity.Visible = .T.
+THIS.grcColumn1.Sparse = .F.</pre></td></tr></table></span></div>
+      <p>In this example, Column1 has three possible current control values:  </p>
+      <ul><li>
+          <p>
+            <code>spnQuantity</code>
+          </p>
+        </li><li>
+          <p>
+            <code>cboQuantity</code>
+          </p>
+        </li><li>
+          <p>
+            <code>Text1</code> (the default control) </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Properties set on the Grid level are not passed on to the columns or headers. In the same way, you must set properties of the headers and contained controls directly; they do not inherit their properties from settings at the Column level.</p>
+          </td></tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>For the best display of combo boxes in grid columns, set the following combo box properties:</p>
+          </td></tr></table></div>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BackStyle = 0      &amp;&amp; Transparent
+Margin = 0
+SpecialEffect = 1 &amp;&amp; Plain
+BorderStyle = 0      &amp;&amp; None</pre></td></tr></table></span></div>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/016a84c9-4bad-4d96-a31d-2b8736c4ef6b.htm">How to: Set Up a One-to-Many Form Using the Grid Control</a></span><br /><span class="linkTerms"><a href="/html/79111552-2e51-4f4e-bf25-0fddb99d2ea7.htm">How to: Make Controls Easier to Use</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/777f75d2-36a1-43b7-bad1-7c311a0f262b.htm">Controls for Manipulating Rows of Data</a></span><br /><span class="linkTerms"><a href="/html/8c34daa5-67bf-498e-8cda-0e762a14c788.htm">Controls for Extending Forms</a></span><br /><span class="linkTerms"><a href="/html/4c6826b0-d49e-4f97-b18c-4670533600c7.htm">Form Designer</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/01335609-6ab7-43d7-9074-2e1c0c81f0d1.htm">Formatting Grids</a></span><br /><span class="linkTerms"><a href="/html/119e15f3-d59f-4ebc-8b75-98d1d4fbbdad.htm">Controls and Objects Created in Earlier Versions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b9032965-6941-41d2-8ff9-87c609673907.htm">Using Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Display Controls in Grid Columns">
+</OBJECT>

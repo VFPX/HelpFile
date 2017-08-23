@@ -1,0 +1,484 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Data Type Conversion Control</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Data Type Conversion Control</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you move data between a remote server and Visual FoxPro, you might encounter differences in data types available on your server or in Visual FoxPro. There is rarely a one-to-one correlation between data types available on a remote data source and those available in Visual FoxPro. To handle these differences, Visual FoxPro uses ODBC or ADO data types to map remote data types to local Visual FoxPro data types. By understanding how data types are mapped between ODBC or ADO and Visual FoxPro, you can predict how the server's remote data is handled in your Visual FoxPro application.</p>
+    <p>You can also adjust the data types used on the server or in your application. You can override the default Visual FoxPro field data type by creating a view for the remote data set and then setting the DataType view field property in the database. The DataType property is a character property indicating the desired data type for each field of a remote view. For more information on the DataType property, see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a>.</p>
+  <h1 class="heading">Data Type Conversion between Remote Views and Visual FoxPro Cursors</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When you retrieve data from a remote ODBC or ADO data source, Visual FoxPro converts the data type of each ODBC or ADO field into an equivalent Visual FoxPro data type in the resulting cursor. </p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Remote Data Types to Visual FoxPro Data Types</h3><div class="subSection" xmlns="">
+          <p>The following table lists the default data type mapping between remote field data types and Visual FoxPro data types for cursors.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>ODBC/ADO data type</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Default Visual FoxPro cursor data types</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>SQL_BINARY / adBinary SQL_VARBINARY / adVarbinary</p>
+              </td>
+              <td>
+                <p>Memo/Blob1 or Varbinary</p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>Default type is affected by the MapBinary property. For more information, see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a>.</p>
+                </td></tr></table></div>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_LONGVARBINARY </p>
+              </td>
+              <td>
+                <p>General/Blob</p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>Default type is affected by the MapBinary property. For more information, see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a>.</p>
+                </td></tr></table></div>
+              </td>
+            </tr><tr>
+              <td>
+                <p>adLongVarbinary</p>
+              </td>
+              <td>
+                <p>Memo or Character</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_CHAR / adChar SQL_WCHAR / adWChar</p>
+              </td>
+              <td>
+                <p>Memo<sup>1</sup> or Character</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_LONGVARCHAR / adLongVarChar SQL_WLONGVARCHAR / adLongVarWChar</p>
+              </td>
+              <td>
+                <p>Memo</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_VARCHAR / adVarChar SQL_WVARCHAR / adVarWChar</p>
+              </td>
+              <td>
+                <p>Memo<sup>1</sup> or Character/Varchar</p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>Default type is affected by the MapVarchar property. For more information, see <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a>.</p>
+                </td></tr></table></div>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_DECIMAL / adNumeric SQL_NUMERIC / adNumeric</p>
+              </td>
+              <td>
+                <p>Currency<sup>2</sup> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_BIT / adBoolean</p>
+              </td>
+              <td>
+                <p>Logical</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_TINYINT / adVarbinary SQL_SMALLINT / adSmallInt SQL_INTEGER / adInteger</p>
+              </td>
+              <td>
+                <p>Integer </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_BIGINT / adBigInt</p>
+              </td>
+              <td>
+                <p>Character </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_REAL / adSingle SQL_FLOAT / adDouble SQL_DOUBLE / adSingle</p>
+              </td>
+              <td>
+                <p>Double </p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>For Double, the number of decimal places is the value of SET DECIMAL in Visual FoxPro.</p>
+                </td></tr></table></div>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_DATE / adDBTimeStamp</p>
+              </td>
+              <td>
+                <p>Date </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_TIME / adDBTTimeStamp</p>
+              </td>
+              <td>
+                <p>DateTime<sup>4</sup></p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_TIMESTAMP / adBinary</p>
+              </td>
+              <td>
+                <p>DateTime<sup>3</sup> </p>
+              </td>
+            </tr></table></div>
+          <p>
+            <sup>1</sup> If the ODBC/ADO field width is less than the value of the cursor property UseMemoSize, it becomes a Character/Varchar/Varbinary field in the Visual FoxPro cursor; otherwise, it becomes a Memo/Blob field. </p>
+          <p>
+            <sup>2</sup> If the server field is a money data type, it becomes a Currency data type in Visual FoxPro. </p>
+          <p>
+            <sup>3</sup> If the value in the SQL_TIMESTAMP field contains fractions of seconds, the fractions are truncated when the value is converted to a Visual FoxPro DateTime data type. </p>
+          <p>
+            <sup>4</sup> The day defaults to 1/1/1900.</p>
+          <p>The following table lists the data types available when using remote views or <b>CursorAdapter</b> objects along with ODBC or ADO data sources and the equivalent Visual FoxPro data types. For more information about specifying cursor schema, see the <b>CursorAdapter</b> <a href="/html/705fae89-41a2-4c08-bdae-1e761c710414.htm">CursorFill Method</a>.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>ODBC/ADO data type</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Visual FoxPro cursor acceptable data types</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>SQL_BINARY / adBinary SQL_VARBINARY / adVarbinary SQL_LONGVARBINARY / adLongVarbinary SQL_CHAR / adChar SQL_VARCHAR / adVarChar SQL_LONGVARCHAR / adLongVarChar</p>
+              </td>
+              <td>
+                <p>Blob, Varbinary, Character, Varchar, General, Memo<sup>5</sup> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_WCHAR / adWChar SQL_WVARCHAR / adVarWChar SQL_WLONGVARCHAR / adLongVarWChar</p>
+              </td>
+              <td>
+                <p>Character, Varchar, Memo</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_BIT / adBoolean</p>
+              </td>
+              <td>
+                <p>Character, Varchar, Logical </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_REAL / adSingle SQL_FLOAT / adDouble SQL_DOUBLE / adSingle SQL_DECIMAL / adNumeric SQL_NUMERIC / adNumeric SQL_TINYINT / adVarbinary SQL_SMALLINT / adSmallInt SQL_INTEGER / adInteger SQL_BIGINT / adBigInt</p>
+              </td>
+              <td>
+                <p>Character, Varchar, Integer, Numeric, Float, Double, or Currency<sup>6</sup></p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>For Double, the number of decimal places is the value of SET DECIMAL in Visual FoxPro.</p>
+                </td></tr></table></div>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_DATE / adDBTimeStamp SQL_TIMESTAMP / adBinary</p>
+              </td>
+              <td>
+                <p>Character, Varchar, Date, DateTime<sup>7</sup></p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>SQL_TIME / adDBTTimeStamp</p>
+              </td>
+              <td>
+                <p>Character, Varchar, DateTime<sup>8</sup></p>
+              </td>
+            </tr></table></div>
+          <p>
+            <sup>5</sup> If the ODBC field width is less than the value of the cursor property UseMemoSize, it becomes a Character field in the Visual FoxPro cursor; otherwise, it becomes a Memo field. </p>
+          <p>
+            <sup>6</sup> If the server field is a money data type, it becomes a Currency data type in Visual FoxPro. </p>
+          <p>
+            <sup>7</sup> If the value in the SQL_TIMESTAMP field contains fractions of seconds, the fractions are truncated when the value is converted to a Visual FoxPro DateTime data type. </p>
+          <p>
+            <sup>8</sup> The day defaults to 1/1/1900.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Null values in ODBC data source fields become null values in the Visual FoxPro cursor, regardless of the SET NULL setting in Visual FoxPro at the time your application retrieves remote data.</p>
+          </td></tr></table></div>
+          <p>In Visual FoxPro 9.0, certain ODBC and ADO data types can be mapped to a logical data type in remote views and the CursorAdapter object.</p>
+          <p>If the backend value is zero, the data type is mapped to a logical False (.F.); all other values are mapped to True (.T.). When updates are performed, the mapping from a logical data type to an integer is backend specific. For ODBC, False (.F.) is usually mapped to 0 and True (.T.) is usually mapped to 1. For ADO, False (.F.) is usually mapped to zero and .T. is usually mapped to 1 or -1, depending on the command being executed. The CursorAdapter <span class="linkTerms"><a href="/html/60b17f77-d5b9-4dfd-bb39-8501404a6cea.htm">ConversionFunc Property</a></span> can be used to enforce the mapping.</p>
+          <p>For remote views and the CursorAdapter object, the ODBC SQL_DECIMAL and SQL_NUMERIC data types can only be mapped to a logical value if the Scale is set to zero.</p>
+          <p>For the CursorAdapter object, the ADO adDecimal and adNumeric data types can only be mapped to a logical value if the Scale is set to zero.</p>
+          <p>The following table lists the ODBC and ADO data types that can be mapped to a logical data type.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>ODBC data type</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>ADO data type</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>SQL_TINYINT</p>
+                <p>SQL_SMALLINT</p>
+                <p>SQL_INTEGER</p>
+                <p>SQL_BIGINT</p>
+                <p>SQL_DECIMAL</p>
+                <p>SQL_NUMERIC</p>
+              </td>
+              <td>
+                <p>adSingle</p>
+                <p>adTinyInt</p>
+                <p>adSmallInt</p>
+                <p>adInteger</p>
+                <p>adBigInt</p>
+                <p>adUnsignedTinyInt</p>
+                <p>adUnsignedSmallInt</p>
+                <p>adDecimal</p>
+                <p>adNumeric</p>
+              </td>
+            </tr></table></div>
+          <p>The following table lists Visual FoxPro data types available when using remote views with <b>CursorAdapter</b> objects and native Visual FoxPro data and their equivalent Visual FoxPro data types.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Visual FoxPro native data type</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Visual FoxPro cursor acceptable data type</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Character, Memo, General</p>
+              </td>
+              <td>
+                <p>Character, Varchar, Memo, General</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Numeric, Float, Currency, Integer, Double</p>
+              </td>
+              <td>
+                <p>Numeric, Float, Currency, Integer, Double, Character, Varchar</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Logical</p>
+              </td>
+              <td>
+                <p>Logical, Character, Varchar </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Date, DateTime</p>
+              </td>
+              <td>
+                <p>Character, Varchar, Date, DateTime</p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Visual FoxPro Parameter Values to Remote View Data Types</h3><div class="subSection" xmlns="">
+          <p>If Visual FoxPro data exists in a cursor that originated from remote data, the data reverts to its original ODBC or ADO data type when sending data to the remote server. If you send data that originated in Visual FoxPro to the remote server using SQL pass-through, the table describes the conversions that apply.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Visual FoxPro data type</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>ODBC data type</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>Character, Varchar, Memo</p>
+              </td>
+              <td>
+                <p>SQL_CHAR or SQL_LONGVARCHAR<sup>9</sup></p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Blob, Varbinary</p>
+              </td>
+              <td>
+                <p>SQL_BINARY or SQL_LONGVARBINARY</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Currency</p>
+              </td>
+              <td>
+                <p>SQL_DECIMAL</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Date</p>
+              </td>
+              <td>
+                <p>SQL_DATE or SQL_TIMESTAMP<sup>10</sup></p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DateTime</p>
+              </td>
+              <td>
+                <p>SQL_TIMESTAMP</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Double</p>
+              </td>
+              <td>
+                <p>SQL_DOUBLE</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Integer</p>
+              </td>
+              <td>
+                <p>SQL_INTEGER</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>General</p>
+              </td>
+              <td>
+                <p>SQL_LONGVARBINARY</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Logical</p>
+              </td>
+              <td>
+                <p>SQL_BIT</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Numeric</p>
+              </td>
+              <td>
+                <p>SQL_DOUBLE</p>
+              </td>
+            </tr></table></div>
+          <p>
+            <sup>9</sup> If the Visual FoxPro variable that maps to a parameter creates an expression whose width is less than 255, it becomes a SQL_CHAR type in the ODBC data source; otherwise, it becomes a SQL_LONGVARCHAR type. </p>
+          <p>
+            <sup>10</sup> Visual FoxPro Date data is converted to SQL_DATE for all ODBC data sources except SQL Server, where it becomes SQL_TIMESTAMP.</p>
+        <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <h4 class="subHeading" xmlns="">Visual FoxPro Parameter Values to Remote Data Type Mapping</h4><div class="subSection" xmlns="">
+              <p>You can map a Visual FoxPro parameter value to a particular remote data type by formatting the parameter as a character expression that uses the syntax for the desired remote data type. For example, if your server provides a DateTime data type, you can create your Visual FoxPro parameter as a character expression in the format used by your server to represent DateTime data. When your server receives the parameter value, it attempts to map the formatted data to the DateTime data type.</p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>When you send a parameter to the remote server, be sure the data type in the WHERE clause matches the data type that's used for the parameter expression.</p>
+              </td></tr></table></div>
+            </div>
+        </sections></div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/62b4109b-c1bf-495a-8eb9-6ba7fb1323da.htm">Processing Multiple Result Sets</a></span><br /><span class="linkTerms"><a href="/html/be371614-1c7f-4f8a-b113-3595a7d61bc7.htm">Handling SQL Pass-Through Errors</a></span><br /><span class="linkTerms"><a href="/html/88be1b78-a093-4161-9c95-f00ff6dfd4db.htm">Working with Remote Data Using SQL Pass-Through</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/7a4c60ae-5309-4014-87ec-08ce277eede4.htm">Planning Client/Server Applications</a></span><br /><span class="linkTerms"><a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a></span><br /><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Data Type Conversion Control">
+</OBJECT>

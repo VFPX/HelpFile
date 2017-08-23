@@ -1,0 +1,133 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Set Properties</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Set Properties</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can set the properties of an object at run time or design time.</p>
+  <h1 class="heading">Specifying the Default Value for a Property</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can set any of the base class properties in the <span class="linkTerms"><a href="/html/b0cacfda-6c66-4958-a4ef-e878e44dc149.htm">Class Designer</a></span>. When an object based on the class is added to the form, the object reflects your property settings rather than the Visual FoxPro base class property settings.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+        <p>Properties in subclasses inherit the default property values that you specify unless you choose <b>Reset to Default</b> on the shortcut menu for the property, which resets the default values to those of the parent class. </p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To set a property</h3><div class="subSection"><ul><li>
+            
+              <p>Use the following syntax to set an object property programmatically: </p>
+              <p>
+                <i>Container</i>.<i>Object</i>.<i>Property</i> = <i>Value</i></p>
+              <p>For example, the following statements set various properties of a text box named <code>txtDate</code> on a form named <code>frmPhoneLog</code>:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frmPhoneLog.txtDate.Value = DATE( ) &amp;&amp; Display the current date  
+frmPhoneLog.txtDate.Enabled = .T. &amp;&amp; The control is enabled  
+frmPhoneLog.txtDate.ForeColor = RGB(0,0,0)    &amp;&amp; black text  
+frmPhoneLog.txtDate.BackColor = RGB(192,192,192)  &amp;&amp; gray background  </pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>For the property settings in the preceding examples, <code>frmPhoneLog</code> is the highest-level container object. If <code>frmPhoneLog</code> were contained in a form set, you would also need to include the form set in the parent path:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>frsContacts.frmPhoneLog.txtDate.Value = DATE( )</pre></td></tr></table></span></div>
+      <h3 class="procedureSubHeading">To set multiple properties</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <span class="linkTerms"><a href="/html/6dfe10cd-d39b-4be3-b9d7-d5df291f4f46.htm">WITH ... ENDWITH Command</a></span> structure to simplify setting multiple properties. </p>
+            
+          </li></ul></div>
+      <p>For example, to set multiple properties of a column in a grid in a form in a form set, you could use the following syntax:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>WITH THISFORMSET.frmForm1.grdGrid1.grcColumn1
+ .Width = 5
+ .Resizable = .F.
+ .ForeColor = RGB(0,0,0)
+ .BackColor = RGB(255,255,255)
+ .SelectOnEntry = .T.
+ENDWITH</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>You can also modify an object's properties in the <span class="linkTerms"><a href="/html/9e1a457b-616b-4cfb-b1ab-ce8208cc0793.htm">Properties Window (Visual FoxPro)</a></span>.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/7f106091-a2c8-42aa-a8b5-dbeecb1f9502.htm">Working with Classes in Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/de1e2c7e-15b3-4579-a28f-6ce3c799db88.htm">Protecting and Hiding Class Members</a></span><br /><span class="linkTerms"><a href="/html/99cb7aab-d67f-4715-a3b7-bda2a08b1e39.htm">Overriding Default Property Settings</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/925ef3b8-48dc-4ea1-9112-a7afc2d9161e.htm">Object-Oriented Programming</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Set Properties">
+</OBJECT>

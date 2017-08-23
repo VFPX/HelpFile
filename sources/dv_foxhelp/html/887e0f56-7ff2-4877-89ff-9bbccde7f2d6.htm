@@ -1,0 +1,397 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>XMLTOCURSOR( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">XMLTOCURSOR( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Converts XML text into a Visual FoxPro cursor or table.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+XMLTOCURSOR(<span class="parameter">eExpression</span> | <span class="parameter">cXMLFile</span> [, <span class="parameter">cCursorName</span> [, <span class="parameter">nFlags</span> ]])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">eExpression</span>
+        </span></dt><dd>
+          <p>Specifies the XML text or an expression that evaluates to valid XML data. The <span class="parameter">eExpression</span> parameter can be a Visual FoxPro memory variable, memo field contents, the return from an HTTP request, the return result from a SOAP method call, XML from the XMLDOM, or an ADO stream. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>XMLTOCURSOR( ) generates an error if <span class="parameter">eExpression</span> is not found or if <span class="parameter">eExpression</span> does not parse to valid XML.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cXMLFile</span>
+        </span></dt><dd>
+          <p>Specifies the name, and, optionally, the path of a physical XML file that resides on your local computer or network. </p>
+          <p>If you do not specify a path, Visual FoxPro searches the path along the Visual FoxPro directory for the XML file. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cCursorName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the cursor to store the result and creates the cursor in the current work area. </p>
+          <p>If the cursor name already exists or is open, Visual FoxPro closes the cursor and creates a new one in an unused work area. If you omit or pass an empty string ("") for <span class="parameter">cCursorName,</span> Visual FoxPro creates a cursor named "XMLRESULT" for returning the result.</p>
+          <p>If <span class="parameter">cCursorName</span> contains data and <span class="parameter">nFlags</span> is set to 8192, Visual FoxPro appends the data being imported from the XML file to the existing table or cursor. The table or cursor must be open or in use. If <span class="parameter">cCursorName</span> is an empty string (""), Visual FoxPro imports XML into the table or cursor that is open in the current work area. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nFlags</span>
+        </span></dt><dd>
+          <p>Specifies how <span class="parameter">XMLSource eExpression</span> is handled in <b>XMLTOCURSOR( )</b>. The following table describes the values for <span class="parameter">nFlags</span>.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nFlags</span>
+                  
+                </th>
+                <th>
+                  
+                    <b>Bit</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Description</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>0000</p>
+              </td>
+              <td>
+                <p>(Default) Treats the first parameter as a string containing XML data. </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>0100</p>
+              </td>
+              <td>
+                <p>Preserves white space in data and overrides the xml:space attribute of the XML data.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>512</p>
+              </td>
+              <td>
+                <p>01000000000</p>
+              </td>
+              <td>
+                <p>Specifies that the first parameter, either an <span class="parameter">eExpression</span> or a <span class="parameter">cXMLFile</span>, is a string containing the name and path of an XML data file. </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1024</p>
+              </td>
+              <td>
+                <p>10000000000</p>
+              </td>
+              <td>
+                <p>NOCPTRANS – Creates <b>Character</b> and <b>Memo</b> fields in the resultant cursor with the NOCPTRANS option and inserts the text or XML values in the incoming elements into the <b>Character</b> or <b>Memo</b> field on an untranslated, byte-for-byte basis. </p>
+                <p>When used with flag 1024, <b>XMLTOCURSOR( )</b> returns a string padded with trailing spaces equal to the actual string, that is, a string twice the length.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2048</p>
+              </td>
+              <td>
+                <p>100000000000</p>
+              </td>
+              <td>
+                <p>Use when the imported schema has an XML schema definition (XSD) schema containing decimal data type with restrictions, or facets, of totalDigits="19" and fractionDigits="4." </p>
+                <p>XSD data type values are mapped to the Visual FoxPro <b>Currency</b> data type in the resulting cursor.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4096</p>
+              </td>
+              <td>
+                <p>1000000000000   </p>
+              </td>
+              <td>
+                <p>Disables <b>base64</b> decoding. </p>
+                <p>In Visual FoxPro, base64 encoding is intended for encoding only binary data. </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>8192</p>
+              </td>
+              <td>
+                <p>1100000000</p>
+              </td>
+              <td>
+                <p>Specifies that <span class="parameter">cCursorName</span> is the name or alias of an existing table or cursor and imports the data from the specified XML file into an existing table or predefined cursor. </p>
+                <p>If <span class="parameter">cCursorName</span> contains data, the data imported from the XML file is appended to the existing data. If <span class="parameter">cCursorName</span> is an empty string (""), the data from the XML file is imported into the table or cursor in the current work area.</p>
+                <p>Setting <span class="parameter">nFlags</span> to 8192 can be useful when an XML schema is not available or not practical for use.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>32768</p>
+              </td>
+              <td>
+                <p>0x8000</p>
+              </td>
+              <td>
+                <p>Indicates that a code page should be used.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>65536</p>
+              </td>
+              <td>
+                <p>0x10000</p>
+              </td>
+              <td>
+                <p>Maps XML Char fields to native Fox Varchar fields. If not specified, XML Char fields are mapped to Fox Character fields.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>131072</p>
+              </td>
+              <td>
+                <p>0x20000</p>
+              </td>
+              <td>
+                <p>Maps XML base64Binary fields to native Fox Varbinary fields if less than 255 bytes or Blob fields if greater than this length. If not specified, XML base64Binary fields are mapped to Fox Memo fields.</p>
+              </td>
+            </tr></table></div>
+          <p>When you use flag 8192, be aware of the following:   </p>
+          <ul><li>
+              <p>You must make sure the table schema matches the incoming XML elements in the appropriate manner. Visual FoxPro enforces the data types in <span class="parameter">cCursorName</span> as described in the Data Type Matching table in this topic but makes no other assumptions about data types. Attempting to import incompatible values generates the appropriate message. </p>
+            </li><li>
+              <p>If the XML contains or references a schema, and the data types in the schema conflict with the data types of the cursor or table, the data types in the cursor or table are used.</p>
+            </li><li>
+              <p>Element names in the XML file are mapped to the column names in <span class="parameter">cCursorName</span>. In addition, Visual FoxPro imports only data from the element names in the XML file that match the column names in <span class="parameter">cCusorName</span>.</p>
+            </li><li>
+              <p>The cursor or table can have fewer columns than those in the XML file, but it must have at least one matching column. The cursor or table can have additional columns that do not correspond to an element in the XML file.</p>
+            </li><li>
+              <p>If the table contains autoincrementing fields, <b>XMLTOCURSOR( )</b> fails if <b>AUTOINCERROR</b> is set to <b>ON</b>. Setting <b>AUTOINCERROR</b> to <b>OFF</b> or turning off autoincrementing in the target table by using <b>CURSORSETPROP( )</b> allows <b>XMLTOCURSOR( )</b> to succeed. The target table's autoincrementing field or fields are incremented according to the values specified, and the values in the source table are not copied. </p>
+            </li></ul>
+        </dd></dl>
+      <p>The following table describes data type matching restrictions when setting <span class="parameter">nFlags</span> to 8192.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Visual FoxPro data type</b>
+              
+            </th>
+            <th>
+              
+                <b>Behavior</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <b>Character</b>, <b>Character</b> (Binary), <b>Memo</b>, <b>Memo</b> (Binary)</p>
+          </td>
+          <td>
+            <p>Accepts any data but truncates any data exceeding the length of a <b>Character</b> column.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Currency</b>
+            </p>
+          </td>
+          <td>
+            <p>Accepts numeric data within accepted range of the <b>Currency</b> type but truncates numbers outside this range.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Date</b>
+            </p>
+          </td>
+          <td>
+            <p>Accepts XML format date and dateTime values. </p>
+            <p>Visual FoxPro converts the XML date and dateTime formats to the corresponding Visual FoxPro date. Visual FoxPro preserves only the M/D/Y portion of the XML date or dateTime value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>DateTime</b>
+            </p>
+          </td>
+          <td>
+            <p>Accepts XML format date and dateTime values. </p>
+            <p>Visual FoxPro converts the XML date and dateTime formats to the corresponding Visual FoxPro date and discards precision beyond the extent supported by Visual FoxPro.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Double</b>
+            </p>
+          </td>
+          <td>
+            <p>Accepts numeric data within the accepted range of the <b>Double</b> type but truncates numbers outside this range.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Integer</b>
+            </p>
+          </td>
+          <td>
+            <p>Accepts integer data within the accepted range of the <b>Integer</b> type but truncates numbers outside this range.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Logical</b>
+            </p>
+          </td>
+          <td>
+            <p>Accepts the values True, .T., 1, False, .F., and 0.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Numeric</b>, <b>Float</b></p>
+          </td>
+          <td>
+            <p>Accepts numeric data with or without decimals but truncates numbers outside the accepted range for these types according to Visual FoxPro rules or replaces with the numeric overflow indicator ("*************").</p>
+          </td>
+        </tr></table></div>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Numeric data type. <b>XMLTOCURSOR( )</b> returns the number of records created.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>You can use <b>XMLTOCURSOR( )</b> with the OLE DB Provider for Visual FoxPro. However, the <b>_VFP</b> <b>VFPXMLProgID</b> property is not supported because the <b>_VFP</b> system variable is not supported in the OLE DB Provider. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>To use the Visual FoxPro OLE DB Provider with <b>XMLTOCURSOR( )</b>, you must install MSXML 3.0 on the computer with the OLE DB Provider.</p>
+      </td></tr></table></div>
+      <p>
+        <b>XMLTOCURSOR( )</b> generates a syntax error for record lengths greater than approximately 160 columns. The exact number of columns that cause an error depends on the length of the column names.</p>
+      <p>
+        <b>XMLTOCURSOR( ) </b>does not use the <b>Varchar</b> type when creating a cursor from an XML document. However, <b>XMLTOCURSOR( )</b> supports appending data into an existing cursor with <b>Varchar</b> fields.</p>
+      <p>When calling <b>XMLTOCURSOR( )</b> in append mode, Visual FoxPro adds an empty row if no XML element name matches any table or cursor column.</p>
+      <p>
+        <b>XMLTOCURSOR( )</b> converts <b>Decimal</b> data type to <b>Numeric</b> 20,19 (width, precision). In versions prior to Visual FoxPro 8.0, <b>Decimal</b> mapped to <b>Numeric</b> 8,0.</p>
+      <p>
+        <b>Numeric Overflow Conditions</b>   <b>XMLTOCURSOR( )</b> imports XML data containing Visual FoxPro numeric overflow conditions, for example, "*******", in place of a numeric or integer value. If a schema is provided, Visual FoxPro creates the correct data type in the resulting cursor but changes the overflow from asterisk (*) characters to 0.0 or 0 values. Therefore, the XML parser used by <b>XMLTOCURSOR( )</b> does not throw an error as a result of character values stored in a decimal type element.</p>
+      <p>For more information about converting XML to Visual FoxPro data, see <span class="linkTerms"><a href="/html/1b079e17-218f-4fc1-8fea-c4098831c09d.htm">Converting Between XML and Visual FoxPro Data</a></span>.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/b53b14fa-c1b0-4c29-82b1-3149adf53073.htm">CURSORTOXML( ) Function</a></span><br /><span class="linkTerms"><a href="/html/646e7dbb-d5e9-4017-b8a2-cb3625a818cb.htm">XMLUPDATEGRAM( ) Function</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/ded6a107-d264-4c03-bbe7-4e88d9675d79.htm">XML Data in Visual FoxPro</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="XMLTOCURSOR( ) Function">
+<param name="ALink Name" value="XMLTOCURSOR">
+</OBJECT>

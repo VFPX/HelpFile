@@ -1,0 +1,174 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Dynamically Format Report Controls</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Dynamically Format Report Controls</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you design a report, you can specify the display properties of report controls. Your specifications determine how your reports will print at run time. For example, you can specify color, font, and size. You can also dynamically change the properties of report controls at run time so that the control display can be different based on whether your condition evaluates to .T. or .F. each time the control is printed.</p>
+  <h3 class="procedureSubHeading">To add dynamic formatting to a field control</h3><div class="subSection"><ol><li>
+        
+          <p> Right-click a field control in the <b>Report Builder</b> and click <b>Properties</b>.</p>
+        
+      </li><li>
+        
+          <p>Click the <b>Dynamics</b> tab.</p>
+        
+      </li><li>
+        
+          <p>Click <b>Add</b> to open the <span class="linkTerms"><a href="/html/bac7e20b-4e5b-4afe-8a0c-8fa497a5258a.htm">Add Dynamic Style Condition Dialog Box (Report Builder)</a></span>.</p>
+        
+      </li><li>
+        
+          <p>Enter a name for your condition and click <b>OK</b>. </p>
+          <p>The name you enter appears in the list of conditions after you create the condition.</p>
+        
+      </li><li>
+        
+          <p>In the <span class="linkTerms"><a href="/html/da51c6c0-7f0e-4bf2-abbf-aec267b9d839.htm">Configure Dynamic Properties Dialog Box (Report Builder)</a></span>, specify a condition in the <b>Apply when this condition is true</b> box. </p>
+          <p>The condition needs to evaluate to a logical .T. or .F. value. For example,<code> orders.requiredate &lt; DATE()</code> or <code>orderdetail.quantity &gt; 5.</code></p>
+        
+      </li><li>
+        
+          <p>If you want to replace the text with new or modified content, add the new text or expression in the<b> Replace expression result with</b> box. </p>
+          <p>For example, if your field is bound to orders.requiredate and your condition expression is <code>orders.requiredate &lt; DATE()</code>, you could replace the expression value with the expression DTOC(<code>orders.requiredate) + "  LATE ORDER"</code> in the printed report.</p>
+        
+      </li><li>
+        
+          <p>Optionally, set <b>Font</b> settings for the display of the text in the report. </p>
+          <p>The <b>Sample</b> area at the bottom of the dialog box displays the way your text appears when your condition evaluates to .T..</p>
+        
+      </li><li>
+        
+          <p>Optionally, set <b>Color</b> settings for the display of the text. </p>
+          <p>You need to clear the <b>Use default foreground (pen) color</b> and <b>Use default background (fill) color</b> checkboxes to change the respective color settings.</p>
+        
+      </li><li>
+        
+          <p>Optionally, set opacity and alpha settings for the text.</p>
+        
+      </li><li>
+        
+          <p>Click <b>Ok</b> to return to the <b>Dynamics</b> tab. </p>
+          <p>If you have multiple conditions set, you can change the order they are evaluated by dragging them to a new location in the list.</p>
+        
+      </li></ol></div><h3 class="procedureSubHeading">To add dynamic sizing to an object</h3><div class="subSection"><ol><li>
+        
+          <p>Right-click an object (for example, a rectangle or an OLE object), in the <b>Report Builder</b>, and click <b>Properties</b>.</p>
+        
+      </li><li>
+        
+          <p>Click the <b>Dynamics</b> tab.</p>
+        
+      </li><li>
+        
+          <p>Click <b>Add</b> to open the <b>Add Dynamic Style Condition</b> dialog box.</p>
+        
+      </li><li>
+        
+          <p>Enter a name for your condition and click <b>Ok</b>. </p>
+          <p>The name you enter appears in the list of conditions after you create the condition.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Configure Dynamic Properties</b> dialog box, specify a condition in the <b>Apply when this condition is true</b> box. </p>
+          <p>The condition needs to evaluate to a logical .T. or .F. value<code>.</code></p>
+        
+      </li><li>
+        
+          <p>Specify the <b>Height</b> or <b>Width</b> of the control. Enter -1, the default, to keep the dimensions created in the <b>Report Builder</b>. Enter a value in units of 1/960 inches to resize your control when your condition evaluates to .T.. </p>
+          <p>For example if you set <b>Width</b> to 960 and <b>Height</b> to 960, your object prints as a 1 inch square.</p>
+        
+      </li><li>
+        
+          <p>Click <b>Ok</b> to return to the <b>Dynamics</b> tab. If you have multiple conditions set, you can change the order they are evaluated by dragging them to a new location in the list.</p>
+        
+      </li></ol></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/bac7e20b-4e5b-4afe-8a0c-8fa497a5258a.htm">Add Dynamic Style Condition Dialog Box (Report Builder)</a></span><br /><span class="linkTerms"><a href="/html/da51c6c0-7f0e-4bf2-abbf-aec267b9d839.htm">Configure Dynamic Properties Dialog Box (Report Builder)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Dynamically Format Report Controls">
+</OBJECT>

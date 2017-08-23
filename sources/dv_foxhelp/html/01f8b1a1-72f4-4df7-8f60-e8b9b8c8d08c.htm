@@ -1,0 +1,112 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Understanding Code Pages in Visual FoxPro</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Understanding Code Pages in Visual FoxPro</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro displays data using one code page. By default, this is the current code page used by Windows. However, you can override the Windows code page by specifying an alternative code page in your configuration file (you must specify a valid code page).</p>
+    <p>Tables in Visual FoxPro are tagged with the code page that was in use when the table was created. When you use the table, Visual FoxPro checks the code page for the table against the current code page. If they match, Visual FoxPro displays the data as is. If there is no code page for the table (for example, the table was created in an earlier version of FoxPro), Visual FoxPro prompts you for a code page and then marks the file with it.</p>
+    <p>When reading data from a table tagged with a code page that does not match the system code page, Visual FoxPro attempts to translate characters from the table code page into the current one. For example, if you're using Visual FoxPro and the current system code page is the English code page, the character is represented by ANSI value 252. If the code page for the table represents the character as ANSI value 219, Visual FoxPro translates all instances of ANSI value 219 into ANSI 252 so that they display properly.</p>
+    <p>Code page translation doesn't work perfectly in all instances, because code pages usually contain characters that are not represented one-for-one in other code pages. For example, you cannot map data that contains the MS-DOS line-drawing characters into Windows because the Windows code pages don't contain line-drawing characters. Similarly, you cannot translate data created in the Russian code page into an English code page because there isn't a one-to-one correspondence between the alphabets for these languages. Finally, Visual FoxPro might not contain a character translation map for a particular code page. In that case the data is displayed with no code page translation. (Visual FoxPro does not display an error to indicate that no code page translation is occurring.) Any of these situations can cause some characters to display improperly.</p>
+    <p>When writing data to a table tagged with a code page does not match the system code page and character data is modified, Visual FoxPro attempts to translate characters from the current code page into the table one. For example, if you're using Visual FoxPro and the current system code page is the English code page, the character is represented by ANSI value 252. If the code page for the table represents the character as ANSI value 219, Visual FoxPro translates all instances of ANSI value 252 into ANSI 219 so that they are saved properly.</p>
+    <p>If you want to create an application for a specific locale, you can avoid code page translation problems by creating the application's components using the code page designed for that locale and environment. For example, to create an application for use in Russia, you should use code page 1251. For a complete list, see <a href="/html/a3d7b0e0-8320-44b1-8983-17c30a78c6c4.htm">Code Pages Supported By Visual FoxPro</a>.</p>
+    <p>If you need to enter some characters not represented by keys on your keyboard, you can enter these characters using ALT in conjunction with keys on the numeric keypad. However, remember that the same key combination in different environments often displays different results. For example, if you enter ALT+0182 with code page 1252 in Visual FoxPro, you see a paragraph symbol. In contrast, if you enter ALT+0182 with code page 437 in FoxPro for MS-DOS, you see a graphic character with a double vertical line meeting a single horizontal line.</p>
+    <p>Although Visual FoxPro supports many code pages, only a few are used often. Typically, English-speaking users use code page 1252.</p>
+    <p>When working with code pages, be sure to test that the user interface and data display correctly by using the code page designed for a particular locale. If you see unexpected characters on the screen, check the underlying code page.</p>
+  <h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/24e58cf5-a80b-478e-bb6f-c40601cff626.htm">How to: Specify the Code Page of a Text File</a></span><br /><span class="linkTerms"><a href="/html/33213532-33da-4f4b-b6a3-41b8ad7cf250.htm">How to: Determine the Code Page of a Project File</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/8545e1db-a67e-444c-90b5-7bbf2a9118fa.htm">Specification of Code Pages for Variables</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/a4b83cd7-c41f-4e46-a70c-c7c6799cfb36.htm">Code Pages in Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/e3423e23-033c-40b4-971c-75640ab17ec7.htm">Developing International Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Understanding Code Pages in Visual FoxPro">
+</OBJECT>

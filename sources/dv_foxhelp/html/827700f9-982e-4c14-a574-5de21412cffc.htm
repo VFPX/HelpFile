@@ -1,0 +1,238 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>MemberData Editor</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">MemberData Editor</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The MemberData Editor application allows developers to edit <a href="/html/2591781b-25f2-4a9d-afa4-3a620116b1da.htm">MemberData</a>. The MemberData Editor presents an easy to use front-end so that you can view and edit MemberData associated with your classes.</p>
+    <p>To run the MemberData Editor, select the <b>MemberData Editor</b> menu item from the <b>Form</b> or <b>Class</b> menu when a Form or Class Designer is active. The member that is selected in the <b>Properties w</b>indow will be selected in the MemberData Editor. However, you can click on and edit MemberData for other members of the class selected in the designer.</p>
+    <p>The MemberData that you view and edit is stored with the <a href="/html/58210a8f-d472-4a38-a9f3-caf58c0914b3.htm">_MemberData property</a> which you can also edit directly from the <b>Properties Window</b>. Global MemberData is stored in your <a href="/html/1e10b689-295c-48a4-b29c-1610512b23a7.htm">_FOXCODE</a> table. MemberData is formatted as XML.</p>
+  <h1 class="heading">Using MemberData Editor</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can view and edit MemberData using the MemberData Editor. The following </p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Member List</b>
+        </span></dt><dd>
+          <p>Contains a list of all available members (properties, events and methods) for the selected class in the designer. Select a member to add or change its MemberData.</p>
+          <p>A "&gt;&gt;" prefix character indicates that the member has MemberData associated with it. If the member is bold, it has MemberData for the selected Scope.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Scope</b>
+        </span></dt><dd>
+          <p>The Scope setting specifies where the MemberData is stored. The following settings are available:</p>
+          <ul><li>
+              <p>
+                <b>Object </b>– MemberData available at the object level. This option requires the selected object to have a <a href="/html/58210a8f-d472-4a38-a9f3-caf58c0914b3.htm">_MemberData property</a>, otherwise this option is disabled.</p>
+            </li><li>
+              <p>
+                <b>Container</b> – MemberData available at the container level such as a form. If an object does not have its own MemberData, then it can inherit from its container. If multiple containers exist, each with their own _MemberData property, then the container dropdown is enabled.</p>
+            </li><li>
+              <p>
+                <b>Global</b> – MemberData at the global level (your <a href="/html/1e10b689-295c-48a4-b29c-1610512b23a7.htm">_FOXCODE</a> table). This setting is not object specific. If an object does not inherit from the object or container MemberData, then it will use the Global setting if available.</p>
+            </li></ul>
+          <p>You should understand the inheritance rules with MemberData since this impacts the <b>Scope</b> setting. The MemberData Editor, when invoked, is brought up for the currently selected object and property. For example, if a Textbox control on a form is selected, and the Textbox control does not contain a _MemberData property, then you cannot specify MemberData at the Textbox Object Level. You can only specify at the container (form) or global level.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Has MemberData</b>
+        </span></dt><dd>
+          <p>Select this option to add MemberData for the selected member. MemberData XML is only added for the Scope selected. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Description Pane</b>
+        </span></dt><dd>
+          <p>Lists the MemberData attributes that are set for the selected member and which Scope currently controls the setting.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The Hierarchy button displays MemberData detail for all scopes of the selected member.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Filter</b>
+        </span></dt><dd>
+          <p>You can filter the list of Members based on following criteria:</p>
+          <ul><li>
+              <p>
+                <b>All members</b> - all members of selected object are listed.</p>
+            </li><li>
+              <p>
+                <b>Custom members</b> only - only custom properties or methods are listed.</p>
+            </li><li>
+              <p>
+                <b>Custom members added in this class</b> - only custom properties or methods that were added to current instance of object are listed. Inherited custom members are not shown.</p>
+            </li><li>
+              <p>
+                <b>Native members only</b> - displays only intrinsic Visual FoxPro members.</p>
+            </li><li>
+              <p>
+                <b>Favorites only</b> - displays members that have a Favorites MemberData attribute assigned.</p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>View XML</b>
+        </span></dt><dd>
+          <p>Displays MemberData XML detail for all members of the selected object at the selected scope.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Hierarchy</b>
+        </span></dt><dd>
+          <p>Displays MemberData attribute detail for all scopes of the selected member.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Options</b>
+        </span></dt><dd>
+          <p>Brings up the Options dialog.</p>
+        </dd></dl>
+    </div><h1 class="heading">Core MemberData Attributes</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro reserves certain MemberData attributes for the operational use of members in the Visual FoxPro IDE. The following attributes can be set using the MemberData Editor:</p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Favorites</b>
+        </span></dt><dd>
+          <p>Allows you to control whether a member is displayed in the Properties<b> </b>window<b> Favorites tab</b>. If you check this option, you can specify True or False in the drop-down list box. The check box determines whether the <b>favorites</b> attribute is written out to the MemberData XML, and has implications on inheritance from above.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Override</b>
+        </span></dt><dd>
+          <p>Allows you to control whether MemberData attributes not found for that member are searched for up the hierarchy. If you check this option, you can specify True or False in the drop-down list box. The check box determines whether the <b>override</b> attribute is written out to the MemberData XML, and has implications on inheritance from above.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Display As</b>
+        </span></dt><dd>
+          <p>Controls how the member is displayed in the Visual FoxPro IDE such as with the Properties window and IntelliSense. This option is only available for custom (user-defined) members. This setting is represented by the <b>display</b> attribute.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Script</b>
+        </span></dt><dd>
+          <p>You can enter a script that is invoked when the user clicks the <b>ellipsis (…)</b> button next to the <b>Property settings box</b> in the Properties window.</p>
+          <p>The <b>Script</b> box and button are only enabled for properties. Click the <b>Script</b> button to open the script in a larger edit window. This setting is represented by the <b>script</b> attribute.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Scripts are available for all custom properties and some native properties.</p>
+          </td></tr></table></div>
+        </dd></dl>
+    </div><h1 class="heading">User-Defined MemberData Attributes</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The MemberData is an XML formatted structure which allows for extensibility. Visual FoxPro provides certain core MemberData usage such as <b>Favorites</b>. You can also add custom attributes to the MemberData XML for use that you define. Visual FoxPro will store and retain these custom attributes with the core MemberData.</p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Custom Attributes List</b>
+        </span></dt><dd>
+          <p>Lists all MemberData custom attributes for the selected member.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Value</b>
+        </span></dt><dd>
+          <p>Sets a value for the custom attribute selected in the list.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Add</b>
+        </span></dt><dd>
+          <p>Adds a new custom attribute to the MemberData. As with all XML attributes, the ones you add are case-sensitive. You cannot add a name which is already reserved, such as <b>favorites</b>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Remove</b>
+        </span></dt><dd>
+          <p>Removes a custom attribute from the MemberData.</p>
+        </dd></dl>
+    </div><h1 class="heading">Options Dialog Box</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>The Options dialog lets you control various settings of the MemberData Editor user interface as well as options for the generated MemberData.</p>
+      <dl><dt><span class="nonLinkTerms">
+          <b>Use Hungarian names</b>
+        </span></dt><dd>
+          <p>The default property capitalization for the <b>Display as</b> setting (<b>display</b> attribute) sets the first letter in lowercase and rest in proper case.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Method prefixes</b>
+        </span></dt><dd>
+          <p>Contains a comma-delimited list of prefixes to control how capitalization is done for MemberData when a custom method has a prefix that matches one in this list. When one is found, the MemberData Editor capitalizes the prefix based on what is in list, and capitalizes the rest of the name in proper case.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Line break after each XML element</b>
+        </span></dt><dd>
+          <p>Specifies whether a line break is inserted after each XML element in newly generated _MemberData.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Automatically add _MemberData property to objects</b>
+        </span></dt><dd>
+          <p>If this setting is turned on, a record is added to your IntelliSense (_FOXCODE) table that automatically creates a _MemberData property for a form opened in the Form Designer or the outer-most object in the Class Designer.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <b>Script Font</b>
+        </span></dt><dd>
+          <p>Specifies font used in the <b>Script</b> edit box.</p>
+        </dd></dl>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/1f25f5d2-f67a-4a67-adeb-68d72300a31e.htm">Task Pane Manager</a></span><br /><span class="linkTerms"><a href="/html/58210a8f-d472-4a38-a9f3-caf58c0914b3.htm">_MemberData Property</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/2591781b-25f2-4a9d-afa4-3a620116b1da.htm">MemberData Extensibility</a></span><br /><span class="linkTerms"><a href="/html/d64130c7-bb9a-4191-b8b6-4ba430185fe8.htm">Report XML MemberData Extensions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="MemberData Editor">
+<param name="Alink Name" value="vfp.1231203">
+</OBJECT>

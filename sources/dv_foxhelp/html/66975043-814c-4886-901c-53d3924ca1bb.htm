@@ -1,0 +1,280 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>The Preview Container API</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">The Preview Container API</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When previewing a report or label layout in object-assisted mode, a ReportListener requires an additional component to supply the preview user interface. This component is called a <i>preview container</i> and is written in Visual FoxPro code, and it is therefore completely customizable.</p>
+    <p>There are two ways a ReportListener instance gets a preview container when it needs one:</p>
+    <ol><li>
+        <p>Your code explicitly assigns an object reference to the ReportListener's <b>PreviewContainer</b> property.</p>
+      </li><li>
+        <p>The ReportListener object asks for an object reference from the Preview Container Object Factory application referenced by the <span class="linkTerms"><a href="/html/7e0ce0ab-435d-480c-9729-534c0c5a7a4c.htm">_REPORTPREVIEW System Variable</a></span>.</p>
+      </li></ol>
+  <h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>The Preview Container API</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>An object of ReportListener class expects the following methods to be implemented by the object assigned to its PreviewContainer property:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>PreviewContainer Method</b>
+              
+            </th>
+            <th>
+              
+                <b>Parameter</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>SetReport()</p>
+          </td>
+          <td>
+            <p>
+              <span class="parameter">oListenerRef</span>
+            </p>
+          </td>
+          <td>
+            <p>The ReportListener object will invoke this method, passing it a reference to itself so that the preview container code can call back to listener methods. </p>
+            <ul><li>
+                <p>SetReport() may be called before the report has completed processing, so this method should store the parameter value for later reference.</p>
+              </li><li>
+                <p>SetReport() may be called with a .NULL. value, in which case the preview container should clear any internal references to a previously passed  report listener object, and reset itself.</p>
+              </li></ul>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Show()</p>
+          </td>
+          <td>
+            <p>[ <span class="parameter">iModality</span> ]</p>
+          </td>
+          <td>
+            <p>The ReportListener object will call this method when the report engine is ready to display the preview interface and allow the user to navigate through the report or label output. The <span class="parameter">iModal</span> parameter is the same as that passed to a form's <span class="linkTerms"><a href="/html/d2b4b0e3-f3d3-456f-82b7-f8a15819e146.htm">Show Method (Visual FoxPro)</a></span>.</p>
+          </td>
+        </tr></table></div>
+      <p>Although not referenced by any external program, an object implementing the Preview Container API should have an internal reference to the report listener object passed to the object via the .<b>SetReport</b>() method.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>PreviewContainer Property</b>
+              
+            </th>
+            <th>
+              
+                <b>Type</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>oReport</p>
+          </td>
+          <td>
+            <p>
+              <span class="parameter">Object</span>
+            </p>
+          </td>
+          <td>
+            <p>The .SetReport() and .Show() methods are called at different times. In order for the preview container to have access to various report listener properties at the time the Show() method is called, it should save the report listener reference passed in SetReport() to an internal property.</p>
+          </td>
+        </tr></table></div>
+      <p>An object of ReportListener class also expects to receive messages from an object assigned to its PreviewContainer property:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>ReportListener Method</b>
+              
+            </th>
+            <th>
+              
+                <b>Parameter</b>
+              
+            </th>
+            <th>
+              
+                <b>Description</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>OnPreviewClose()</p>
+          </td>
+          <td>
+            <p>
+              <span class="parameter">lPrint</span>
+            </p>
+          </td>
+          <td>
+            <p>The ReportListener expects that its OnPreviewClose() method will be called when the preview user interface is closed or otherwise dismissed by the user. The PreviewContainer object can send the <span class="parameter">lPrint</span> parameter to indicate whether the user chose to print from the preview. </p>
+            <p>Exactly which PreviewContainer method makes the call is not important.  If the PreviewContainer object is a form, or has an interface similar to a form's, some candidate methods would be <b>Hide()</b>, <b>Release()</b>, <b>QueryUnload()</b>, and <b>Destroy()</b>.</p>
+          </td>
+        </tr></table></div>
+      <p>It takes a few lines of code to put it all together:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Instantiate your preview container implmentation
+oMyPreview = NEWOBJECT("MyPreviewContainer","MyClassLib")
+* Instantiate a ReportListener (or your own derived class)
+oListener  = CREATEOBJECT("ReportListener")
+* Tell the listener to render all pages and use a preview container:
+oListener.ListenerType = 1
+* Give the listener a reference to your preview container:
+oListener.PreviewContainer = m.oMyPreview
+* Run the report:
+REPORT FORM myreport OBJECT m.oListener</pre></td></tr></table></span></div>
+      <p>For an example of a simple preview container implementation, see <span class="linkTerms"><a href="/html/68ca355c-7494-4a8a-9baf-e525437adc8d.htm">Creating a Custom Preview Container</a></span>.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>The _REPORTPREVIEW Object Factory</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+      <p>The code shown above covers the case where a ReportListener is explicitly assigned a preview container reference prior to running the report. If the ReportListener does not have a preview container reference, and requires one, it obtains one by calling out to the application or program referenced by the _REPORTPREVIEW system variable.</p>
+      <p>The program referenced by _REPORTPREVIEW must do the following:</p>
+      <ul><li>
+          <p>Accept a parameter, passed by reference from the report engine.</p>
+        </li><li>
+          <p>Assign to the parameter an object reference to an instance of a class which implements the preview container API.</p>
+        </li><li>
+          <p>Return.</p>
+        </li></ul>
+      <p>Example:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Program suitable for _REPORTPREVIEW:
+LPARAMETER loRef
+loRef = NEWOBJECT("MyPreviewContainer","MyClassLib")
+return</pre></td></tr></table></span></div>
+      <p>The program in _REPORTPREVIEW is invoked when you issue the following types of Visual FoxPro commands:</p>
+      <ul><li>
+          <p>
+            <b>REPORT FORM</b> or <b>LABEL … PREVIEW</b> when <b>SET("REPORTBEHAVIOR")</b> has the value <code>90.</code></p>
+        </li><li>
+          <p>
+            <b>REPORT FORM</b> or <b>LABEL … OBJECT</b> &lt;<span class="parameter">oRef</span>&gt; when oRef.ListenerType has the value <code>1 </code>and you have not assigned a value to oRef.PreviewContainer.</p>
+        </li><li>
+          <p>
+            <b>REPORT FORM</b> or <b>LABEL … OBJECT TYPE 1</b> when the ReportListener assigned by the listener factory specified by _REPORTOUTPUT does not already have a value assigned to its PreviewContainer member.</p>
+        </li></ul>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT FORM Command</a></span><br /><span class="linkTerms"><a href="/html/5d6e4527-8b6f-4f39-a670-c3397eff3bfd.htm">SET REPORTBEHAVIOR Command</a></span><br /><span class="linkTerms"><a href="/html/7e0ce0ab-435d-480c-9729-534c0c5a7a4c.htm">_REPORTPREVIEW System Variable</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1f297a3c-a6ef-4a14-89a7-14dd7611c2c3.htm">Extending Report Preview Functionality</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="The Preview Container API">
+</OBJECT>

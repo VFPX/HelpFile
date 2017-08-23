@@ -1,0 +1,156 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Define Connections to Remote Data Sources</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Define Connections to Remote Data Sources</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can define and store a connection to a remote data source in a Visual FoxPro database so you can use the connection name when you create and use a remote view. </p>
+    <p>Creating and storing a named connection in your database does not use any network or remote resources because Visual FoxPro does not activate the connection until you use the remote view. The named connection exists only as a connection definition stored as a row in the database (.dbc) file until the connection activates.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Before you can create a connection, you must have a database open. For more information, see <span class="linkTerms"><a href="/html/8ff74d7d-30c5-412b-a23a-f3d62261dca3.htm">How to: Open Databases</a></span>.</p>
+    </td></tr></table></div>
+  <h3 class="procedureSubHeading">To define a connection</h3><div class="subSection"><ol><li>
+        
+          <p>Perform one of the following: </p>
+          <ul><li>
+              <p>Open the database in the <b>Database Designer</b>. </p>
+            </li></ul>
+          <p>-OR-  </p>
+          <ul><li>
+              <p>Open the project for your application in the <b>Project Manager</b>.</p>
+            </li></ul>
+        
+      </li><li>
+        
+          <p>On the <b>File</b> menu, click <b>New</b>.</p>
+        
+      </li><li>
+        
+          <p>In the <b>New</b> dialog box, click <b>Connection</b>, then <b>New File</b>.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Connection Designer</b>, select the options that correspond to your server requirements.</p>
+        
+      </li><li>
+        
+          <p>On the <b>File </b>menu, click <b>Save</b> to open the <b>Save</b> dialog box.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Connection Name</b> box, type a name for the connection, and click <b>OK</b>. </p>
+        
+      </li></ol></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>For more information, see <span class="linkTerms"><a href="/html/308de4ee-ed87-45be-9d10-b1b425eb0e9c.htm">Connection Designer</a></span>.</p>
+      <h3 class="procedureSubHeading">To create a new connection programmatically</h3><div class="subSection"><ol><li>
+            
+              <p>Open the database or the project containing the database.</p>
+            
+          </li><li>
+            
+              <p>Choose one of the following: </p>
+              <ul><li>
+                  <p>To create a connection using the <b>Connection Designer</b>, use the <b>CREATE CONNECTION</b> command with a question mark (?).</p>
+                </li></ul>
+              <p>-OR-  </p>
+              <ul><li>
+                  <p>To create a connection without opening the <b>Connection Designer</b>, use the <b>CREATE CONNECTION</b> command with the name of the connection and the necessary parameters.</p>
+                </li></ul>
+            
+          </li></ol></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/2f558c81-0cfb-408d-88c1-21bd328373ce.htm">CREATE CONNECTION Command</a></span>.</p>
+      <p>For example, the following code opens a database named MyDatabase and creates a connection called Remote_01 to a remote data source named SQLRemote:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE MyDatabase
+CREATE CONNECTION Remote_01 ;
+   DATASOURCE SQLRemote USERID <i>myUserID</i> PASSWORD <i>myPassword</i></pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/591b23fa-6e54-43a4-a5af-ed2c50bd8316.htm">How to: Create Remote Views</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/fadf7948-fde3-49eb-ae1f-ca8c4700f023.htm">Accessing Remote Data Using Views</a></span><br /><span class="linkTerms"><a href="/html/22fcc04f-b6fe-4b18-86f7-3798d1fb7944.htm">View Creation</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><span class="linkTerms"><a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Define Connections to Remote Data Sources">
+</OBJECT>

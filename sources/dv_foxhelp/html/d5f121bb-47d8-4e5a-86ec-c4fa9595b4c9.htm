@@ -1,0 +1,125 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Add a Coordinated Toolbar and Menu to a Form Set</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Add a Coordinated Toolbar and Menu to a Form Set</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you have created a toolbar class and a menu that are designed to work together, it is easy to incorporate them in a form set.</p>
+  <h3 class="procedureSubHeading">To incorporate a coordinated toolbar and menu in a form set</h3><div class="subSection"><ol><li>
+        
+          <p>Add the toolbar to the form set in one of three ways: </p>
+          <ul><li>
+              <p>Drag the toolbar class from the <span class="linkTerms"><a href="/html/93e1d13b-c029-47eb-b140-c119ff44f10d.htm">Project Manager Window</a></span> into the <span class="linkTerms"><a href="/html/4c6826b0-d49e-4f97-b18c-4670533600c7.htm">Form Designer</a></span>.</p>
+            </li><li>
+              <p>Register the toolbar class library and add the toolbar to the form set from the <b>Form Controls</b> toolbar.</p>
+            </li><li>
+              <p>In the <span class="linkTerms"><a href="/html/e29c9a1c-c78e-41eb-8d68-eb189952d295.htm">Init Event</a></span> of the form set, include code with the <span class="linkTerms"><a href="/html/1f5a8276-1fdd-4782-9539-eb8454cd68a4.htm">AddObject Method</a></span> to add the toolbar.</p>
+            </li></ul>
+        
+      </li><li>
+        
+          <p>In the <span class="linkTerms"><a href="/html/e99e2d06-97eb-4d29-8a03-43bc90ef44ca.htm">Load Event</a></span> of the form set, save the existing menu and run your menu program. </p>
+          <p>For example, if your menu name is <code>mymenu</code>, include the following lines of code using the <span class="linkTerms"><a href="/html/604070fe-ad52-46e3-9e6a-b53b6775c24c.htm">PUSH MENU Command</a></span> and <span class="linkTerms"><a href="/html/c4dda428-55f2-4610-9d0f-bccc53023a41.htm">DO Command</a></span>:  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PUSH MENU _MSYSMENU
+DO mymenu.mpr</pre></td></tr></table></span></div>
+        
+      </li><li>
+        
+          <p>In the Unload event of the form set, restore the original menu with the <span class="linkTerms"><a href="/html/b2ea0a2e-953a-4520-b11f-f42ebdbe15cc.htm">POP MENU Command</a></span>: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>POP MENU _MSYSMENU</pre></td></tr></table></span></div>
+        
+      </li></ol>
+      
+        <p>If some menu commands are used more than others, you can create custom toolbars containing buttons for those commands. Then, users can simply press the buttons whenever they need the commands. However, if you create a toolbar, you should synchronize the menu commands with their corresponding buttons. For example, if you enable a button, you should enable its corresponding menu command.</p>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/d8a9edcb-8b65-422d-8c4c-a21f41742e4e.htm">How to: Create the Coordinated Menu</a></span><br /><span class="linkTerms"><a href="/html/5ea47bac-e3a3-4dcb-8d9d-f878cf843679.htm">How to: Test and Debug a Menu System</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5aeb5f16-deea-495c-8d96-602f3835e038.htm">Customize Toolbar Dialog Box (Visual FoxPro)</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/18f2b40a-6c13-4f57-b28e-ac3e0e21e083.htm">Creating Custom Toolbars</a></span><br /><span class="linkTerms"><a href="/html/21eaee88-6fbe-452b-839d-aa519d16892c.htm">Designing Menus and Toolbars</a></span><br /><span class="linkTerms"><a href="/html/4d5ad8fb-f7a7-416d-9076-cf6f53cbdb89.htm">Customizing the Visual FoxPro Environment</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Add a Coordinated Toolbar and Menu to a Form Set">
+</OBJECT>

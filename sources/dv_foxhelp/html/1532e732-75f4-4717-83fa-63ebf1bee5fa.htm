@@ -1,0 +1,200 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Session Object</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Session Object</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Creates a custom, user-defined object that manages its own data session.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+DEFINE CLASS <span class="parameter">ClassName1 </span>AS Session</pre></td></tr></table></span></div></div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>You can create this custom, user-defined class only using the <a href="/html/42b84eb0-a6fc-4ccd-abc2-1f9ffc853471.htm">DEFINE CLASS</a> command. You can, however, add this object to a form or other container programmatically.</p>
+      <p>Custom, user-defined classes are classes with properties, events, and methods, but with no visual representation. The same general rules that apply to defining other types of classes apply to defining custom classes. Use the Session object for efficient memory management and to ensure safe behavior of multiple object instances in multi-tiered applications.</p>
+      <p>See <span class="linkTerms"><a href="/html/925ef3b8-48dc-4ea1-9112-a7afc2d9161e.htm">Object-Oriented Programming</a></span> for additional information about creating custom objects as non-visual classes.</p>
+      <p>Beginning with Visual FoxPro 7.0, the default values for a Visual FoxPro data session are as follows:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Setting
+            </th>
+            <th>
+              Value
+            </th>
+          </tr><tr>
+          <td>
+            <p>EXCLUSIVE</p>
+          </td>
+          <td>
+            <p>ON</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SAFETY</p>
+          </td>
+          <td>
+            <p>OFF</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>TALK</p>
+          </td>
+          <td>
+            <p>OFF</p>
+          </td>
+        </tr></table></div>
+      <p>The default values for a form with a private data session are as follows:</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Setting
+            </th>
+            <th>
+              Value
+            </th>
+          </tr><tr>
+          <td>
+            <p>EXCLUSIVE</p>
+          </td>
+          <td>
+            <p>OFF</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SAFETY</p>
+          </td>
+          <td>
+            <p>ON</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>TALK</p>
+          </td>
+          <td>
+            <p>ON</p>
+          </td>
+        </tr></table></div>
+      <p>A form that uses the default data session, also uses the settings that exist for that session because the session was created before the form.</p>
+      <p>When the Session object represents a COM Server, all intrinsic properties are treated as private.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/ffe58fac-c8e4-468a-ad5c-1565f9855565.htm">How to: Add User-Defined Objects to a Form</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/b469609f-3d2e-4463-be2c-606131214a7d.htm">Session Object Properties, Methods, and Events</a></span><br /><span class="linkTerms"><a href="/html/42b84eb0-a6fc-4ccd-abc2-1f9ffc853471.htm">DEFINE CLASS Command</a></span><br /><span class="linkTerms"><a href="/html/33ec8321-1eaa-46cc-8006-77f4d950de8e.htm">Commands that Scope to a Data Session</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/42cd01c1-54f0-40ac-b7f4-ef91d4211dfd.htm">Objects, Collections, and Classes</a></span><br /><span class="linkTerms"><a href="/html/925ef3b8-48dc-4ea1-9112-a7afc2d9161e.htm">Object-Oriented Programming</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Session Object">
+<param name="ALink Name" value="Session">
+<param name="Alink Name" value="vfp.50001052">
+</OBJECT>

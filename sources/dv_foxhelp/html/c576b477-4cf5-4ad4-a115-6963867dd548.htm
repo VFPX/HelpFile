@@ -1,0 +1,378 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>AFIELDS( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">AFIELDS( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Retrieves and stores information about the structure of the table in a specified work area, specified by a table alias, or in the currently selected work area in an array and returns the number of fields in the table.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+AFIELDS( <span class="parameter">ArrayName</span> [, <span class="parameter">nWorkArea</span> | <span class="parameter">cTableAlias </span>] )</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">ArrayName</span>
+        </span></dt><dd>
+          <p>Specifies an array to store information about the table structure. </p>
+          <p>If the array you specify does not exist, Visual FoxPro automatically creates it. If the array exists and is not large enough to contain all the information returned by <b>AFIELDS( )</b>, the size of the array is automatically increased to accommodate the information. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nWorkArea</span>
+        </span></dt><dd>
+          <p>Specifies the work area of the table.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cTableAlias</span>
+        </span></dt><dd>
+          <p>Specifies a table alias. </p>
+          <p>If you omit <span class="parameter">nWorkArea</span> and <span class="parameter">cTableAlias</span>, <b>AFIELDS( )</b> retrieves information for the table in the currently selected work area. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Numeric data type. <b>AFIELDS( )</b> returns the number of fields in the table. The array contains 18 columns and has the same number of rows as fields in the table. </p>
+      <p>The following table describes the content of each column in the first row of the array and the data type of the information stored in each column. Values for table-specific properties in columns 10 through 16 only appear in the first row of the array. One row is created for each field in the table.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Column number
+            </th>
+            <th>
+              Field info
+            </th>
+            <th>
+              Data type
+            </th>
+          </tr><tr>
+          <td>
+            <p>1</p>
+          </td>
+          <td>
+            <p>Field name</p>
+          </td>
+          <td>
+            <p>Character</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>2</p>
+          </td>
+          <td>
+            <p>Field type: </p>
+            <p>C = Character</p>
+            <p>Y = Currency</p>
+            <p>D = Date</p>
+            <p>T = DateTime</p>
+            <p>B = Double</p>
+            <p>F = Float</p>
+            <p>G = General</p>
+            <p>I = Integer</p>
+            <p>L = Logical</p>
+            <p>M = Memo</p>
+            <p>N = Numeric</p>
+            <p>Q = Varbinary</p>
+            <p>V = Varchar and Varchar (Binary)</p>
+            <p>W = Blob</p>
+          </td>
+          <td>
+            <p>Character</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>3</p>
+          </td>
+          <td>
+            <p>Field width</p>
+          </td>
+          <td>
+            <p>Numeric</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>4</p>
+          </td>
+          <td>
+            <p>Decimal places</p>
+          </td>
+          <td>
+            <p>Numeric</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>5</p>
+          </td>
+          <td>
+            <p>Null values allowed</p>
+          </td>
+          <td>
+            <p>Logical</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>6</p>
+          </td>
+          <td>
+            <p>Code page translation not allowed</p>
+          </td>
+          <td>
+            <p>Logical</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>7</p>
+          </td>
+          <td>
+            <p>Field validation expression</p>
+          </td>
+          <td>
+            <p>Character</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>8</p>
+          </td>
+          <td>
+            <p>Field validation text</p>
+          </td>
+          <td>
+            <p>Character</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>9</p>
+          </td>
+          <td>
+            <p>Field default value</p>
+          </td>
+          <td>
+            <p>Character</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>10</p>
+          </td>
+          <td>
+            <p>Table validation expression</p>
+          </td>
+          <td>
+            <p>Character</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>11</p>
+          </td>
+          <td>
+            <p>Table validation text</p>
+          </td>
+          <td>
+            <p>Character</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>12</p>
+          </td>
+          <td>
+            <p>Long table name</p>
+          </td>
+          <td>
+            <p>Character</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>13</p>
+          </td>
+          <td>
+            <p>Insert trigger expression</p>
+          </td>
+          <td>
+            <p>Character</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>14</p>
+          </td>
+          <td>
+            <p>Update trigger expression</p>
+          </td>
+          <td>
+            <p>Character</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>15</p>
+          </td>
+          <td>
+            <p>Delete trigger expression</p>
+          </td>
+          <td>
+            <p>Character</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>16</p>
+          </td>
+          <td>
+            <p>Table comment</p>
+          </td>
+          <td>
+            <p>Character</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>17</p>
+          </td>
+          <td>
+            <p>NextValue for autoincrementing</p>
+          </td>
+          <td>
+            <p>Numeric</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>18</p>
+          </td>
+          <td>
+            <p>Step for autoincrementing</p>
+          </td>
+          <td>
+            <p>Numeric</p>
+          </td>
+        </tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>If the fields in the table use autoincrementing, the Step value is greater than 0.</p>
+      <p>You can use <a href="/html/31ed53ed-3264-4de0-9d9e-8e225589d5a7.htm">COPY STRUCTURE EXTENDED</a> to place similar information into a table instead of an array.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example creates an array named <code>gaMyArray</code>, which contains information about the fields in the <code>Customer</code> table. The names of the fields are displayed.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\testdata')
+USE Customer     &amp;&amp; Open Customer table.
+gnFieldcount = AFIELDS(gaMyArray)  &amp;&amp; Create array.
+CLEAR
+FOR nCount = 1 TO gnFieldcount 
+   ? gaMyArray(nCount,1)  &amp;&amp; Display field names.
+ENDFOR</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/281f8451-8f91-4ea4-a750-b6484cb4c148.htm">ADEL( ) Function</a></span><br /><span class="linkTerms"><a href="/html/77958569-651d-46c5-86e3-935dc7ec6486.htm">ADIR( ) Function</a></span><br /><span class="linkTerms"><a href="/html/8593614e-fdfa-46da-bae8-ea7e85e3c412.htm">AELEMENT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/58867a98-4899-4436-abae-6ee6a07c7a52.htm">AINS( ) Function</a></span><br /><span class="linkTerms"><a href="/html/8496659e-83b9-4e08-847b-f93b1e791ee5.htm">ALEN( ) Function</a></span><br /><span class="linkTerms"><a href="/html/3c5a454a-67ec-48a8-8290-18dd0e8a97ea.htm">ALTER TABLE - SQL Command</a></span><br /><span class="linkTerms"><a href="/html/169b2160-e94f-4a49-a05e-dd235d8e70ca.htm">ASCAN( ) Function</a></span><br /><span class="linkTerms"><a href="/html/db40f7c1-ce9b-4bd4-92b4-b584733f1bef.htm">ASORT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/76044ae8-3278-4aad-82ce-47f7eaaf23fe.htm">ASUBSCRIPT( ) Function</a></span><br /><span class="linkTerms"><a href="/html/31ed53ed-3264-4de0-9d9e-8e225589d5a7.htm">COPY STRUCTURE EXTENDED Command</a></span><br /><span class="linkTerms"><a href="/html/0d4b251c-a5cf-4754-b2f8-c01a623463f0.htm">CREATE Command</a></span><br /><span class="linkTerms"><a href="/html/b14e5d95-5b1c-4cfa-a5ac-4093ea6211e0.htm">CREATE TABLE - SQL Command</a></span><br /><span class="linkTerms"><a href="/html/17270153-1977-40bc-9f17-ab0132b20e90.htm">DIMENSION Command</a></span><br /><span class="linkTerms"><a href="/html/67c1d841-7fa8-4e98-afaf-e4b167a52447.htm">Visual FoxPro Data and Field Types</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/bd6eff0c-2ce5-43b7-ab29-f5360cd2f90e.htm">Autoincrementing Field Values in Tables</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="AFIELDS( ) Function">
+<param name="ALink Name" value="AFIELDS">
+</OBJECT>

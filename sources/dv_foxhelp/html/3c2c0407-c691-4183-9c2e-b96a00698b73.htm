@@ -1,0 +1,162 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Specify and Distribute ReportPreview.App</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Specify and Distribute ReportPreview.App</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you write and distribute Visual FoxPro applications, you will probably want to allow your users to preview reports on screen. If you wish to leverage the new object-assisted report engine to preview reports in your application, then you must choose whether to:</p>
+    <ul><li>
+        <p>Write your own custom preview container, as described in <span class="linkTerms"><a href="/html/68ca355c-7494-4a8a-9baf-e525437adc8d.htm">Creating a Custom Preview Container</a></span>.</p>
+      </li><li>
+        <p>Distribute ReportPreview.App with your application.</p>
+      </li></ul>
+    <p>In this topic, you will learn how to redistribute the ReportPreview.App, the default Preview Container factory application, in two ways: </p>
+    <ul><li>
+        <p>A separate App file alongside your own application.</p>
+      </li><li>
+        <p>An integrated source directly into your own application.</p>
+      </li></ul>
+  <h1 class="heading">Redistributing ReportPreview.App with Your Application</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>By default, if ReportPreview.App exists in the same directory as the Visual FoxPro run time files, then _REPORTPREVIEW will contain the fully-qualified path and file name. One solution is to ensure that the setup program used to distribute your application places ReportPreview.App in the same directory as the run time files. Alternatively, you can distribute ReportPreview.App in the same directory as your application, providing you explicitly set _REPORTPREVIEW to that copy of the file. </p>
+      <h3 class="procedureSubHeading">To distribute ReportPreview.App with your application</h3><div class="subSection"><ul><li>
+            
+              <p>In the main program of your application, use code similar to the following:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Get the application's home directory:
+cHomeDir = CURDIR()  &amp;&amp; use whatever method you prefer
+* Set the system variable to use the fully-qualified path:
+_REPORTPREVIEW = m.cHomeDir+"ReportPreview.App"
+:</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>You could also use a line in CONFIG.FPW:</p>
+      <p>
+        <code>_REPORTPREVIEW=&lt;path&gt;\ReportPreview.App</code>
+      </p>
+    </div><h1 class="heading">Integrating the Preview Container Factory Source into Your Project</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Instead of distributing the compiled application, you may choose to incorporate the source code of the report preview factory directly into your application's project.</p>
+      <h3 class="procedureSubHeading">To integrate the preview container factory source into your application</h3><div class="subSection"><ol><li>
+            
+              <p>Unpack the xsource.zip file found in the Tools\xsource\ folder under the Visual FoxPro home directory.</p>
+            
+          </li><li>
+            
+              <p>In the main program of your application, use code similar to the following:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Ensure the report builder source is pulled into the project:
+EXTERNAL PROCEDURE frxpreview.prg
+* Set the system variable to use the local source version:
+_REPORTPREVIEW = "frxpreview.prg"
+:</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Rebuild your project.</p>
+              <p>The preview factory source code files will be added to your project and compiled in to your application.</p>
+            
+          </li></ol></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Shared Source Files</h3><div class="subSection" xmlns="">
+          <p>ReportBuilder.App and ReportPreview.App have the following source files in common:</p>
+          <ul><li>
+              <p>frxControls.vcx</p>
+            </li><li>
+              <p>frxCommon.prg</p>
+            </li><li>
+              <p>grabber.gif</p>
+            </li><li>
+              <p>wwrite.ico</p>
+            </li><li>
+              <p>foxpro_reporting.h</p>
+            </li></ul>
+          <p>The Project Manager builds only one copy of each of these files into your application's project, depending on the order of the EXTERNAL statements in your main program.</p>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/ba6158fb-968d-4f13-b389-b56241500f30.htm">How to: Specify and Distribute Report Output Application Components</a></span><br /><span class="linkTerms"><a href="/html/de758f3c-c569-48e7-afa2-f8d45efe030d.htm">How to: Specify and Distribute ReportBuilder.App</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/7e0ce0ab-435d-480c-9729-534c0c5a7a4c.htm">_REPORTPREVIEW System Variable</a></span><br /><span class="linkTerms"><a href="/html/8920ed3c-4d89-4fea-9cf0-1cc21395928a.htm">Including Report Files for Distribution</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/7ec199a1-d019-4c84-ae60-ab285c76c06f.htm">Application Distribution Process</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Specify and Distribute ReportPreview.App">
+</OBJECT>

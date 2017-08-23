@@ -1,0 +1,288 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Updating Data Using Transactions</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Updating Data Using Transactions</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>After you're finished offline, you can update the data on the server using the same table update transactions you usually use with online data. When working with remote data, keep in mind the following tips:  </p>
+    <ul><li>
+        <p>For single record updates, use automatic transactions.</p>
+      </li><li>
+        <p>For batch updates, use manual transactions.</p>
+      </li><li>
+        <p>As necessary, include code to detect update conflicts, create a log of conflicts, and resolve conflicts.</p>
+      </li></ul>
+    <p>Before you can process your updates, you need to use the <a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE</a> command and the ONLINE keyword to reconnect to the host database. After you issue the command, Visual FoxPro attempts to locate the host database using the data source information stored in the view. After the connection is established, you can use <a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPATE( )</a> to process the updates stored in the offline data.</p>
+    <p>To make sure the connection information is correct regardless of the location of either the host or view tables, you need to use connection string syntax rather than a named connection.</p>
+  <h1 class="heading">Updating Batches of Records in Local Tables</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>To process a batch of changes against local tables, you can use manual transactions that allow you to process the entire batch of changes within a single transaction rather a series of separate transactions.</p>
+      <div class="labelheading"><b>Updating local tables with offline views</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>USE myofflineview ONLINE EXCLUSIVE</code>
+            </p>
+          </td>
+          <td>
+            <p>Reconnect to the host and open the view.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>BEGIN TRANSACTION</code>
+            </p>
+            <p>
+              <code>IF TABLEUPDATE (2, .F., "myofflineview")</code>
+            </p>
+            <p>
+              <code>   END TRANSACTION</code>
+            </p>
+            <p>
+              <code>ELSE</code>
+            </p>
+            <p>
+              <code>   MESSAGEBOX("Error Occurred: Update unsuccessful.")</code>
+            </p>
+            <p>
+              <code>   ROLLBACK</code>
+            </p>
+            <p>
+              <code>ENDIF</code>
+            </p>
+          </td>
+          <td>
+            <p>Check for update conflicts and update as appropriate.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Updating Batches of Records in Remote Tables</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>To process a batch of changes against remote tables, use manual transactions: begin with <a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( )</a> and finish processing with either <a href="/html/3e65e927-58a3-4e71-9e88-3f07de1dee0e.htm">SQLCOMMIT( )</a> or <a href="/html/f71640f4-d839-4545-be11-de5d1adf9c2c.htm">SQLROLLBACK( )</a>.</p>
+      <p>To set the connection to manage your transactions manually, you need to use <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( )</a> on the view cursor to get the connection handle, then set the Transactions property to manual mode.</p>
+      <p>In the following code, the current connection identification for the view, <code>myview</code>, is stored into <code>hConn1</code>. <code>hConn1</code> is used to set the Transactions property to "2" for manual transactions.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>hConn1 = CURSORGETPROP("CONNECTHANDLE","myview") ;
+SQLSETPROP(hConn1,"TRANSACTIONS",2)</pre></td></tr></table></span></div>
+      <p>After you set the connection to handle the updates, you can use <a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( )</a> to handle your transactions.</p>
+      <p>If the host tables reside on a remote server, such as SQL Server, you might use the following code as a guideline.</p>
+      <div class="labelheading"><b>Updating remote tables with offline views</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comment
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>USE myofflineview ONLINE EXCLUSIVE</code>
+            </p>
+          </td>
+          <td>
+            <p>Reconnect to the host and open the view.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>SQLSetProp(liviewhandle,"transactions",2)</code>
+            </p>
+            <p>
+              <code>SQLSetProp(custviewhandle,"transactions",2)</code>
+            </p>
+            <p>
+              <code>SQLSetProp(ordviewhandle,"transactions",2) </code>
+            </p>
+          </td>
+          <td>
+            <p>Setting the connections on the views to handle transaction manually.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>IF NOT TABLEUPDATE(.T.,.F.,"lineitemsview")</code>
+            </p>
+            <p>
+              <code>   =SQLROLLBACK(ordviewhandle)</code>
+            </p>
+            <p>
+              <code>   =MESSAGEBOX("Can't update line items table")</code>
+            </p>
+            <p>
+              <code>   IF NOT TableUpdate(.T.,.F.,"ordersview")</code>
+            </p>
+            <p>
+              <code>      =SQLROLLBACK(liviewhandle)</code>
+            </p>
+            <p>
+              <code>      =MESSAGEBOX("unable to update the orders table")</code>
+            </p>
+            <p>
+              <code>      IF NOT TABLEUPDATE(.T.,.F.,"customerview")</code>
+            </p>
+            <p>
+              <code>         =SQLROLLBACK(custviewhandle)</code>
+            </p>
+            <p>
+              <code>         =MESSAGEBOX("Can't update customer table")</code>
+            </p>
+            <p>
+              <code>      Else *# check out failure scenarios</code>
+            </p>
+            <p>
+              <code>         IF NOT SQLCOMMIT(liviewhandle)</code>
+            </p>
+            <p>
+              <code>            =SQLROLLBACK(liviewhandle)</code>
+            </p>
+            <p>
+              <code>            IF NOT SQLCOMMIT(ordviewhandle)  </code>
+            </p>
+            <p>
+              <code>               =SQLROLLBACK(ordviewhandle)</code>
+            </p>
+            <p>
+              <code>               IF NOT SQLCOMMIT(custviewhandle)</code>
+            </p>
+            <p>
+              <code>                  =SQLROLLBACK(custviewhandle)</code>
+            </p>
+            <p>
+              <code>               ENDIF</code>
+            </p>
+            <p>
+              <code>            ENDIF</code>
+            </p>
+            <p>
+              <code>         ENDIF</code>
+            </p>
+            <p>
+              <code>      ENDIF</code>
+            </p>
+            <p>
+              <code>   ENDIF</code>
+            </p>
+            <p>
+              <code>ENDIF</code>
+            </p>
+          </td>
+          <td>
+            <p>Handling updates and update conflicts.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Updating One Record</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>If you are updating a single row, you can use automatic transactions. Because each statement to process an update, delete, or insert is handled as a separate transaction, rollbacks against prior transaction statements are not possible.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE customerview ONLINE EXCLUSIVE
+GO TO 3
+   IF TABLEUPDATE (0, .F. workarea)
+      * conflict handling code
+   ENDIF</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>To update a single record in a local table, use the <a href="/html/b79871b2-7c70-440e-b4e4-fae81f7d5c40.htm">GETNEXTMODIFIED( )</a> function.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Canceling Offline Updates</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>If you decide you want to delete the offline data and convert the view back to an online view, you can use the <a href="/html/a40b2776-340a-4e2b-829c-ca35fddcdce1.htm">DROPOFFLINE( )</a> function.</p>
+      <p>To cancel offline updates, use DROPOFFLINE( ) with the name of the view.</p>
+      <p>Be sure to check the return values. True (.T.) indicates success and false (.F.) indicates that the view was not closed before the command was issued.</p>
+      <p>The following code drops all of the changes made to the subset of data in <code>myview</code>. The view remains part of the database, but its current set of data is dropped:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DROPOFFLINE("myview")</pre></td></tr></table></span></div>
+      <p>You can delete offline records, but you can't use the <a href="/html/acbd9f3d-a745-4914-bdd8-b613dcd94bee.htm">PACK</a>, <a href="/html/346ba072-32df-42b5-b730-a27c6284e550.htm">ZAP</a>, or <a href="/html/9f33867b-fcdd-49ec-b71f-962affad7f9e.htm">INSERT</a> commands with an offline view.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/515161b6-f2e8-423a-affa-8f87854b114a.htm">How to: Optimize View Performance</a></span><br /><span class="linkTerms"><a href="/html/f5b2d063-c8c2-4ada-bf3a-b599409cb41c.htm">How to: Create Queries (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/68ec0ec7-121f-44df-ae68-deaf22ec7484.htm">How to: Set the Maximum Number of Records Downloaded</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a></span><br /><span class="linkTerms"><a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/3e65e927-58a3-4e71-9e88-3f07de1dee0e.htm">SQLCOMMIT( ) Function</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/bafc1bb4-5f02-426b-8ae4-c4a209cb05b3.htm">Manipulating Offline Data</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Updating Data Using Transactions">
+</OBJECT>

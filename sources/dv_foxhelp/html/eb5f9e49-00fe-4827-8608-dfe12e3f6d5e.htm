@@ -1,0 +1,164 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>XML Functionality Using XMLAdapters</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">XML Functionality Using XMLAdapters</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro enhances its existing XML features and its compatibility with XML DiffGram and .NET Framework ADO.NET DataSet formats by providing the <b>XMLAdapter</b>, <b>XMLTable</b>, and <b>XMLField</b> classes. With these classes, Visual FoxPro supports hierarchically formatted XML for the following:
+</p>
+    <ul><li>
+        <p>XML files that have associated schema, either inline or external, as implemented by ADO.NET DataSets based on the .NET Framework. For more information, see <a href="#fogrfxmlfunctionalityusingxmladaptersanchor1">ADO.NET DataSets</a>.</p>
+      </li><li>
+        <p>Microsoft XML Data Reduced Schema (XDR) as used by Microsoft SQL XML </p>
+      </li><li>
+        <p>ADO Recordset schemas that are produced when an ADO Recordset is saved as XML to a file or stream</p>
+      </li></ul>
+    <p>Visual FoxPro can factor an XML file representing a collection of different and possibly related tables, such as an ADO.NET DataSet object, into separate Visual FoxPro cursors. Usually, this file contains data from a database management system (DBMS) with the structure of Parent &gt; Child &gt; Child. The XML can also have a nested format such as Parent &gt; Child, Parent &gt; Child, or a serial format such as Parent-Parent, Child-Child.</p>
+    <p>When you have hierarchical XML that represents a single table resulting from a multiple-table SQL JOIN command, Visual FoxPro creates only one cursor.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>The <b>XMLAdapter</b>, <b>XMLTable</b>, and <b>XMLField</b> classes require Microsoft XML Core Services (MSXML) 4.0 Service Pack 1 (SP1). For more information about these classes, see <a href="/html/0e51628a-7e55-4025-8e92-cc1b6edee2fc.htm">XMLAdapter Class</a>, <a href="/html/1270863b-32b1-4bbc-a9c2-175a07db9c3b.htm">XMLTable Class</a>, and <a href="/html/62180c49-1670-4df3-8cb6-62847cbc1813.htm">XMLField Class</a>. For more information about MSXML, see Microsoft XML Core Services 4.0 SP1 on the MSDN Library Web site at <b>http://msdn.microsoft.com/downloads/</b>. </p>
+    </td></tr></table></div>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>XML Schema Definition (XSD) schema as generated by Visual Studio ADO.NET DataSets might contain elements not supported by Visual FoxPro. For more information, see <a href="#fogrfxmlfunctionalityusingxmladaptersanchor2">Support for Schemas Generated by ADO.NET DataSets</a>.</p>
+    </td></tr></table></div>
+  <a name="fogrfxmlfunctionalityusingxmladaptersanchor1"></a><h1 class="heading">ADO.NET DataSets</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>In the .NET Framework, ADO.NET is a set of classes that expose data access services to the programmer. ADO.NET provides consistent access to data sources such as Microsoft SQL Server and other data sources exposed through OLE DB and XML. </p>
+      <p>The ADO.NET DataSet is used as the primary class for manipulating data and encapsulates data as XML. An ADO.NET DataSet object can produce XML in several ways:
+</p>
+      <ul><li>
+          <p>By returning the entire ADO.NET DataSet to the calling application. 
+</p>
+          <p>This method returns all rows in the original query in XML DiffGram format with inline schema and update, insert, and delete operations as indicated. Rows that remain unchanged do not have the <i>diffgr:hasChanges</i> attribute.
+</p>
+          <p>When a DataSet object returns to the calling application from a method in an application that uses the .NET Framework and returns ADO.NET DataSet objects, it is always serialized, or converted, into XML. Visual FoxPro can convert this XML into cursors, which you can then manipulate in a Visual FoxPro application.
+</p>
+        </li><li>
+          <p>By returning only changes to the ADO.NET DataSet to the .NET-based application.
+</p>
+          <p>This method returns only those rows, in XML DiffGram format, that were modified, added, or deleted.
+</p>
+          <p>If the ADO.NET DataSet object contains changes, they are marked with the attributes, <i>DiffGram:hasChanges="modified"</i> or <i>DiffGram:hasChanges="inserted"</i>. For those records marked as <i>"modified"</i>, the previous values appear in the section, <i>diffgr:before</i>. Records that are deleted appear only in the <i>diffgr:before</i> section and not in the main section of the DiffGram.
+</p>
+        </li><li>
+          <p>By using the ADO.NET DataSet GetXml and GetXMLSchema methods to return XML as a .CLR stream or string type.</p>
+        </li><li>
+          <p>By using the ADO.NET DataSet WriteXml and WriteXmlSchema methods to write the ADO.NET DataSet as XML to a file with inline schema, without schema, or separate schema.</p>
+        </li></ul>
+      <p>For more information about XML DiffGram and ADO.NET DataSet formats, see the .NET Framework SDK on the MSDN Library Web site at <b>http://msdn.microsoft.com/library/</b>.</p>
+    </div><a name="fogrfxmlfunctionalityusingxmladaptersanchor2"></a><h1 class="heading">Support for Schemas Generated by ADO.NET DataSets</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>XML that has external or inline XML Schema Definition (XSD) schema as generated by ADO.NET DataSets might contain elements not supported by Visual FoxPro, which disregards those elements. For example, these elements might include the following:
+</p>
+      <ul><li>
+          <p>xs:unique name </p>
+        </li><li>
+          <p>xs:annotation</p>
+        </li><li>
+          <p>Additional processing instructions and attributes such as the following:
+</p>
+          <ul><li>
+              <p>Schema prefix support, such as msdata:Prefix, that defines the scope of a group of elements</p>
+            </li><li>
+              <p>XML prefix support, such as the vfpx attribute, that scopes the prefix to root elements</p>
+            </li><li>
+              <p>msprop attribute and other attributes that use this namespace</p>
+            </li><li>
+              <p>Other msdata attributes that reference items not supported by Visual FoxPro, such as msdata:Locale or msdata:Comment</p>
+            </li></ul>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/f2cb85b7-b158-4eff-9ca8-57ffebca5d9e.htm">Visual FoxPro and XML Schema Data Type Mapping</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/ded6a107-d264-4c03-bbe7-4e88d9675d79.htm">XML Data in Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/1b079e17-218f-4fc1-8fea-c4098831c09d.htm">Converting Between XML and Visual FoxPro Data</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/7e2c4e3b-06c8-4825-a30f-9be7b1e9e898.htm">Importing and Exporting Data</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="XML Functionality Using XMLAdapters">
+</OBJECT>

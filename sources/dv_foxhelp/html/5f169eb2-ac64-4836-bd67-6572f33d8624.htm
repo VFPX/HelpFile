@@ -1,0 +1,232 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Preparation for Distributing Applications</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Preparation for Distributing Applications</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>This section describes a number of issues you should consider when preparing your application for deployment.   </p>
+    <ul><li>
+        <p>
+          <a href="#dgconselectionofbuildtype">Build Type Selection</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtskconsideringhardwarememorynetworkissues">Hardware, Memory, and Network Issues</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgtskensuringcorrectrun-timebehavior">Ensuring Correct Run-Time Behavior</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#dgconmenuoptions">Default Menu Options</a>
+        </p>
+      </li></ul>
+  <a name="dgconselectionofbuildtype"></a><h1 class="heading">Build Type Selection</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Before you can distribute your application, you must build an application (.app) file, an executable (.exe) file, or a COM component (automation server) with a .dll or .exe extension. When choosing the type of build you want to create, consider the size of your final application file and whether users have Visual FoxPro installed on their computers. </p>
+      <p>The following table lists the differences between the types of builds.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Build type
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>Application (.app) file</p>
+          </td>
+          <td>
+            <p>This file requires that the user have a copy of Visual FoxPro installed. An .app file is usually smaller than an .exe file.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Executable (.exe) file</p>
+          </td>
+          <td>
+            <p>This file includes the Visual FoxPro loader so users do not need have Visual FoxPro installed. </p>
+            <p>You must provide the two support files VFP<i>VersionNumber</i>R.dll and VFP<i>VersionNumber</i>RENU.dll where <i>VersionNumber</i> represents the version number of this release of Visual FoxPro. The letters, "EN", denote the English version. These files must be placed in the same directory as the .exe file or along the DOS path. See <span class="linkTerms"><a href="/html/2313b88d-751b-4b6d-800a-463d78112b5c.htm">BUILD EXE Command</a></span> for details about creating and distributing executable files.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>COM Server (.dll or .exe) files</p>
+          </td>
+          <td>
+            <p>This file is used to create a file that can be called by other applications. </p>
+            <p>In Visual FoxPro, you can create two types of COM server (.dll, formerly, OLE) files. You must provide run-time support files, including the VFP<i>VersionNumber</i>R.dll, VFP<i>VersionNumber</i>T.dll, and VFP<i>VersionNumber</i>RENU.dll files where <i>VersionNumber</i> represents the version number of this release of Visual FoxPro. For details, see <span class="linkTerms"><a href="/html/c3c39fab-9535-4aa0-8d03-c9253a8c24d1.htm">How to: Add OLE Objects to Applications</a></span>.</p>
+          </td>
+        </tr></table></div>
+    </div><a name="dgtskconsideringhardwarememorynetworkissues"></a><h1 class="heading">Hardware, Memory, and Network Issues</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You should consider and test the minimum environment your application can operate in, including the amount of disk space and memory. The results of your testing and the resolution of other issues covered in this section can help determine the type of build you choose and the files you include with your application.</p>
+      <p>The applications you create have the same hardware, memory, and network requirements as Visual FoxPro. For more information on those requirements, see <span class="linkTerms"><a href="/html/59f56495-b6ba-40ad-b0a5-92b973da3614.htm">Installing Visual FoxPro</a></span>. For additional information on creating applications for multiuser environments, see <span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span>.</p>
+    </div><a name="dgtskensuringcorrectrun-timebehavior"></a><h1 class="heading">Ensuring Correct Run-Time Behavior</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When distributing an executable application (.exe) file, you must include the following files:</p>
+      <ul><li>
+          <p>VFP<span class="parameter">VersionNumber</span>R.dll, where <span class="parameter">VersionNumber</span> represents the version number of this release of Visual FoxPro. </p>
+        </li><li>
+          <p>VFP<span class="parameter">VersionNumber</span>RENU.dll</p>
+        </li><li>
+          <p>GDIPlus.dll</p>
+        </li><li>
+          <p>MSVCR71.dll</p>
+        </li></ul>
+      <p>In some cases, Visual FoxPro in-process servers, or .dll files, can use the lightweight VFP<span class="parameter">VersionNumber</span>T.dll run-time library instead. For more information about run-time libraries, see <span class="linkTerms"><a href="/html/b15cf6c1-12ff-4c34-92c9-9b65d508025d.htm">VFP9R.DLL Run-Time Library</a></span> and <span class="linkTerms"><a href="/html/6f6a7665-6a5c-4a25-bcff-8af516916ad8.htm">VFP9T.DLL Run-Time Library</a></span>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If you want to run an application (.exe) file using the development version of Visual FoxPro, you must run the .exe file with the Visual FoxPro executable file, VFP<span class="parameter">VersionNumber</span>.exe. </p>
+      </td></tr></table></div>
+      <p>An application consisting only of modeless forms will not function properly in a run-time environment unless you provide a <b>READ EVENTS</b> command. You can make sure the application runs properly by adding a calling program or setting the <b>WindowType</b> property.</p>
+      <p>You can also type <code>DO</code> followed by the name of your application's .exe file in the <b>Command</b> window or use the -E command-line switch in the command line that starts Visual FoxPro. For example, if your application is called MYAPP, you can run it with the following command line:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>MYAPP.EXE -E</pre></td></tr></table></span></div>
+      <p>This command-line switch forces the application to use the executable file, VFP<i>VersionNumber</i>.exe where <i>VersionNumber</i> represents the version number of this release of Visual FoxPro. For this switch to work correctly, VFP<i>VersionNumber</i>.exe must be in the search path.</p>
+      <h3 class="procedureSubHeading">To run a form in a run-time environment</h3><div class="subSection"><ol><li>
+            
+              <p>Run the form from a program containing a <b>READ EVENTS</b> command. </p>
+              <p>-or- </p>
+            
+          </li><li>
+            
+              <p>Set the form's <b>WindowType</b> property to <b>Modal</b>.</p>
+            
+          </li></ol></div>
+      <p>Some Visual FoxPro applications rely heavily on Visual FoxPro system menus. At run time, some menus and commands are unavailable, and without a provision for a <b>READ EVENTS</b> command, a menu-driven application ends as quickly as it starts. Use the following section to review any menus you include in your application.</p>
+      <p>For more information on structuring an application with the <b>READ EVENTS</b> command, see <span class="linkTerms"><a href="/html/20fe8641-e263-4c6a-ae34-e8032987c404.htm">How to: Control the Event Loop</a></span> and examples of how to structure an application in <span class="linkTerms"><a href="/html/842d4132-cdb3-4c0f-a25f-405322751018.htm">Compiling an Application</a></span>.</p>
+    </div><a name="dgconmenuoptions"></a><h1 class="heading">Default Menu Options</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>If you use the Visual FoxPro system menu, your application file includes only the following default menus and menu commands.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Menu
+            </th>
+            <th>
+              Menu items
+            </th>
+          </tr><tr>
+          <td>
+            <p>File</p>
+          </td>
+          <td>
+            <p>Close, Save, Save As, Exit</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Edit</p>
+          </td>
+          <td>
+            <p>Undo, Redo, Cut, Copy, Paste, Paste Special, Select All, Find, Replace</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Window</p>
+          </td>
+          <td>
+            <p>Arrange All, Hide, Hide All, Show All, Clear, Cycle, all open windows</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Help</p>
+          </td>
+          <td>
+            <p>Contents, Search for Help on, Product Support, About Visual FoxPro</p>
+          </td>
+        </tr></table></div>
+      <p>You can disable or remove any of the default menus and menu commands, or add your own menus and menu commands to run-time applications.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>If your menu system works in the development environment but closes prematurely in your application, make sure you have a READ EVENTS command active while your menu system is running. Also be sure to include a CLEAR EVENTS command when you exit the menu system.</p>
+      </td></tr></table></div>
+      <p>For more information about customizing menus, see <span class="linkTerms"><a href="/html/21eaee88-6fbe-452b-839d-aa519d16892c.htm">Designing Menus and Toolbars</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/c839f066-85f8-4e4b-a44b-d0bf776bacff.htm">How to: Include Files with Applications for Distribution</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/9877952e-f860-41ef-a67e-e33af4c7970f.htm">Resource Files in Applications</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/7ec199a1-d019-4c84-ae60-ab285c76c06f.htm">Application Distribution Process</a></span><br /><span class="linkTerms"><a href="/html/8b4b3584-e28e-498c-8c24-eb87968540dc.htm">Distributable and Restricted Visual FoxPro Features and Files</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/44a57df6-33fa-419a-a650-542f2ad28148.htm">Distributing Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Preparation for Distributing Applications">
+</OBJECT>

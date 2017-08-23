@@ -1,0 +1,144 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Display Child Records from a Relationship Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Display Child Records from a Relationship Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File:</b> ...\Samples\Solution\Controls\Grid\1_many.scx</p>
+    <p>This sample demonstrates coordinating a one-to-many form with two grids displaying the many sides of the relationships. Very little code is needed in this sample. Setting a few properties is all that is involved.</p>
+  <h1 class="heading">Property Settings</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Text boxes for the "one" side of the relationship:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ControlSource = Customer.cust_id
+ControlSource = Customer.company</pre></td></tr></table></span></div>
+      <p>Grid for the first "many" side of the relationship:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ChildOrder = cust_id
+LinkMaster = customer
+RecordSource = orders
+RecordSourceType = 1 - Alias
+RelationalExpr = customer.cust_id
+ColumnCount = 4
+   Column1.ControlSource = "orders.order_no"
+   Column1.Header1.Caption = "Order"
+   Column2.ControlSource = "orders.order_date"
+   Column2.Header1.Caption = "Date"
+   Column3.ControlSource = "orders.to_name"
+   Column3.Header1.Caption = "Ship To"
+   Column4.ControlSource = "orders.order_amt"
+   Column4.Sparse = .F.
+   Column4.Header1.Caption = "Total"
+   Column4.Text1.InputMask = "$$999,999.99"</pre></td></tr></table></span></div>
+      <p>Grid for the 2nd "many" side of the relationship:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ChildOrder = order_id
+LinkMaster = Orders
+RecordSource = Orditems
+RecordSourceType = 1 - Alias
+RelationalExpr =Orders.order_id
+ColumnCount = 4
+   Column1.ControlSource = "orditems.line_no"
+   Column1.Header1.Caption = "Item"
+   Column2.ControlSource = "products.prod_name"
+   Column2.Header1.Caption = "Product"
+   Column3.ControlSource = "orditems.quantity"
+   Column3.Header1.Caption = "Qty."
+   Column4.ControlSource = "orditems.unit_price"
+   Column4.Sparse = .F.
+   Column4.Header1.Caption = "Price"
+   Column4.Text1.InputMask = "$$9,999.99"</pre></td></tr></table></span></div>
+      <p>In addition to the text boxes and the grids, the form contains an object based on the VCR class in Buttons.vcx. The SkipTable property of this class is set to the table you want the record pointer to be moved in when the user chooses a table navigation button. Because the user can easily manually move through the records in the grids (Orders and Orditems), SkipTable is set to Customer.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/eb5f3ee9-4435-4bf7-8b1a-060fd60de456.htm">Display Calculated Values in a Column Sample</a></span><br /><span class="linkTerms"><a href="/html/93888b20-f736-47d2-b5d0-0048b912c5d0.htm">Display Controls in a Grid Sample</a></span><br /><span class="linkTerms"><a href="/html/48df4522-9bb4-4872-aa28-6ef781cdb20d.htm">Dynamically Format Grid Columns Sample</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/909bc1e6-7b98-4527-a57f-c99f0ce4fc6f.htm">Controls Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Display Child Records from a Relationship Sample">
+<param name="Alink Name" value="vfp.1231522">
+</OBJECT>

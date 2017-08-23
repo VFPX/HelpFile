@@ -1,0 +1,198 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Parameters in Procedures and Functions</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Parameters in Procedures and Functions</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When a program calls a procedure or function, it can pass data to the procedure or function for processing. However, when you create a procedure or function that performs operations on data that passes to it from the calling program, the procedure or function must contain parameters in its definition to handle the data. The following sections contain information about working with parameters:  </p>
+    <ul><li>
+        <p>
+          <a href="#foconparametersinproceduresfunctionsanchor1">Defining Parameters in Procedures and Functions</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#foconparametersinproceduresfunctionsanchor2">Passing Data to Procedures and Functions</a>
+        </p>
+      </li></ul>
+  <a name="foconparametersinproceduresfunctionsanchor1"></a><h1 class="heading">Defining Parameters in Procedures and Functions</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When a program passes data to a procedure or function, the parameters in the procedure or function handles that data so the procedure or function can perform operations on the data. When you want to create procedures and functions that process data that the calling program passes to them, you need to include parameters in the procedure and function definitions.</p>
+      <p>The following lines of code illustrate the basic format for including parameters in procedure definition:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PROCEDURE myProcedure
+   LPARAMETERS <i>Par1</i>, <i>Par2</i>, <i>Par3</i>, ...
+   * Insert procedure code.
+ENDPROC</pre></td></tr></table></span></div>
+      <p>-OR-</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PROCEDURE myProcedure(<i>Par1</i>, <i>Par2</i>, <i>Par3</i>, ...)
+  * Insert procedure code.
+ENDPROC</pre></td></tr></table></span></div>
+      <p>The first procedure includes an <b>LPARAMETERS</b> statement that can contain one or more parameters. The second procedure lists the same parameters enclosed by parentheses (()) immediately following the procedure name. Using the <b>LPARAMETERS</b> statement or enclosing the parameter list in parentheses defines the parameters with local scope for the procedure. You can also use the <b>PARAMETERS</b> keyword instead of <b>LPARAMETERS</b> to accept privately scoped parameters. You can pass multiple values to a procedure or function by separating the values with commas.</p>
+      <p>For example, the following examples show procedure definitions that include parameters. The first procedure includes an <b>LPARAMETERS</b> statement and two parameters, <code>myPar1</code> and <code>myPar2</code>. The second procedure lists the same parameters enclosed by parentheses (()) immediately following the procedure name. Both procedures add the value in <code>myPar2</code> to <code>myPar1</code> and assign the result to <code>myPar1</code>. By default, data passes to procedures by reference, so the new value of <code>myPar1</code> replaces its original value.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PROCEDURE myProcedure
+   LPARAMETERS myPar1, myPar2
+   myPar1 = myPar1 + myPar2
+ENDPROC</pre></td></tr></table></span></div>
+      <p>-OR-</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PROCEDURE myProcedure(myPar1, myPar2)
+  myPar1 = myPar1 + myPar2
+ENDPROC</pre></td></tr></table></span></div>
+      <p>You can include parameters similarly in a function definition. For more information, see <a href="/html/69946d16-1eab-400c-9813-0a0230b0a230.htm">PROCEDURE Command</a>, <a href="/html/40babd3f-2eee-4faa-a6c9-44d9f9cba8e2.htm">FUNCTION Command</a>, <a href="/html/d5706737-02da-40c2-8758-394927d980f0.htm">LPARAMETERS Command</a>, and <a href="/html/1318a43b-98c9-4dea-95ee-e7a8d958f7ba.htm">PARAMETERS Command</a>.</p>
+    </div><a name="foconparametersinproceduresfunctionsanchor2"></a><h1 class="heading">Passing Data to Procedures and Functions</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can pass data, or specifically, "arguments", from your program to procedures and functions in different ways, depending on the following:  </p>
+      <ul><li>
+          <p>Whether you want to pass data by reference or by value. For more information, see <a href="/html/9937ae10-df44-461f-a7db-64ba43000ca6.htm">Passing Data to Parameters</a>.</p>
+        </li><li>
+          <p>How you call the procedure or function. For more information, see <a href="/html/a7cb5777-83ab-4c2b-80e5-9bdeb92c2162.htm">How to: Call Procedures and Functions</a>.</p>
+        </li></ul>
+      <p>For example, when you call a procedure with the <b>DO</b> command, you can pass data using the <b>WITH</b> clause and a parameter list. In the following example, the variables <code>myVar</code> and <code>myVar2</code> contain the values 4 and 5. When you call the procedure <code>myProcedure</code> using the <b>DO</b> command, the parameter list in the <b>WITH</b> clause passes the variables to the procedure:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>myVar = 4
+myVar2 = 5
+DO myProcedure WITH myVar, myVar2</pre></td></tr></table></span></div>
+      <p>By default, variables and arrays pass to procedures by reference. Therefore, changes made in the procedure to passed variables and arrays are passed back to the calling program. For example, suppose the procedure increments the value in <code>myVar</code> by the value in <code>myVar2</code>. The modified value of <code>myVar</code> becomes the new value of <code>myVar</code> when the procedure returns control to the calling program.</p>
+      <p>Alternatively, if you want to use the <b>DO</b> command but want to pass data by value, enclose each parameter with parentheses (()) as shown in the following example:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO myProcedure WITH (myVar), (myVar2)</pre></td></tr></table></span></div>
+      <p>When you call a function, you can pass data using a parameter list enclosed in parentheses (()) as shown in the following line of code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>myFunction(myVar, myVar2)</pre></td></tr></table></span></div>
+      <p>By default, variables and arrays pass to user-defined functions by value. Therefore, changes made in the function to passed variables and arrays are not passed back to the calling program. However, you can pass variables and arrays by reference by prefacing variables and arrays with the at sign (@) as shown in the following line of code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>myFunction(@<i>var1</i>, @<i>var2</i>, ...)</pre></td></tr></table></span></div>
+      <p>The following table summarizes the ways you can pass variables to procedures and functions in the example.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Procedure or function call
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>DO myProcedure WITH var1, var2, ...</code>
+            </p>
+          </td>
+          <td>
+            <p>Calls a procedure and passes variables by reference.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>DO myProcedure WITH (var1), (var2), ... </code>
+            </p>
+          </td>
+          <td>
+            <p>Calls a procedure and passes variables by value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>myFunction(var1, var2, ...)</code>
+            </p>
+          </td>
+          <td>
+            <p>Calls a function and passes variables by value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>myFunction(@var1, @var2, ...)</code>
+            </p>
+          </td>
+          <td>
+            <p>Calls a function and passes variables by reference.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/864b609a-6e86-41d8-a04f-ccb1da701f7a.htm">How to: Create Procedures and Functions</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/f8dde7e9-6ba8-4f65-a797-8cbbcde1f89d.htm">User-Defined Procedures and Functions</a></span><br /><span class="linkTerms"><a href="/html/9f0bfc38-ccca-4c38-ac38-d6c6c55b7127.htm">Verifying Data Passed to Procedures and Functions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/a6d6b28b-6366-406f-a7ea-3df9d870a770.htm">Working with Procedures and Functions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Parameters in Procedures and Functions">
+</OBJECT>

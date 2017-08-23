@@ -1,0 +1,152 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Filter Data</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Filter Data</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can limit the records that you access to only the data you want by using a filtered index or temporary filter condition. When you create a filtered index, Visual FoxPro creates index keys in the index file for only those records that match the filter expression. Filtered indexes are useful for creating complex filter conditions.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>It is not recommended that you use values other than field values, constants, and built-in functions to create filter expressions. You cannot specify filter expressions for binary indexes. </p>
+    </td></tr></table></div>
+  <h3 class="procedureSubHeading">To create filtered index</h3><div class="subSection"><ol><li>
+        
+          <p>Open the <b>Table Designer</b> to modify the table and choose the <b>Indexes</b> tab.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Filter</b> box, type a filter expression. </p>
+          <p>-OR-  </p>
+          <p>Build a filter expression by clicking the <b>ellipsis</b> (<b>...</b>) button to the right of the box. </p>
+        
+      </li><li>
+        
+          <p>Choose <b>OK</b>.</p>
+        
+      </li></ol></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>For example, the following filter expression selects only those records for customers in Canada:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>customer.country = "Canada"</pre></td></tr></table></span></div>
+      <h3 class="procedureSubHeading">To create filtered indexes programmatically</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <b>INDEX</b> command and include the <b>FOR</b> clause to specify a filter expression. </p>
+            
+          </li></ul></div>
+      <p>For example, suppose you want to prepare a mailing for your company's sales representatives and you want to sort the mailing by country. You might create an index that filters the employee table so that only the records for sales representatives appears, ordered by country and last name. The following code creates a filtered index and displays the filtered data in a browse window:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE (HOME(2) + 'Data\TestData')
+USE Employee
+INDEX ON country+last_name FOR title = "Sales Representative" ;
+TAG reps_cntry
+BROWSE</pre></td></tr></table></span></div>
+      <p>When you view the browse window, only the sales representatives are shown; the records for other employees do not appear at all in the browse window.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">A filtered index builds an index only for records that match the filter expression.</caption></caption></b><br></br></div><img src="../local/Local_-309710512_afd07008.gif" alt="FoxPro Employee Table"></img>
+      <p>For more information, see <span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span>.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Temporary Filters</h3><div class="subSection" xmlns="">
+          <p>You can also filter data temporarily without creating a filtered index.</p>
+          <h3 class="procedureSubHeading">To filter data temporarily</h3><div class="subSection"><ul><li>
+                
+                  <p>Use the <b>SET FILTER</b> command.  </p>
+                  <p>
+                    <b>SET FILTER</b> is particularly useful when you want to specify a temporary condition that records in a table must meet to be accessed.  </p>
+                
+              </li></ul></div>
+          <p>In the following example, <b>SET FILTER</b> filters the Customer table to show only the customers in Germany:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE (HOME(2) + 'Data\TestData')
+USE Customer
+SET FILTER TO country = "Germany"
+BROWSE</pre></td></tr></table></span></div>
+          <p>
+            <b>SET FILTER</b> accepts any valid Visual FoxPro logical expression as the filter condition. You can turn off the filter for the current table by using <b>SET FILTER TO</b> without an expression. </p>
+          <p>After you use <b>SET FILTER</b>, only those records that satisfy the filter condition are available in the table. All commands that access the table respect the <b>SET FILTER</b> condition. You can set a separate filter for every open table.</p>
+          <p>For more information, see <span class="linkTerms"><a href="/html/b1f6cce2-4c60-41b0-88e8-60d6cabb7068.htm">SET FILTER Command</a></span>.</p>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/1225f38b-2ed5-499e-b2c7-71b741bbe758.htm">How to: Create Indexes (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/26fcf23f-a277-4cdf-806e-1a49cff93621.htm">How to: Display Records in Descending Order</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Filter Data">
+</OBJECT>

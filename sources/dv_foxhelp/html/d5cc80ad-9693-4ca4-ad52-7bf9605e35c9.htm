@@ -1,0 +1,149 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Control Record Selection in Report Output</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Control Record Selection in Report Output</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When printing a report, you can control the records included by specifying any combination of the following:  </p>
+    <ul><li>
+        <p>Quantity of records to include in the report.</p>
+      </li><li>
+        <p>Range of sequential records to process.</p>
+      </li><li>
+        <p>Selection criteria that records must meet. </p>
+      </li><li>
+        <p>Conditions required to continue processing sequential records for the report.</p>
+      </li></ul>
+    <p>This topic shows you how to control record selection when printing through the user interface.  When you use the REPORT FORM or LABEL command to print, you can specify these criteria using scope clauses on the command.  For more information, see <span class="linkTerms"><a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT FORM Command</a></span> or <span class="linkTerms"><a href="/html/3876aeab-209d-42b0-9ebd-033284c74adb.htm">LABEL Command</a></span>.</p>
+  <h3 class="procedureSubHeading">To control record selection in a report</h3><div class="subSection"><ol><li>
+        
+          <p>Choose the <b>Print…</b> option on the <b>File</b> menu, and select <b>Report</b> or <b>Label</b> as the <b>Type</b> of output to print in the <b>Print</b> dialog box.  Click the ellipsis <b>(...)</b> button to choose the report or label file (.frx or .lbx) to print. Alternatively, open the report or label in the appropriate designer and click <b>Run Report</b> on the <b>Report</b> menu.  </p>
+        
+      </li><li>
+        
+          <p>In the <b>Print</b> dialog box, click <b>Options</b>.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Print Options</b> dialog box, click <b>Options</b>.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Report and Label Print Options</b> dialog box, specify the settings you want: </p>
+          <ul><li>
+              <p>To specify a record quantity or range, in the <b>Scope</b> box, choose the scope setting you want.  The default scope, <b>All</b>, processes all records.  When choosing <b>Next</b> or <b>Record</b>, you type or choose a number in the box to the right of the <b>Scope</b> box to specify a sequential number of records, or a single record number.  When you choose the <b>Rest</b> scope, Visual FoxPro processes all records from the current position of the record pointer through the rest of the records in the file.  </p>
+            </li></ul>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p> The results for <b>All</b>, <b>Next</b>, and <b>Rest</b> are influenced by the current index order for the table. The results for <b>Record</b> are not influenced by the current index order because the record pointer does not move. The results for all four choices can be further limited by the other types of record criteria in this dialog box.</p>
+          </td></tr></table></div>
+          <ul><li>
+              <p>To specify record selection criteria for non-sequential records, use the <b>For</b> box. Type an expression with which records should be compared. To build an expression, make sure data sources used by the report are open and click the ellipsis <b>(...)</b> button to open the <b>Expression Builder</b>.</p>
+            </li><li>
+              <p>To specify conditions to meet to continue processing records sequentially, use the <b>While</b> box.  Visual FoxPro processes records while the condition you type in the <b>While</b> box evaluates to True (<code>.T.</code>). To build an expression, click the ellipsis <b>(...)</b> button to open the <b>Expression Builder</b>.</p>
+            </li></ul>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>If you specify a <b>While</b> condition for a file that is not indexed, the selection process might end before evaluating all the appropriate records. Before printing the report, make sure the source table contains an active and appropriate index for the condition you want to use.  Set the record pointer to a record satisfying your <b>While</b> condition.</p>
+          </td></tr></table></div>
+        
+      </li><li>
+        
+          <p>When you are finished, click <b>OK</b>.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>Both <b>While</b> conditions and <b>For</b> selection criteria can include variables as well as data from tables.  You can change the contents of the variables dynamically during the report or label run.</p>
+          </td></tr></table></div>
+        
+      </li></ol>
+      
+        <p>For more information, see <span class="linkTerms"><a href="/html/6ffcb4d2-14ac-4cff-ae62-86cb4f04b8a0.htm">Report and Label Print Options Dialog Box</a></span> and <span class="linkTerms"><a href="/html/585ebea6-d673-4bbd-acaf-12f36b60c977.htm">Expression Builder Dialog Box</a></span></p>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/e7cdbea5-de9e-4a8c-a17d-29dd23b05fa0.htm">How to: Open Reports and Labels</a></span><br /><span class="linkTerms"><a href="/html/c6ff18fa-2b26-4785-9ef7-a11f2b01719d.htm">How to: Generate Output for Reports</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/982fd0d5-a294-401e-a720-3a29a59d87be.htm">Running Reports</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Control Record Selection in Report Output">
+</OBJECT>

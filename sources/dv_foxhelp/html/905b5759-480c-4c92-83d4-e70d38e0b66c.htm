@@ -1,0 +1,238 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SYS(2017) - Record Checksum Value</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SYS(2017) - Record Checksum Value</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Returns a checksum value based on the current record in the current work area. You can use a checksum to test the validity of data. You can also generate checksum values greater than 16 bits for large strings. </p>
+    <p>
+      <b>SYS(2017)</b> offers complementary functionality to <b>SYS(2007) - Checksum Value</b>.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SYS(2017, <span class="parameter">cExpression</span> [, <span class="parameter">nSeed</span> [, <span class="parameter">nFlags</span>]])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cExpression</span>
+        </span></dt><dd>
+          <p>Specifies a comma-delimited list, with or without spaces, containing one or more fields to exclude from the checksum calculation. The maximum length of the field string is limited to 256 characters. </p>
+          <p>If <span class="parameter">cExpression</span> is empty, Visual FoxPro does not exclude fields except for <b>Memo</b> and <b>General</b> fields.  </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nSeed</span>
+        </span></dt><dd>
+          <p>Specifies a numeric seed value of 0 that is used to calculate the checksum and is included for backward compatibility. Passing a value of -1 for <span class="parameter">nSeed</span> uses the default system value of 0. For CRC32 calculations, Visual FoxPro disregards <span class="parameter">nSeed</span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nFlags</span>
+        </span></dt><dd>
+          <p>Specifies additive bit values for generating the checksum. </p>
+          <p>Versions of Visual FoxPro earlier than 8.0 used a CRC16 16-bit algorithm to calculate the checksum values of strings. Visual FoxPro now includes the CRC32 routine to calculate larger 32-bit values. You can control the setting of this algorithm by setting the first bit value of the <span class="parameter">nFlags</span> parameter.   </p>
+          <p>The following table lists the bit values you can add to produce a value for <span class="parameter">nFlags</span>.    </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Bits
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>001</p>
+              </td>
+              <td>
+                <p>Calculate checksum value using CRC32 checksum algorithm.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>010</p>
+              </td>
+              <td>
+                <p>Include <b>Memo</b> fields in the checksum calculation.</p>
+              </td>
+            </tr></table></div>
+          <p>You can use the second <span class="parameter">nFlags</span> bit to include <b>Memo</b> fields in the CRC calculation. Visual FoxPro includes all <b>Memo</b> fields except any specified by <span class="parameter">cExpression</span> in the calculation.   </p>
+          <p>The following table lists the possible values for <span class="parameter">nFlags</span>, produced by the sum of the bit flags.    </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nFlags</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>Calculate checksum based on <span class="parameter">cExpression</span> parameter using CRC16 checksum algorithm. (Default)</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>Calculate checksum based on <span class="parameter">cExpression</span> parameter using CRC32 checksum algorithm.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>Calculate checksum based on current record contents including <b>Memo</b> fields using CRC16.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>3</p>
+              </td>
+              <td>
+                <p>Calculate checksum based on current record contents including <b>Memo</b> fields using CRC32.</p>
+              </td>
+            </tr></table></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Character data type. <b>SYS(2017)</b> returns a checksum value.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>When calculating the checksum value from the current record, Visual FoxPro disregards <b>Memo</b> and <b>General</b> fields unless <span class="parameter">nFlags</span> is set to 2 or 3.</p>
+      <p>Visual FoxPro generates the checksum based on the current record in the current work area and passes the byte values of the string into the CRC32 routine.</p>
+      <p>Visual FoxPro returns a value of "0" if no cursor is open in the current work area or if the record pointer is not valid, for example, pointing to a phantom record.</p>
+      <p>When you create a string expression from a record, Visual FoxPro removes trailing blank spaces and returns the expression as a character string, similar to the <b>ALLTRIM( )</b> function.</p>
+      <p>Usually, Visual FoxPro uses any excluded fields specified by <span class="parameter">cExpression</span> to store the checksum value and does not include them in the calculation. Visual FoxPro does not perform any checks on the data type of these fields. If <span class="parameter">cExpression</span> contains an invalid field, Visual FoxPro disregards that field.</p>
+      <p>Visual FoxPro calculates the checksum from all the fields included except for <b>Memo</b>, <b>General</b>, and those specified by <span class="parameter">cExpression</span>. You can determine the fields used and their order using the <b>FIELD( )</b> function. If you specified a setting for <b>SET FIELDS</b>, the checksum is calculated based on the current list specified by <b>SET FIELDS</b> which could include calculated fields.</p>
+      <p>Calculated fields are temporary fields that exist in the current cursor based on an expression but are not defined in the actual table structure. For example, the field LOCATION is a calculated field:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Use Customer
+SET FIELDS TO LOCATION = ALLTRIM(city) + ',' + state</pre></td></tr></table></span></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/634e3863-7f71-4868-b023-d0633240a541.htm">SYS( ) Functions Overview</a></span><br /><span class="linkTerms"><a href="/html/2dac289e-b8a2-4f03-a653-a616cd5f08f2.htm">SYS(2007) - Checksum Value</a></span><br /><span class="linkTerms"><a href="/html/06a3376d-fd4e-4fd3-9b3f-55861168ae54.htm">SET FIELDS Command</a></span><br /><span class="linkTerms"><a href="/html/3b06200c-6cd4-498c-ba62-c958bef98d65.htm">FIELD( ) Function</a></span><br /><span class="linkTerms"><a href="/html/f72d6803-87f3-489e-bd9b-77614651fcd3.htm">SET RESOURCE Command</a></span><br /><span class="linkTerms"><a href="/html/07a26c8c-12fd-4b8f-9123-0275f7286197.htm">Creating Character Expressions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SYS(2017) - Record Checksum Value">
+</OBJECT>

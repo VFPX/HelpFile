@@ -1,0 +1,394 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Access Visual FoxPro Data in Visual Studio</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Access Visual FoxPro Data in Visual Studio</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can access Visual FoxPro databases and tables in Visual Studio using the Visual FoxPro OLE DB Provider. The Visual FoxPro OLE DB Provider is available through the Visual Studio Server Explorer or using connection strings in code.</p>
+  <h1 class="heading">Accessing Visual FoxPro Data Sources Using the Visual Studio Server Explorer</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can access Visual FoxPro databases and tables in Visual Studio by adding them to the list of data connections that appear in the Visual Studio Server Explorer pane. You need to first specify a connection through the Visual FoxPro OLE DB Provider to the databases and tables you want. You can then select the databases or tables so that they appear in the Visual Studio Server Explorer pane.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>You must be able to specify the Visual FoxPro database or table folder you want to access by providing the path and file name or browsing to it.</p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To connect to a Visual FoxPro database or table through the Visual FoxPro OLE DB Provider</h3><div class="subSection"><ol><li>
+            
+              <p>Open Visual Studio.</p>
+            
+          </li><li>
+            
+              <p>From the <b>View</b> menu, select <b>Server Explorer</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Server Explorer</b> pane, right-click <b>Data Connections</b>, and click <b>Add Connection</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Data Link Properties</b> dialog box, click the <b>Provider</b> tab.</p>
+            
+          </li><li>
+            
+              <p>Select <b>Microsoft OLE DB Provider for Visual FoxPro</b>. </p>
+              <p>The Connection tab in the Data Link Properties dialog box appears. </p>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To add a Visual FoxPro database or table</h3><div class="subSection"><ol><li>
+            
+              <p>On the <b>Connection</b> tab and in the <b>Select or enter a database name</b> box, type path and name of the database or table folder you want.  </p>
+              <p>-or-  </p>
+              <p>To browse for a Visual FoxPro database or table folder, click the <b>ellipsis</b> (<b>...</b>) button to the right of the <b>Select or enter a database name</b> box to open the <b>Configure Connection</b> dialog box. </p>
+            
+          </li><li>
+            
+              <p>Specify a different collating sequence if desired.</p>
+            
+          </li><li>
+            
+              <p>To test the connection, click <b>Test Connection</b>. If connection is successful, click <b>OK</b>.</p>
+            
+          </li></ol></div>
+      <p>The database or table directory specified appears in the Visual Studio Server Explorer pane below the Data Connections node.</p>
+    </div><h1 class="heading">Accessing Visual FoxPro Data Sources Using Connection Strings</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>To access a Visual FoxPro data source in code, use a valid connection string to specify the Visual FoxPro OLE DB Provider, data source or data source name. For example, you can access the Visual FoxPro OLE DB Provider using Visual FoxPro code. </p>
+      <p>You can also specify an existing Visual FoxPro ODBC Data Source Name (DSN) instead of a data source. The Provider uses the data source indicated in the DSN and expands it to an appropriate Provider connection string.</p>
+      <h3 class="procedureSubHeading">To connect to the Visual FoxPro OLE DB Provider in Visual FoxPro</h3><div class="subSection"><ol><li>
+            
+              <p>Establish an ActiveX Data Object (ADO) Connection object and create a data object in Visual FoxPro.</p>
+            
+          </li><li>
+            
+              <p>Specify the Visual FoxPro OLE DB Provider and data source in a connection string as shown in the following code: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oConn = CREATEOBJECT("ADODB.Connection")
+oConn.ConnectionString = "provider=vfpoledb.1;;
+   data source=.\<i>MyTestDatabase</i>.dbc"
+oConn.Open</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+      <p>This code creates a data object you can use to retrieve data. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Be sure to replace <i>MyTestDatbase</i> with the appropriate database name.</p>
+      </td></tr></table></div>
+      <p>Instead of a data source, you can use an existing Open Database Connectivity (ODBC) data source name (DSN) in the connection string for the Visual FoxPro OLE DB Provider. The Visual FoxPro OLE DB Provider accepts the argument, <code>DSN = cDSNName</code>, and uses the data source specified by the DSN as shown in the following example:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oConn=CREATEOBJECT("adodb.connection")
+oConn.ConnectionString="Provider=vfpoledb;DSN=<i>ODBCdataSourceName</i>"
+oConn.Open()</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Be sure to replace <i>ODBCdataSourceName</i> with the appropriate ODBC DSN, for example, <code>vfpTestData</code>.</p>
+      </td></tr></table></div>
+      <p>After the connection is open, you can query the value of <code>ConnectionString</code> to determine the data source evaluated.</p>
+      <p>A connection string includes the following attribute keywords and values:  </p>
+      <dl><dt><span class="nonLinkTerms">Provider= <i>cVFPOLEDBProvider</i></span></dt><dd>
+          <p>Specifies the Visual FoxPro OLE DB Provider (VFPOLEDB).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">Data Source= <i>cPath</i></span></dt><dd>
+          <p>Specifies the path to the Visual FoxPro database or a folder containing free tables. For example, c:\Microsoft Visual FoxPro\Samples\Data\Testdata.dbc</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DSN= <i>cDSNName</i></span></dt><dd>
+          <p>Specifies an existing ODBC DSN.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">Mode= <i>cMode</i></span></dt><dd>
+          <p>Specifies one of the following: Read, ReadWrite, Share Deny None (default), Share Deny Read, Share Deny Write, or Share Exclusive, which includes the previous two modes.</p>
+        </dd></dl>
+      <p>For a complete explanation of connection string syntax, see the Microsoft OLE DB 2.5 Programmer's Reference and SDK Guide.</p>
+    </div><h1 class="heading">Updating Visual FoxPro Data</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can update Visual FoxPro Data through the Visual FoxPro OLE DB Provider using ADO. The following procedure describes three ways you can update Visual FoxPro data using data from the sample Northwind database, located in the Visual FoxPro ..\Samples\Northwind directory.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Be sure to replace NorthWind.dbc with the database you want to use.</p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To update Visual FoxPro data through the Visual FoxPro OLE DB Provider using ADO</h3><div class="subSection"><ol><li>
+            
+              <p>Call an update, insert, or delete command directly. </p>
+              <p>To call an update command directly, use the ADO Execute method. For example:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+LOCAL oConn as "adodb.connection"
+LOCAL oRS as "adodb.recordset"
+oConn = CREATEOBJECT('adodb.connection')
+oRS = CREATEOBJECT('adodb.recordset')
+cConnStrng = ;
+   "Provider=vfpoledb;Data Source="+HOME(2)+"Northwind\Northwind.dbc"
+oConn.Open(cConnStrng)
+oConn.BeginTrans()
+oConn.Execute("UPDATE Customers SET contactname = 'Patricio X. Simpson';
+   WHERE customerid='CACTU'")
+oRS = oConn.Execute("SELECT * FROM customers WHERE customerid = 'CACTU'")
+?oRS.Fields("contactname").Value
+oConn.RollbackTrans()
+oRS.Requery()
+?oRS.Fields('contactname').Value
+oRS.Close()
+oConn.Close()</pre></td></tr></table></span></div>
+              <p>-or- </p>
+            
+          </li><li>
+            
+              <p>Use a client cursor. </p>
+              <p>For example:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+LOCAL oConn as "adodb.connection"
+LOCAL oRS as "adodb.recordset"
+oConn = CREATEOBJECT('adodb.connection')
+oRS = CREATEOBJECT('adodb.recordset')
+cConnStrng = ;
+   "Provider=vfpoledb;Data Source="+HOME(2)+"Northwind\Northwind.dbc"
+oConn.CursorLocation= 3            &amp;&amp; adUseClient
+oConn.Open(cConnStrng)
+*!* Open RecordSet using keyset cursor and optimistic locking.
+oRS.Open(;
+   "SELECT * FROM customers WHERE customerid = 'CACTU'",oConn,1,3,1)
+? 'Current value:',oRS.Fields("contactname").Value
+oRS.Fields("contactname").Value = "Patricio X. Simpson"
+oRS.Update()
+oRS.Requery()
+? 'New value:',oRS.Fields("contactname").Value
+oRS.Close()
+oConn.Close()</pre></td></tr></table></span></div>
+              <p>-or- </p>
+            
+          </li><li>
+            
+              <p>Use a server cursor. </p>
+              <p>For example:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LOCAL oRS as "adodb.recordset"
+oConn = CREATEOBJECT('adodb.connection')
+oRS = CREATEOBJECT('adodb.recordset')
+cConnStrng = ;
+   "Provider=vfpoledb;Data Source="+HOME(2)+"Northwind\Northwind.dbc"
+oConn.Open(cConnStrng)
+*!* Updatable server cursors must use the USE &lt;table name&gt; command to 
+*!* open the table, not a SELECT statement. Server cursor is updatable,
+*!* opened keyset, and lock optimistic.
+oRS.Open("USE customers",oconn,1,3,1)
+? 'CursorLocation:',IIF(oRS.CursorLocation=2,"adUseServer","adUseClient")
+* Find CACTU.
+? oRS.Find("customerid='CACTU'")
+? 'Current value:',oRS.Fields("contactname").Value
+oRS.Fields("contactname").Value = "Patricio Simpson"
+oRS.Update()
+oRS.Requery()
+oRS.Find("customerid='CACTU'")
+? 'New value:',oRS.Fields("contactname").Value 
+oRs.Close()
+oRS =''
+oConn.Close()oConn=''</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Accessing Visual FoxPro Data from Different Languages</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>You can access the Visual FoxPro OLE DB Provider from other languages using different connection strings, depending on the language. For example, to connect to a Visual FoxPro database from a Visual C# application, you can use the following connection string, replacing <code>myVFPDatabase</code> with the appropriate data source name:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oleDbConnection1.ConnectionString = "Provider=VFPOLEDB.1;" + 
+   "Data Source=C:\\<i>myVFPDatabase</i>.DBC;";</pre></td></tr></table></span></div>
+      <p>The following code examples illustrate how to use connection strings that specify the Visual FoxPro OLE DB Provider and data source when accessing Visual FoxPro data from different languages. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Be sure to replace <i>myVFPDatabase</i> with the appropriate data source or DSN.</p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To access a Visual FoxPro data source in Visual C#</h3><div class="subSection"><ul><li>
+            
+              <p>Use a connection string to specify the Visual FoxPro OLE DB Provider and access the data source as shown in the following code: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OleDbConnection oleDbConnection1 = new OleDbConnection("Provider=VFPOLEDB.1;" + 
+      "Data Source=C:\\<i>myVFPDatabase</i>.DBC;");
+oleDbConnection1.Open();</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <h3 class="procedureSubHeading">To access a Visual FoxPro data source in Visual Basic</h3><div class="subSection"><ul><li>
+            
+              <p>Use a connection string to specify the Visual FoxPro OLE DB Provider and the data source as shown in the following code, where <code>oConnection</code> represents an ADO Connection object: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oConnection.Open("Provider=vfpoledb.1;
+   Data Source=.\<i>myVFPDatabase</i>.dbc")</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <h3 class="procedureSubHeading">To access Visual FoxPro data using ActiveX Data Objects (ADO) in Visual Basic</h3><div class="subSection"><ul><li>
+            
+              <p>Use a connection string to specify the Visual FoxPro OLE DB Provider and the data source as shown in the following code: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Imports System.Data.OleDb
+Public Class ConnectToVFP
+    Public Function ADONETOpenVFPDatabase() As Boolean
+        Dim bIsConnected As Boolean = True
+        Try
+            Dim cnn As New OleDbConnection("Provider=VFPOLEDB.1;" + _
+               "Data Source=.\<i>MyTestDatabase</i>.dbc;")
+            cnn.Open()
+        Catch e As System.Exception
+            bIsConnected = False
+        End Try
+        Return bIsConnected
+    End Function
+End Class</pre></td></tr></table></span></div>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>Make sure to replace <i>MyTestDatabase</i> with the name of the database or table directory you want to access. </p>
+              </td></tr></table></div>
+            
+          </li></ul></div>
+      <h3 class="procedureSubHeading">To access a Visual FoxPro data source in Visual C++</h3><div class="subSection"><ul><li>
+            
+              <p>Set the database properties by specifying the <code>DBSetProp</code> array, <code>DBProp</code> array, and the <code>IDBProperties</code> pointer, followed by a connection string that specifies the Visual FoxPro OLE DB Provider as shown in the following code: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>HRESULT hr;
+CLSID clsid;     
+// Set the DBProp array.
+DBPROP iProp[1];
+DBPROPSET rgIP;
+IDBProperties* pIDBProperties = NULL;
+IDBInitialize *pIDBInitialize = NULL;
+VariantInit(&amp;iProp[0].vValue);
+iProp[0].dwOptions = DBPROPOPTIONS_OPTIONAL;    // Required
+iProp[0].colid = DB_NULLID;
+// Set the location of data source. 
+iProp[0].dwPropertyID = DBPROP_INIT_DATASOURCE;
+iProp[0].vValue.vt = VT_BSTR;
+iProp[0].vValue.bstrVal = L"c:\<i>myVFPDatabase</i>.dbc"; // Data source
+// Set DBpropset to point to the DBPROP array.
+rgIP.guidPropertySet = DBPROPSET_DBINIT;
+rgIP.cProperties = 1;
+rgIP.rgProperties = iProp;
+::CoInitialize(NULL);
+hr = CLSIDFromProgID(L"vfpoledb.1",&amp;clsid); // Specify OLE DB Provider.
+hr = CoCreateInstance(clsid,
+       NULL,
+       CLSCTX_INPROC_SERVER,
+       IID_IDBInitialize,
+       (void**)&amp;pIDBInitialize);
+// Initialize.
+hr = piDBInitialize-&gt;QueryInterface(_uuidof(IDBProperties), (void**)&amp;pIDBProperties);
+hr = pIDBProperties-&gt;SetProperties(1 , &amp;rgIP) ;
+hr = pIDBProperties-&gt;Release();
+hr = pIDBInitialize-&gt;Initialize();</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <h3 class="procedureSubHeading">To access a Visual FoxPro data source in ASP using ActiveX Data Objects (ADO)</h3><div class="subSection"><ol><li>
+            
+              <p>Create an ASP page with appropriate HTML tags.</p>
+            
+          </li><li>
+            
+              <p>To establish a connection and run commands using ADO, add Visual Basic Scripting Language (VBScript) code: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;%
+    Set conn = Server.CreateObject("ADODB.Connection")
+    conn.ConnectionString="Provider=VFPOLEDB.1;
+       Data Source=<i>myVFPDatabase</i>.dbc"
+    conn.Open
+    sql = "select * from <i>tableName</i>"
+    Set rsArrival = conn.Execute(sql)
+%&gt;</pre></td></tr></table></span></div>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>Be sure to replace <i>tableName</i> with the name of the table you want.</p>
+              </td></tr></table></div>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To access a Visual FoxPro data source in JScript</h3><div class="subSection"><ul><li>
+            
+              <p>Use a connection string to specify the Visual FoxPro OLE DB Provider and data source as shown in the following code: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>var vbOKCancel = 0;
+var vbInformation = 64;
+var vbCancel = 2;
+var L_Welcome_MsgBox_Message_Text = "This script demonstrates how to access VFP OLE DB Provider using the Windows Scripting Host.";
+var L_Welcome_MsgBox_Title_Text = "VFP OLE DB Provider JScript Sample";
+var sBuffer = "";
+var sConnString = "Provider=vfpoledb.1;Data Source=<i>myVFPDatabase</i>.dbc";
+var oConn = new ActiveXObject("ADODB.Connection");
+var oRS = new ActiveXObject("ADODB.Recordset");
+oConn.Open(sConnString);
+oRS.Open("select * from <i>tableName</i> where <i>fieldName1</i>='<i>fieldValue</i>'",oConn,3,3);
+// Get <i>tableName</i>.<i>fieldName2</i>
+sBuffer = oRS.Fields(<i>'fieldName2'</i>).value;
+var WSHShell = WScript.CreateObject("WScript.Shell");
+var intDoIt;
+intDoIt =  WSHShell.Popup(sBuffer,
+   0,
+   L_Welcome_MsgBox_Title_Text,
+   vbOKCancel );
+   if (intDoIt == vbOKCancel) {
+      oRS.Close();
+      oConn.Close();
+      WScript.Quit();
+}</pre></td></tr></table></span></div>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>Be sure to replace <i>myVFPDatabase</i>, <i>tableName</i>, <i>fieldName1</i>, <i>fieldName2</i>, and <i>fieldValue</i> with the appropriate values. You must use a backslash (\) escape characters to include the backslash character in the file path, for example, "c:\\MyFolder\\MyVFP.dbc".</p>
+              </td></tr></table></div>
+            
+          </li></ul></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/39cc8d25-9d07-4ec4-8160-7e9ef85e8056.htm">How to: Access Visual FoxPro Data in Microsoft Office</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/862c1c77-c7de-46a1-9a29-60311e7c17d5.htm">OLE DB Provider for Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/dda59e0b-485e-4aaa-a8e8-55a99bd1e3e7.htm">Language Reference for OLE DB Development</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/d463eadd-eafb-410b-8c38-03d28ddfd16e.htm">Visual FoxPro Data Access Using the OLE DB Provider</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Access Visual FoxPro Data in Visual Studio">
+</OBJECT>

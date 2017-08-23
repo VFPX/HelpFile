@@ -1,0 +1,254 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>USE Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">USE Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Opens a table and its associated index files or opens a SQL view.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+USE [[<span class="parameter">DatabaseName</span>!]<span class="parameter"> TableName</span> | <span class="parameter">SQLViewName</span> | ?]
+   [IN <span class="parameter">nWorkArea</span> | <span class="parameter">cTableAlias</span>] [ONLINE] [ADMIN] [AGAIN]
+   [NOREQUERY [<span class="parameter">nDataSessionNumber</span>]] [NODATA] 
+   [INDEX <span class="parameter">IndexFileList</span> | ? [ORDER [<span class="parameter">nIndexNumber</span> | <span class="parameter">IDXFileName</span> 
+   | [TAG] <span class="parameter">TagName</span> [OF <span class="parameter">CDXFileName</span>] [ASCENDING | DESCENDING]]]]
+   [ALIAS <span class="parameter">cTableAlias</span>] [EXCLUSIVE] [SHARED] [NOUPDATE] 
+   [CONNSTRING <span class="parameter">cConnectionString</span> | <span class="parameter">nStatementHandle</span> ]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">[<span class="parameter">DatabaseName</span>!]<span class="parameter">TableName</span></span></dt><dd>
+          <p>Specifies the name of the table to open. To open a table not in the current database, precede the table name with the database name followed immediately by an exclamation point (!).</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>On Microsoft Windows 98 and later, spaces are significant in file names; therefore, avoid using extraneous spaces in <span class="parameter">TableName</span> and <span class="parameter">DatabaseName</span>. If a table or database name contains spaces, enclose the name in quotation marks (" " or ' '). </p>
+          </td></tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>To access a table associated with or not associated with a database, specify the full path. However, you can increase performance by using only the table name.</p>
+          </td></tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If you do not include a database name, Visual FoxPro can open tables only in the current database. Visual FoxPro does not recognize path names correctly if a disk or directory name contains an exclamation point.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">SQLViewName</span>
+        </span></dt><dd>
+          <p>Specifies the name of a SQL view in the current database to open. <span class="parameter">SQLViewName</span> can also be the name of an offline view created with the CREATEOFFLINE( ) function. For more information, see <span class="linkTerms"><a href="/html/fa98fc4f-58cb-4796-abd3-8530f504b5b5.htm">CREATEOFFLINE( ) Function</a></span>.</p>
+          <p>You can create a SQL view using <span class="linkTerms"><a href="/html/2a22b360-882b-4bc9-ab9d-b89be1e56dd1.htm">CREATE SQL VIEW Command</a></span>.  </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">? </span></dt><dd>
+          <p>Displays the <b>Use</b> dialog box so you can choose a table.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN <span class="parameter">nWorkArea</span></span></dt><dd>
+          <p>Specifies the work area in which to open the table. To close a table in a specific work area, call USE without the table name but include the IN clause and the work area number.</p>
+          <p>The IN clause supports 0 as a work area. Including 0 opens a table in the lowest available work area. For example, if tables are open in work areas 1 through 10, the following command opens the <code>customer</code> table in work area 11:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE customer IN 0</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">IN <span class="parameter">cTableAlias</span></span></dt><dd>
+          <p>Specifies the alias of the table to open in the work area of a table that is currently open. The alias of the open table is specified with <span class="parameter">cTableAlias</span>.</p>
+          <p>If you omit <span class="parameter">nWorkArea</span> and <span class="parameter">cTableAlias</span>, the table is opened in the currently selected work area. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ONLINE </span></dt><dd>
+          <p>Opens an offline view created with CREATEOFFLINE( ). You can specify the name of the offline view in <span class="parameter">SQLViewName</span>. You can use TABLEUPDATE( ) to update data on the server.</p>
+          <p>The offline view must be opened exclusively. Before opening the offline view with USE, include the EXCLUSIVE clause in USE or SET EXCLUSIVE to ON.    </p>
+          <p>You cannot open or close an offline view in ONLINE mode from within a transaction. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ADMIN </span></dt><dd>
+          <p>Opens an offline view created with CREATEOFFLINE( ) but does not update the data on the server with the changes made to the offline view. Opening an offline view with the ADMIN keyword allows you to make changes to the offline view without updating the data on the server.</p>
+          <p>You cannot open or close an offline view in ADMIN mode from within a transaction. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">AGAIN </span></dt><dd>
+          <p>To open a table concurrently in multiple work areas, you can do one of the following:</p>
+          <ul><li>
+              <p>Select another work area and issue USE with the table name and the AGAIN clause.</p>
+            </li><li>
+              <p>Issue USE with the table name and the AGAIN clause, and specify a different work area with the IN clause.</p>
+            </li></ul>
+          <p>When you open a table again in another work area, the table in the new work area takes on the attributes of the table in the original work area. For example, if a table is opened for read-only or exclusive access and is opened again in another work area, the table is opened for read-only or exclusive access in the new work area.   </p>
+          <p>Index files opened for the original table are available for the table you open again if you don't open indexes when you open the table again. The index order is set to 0 in the work areas where the table is opened again.   </p>
+          <p>You can open indexes that were not opened with the original table. This sets the index order to 0 for the original table.   </p>
+          <p>A table opened again is assigned the default alias of the work area. You can include an alias every time you open a table in multiple work areas as long as the aliases are unique.   </p>
+          <p>In Visual FoxPro for Windows, opening a table again in another work area doesn't consume an additional file handle. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOREQUERY [<span class="parameter">nDataSessionNumber</span>] </span></dt><dd>
+          <p>Specifies that data from a remote SQL view is not downloaded again. NOREQUERY is available only for SQL views and is typically used when you open a SQL view again by including the AGAIN clause. Including the NOREQUERY clause increases performance for large data sets because the data does not need to be downloaded again.</p>
+          <p>
+            <span class="parameter">nDataSessionNumber</span> can be included to specify that data for a remote SQL view in a specific data session isn't downloaded again. If <span class="parameter">nDataSessionNumber</span> is omitted, data isn't downloaded for the view open in the current data session. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NODATA </span></dt><dd>
+          <p>Download the structure of a SQL view without data. NODATA provides the fastest method for determining the structure of a SQL view. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Opening a view with NODATA always opens a new cursor for the view. When you use NODATA, Visual FoxPro creates a WHERE clause for the view that always returns a value of false. Because no records on the data source meet the WHERE clause condition, no rows are selected for the remote data source cursor. Therefore, Visual FoxPro retrieves the structure of the view quickly because it does not wait for the remote data source to build a potentially large cursor.</p>
+          </td></tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>Using NODATA is more efficient than setting the MaxRecords property to 0 on your view or cursor using DBSETPROP( ) or CURSORSETPROP( ) respectively. When you use the MaxRecords property, you must wait while the remote data source builds a cursor for the view containing all data rows that meet the view's normal WHERE clause conditions. Rows from the full remote view cursor are then downloaded according to the setting of the MaxRecords property. For more information, see <span class="linkTerms"><a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( ) Function</a></span> and <span class="linkTerms"><a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a></span>.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">INDEX <span class="parameter">IndexFileList</span></span></dt><dd>
+          <p>Specifies a set of indexes to open with the table. If a table has a structural compound index file, the index file is automatically opened with the table.</p>
+          <p>
+            <span class="parameter">IndexFileList</span> can contain any combination of names of single-entry .idx and compound .cdx index files. You don't have to include the file name extensions for index files unless an .idx and a .cdx index file in the index file list have the same name.   </p>
+          <p>The first index file named in the index file list is the master controlling index file, which controls how records in the table are accessed and displayed. However, if the first index file is a .cdx compound index file, records in the table are displayed and accessed in physical record order. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">INDEX ? </span></dt><dd>
+          <p>Displays the <b>Open</b> dialog with a list of available index files to choose from.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ORDER [<span class="parameter">nIndexNumber</span>] </span></dt><dd>
+          <p>Specifies a master controlling single-entry .idx index file or compound .cdx index file tag other than the first index file or index tag specified in <span class="parameter">IndexFileList</span>.</p>
+          <p>.Idx index files are numbered first, in the order in which they appear in the index file list. Tags in the structural compound index file (if one exists) are then numbered in the order in which the tags were created. Finally, tags in any independent compound index files are numbered in the order in which they were created. You can also use SET ORDER to specify the controlling index file or tag. See <span class="linkTerms"><a href="/html/f88b697b-c89f-4343-b9f9-4ecda6fe95ac.htm">SET ORDER Command</a></span> for a further discussion of the numbering of index files and tags.   </p>
+          <p>If <span class="parameter">nIndexNumber</span> is 0, records in the table are displayed and accessed in physical record order, and the indexes remain open. Including ORDER 0 enables open index files to be updated while presenting the file in record number order. Including ORDER without <span class="parameter">nIndexNumber</span> is identical to including ORDER 0. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ORDER [<span class="parameter">IDXFileName</span>] </span></dt><dd>
+          <p>Specifies a single-entry .idx index file as the master controlling index file.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ORDER [TAG <span class="parameter">TagName</span>] [OF <span class="parameter">CDXFileName</span>] </span></dt><dd>
+          <p>Specifies a master controlling tag in a compound .cdx index file. The tag name can be from the structural compound index file or any open compound index file. If identical tag names exist in open compound index files, include OF <span class="parameter">CDXFileName</span> and specify the name of the compound index file containing the desired tag.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ASCENDING </span></dt><dd>
+          <p>Specifies that the table records are accessed and displayed in ascending order.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DESCENDING </span></dt><dd>
+          <p>Specifies that the table records are accessed and displayed in descending order.</p>
+          <p>Including ASCENDING or DESCENDING doesn't change the index file or tag; it alters only the order in which records are displayed and accessed. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ALIAS <span class="parameter">cTableAlias</span></span></dt><dd>
+          <p>Creates an alias for the table that you can use with other commands and functions. An alias must begin with a letter or an underscore and can consist of up to 254 letters, digits, or underscores.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Visual FoxPro automatically creates an alias if the alias you provide contains an unsupported alias character.</p>
+          </td></tr></table></div>
+          <p>When a table is opened, it is automatically assigned an alias, which is the table name if ALIAS is omitted. However, you can create a different alias for the table by including ALIAS and a new alias. In earlier versions of FoxPro versions, an alias must begin with a letter or an underscore and can contain up to 10 letters, digits or underscores.   </p>
+          <p>Visual FoxPro assigns a default alias if a conflict between alias occurs or if you use the AGAIN keyword to open a table simultaneously in multiple work areas without specifying an alias when you open the table in each work area. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">EXCLUSIVE </span></dt><dd>
+          <p>Opens a table for exclusive use on a network. For more information on the exclusive use of tables, see <span class="linkTerms"><a href="/html/9a2fc5a3-ffa7-4008-8348-9788cd75d5a2.htm">SET EXCLUSIVE Command</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SHARED </span></dt><dd>
+          <p>Opens a table for shared use on a network. SHARED allows you to open a table for shared use even when EXCLUSIVE is set ON.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NOUPDATE </span></dt><dd>
+          <p>Prevents changes to the table and its structure.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CONNSTRING <span class="parameter">cConnectionString</span> | <span class="parameter">nStatementHandle</span> </span></dt><dd>
+          <p>Specifies a connection string for the ODBC data source. The <span class="parameter">cConnectionString</span> parameter can represent parameters normally passed using either SQLCONNECT( ) or SQLSTRINGCONNECT( ). The <span class="parameter">nStatementHandle</span> parameter specifies a memory variable representing an existing statement handle from an existing connection.</p>
+          <p>When you use <span class="parameter">cConnectionString</span>, Visual FoxPro passes the connection string to the remote view that you specify with <span class="parameter">SQLViewName</span>, which then uses the connection string to connect to the specified data source instead of using any previously defined connection string. Passing an empty string ("") displays the <b>ODBC Data Source</b> dialog box and makes it possible for the user to select a data source.    </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If you specify incomplete data in the connection string, the data source displays a login dialog box for any needed login information. If you omit the optional CONNSTRING <span class="parameter">cConnectionString</span> clause, the remote view uses the currently defined default connection. For more information about data source connection strings, see your ODBC driver documentation.</p>
+          </td></tr></table></div>
+          <p>Visual FoxPro supports overriding the default connection for a remote view and requires the <span class="parameter">nStatementHandle</span> parameter for supporting shared connections.  </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>If you issue USE without a table name, and a table file is open in the currently selected work area, Visual FoxPro closes the table. Visual FoxPro also closes a table when another table is opened in the same work area. You cannot have more than one table open in a work area at one time.</p>
+      <p>When used with a noncurrent database, the USE command opens the database automatically but does not set the database as the current database. When the table closes, the database remains open.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example opens three tables in three different work areas. The Data Session window is opened to show where the tables are open and to show the alias for each table.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\testdata')
+ACTIVATE WINDOW View
+USE customer IN 0  &amp;&amp; Opens Customer table
+USE employee IN 0  &amp;&amp; Opens Employee table
+USE products IN 0  &amp;&amp; Opens Products table</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/9d3a8e81-effb-4441-bfc3-9051d140a2e8.htm">How to: Use Tables from Other Databases</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/04008d6d-1ffd-4555-bf6a-1c50f39b418f.htm">Managing Views</a></span><br /><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="USE Command">
+<param name="ALink Name" value="USE">
+</OBJECT>

@@ -1,0 +1,368 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Understanding Sort Orders</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Understanding Sort Orders</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Sort orders incorporate the sorting rules of different locales, making it possible for you to sort data in those languages correctly. In Visual FoxPro, the current sort order determines the results of character expression comparisons and the order in which records appear in indexed or sorted tables.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Sorting works differently in double-byte character sets (DBCS) environments.</p>
+    </td></tr></table></div>
+    <p>Use the appropriate sort order, because different sort orders produce different results, as shown in the following table.</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Unsorted
+          </th>
+          <th>
+            Machine
+          </th>
+          <th>
+            General
+          </th>
+          <th>
+            Spanish
+          </th>
+        </tr><tr>
+        <td>
+          <p>!@#$</p>
+        </td>
+        <td>
+          <p>Space</p>
+        </td>
+        <td>
+          <p>space</p>
+        </td>
+        <td>
+          <p>Space</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>1234</p>
+        </td>
+        <td>
+          <p>!@#$</p>
+        </td>
+        <td>
+          <p>!@#$</p>
+        </td>
+        <td>
+          <p>!@#$</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>space</p>
+        </td>
+        <td>
+          <p>1234</p>
+        </td>
+        <td>
+          <p>1234</p>
+        </td>
+        <td>
+          <p>1234</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Caesar</p>
+        </td>
+        <td>
+          <p>Caesar</p>
+        </td>
+        <td>
+          <p>a</p>
+        </td>
+        <td>
+          <p>a</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>csar</p>
+        </td>
+        <td>
+          <p>Car</p>
+        </td>
+        <td>
+          <p>ab</p>
+        </td>
+        <td>
+          <p>Ab</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Strasse</p>
+        </td>
+        <td>
+          <p>Char</p>
+        </td>
+        <td>
+          <p>b</p>
+        </td>
+        <td>
+          <p>b</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>strae</p>
+        </td>
+        <td>
+          <p>Czech</p>
+        </td>
+        <td>
+          <p>Caesar</p>
+        </td>
+        <td>
+          <p>Caesar</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Car</p>
+        </td>
+        <td>
+          <p>Strasse</p>
+        </td>
+        <td>
+          <p>csar</p>
+        </td>
+        <td>
+          <p>Csar</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Char</p>
+        </td>
+        <td>
+          <p>Ab</p>
+        </td>
+        <td>
+          <p>Car</p>
+        </td>
+        <td>
+          <p>Car</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Czech</p>
+        </td>
+        <td>
+          <p>Csar</p>
+        </td>
+        <td>
+          <p>ar</p>
+        </td>
+        <td>
+          <p>ar</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>ab</p>
+        </td>
+        <td>
+          <p>Strae</p>
+        </td>
+        <td>
+          <p>Char</p>
+        </td>
+        <td>
+          <p>Czech</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>ar</p>
+        </td>
+        <td>
+          <p>ar</p>
+        </td>
+        <td>
+          <p>Czech</p>
+        </td>
+        <td>
+          <p>Char</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>a</p>
+        </td>
+        <td>
+          <p>a</p>
+        </td>
+        <td>
+          <p>Strasse</p>
+        </td>
+        <td>
+          <p>Strasse</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>b</p>
+        </td>
+        <td>
+          <p>b</p>
+        </td>
+        <td>
+          <p>strae</p>
+        </td>
+        <td>
+          <p>Strae</p>
+        </td>
+      </tr></table></div>
+  <h1 class="heading">Sort Order Guidelines</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Consider the following guidelines when choosing a sort order:
+</p>
+      <ul><li>
+          <p>Avoid the Machine sort order if you want to sort international characters properly, because Machine sorts international characters in ASCII order. For example, notice that <code>ar</code> follows <code>strae</code>.</p>
+        </li><li>
+          <p>Characters with diacritical marks sort differently than characters without diacritical marks. For example, in the General and Spanish sort orders, notice that <code>a</code> sorts before <code>ab</code> but <code>ab</code> sorts before <code>b</code>.</p>
+        </li><li>
+          <p>Ligatures such as  sort the same as their equivalent character expansions. For example, <code>strae</code> sorts the same as <code>Strasse</code>, and <code>csar</code> sorts the same as <code>Caesar</code>.</p>
+        </li><li>
+          <p>In some languages, two characters sort as a single character. For example, in Spanish the <code>Ch</code> in <code>Char</code> sorts as a character between <code>C</code> and <code>D</code>.</p>
+        </li></ul>
+      <p>The following sections describe how to specify sort orders, check the current sort order, and recognize the effects of sort orders.</p>
+    </div><h1 class="heading">Checking Sort Orders</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can determine the current sort order by using the <a href="/html/50426562-080d-465c-94a9-e524ec4ee777.htm">SET ('COLLATE')</a> function. For example, you can save the current sort order, set the current sort order to Machine, perform whatever work is necessary, and then restore the original sort order by using the following code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>cCurrentOrder=SET('COLLATE')
+SET COLLATE TO 'MACHINE'
+*
+* code that requires the Machine sort order
+*
+SET COLLATE TO cCurrentOrder  &amp;&amp; return to the previous sort order</pre></td></tr></table></span></div>
+      <p>You can also determine the sort order of an index or index tag by using the <a href="/html/382724b0-6ac5-4e50-a5ac-a5f1bb7f1aa5.htm">IDXCOLLATE( )</a> function.</p>
+    </div><h1 class="heading">Recognizing the Effects of Sort Orders</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The sort order affects the results of string comparisons, <a href="/html/fe9bb458-0229-4841-b3f7-3762e61228c6.htm">SEEK</a>, and <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL</a>, as described in the following sections.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Comparing Strings</h3><div class="subSection" xmlns="">
+          <p>All sort orders except for Machine and Unique Weight ignore case. This means that you don't have to use <a href="/html/bdc92848-4fc3-484f-b6a5-24b6bc95a35c.htm">UPPER( )</a> in your index expressions.</p>
+          <p>The current sort order affects string comparisons. For example, when you set the sort order to General, the following statements return True (.T.):</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>?"A" = "a"
+?"Strae"="Strasse"
+?"" = "ae"</pre></td></tr></table></span></div>
+          <p>However, when you use the Machine sort order, all of these statements return False (.F.). because the strings are matched for an exact comparison, byte by byte.</p>
+          <p>The character string comparison operator (= =) gives you the same result as when you compare by value or when you compare using the Machine sort order; that is, it compares strings byte by byte. For example, the following statement returns False (.F.):</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? "Strae" == "Strasse"</pre></td></tr></table></span></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Visual FoxPro ignores SET EXACT when you use the character string comparison operator (= =).</p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Using SEEK</h3><div class="subSection" xmlns="">
+          <p>Visual FoxPro ignores diacritical marks when you perform a <i>partial seek</i>. A partial seek occurs when you make the length of the expression less than the length of the key. If diacritics are important, consider using the <a href="/html/c61f2d7e-2317-477e-9bf9-fa900c1bcac9.htm">SCAN ... ENDSCAN</a> or <a href="/html/dd60dab3-c995-47b1-9efb-761750fc9492.htm">LOCATE</a> commands instead of <a href="/html/fe9bb458-0229-4841-b3f7-3762e61228c6.htm">SEEK</a>.</p>
+          <p>The advantages of using SCAN and LOCATE instead of SEEK include the following:
+</p>
+          <ul><li>
+              <p>SCAN and LOCATE are sensitive to diacritics.</p>
+            </li><li>
+              <p>Visual FoxPro fully optimizes the results of SCAN or LOCATE if the current sort order is Machine or Unique Weight, whereas Visual FoxPro only partly optimizes the results of SEEK.</p>
+            </li><li>
+              <p>SCAN and LOCATE remember the condition that invoked them, making it possible for you to use them for looping on a condition. In contrast, SEEK positions you somewhere in the index, and <a href="/html/1c473072-7070-489e-83b6-a35c8a4c4a42.htm">SKIP</a> continues down the index from that point. Accordingly, SEEK might not produce the results you want with international data.</p>
+            </li></ul>
+        </div>
+      <h3 class="subHeading" xmlns="">Using SELECT - SQL</h3><div class="subSection" xmlns="">
+          <p>The <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL</a> command uses the current sort order. For example, if you have an index tag based on the General sort order and the current sort order (returned by <a href="/html/50426562-080d-465c-94a9-e524ec4ee777.htm">SET ('COLLATE')</a>) is Machine, the result of SELECT SQL is based on Machine.</p>
+          <p>To employ the current sort order, use the ORDER BY clause of SELECT - SQL.</p>
+        </div>
+    </sections></div><h1 class="heading">Using Indexes</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Sort orders determine the order of records in indexed tables. Consider the following guidelines for using indexes with sort orders:
+</p>
+      <ul><li>
+          <p>Rebuild indexes created in earlier versions of FoxPro if you want the indexes to use a sort order other than Machine.</p>
+        </li><li>
+          <p>Rebuild dBASE indexes to take advantage of Visual FoxPro sort orders.</p>
+        </li><li>
+          <p>Use the <a href="/html/b515a6e4-392f-44e8-a48f-52054f2c8b72.htm">REINDEX</a> command to rebuild an index, because REINDEX leaves the sort order unchanged.</p>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/a3d7b0e0-8320-44b1-8983-17c30a78c6c4.htm">Code Pages Supported by Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/a3a5e840-ab92-4925-8425-c6df294d2794.htm">Data Tab, Options Dialog Box</a></span><br /><span class="linkTerms"><a href="/html/5bc473c4-9546-4518-bbe2-96301a4fbee9.htm">Modifying International Applications</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/c9bd3655-ed58-45df-870c-a867c0027bad.htm">Sorting Data in International Applications</a></span><br /><span class="linkTerms"><a href="/html/667aa0c1-497c-4aa4-98f9-5e0186fc73f8.htm">Application Creation with Double-Byte Character Sets</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/e3423e23-033c-40b4-971c-75640ab17ec7.htm">Developing International Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Understanding Sort Orders">
+</OBJECT>

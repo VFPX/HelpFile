@@ -1,0 +1,129 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Optimizing Visual FoxPro in a Multiuser Environment</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Optimizing Visual FoxPro in a Multiuser Environment</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you run Visual FoxPro or Visual FoxPro applications in a multiuser environment, you can improve performance by managing storage of temporary files and controlling the way tables are shared.</p>
+  <h1 class="heading">Managing Temporary Files</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>In most multiuser environments, it is recommended that you save temporary files to local disks or memory when networked computers contain large amounts of free disk space. Redirecting storage of temporary files can improve performance by reducing frequent access to the network drive. </p>
+      <p>On small networks with older networked computers and slow hard disks, you might experience better performance by leaving Visual FoxPro temporary files on the file server; however, when in doubt, direct temporary files to the local disk. When working on large, heavily used networks, always redirect temporary files to the local disk.</p>
+      <p>By saving all temporary files to a single directory on a local hard drive, you can safely erase the contents of the temporary file directory on the file server prior to each Visual FoxPro session. This action purges the system of any temporary files that were created but not erased by Visual FoxPro due to a system reboot or power loss.</p>
+      <p>For more information about temporary files, see <a href="/html/03aa9f64-db4a-4465-acef-3ca2016a8a0a.htm">Optimizing the Operating Environment</a> and <a href="/html/eeeb5b52-a970-4260-b33f-2e65852329ae.htm">How to: Specify the Location of Temporary Files</a>.</p>
+    </div><h1 class="heading">Sharing Tables</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>If users share tables on a network, the way you manage access to them can affect performance. 
+</p>
+      <ul><li>
+          <p>Avoid opening and closing tables repeatedly.</p>
+        </li><li>
+          <p>Buffer write operations to tables that are not shared. </p>
+        </li><li>
+          <p>Provide exclusive access to tables.</p>
+        </li><li>
+          <p>Limit the time on locking tables.</p>
+        </li></ul>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Providing Exclusive Access</h3><div class="subSection" xmlns="">
+          <p>You can enhance performance for the <b>APPEND</b>, <b>REPLACE</b>, and <b>DELETE</b> commands and operations that run at times when no other users require access to the data, for example, overnight updates, by opening data files for exclusive use. When tables are open for exclusive use, performance improves because Visual FoxPro does not need to test the status of record or file locks. </p>
+          <p>To open data files for exclusive use, use the <b>EXCLUSIVE</b> clause in the <b>USE</b> and <b>OPEN DATABASE</b> commands. For more information, see <a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a> and <a href="/html/167e24f6-0e6f-4cc1-a1a9-dffc9491d85a.htm">OPEN DATABASE Command</a>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Limiting the Time on Locking Tables</h3><div class="subSection" xmlns="">
+          <p>You can reduce contention between users for write access to a table or record by shortening the amount of time for locking a record or table. Instead of locking a record while the user edits it, lock the record only after it has been edited. Using optimistic row buffering provides the shortest amount of time that records are locked. For more information, see <a href="/html/c94d4b30-e6aa-408c-a29d-6b27eb93674d.htm">Buffering Data</a>. </p>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/a5eba8b0-679c-4d87-9ea2-b10b9fc6e48f.htm">Optimizing Applications in Multiuser Environments</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c43a1e26-abb8-486a-9e59-a8c188a882cc.htm">Optimizing Your System</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Optimizing Visual FoxPro in a Multiuser Environment">
+</OBJECT>

@@ -1,0 +1,478 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Visual FoxPro Data and Field Types</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Visual FoxPro Data and Field Types</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>All data in Visual FoxPro have a particular data type, which defines values permitted for the data and the range and size of those values. After you identify and specify the data type you are using, Visual FoxPro can efficiently store and manipulate the data.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When you create a table, you can specify the type of data to store in each field of the table. You can specify more data types for fields in a table than for variables and arrays. Variables and arrays can store only a subset of the available Visual FoxPro data types; however. The value you store in a variable or array element determines the type of data in the variable or array element. For more information, see <a href="/html/25531062-a27e-47b0-b753-f5ecec809a19.htm">How to: Choose Data Types</a>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>You can use the <a href="/html/7e83da43-86c1-4b0d-a00d-ea412382331f.htm">TYPE( )</a> function to determine the type of data stored in a variable, array element, or field.</p>
+      </td></tr></table></div>
+      <div class="labelheading"><b>Visual FoxPro Data Types</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Data type
+            </th>
+            <th>
+              Description
+            </th>
+            <th>
+              Size
+            </th>
+            <th>
+              Range
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/8159234d-9dfb-44a9-a220-036eb36b1d72.htm">Blob</a>
+            </p>
+          </td>
+          <td>
+            <p>Binary data of indeterminate length.</p>
+            <p>
+              <b>Blob</b> values are in a memo (.fpt) file.</p>
+            <p>No code page translation is performed on <b>Blob</b> data.</p>
+          </td>
+          <td>
+            <p>4 bytes in a table</p>
+          </td>
+          <td>
+            <p>Limited by available memory and/or 2GB file size limit.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9d346afb-3b45-4178-85e2-68298ba4507f.htm">Character</a>
+            </p>
+          </td>
+          <td>
+            <p>Alphanumeric text</p>
+            <p>For example, a customer address</p>
+          </td>
+          <td>
+            <p>1 byte per character to 254</p>
+          </td>
+          <td>
+            <p>Any characters</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/caed22ae-e7e5-4c6b-8e07-a7c5599aaa20.htm">Currency</a>
+            </p>
+          </td>
+          <td>
+            <p>Monetary amounts</p>
+            <p>For example, the price of an item</p>
+          </td>
+          <td>
+            <p>8 bytes</p>
+          </td>
+          <td>
+            <p> - $922337203685477.5807 to $922337203685477.5807</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/e1245351-12ff-44d0-802c-1c50d6add54e.htm">Date</a>
+            </p>
+          </td>
+          <td>
+            <p>Chronological data consisting of month, day, and year</p>
+            <p>For example, an order date</p>
+          </td>
+          <td>
+            <p>8 bytes</p>
+          </td>
+          <td>
+            <p>When using strict date formats, {^0001-01-01}, January 1st, 1 A.D to {^9999-12-31}, December 31st, 9999 A.D.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/6a5e9942-dcda-4705-b2d2-46b35dfa6526.htm">DateTime</a>
+            </p>
+          </td>
+          <td>
+            <p>Chronological data consisting of month, day, year, hours, minutes, and seconds</p>
+            <p>For example, date and time of arrival</p>
+          </td>
+          <td>
+            <p>8 bytes</p>
+          </td>
+          <td>
+            <p>When using strict date formats, {^0001-01-01}, January 1st, 1 A.D to {^9999-12-31}, December 31st, 9999 A.D., plus 00:00:00 a.m. to 11:59:59 p.m.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/d33381bc-3b27-43e1-a19b-2bae4b4a42a9.htm">Logical</a>
+            </p>
+          </td>
+          <td>
+            <p>Boolean value of True or False</p>
+            <p>For example, whether or not an order has been filled</p>
+          </td>
+          <td>
+            <p>1 byte</p>
+          </td>
+          <td>
+            <p>True (.T.) or False (.F.)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f0945c58-08e4-46fc-a15b-e1714a064d91.htm">Numeric</a>
+            </p>
+          </td>
+          <td>
+            <p>Integers or decimal numbers</p>
+            <p>For example, the quantity of items ordered</p>
+          </td>
+          <td>
+            <p>8 bytes in memory;
+1 to 20 bytes in table</p>
+          </td>
+          <td>
+            <p> - .9999999999E+19 to .9999999999E+20</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/8617af84-55a5-4480-9b44-f349f066dac0.htm">Varbinary</a>
+            </p>
+          </td>
+          <td>
+            <p>Binary values. </p>
+            <p>
+              <b>Varbinary</b> data is similar to <b>Varchar</b> data in that values do not include padding with zero (0) bytes. The length of the contained value is stored internally.</p>
+            <p>No code page translation is performed on <b>Varbinary</b> data.</p>
+          </td>
+          <td>
+            <p>1 byte per hexadecimal value up to 255 total bytes</p>
+          </td>
+          <td>
+            <p>Any hexadecimal value</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/88ce4d81-aefc-42c8-96d7-34eb0b0ee38c.htm">Variant</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <b>Variant</b> data can be any of the Visual FoxPro data types and the null value. </p>
+            <p>Once a value is stored to a variant, the variant assumes the data type of the data it contains.</p>
+            <p>Variants are designated with an <i>e</i> prefix in language syntax.</p>
+          </td>
+          <td>
+            <p>See other data types.</p>
+          </td>
+          <td>
+            <p>See other data types.</p>
+          </td>
+        </tr></table></div>
+      <p>In addition, Visual FoxPro provides data types that apply only to fields in tables.</p>
+      <div class="labelheading"><b>Visual FoxPro Field Types</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Field type
+            </th>
+            <th>
+              Description
+            </th>
+            <th>
+              Size
+            </th>
+            <th>
+              Range
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9d346afb-3b45-4178-85e2-68298ba4507f.htm">Character (Binary)</a>
+            </p>
+          </td>
+          <td>
+            <p>Any <b>Character</b> data that you do not want translated across code pages</p>
+            <p>For example, user passwords stored in a table and used in different countries or regions.</p>
+          </td>
+          <td>
+            <p>1 byte per character to 254</p>
+          </td>
+          <td>
+            <p>Any characters</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/c3a10d85-d38a-4bee-b072-6f88d0a0775e.htm">Double</a>
+            </p>
+          </td>
+          <td>
+            <p>A double-precision floating-point number</p>
+            <p>For example, scientific data requiring a high degree of precision.</p>
+          </td>
+          <td>
+            <p>8 bytes</p>
+          </td>
+          <td>
+            <p>+/-4.94065645841247E-324 to +/-8.9884656743115E307</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/fe695288-5d41-4425-84a2-0d0f40a40cb7.htm">Float</a>
+            </p>
+          </td>
+          <td>
+            <p>Same as <b>Numeric</b></p>
+          </td>
+          <td>
+            <p>8 bytes in memory;
+1 to 20 bytes in table</p>
+          </td>
+          <td>
+            <p> - .9999999999E+19 to .9999999999E+20</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/12244287-5c07-4f00-b2ae-c734b2a4becd.htm">General</a>
+            </p>
+          </td>
+          <td>
+            <p>Reference to an OLE object</p>
+            <p>For example, a Microsoft Excel worksheet.</p>
+          </td>
+          <td>
+            <p>4 bytes in table</p>
+          </td>
+          <td>
+            <p>Limited by available memory.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/e2e6eeaf-b170-4a8c-b826-c5127938d8d6.htm">Integer</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <b>Numeric</b> value with no decimals</p>
+            <p>For example, a line number in an order.</p>
+          </td>
+          <td>
+            <p>4 bytes</p>
+          </td>
+          <td>
+            <p>-2147483647 to 2147483647</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/e2e6eeaf-b170-4a8c-b826-c5127938d8d6.htm">Integer (Autoinc)</a>
+            </p>
+          </td>
+          <td>
+            <p>Same as <b>Integer</b> but also an automatically incrementing value. Read-only.</p>
+          </td>
+          <td>
+            <p>4 bytes</p>
+          </td>
+          <td>
+            <p>Value controlled by autoincrement Next and Step values.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/89b18a82-1168-4f2f-a5ce-20784b94579a.htm">Memo</a>
+            </p>
+          </td>
+          <td>
+            <p>Alphanumeric text of indeterminate length or reference to a block of data</p>
+            <p>For example, notes about a phone call in a phone log.</p>
+          </td>
+          <td>
+            <p>4 bytes in table</p>
+          </td>
+          <td>
+            <p>Limited by available memory.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/89b18a82-1168-4f2f-a5ce-20784b94579a.htm">Memo (Binary)</a>
+            </p>
+          </td>
+          <td>
+            <p>Same as <b>Memo</b> except that memo field data does not change across code pages</p>
+            <p>For example, a login script used in different countries or regions.</p>
+          </td>
+          <td>
+            <p>4 bytes in table</p>
+          </td>
+          <td>
+            <p>Limited by available memory.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/ecece0aa-2f1b-4135-8429-8a173c9e835e.htm">Varchar</a>
+            </p>
+          </td>
+          <td>
+            <p>Alphanumeric text. </p>
+            <p>
+              <b>Varchar</b> is similar to <b>Character</b> except values in <b>Varchar</b> fields do not include padding with additional spaces. The length of the contained value is stored internally.</p>
+          </td>
+          <td>
+            <p>1 byte per character up to 254 total bytes</p>
+          </td>
+          <td>
+            <p>Any characters</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/ecece0aa-2f1b-4135-8429-8a173c9e835e.htm">Varchar (Binary)</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <b>Varchar</b> type data that you do not want translated across code pages.</p>
+          </td>
+          <td>
+            <p>1 byte per character up to 254 total bytes</p>
+          </td>
+          <td>
+            <p>Any characters</p>
+          </td>
+        </tr></table></div>
+      <p>Each data type has its own characteristics, including storage size:</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Data Type Storage Differences</caption></caption></b><br></br></div><img src="../local/Local_-622472333_afl00004.gif" alt="FoxPro Character Date Integer"></img>
+      <p>To see a list of the functions you can use with each data type, see <a href="/html/fbb09b4c-2885-498d-a9df-23c2cbdb2052.htm">Language Categories</a>.</p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b353259f-ae44-4c20-9b4c-53741595d66c.htm">Data and Field Types</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Visual FoxPro Data and Field Types">
+</OBJECT>

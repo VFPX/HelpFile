@@ -1,0 +1,187 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>CLOSE Commands</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">CLOSE Commands</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Closes various file types.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+CLOSE [ALL | ALTERNATE | DATABASES [ALL] | DEBUGGER | FORMAT | INDEXES
+   | PROCEDURE | TABLES [ALL]]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">ALL </span></dt><dd>
+          <p>Closes all open databases, tables, and indexes in the current and any inactive data sessions and selects work area 1. CLOSE ALL also closes any files opened with the FCREATE( ) and FOPEN( ) low-level file functions, and any procedure files opened with SET PROCEDURE. CLOSE ALL does not close a file opened with SET PRINT.</p>
+          <p>CLOSE ALL also closes the following:   </p>
+          <ul><li>
+              <p>Form Designer</p>
+            </li><li>
+              <p>Project Manager</p>
+            </li><li>
+              <p>Label Designer</p>
+            </li><li>
+              <p>Report Designer</p>
+            </li><li>
+              <p>Query Designer</p>
+            </li></ul>
+          <p>CLOSE ALL does not close these:   </p>
+          <ul><li>
+              <p>Command window</p>
+            </li><li>
+              <p>Debug window</p>
+            </li><li>
+              <p>Help</p>
+            </li><li>
+              <p>Trace window </p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CLOSE ALTERNATE </span></dt><dd>
+          <p>Closes an alternate file opened with SET ALTERNATE.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CLOSE DATABASES [ALL] </span></dt><dd>
+          <p>Closes the current database in the current data session and its tables. If there is no current database, all open free tables, indexes, and format files in all work areas in the current data session are closed, and work area 1 is selected.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Using CLOSE DATABASES in the Command window does not close a database if the database was opened in the Project Manager by expanding its node or when a form is running in its own data session. Under these circumstances, the database remains open until the Project Manager closes the database or until the form using the database closes.</p>
+          </td></tr></table></div>
+          <p>The ALL keyword specifies to close the following items in current and all inactive data sessions and that work area 1 is selected:   </p>
+          <ul><li>
+              <p>All open databases and their tables, except for currently selected databases in other data sessions or databases and their tables that are open in other data sessions.</p>
+            </li><li>
+              <p>All open free tables.</p>
+            </li><li>
+              <p>All indexes and format files in all work areas.</p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CLOSE DEBUGGER </span></dt><dd>
+          <p>Closes the Visual FoxPro debugger.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CLOSE FORMAT </span></dt><dd>
+          <p>Closes a format file in the current work area opened with SET FORMAT.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CLOSE INDEXES </span></dt><dd>
+          <p>Closes all open index files (both single-entry .idx and independent compound .cdx files) in the current work area. A structural compound index (a .cdx file automatically opened with the table) is not closed.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CLOSE PROCEDURE </span></dt><dd>
+          <p>Closes a procedure file opened with SET PROCEDURE.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CLOSE TABLES [ALL] </span></dt><dd>
+          <p>Closes all tables in the currently selected database. CLOSE TABLES closes all free tables in all work areas if a database isn't open.</p>
+          <p>Include ALL to close all tables in all databases, and all free tables. All databases remain open.   </p>
+          <p>CLOSE TABLES should not be issued when a transaction is in progress; Visual FoxPro will generate an error message. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/00312970-64d1-4f0f-a539-9687382bdcd9.htm">ADD TABLE Command</a></span><br /><span class="linkTerms"><a href="/html/f7881cc7-20cf-435e-85cd-b68c97eba480.htm">CLOSE MEMO Command</a></span><br /><span class="linkTerms"><a href="/html/64ff85c1-0480-419d-97f5-b6d1195d1a3e.htm">CREATE DATABASE Command</a></span><br /><span class="linkTerms"><a href="/html/85c526ff-2759-4c93-a360-d5501c1d53b7.htm">Close Method (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="CLOSE Commands">
+<param name="ALink Name" value="CLOSEs">
+</OBJECT>

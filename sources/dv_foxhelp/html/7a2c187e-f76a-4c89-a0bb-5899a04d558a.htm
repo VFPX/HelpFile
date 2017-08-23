@@ -1,0 +1,128 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Share Connections for Multiple Remote Views</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Share Connections for Multiple Remote Views</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can use one active connection as the information pipeline for multiple remote views by sharing a connection. When you share an active connection, you:  </p>
+    <ul><li>
+        <p>Reduce the number of connections on a remote server.</p>
+      </li><li>
+        <p>Reduce costs for connections to servers that charge on a per-connection basis.</p>
+      </li></ul>
+    <p>You share connections by setting the view definition to use a shared connection upon activation. When the view is used, Visual FoxPro connects to the remote data source using the existing shared connection (if any). If a shared connection isn't in use, Visual FoxPro creates a unique connection when the view is opened, which can then be shared with other views.</p>
+    <p>Only one active instance of a named connection definition is shared during a Visual FoxPro session. If multiple instances of the same connection definition are active, the first instance to be used as a shared connection becomes the designated shared connection. All views that use that connection definition and employ connection sharing will access the remote server through the designated shared connection.</p>
+    <p>Connections other than the designated shared connection are not shared. Connection sharing is not scoped to sessions.</p>
+  <h3 class="procedureSubHeading">To share a connection</h3><div class="subSection"><ul><li>
+        
+          <p>From the Tools menu, choose <b>Options</b> and select the <b>Remote Data</b> tab; then select <b>Share connection</b> in the <b>Remote view defaults</b> area and choose <b>OK</b>. </p>
+          <p>-or- </p>
+        
+      </li><li>
+        
+          <p>Use the <span class="linkTerms"><a href="/html/d9f7a435-663d-4523-9511-c847be4311ca.htm">Query and View Designers</a></span>. </p>
+          <p>-or- </p>
+        
+      </li><li>
+        
+          <p>Use the <span class="linkTerms"><a href="/html/2a22b360-882b-4bc9-ab9d-b89be1e56dd1.htm">CREATE SQL VIEW Command</a></span> command with the SHARE clause.</p>
+        
+      </li></ul>
+      
+        <p>The following code creates a view that, when activated with the <span class="linkTerms"><a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a></span>, shares a connection:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CREATE SQL VIEW product_view_remote ;
+   CONNECTION remote_01 SHARE AS ;
+   SELECT * FROM products
+USE product_view_remote</pre></td></tr></table></span></div>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/515161b6-f2e8-423a-affa-8f87854b114a.htm">How to: Optimize View Performance</a></span><br /><span class="linkTerms"><a href="/html/f974ca23-5b4f-4e5d-919b-e7119a79ab46.htm">How to: Optimize Filters and Joins</a></span><br /><span class="linkTerms"><a href="/html/f5b2d063-c8c2-4ada-bf3a-b599409cb41c.htm">How to: Create Queries (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/231ec44b-c39b-4921-bfa8-6f702821f9f4.htm">How to: Test a Connection for Availability</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Share Connections for Multiple Remote Views">
+</OBJECT>

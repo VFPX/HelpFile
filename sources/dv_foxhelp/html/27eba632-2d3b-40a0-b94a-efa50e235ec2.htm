@@ -1,0 +1,154 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Create a Query-By-Example Form Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Create a Query-By-Example Form Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File:</b> ...\Samples\Solution\Forms\Qbf.scx</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>This sample enables users to search and filter records in the same interface that they view the records.</p>
+      <p>When a user chooses <b>Enter QBF</b>, the code associated with the Click event of cmdQBFMode begins a transaction and appends a blank record to the table to store the user's query text.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* extract from cmdQBFMode.Click
+BEGIN TRANSACTION
+APPEND BLANK
+THISFORM.Refresh</pre></td></tr></table></span></div>
+      <p>When the user chooses <b>Query</b>, code associated with the Click event of cmdExecuteQBF rolls back the transaction, throwing away the new record.</p>
+      <p>You can use transactions only with tables contained in a database. If you want to include QBF capabilities for a table that is not in a database, you can loop through all the controls on the form, save the old ControlSource property setting and set the ControlSource property of the controls to an empty string. After getting the user query string, you can loop back through the controls and reset the ControlSource properties.</p>
+      <p>Code associated with the Click event of cmdExecuteQBF also loops through the controls on the form, checks for user-entered values, and calls the ParseCondition method to assemble the filter string.</p>
+      <p>A user can enter a single value to match or an expression. For example, a user can enter either of the values below in the Title text box to set a filter:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Sales Manager
+!= "Sales Manager"</pre></td></tr></table></span></div>
+      <p>If the user doesn't enter an expression, quotation marks aren't required.</p>
+    </div><h1 class="heading">The ParseCondition Method</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LPARAMETERS cCondition, cControlSource
+LOCAL lcRetCondition, lcFieldName
+IF TYPE('cCondition') = 'C'
+   cCondition = ALLTRIM(cCondition)
+ENDIF
+lcFieldName = SUBSTRC(cControlSource,(RATC(".",cControlSource)+1))
+IF !EMPTY(cCondition) THEN
+   IF TYPE('cCondition')$ "CM" 
+      IF ("&lt;"       $ cCondition OR ;
+         "=="    $ cCondition OR ;
+         "LIKE"    $ cCondition OR ;
+         "&lt;&gt;"    $ cCondition OR ;
+         "!="    $ cCondition OR ;
+         "#"    $ cCondition OR ;
+         "="    $ cCondition OR ;
+         "&gt;"    $ cCondition)
+           lcRetCondition = lcFieldName + cCondition
+      ENDIF
+   ENDIF
+   IF EMPTY(lcRetCondition)
+      DO CASE
+         * put quotes around character expressions
+         CASE TYPE(cControlSource) $ "CM"
+            lcRetCondition = lcFieldName + " = " + CHR(34) + cCondition + CHR(34)
+         * put braces around date expressions
+         CASE TYPE(cControlSource) $ "DT"
+            lcRetCondition = lcFieldName + " = {" + DTOC(cCondition) + "}"
+         OTHERWISE
+            lcRetCondition = lcFieldName + " = " + STR(cCondition)
+      ENDCASE   
+   ENDIF
+ELSE
+   lcRetCondition = ""
+ENDIF
+RETURN lcRetCondition</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/ecd44ada-7118-4681-9ebd-a117114a485e.htm">Create a One-To-Many Data Entry Form Sample</a></span><br /><span class="linkTerms"><a href="/html/348fec52-e48a-489f-86fb-0b0ac888ba69.htm">Solution Samples</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/a7c5a592-3bed-4402-b516-f24e22b721ca.htm">Forms Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Create a Query-By-Example Form Sample">
+<param name="Alink Name" value="vfp.1231557">
+</OBJECT>

@@ -1,0 +1,313 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>COMPILE Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">COMPILE Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Compiles one or more specified source files and creates an object file for each source file. There are two versions of the syntax.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+COMPILE [DATABASE | FORM | CLASSLIB | LABEL | REPORT] <span class="parameter">cFileName</span> | <span class="parameter">cFileSkeleton</span> | ? [ALL]</pre></td></tr></table></span><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+COMPILE <span class="parameter">cFileName</span> | <span class="parameter">cFileSkeleton</span> | ? [ENCRYPT] [NODEBUG] [AS n<span class="parameter">CodePage</span>]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">DATABASE </span></dt><dd>
+          <p>Compiles one or more database (.dbc) files specified by <span class="parameter">cFileName</span> or <span class="parameter">cFileSkeleton</span>. Choosing <b>DATABASE</b> compiles source code for stored procedures that are saved with the database and stores it in an additional memo field. You can use the <b>DATABASE</b> option to compile stored procedures outside the Database Designer.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p><b>COMPILE DATABASE</b> packs memo fields in the database memo file (.dct) to remove unused space from the memo file. Records marked for deletion in the database table are not removed from the table.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FORM </span></dt><dd>
+          <p>Compiles one or more form definition files (.scx) specified by <span class="parameter">cFileName</span> or <span class="parameter">cFileSkeleton</span>. Choosing <b>FORM</b> compiles source code for the data environment that is saved with the form and stores in an additional memo field. Visual FoxPro automatically compiles forms when they are saved in the Form Designer. You can use the <b>FORM</b> option to compile a form outside the Form Designer. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Form source code is stored in memo fields in the Form table. <b>COMPILE FORM</b> compiles the memo fields into object code and stores it in an additional memo field. Visual FoxPro executes the object code in the additional memo field when you use the <b>DO FORM</b> command. For more information, see <a href="/html/a727f12a-4d9f-45ca-aa01-c1bea7de9749.htm">DO FORM Command</a>.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CLASSLIB </span></dt><dd>
+          <p>Compiles one or more visual class library (.vcx) files specified by <span class="parameter">cFileName</span> or <span class="parameter">cFileSkeleton</span>. Source code for a visual class library is stored in memo fields in the visual class library table. Choosing <b>CLASSLIB</b> compiles the memo fields into object code and stores it in an additional memo field.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">LABEL </span></dt><dd>
+          <p>Compiles one or more label definition files (.lbx) specified by <span class="parameter">cFileName</span> or <span class="parameter">cFileSkeleton</span>. Choosing <b>LABEL</b> compiles source code for the data environment saved with the label file and stores it in an additional memo field.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">REPORT </span></dt><dd>
+          <p>Compiles one or more report definition files (.frx) specified by <span class="parameter">cFileName</span> or <span class="parameter">cFileSkeleton</span>. Choosing <b>REPORT</b> compiles source code for the data environment saved with the report file and stores it in an additional memo field.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cFileName</span>
+        </span></dt><dd>
+          <p>Specifies the target file to compile. </p>
+          <p>If you specify one of the listed options, the following table describes the values for <span class="parameter">cFileName</span> that correspond to the option you choose.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Option
+                </th>
+                <th>
+                  
+                    <span class="parameter">cFileName</span>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>DATABASE</p>
+              </td>
+              <td>
+                <p>Name of the database containing the stored procedures to compile. </p>
+                <p>You can compile stored procedures in a database that is not open.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FORM</p>
+              </td>
+              <td>
+                <p>Name of the form to compile.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>CLASSLIB</p>
+              </td>
+              <td>
+                <p>Name of the class library to compile.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>LABEL</p>
+              </td>
+              <td>
+                <p>Name of the report to compile.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>REPORT</p>
+              </td>
+              <td>
+                <p>Name of the report to compile.</p>
+              </td>
+            </tr></table></div>
+          <p>If you do not specify one of the listed options, such as <b>FORM</b> or <b>REPORT</b>, the following list shows other files you can specify for <span class="parameter">cFileName</span>.   </p>
+          <ul><li>
+              <p>Program (.prg)</p>
+            </li><li>
+              <p>Form (.spr)</p>
+            </li><li>
+              <p>Menu (.mpr)</p>
+            </li><li>
+              <p>Query (.qpr)</p>
+            </li><li>
+              <p>Format (.fmt)</p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cFileSkeleton</span>
+        </span></dt><dd>
+          <p>Specifies a set or subset of files that match a file skeleton that can contain wildcard characters such as an asterisk (*) or question mark (?). </p>
+          <p>For example, to compile all database files that begin with the letter A, use the following command:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>COMPILE DATABASE A*</pre></td></tr></table></span></div>
+          <p>To compile all program files that have the .prg file name extension in the current directory or folder, use the following command:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>COMPILE *.PRG</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">? </span></dt><dd>
+          <p>Displays the Compile dialog box so you can browse and choose a file to compile.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ALL </span></dt><dd>
+          <p>For older cross-platform report (.frx) and label (.lbx) files, compiles all records for all Visual FoxPro platforms in the form table and is available only for the <b>REPORT</b> and <b>LABEL</b> options. If you omit <b>ALL</b>, only records for the current Visual FoxPro platform are compiled. </p>
+          <p>For example, suppose you have an .frx file containing only Windows and Macintosh records. When executing the <b>COMPILE</b> command on a computer with Windows, omitting <b>ALL</b> compiles only Windows records. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ENCRYPT </span></dt><dd>
+          <p>Encrypts compiled Visual FoxPro program files and is not available when using the <b>DATABASE</b>,<b> FORM</b>, <b>CLASSLIB</b>, <b>LABEL</b>, and <b>REPORT</b> options. <b>ENCRYPT</b> prevents access to the original source programs. For additional source code protection, always include this option when compiling programs intended for distribution. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">NODEBUG </span></dt><dd>
+          <p>Reduces the size of the compiled file by two bytes per source file line and is not available when using the <b>DATABASE</b>,<b> FORM</b>, <b>CLASSLIB</b>, <b>LABEL</b>, and <b>REPORT</b> options. </p>
+          <p>The two bytes reduced in the compiled file are a reference to the corresponding line in the source file. Removing these two bytes does not affect the program's performance, but it does reduce the compiled file size and conserves disk space.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>When you include <b>NODEBUG</b>, you cannot view execution of the program in the Trace window or return the source code for a line that causes an error by using <code>MESSAGE(1)</code>. For more information, see <span class="linkTerms"><a href="/html/d7508b67-4d24-4ddd-ad92-6a1e17d19a98.htm">MESSAGE( ) Function</a></span>.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">AS <span class="parameter">nCodePage</span></span></dt><dd>
+          <p>Specifies the code page for which a program file is compiled and is not available when using the <b>DATABASE</b>,<b> FORM</b>, <b>CLASSLIB</b>, <b>LABEL</b>, and <b>REPORT</b> options. The compilation code page you specify overrides the global compilation code page specified with <a href="/html/7822452e-e2f1-40e2-bae7-a389d754945f.htm">SET CPCOMPILE</a>.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Visual FoxPro executes only object files, so if a source file has not been compiled, it is automatically compiled into an object file when you run the program. The source file remains unchanged. A separate compiled object file is created with the same root name as the source file, but with a different extension. The following table lists example source file extensions and compiled file extensions for each file type.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              File type
+            </th>
+            <th>
+              Source extension
+            </th>
+            <th>
+              Compiled extension
+            </th>
+          </tr><tr>
+          <td>
+            <p>Program file</p>
+          </td>
+          <td>
+            <p>PRG</p>
+          </td>
+          <td>
+            <p>FXP</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Menu code</p>
+          </td>
+          <td>
+            <p>MPR</p>
+          </td>
+          <td>
+            <p>MPX</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Query</p>
+          </td>
+          <td>
+            <p>QPR</p>
+          </td>
+          <td>
+            <p>QPX</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Format</p>
+          </td>
+          <td>
+            <p>FMT</p>
+          </td>
+          <td>
+            <p>PRX</p>
+          </td>
+        </tr></table></div>
+      <p>The compiler detects any syntax errors in the source file. If <b>SET LOGERRORS</b> is set to <b>ON</b> when the file is compiled, Visual FoxPro saves compilation error messages to a text file. The error log file has the same root name as the compiled file and has an .err file name extension. If <b>SET LOGERRORS</b> is set to <b>OFF</b>, the error log file is not created. For more information, see <span class="linkTerms"><a href="/html/6b247952-787a-4866-a609-ad213fe59783.htm">SET LOGERRORS Command</a></span>.</p>
+      <p>If a form has an <b>#INCLUDE</b> header (.h) file, and the .h file is moved from its original directory, a compilation error occurs and is listed in the error log (.err) file. You can run the form, but if you modify it, you cannot save it until you correct the path to the .h file. </p>
+      <h3 class="procedureSubHeading">To correct the path for a moved header (.h) file</h3><div class="subSection"><ddue:steps xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"><ol xmlns=""><li>
+            
+              <p>Open the form using the <b>MODIFY FORM</b> command.</p>
+            
+          </li><li>
+            
+              <p>On the <b>Form</b> menu, choose <b>Include</b><b> </b><b>File</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Include</b><b> </b><b>File</b> dialog box, browse to or type the new path for the .h file. </p>
+            
+          </li></ol></ddue:steps></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/664378a1-697a-4d4a-9a2d-96fa0c2234bb.htm">#INCLUDE Preprocessor Directive</a></span>, <span class="linkTerms"><a href="/html/589df263-68a2-4a04-8f1e-9e41aef624af.htm">MODIFY FORM Command</a></span>, and <span class="linkTerms"><a href="/html/c69f1467-2604-41e9-a2fc-30c5bef4d5fa.htm">Include File Dialog Box</a></span>.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Examples</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>The following example uses <b>CLOSE DATABASES</b> to close all open databases and uses <b>COMPILE DATABASE</b> to compile all the stored procedures in the Visual FoxPro sample database, TestData.dbc. </p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+COMPILE DATABASE (HOME(2) + 'Data\TestData')</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/71acd830-031d-40ee-bc2b-a8d9452d0efc.htm">File Extensions and File Types</a></span><br /><span class="linkTerms"><a href="/html/81a86c0e-6b61-4464-8106-d9ca44f44b62.htm">Compiling Source Code</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="COMPILE Command">
+<param name="ALink Name" value="COMPILE">
+</OBJECT>

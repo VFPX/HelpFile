@@ -1,0 +1,133 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Refining the Design</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Refining the Design</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you have the tables, fields, and relationships you need, it's time to study the design and detect any flaws that might remain.</p>
+    <p>You might encounter several pitfalls while you are designing your database. These common problems can cause your data to be harder to use and maintain:
+</p>
+    <ul><li>
+        <p>Do you have one table with a large number of fields that don't all relate to the same subject? For example, one table might contain fields pertaining to your customers as well as fields that contain sales information. Try to make sure each table contains data about only one subject.</p>
+      </li><li>
+        <p>Do you have fields that are intentionally left blank in many records because they aren't applicable to those records? This usually means that the fields belong in another table.</p>
+      </li><li>
+        <p>Do you have a large number of tables, many of which contain the same fields? For example, you have separate tables for January sales and February sales, or for local customers and remote customers, in which you store the same type of information. Try consolidating all the information pertaining to a single subject in one table. You might also need to add an extra field, for example, to identify the sales date.</p>
+      </li></ul>
+    <p>Create your tables, specify relationships between the tables, and enter a few records of data in each table. See if you can use the database to get the answers you want. Create rough drafts of your forms and reports and see if they show the data you expect. Look for unnecessary duplications of data and eliminate them.</p>
+    <p>As you try out your initial database, you will probably discover room for improvement. Here are a few things to check for:
+</p>
+    <ul><li>
+        <p>Did you forget any fields? Is there information that you need that isn't included? If so, does it belong in the existing tables? If it's information about something else, you might need to create another table.</p>
+      </li><li>
+        <p>Did you choose a good primary key for each table? If you use it to search for specific records, is it easy to remember and type? Make sure that you won't need to enter a value in a primary key field that duplicates another value in the field.</p>
+      </li><li>
+        <p>Are you repeatedly entering duplicate information in one of your tables? If so, you probably need to divide the table into two tables with a one-to-many relationship.</p>
+      </li><li>
+        <p>Do you have tables with many fields, a limited number of records, and many empty fields in individual records? If so, think about redesigning the table so it has fewer fields and more records.</p>
+      </li></ul>
+    <p>As you identify the changes you want to make, you can alter your tables and fields to reflect the improved design. For information about modifying tables, see <a href="/html/e72c1fd6-0b60-4dbd-9000-0ffecfb637fa.htm">Working with Tables</a>.</p>
+  <h1 class="heading">Example</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Each product in the Tasmanian Traders stock falls under a general category, such as Beverages, Condiments, or Seafood. The Products table could include a field that shows the category of each product.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Products table with a Category_name field</caption></caption></b><br></br></div><img src="../local/Local_-309638530_afd05015.gif" alt="FoxPro Product Category"></img>
+      <p>Suppose that in examining and refining the database, Tasmanian Traders decides to store a description of the category along with its name. If you add a Category Description field to the Products table, you have to repeat each category description for each product that falls under the category — not a good solution.</p>
+      <p>A better solution is to make Category a new subject for the database to track, with its own table and its own primary key. Then you can add the primary key from the Category table to the Products table as a foreign key.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">The Category table stores category information efficiently</caption></caption></b><br></br></div><img src="../local/Local_-309638531_afd05016.gif" alt="FoxPro Category Product Keys"></img>
+      <p>The Category and Products tables have a one-to-many relationship: one category can have more than one product in it, but any individual product can belong to only one category.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/790604aa-8ec7-48d3-ae9c-e523a84488fa.htm">Sample Database Diagrams</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/e92a93ce-b885-41ab-93fc-1b849dfba4c4.htm">Designing Databases</a></span><br /><span class="linkTerms"><a href="/html/acbcbb01-6290-4201-b378-fabfbcbcd644.htm">Developing Databases</a></span><br /><span class="linkTerms"><a href="/html/e72c1fd6-0b60-4dbd-9000-0ffecfb637fa.htm">Working with Tables (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Refining the Design">
+</OBJECT>

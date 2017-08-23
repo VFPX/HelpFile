@@ -1,0 +1,346 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Suspend Program Execution</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Suspend Program Execution</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Breakpoints allow you to suspend program execution. Once program execution has been suspended, you can check the values of variables and properties, see environment settings, and examine sections of code line by line without having to step through all your code.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>You can also suspend execution of a program running in the Trace window by pressing ESC.</p>
+    </td></tr></table></div>
+  <h1 class="heading">Suspending Execution at a Line of Code</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can set breakpoints in your code to suspend program execution in several different ways. If you know where you want to suspend program execution, you can set a breakpoint directly on that line of code.</p>
+      <h3 class="procedureSubHeading">To set a breakpoint on a particular line of code</h3><div class="subSection"><ol><li>
+            
+              <p>In the <span class="linkTerms"><a href="/html/a65f602b-607e-42f4-a9fb-bfd2fc2665a7.htm">Trace Window</a></span>, locate the line of code you want to set the breakpoint on.</p>
+            
+          </li><li>
+            
+              <p>Position the cursor on the line.</p>
+            
+          </li><li>
+            
+              <p>Perform one of the following: </p>
+              <ul><li>
+                  <p>Double-click in the gray area to the left of the line of code.</p>
+                </li><li>
+                  <p>On the <b>Debugger</b> toolbar, click the <b>Toggle Breakpoints</b> button.</p>
+                </li><li>
+                  <p>Press F9. </p>
+                </li></ul>
+            
+          </li></ol></div>
+      <p>A solid dot is displayed in the gray area to the left of the line of code to indicate that a breakpoint has been set on that line.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>If you are debugging objects, you can locate particular lines of code in the Trace window by choosing the object from the Object list and the method or event from the Procedure list.</p>
+      </td></tr></table></div>
+      <p>You can also set breakpoints by specifying locations and files in the Breakpoints dialog box.</p>
+      <div class="labelheading"><b>Examples of Locations and Files for Breakpoints</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Location
+            </th>
+            <th>
+              File
+            </th>
+            <th>
+              Where execution suspends
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>ErrHandler</code>
+            </p>
+          </td>
+          <td>
+            <p>C:\Myapp\Main.prg</p>
+          </td>
+          <td>
+            <p>The first executable line in a procedure named <code>ErrHandler</code> in Main.prg.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>Main,10</code>
+            </p>
+          </td>
+          <td>
+            <p>C:\Myapp\Main.prg</p>
+          </td>
+          <td>
+            <p>The tenth line in the program named <code>Main</code>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>Click</code>
+            </p>
+          </td>
+          <td>
+            <p>C:\Myapp\Form.scx</p>
+          </td>
+          <td>
+            <p>The first executable line of any procedure, function, method or event named <code>Click</code> in Form.scx.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>cmdNext.Click</code>
+            </p>
+          </td>
+          <td>
+            <p>C:\Myapp\Form.scx</p>
+          </td>
+          <td>
+            <p>The first executable line associated with the Click event of <code>cmdNext</code> in Form.scx.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>cmdNext::Click</code>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p>The first executable line in the Click event of any control whose ParentClass is <code>cmdNext</code> in any file.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Suspending Execution When Values Change</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>If you want to know when the value of a variable or property changes, or when a run-time condition changes, you can set a breakpoint on an expression.</p>
+      <h3 class="procedureSubHeading">To suspend program execution when the value of an expression changes</h3><div class="subSection"><ol><li>
+            
+              <p>From the <b>Tools</b> menu in the <span class="linkTerms"><a href="/html/b831ef40-4e26-44c0-8a49-6028b7a2ae92.htm">Debugger Window</a></span>, choose <b>Breakpoints </b>to open the <span class="linkTerms"><a href="/html/0b60fa5a-216e-4e9b-bcd0-8c115e91163a.htm">Breakpoints Dialog Box</a></span>.</p>
+            
+          </li><li>
+            
+              <p>From the <b>Type</b> list, choose <b>Break when expression has changed</b>.</p>
+            
+          </li><li>
+            
+              <p>Enter the expression in the <b>Expression</b> box.</p>
+            
+          </li></ol></div>
+      <div class="labelheading"><b>Examples of breakpoint expressions</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Expression
+            </th>
+            <th>
+              Use
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>RECNO( )</code>
+            </p>
+          </td>
+          <td>
+            <p>Suspend execution when the record pointer moves in the table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>PROGRAM( )</code>
+            </p>
+          </td>
+          <td>
+            <p>Suspend execution on the first line of any new program, procedure, method, or event.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>myform.Text1.Value</code>
+            </p>
+          </td>
+          <td>
+            <p>Suspend execution any time the value of this property is changed interactively or programmatically.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Suspending Execution Conditionally</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Often you'll want to suspend program execution, not at a particular line, but when a certain condition is true.</p>
+      <h3 class="procedureSubHeading">To suspend program execution when an expression evaluates to true</h3><div class="subSection"><ol><li>
+            
+              <p>From the <b>Tools</b> menu in the <span class="linkTerms"><a href="/html/b831ef40-4e26-44c0-8a49-6028b7a2ae92.htm">Debugger Window</a></span>, choose <b>Breakpoints </b>to open the <span class="linkTerms"><a href="/html/0b60fa5a-216e-4e9b-bcd0-8c115e91163a.htm">Breakpoints Dialog Box</a></span>.</p>
+            
+          </li><li>
+            
+              <p>From the <b>Type</b> list, choose <b>Break when expression is true</b>.</p>
+            
+          </li><li>
+            
+              <p>Enter the expression in the <b>Expression</b> box.</p>
+            
+          </li><li>
+            
+              <p>Choose <b>Add</b> to add the breakpoint to the <b>Breakpoints</b> list.</p>
+            
+          </li></ol></div>
+      <div class="labelheading"><b>Examples of breakpoint expressions</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Expression
+            </th>
+            <th>
+              Use
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>EOF( )</code>
+            </p>
+          </td>
+          <td>
+            <p>Suspend execution when the record pointer has moved past the last record in a table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>'CLICK'$PROGRAM( )</code>
+            </p>
+          </td>
+          <td>
+            <p>Suspend execution on the first line of code associated with a Click or DblClick event.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>nReturnValue = 6</code>
+            </p>
+          </td>
+          <td>
+            <p>If the return value of a message box is stored to <code>nReturnValue</code>, suspend execution when a user chooses <b>Yes</b> in the message box.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Suspending Execution Conditionally at a Line of Code</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>You can specify that program execution be suspended at a particular line only when a particular condition is true.</p>
+      <h3 class="procedureSubHeading">To suspend program execution at a particular line when an expression evaluates to true</h3><div class="subSection"><ol><li>
+            
+              <p>From the <b>Tools</b> menu in the <span class="linkTerms"><a href="/html/b831ef40-4e26-44c0-8a49-6028b7a2ae92.htm">Debugger Window</a></span>, choose <b>Breakpoints </b>to open the <span class="linkTerms"><a href="/html/0b60fa5a-216e-4e9b-bcd0-8c115e91163a.htm">Breakpoints Dialog Box</a></span>.</p>
+            
+          </li><li>
+            
+              <p>From the <b>Type</b> list, choose <b>Break at location if expression is true</b>.</p>
+            
+          </li><li>
+            
+              <p>Enter the location in the <b>Location</b> box.</p>
+            
+          </li><li>
+            
+              <p>Enter the expression in the <b>Expression</b> box.</p>
+            
+          </li><li>
+            
+              <p>Choose <b>Add</b> to add the breakpoint to the <b>Breakpoints</b> list.</p>
+            
+          </li><li>
+            
+              <p>Choose <b>OK</b>. </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+                <p>It is sometimes easier to locate the line of code in the Trace window, set a breakpoint, and then edit that breakpoint in the Breakpoints dialog box. To do this, change the <b>Type</b> from <b>Break at location</b> to <b>Break at location if expression is true</b> and then add the expression.</p>
+              </td></tr></table></div>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Removing Breakpoints</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>You can disable breakpoints without removing them in the Breakpoints dialog box. You can delete "break at location" breakpoints in the Trace window.</p>
+      <h3 class="procedureSubHeading">To remove a breakpoint from a line of code</h3><div class="subSection"><ul><li>
+            
+              <p>In the <span class="linkTerms"><a href="/html/a65f602b-607e-42f4-a9fb-bfd2fc2665a7.htm">Trace Window</a></span>, locate the breakpoint and do one of the following: </p>
+              <ul><li>
+                  <p>Position the cursor on the line of code, and then choose <b>Toggle Breakpoints</b> from the <b>Debugger</b> toolbar. </p>
+                  <p>-or- </p>
+                </li><li>
+                  <p>Double-click the gray area to the left of the line of code.</p>
+                </li></ul>
+            
+          </li></ul></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/4fb2b614-d8c9-410d-9fc9-23a35dfc6c4c.htm">How to: Use the Debugger</a></span><br /><span class="linkTerms"><a href="/html/300ea798-b96b-4869-bc07-2b107f1c000c.htm">How to: See Stored Values</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/72d156ad-b43d-4756-9d00-231ccb2a28c0.htm">Output Display</a></span><br /><span class="linkTerms"><a href="/html/a65f602b-607e-42f4-a9fb-bfd2fc2665a7.htm">Trace Window</a></span><br /><span class="linkTerms"><a href="/html/b831ef40-4e26-44c0-8a49-6028b7a2ae92.htm">Debugger Window</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/7f60b5d7-8e26-4f5e-b8c0-7f7e972f0067.htm">Using the Debugger</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Suspend Program Execution">
+</OBJECT>

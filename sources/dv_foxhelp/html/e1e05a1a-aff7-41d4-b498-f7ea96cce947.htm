@@ -1,0 +1,851 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Visual FoxPro and Advanced COM</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Visual FoxPro and Advanced COM</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can take advantage of the COM features in Visual FoxPro by implementing interfaces and event binding. Earlier versions of Visual FoxPro provided early binding support for COM servers, but only late binding support as a client. Visual FoxPro now contains support for early binding clients. This topic discusses the inner workings of early versus late binding for both client and server, as well as COM performance and making COM objects more discoverable.</p>
+  <a name="foconvisualfoxproadvancedcomanchor1"></a><h1 class="heading">Overview</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>COM was developed to make it possible for applications to be treated as objects, which can call each other. Object relationships can take on many forms. The simplest form is a client object, which calls a server object. Examples of object interactions that are more complex than this client-server scenario include peer-to-peer objects, which call each other.</p>
+      <p>If the objects have no a prior knowledge of each other, there must be some way for the objects to describe how another can call into itself. Event interfaces are examples of objects that describe these callback interfaces. These are interfaces that are not implemented by the software object developer but are implemented by a client of that object. Microsoft ActiveX controls are an example of COM objects with very sophisticated interfaces. These interfaces (on both the control and the host) make it possible for the control to act as a native control on a host site. The host site can implement the control's events interface. This combination can be very powerful in the hands of the developer.</p>
+      <p>This topic starts with a very simple Microsoft Visual FoxPro COM server and shows how useful it is. Then, it covers Type Libraries, how you can read them to discover how a COM object exposes itself to the world, and performance and error handling. Finally, it talks about what an interface is and about implementing interfaces. </p>
+      <p>Another dimension of objects calling each other is how they call each other. Visual FoxPro 6.0 made it possible for both early and late binding clients to call Visual FoxPro 6.0 servers, but Visual FoxPro 6.0 only could call servers using late binding. The current version of Visual FoxPro includes the capability of early binding client calls.</p>
+    </div><a name="foconvisualfoxproadvancedcomanchor2"></a><h1 class="heading">Creating a Simple Visual FoxPro COM Server</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You create a PRG file, which will be called MYCLASS.PRG, with the following code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>*This entirely self-contained program will build a COM server 
+* called "myserver.myclass"
+* It will unregister a prior instance, if any
+IF PROGRAM() != "MYCLASS"
+   ?"this file MUST BE NAMED 'myclass.prg'"
+   return
+ENDIF
+IF FILE("myclass.dll")
+   DECLARE integer DllUnregisterServer IN myclass.dll
+   DllUnregisterServer()
+   CLEAR DLLS
+ENDIF
+BUILD PROJECT myserver FROM myclass
+BUILD DLL myserver from myserver recomp
+*now test this COM server:
+ox = CreateObject("myserver.myclass")    &amp;&amp; create the server object
+ox.mydocmd("USE home(1)+'samples\data\customer'")    &amp;&amp; use a table
+?ox.myeval("RECCOUNT()")    &amp;&amp; get the record count
+DEFINE CLASS myclass AS session OLEPUBLIC
+   PROCEDURE MyDoCmd(cCmd as String) as Variant ;
+         helpstring "Execute a VFP cmd"
+      &amp;cCmd    &amp;&amp; just execute parm as if it were a fox command
+   FUNCTION MyEval(cExpr as String) ;
+         helpstring "Evaluate a VFP expression"
+      RETURN &amp;cExpr    &amp;&amp; evaluate parm as if it were a fox expr
+   FUNCTION Error(nError, cMethod, nLine)
+      COMreturnerror(cMethod+'  err#='+str(nError,5)+;
+         '  line='+str(nline,6)+' '+message(),_VFP.ServerName)
+      &amp;&amp; this line is never executed
+ENDDEFINE</pre></td></tr></table></span></div>
+      <p>A program of this structure builds COM servers and does not pollute the registry. Note that the code before the class definition is executed at build time only. Building a COM server automatically registers it in the registry. Rebuilding the server automatically unregisters it first. However, the information to unregister is stored in the PJX file. If the PJX is deleted and rebuilt, the registry entries are not removed when a new PJX is built.</p>
+      <p>Now, you have built your first server. Building a server in Visual FoxPro also builds a Type Library and registers information in the system registry including the ProgId, Type Library, and file location. The build process creates a file called myserver.vbr, which shows what registry keys get changed for registering the server correctly.</p>
+      <p>Notice that you are using the SESSION base class that was new to Visual FoxPro 6.0 SP3. It is a very lightweight base class that is non-visual and only has the DataSession property to make it possible for separate data sessions. When building COM servers, the FORM base class also has a DataSession property, but it has many other properties that are irrelevant to a COM server. In addition, these properties are, by default, written out to the Type Library unless you mark them all as protected or hidden.</p>
+    </div><a name="foconvisualfoxproadvancedcomanchor3"></a><h1 class="heading">Type Libraries</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>A Type Library is a file that can be either freestanding or embedded as a resource inside an EXE or DLL. It is a language-independent method of publishing the interfaces, properties, and methods of a COM object. It can contain help strings, Help context IDs, parameter names, and member names (of properties and methods). If it is not embedded inside an EXE or DLL, typical file extensions are TLB or OLB.</p>
+      <p>The Visual FoxPro 6.0 generated Type Libraries contain the method and parameter names of OLE Public methods. If there is a description in the Description of the class in the VCX, then that description is put in the Type Library as a help string.</p>
+      <p>You can view a Type Library using a variety of tools. For example, use the Object Browser in Microsoft Excel or Microsoft Word, the Class Browser in Visual FoxPro, or the OLE Viewer in Visual C++ to view a Type Library. You can see that Type Libraries can contain entire object models of the server application and can be rather extensive.</p>
+      <p>When a tool is viewing a Type Library, the server cannot be rebuilt, because the Type Library cannot be rewritten. Also, if a client has the server instantiated, it cannot be rebuilt. Using a copy of the built DLL or EXE is one way to avoid this problem.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Reading a Type Library</h3><div class="subSection" xmlns="">
+          <p>A Type Library reading tool (TLBINF32.DLL) ships with Microsoft Visual Studio. It is a tool intended for use by multiple products, so it was written as a COM server. Here is some sample code to read the Type Library from the sample server created earlier.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>clear
+PUBLIC otlb
+otli=NEWOBJECT('tli.tliapplication')
+otlb=otli.TypeLibInfoFromFile("myserver.dll")
+*otlb=otli.TypeLibInfoFromFile("tlbinf32.dll")
+*otlb=otli.TypeLibInfoFromFile("c:\program files\microsoft office\office\excel9.olb")
+?"CoClasses:"
+FOR each oCoClass in otlb.CoClasses
+   ?"  ",oCoClass.name
+   *now each interface associated with this CoClass
+   for each oInterface in oCoClass.Interfaces
+      ?"     ",oInterface.name
+   endfor
+endfor
+?
+?"Interfaces"
+FOR each oInterface in otlb.Interfaces
+   ?"  ",oInterface.name
+ENDFOR 
+?
+?"Interface Members for 1st interface"
+FOR each oMember IN otlb.Interfaces(1).Members
+   ?"  ", oMember.name
+   FOR each oParm in oMember.Parameters
+      ?"             ",oParm.name
+   ENDFOR
+ENDFOR</pre></td></tr></table></span></div>
+          <p>This code first creates an instance of the TLB reading tool and then invokes the TypeLibInfoFromFile method to load a Type Library. Items within the library are represented as various collections, which can be manipulated quite easily in Visual FoxPro using the FOR EACH construct.</p>
+          <p>The Interface collection is a collection of interfaces described in the Type Library. These interfaces can be those implemented by the server or they could be interfaces that should be implemented by a client, for example, in the case of Events.</p>
+          <p>The CoClass collection describes the COM objects that can be created by a client. The default interface implemented by the CoClass is shown, along with an optional Event Source interface.</p>
+          <p>Other interfaces besides the default of the CoClass and the Event interface could be described. The way a client obtains these other interfaces could be through a method call. For example, an ICell interface could be returned from a method called GetCell.</p>
+          <p>Constants also can be defined in the Type Library. For example, to obtain the constants, such as xlMaximized, from the Excel Type Library, explore the otlb.Constants collection.</p>
+          <p>One way to learn how to use the TLBINF32.DLL tool is to use it on itself. This will show you the properties, methods, parameters, and so on that are useful.</p>
+        </div>
+    </sections></div><a name="foconvisualfoxproadvancedcomanchor4"></a><h1 class="heading">Performance</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Performance means many things to many people. In the context of software and COM objects, performance means getting results faster. COM is about making software modules communicate with one another. So improving COM communications will achieve higher performance.</p>
+      <p>For example, consider the following code:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ox=CreateObject("excel.application")
+start = seconds()
+ox.workbooks.add
+SET EXCLUSIVE OFF
+USE HOME()+'samples\data\customer'
+ox.visible=1
+FOR i= 1 TO RECCOUNT()
+   FOR J = 1 TO FCOUNT()
+      ox.Activesheet.cells(i,j).value = EVAL(FIELD(j))
+   NEXT
+   SKIP
+NEXT
+ox.Workbooks(1).Close(0)   &amp;&amp; close workbook, discarding changes
+ox=0   &amp;&amp; release Excel
+?seconds() - start</pre></td></tr></table></span></div>
+      <p>It fills an Excel spreadsheet with the values from a table. This code takes about 30 seconds to run for 92 records on the author's machine.</p>
+      <p>When trying to improve performance, you must keep in mind exactly what is happening and try to figure out where the bottlenecks are.</p>
+      <p>Making the spreadsheet visible only after it has been filled in, rather than before, shaves off some time. Making Excel not maximized makes it a little faster.</p>
+      <p>Note that most of the time is spent executing the single line of code that assigns the cell a value. You can remove all COM calls by changing this line to </p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>      oa= EVAL(FIELD(j))</pre></td></tr></table></span></div>
+      <p>This obviously changes the intent of the code but makes the double loop take only one second. This indicates that 29 seconds was being spent in evaluating the ox.Activesheet.cells part of the line.</p>
+      <p>Analyzing this line further, Visual FoxPro evaluates ox.Activesheet, and the result is put in a temporary value. Then, this temp value is dereferenced to get the cells collection. Each "." in the expression results in a temporary value being obtained and then being dereferenced to get a new value.</p>
+      <p>Each of these "." dot operator dereferences is actually a round-trip COM method call to Excel, invoking an Excel method which returns a value. First, the IApplication.ActiveSheet method is invoked, which returns to Visual FoxPro a temporary reference to the active sheet. Then, that object's interface is used to get the cells collection. Then, the collection is dereferenced using the cell's indices as parameters to get an object reference to a single cell. Then, that cell's value property is assigned a new value (another COM round-trip). This totals four round-trips.</p>
+      <p>Obtaining an object reference to ox.Activesheet before the double nested loop and using that cached reference instead resulted in about 50 percent improvement.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>oa = ox.Activesheet    &amp;&amp; get an object reference
+FOR i= 1 TO RECCOUNT()
+   FOR J = 1 TO FCOUNT()
+      oa.cells(i,j).value = EVAL(FIELD(j))
+   NEXT
+   SKIP
+NEXT</pre></td></tr></table></span></div>
+      <p>Because the Activesheet is loop invariant with respect to the double loop, you can obtain an object reference to it before the loop and cache it in a variable. This removes one round trip, thus making the total three.</p>
+      <p>The number of round-trips decreased by 25 percent, but the time decrease was 50 percent. The removal of the number of round-trips will not result in a proportional decrease in overall time. The overhead of creating and releasing several temporary variables, the fraction of the time spent actually in the server executing the code, and other factors are not linear.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The previous code does not have to use Activesheet at all. The cells collection also is found from the Iapplication interface. It was used here only for illustration purposes.</p>
+      </td></tr></table></div>
+    </div><a name="foconvisualfoxproadvancedcomanchor5"></a><h1 class="heading">Using Visual Basic as a Client</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>You can use Visual Basic as a client to accomplish the same task. </p>
+      <p>
+        <b>To use Visual Basic as a client</b>
+      </p>
+      <ol><li>
+          <p>Start Excel.</p>
+        </li><li>
+          <p>On the <b>Tools </b>menu, point to <b>Macro</b>.</p>
+        </li><li>
+          <p>Click <b>Macros</b>, and name it <b>t</b>.</p>
+        </li><li>
+          <p>Click <b>Create</b>. </p>
+        </li><li>
+          <p>On the <b>Tools</b> menu, click <b>References</b>, and add the <b>myserver</b> Type Library to the references. </p>
+          <p>This makes it possible for the <b>myserver</b> Type Library information to be used in the macro. </p>
+        </li><li>
+          <p>Paste the following code: </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Sub t()
+Dim ox As New myserver.myclass
+ox.mydocmd ("SET EXCLUSIVE OFF")
+ox.mydocmd ("USE C:\Program Files\Microsoft Visual FoxPro <i>VersionNumber</i>\Samples\Data\Customer")
+n = ox.MyEval("reccount()")
+nflds = ox.MyEval("fcount()")
+nsecs = ox.MyEval("seconds()")
+For i = 1 To n
+    For j = 1 To nflds
+        cc = "evaluate(field(" &amp; j &amp; "))"
+        Application.Sheets(1).Cells(i, j).Value = ox.MyEval(cc)
+    Next
+    ox.mydocmd ("skip")
+Next
+MsgBox (ox.MyEval("seconds()") - nsecs)
+End Sub</pre></td></tr></table></span></div>
+        </li></ol>
+    </div><a name="foconvisualfoxproadvancedcomanchor6"></a><h1 class="heading">Error Handling</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>Error handling is very important in COM servers, and particularly so in DLL servers. If the client were to invoke a method on the server that caused some sort of error, such as File Not Found or Access Denied, it would not be good to have the server show a message box indicating the error. The developer should use the Error Method of the OLE Public class to handle such errors gracefully. A new function in Visual FoxPro 6.0, called COMReturnError, will cause a COM Error object to be created and returned to the COM client. It takes two parameters: the Source and the Description. You can put any strings you want into these parameters. This example method can be pasted right into the previous myserver sample.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>FUNCTION Error(nError, cMethod, nLine)
+   COMreturnerror(cMethod+'  err#='+str(nError,5)+'  line='+str(nline,6)+'
+      '+message(),_VFP.ServerName)
+   &amp;&amp; this line is never executed</pre></td></tr></table></span></div>
+      <p>You can invoke this error method by calling the MyDocmd method with an invalid command:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ox = CreateObject("myserver.myclass")    &amp;&amp; create the server object
+?ox.mydocmd("illegal command")    &amp;&amp; causes an Error to occur</pre></td></tr></table></span></div>
+      <p>The error that occurs in the server is trapped by the MyClass::Error method, which then causes the server to abort processing and return the COM Error object with the Source and the Description filled out.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>?aerror(myarray)
+list memo like myarray
+MYARRAY     Pub    A  
+   (   1,   1)     N  1429        (      1429.00000000)
+   (   1,   2)     C  "OLE IDispatch exception code 0 from mydocmd  
+                      err#=   16  line=     2 Unrecognized command v
+                      erb.: c:\fox\test\myserver.exe.."
+   (   1,   3)     C  "c:\fox\test\myserver.exe"
+   (   1,   4)     C  "mydocmd  err#=   16  line=     2 Unrecognized
+                       command verb."
+   (   1,   5)     C  ""
+   (   1,   6)     N  0           (         0.00000000)
+   (   1,   7)     N  0           (         0.00000000)</pre></td></tr></table></span></div>
+    </div><a name="foconvisualfoxproadvancedcomanchor7"></a><h1 class="heading">Interfaces</h1><div id="sectionSection6" class="seeAlsoNoToggleSection">
+      <p>Operationally, a COM interface can be thought of as a pointer to a table of function addresses. This table is sometimes called the vtable, or virtual function table. The interface definition includes the number of entries in the table, the association between the method name and the table index, and the function signatures of each method call. The signature consists of the number of parameters, the types of the parameters, and the return value.</p>
+      <p>All COM interfaces inherit from IUnknown. This means that the first three entries in every COM interface vtable are defined to be the addresses of the server's implementation of IUnkown::QueryInterface, IUnkown::AddRef, and IUnkown::Release.</p>
+      <p>When an interface inherits from another interface, all that means is that the interfaces vtable consists of the vtables of the inherited interfaces first.</p>
+      <p>Dual interfaces are COM Interfaces that inherit from the IDispatch interface. The IDispatch interface has only four methods: GetTypeInfoCount, GetTypeInfo, GetIDsOfNames, and Invoke. Thus, the first seven interfaces are well defined in an IDispatch interface and any other interface that inherits from IDispatch.</p>
+      <p>For Myserver.dll created earlier, the dual interface IMyClass would look like this:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>   IMyClass
+      QueryInterface(QI params)  (from IUnknown)
+      Addref                     (from IUnknown)
+      Release                    (from IUnknown)
+      GetTypeInfoCount()         (from IDispatch)
+      GetTypeInfo()              (from IDispatch)
+      GetIDsOfNames()            (from IDispatch)
+      Invoke()                   (from IDispatch)
+      MyDoCmd(cCmd)              (from IMyClass)
+      MyEval(cExpr)              (from IMyClass)</pre></td></tr></table></span></div>
+      <p>Suppose that the client wants to make a call to the Activesheet method of the dual interface IApplication on the server. The actual call can be made in two ways: early and late binding. Early binding is sometimes called VTtable binding, because it just means the client calls the server directly by finding the address of Activesheet in the vtable directly. This function address is an entry in the vtable and will be larger than seven. This function address index is hard coded into the client call at client compile time and is known as early binding. If subsequent versions of the server were to change the vtable order, then early binding client calls would be erroneous.</p>
+      <p>Late binding calls go through the IDispatch interface. The client calls IDispatch::GetIDsOfNames with the string Activesheet to get the function ID of that function. (This function ID then can be cached by the client for subsequent calls.) The client then packages all the Activesheet parameters into a single DISPPARAMS structure, and the IDispatch::Invoke function is called with the function ID and the DISPPARAMS as parameters. The implementation of IDispatch::Invoke on the server side unpacks the DISPPARAMS structure, makes the actual call to Activesheet, gets the return value, and passes that back to the client.</p>
+      <p>Because late binding does not hard code the function index of method calls, clients do not have to know at compile time what the function index is for methods and still will work, even if a new version of the server rearranges the vtable order or changes the method signatures. However, the parameter packaging on the client side and the unpackaging on the server side adds execution time to the method calls that does not exist with early binding calls.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Implementing Interfaces</h3><div class="subSection" xmlns="">
+          <p>Implementing an interface means that you examine an object's properties, events, and methods and create a new object that has exactly the same properties, events, and methods. This includes any parameters, parameter types, and return values. In other words, if an object knows how to call another object using a specific interface, then it also knows how to call any object that implements that specific interface.</p>
+          <p>Implementing an interface promises to the client that every method on that interface can be called. That means if there is a method called <code>Sample(parm1 as int, parm2 as string, parm3 as variant @) as int</code>, then that identical method signature must be found in the object.</p>
+          <p>In the following ADO sample, for example, if a parameter is removed from the method signature, running the code yields this message:</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p><b>Class can not be instantiated because Member 'RECORDSETEVENTS_WillChangeField' has wrong # of parameters</b></p>
+          </td></tr></table></div>
+          <p>Similarly, removing a method yields another error message.</p>
+          <p>As mentioned earlier, interfaces are described in Type Libraries for all to see. The Visual FoxPro Object Browser (on the Tools Menu) makes it possible for you to inspect type libraries. If you drag an interface from it onto a PRG that is open in the Visual FoxPro editor, then the object browser will generate the method signatures required for implementing that interface.</p>
+        </div>
+    </sections></div><a name="foconvisualfoxproadvancedcomanchor8"></a><h1 class="heading">Event Binding</h1><div id="sectionSection7" class="seeAlsoNoToggleSection">
+      <p>The ability to implement interfaces makes it possible for some interesting capabilities with Microsoft Office. This sample implements the events for Microsoft Outlook, Excel, and Word. As you can see from the method names, each Office application provides different interfaces. The new EventBinding command in the current version of Visual FoxPro makes it possible for the developer to bind a Visual FoxPro class that implements an interface to the COM object that is the event source and publisher.</p>
+      <p>This event model is called tightly coupled events. The client and the server must have intimate knowledge about each other, and there's a one-to-one correspondence between the objects. A new model of object event interaction is called loosely coupled events, in which an object can publish events, and another object can subscribe to those events.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+CLEAR all
+PUBLIC ox as Excel.Application, ;
+   ow as word.application, ;
+   oOutlook as Outlook.Application
+oOutlookEvents= NEWOBJECT('OutlookEvents')
+oOutlook = NEWOBJECT("Outlook.Application")
+oOutlookEvents.oo = oOutlook
+? "Outlook",EVENTHANDLER( oOutlook, oOutlookEvents)
+oWordEvents = NEWOBJECT("WordEvents")
+ow = NEWOBJECT("word.application")
+oWordEvents.ow = ow
+?"Word",EVENTHANDLER(ow,oWordEvents)
+ow.visible = .t.
+ow.Activate
+ow.Documents.Add
+oExcelEvents = NEWOBJECT("ExcelEvents")
+oex = NEWOBJECT("excel.application")
+oex.Workbooks.Add
+?"Excel",EVENTHANDLER(oex, oExcelEvents)
+oex.visible = .t.
+_screen.WindowState= 1
+DEFINE CLASS OutlookEvents AS SESSION OLEPUBLIC
+   IMPLEMENTS ApplicationEvents IN Outlook.Application
+   oo = .null.
+   PROCEDURE ApplicationEvents_ItemSend(ITEM AS VARIANT, ;
+         CANCEL AS LOGICAL) AS VOID
+      ?PROGRAM()
+      m.item.Body=STRTRAN(m.item.Body,"good","bad") + ;
+         CHR(13)+CHR(10)+TRANSFORM(DATETIME())+" Fox was here!"
+*      if Recipients fails, it could be outlook security
+*      m.item.Recipients.Add("someone@example.com")
+   PROCEDURE ApplicationEvents_NewMail() AS VOID
+      ?PROGRAM()
+   PROCEDURE ApplicationEvents_Reminder(ITEM AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE ApplicationEvents_OptionsPagesAdd(PAGES AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE ApplicationEvents_Startup() AS VOID
+      ?PROGRAM()
+   PROCEDURE ApplicationEvents_Quit() AS VOID
+      ?PROGRAM()
+   PROCEDURE destroy
+      ?PROGRAM()
+      IF !ISNULL(this.oo)
+         ?EVENTHANDLER(this.oo,this,.t.)
+      ENDIF
+ENDDEFINE
+DEFINE CLASS WordEvents as Custom
+   implements applicationevents2 in "word.application"
+   ow = .null.
+   PROCEDURE applicationevents2_startup()
+      ?PROGRAM()
+   PROCEDURE applicationevents2_quit
+      ?PROGRAM()
+   procedure applicationevents2_DocumentBeforeClose(Cancel,Doc)
+      ?PROGRAM()
+   procedure DocumentBeforeClose(Cancel,Doc)
+      ?PROGRAM()
+   procedure applicationevents2_DocumentBeforePrint(Cancel,Doc)
+      ?PROGRAM()
+   procedure applicationevents2_DocumentBeforeSave(Doc,SaveAsUI,Cancel)
+      ?PROGRAM()
+   procedure applicationevents2_DocumentChange
+      ?PROGRAM()
+   procedure applicationevents2_DocumentOpen(Doc)
+      ?PROGRAM()
+   procedure applicationevents2_NewDocument(Doc)
+      ?PROGRAM()
+   procedure applicationevents2_WindowActivate(Doc,Wn)
+      ?PROGRAM()
+   procedure applicationevents2_WindowBeforeDoubleClick(Sel,Cancel)
+      ?PROGRAM()
+   procedure applicationevents2_WindowBeforeRightClick(Sel,Cancel)
+      ?PROGRAM()
+   procedure applicationevents2_WindowDeactivate(Doc,Wn)
+      ?PROGRAM()
+   procedure applicationevents2_WindowSelectionChange(Sel)
+      ?PROGRAM(),sel.text
+      IF sel.start &lt; sel.end
+          sel.InsertAfter("Fox!")
+*!*         mtmp = sel.text
+*!*         sel.text=STRTRAN(mtmp,"good","Great!")
+      endif
+   PROCEDURE destroy
+       ?PROGRAM()
+       IF !ISNULL(this.ow)
+         ?EVENTHANDLER(this.ow,this,.t.)
+      ENDIF
+ENDDEFINE
+DEFINE CLASS ExcelEvents AS session OLEPUBLIC
+   IMPLEMENTS AppEvents IN "excel.application"
+   PROCEDURE AppEvents_NewWorkbook(Wb AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_SheetSelectionChange(Sh AS VARIANT, ;
+         Target AS VARIANT) AS VOID
+      LOCAL mtmp,mcell
+      mcell = m.target.Cells(1,1)
+      IF !ISNULL(mcell)
+         mtmp = m.target.Cells(1,1).Value
+         ?PROGRAM(),VARTYPE(mtmp)
+         DO case
+         case ISNULL(mtmp)
+   *         m.target.Cells(1,1).Value  = "Fox is great"
+         CASE VARTYPE(mtmp)='C'
+            m.target.Cells(1,1).Value = ;
+               STRTRAN(mtmp,"good","great!")
+         CASE VARTYPE(mtmp)='N'
+            m.target.Cells(1,1).Value = mtmp + 1
+         ENDCASE
+      ENDIF
+   PROCEDURE AppEvents_SheetBeforeDoubleClick(Sh AS VARIANT, ;
+         Target AS VARIANT, Cancel AS LOGICAL) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_SheetBeforeRightClick(Sh AS VARIANT, ;
+         Target AS VARIANT, Cancel AS LOGICAL) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_SheetActivate(Sh AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_SheetDeactivate(Sh AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_SheetCalculate(Sh AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_SheetChange(Sh AS VARIANT, Target AS VARIANT) AS
+         VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WorkbookOpen(Wb AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WorkbookActivate(Wb AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WorkbookDeactivate(Wb AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WorkbookBeforeClose(Wb AS VARIANT, ;
+         Cancel AS LOGICAL) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WorkbookBeforeSave(Wb AS VARIANT, ;
+         SaveAsUI AS LOGICAL, Cancel AS LOGICAL) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WorkbookBeforePrint(Wb AS VARIANT, ;
+         Cancel AS LOGICAL) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WorkbookNewSheet(Wb AS VARIANT, ;
+         Sh AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WorkbookAddinInstall(Wb AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WorkbookAddinUninstall(Wb AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WindowResize(Wb AS VARIANT, Wn AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WindowActivate(Wb AS VARIANT, Wn AS VARIANT) AS
+         VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WindowDeactivate(Wb AS VARIANT, Wn AS VARIANT) AS
+         VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_SheetFollowHyperlink(Sh AS VARIANT, ;
+         Target AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_SheetPivotTableUpdate(Sh AS VARIANT, ;
+         Target AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WorkbookPivotTableCloseConnection(Sh AS VARIANT, ;
+         Target AS VARIANT) AS VOID
+      ?PROGRAM()
+   PROCEDURE AppEvents_WorkbookPivotTableOpenConnection(Sh AS VARIANT, ;
+         Target AS VARIANT) AS VOID
+      ?PROGRAM()
+ENDDEFINE</pre></td></tr></table></span></div>
+      <p>Here is a sample of implementing ADO event interfaces. In this case, the user is not interacting with an application, causing events to occur, as in the Office examples earlier. Here, the user is calling ADO directly using method calls, and ADO is calling back to the client using its event interface.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>clear
+CLEAR all
+local ox as adodb.recordset
+local oc as ADODB.Connection
+oe = NEWOBJECT("myclass")
+oe2 = NEWOBJECT("myclass")
+oc=NEWOBJECT("adodb.connection")
+connstr = "Driver={Microsoft Visual FoxPro Driver};UID=;PWD=;SourceDB=" + ;
+   HOME(1)+"samples\data\testdata.dbc" + ;
+    ";SourceType=DBC;Exclusive=No;BackgroundFetch=No;Collate=Machine;"
+*
+oc.ConnectionString= connstr
+oc.Open
+ox = oc.Execute("select * from customer")
+* Now enable event handling
+?EVENTHANDLER(ox,oe)
+?EVENTHANDLER(ox,oe2)
+?
+?PADR(ox.Fields(0).Value,20)
+?EVENTHANDLER(ox,oe2,.f.) &amp;&amp; Turn off 2nd obj event handling 
+ox.MoveNext
+?PADR(ox.Fields(0).Value,20)
+ox.MoveNext
+CLEAR all
+retu
+for i = 0 to ox.Fields.Count-1
+*   ?PADR(ox.Fields(i).Name,20)
+*   ?ox.Fields[i].value
+endfor
+DEFINE CLASS myclass AS session
+   implements RecordsetEvents IN "adodb.recordset"
+*  implements RecordsetEvents IN ;
+*"C:\PROGRAM FILES\COMMON FILES\SYSTEM\ADO\MSADO15.DLL"
+   PROCEDURE Recordsetevents_WillChangeField(cFields AS Number @, ;
+         Fields AS VARIANT @, adStatus AS VARIANT @, ;
+         pRecordset AS VARIANT @) AS Void
+      ? " "+program() + ' ' + TRANSFORM(DATETIME())
+   PROCEDURE Recordsetevents_FieldChangeComplete(;
+         cFields AS Number @, ;
+         Fields AS VARIANT @, pError AS VARIANT @, ;
+         adStatus AS VARIANT @, pRecordset AS VARIANT @) AS Void
+      ? " "+program() + ' ' + TRANSFORM(DATETIME())
+   PROCEDURE Recordsetevents_WillChangeRecord(adReason AS VARIANT @, ;
+         cRecords AS Number @, adStatus AS VARIANT @, ;
+         pRecordset AS VARIANT @) AS Void
+      ? " "+program() + ' ' + TRANSFORM(DATETIME())
+   PROCEDURE Recordsetevents_RecordChangeComplete(adReason AS VARIANT @, ;
+         cRecords AS Number @, pError AS VARIANT @, ;
+         adStatus AS VARIANT @, pRecordset AS VARIANT @) AS Void
+      ? " "+program() + ' ' + TRANSFORM(DATETIME())
+   PROCEDURE Recordsetevents_WillChangeRecordset(adReason AS VARIANT @, ;
+         adStatus AS VARIANT @, pRecordset AS VARIANT @) AS Void
+      ? " "+program() + ' ' + TRANSFORM(DATETIME())
+      ?adreason,adstatus,precordset.recordcount
+   PROCEDURE Recordsetevents_RecordsetChangeComplete(;
+         adReason AS VARIANT @, ;
+         pError AS VARIANT @, adStatus AS VARIANT @, ;
+         pRecordset AS VARIANT @) AS Void
+      ? " "+program() + ' ' + TRANSFORM(DATETIME())
+   PROCEDURE Recordsetevents_WillMove(adReason AS VARIANT @, ;
+         adStatus AS VARIANT @, pRecordset AS VARIANT @) AS Void
+      ? " "+program() + ' ' + TRANSFORM(DATETIME())
+   PROCEDURE Recordsetevents_MoveComplete(adReason AS VARIANT @, ;
+         pError AS VARIANT @, adStatus AS VARIANT @, ;
+         pRecordset AS VARIANT @) AS Void
+      ? " "+program() + ' ' + TRANSFORM(DATETIME())
+   PROCEDURE Recordsetevents_EndOfRecordset(fMoreData AS LOGICAL @, ;
+         adStatus AS VARIANT @, pRecordset AS VARIANT @) AS Void
+      ? " "+program() + ' ' + TRANSFORM(DATETIME())
+   PROCEDURE Recordsetevents_FetchProgress(Progress AS Number @, ;
+         MaxProgress AS Number @, adStatus AS VARIANT @, ;
+         pRecordset AS VARIANT @) AS Void
+      ? " "+program() + ' ' + TRANSFORM(DATETIME())
+   PROCEDURE Recordsetevents_FetchComplete(pError AS VARIANT @, ;
+         adStatus AS VARIANT @, pRecordset AS VARIANT @) AS void
+      ? " "+program() + ' ' + TRANSFORM(DATETIME())
+ENDDEFINE</pre></td></tr></table></span></div>
+    </div><a name="foconvisualfoxproadvancedcomanchor9"></a><h1 class="heading">Using Office XP Smart Tags</h1><div id="sectionSection8" class="seeAlsoNoToggleSection">
+      <p>Office XP includes a new capability called Smart Tags. As a typical knowledge worker at a company works, she might use several computer applications and use similar subjects in each one. For example, the company might have a customer list, and she might need to e-mail, create documents or spreadsheets, or even view Web pages about customers. Suppose that at this instant, she is writing an e-mail message about customer ALFKI, and she must know the customer phone number or credit limit. Typically, this means starting or switching to another application, which maintains this information, doing a lookup for ALFKI, and transferring the data to the e-mail.</p>
+      <p>Smart Tags technology is a way that multiple applications can recognize strings (tags) within text and optionally provide the user a way to invoke a menu right on top of that tag which can give useful information or perform useful tasks. A smart tag on ALFKI might not only offer the credit limit and address but also might offer the option to go to the customer's Web site, add to a transaction log, launch another application, or even dial the phone. The user could even type in ALFKI temporarily to any application that is being used currently, look up information, then delete that string in the app.</p>
+      <p>The following is a sample of Smart Tags technology that recognizes the customer IDs in the sample customer table. The Smart Tag action verbs make up the fields of the table, plus one to visit the customer Web site. If the application is Word, the verb for the field inserts that field into the Word document. For Excel, the field value is inserted in the adjacent column, and the width of that column is adjusted. For Internet Explorer, a message box is displayed (note that even though this is a Visual FoxPro DLL, MessageBox can be called using Declare DLL).</p>
+      <p>A Smart Tag only must register its ProgID in the registry at the appropriate places. The Smart Tag SDK (available on the Microsoft Web site) gives more details on Smart Tags.</p>
+      <p>A Smart Tag must implement two interfaces: ISmartTagRecognizer and ISmartTagAction. The first scans a string and calls back on a parsed object if a tag is recognized. The second interface describes the actions possible and actually performs the actions.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If you have any Office applications open, they will have an instance of your DLL open. You will not be able to modify the DLL until you close the Office application.</p>
+      </td></tr></table></div>
+      <p>The Logit method writes to a log file, which is a useful technique to learn about how the interfaces work and to debug any code. Using an editor that automatically refreshes an externally modified file to display the log is useful.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR ALL
+clear
+SET excl off
+?PROGRAM()
+*Smart tags in Office XP. Just change the DATAPATH,STAGPATH if necessary
+IF PROGRAM() != "STAG"
+   ?"this file MUST BE NAMED 'stag.prg'"
+ENDIF
+#define STNAME  "MynameSpaceURI#MyLocalName"
+#define DATAPATH HOME(1)+"samples\data\"
+#define STAGPATH "C:\Program Files\Common Files\Microsoft Shared\Smart Tag\mstag.tlb"
+IF .t.
+   IF FILE("stag.dll")
+      DECLARE integer DllUnregisterServer IN stag.dll
+      DllUnregisterServer()
+      CLEAR DLLS
+   ENDIF
+   BUILD PROJECT stag FROM stag
+   BUILD mtDLL stag from stag recomp
+   STRTOFILE("","d:\t.txt")    &amp;&amp; null log file
+endif
+#DEFINE HKEY_CURRENT_USER  -2147483647  &amp;&amp; BITSET(0,31)+1
+oFoxReg=NEWOBJECT("foxreg", HOME(1)+"FFC\registry")
+oFoxReg.OpenKey("Software\Microsoft\Office\Common\Smart Tag\Actions\stag.MyStag", ;
+   HKEY_CURRENT_USER, .T.)
+oFoxReg.OpenKey(;
+   "Software\Microsoft\Office\Common\Smart Tag\Recognizers\stag.MyStag", ;
+   HKEY_CURRENT_USER, .T.)
+DEFINE CLASS MyStag AS Session OLEPUBLIC
+   IMPLEMENTS ISmartTagRecognizer IN STAGPATH
+   IMPLEMENTS ISmartTagAction IN STAGPATH
+   PROCEDURE ISmartTagRecognizer_get_ProgId() AS STRING
+      logit()
+      RETURN   "stag.MyStag"
+   PROCEDURE ISmartTagRecognizer_get_Name(LocaleID AS Integer) AS STRING
+      logit()
+      RETURN "VFP NorthWind Customer Recognizer"
+   PROCEDURE ISmartTagRecognizer_get_Desc(LocaleID AS Integer) AS STRING
+      logit()
+      RETURN "VFP NorthWind Customer ID Recognizer"
+   PROCEDURE ISmartTagRecognizer_get_SmartTagCount() AS Integer
+      logit()
+      RETURN 1
+   PROCEDURE ISmartTagRecognizer_get_SmartTagName(;
+         SmartTagID AS Integer) AS STRING
+      logit()
+      If SmartTagID = 1
+         RETURN STNAME
+         EndIf
+      RETURN ""
+   PROCEDURE ISmartTagRecognizer_get_SmartTagDownloadURL(;
+         SmartTagID AS Integer) AS STRING
+      logit()
+      RETURN ""
+   PROCEDURE ISmartTagRecognizer_Recognize(cText AS STRING, ;
+         DataType AS Integer, ;
+         LocaleID AS Integer, RecognizerSite AS VARIANT) AS VOID
+      logit(ctext+' '+TRANSFORM(LEN(CTEXT)))
+      LOCAL i,  mat,cWord,propbag
+      i = 1
+      DO WHILE i &lt;= LEN(cText)
+         IF ISALPHA(SUBSTR(cText,i))
+            mst = i
+            DO WHILE i &lt;= LEN(cText) AND ;
+                  (ISALPHA(SUBSTR(cText,i)) or ;
+                  ISDIGIT(SUBSTR(cText,i)))
+               i=i+1
+            ENDDO
+            IF mst # i
+               cWord = SUBSTR(cText,mst,i-mst)
+               IF SEEK(cWord,"Customer")
+                  * Ask for a property bag
+                  propbag = ;
+                     RecognizerSite.GetNewPropertyBag()
+                  * Commit the smart tag 
+                  propbag.write("test","value")
+                  propbag.write("test2","value2")
+                     RecognizerSite.CommitSmartTag(STNAME, ;
+                       mst, LEN(cWord), propbag)
+                    propbag=.null.
+               ENDIF
+            ENDIF
+         ENDIF
+         i=i+1
+      ENDDO
+***********************
+   PROCEDURE ISmartTagAction_get_ProgId() AS STRING
+      logit()
+      RETURN "stag.MyStag"
+   PROCEDURE ISmartTagAction_get_Name(LocaleID AS Integer) AS STRING
+      logit()
+      RETURN "Customer Actions"
+   PROCEDURE ISmartTagAction_get_Desc(LocaleID AS Integer) AS STRING
+      logit()
+      RETURN  "Provides actions for VFP Customer data"
+   PROCEDURE ISmartTagAction_get_SmartTagCount() AS Integer
+      logit()
+      RETURN 1
+   PROCEDURE ISmartTagAction_get_SmartTagName(SmartTagID AS Integer) AS
+         STRING
+      logit()
+      IF SmartTagID = 1
+         RETURN STNAME
+      EndIf
+      RETURN ""
+   PROCEDURE ISmartTagAction_get_SmartTagCaption(SmartTagID AS Integer, ;
+         LocaleID AS Integer) AS STRING
+      logit(TRANSFORM(SmartTagID ))
+      RETURN  "Customer Lookup"
+   PROCEDURE ISmartTagAction_get_VerbCount(SmartTagName AS STRING) AS
+         Integer
+      logit(SmartTagName )
+      If SmartTagName = STNAME
+            RETURN FCOUNT()+1
+         ENDIF
+         RETURN 0
+   PROCEDURE ISmartTagAction_get_VerbID(SmartTagName AS STRING, ;
+         VerbIndex AS Integer) AS Integer
+      logit(SmartTagName +', '+ TRANSFORM(VerbIndex ))
+      RETURN VerbIndex
+   PROCEDURE ISmartTagAction_get_VerbCaptionFromID(VerbID AS Integer, ;
+         _ApplicationName AS STRING, LocaleID AS Integer) AS STRING
+      logit(TRANSFORM(VerbID )+' '+_ApplicationName +;
+         ' '+TRANSFORM(LocaleID))
+      IF VerbId &lt;= FCOUNT()
+         RETURN "View "+FIELD(VerbID)
+      ENDIF
+      RETURN "Visit customer Web site"
+   PROCEDURE ISmartTagAction_get_VerbNameFromID(VerbID AS Integer) AS
+         STRING
+      logit(TRANSFORM(VerbID))
+      IF VerbId &lt;= FCOUNT()
+         RETURN FIELD(VerbID)
+      ENDIF
+      RETURN "Visit Web site"
+   PROCEDURE ISmartTagAction_InvokeVerb(VerbID AS Integer, ;
+         cApplicationName AS STRING, ;
+         Target AS VARIANT, oProperties AS VARIANT, ;
+         cText AS STRING, Xml AS STRING) AS VOID
+      logit(TRANSFORM(VerbID )+' '+cApplicationName +' '+cText+' ';
+          +Xml+' '+TRANSFORM(oProperties.count))
+      LOCAL i,cProp
+      oProperties.write("iitest","iivalue")
+      oProperties.write("iitest2","iivalue2")
+      FOR i = 1 to oProperties.count
+         cProp = oProperties.keyfromindex(i-1)
+         logit(cProp)
+         logit(oProperties.read(cprop))
+      endfor
+      LOCAL fExcel,fWord
+      DO case
+      CASE capplicationname = "Excel.Application.10"
+         fExcel = .t.
+         logit(m.target.cells[1,1].value)
+      CASE capplicationname = "Word.Application.10"
+         fWord = .t.
+*         logit(m.target.range
+      ENDCASE
+      IF verbId &gt; FCOUNT()
+         LOCAL oie as internetexplorer.application
+         oie = NEWOBJECT("internetexplorer.application")
+         oie.navigate2("localhost/"+ctext+".html")
+         oie.visible=1
+      else
+         IF SEEK(cText,"customer")
+            DO case
+            case fExcel
+               target.cells[1,2].value = ;
+   ALLTRIM(TRANSFORM(EVALUATE(FIELD(VerbID))))
+               target.Columns(2).columnWidth = 25
+            case fWord
+               target.insertAfter(' '+;
+   ALLTRIM(TRANSFORM(EVALUATE(FIELD(VerbID)))))
+            otherwise
+               DECLARE Integer MessageBox IN WIN32API ;
+                  as msgbox ;
+                  Integer,string,string, integer
+               msgbox(0,;
+   ALLTRIM(TRANSFORM(EVALUATE(FIELD(VerbID)))), ;
+                  ctext+"="+company,0)
+            endcase
+         ELSE
+            logit("not found")
+         ENDIF
+      ENDIF
+   PROCEDURE Init
+      logit()
+      SET EXACT ON
+      SET EXCLUSIVE off
+      SET PATH TO DATAPATH
+      USE customer order cust_id shared
+   PROCEDURE Destroy
+      logit()
+   PROCEDURE MyDoCmd(cCmd as String)
+      &amp;cCmd
+   PROCEDURE MyEval(cExp as String)
+      RETURN &amp;cExp
+   PROCEDURE Error(nError, cMethod, nLine)
+      logit(TRANSFORM(nError)+' '+TRANSFORM(nLine)+' '+MESSAGE())
+ENDDEFINE
+#if .f.
+DEFINE CLASS STagAction AS StagRecognizer OLEPUBLIC
+   PROCEDURE Error(nError, cMethod, nLine)
+      logit(PROGRAM()+" "+TRANSFORM(nError)+' '+TRANSFORM(nLine)+' '+MESSAGE())
+ENDDEFINE
+#endif
+   FUNCTION Logit(cStr)
+TEXT TO mystr TEXTMERGE NOSHOW
+&lt;&lt;DATETIME()&gt;&gt; &lt;&lt;PROGRAM(PROGRAM(-1)-1)&gt;&gt; &lt;&lt;cStr&gt;&gt;
+ENDTEXT
+      STRTOFILE(myStr,"D:\t.TXT",.T.)</pre></td></tr></table></span></div>
+    </div><a name="foconvisualfoxproadvancedcomanchor10"></a><h1 class="heading">Visual FoxPro Callback Design</h1><div id="sectionSection9" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro makes it possible for the developer to create COM objects, which publish interfaces that clients can implement. This callback scenario is almost identical to Visual FoxPro objects raising events to clients. This sample consists of a main COM server class called IDEMO, which also publishes an event interface, called DemoEvents.</p>
+      <p>The client code has a single class called cCallBack, which implements DemoEvents.</p>
+      <p>IDEMO has a method called BuyStock, which clients can call to buy some stock. The BuyStock method just has a comment where code can be put to buy the stock. However, before and after that code, the method calls methods in the DemoEvents class. If the client does not have a callback procedure set using the SetCallBack method, then the calls to the DemoEvents methods do nothing. However, if there is a callback object, then those methods will be called on the client.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR ALL
+IF PROGRAM() != "IDEMO"
+   ?"this file MUST BE NAMED 'idemo.prg'"
+   RETURN
+ENDIF
+IF .t.
+   IF FILE("idemo.dll")
+      DECLARE integer DllUnregisterServer IN idemo.dll
+      DllUnregisterServer()
+      CLEAR DLLS
+   ENDIF
+   BUILD PROJECT idemo FROM idemo
+   BUILD DLL idemo from idemo recomp
+endif
+clear
+oCallback = NEWOBJECT("cCallback")    &amp;&amp; the event callback
+ostock=newOBJECT("idemo.idemo")       &amp;&amp; the business COM obj
+ostock.setcallback(oCallBack)         &amp;&amp; like BindEvents
+?ostock.BuyStock("MSFT",10000 )       &amp;&amp; invoke a method
+ostock.setcallback(.null.)            &amp;&amp; like UnBindEvents
+?ostock.BuyStock("MSFT",20000 )       &amp;&amp; this one doesn't fire events
+*This is the actual implementation of the event interface
+DEFINE CLASS cCallback as session
+   implements iDemoEvents in idemo.dll
+   procedure iDemoEvents_BeforeBuyStock(cStock as String, qty AS Number)
+      ?program(),cstock,qty
+   procedure iDemoEvents_AfterBuyStock(cStock as String, qty AS Number)
+      ?program(),cstock,qty
+enddefine
+*the rest of this file is used in the COM server
+DEFINE CLASS idemo as session olepublic
+   oc = .null.
+   PROCEDURE init
+      this.SetCallBack(.null.)    &amp;&amp; set callback to default
+   PROCEDURE setcallback(oC as Variant)
+      IF ISNULL(oc)
+         &amp;&amp; dummy instance that does nothing: virtual function
+         this.oc = NEWOBJECT("DemoEvents")
+      else
+         IF VARTYPE(oc) != 'O'
+            COMRETURNERROR(PROGRAM(),"callback must be obj")
+         ENDIF
+         this.oc = GETINTERFACE(oC,"iDemoEvents","idemo.idemo")
+      endif
+   procedure MyDoCmd(cCmd as String) as Variant
+      &amp;cCmd
+   procedure MyEval(cExpr as String) as Variant
+      return &amp;cExpr
+   procedure BuyStock(cStock as String, qty AS Number) as Boolean
+      this.oc.BeforeBuyStock(cStock, qty)
+      *here we buy the stock
+      this.oc.AfterBuyStock(cStock, qty)
+   FUNCTION Error(nError, cMethod, nLine)
+      COMreturnerror(cMethod+'  err#='+str(nError,5)+'  line='+;
+         str(nline,6)+' '+message(),_VFP.ServerName)
+      &amp;&amp; this line is never executed
+enddefine
+*Just an interface definition that should be implemented by outside callers
+DEFINE CLASS DemoEvents as session olepublic
+   procedure BeforeBuyStock(cStock as String, qty AS Number)
+   procedure AfterBuyStock(cStock as String, qty AS Number)
+enddefine</pre></td></tr></table></span></div>
+      <p>COM enables objects to interact with each other in various ways. Each addition of new COM capabilities to Visual FoxPro, including a simple COM client functionality, interface implementation, and early binding server and client support, has provided many new capabilities.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/b1ca676d-68a8-4ebe-aa68-ce6ac2083c59.htm">How to: Create Automation Servers</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/7e1c2940-d069-448e-9d71-bf153706c904.htm">Automation Server Programming Notes</a></span><br /><span class="linkTerms"><a href="/html/ffbb29bb-77ed-48c3-9161-19f56dd505b6.htm">Event Binding for COM Objects</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/08c896ea-fc01-40b9-a3a5-37160521d180.htm">Automation and COM Servers</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Visual FoxPro and Advanced COM">
+</OBJECT>

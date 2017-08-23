@@ -1,0 +1,128 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Considerations for Creating New Report Output Types</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Considerations for Creating New Report Output Types</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro 9's object-assisted reporting mode offers almost unlimited potential for expanding your output horizons using ReportListeners. The Report Output Application offers a convenient mechanism to help you to share your reporting extensions with other users.  </p>
+    <p>This topic provides some guidelines to consider when developing and distributing Report System extension objects.</p>
+  <h1 class="heading">Design Decisions for Reporting Extensions</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <dl><dt><span class="nonLinkTerms">Determine whether your goal is to provide a new type of output result not available from baseclass behavior, such as Rich Text, or to enhance multiple output formats, in an output-result-independent manner.  </span></dt><dd>
+          <p>If your goal is to enhance existing output results, your object probably does not need to be a ReportListener, and it is not an Output Type. </p>
+          <p>Design this object to be supportable, as a member or helper object, by multiple ReportListeners.  It needs to be single-purpose and small, for efficiency. Design a ReportListener to accept enhancements by iterating through a collection of these objects. </p>
+          <p>By contrast, if your goal is a new type of output result, it must be a ReportListener-derived object, so it can partner successfully with the Report Engine.  It is a good candidate for <i>a chain of responsibility</i> mechanism, as implemented by the <span class="linkTerms"><a href="/html/ad251059-3de1-4928-992c-ddb8be50fce8.htm">ReportListener Base Foundation Class</a></span>. This mechanism allows you to generate multiple types of output during the same report run.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You can use both techniques together.  Register your enhancement objects to a single ReportListener, and apply their effects to the output before sending events to Successors.  Each Successor can decide which enhancements are applicable to its type of output.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">Determine your error handling strategy, and publish your object's requirements in this respect.</span></dt><dd>
+          <p>ReportListeners partner with the Report Engine in a unique way, because of the way they process user code during a single Visual FoxPro command.  They are also potentially partnered with other user code in DataEnvironment methods and user-defined functions (UDFs) embedded in the report or label file. </p>
+          <p>There are different ways to handle REPORT FORM commands that do not complete properly.  Review <span class="linkTerms"><a href="/html/5ba2f0f6-c515-4d48-83b6-5de8e13537ea.htm">Handling Errors During Report Runs</a></span> for information and suggestions.  When you decide on a strategy, make sure the users of your ReportListener class have proper information to provide proper cleanup when errors occur.  </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">Place ReportListener-required temporary tables in the special session provided for this purpose.</span></dt><dd>
+          <p>The ReportListener object's <span class="linkTerms"><a href="/html/7219ea0f-0505-47f9-b6a8-b93142057fa3.htm">FRXDataSession Property</a></span> provides you with the information you need to access the special copy of the report definition file (.frx) during the report run. If your ReportListener needs to do work with additional cursors, use this protected session, rather than the data session containing the data on which the report is based, represented by the ReportListener object's <span class="linkTerms"><a href="/html/25c6a3e7-b6c8-4b9b-a3c6-99a84717ab10.htm">CurrentDataSession Property</a></span>.  This strategy ensures that you leave the user's "real" data session undisturbed, and also ensures cleanup of these temporary files at the conclusion of a report run.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+            <p>Be sure to switch appropriately between data sessions during the report run, when you want to use the report copy or your other workfiles.  For more information, see <span class="linkTerms"><a href="/html/650419ee-d0c5-439a-b452-87b694f1024e.htm">SET DATASESSION Command</a></span>.</p>
+          </td></tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>For an example of objected-assisted reporting that uses additional cursors in FRXDataSession, see <span class="linkTerms"><a href="/html/d64130c7-bb9a-4191-b8b6-4ba430185fe8.htm">Report XML MemberData Extensions</a></span>.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">Make a distinction between the ReportListener's OutputType Property and ListenerType Property in your design.</span></dt><dd>
+          <p>OutputType gives you the value with which the Report Output Application was invoked, while ListenerType represents the native output-generation mode provided by the baseclass ReportListener.  </p>
+          <p>A ReportListener-derived class can be registered to handle many different OutputType values in the Report Output Application's registry table, just as the baseclass ReportListener supports different ListenerType values.  However, one OutputType can also support different baseclass behavior and native output, by supporting multiple ListenerType values.</p>
+        </dd></dl>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/07a67ba5-70d7-4172-a453-ae7044af2ed0.htm">Considerations for Creating Reports</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Considerations for Creating New Report Output Types">
+</OBJECT>

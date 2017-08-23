@@ -1,0 +1,134 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Security Risks for Visual FoxPro Developers</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Security Risks for Visual FoxPro Developers</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>It is important to understand security issues when developing and deploying applications. For general information about developing secure applications, see the Microsoft Web site at <a href="http://msdn.microsoft.com/security">http://msdn.microsoft.com/security</a>.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Developers need to be aware of the following specific security issues and best practices when developing Visual FoxPro applications:  </p>
+      <ul><li>
+          <p>Validate parameter input values before evaluating them. </p>
+          <p>When passing user input values for parameters to commands such as SQL statements, you should include code to check that those values do not contain harmful expressions, such as those that can cause access violations.  </p>
+          <p>Avoid using simple text boxes for parameter input when possible and choose user interface elements you can more easily control, such as a list boxes, grids as list boxes, or <b>OptionGroup</b> controls. If you must rely on typed user input as parameter input, for example, to execute commands, you should always parse the input for parentheses (()) characters. This ensures that users do not enter input that might be interpreted by Visual FoxPro as an expression. You should also check input for the ampersand (&amp;), which is used as a macro substitution character.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+            <p>Use extreme caution when accepting typed user input as parameters and passing it to the following language elements: <b>RUN</b> or <b>!</b> command, <b>EVALUATE( )</b> function, <b>EXECSCRIPT( )</b> function, <b>_VFP</b>.<b>DoCmd</b> method, <b>_VFP.Eval</b> method, and the ampersand (&amp;) character. This practice is recommended only for advanced developers who use strong parameter validation routines for parsing values that might cause harm to the application, the user's computer, or network.</p>
+          </td></tr></table></div>
+        </li><li>
+          <p>Provide less flexibility to users when providing values for SQL <b>SELECT</b> statements. </p>
+          <p>When using COM server or SQL Server methods that accept user input values from a SQL <b>SELECT</b> statement, write code that avoids giving the user access to information that should be secured, such as the computer name, or to perform undesirable actions, such as allowing the user to copy over tables and databases. </p>
+        </li><li>
+          <p>Set database container (DBC) file system attributes to read-only access. </p>
+          <p>If a DBC is set to read/write access, users can modify code for DBC Events, such as the <b>DBC_BeforeOpenTables</b> event, to include damaging code, for example, to format a user's hard drive when opening a table in the DBC.  </p>
+          <p>If the DBC needs to be modified as part of maintenance, a network administrator can temporarily set the DBC with read/write access and then reset it to read-only access when maintenance is finished. </p>
+        </li><li>
+          <p>Prevent users from viewing source code in your application by encrypting your application and remove debugging information.  </p>
+          <p>To protect source code and remove debugging information, open your application project in the Project Manager. To encrypt your application project and not include debugging information, select the <b>Encrypted</b> check box and clear the <b>Debug info</b> check box in the <b>Project Information</b> dialog box. You should then select the <b>Recompile All Files</b> check box in the <b>Build Options</b> dialog box and rebuild your project by clicking <b>Build</b> in the Project Manager window. In the setup section of your application, include the <b>SET DEBUG</b> command.  </p>
+          <p>The _cryptapi class located in the ...\Ffc\_Crypt.vcx foundation class library provides access to the Windows Crypto API routines so you can encrypt strings, data, or files in your Visual FoxPro Applications.  </p>
+          <p>For more information, see <a href="/html/c2c64ad0-d9da-44fe-b7dd-5d675e0ec13e.htm">Project Information Dialog Box</a>, <a href="/html/93e1d13b-c029-47eb-b140-c119ff44f10d.htm">Project Manager Window</a>, <a href="/html/56bee8fe-94d7-49a5-84e4-521d79e7df28.htm">Build Options Dialog Box</a>, and <a href="/html/f37c8292-d5a7-462b-bc10-da5213d98188.htm">SET DEBUG Command</a>. </p>
+        </li><li>
+          <p>It is recommended that you develop applications that use least privilege user settings. It is not necessary for the user to log in as a power user or administrator.</p>
+        </li><li>
+          <p>Avoid writing to the registry keys, HKEY_LOCAL_MACHINE and HKEY_CLASSES_ROOT. Instead, write only to the HKEY_CURRENT_USER hive.</p>
+        </li><li>
+          <p>Do not create or update files in the C:\Program Files (%PROGRAMFILES%) or C:\Windows (%SYSDIR%) directories. Instead, you should write user data to the user application folder. You can use the _commonfolder class located in the ...\Ffc\_System.vcx foundation class library to obtain the location of the user application folder.</p>
+        </li><li>
+          <p>When creating COM Servers in Visual FoxPro, it is recommended that you create COM+ applications to deploy them so you can enforce COM+ role-based security.</p>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/9a3fa76c-4530-48fb-b2a8-f02a7b7da8ee.htm">Security Considerations (Visual FoxPro)</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/f59cda75-0216-4658-b7e4-b1a2c45d5bb0.htm">Security Planning</a></span><br /><span class="linkTerms"><a href="/html/6b52375e-465b-4e47-892b-5ba5c0dfe007.htm">Developing Visual FoxPro Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Security Risks for Visual FoxPro Developers">
+</OBJECT>

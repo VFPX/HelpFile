@@ -1,0 +1,404 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Join Conditions for Tables, Queries, and Views</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Join Conditions for Tables, Queries, and Views</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro supports SQL-92 Join syntax, allowing you to create queries that link rows in two or more tables by comparing the values in specified fields. When retrieving data from tables to create queries and views, you can use join operations and join conditions to control how records are compared and which ones are returned and specify relationships between tables, usually based on the primary and foreign keys. Specifying joins on fields other than the primary and foreign keys can be useful in specific instances; however, most queries do not use joins on non-key fields.</p>
+  <a name="fogrfjoinconditionsfortablesqueriesandviewsanchor6"></a><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>This topic contains the following sections:  </p>
+      <ul><li>
+          <p>
+            <a href="#fogrfjoinconditionsfortablesqueriesandviewsanchor1">Parts of Join Operations</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="#fogrfjoinconditionsfortablesqueriesandviewsanchor2">Join Types</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="#fogrfjoinconditionsfortablesqueriesandviewsanchor3">Join Sequence</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="#fogrfjoinconditionsfortablesqueriesandviewsanchor4">Join Conditions</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="#fogrfjoinconditionsfortablesqueriesandviewsanchor5">Join Considerations</a>
+          </p>
+        </li></ul>
+      <p>You can specify join operations and join conditions for queries and views in the Query and View designers and by using the Visual FoxPro language. For more information, see <a href="/html/c0688735-78ca-4097-aa2e-12d70b50dc81.htm">Join Tab, Query and View Designers</a> and <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a>.</p>
+    </div><a name="fogrfjoinconditionsfortablesqueriesandviewsanchor1"></a><h1 class="heading">Parts of Join Operations</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The following list contains parts of join operations that you can set between tables in queries and views:   </p>
+      <ul><li>
+          <p>Table fields in the join.</p>
+        </li><li>
+          <p>Join type between tables or between table fields in a query or view.</p>
+        </li><li>
+          <p>Join sequence.</p>
+        </li><li>
+          <p>Join conditions between fields using operators such as Between, Equal (=), Greater Than (&gt;), and Less Than (&lt;).</p>
+        </li></ul>
+    </div><a name="fogrfjoinconditionsfortablesqueriesandviewsanchor2"></a><h1 class="heading">Join Types</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Because SQL is based on mathematical set theory, each table can be represented as a circle in a Venn diagram. The <b>ON</b> clause in the SQL <b>SELECT</b> statement that specifies join conditions determines the point of overlap for those circles and represents the set of rows that match. For example, in an inner join, the overlap occurs within the interior or "inner" portion of the two circles. An outer join includes not only those matched rows found in the inner cross section of the tables, but also the rows in the outer part of the circle to the left or right of the intersection.</p>
+      <p>You can expand or narrow the results of your search by specifying the type of join you want between tables. The following table describes join types you can specify.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Join type
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>Inner </p>
+          </td>
+          <td>
+            <p>Retrieve only those records from tables on both sides of the join that match the join condition between fields involved in the join. </p>
+            <p>Inner joins are the most common type of join.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Left (outer)</p>
+          </td>
+          <td>
+            <p>Retrieve all records from the table on the left side of the join and only those records that match the join condition from the table on the right side of the join.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Right (outer)</p>
+          </td>
+          <td>
+            <p>Retrieve only those records from the table on the left side of the join condition that match the join condition but all records from the right side of the join condition.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Full </p>
+          </td>
+          <td>
+            <p>Retrieve all records from tables on both sides of the join condition regardless of whether records match the join condition.</p>
+          </td>
+        </tr></table></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Exactly Matching Records in Results</h3><div class="subSection" xmlns="">
+          <p>If you want to retrieve only those records that match the join condition from the tables on both sides of the operation, use an inner join. </p>
+          <p>For example, suppose you want to create a query containing only those companies that have orders and display only those order numbers for those companies. The following code example creates a query that retrieves only those company names from the Customer table that have orders in the Orders table and the order numbers for only those companies. The example uses an inner join to display only those records from both tables that match the join condition based on the Cust_ID field.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The <b>SELECT</b> statement uses local table aliases to distinguish the same field name, Cust_ID, in both tables and an <b>ORDER BY</b> clause to organize the results by company name in ascending order.</p>
+          </td></tr></table></div>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT TAlias1.company, TAlias2.order_ID ;
+   FROM customer AS TAlias1 ;
+   INNER JOIN orders AS TAlias2 ;
+      ON TAlias1.cust_id = TAlias2.cust_id ;
+   ORDER BY TAlias1.company ASC</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Multiple Join Operations</h3><div class="subSection" xmlns="">
+          <p>You can specify more than one join operation to include data from other tables.</p>
+          <p>For example, suppose you want to create a query containing only those companies that have orders, only those order numbers for those companies, and the employees who took the orders. The following code example creates a query that retrieves only those company names from the Customer table that have orders in the Orders table, the order numbers for only those companies, and those names belonging to employees who took those orders. The example uses two inner join clauses to display only those records from the three tables that match on the Cust_ID and Emp_ID fields.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The <b>SELECT</b> statement uses local table aliases to distinguish the common field names, Cust_ID and Emp_ID, in the tables.</p>
+          </td></tr></table></div>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT TAlias1.company, TAlias2.order_ID, ;
+   TAlias3.first_name, TAlias3.last_name ;
+   FROM customer AS TAlias1 ;
+   INNER JOIN orders AS TAlias2 ;
+      ON TAlias1.cust_id = TAlias2.cust_id ;
+   INNER JOIN employee AS TAlias3 ;
+      ON TAlias2.emp_id = TAlias3.emp_id ;
+   ORDER BY TAlias1.company ASC</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Nonmatching Records in Results</h3><div class="subSection" xmlns="">
+          <p>If you want to include any rows that do not match the join conditions in your results, you can use a left outer, right outer, or full join between tables. When you use an outer join, the empty fields of the nonmatching rows return null values. </p>
+          <p>For example, suppose you want to create a query containing a list of all customers, regardless of whether they have placed an order, and order numbers for those customers who have placed orders. The following code example uses a left outer join to display all the records from a field in one table and those records in another table that match on the join condition. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The syntax in the example uses a <b>LEFT JOIN</b> clause because the <b>OUTER</b> keyword is optional. </p>
+          </td></tr></table></div>
+          <p>This example creates a query against the Visual FoxPro sample database, TestData.dbc, that retrieves all company names from the Customer table and only those records in the Orders table that have customer ID numbers that match in both tables. However, not all the records that match have order numbers for all the companies in the Customer table. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The <b>SELECT</b> statement uses local table aliases to distinguish the same field name, Cust_ID, in both tables.</p>
+          </td></tr></table></div>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE ALL
+CLOSE DATABASES</pre></td></tr></table></span></div>
+          <p>
+            <code>OPEN DATABASE (HOME(2) + 'Data\TestData')</code>
+          </p>
+          <p>
+            <code>SELECT TAlias1.company, TAlias2.order_id ;</code>
+          </p>
+          <p>
+            <code>   FROM customer TAlias1 ;</code>
+          </p>
+          <p>
+            <code>   LEFT JOIN orders TAlias2 ;</code>
+          </p>
+          <p>
+            <code>      ON TAlias1.cust_id = TAlias2.cust_id</code>
+          </p>
+          <p>All but one of the company names in the query have order numbers in the Order_ID column of the query. Wenna Wines contains contains a null value in the Order_ID column.</p>
+          <p>For more information about join types you can set between tables in the Query Designer and View Designer, see <a href="/html/26552db5-0a57-4cfe-a789-69c3cfe55063.htm">Join Condition Dialog Box</a>.</p>
+        </div>
+    </sections></div><a name="fogrfjoinconditionsfortablesqueriesandviewsanchor3"></a><h1 class="heading">Join Sequence</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>When you need data from multiple tables, the results you want and the join type you select affect the position and join sequence in which you place the tables in your query. You can specify the order in which tables are joined in the Query and View designers or in the <b>JOIN</b> clause of the SQL <b>SELECT</b> statement. </p>
+      <p>For example, suppose you want all the records from a field in one table and only those records in another table that match on the join condition. You could use the <b>LEFT JOIN</b> operation and place the first table on the left side and the second table on the right side of the <b>JOIN</b> clause. However, if you selected a <b>RIGHT JOIN</b> operation, you would need to reverse the order of these two tables to obtain the same results. </p>
+      <p>The following code example creates a query that displays three sets of results, but all of them retrieve all values from the field in the first table and only those values from the field in the second table that meet the join condition. The join condition is specified by the <b>ON</b> clause. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The <b>SELECT</b> statement uses local table aliases to distinguish the same field name, Cust_ID, in both tables.</p>
+      </td></tr></table></div>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE ALL
+CLOSE DATABASES</pre></td></tr></table></span></div>
+      <p>
+        <code>OPEN DATABASE (HOME(2) + 'Data\TestData')</code>
+      </p>
+      <p>For the first SQL <b>SELECT</b> statement, the query retrieves all the names from the Company field in the Customer table and only those order numbers from the Order_ID field in the Orders table that match on the Cust_ID field. </p>
+      <p>
+        <code>SELECT TAlias1.company, TAlias2.order_id ;</code>
+      </p>
+      <p>
+        <code>   FROM customer TAlias1 ;</code>
+      </p>
+      <p>
+        <code>   LEFT JOIN orders TAlias2 ;</code>
+      </p>
+      <p>
+        <code>      ON TAlias1.cust_id = TAlias2.cust_id</code>
+      </p>
+      <p>For the second SQL <b>SELECT</b> statement, the <b>LEFT JOIN</b> operation is replaced with a <b>RIGHT JOIN</b> operation, but the sequence of tables has not changed. However, the result set is different. The query retrieves all the order numbers from the Order_ID field in the Orders table for those records that match on the Cust_ID field in both tables. In this example, no order number should exist without a matching customer record, so no null values appear in the Company column. However, only those names from the Company field in the Customer table appear where the Cust_ID field in the Customer table matches the Cust_ID field in the Orders table. </p>
+      <p>
+        <code>SELECT TAlias1.company, TAlias2.order_id ;</code>
+      </p>
+      <p>
+        <code>   FROM customer TAlias1 ;</code>
+      </p>
+      <p>
+        <code>   RIGHT JOIN orders TAlias2 ;</code>
+      </p>
+      <p>
+        <code>      ON TAlias1.cust_id = TAlias2.cust_id</code>
+      </p>
+      <p>For the third SQL <b>SELECT</b> statement, the <b>RIGHT JOIN</b> operation remains but the sequence of tables is reversed. However, the results are the same as the first SQL <b>SELECT</b> statement.</p>
+      <p>
+        <code>SELECT TAlias1.company, TAlias2.order_id ;</code>
+      </p>
+      <p>
+        <code>   FROM orders TAlias2 ;</code>
+      </p>
+      <p>
+        <code>   RIGHT JOIN customer TAlias1 ;</code>
+      </p>
+      <p>
+        <code>      ON TAlias1.cust_id = TAlias2.cust_id</code>
+      </p>
+      <p>For more information, see <a href="/html/c0688735-78ca-4097-aa2e-12d70b50dc81.htm">Join Tab, Query and View Designers</a> and <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a>.</p>
+    </div><a name="fogrfjoinconditionsfortablesqueriesandviewsanchor4"></a><h1 class="heading">Join Conditions</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>Join conditions specify conditions on which the tables in a SQL <b>SELECT</b> statement are joined. For example, you can use join conditions to compare values in two tables that have common fields and return only those records where those fields have the same values. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If you include more than one table in a query, you should specify a join condition for every table after the first. </p>
+      </td></tr></table></div>
+      <p>You can customize the join condition for queries and views by using comparison operators to control how records are compared and which ones are returned, similar to using a filter condition. However, join conditions compare the field value in one table to the field value in another other table, while filter conditions compare a field value to a filter value. For information about filter conditions, see <a href="/html/a04f4bf9-31a9-425f-b4cd-161fa29b67ce.htm">Filter Conditions for Queries and Views</a>.</p>
+      <p>For example, you can use the equal (=) operator when querying two tables joined on their respective customer ID fields, such as Customer.cust_id = Orders.cust_id. This query retrieves only those records on which these two fields match and meet any other filter you set in the query. As another example, if you are using a date field in a join, you can use a comparison condition operator to include only records before or after a certain date.</p>
+      <p>The following table lists the comparison operators available for join conditions.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Operator
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>=</p>
+          </td>
+          <td>
+            <p>Equal</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>==</p>
+          </td>
+          <td>
+            <p>Exactly equal</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>LIKE</p>
+          </td>
+          <td>
+            <p>SQL LIKE operation</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>&lt;&gt;, !=, #</p>
+          </td>
+          <td>
+            <p>Not equal</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>&gt;</p>
+          </td>
+          <td>
+            <p>Greater than</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>&gt;=</p>
+          </td>
+          <td>
+            <p>Greater than or equal to</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>&lt;</p>
+          </td>
+          <td>
+            <p>Less than</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>&lt;=</p>
+          </td>
+          <td>
+            <p>Less than or equal to</p>
+          </td>
+        </tr></table></div>
+      <p>You can specify join conditions with either the <b>ON</b> clause or the <b>WHERE</b> clause of a SQL <b>SELECT</b> statement but not both. </p>
+      <p>For example, suppose you want all the records from a field in one table and only those values for two fields in another table that meet a join condition and a filter condition. The following code example uses the <b>ON</b> clause to specify a join condition, which includes a filter condition specified by the <b>AND</b> clause. </p>
+      <p>This example creates a query that retrieves all the names in the Company field from the Customer table and only those records that match on the Cust_ID field in the Orders table. However, not all records that match in the Orders table contain dates in the Order_Date and Shipped_On fields that pass the filter criteria, having an order date earlier than 02/16/1994. If a company does not have order dates that meet the filter condition, the Order_Date and Shipped_On columns show null values.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The <b>SELECT</b> statement uses local table aliases to distinguish the same field name, Cust_ID, in both tables.</p>
+      </td></tr></table></div>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT TAlias1.company, TAlias2.order_date, TAlias2.shipped_on ;
+   FROM customer TAlias1 ;
+   LEFT JOIN orders TAlias2 ;
+      ON TAlias1.cust_id = TAlias2.cust_id ;
+         AND TAlias2.order_date &lt; {^1994-02-16}</pre></td></tr></table></span></div>
+      <p>For more information about the join conditions you can set for queries and views, see <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a> and <a href="/html/c0688735-78ca-4097-aa2e-12d70b50dc81.htm">Join Tab, Query and View Designers</a>.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Join Conditions in the WHERE Clause</h3><div class="subSection" xmlns="">
+          <p>When writing SQL <b>SELECT</b> statements, you can specify join conditions in the <b>WHERE</b> clause along with filter conditions. When specifying filters for queries and views in the Query and View designers, the Filter tab inserts a <b>WHERE</b> clause into the SQL <b>SELECT</b> statement generated for the query or view. You can specify a join condition in the Filter tab or edit the <b>WHERE</b> clause in the SQL <b>SELECT</b> statement by viewing and editing it in the SQL window. For remote views, a join condition always appears in the <b>WHERE</b> clause.</p>
+          <p>For example, suppose you want customer order information, including all information about the customer and the employee who took the order. The following code example uses the <b>WHERE</b> clause to specify a join condition matching records on the Cust_ID field in the Customer and Orders tables and, in addition, a join condition matching the employee number in the Emp_ID field for the Orders and Employee tables. </p>
+          <p>This example retrieves only those customer records in the Customer table that match orders in the Orders table with employee records in the Employee table.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE ALL
+CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+SELECT * FROM customer TAlias1, orders TAlias2, employee TAlias3 ;
+   WHERE TAlias1.cust_id = TAlias2.cust_id ; 
+   AND TAlias2.emp_id = TAlias3.emp_id</pre></td></tr></table></span></div>
+          <p>For more information about the <b>WHERE</b> clause, see <a href="/html/0fc4c7c3-ee77-400c-86f7-0bc0c78f6543.htm">Filter Tab, Query and View Designers</a> and <a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a>.</p>
+        </div>
+    </sections></div><a name="fogrfjoinconditionsfortablesqueriesandviewsanchor5"></a><h1 class="heading">Join Considerations</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>When creating join operations, be aware of the following considerations:  </p>
+      <ul><li>
+          <p>If you include two tables in a query and do not specify a join condition, every record in the first table is joined with every record in the second table as long as the filter conditions are met. Such a query can produce lengthy results.</p>
+        </li><li>
+          <p>Use caution when using functions such as <b>DELETED( )</b>, <b>EOF( )</b>, <b>FOUND( )</b>, <b>RECCOUNT( )</b>, and <b>RECNO( )</b>, which support an optional alias or work area. Including an alias or work area in these functions might yield unexpected results. SQL <b>SELECT</b> does not use your work areas; it performs the equivalent of <b>USE ... AGAIN</b>. Single-table queries that use these functions without an optional alias or work area return proper results. However, multiple-table queries that use these functions, even without an optional alias or work area, might return unexpected results.</p>
+        </li><li>
+          <p>Use caution when joining tables that contain empty fields because Visual FoxPro matches empty fields. For example, suppose you perform a join on the Customer.zip and Invoice.zip fields in the Customer and Invoice tables in the sample database, TestData.dbc. If the Customer table contains 100 empty zip codes, and the Invoice table contains 400 empty zip codes, the query output contains 40,000 extra records resulting from the empty fields. To eliminate empty records from the query output, use the <b>EMPTY( )</b> function.</p>
+        </li></ul>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/f974ca23-5b4f-4e5d-919b-e7119a79ab46.htm">How to: Optimize Filters and Joins</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/2a22b360-882b-4bc9-ab9d-b89be1e56dd1.htm">CREATE SQL VIEW Command</a></span><br /><span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/e2e80200-9767-4204-a73b-082286a5571a.htm">General Reference</a></span><br /><span class="linkTerms"><a href="/html/ccb3a0ad-7fe4-4267-ba42-aa9918ed1f21.htm">Working with Queries</a></span><br /><span class="linkTerms"><a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/d9f7a435-663d-4523-9511-c847be4311ca.htm">Query and View Designers</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Join Conditions for Tables, Queries, and Views">
+</OBJECT>

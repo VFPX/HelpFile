@@ -1,0 +1,210 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Create Local Views</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Create Local Views</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Local views use Visual FoxPro SQL syntax to select information from tables or views that are stored locally on your computer. You can create local views in the following ways:  </p>
+    <ul><li>
+        <p>Using the Local View Wizard. </p>
+        <p>A wizard is the easiest way to start creating a view. You can select fields from tables and views and filter and sort the records in your view. For more information, see <span class="linkTerms"><a href="#dgtskcreatinglocalviewanchor1">Creating Local Views Using a Wizard</a></span>. </p>
+      </li><li>
+        <p>Using the View Designer. </p>
+        <p>The View Designer makes it possible to select fields from tables or views, specify criteria for retrieving data and join conditions, and filter, sort, and group records to create views or customize existing views. For more information, see <span class="linkTerms"><a href="#dgtskcreatinglocalviewanchor2">Creating Local Views Using the View Designer</a></span>. </p>
+      </li><li>
+        <p>Creating views programmatically. </p>
+        <p>The <b>CREATE SQL VIEW</b> command makes it possible for you to use SQL <b>SELECT</b> statements so you can create views programmatically. For more information, see <span class="linkTerms"><a href="#dgtskcreatinglocalviewanchor3">Creating Local Views Programmatically</a></span>. </p>
+      </li></ul>
+    <p>Regardless of the method you use, the basic process for creating a view is generally the same. For more information, see <span class="linkTerms"><a href="/html/22fcc04f-b6fe-4b18-86f7-3798d1fb7944.htm">View Creation</a></span>.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>When you create or use a view from the Project Manager, the Project Manager opens the database automatically. However, if you subsequently use a view outside the project, you must open the database or make sure the database is in scope before you can use the view. </p>
+    </td></tr></table></div>
+  <a name="dgtskcreatinglocalviewanchor1"></a><h1 class="heading">Creating Local Views Using a Wizard</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can create local views easily using a wizard. The wizard helps you select tables or views and creates a query based on your answers to a series of questions. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The tables or views you want to use must be part of a project or database before you can use the Local View Wizard to create a view. For more information, see <span class="linkTerms"><a href="/html/64f18886-1426-46e6-8667-b0b5a497b24b.htm">Working with Projects</a></span> and <span class="linkTerms"><a href="/html/acbcbb01-6290-4201-b378-fabfbcbcd644.htm">Developing Databases</a></span>.</p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To start the Local View Wizard</h3><div class="subSection"><ol><li>
+            
+              <p>Perform one of the following: </p>
+              <ul><li>
+                  <p>Open a database in the <b>Database Designer</b>. </p>
+                  <p>-OR-  </p>
+                </li><li>
+                  <p>Open the project for your application in the <b>Project Manager</b>, and click a database or table.</p>
+                </li></ul>
+            
+          </li><li>
+            
+              <p>On the <b>Tools</b> menu, point to <b>Wizards</b>, and click <b>All Wizards</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Wizard Selection</b> dialog box, click <b>Local View Wizard</b>, and then <b>OK</b>.</p>
+            
+          </li><li>
+            
+              <p>Follow the instructions on the wizard screens.</p>
+            
+          </li></ol></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/6168754f-8130-46f5-b41f-3fd57be39966.htm">Local View Wizard</a></span>.</p>
+    </div><a name="dgtskcreatinglocalviewanchor2"></a><h1 class="heading">Creating Local Views Using the View Designer</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can use the View Designer to create views and specify additional options or customize existing views.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The tables or views you want to use must be part of a project or database before you can use View Designer to create a view. For more information, see <span class="linkTerms"><a href="/html/64f18886-1426-46e6-8667-b0b5a497b24b.htm">Working with Projects</a></span> and <span class="linkTerms"><a href="/html/acbcbb01-6290-4201-b378-fabfbcbcd644.htm">Developing Databases</a></span>.</p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To start the View Designer</h3><div class="subSection"><ol><li>
+            
+              <p>Perform one of the following: </p>
+              <ul><li>
+                  <p>Open a database in the <b>Database Designer</b>. </p>
+                  <p>-OR-  </p>
+                </li><li>
+                  <p>Open the project for your application in the <b>Project Manager</b>, and click a database.</p>
+                </li></ul>
+            
+          </li><li>
+            
+              <p>On the <b>File</b> menu, click <b>New</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>New</b> dialog box, click <b>View</b>, and then <b>New File</b>. </p>
+              <p>The <b>Add Table or View </b>dialog box appears. </p>
+            
+          </li><li>
+            
+              <p>In the <b>Select</b> area of the <b>Add Table or View </b>dialog box, click <b>Tables</b> to display available tables or <b>Views</b> to display available views. </p>
+            
+          </li><li>
+            
+              <p>Click the tables or views you want to use, and then <b>Add</b>.  </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+                <p>When you add more than one table or view to your view, the <b>Join Condition</b> dialog box appears. You can modify the scope of resulting records by specifying a join condition for each additional table or view. </p>
+              </td></tr></table></div>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+                <p>When you select the same table or view more than once, Visual FoxPro uses an automatically generated alias for the table or view. However, you can specify an alias for each table or view that you select by typing it in the <b>Alias</b> box in the <b>Add Table or View</b> dialog box.</p>
+              </td></tr></table></div>
+              <p>The tables or views you select appear in the <b>View Designer</b> and <b>Database Designer</b>. </p>
+            
+          </li><li>
+            
+              <p>When you are finished, click <b>Close</b>.</p>
+            
+          </li></ol></div>
+      <p>For more information specifying join conditions, see <span class="linkTerms"><a href="/html/7a236650-9be9-4c73-943b-9433deb57517.htm">How to: Control Record Selection with Joins</a></span>, <span class="linkTerms"><a href="/html/6dd78277-4a9d-4482-8ea5-42c0db850d99.htm">Join Conditions for Tables, Queries, and Views</a></span>, and <span class="linkTerms"><a href="/html/26552db5-0a57-4cfe-a789-69c3cfe55063.htm">Join Condition Dialog Box</a></span>.</p>
+      <p>After selecting tables or views, you need to select the fields that contain the data you want to retrieve the data for your view. For more information, see <span class="linkTerms"><a href="/html/3cb96df8-db9a-46e1-9888-4e7c303c23df.htm">How to: Select Fields for Views</a></span>.</p>
+    </div><a name="dgtskcreatinglocalviewanchor3"></a><h1 class="heading">Creating Local Views Programmatically</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can create local views programmatically by opening the View Designer or specifying a SQL <b>SELECT</b> statement.</p>
+      <h3 class="procedureSubHeading">To create a local view programmatically</h3><div class="subSection"><ol><li>
+            
+              <p>Open the database or project containing the tables or views you want to select.</p>
+            
+          </li><li>
+            
+              <p>Choose one of the following: </p>
+              <ul><li>
+                  <p>To select tables or views and open the View Designer, use the <b>CREATE SQL VIEW</b> command with only the name of the view you want to create.</p>
+                </li></ul>
+              <p>-OR-  </p>
+              <ul><li>
+                  <p>To create a local view without opening the View Designer, use the <b>CREATE SQL VIEW</b> command and the <b>AS</b> clause to specify SQL <b>SELECT</b> statements. </p>
+                  <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                    <p>To match related records between the tables, you must specify a join condition in the <b>FROM</b> or <b>WHERE</b> clause of the SQL statement used in the <b>CREATE SQL VIEW</b> command. If persistent relationships between the tables exist, they are automatically used as join conditions.</p>
+                  </td></tr></table></div>
+                </li></ul>
+              <p>The tables or views you select appear in the <b>View Designer</b> and <b>Database Designer</b>. You might need to close and reopen the designers to update them. </p>
+            
+          </li></ol></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/2a22b360-882b-4bc9-ab9d-b89be1e56dd1.htm">CREATE SQL VIEW Command</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/42a77873-a21f-4cab-b94f-a0b27bdb2188.htm">How to: Add Tables to Views</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/22fcc04f-b6fe-4b18-86f7-3798d1fb7944.htm">View Creation</a></span><br /><span class="linkTerms"><a href="/html/fadf7948-fde3-49eb-ae1f-ca8c4700f023.htm">Accessing Remote Data Using Views</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><span class="linkTerms"><a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Create Local Views">
+</OBJECT>

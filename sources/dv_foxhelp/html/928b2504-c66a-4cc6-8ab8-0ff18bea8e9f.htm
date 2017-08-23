@@ -1,0 +1,225 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Field and Record Validation Rules</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Field and Record Validation Rules</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Field and record validation rules control how and the type of data that you can enter in database table fields and records. Validation rules provide the following advantages:  </p>
+    <ul><li>
+        <p>Provide a way to enforce business rules consistently.</p>
+      </li><li>
+        <p>Help you write less code.</p>
+      </li><li>
+        <p>Are enforced for all users of the database table, regardless of the requirements of the application. </p>
+      </li></ul>
+    <p>When using validation rules, the values entered in fields and records are compared against the rule expressions that you specify. If an entered value does not meet the requirements of the rule expression, the value is rejected.</p>
+    <p>For example, you might create a rule that compares the value of a postal code field against a separate table containing the postal abbreviation codes for your country or region and rejects any value that does not exist as a valid postal code abbreviation.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>Avoid creating field or record-level rules that are application-specific. Instead, create and use field and record-level rules to enforce data integrity and business rules that always apply to the data in your database, regardless of how or who accesses the data. </p>
+    </td></tr></table></div>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Validation rules are stored in the database (.dbc) file. Removing or deleting a database table removes and deletes all field and record-level rules associated with that table. However, stored procedures referenced by the removed or deleted validation rules remain. </p>
+    </td></tr></table></div>
+    <p>The following sections contain more information about working with validation rules:  </p>
+    <ul><li>
+        <p>
+          <a href="#foconfieldrecordvalidationrulesanchor1">Choosing Between Field and Record Validation Rules</a>
+        </p>
+      </li><li>
+        <p>
+          <a href="#foconfieldrecordvalidationrulesanchor2">Checking Field and Record Validation Rules</a>
+        </p>
+      </li></ul>
+  <a name="foconfieldrecordvalidationrulesanchor1"></a><h1 class="heading">Choosing Between Field and Record Validation Rules</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can use a field-level validation rule when the following apply:  </p>
+      <ul><li>
+          <p>You want to control the type of information a user can enter in a field.</p>
+        </li><li>
+          <p>You can validate the data in a field independently from any other entry in the record.</p>
+        </li><li>
+          <p>You want to compare values entered in a field against the values in another table.</p>
+        </li></ul>
+      <p>For example, you can use a field-level validation rule to make sure that a user does not enter a negative number in a field that requires a positive value.</p>
+      <p>You use record-level validation rules when the following apply:  </p>
+      <ul><li>
+          <p>You want to control the type of information a user can enter in a record. </p>
+        </li><li>
+          <p>You want to compare the values of two or more fields in the same record to make sure comply with business rules for the database. </p>
+        </li></ul>
+      <p>For example, you can use a record-level validation rule to make sure that the value in a field is always greater than another in the same record.</p>
+    </div><a name="foconfieldrecordvalidationrulesanchor2"></a><h1 class="heading">Checking Field and Record Validation Rules</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Field and record validation rules are active even when data is buffered. Generally, field validation rules are checked when the field's value changes; record validation rules are checked when the record value changes. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If a field or record value has not changed, validation rules are not checked. When no values have changed, you can navigate fields and fields without validating data.</p>
+      </td></tr></table></div>
+      <p>The following table describes more specifically when Visual FoxPro checks field validation rules depending on the method of data entry.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Changing values using
+            </th>
+            <th>
+              Window or command
+            </th>
+            <th>
+              Field validation rule is checked 
+            </th>
+          </tr><tr>
+          <td>
+            <p>User interface</p>
+          </td>
+          <td>
+            <p>Browse window Form Other window</p>
+          </td>
+          <td>
+            <p>When moving off the field.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Commands that do not specify fields</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/7210015f-dc18-451e-97d7-c1c3b86d5a2a.htm">APPEND Command</a>
+              <a href="/html/a87efd8b-c338-4489-83a1-9f2c8d52abb8.htm">APPEND GENERAL Command</a>
+              <a href="/html/f169f542-85c0-4c7e-8f03-daf3efeab856.htm">APPEND MEMO Command</a>
+              <a href="/html/8f9cae61-2a9a-4893-8325-40426b907de8.htm">BROWSE Command</a>
+              <a href="/html/cffc4866-c609-426f-95a5-e45587122aa8.htm">CHANGE Command</a>
+              <a href="/html/9c5000b8-3c35-4690-b7b8-07299f84b794.htm">DELETE Command</a>
+              <a href="/html/83b52869-8201-4d60-a6b5-35bcd8e1c12f.htm">EDIT Command</a>
+              <a href="/html/059d1397-f71d-4cd7-9d0e-1d443155bc95.htm">GATHER Command</a>
+            </p>
+          </td>
+          <td>
+            <p>When changing the field value. </p>
+            <p>The rule is checked in the field order specified in the command.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Commands that do not specify fields</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/7210015f-dc18-451e-97d7-c1c3b86d5a2a.htm">APPEND Command</a> with <b>BLANK</b> clause<a href="/html/f9d15b20-eb9d-4c37-8d4a-d9d02c01eb56.htm">INSERT - SQL Command</a></p>
+          </td>
+          <td>
+            <p>When appending or inserting the record. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Commands that specify fields</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/56137e46-cad2-4473-8e8e-367d2ca63334.htm">UPDATE - SQL Command</a>
+              <a href="/html/7f52db34-68fc-4f9e-abca-fa3f7f02ca19.htm">REPLACE Command</a>
+            </p>
+          </td>
+          <td>
+            <p>In the field order specified in the command.</p>
+          </td>
+        </tr></table></div>
+      <p>In contrast, Visual FoxPro checks record validation rules whenever the record pointer moves off the record, regardless of the method you use to enter data. In addition, in a browse window, the record validation rule is checked if you modify a record but do not move the record pointer, and then close the browse window. Visual FoxPro generates any error messages that occur, and then closes the browse window.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+        <p>Do not include any commands or functions in your validation rules that attempt to move the record pointer in the current work area where validation rules are checked. For example, including commands or functions such as <b>SEEK</b>, <b>LOCATE</b>, <b>SKIP</b>, <b>APPEND</b>, <b>APPEND BLANK</b>, <b>INSERT</b>, or <b>AVERAGE</b>, <b>COUNT</b>, <b>BROWSE</b>, and <b>REPLACE FOR</b> in validation rules might check them recursively, creating an error condition.</p>
+      </td></tr></table></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>When a trigger is called, the Alias is always that of the cursor being updated, regardless of the Alias selected in the code that caused the trigger to fire.</p>
+      </td></tr></table></div>
+      <p>When a record validation rule causes an error during a running application, you need to include error-handling code. Typically, this code does not permit the user to leave a form or change the active environment until the user corrects the error or cancels changes to the record.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/797bdc42-739e-4915-994e-a5813505d3e3.htm">How to: Create Field Validation Rules</a></span><br /><span class="linkTerms"><a href="/html/f7b4b72c-6da0-4660-8b73-6d36b644a714.htm">How to: Create Record Validation Rules</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/df7e047b-24bc-4dd9-a327-6c2ee6640d9c.htm">Working with Validation Rules</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Field and Record Validation Rules">
+</OBJECT>

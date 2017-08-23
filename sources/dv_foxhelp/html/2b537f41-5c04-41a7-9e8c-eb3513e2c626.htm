@@ -1,0 +1,334 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SQLSETPROP( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SQLSETPROP( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Specifies settings for an active connection. You can use SQLSETPROP( ) to specify settings at the connection level. To specify Visual FoxPro default settings at the environment level, include 0 as the statement handle. </p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SQLSETPROP(<span class="parameter">nStatementHandle</span>, <span class="parameter">cSetting</span> [, <span class="parameter">eExpression</span>])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nStatementHandle</span>
+        </span></dt><dd>
+          <p>Specifies the statement handle to the data source returned by SQLCONNECT( ).</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cSetting</span>
+        </span></dt><dd>
+          <p>Specifies the setting. The following table lists the values for <span class="parameter">cSetting.</span></p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Setting
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>Asynchronous</p>
+              </td>
+              <td>
+                <p>Specifies whether result sets are returned synchronously (False (.F.), the default), or asynchronously (True (.T.)). Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>BatchMode</p>
+              </td>
+              <td>
+                <p>Specifies whether SQLEXEC( ) returns result sets all at once (True (.T.), the default), or individually with SQLMORERESULTS( ) (False (.F.)).  Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ConnectBusy </p>
+              </td>
+              <td>
+                <p>Contains True (.T.) if a shared connection is busy; otherwise contains False (.F.).  Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ConnectString</p>
+              </td>
+              <td>
+                <p>The login connection string.  Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ConnectTimeOut</p>
+              </td>
+              <td>
+                <p>Specifies the time to wait (in seconds) before returning a connection time-out error. If you specify 0, the wait is indefinite and a time-out error is never returned. ConnectTimeOut can be 0 to 600. The default is 15.  Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DataSource</p>
+              </td>
+              <td>
+                <p>The name of the data source as defined in the ODBC.INI file.  Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DisconnectRollback</p>
+              </td>
+              <td>
+                <p>Specifies if a pending transaction is committed or rolled back when SQLDISCONNECT( ) is called for the last connection handle.</p>
+                <p>The default is false (.F.), indicating that a pending transaction is committed when SQLDISCONNECT( ) is called for the last connection handle.</p>
+                <p>Specify true (.T.) to roll back a pending transaction when SQLDISCONNECT( ) is called for the last connection handle.</p>
+                <p>Connections with automatic transaction processing are not affected by this setting.</p>
+                <p>Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DispLogin</p>
+              </td>
+              <td>
+                <p>Contains a numeric value that determines when the ODBC Login dialog box is displayed. DispLogin may assume the following values:</p>
+                <p>1 or DB_PROMPTCOMPLETE (from FOXPRO.H).1 is the default.</p>
+                <p>2 or DB_PROMPTALWAYS (from FOXPRO.H).</p>
+                <p>3 or DB_PROMPTNEVER (from FOXPRO.H).</p>
+                <p>If 1 or DB_PROMPTCOMPLETE is specified, Visual FoxPro displays the ODBC Login dialog box only if any required information is missing.</p>
+                <p>If 2 or DB_PROMPTALWAYS is specified, the ODBC Login dialog box is always displayed, making it possible for you to change settings before connecting.</p>
+                <p>If 3 or DB_PROMPTNEVER is specified, the ODBC Login dialog box isn't displayed and Visual FoxPro generates an error if the required login information isn't available. Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>DispWarnings</p>
+              </td>
+              <td>
+                <p>Specifies if error messages are displayed (True (.T.)) or are not displayed (False (.F.), the default).  Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>IdleTimeout</p>
+              </td>
+              <td>
+                <p>The idle timeout interval in minutes. Active connections are deactivated after the specified time interval. The default value is 0 (wait indefinitely).  Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ODBChdbc</p>
+              </td>
+              <td>
+                <p>The internal ODBC connection handle, which may be used by external library files (FLL files) to call ODBC.  Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ODBChstmt</p>
+              </td>
+              <td>
+                <p>The internal ODBC statement handle, which may be used by external library files (FLL files) to call ODBC.  Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>PacketSize</p>
+              </td>
+              <td>
+                <p>The size of the network packet used by the connection. Adjusting this value can improve performance. The default value is 4096 bytes (4K).  Read/write</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Password</p>
+              </td>
+              <td>
+                <p>The connection password.  Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>QueryTimeOut</p>
+              </td>
+              <td>
+                <p>Specifies the time to wait (in seconds) before returning a general time-out error. If you specify 0 (the default), the wait is indefinite and a time-out error is never returned. QueryTimeOut can be 0 to 600.  Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Shared</p>
+              </td>
+              <td>
+                <p>Specifies whether the underlying connection is a shared connection (True (.T.)), or not (False (.F.)). </p>
+                <p>Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Transactions</p>
+              </td>
+              <td>
+                <p>Contains a numeric value that determines how the connection manages transactions on the remote table. Transactions may assume the following values:</p>
+                <p>1 or DB_TRANSAUTO (from FOXPRO.H).1 is the default. Transaction processing for the remote table is automatically handled.</p>
+                <p>2 or DB_TRANSMANUAL (from FOXPRO.H). Transaction processing is handled manually through <a href="/html/3e65e927-58a3-4e71-9e88-3f07de1dee0e.htm">SQLCOMMIT( )</a> and <a href="/html/f71640f4-d839-4545-be11-de5d1adf9c2c.htm">SQLROLLBACK( )</a>. Read/write.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>UserId</p>
+              </td>
+              <td>
+                <p>The user identification. Read-only.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>WaitTime</p>
+              </td>
+              <td>
+                <p>The amount of time in milliseconds that elapses before Visual FoxPro checks if the SQL statement has completed executing. The default is 100 milliseconds.  Read/write.</p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">eExpression</span>
+        </span></dt><dd>
+          <p>Specifies the value for the setting you designate with <span class="parameter">cSetting</span>. If you omit <span class="parameter">eExpression</span>, the default value is restored for the setting.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Numeric data type. SQLSETPROP( ) returns 1 if it is successful. Otherwise, it returns – 1 if a connection level error occurs or – 2 if an environment level error occurs.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>You can use SQLGETPROP( ) to return the current value for a specified setting.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>You must disable the Open Database Connectivity (ODBC) login dialog box to support SQL pass through with Microsoft Transaction Server. To disable the ODBC login dialog box, use the statement <code>SQLSETPROP(cStatementHandle, 'DispLogin', 3)</code>, where <span class="parameter">cStatementHandle</span> is the statement handle returned by <b>SQLCONNECT( )</b>. You can also disable the ODBC login dialog box in the <a href="/html/308de4ee-ed87-45be-9d10-b1b425eb0e9c.htm">Connection Designer</a>.</p>
+      </td></tr></table></div>
+      <p>The ConnectTimeOut option can be set only at the Visual FoxPro level and has no equivalent at the connection level. You can set all other options at either the connection or the Visual FoxPro level. Each option set at the Visual FoxPro level serves as a default value for subsequent connections.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example shows how SQLSETPROP( ) is used to set the packet size for the current connection. SQLCONNECT( ) displays the Select Connection or Data Source Dialog Box for you to choose a connection, and the connection is tested. The packet size is set; the setting is tested; and the results are displayed.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE ALL
+CLEAR ALL
+CLEAR
+nHandle=SQLCONNECT()
+IF nHandle &gt; 0
+   nSet=SQLSETPROP(nHandle, "PacketSize", 2048 )
+   IF nSet &gt; 0
+      =MESSAGEBOX("PacketSize was set to 2048",0,"Connection Results")
+   ELSE
+      =MESSAGEBOX("Error setting PacketSize",0,"Connection Results")
+   ENDIF
+ELSE
+   =MESSAGEBOX("No Connection",0,"Connection Results")
+ENDIF
+=SQLDISCONNECT(nHandle)</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/cf8d9a30-f8dc-4181-bebd-1181c3554308.htm">AERROR( ) Function</a></span><br /><span class="linkTerms"><a href="/html/92c91971-57fb-4ca5-9712-b00dc0457a4b.htm">SQLGETPROP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/308de4ee-ed87-45be-9d10-b1b425eb0e9c.htm">Connection Designer</a></span><br /><span class="linkTerms"><a href="/html/17c2b362-8646-41fc-a66d-6c80cf201b0d.htm">SQL Commands and Functions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SQLSETPROP( ) Function">
+<param name="ALink Name" value="SQLSETPROP">
+</OBJECT>

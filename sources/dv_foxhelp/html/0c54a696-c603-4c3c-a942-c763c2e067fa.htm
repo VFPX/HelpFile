@@ -1,0 +1,141 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Add Context Sensitive Help to Applications</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Add Context Sensitive Help to Applications</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Adding context-sensitive Help to applications makes it possible for users to access Help topics related to the tasks they perform or the user interface elements they see in your application. For example, if a user is viewing a data entry form, you can configure context-sensitive Help to provide a Help topic related specifically to the data entry form.</p>
+    <p>You can choose the level of detail to implement context-sensitive Help in your application. For example, you can associate a context-sensitive Help topic with a form or you can associate more detailed Help topics with each control and field on the form.</p>
+    <p>Users can access context-sensitive Help typically by pressing the F1 key. F1 is enabled for context-sensitive Help by default. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Though you can map any key to activate context-sensitive Help using the <b>ON KEY LABEL</b> command, pressing the F1 key is a recognized standard for Help; therefore, redefining this key is not recommended. For more information, see <span class="linkTerms"><a href="/html/3b90dacf-2ab1-4457-b73a-70fbad80948c.htm">ON KEY LABEL Command</a></span>.</p>
+    </td></tr></table></div>
+    <p>To add context-sensitive Help, you must specify a Help file for your application and then assign specific Help topics to the objects in your application.</p>
+  <h1 class="heading">Specifying a Help File</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <h3 class="procedureSubHeading">To specify a Help file for your application</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <b>SET HELP</b> command to specify the name of the Help file you want to use.</p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+                <p>This command is typically included in the setup code for the main program of your application.</p>
+              </td></tr></table></div>
+            
+          </li></ul>
+          
+            <p>For more information, see <span class="linkTerms"><a href="/html/51dd6e52-8ff3-41d5-987f-09dc8cf806eb.htm">SET HELP Command</a></span>.</p>
+          
+        </div>
+      <p>For example, the following line of code sets the HTML Help file MyHelp.chm as the Help file to use:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET HELP TO MyHelp.chm</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Assigning Help Topics</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can assign specific Help topics to objects, such as forms, controls, or toolbars, in your application.</p>
+      <h3 class="procedureSubHeading">To assign a Help topic to an object</h3><div class="subSection"><ol><li>
+            
+              <p>At design time, select the object that you want to want to assign a topic.</p>
+            
+          </li><li>
+            
+              <p>On the <b>Window</b> menu, click <b>Properties Window</b>.</p>
+            
+          </li><li>
+            
+              <p>In the <b>Properties</b> window, set the <b>HelpContextID</b> property to the number associated with the topic in your Help file.</p>
+            
+          </li></ol>
+          
+            <p>For more information, see <span class="linkTerms"><a href="/html/f08a4ff8-712c-4de7-ae95-137bb2b49582.htm">HelpContextID Property (Visual FoxPro)</a></span>.</p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>To assign Help topics to menu titles or menu commands, you must include the <b>SET TOPIC</b> command in the procedure associated with the menu title or menu command. For more information, see <span class="linkTerms"><a href="/html/883fe0e0-7356-4b82-8145-9a073e570bb0.htm">SET TOPIC Command</a></span>.</p>
+            </td></tr></table></div>
+          
+        </div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/8c87a693-c215-4ed1-bc5d-574901f02723.htm">How to: Implement "What's This?" Help</a></span><br /><span class="linkTerms"><a href="/html/dc1b1b68-6934-4642-a9ed-35b513353502.htm">How to: Add Help Buttons to Forms</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/d10a7fd6-5348-4797-b3c8-95ca03fbc7e2.htm">Configuring Help Files for Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Add Context Sensitive Help to Applications">
+</OBJECT>

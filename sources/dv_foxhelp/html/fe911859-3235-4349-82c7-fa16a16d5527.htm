@@ -1,0 +1,228 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Visual FoxPro Index Types</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Visual FoxPro Index Types</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro offers different index types so that you can perform additional tasks with data:
+</p>
+    <ul><li>
+        <p>Control whether to permit duplicate values in the fields or index expression specified for generating index keys.</p>
+      </li><li>
+        <p>Establish referential integrity in persistent relationships between tables.</p>
+      </li><li>
+        <p>Optimize indexes based on logical expressions.</p>
+      </li><li>
+        <p>Select and organize a subset of records based on the first occurrence of a specified value.</p>
+      </li><li>
+        <p>Optimize search and query operations.</p>
+      </li></ul>
+    <p>You can use all Visual FoxPro index types except binary indexes to perform query, view, ordering, and <b>SEEK</b> operations on records. You can use all index types to optimize filter conditions and <b>ON</b> and <b>WHERE</b> conditions in SQL <b>SELECT</b> statements.</p>
+    <p>The following table summarizes index types available in Visual FoxPro.</p>
+    <div class="labelheading"><b>Visual FoxPro Index Types</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Index type
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Number allowed
+          </th>
+        </tr><tr>
+        <td>
+          <p>
+            <a href="#foconvisualfoxproindextypesanchor1">Primary</a>
+          </p>
+        </td>
+        <td>
+          <p>Does not permit duplicate values in the specified fields or expression. </p>
+        </td>
+        <td>
+          <p>One per table</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>
+            <a href="#foconvisualfoxproindextypesanchor2">Candidate</a>
+          </p>
+        </td>
+        <td>
+          <p>Does not permit duplicate values in the specified fields or expression.</p>
+        </td>
+        <td>
+          <p>Many per table</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>
+            <a href="#foconvisualfoxproindextypesanchor3">Regular</a>
+          </p>
+        </td>
+        <td>
+          <p>Permits duplicate values in the specified fields or expression.</p>
+        </td>
+        <td>
+          <p>Many per table</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>
+            <a href="#foconvisualfoxproindextypesanchor4">Binary</a>
+          </p>
+        </td>
+        <td>
+          <p>Indexes records based on a valid and non-null logical expression. </p>
+        </td>
+        <td>
+          <p>Many per table</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>
+            <a href="#foconvisualfoxproindextypesanchor5">Unique</a>
+          </p>
+        </td>
+        <td>
+          <p>Selects a subset of records based on the first occurrence of a specified value. Included for backward compatibility.</p>
+        </td>
+        <td>
+          <p>Many per table</p>
+        </td>
+      </tr></table></div>
+  <a name="foconvisualfoxproindextypesanchor1"></a><h1 class="heading">Primary Indexes</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The primary index contains an index key for each record in a table and is the default index when you do not specify any other indexes as the main index for the table. The primary index prohibits duplicate values in the fields or index expression specified for generating index keys; therefore, each index key in the primary index is unique. You can create only one primary index per table. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Primary indexes are an integral part of a table within a database. If you free a table from a database, the primary index is removed. If you specify a primary index on any field that contains duplicate data, Visual FoxPro generates an error.</p>
+      </td></tr></table></div>
+      <p>The primary index is also principally used in the primary or "referenced" table to establish referential integrity in a persistent relationship between tables. </p>
+    </div><a name="foconvisualfoxproindextypesanchor2"></a><h1 class="heading">Candidate Indexes</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Similar to a primary index, a candidate index contains an index key for each record in a table and prohibits duplicate values in the fields or index expression specified for generating index keys. However, you can create multiple candidate indexes per table. The name "candidate" actually refers to the status of the index; that is, you can create candidate indexes as alternative selections for the primary index.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>If you specify a candidate index on any field that contains duplicate data, Visual FoxPro generates an error.</p>
+      </td></tr></table></div>
+      <p>Candidate indexes can be used as either the referenced or referencing index to establish referential integrity in a persistent relationship between tables. For example, in a one-to-many relationship or a one-to-one persistent relationship, you can use candidate and primary indexes to define the "one" side in these relationships.</p>
+    </div><a name="foconvisualfoxproindextypesanchor3"></a><h1 class="heading">Regular Indexes</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>A regular index contains an index key for each record in the table but permits duplicate values in the fields or index expression specified for generating index keys. A regular index is simply an index that is not unique, primary, or candidate. You can create more than one regular index for a table. </p>
+      <p>You cannot use regular indexes to enforce the uniqueness of the data in those records. You can use a regular index as the "many" side in a one-to-many persistent relationship.</p>
+    </div><a name="foconvisualfoxproindextypesanchor4"></a><h1 class="heading">Binary Indexes</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>A binary, or bitmap, index is used for creating indexes based on logical expressions, for example, indexing deleted records, and is supported for free and database tables. However, binary indexes do not support the following: 
+</p>
+      <ul><li>
+          <p>Using index expressions that evaluate to null.</p>
+        </li><li>
+          <p>Using <b>FOR</b> clause filter expressions.</p>
+        </li><li>
+          <p>Changing the order in which records are displayed and processed, for example, by using the <b>ASCENDING</b>, <b>DESCENDING</b>, <b>UNIQUE</b>, or <b>CANDIDATE</b> keywords.</p>
+        </li><li>
+          <p>Setting binary indexes as controlling indexes, for example, by using the <b>SET ORDER</b> command.</p>
+        </li><li>
+          <p>Performing ordering and seek operations.</p>
+        </li></ul>
+      <p>A binary index can be significantly smaller than a non-binary index and can improve the speed in maintaining indexes, for example, when using indexes based on deleted records. For more information, see <a href="/html/7ecc3532-d06f-42b4-b1d0-9bed677cec90.htm">Indexes Based on Deleted Records</a>. Visual FoxPro can often create the Rushmore optimization bitmap faster for a binary index if the number of records returned is more than 3% of the total number of records. However, the Rushmore bitmap might be created slower if the number of records returned is less than 3% of the total number of records. The 3% threshold can decrease as the number of the records in the table increase.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Performance improvements or degradations and binary index sizes might vary with your specific data and application architecture. The numbers used in the example are based on tests using random test data.</p>
+      </td></tr></table></div>
+      <p>You can create binary indexes using the Table Designer or the <b>INDEX</b> command. For more information, see <a href="/html/1225f38b-2ed5-499e-b2c7-71b741bbe758.htm">How to: Create Indexes</a> and <a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a>.</p>
+    </div><a name="foconvisualfoxproindextypesanchor5"></a><h1 class="heading">Unique Indexes</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>Earlier versions of Visual FoxPro included unique indexes. Unique indexes do not actually prevent duplicate values from being entered in the table. The name "unique" actually describes the entries in the index file because the file does not store a particular index key more than once and disregards later occurrences of duplicate index keys. Unique indexes make it possible to specify that only the index key for the first record matching the index expression is added to the index. After a match occurs, no other index keys are added to the index. However, the table can still contain duplicate values.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>If you want to select records in this manner, it is recommended that you create a query or view instead. For more information, see <a href="/html/ccb3a0ad-7fe4-4267-ba42-aa9918ed1f21.htm">Working with Queries</a> and <a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views</a>.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/1225f38b-2ed5-499e-b2c7-71b741bbe758.htm">How to: Create Indexes (Visual FoxPro)</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Visual FoxPro Index Types">
+</OBJECT>

@@ -1,0 +1,135 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Append and Delete Records in Table Buffers</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Append and Delete Records in Table Buffers</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can append and delete records while table buffering is enabled: appended records are added to the end of the buffer. To access all records in the buffer, including appended records, use the <span class="linkTerms"><a href="/html/181492fc-bc18-458d-9c65-c8e258f383f7.htm">RECNO( ) Function</a></span>. The RECNO( ) function returns sequential negative numbers on records you append to a table buffer. For instance, if you initiate table buffering, edit records 7, 8, and 9, and then append three records, the buffer will contain RECNO( ) values of 7, 8, 9, – 1, – 2, and – 3.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Tables containing automatically incrementing field values append table-buffered records approximately 35% slower than tables without automatically incrementing field values, which might affect performance. When using table buffering, the table header is locked when the record is appended.</p>
+    </td></tr></table></div>
+    <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Buffer after editing and appending records</caption></caption></b><br></br></div><img src="../local/Local_-313126639_afd17008.gif" alt="EditedTableBuffer2 graphic foxpro"></img>
+    <p>You can remove appended records from the buffer only by using the <span class="linkTerms"><a href="/html/0fdd3838-1de5-4e54-8e4e-acb3d3e8b3bf.htm">TABLEREVERT( ) Function</a></span>. For any appended record, both TABLEUPDATE( ) and TABLEREVERT( ) delete the negative RECNO( ) value for that record while maintaining the sequence.</p>
+    <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Buffer after editing, deleting an appended record, and appending another</caption></caption></b><br></br></div><img src="../local/Local_-313126640_afd17009.gif" alt="EditedTableBuffer graphic foxpro"></img>
+    <p>While using a table buffer, you can use the GO command with the negative RECNO( ) value to access a specific appended record. For instance, using the previous example, you can type:</p>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>GO 7      &amp;&amp; moves to the 1st buffered record
+GO -3      &amp;&amp; moves to the 6th buffered record (3rd appended)</pre></td></tr></table></span></div>
+  <h3 class="procedureSubHeading">To append records to a table buffer</h3><div class="subSection"><ul><li>
+        
+          <p>Use the <a href="/html/7210015f-dc18-451e-97d7-c1c3b86d5a2a.htm">APPEND</a> or <b>APPEND BLANK</b> command after you enable table buffering.</p>
+        
+      </li></ul></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Appended records have sequential ascending negative RECNO( ) numbers.</p>
+      <h3 class="procedureSubHeading">To remove an appended record from a table buffer</h3><div class="subSection"><ol><li>
+            
+              <p>Use the <span class="linkTerms"><a href="/html/21117980-58f1-47b0-9384-05e0172f7af7.htm">GO | GOTO Command</a></span> with a negative value to position the record pointer at the record to be deleted.</p>
+            
+          </li><li>
+            
+              <p>Use the <span class="linkTerms"><a href="/html/9c5000b8-3c35-4690-b7b8-07299f84b794.htm">DELETE Command</a></span> to mark the record for deletion.</p>
+            
+          </li><li>
+            
+              <p>Use the <span class="linkTerms"><a href="/html/0fdd3838-1de5-4e54-8e4e-acb3d3e8b3bf.htm">TABLEREVERT( ) Function</a></span> to remove the record from the buffer. </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>The TABLEREVERT() function also affects the status of deleted and changed rows.</p>
+              </td></tr></table></div>
+            
+          </li></ol></div>
+      <h3 class="procedureSubHeading">To remove all appended records from a table buffer</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <span class="linkTerms"><a href="/html/0fdd3838-1de5-4e54-8e4e-acb3d3e8b3bf.htm">TABLEREVERT( ) Function</a></span> with a value of true (.T.).</p>
+            
+          </li></ul></div>
+      <p>TABLEREVERT( ) removes appended records from a table buffer without writing the records to the table. TABLEUPDATE( ) writes all current buffered records to a table, even if they've been marked for deletion.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/58a84517-87fb-4a33-b330-1e2361b51f42.htm">How to: Enable Buffering</a></span><br /><span class="linkTerms"><a href="/html/aec29e01-39c1-4cce-983d-4c536f71626d.htm">How to: Use Data Sessions</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/c94d4b30-e6aa-408c-a29d-6b27eb93674d.htm">Buffering Data</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c3ac4a1d-4c23-40ba-8715-e9ce9438cf62.htm">Updating Data</a></span><br /><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><span class="linkTerms"><a href="/html/f3eff628-41b3-45cd-856d-2d97fd2fed05.htm">Controlling Access to Data</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Append and Delete Records in Table Buffers">
+</OBJECT>

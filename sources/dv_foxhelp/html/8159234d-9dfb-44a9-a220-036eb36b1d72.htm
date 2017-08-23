@@ -1,0 +1,305 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Blob Data Type</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Blob Data Type</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>To store binary data of any kind, such as ASCII text, an executable (.exe) file, or a stream of bytes, and with indeterminate length, use the <b>Blob</b> data type. Blob data types are particularly useful for storing Image data from SQL Server.</p>
+    <p>You can assign values to a <b>Blob</b> field using binary literals. Binary literals begin with a prefix, 0h, followed by a string of hexadecimal numbers and are not enclosed with quotation marks (""), unlike character strings. The following list includes examples of binary literals:  </p>
+    <ul><li>
+        <p>0h202020</p>
+      </li><li>
+        <p>0h6ABCDEF</p>
+      </li><li>
+        <p>0h (empty binary literal)</p>
+      </li></ul>
+    <p>Binary literals are limited to 255 encoded bytes. </p>
+    <p>To store binary values of fixed length, use the <b>Varbinary</b> data type instead. For more information, see <a href="/html/8617af84-55a5-4480-9b44-f349f066dac0.htm">Varbinary Data Type</a>.</p>
+  <h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Support for Blob Data Type</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+      <p>The <b>Blob</b> type is supported for database containers (.dbc), free tables, cursors, and views. For example, you can select this type for a field on the Fields tab in the Table Designer. Tables can contain multiple <b>Blob</b> fields. You can specify default and null values for <b>Blob</b> fields. <b>Blob</b> fields support field validation. </p>
+      <p>You can view the contents of a field with <b>Blob</b> type using an <b>EditBox</b> control, a <b>TextBox</b> control in a <b>Grid</b> control, or by issuing the <b>MODIFY MEMO</b> command with the name of the <b>Blob</b> field; however, the contents are read-only. The edit box displays <b>Blob</b> type data as hexadecimal values without the 0h prefix. In grids, <b>Blob</b> type fields display the string "blob" if they are empty, and the string "Blob" if they contain data. You can double-click the <b>Blob</b> field in the grid, and an editing window displays the data as read-only.</p>
+      <p>Index keys based on <b>Blob</b> fields are not supported. No code page translation is performed on data with <b>Blob</b> type.</p>
+      <p>The following table lists language that contains functionality affected by the <b>Blob</b> data type.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <td>
+            <p>
+              <a href="/html/c576b477-4cf5-4ad4-a115-6963867dd548.htm">AFIELDS( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/3c5a454a-67ec-48a8-8290-18dd0e8a97ea.htm">ALTER TABLE - SQL Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/9105b2f8-0648-4fad-8d59-a2dbd9859d8e.htm">ALINES( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/e03290b3-e96a-421c-8efa-f9b1691b09cb.htm">BITAND( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/c3c6ff91-a5c0-47a8-b979-cb9020f13d5a.htm">BITCLEAR( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/9881350f-b6bb-4a73-9772-95d448de5397.htm">BITNOT( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/09ff58b4-463e-424e-b3a6-b49349ec84a7.htm">BITOR( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/0279f322-82f1-4687-82ac-a0d772f25e72.htm">BITSET( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/55285ec7-91ce-480f-ae2b-c3c41c36032e.htm">BITTEST( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/b7858458-a38e-492c-b8b6-0d6c42324fb6.htm">BITXOR( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/31ed53ed-3264-4de0-9d9e-8e225589d5a7.htm">COPY STRUCTURE EXTENDED Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/e5cc1f14-402f-43b7-8066-af695c60e183.htm">COPY TO Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/203ecbbd-12ae-4caa-94b6-d3077eb685ba.htm">CREATE CURSOR - SQL Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/1225275c-e888-49f8-aa8c-ce66673fe761.htm">CREATE FROM Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/b14e5d95-5b1c-4cfa-a5ac-4093ea6211e0.htm">CREATE TABLE - SQL Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/42160b03-2714-4ca5-abdf-581bd3fc7abe.htm">CursorSchema Property</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/4b2168d1-6e9f-4dc4-aaec-ab25b49383ce.htm">CURSORGETPROP( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/b53b14fa-c1b0-4c29-82b1-3149adf53073.htm">CURSORTOXML( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/ededf873-d538-48fa-92bc-4942d740b434.htm">DataType Property</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/714bd634-6f29-4024-856b-7b669f0a4350.htm">EMPTY( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/17571b10-3976-427f-bc75-b96713cfbe7f.htm">ISBLANK( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/61cfc3cf-a81d-47bc-ac59-0e58165aef81.htm">MLINE( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/8c02e1cc-7d0f-4564-a1e7-3152dec20998.htm">MODIFY MEMO Command</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/7d2d6409-f972-4452-9c6d-91ac5c9a2a5e.htm">SET ANSI Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/5ac68f23-c330-42c4-a4a3-c38f7278b22a.htm">SET EXACT Command</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/a13cde28-affa-4bec-96ab-a4370da9b3b6.htm">TRANSFORM( ) Function</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/887e0f56-7ff2-4877-89ff-9bbccde7f2d6.htm">XMLTOCURSOR( ) Function</a>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr></table></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Values with <b>Blob</b> type are not compatible with the binary expressions produced by the <b>BINTOC( )</b> function or used by the <b>CTOBIN( )</b> function. String functions that usually return strings, such as the <b>SUBSTR( )</b> function, now return binary values when passed binary values. </p>
+      </td></tr></table></div>
+      <p>For more specifications about the <b>Blob</b> data type, see <a href="/html/67c1d841-7fa8-4e98-afaf-e4b167a52447.htm">Visual FoxPro Data and Field Types</a>. </p>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/25531062-a27e-47b0-b753-f5ecec809a19.htm">How to: Choose Data Types</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/fb20c7af-703d-4f05-9c7c-b59fa31a9eda.htm">Fields Tab, Table Designer</a></span><br /><span class="linkTerms"><a href="/html/60997025-521f-49d7-8ad6-5c934c543666.htm">DISPLAY STRUCTURE Command</a></span><br /><span class="linkTerms"><a href="/html/31f9c8c3-414e-4930-aa7f-2239f07b19e6.htm">String and Value Comparison in Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/7e83da43-86c1-4b0d-a00d-ea412382331f.htm">TYPE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/b05ef476-980c-492f-81f5-1be0eb7ef8d9.htm">VARTYPE( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b353259f-ae44-4c20-9b4c-53741595d66c.htm">Data and Field Types</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Blob Data Type">
+</OBJECT>

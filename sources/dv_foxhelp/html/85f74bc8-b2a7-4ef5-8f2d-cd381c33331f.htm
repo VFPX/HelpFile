@@ -1,0 +1,812 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Using VFP Report Output XML</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Using VFP Report Output XML</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>As delivered by the default ReportOutput Application, Visual FoxPro's base Report XML is transformed by the <span class="linkTerms"><a href="/html/5f0a1dab-ce24-4c87-ac2e-cb9e631d0115.htm">ReportListener HTML Foundation Class</a></span>, to provide an HTML facsimile of the original printed report output.  </p>
+    <p>The underlying XML created by the ReportListener XML Foundation Class includes the full data results of the report run, plus additional information from the report table (.frx) required to describe the layout of the report and environmental conditions in place when you ran the report.  </p>
+    <p>The <i>VFP Report XML schema</i> specifies the format of this XML. Because the schema expresses the full details of a report run, your applications can leverage the XML to provide many different results.  </p>
+    <p>This topic discusses the VFP Report XML schema, and provides the full schema document (.xsd).</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>As you explore the details of this schema, you will notice many optional elements.  The inclusion or exclusion of these elements tunes the schema to different uses.  For example, the ReportListener HTML Foundation Class requires formatting information to determine the placement of layout elements on an output page, but a report run generating a searchable cache of XML content does not require formatting information.  If you use the Report Listener XML Foundation Class to provide a VFP Report XML document, you use various properties of the class to set these options.  For more information see <span class="linkTerms"><a href="/html/9631e586-cecd-44de-8ef9-be5805625c59.htm">ReportListener XML Foundation Class</a></span>.</p>
+    </td></tr></table></div>
+  <h1 class="heading">VFP Report XML Schema Description</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>VFP Report XML document design can be broadly described as follows:</p>
+      <p>
+        <i>A document contains one or multiple representations of VFP Report runs.</i>
+      </p>
+      <p>Each VFP Report node contains one or both of two possible child nodes: </p>
+      <ul><li>
+          <p>A Layout or <i>report definition</i> (RDL) node, containing the report formatting instructions stored in the report table (.frx) by report design tools, and/or </p>
+        </li><li>
+          <p>A Data node, with the elements that were generated as the Report Engine moved through the data scope for the report at run time. </p>
+        </li></ul>
+      <p>When you use ReportListener XML Foundation Class to generate your XML, the class determines which type of information is contained in the VFP Report node using its XMLMode property, as specified in the following table.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>XML ReportListener XMLMode value</b>
+              
+            </th>
+            <th>
+              
+                <b>Constant representing XML result</b>
+              
+            </th>
+            <th>
+              
+                <b>Use case</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>0</p>
+          </td>
+          <td>
+            <p>OUTPUTXML_DATA_ONLY</p>
+          </td>
+          <td>
+            <p>The generated data will be used in a presentation not based on the original report layout, such as a Web page using independent design criteria, or for a data-centric (unformatted) translation, such as a generated cache of accounting calculations.  </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>1</p>
+          </td>
+          <td>
+            <p>OUTPUTXML_RDL_ONLY</p>
+          </td>
+          <td>
+            <p>The generated report definition will eventually reside on a reporting server. The data will come from a query on the server at run time.  The XML RDL serves to define that query as well as the desired output expressions and layout of the result. The original run-time report data, in this scenario, provides a sample set against which the VFP-designed report layout is run to generate the XMl, but it is not used by the server.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>2</p>
+          </td>
+          <td>
+            <p>OUTPUTXML_DATA_RDL</p>
+          </td>
+          <td>
+            <p>The generated data will be matched against report layout instructions using an external mechanism, such as XSLT, to provide additional output forms.</p>
+          </td>
+        </tr></table></div>
+      <p>If the VFP Report node includes the data processed at run time along with its RDL node, you can choose whether you wish to include <i>formatting band data</i>, and, if so, whether you want this data to be integrated with the standard data bands or included as separate collections.  </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The schema defines Page and Column header and footer bands as formatting bands because they occur at arbitrary, data-independent points during run-time processing.  The output of these bands, as well as the exact points at which they occur, change depending on page layout and the page size for the current printer.  For some reports and some XML scenarios, the information in these bands is not relevant.</p>
+      </td></tr></table></div>
+      <p>The following diagram provides a high-level view of VFP Report XML and its major components.</p>
+      <img src="../local/Local_-945702748_foxproreportxmloverview.gif" alt="Visual FoxPro Reporting XML Overview graphic"></img>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">VFP-RDL Node</h3><div class="subSection" xmlns="">
+          <p>The report definition component of VFP Report XML provides full details of the layout information contained in the report table plus environment conditions during the report run, as detailed in the table below.</p>
+          <img src="../local/Local_512235504_foxproreportxmlvfp-rdl.gif" alt="Visual FoxPro Reporting XML VFP-RDL graphic"></img>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>VFP-RDL Element</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Contents</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>VFPFRXLayoutObject</p>
+              </td>
+              <td>
+                <p>A join between report table (.frx) columns, FRXCursor-calculated columns, and some specialized calculated columns for different types of report table records.  For more information about the report details provided by FRXCursor, see <span class="linkTerms"><a href="/html/5bd65ee4-c279-487d-8b31-03f081dd9844.htm">FRX Cursor Foundation Class</a></span>.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>VFPFRXLayoutNode</p>
+              </td>
+              <td>
+                <p>A set of elements indicating what element node names are used for different report object types in the data portion of the document, since this is configurable by the user.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>VFPDataSource</p>
+              </td>
+              <td>
+                <p>A description of all open tables in the data session providing data for the report, including their indexes, relationships, filters, and columns. This section is optional.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>VFPFRXCommand</p>
+              </td>
+              <td>
+                <p>A list of the REPORT FORM execution clauses and existing environment conditions, derived from the Listener’s CommandClauses member and other environmental settings.  For more information, see <span class="linkTerms"><a href="/html/f5f90b33-e6ae-4139-9d13-be1495a87cf6.htm">CommandClauses Property</a></span>. </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>VFPFRXPrintJob</p>
+              </td>
+              <td>
+                <p>A set of attributes providing printer setup and page layout information used for this report run, such as the page height.</p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Data Node</h3><div class="subSection" xmlns="">
+          <p>The Data node provides a sequence of bands containing the generated results of output processing that were rendered during the report run.  As indicated above, reports contain two basic types of bands:</p>
+          <ul><li>
+              <p>
+                <i>Data- and scope- dependent bands.</i> Group and detail bands appear in an order and in numbers wholly dependent on the data scope chosen by the user for this report. Title and Summary bands, if used, appear exactly once at the beginning and end of the chosen scope. </p>
+            </li><li>
+              <p>
+                <i>Format dependent bands.</i> Page and Column headers and footers are triggered by the Report Engine according to the requirements of the original report’s page dimensions and their interactions with the length of other data in the report. </p>
+            </li></ul>
+          <p>The contents of data and scope dependent bands will always be contained in the Data node. Instances of these bands will appear in the same order that they do in the actual report output. </p>
+          <p>Depending on your specifications for formatting bands, this sequence can include formatting bands, omit formatting bands entirely, or include separate collections of formatting bands, as shown in the following diagram.</p>
+          <img src="../local/Local_2118675735_foxproreportxmldatanode.gif" alt="Visual FoxPro Reporting XML Data Node graphic"></img>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You can associate formatting bands with their data- and scope- dependent bands using an <i>id:idref</i> relationship, familiar to Visual FoxPro users as primary and foreign keys.  Data- and scope- dependent bands have an <code>idref</code> attribute specifying their original page number, and formatting bands have an <code>id</code> attribute specifying their original page number.</p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Band Contents</h3><div class="subSection" xmlns="">
+          <p>All types of bands represent their rendered content the same way: there is a child element for each rendered layout element in each band instance.  Although the following diagram drills down into a detail band, the same element contents could be expanded for the header and footer bands.</p>
+          <img src="../local/Local_-1937967882_foxproreportxmldetail.gif" alt="Visual FoxPro Reporting XML Detail graphic"></img>
+          <p>Layout element nodes include optional attributes to describe their formatting, such as top and left position on the page.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The schema asserts that attribute processing is <i>lax</i> for layout elements and several other types, to allow custom extensions to the schema to remain valid without explicit declaration.  For example, you could add attributes representing dynamic color adjustment on layout elements at run time, and these attributes would not invalid your XML output according to the VFP Report XML schema.</p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Associating Data and VFP-RDL Elements</h3><div class="subSection" xmlns="">
+          <p>All data- and scope- dependent bands as well as layout elements can be cross-referenced with their report-table-based layout descriptions using their <code>id</code> attribute, which contains the <b>RECNO()</b> value from their original record in the report table.   For example, the following XML fragment provides a run-time instance of a page footer band containing two Field or Expression elements and one Text or Label element.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>   &lt;PF id="1" idref="4"&gt;
+    &lt;E id="7" c="0" l="0" t="9920" w="650" h="170"&gt;8/13/2004&lt;/E&gt;
+    &lt;T id="8" c="0" l="6980" t="9910" w="400" h="160"&gt;Page &lt;/T&gt;
+    &lt;E id="9" c="0" l="7380" t="9920" w="490" h="170"&gt;    1&lt;/E&gt;
+   &lt;/PF&gt;</pre></td></tr></table></span></div>
+          <p>Below is the VFPLayoutObject node that describes the layout and design of the first Expression element in this page footer band.  The <code>frxrecno</code> child element in the VFPLayoutObject below matches the id attribute in the E (expression) node above.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>    &lt;VFPFRXLayoutObject&gt;
+     &lt;frxrecno&gt;7&lt;/frxrecno&gt;
+     &lt;platform&gt;WINDOWS&lt;/platform&gt;
+     &lt;name/&gt;
+     &lt;expr&gt;DATE()&lt;/expr&gt;
+     &lt;offset&gt;0&lt;/offset&gt;
+     &lt;vpos&gt;7708.333&lt;/vpos&gt;
+     &lt;hpos&gt;0.000&lt;/hpos&gt;
+     &lt;height&gt;1875.000&lt;/height&gt;
+     &lt;objtype&gt;8&lt;/objtype&gt;
+     &lt;!-- … --&gt;
+     &lt;start_band_id&gt;_1AI121WEG&lt;/start_band_id&gt;
+     &lt;band_offset&gt;2&lt;/band_offset&gt;
+     &lt;end_band_id&gt;_1AI121WEG&lt;/end_band_id&gt;
+     &lt;bandstretch&gt;false&lt;/bandstretch&gt;
+    &lt;/VFPFRXLayoutObject&gt;</pre></td></tr></table></span></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>Layout elements continued to subsequent pages concatenate a "+" sign to their record-number-based <code>id</code> attribute values.  This convention signifies that the node is not a new instance of the layout element.  It allows your XML-parsing to consider this information, to concatenate text that was rendered on separate pages in the original printed output.</p>
+          </td></tr></table></div>
+          <p>Formatting bands have a similar relationship with their VFPLayoutObject records, but they use their <code>idref</code> attribute to match the <code>frxrecno</code> value in the appropriate VFPLayoutObject record.  As explained in the last section, these bands use their id attribute to represent the original page number on which they appeared.  In the XML fragment above, the page footer has an <code>id</code> value of <code>1</code>, indicating that it occurred on the first page, and you can see that the data elements in this page footer indeed indicate that the footer occurred on page 1 of the report.  The page footer has an <code>idref</code> of <code>4</code>, which indicates that its associated VFPFRXLayoutObject element has an <code>frxrecno</code> value of <code>4</code>.</p>
+          <p>Bands' and objects' node names can be configured in the ReportListener XML Foundation Class, to use non-default node names.  The VFP-RDL uses VFPFRXLayoutNode elements to associate node names with report table object types dynamically in the XML output result.  In the following fragment, the node name <code>E</code> is associated with the object type <code>8</code>, indicating that report expressions use this element name in the Data portion of the document.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>    &lt;VFPFRXLayoutNode&gt;
+     &lt;name&gt;E&lt;/name&gt;
+     &lt;type&gt;8&lt;/type&gt;
+     &lt;code&gt;0&lt;/code&gt;
+     &lt;info&gt;Expression object nodename&lt;/info&gt;
+    &lt;/VFPFRXLayoutNode&gt;</pre></td></tr></table></span></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>  ReportListener XML Foundation Class includes VFPFRXLayoutNode elements for formatting attributes, so you can dynamically assign these attribute names as well.  If your derived class adds more formatting attributes into your version of VFP Report Output XML, add these attributes as properties of your class with the string "<code>attr</code>" as part of the property name.  ReportListener XML Foundation Class includes any properties following this naming convention and their values in the list of VFPFRXLayoutNodes and assigns a distinguishing object type.</p>
+          </td></tr></table></div>
+        </div>
+    </sections></div><h1 class="heading">VFP Report XML Schema Document</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The following is the full VFP Report XML schema (.xsd).  The XSD document includes annotation elements describing significant aspects of this schema and its use, and directs you to various ReportListener XML Foundation Class properties to specify its optional components.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The VFP Report XML schema uses brief XML node names to describe various reporting elements, such as <code>&lt;PH&gt;</code> for "Page Header."  ReportListener XML Foundation Class provides a mechanism to change the default node names, if you prefer longer names for legibility or want to change to other node names that are more consistent with a description of each element in your language.  Although the VFP Report XML uses the default node names, the schema also provides a mechanism to describe the names in use for each report table record type and other aspects of a report run.</p>
+      </td></tr></table></div>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"&gt;
+  &lt;xs:element name="Reports"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;
+This schema describes the Visual FoxPro 9.0  XMLListener base delivery 
+format.  As noted in various places, actual element and attribute 
+NCNames are user-configurable at runtime, and the schema uses default 
+names.
+As also noted, many elements of the schema are minOccurs=0.  In some 
+cases these elements do not appear at all depending on the 
+configuration of the report run or the XMLListener-specific properties 
+for that report run. Examples: a SUMMARY report does not have detail 
+bands, and if XMLListener.IncludeFormattingInLayoutObjects is .F. no 
+formatting attributes appear.
+      &lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref="VFP-Report" maxOccurs="unbounded"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="VFP-Report"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;
+Contents of VFP-Report element are determined by XMLListener.XMLMode 
+property.
+      &lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref="VFP-RDL" minOccurs="0"/&gt;
+        &lt;xs:element ref="Data" minOccurs="0"/&gt;
+            &lt;xs:element ref="Run" minOccurs="0"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+   &lt;xs:element name="Run"&gt;
+      &lt;xs:annotation&gt;
+         &lt;xs:documentation&gt;
+            Allows runtime data-dependent document attributes, such as
+            contents of report variables or other accumulated data
+            elements that do not occur in the layout itself, to be 
+            added at the conclusion of a report run.
+            Content type is set at xs:any deliberately to allow 
+            extensions such as cursor-shaped XML for rows.
+         &lt;/xs:documentation&gt;
+      &lt;/xs:annotation&gt;
+      &lt;xs:complexType mixed="true"&gt;
+         &lt;xs:sequence maxOccurs="unbounded"&gt;
+            &lt;xs:element name="property" type="VFP-Property"/&gt;
+         &lt;/xs:sequence&gt;
+      &lt;/xs:complexType&gt;
+   &lt;/xs:element&gt;
+   &lt;xs:complexType name="VFP-Property" mixed="true"&gt;
+      &lt;xs:sequence&gt;
+         &lt;xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;/xs:sequence&gt;
+      &lt;xs:attribute name="id" type="xs:string" use="required"/&gt;
+      &lt;xs:anyAttribute processContents="lax"/&gt;
+   &lt;/xs:complexType&gt;
+  &lt;xs:element name="Data"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;
+Contents and structure of Data element are determined by 
+XMLListener.includeBreaksInData property.
+      &lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:choice&gt;
+        &lt;xs:group ref="IntegratedFormattingBands"/&gt;
+        &lt;xs:group ref="SeparateFormattingBands"/&gt;
+      &lt;/xs:choice&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:group name="SeparateFormattingBands"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="Title" type="Band" minOccurs="0"/&gt;
+      &lt;xs:group ref="GroupedBands" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;xs:element name="Summary" type="Band" minOccurs="0"/&gt;
+      &lt;xs:element name="Pages"&gt;
+        &lt;xs:complexType&gt;
+          &lt;xs:sequence minOccurs="0" maxOccurs="unbounded"&gt;
+            &lt;xs:element name="PH" type="FormattingBand" minOccurs="0"/&gt;
+            &lt;xs:element name="PF" type="FormattingBand" minOccurs="0"/&gt;
+          &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+      &lt;/xs:element&gt;
+      &lt;xs:element name="Columns"&gt;
+        &lt;xs:complexType&gt;
+          &lt;xs:sequence minOccurs="0" maxOccurs="unbounded"&gt;
+            &lt;xs:element name="CH" type="FormattingBand" minOccurs="0"/&gt;
+            &lt;xs:element name="CF" type="FormattingBand" minOccurs="0"/&gt;
+          &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+      &lt;/xs:element&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:group&gt;
+  &lt;xs:group name="GroupedBands"&gt;
+    &lt;xs:sequence minOccurs="0" maxOccurs="unbounded"&gt;
+      &lt;xs:element name="GH" type="Band" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;xs:group ref="DetailBandSet" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;xs:element name="GF" type="Band" minOccurs="0" maxOccurs="unbounded"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:group&gt;
+  &lt;xs:group name="DetailBandSet"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="DH" type="Band" minOccurs="0"/&gt;
+      &lt;xs:element name="D" type="Band" minOccurs="0"/&gt;
+      &lt;xs:element name="DF" type="Band" minOccurs="0"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:group&gt;
+  &lt;xs:group name="IntegratedFormattingBands"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="Title" type="Band" minOccurs="0"/&gt;
+      &lt;xs:group ref="FormattedPageBandSeries" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;xs:element name="Summary" type="Band" minOccurs="0"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:group&gt;
+  &lt;xs:group name="FormattedPageBandSeries"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="PH" type="FormattingBand" minOccurs="0"/&gt;
+      &lt;xs:element name="CH" type="FormattingBand" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;xs:group ref="GroupedBands" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;xs:element name="CF" type="FormattingBand" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;xs:element name="PF" type="FormattingBand" minOccurs="0"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:group&gt;
+  &lt;xs:complexType name="Band"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;
+All bands are inherently minOccurs="0" unless 
+XMLListener.includeBandsWithNoObjects is .T.
+Band id and idref attributes are configurable via associated 
+XMLListener properties.  Throughout schema, default attribute 
+names are shown.  
+      &lt;/xs:documentation&gt;
+      &lt;xs:documentation&gt;
+All band nodenames are configurable, with defaults shown in the schema; 
+see annotation for VFPFRXLayoutNode name attribute.
+      &lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:group ref="LayoutObjects"/&gt;
+    &lt;xs:attribute name="id" type="xs:string" use="required"&gt;
+      &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;
+Indicates FRXRecno for associated FRX metadata in VFP-RDL, with 
+concatenated "+" if this band has been continued.
+      &lt;/xs:documentation&gt;
+      &lt;/xs:annotation&gt;
+    &lt;/xs:attribute&gt;
+    &lt;xs:attribute name="idref" type="xs:positiveInteger" use="required"&gt;
+      &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;
+Indicates the associated page number, for non-formatting bands.
+      &lt;/xs:documentation&gt;
+      &lt;/xs:annotation&gt;
+    &lt;/xs:attribute&gt;
+    &lt;!-- restriction by pattern here? --&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:group name="LayoutObjects"&gt;
+    &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
+      &lt;xs:element name="T" type="LayoutObjectNoContinuation"/&gt;
+      &lt;xs:element name="P" type="LayoutObjectNoContinuation"/&gt;
+      &lt;xs:element name="S" type="LayoutObject"/&gt;
+      &lt;xs:element name="E" type="LayoutObject"/&gt;
+      &lt;xs:element name="L" type="LayoutObject"/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:group&gt;
+  &lt;xs:complexType name="FormattingBand"&gt;
+    &lt;xs:group ref="LayoutObjects"/&gt;
+    &lt;xs:attribute name="idref" type="xs:positiveInteger" use="required"&gt;
+      &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;
+Indicates the FRXRecno for associated metadata, for formatting bands.
+      &lt;/xs:documentation&gt;
+      &lt;/xs:annotation&gt;
+    &lt;/xs:attribute&gt;
+    &lt;xs:attribute name="id" type="xs:positiveInteger" use="required"&gt;
+      &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;
+Indicates the associated page number, for formatting bands.
+      &lt;/xs:documentation&gt;
+      &lt;/xs:annotation&gt;
+    &lt;/xs:attribute&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:complexType name="LayoutObject"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;
+All layout objects' nodenames are configurable, with defaults shown in 
+the schema; see annotation for VFPFRXLayoutNode name attribute. 
+Availability of layout objects' formatting attributes is determined by 
+XMLListener.IncludeFormattingInLayoutObjects property.  All attribute 
+names, both formatting and non-formatting, are also configurable via  
+XMLListener associated properties.
+      &lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:simpleContent&gt;
+      &lt;xs:extension base="xs:string"&gt;
+        &lt;xs:attribute name="id" type="xs:string" use="required"&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;
+Indicates FRXRecno for associated FRX metadata in VFP-RDL, with 
+concatenated "+" if this object has been continued from a previous 
+page.
+            &lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name="c" type="xs:byte" default="0"/&gt;
+        &lt;xs:attribute name="l" type="xs:integer"/&gt;
+        &lt;xs:attribute name="t" type="xs:integer"/&gt;
+        &lt;xs:attribute name="w" type="xs:positiveInteger"/&gt;
+        &lt;xs:attribute name="h" type="xs:positiveInteger"/&gt;
+        &lt;xs:attribute name="img" type="xs:string"&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;
+Supplies generated filename if this XML is generated by HTMLListener 
+subclass and the image comes from a non-filebased image type (general 
+field or image control).
+            &lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:anyAttribute processContents="lax"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:simpleContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:complexType name="LayoutObjectNoContinuation"&gt;
+    &lt;xs:simpleContent&gt;
+      &lt;xs:restriction base="LayoutObject"&gt;
+        &lt;xs:attribute name="c" fixed="0"/&gt;
+      &lt;/xs:restriction&gt;
+    &lt;/xs:simpleContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="VFP-RDL"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref="VFPDataSet"/&gt;
+      &lt;/xs:sequence&gt;
+      &lt;xs:attribute name="id" type="xs:string" use="required"/&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="VFPDataSet"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref="VFPFRXLayoutObject" maxOccurs="unbounded"/&gt;
+        &lt;xs:element ref="VFPFRXLayoutNode" maxOccurs="unbounded"/&gt;
+        &lt;xs:element ref="VFPDataSource" minOccurs="0" maxOccurs="unbounded"/&gt;
+        &lt;xs:element ref="VFPFRXCommand"/&gt;
+        &lt;xs:element ref="VFPFRXPrintJob"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="VFPDataSource"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;
+The set of VFPDataSource elements represents a snapshot of the  FRX's 
+CurrentDataSession, similar to a FoxPro View file in XML 
+format.
+      &lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="the_alias"/&gt;
+        &lt;xs:element name="rpt_driver"/&gt;
+        &lt;xs:element name="the_dbf"/&gt;
+        &lt;xs:element name="the_order"/&gt;
+        &lt;xs:element name="order_desc"/&gt;
+        &lt;xs:element name="the_filter"/&gt;
+        &lt;xs:element name="the_skip"/&gt;
+        &lt;xs:element ref="flds" maxOccurs="unbounded"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="VFPFRXCommand"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;
+Base attributes are determined by the member properties of the 
+XMLListener.CommandClauses object.  Additional user-defined attributes 
+are permitted. 
+      &lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:attribute name="ASCII" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="DE_NAME" type="xs:string" use="required"/&gt;
+      &lt;xs:attribute name="ENVIRONMENT" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="FILE" type="xs:string" use="required"/&gt;
+      &lt;xs:attribute name="HEADING" type="xs:string" use="required"/&gt;
+      &lt;xs:attribute name="INSCREEN" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="INWINDOW" type="xs:string" use="required"/&gt;
+      &lt;xs:attribute name="ISDESIGNERLOADED" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="ISREPORT" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="NOCONSOLE" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="NODIALOG" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="NOEJECT" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="NOPAGEEJECT" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="NORESET" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="NOWAIT" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="OFF" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="OUTPUTTO" type="xs:byte" use="required"/&gt;
+      &lt;xs:attribute name="PDSETUP" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="PLAIN" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="PREVIEW" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="PROMPT" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="RANGEFROM" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="RANGETO" type="xs:byte" use="required"/&gt;
+      &lt;xs:attribute name="RECORDTOTAL" type="xs:byte" use="required"/&gt;
+      &lt;xs:attribute name="SAMPLE" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="SUMMARY" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="TOFILE" type="xs:string" use="required"/&gt;
+      &lt;xs:attribute name="TOFILEADDITIVE" type="xs:boolean" use="required"/&gt;
+      &lt;xs:attribute name="WINDOW" type="xs:string" use="required"/&gt;
+      &lt;xs:anyAttribute processContents="lax"/&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="VFPFRXLayoutNode"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;
+Provides metadata specific to XMLListener's base XML 
+format.
+      &lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="name"&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;
+Indicates the current nodename as defined in the XMLListener's 
+configuration table, for elements, or as an XMLListener property, for 
+attributes.  Names used for layout objects and band types in the Data 
+portion of this schema represent only the default values for these 
+nodenames; for readability and localization purposes these nodenames 
+are configurable and should be looked up from the VFPFRXLayoutNode 
+portion of the VFP-RDL at runtime.
+            &lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name="type"&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;
+Matches FRX.objtype for this nodename
+            &lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name="code"&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;
+Matches FRX.objcode for this nodename
+      &lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name="info"&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;
+      Description of this type of node from XMLListener's configuration 
+table (for elements) or a matching XMLListener member property (for 
+attributes).
+            &lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="VFPFRXLayoutObject"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;
+Provides metadata specific to the FRX format, using FRX columns 
+directly as well as derived columns from FRXCursor helper object and 
+other sources.
+      &lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+    &lt;xs:element name="frxrecno"/&gt;
+    &lt;xs:element name="platform"/&gt;
+    &lt;xs:element name="name"/&gt;
+    &lt;xs:element name="expr"/&gt;
+    &lt;xs:element name="offset"/&gt;
+    &lt;xs:element name="vpos"/&gt;
+    &lt;xs:element name="hpos"/&gt;
+    &lt;xs:element name="height"/&gt;
+    &lt;xs:element name="objtype"/&gt;
+    &lt;xs:element name="tag"/&gt;
+    &lt;xs:element name="tag2"/&gt;
+    &lt;xs:element name="pensize"/&gt;
+    &lt;xs:element name="penpat"/&gt;
+    &lt;xs:element name="fillpat"/&gt;
+    &lt;xs:element name="width"/&gt;
+    &lt;xs:element name="style"/&gt;
+    &lt;xs:element name="picture"/&gt;
+    &lt;xs:element name="order"/&gt;
+    &lt;xs:element name="comment"/&gt;
+    &lt;xs:element name="fillchar"/&gt;
+    &lt;xs:element name="penred"/&gt;
+    &lt;xs:element name="pengreen"/&gt;
+    &lt;xs:element name="penblue"/&gt;
+    &lt;xs:element name="fillred"/&gt;
+    &lt;xs:element name="fillgreen"/&gt;
+    &lt;xs:element name="fillblue"/&gt;
+    &lt;xs:element name="fontface"/&gt;
+    &lt;xs:element name="fontstyle"/&gt;
+    &lt;xs:element name="fontsize"/&gt;
+    &lt;xs:element name="mode"/&gt;
+    &lt;xs:element name="float"/&gt;
+    &lt;xs:element name="stretch"/&gt;
+    &lt;xs:element name="stretchtop"/&gt;
+    &lt;xs:element name="fontbold"/&gt;
+    &lt;xs:element name="fontitalic"/&gt;
+    &lt;xs:element name="fontunderline"/&gt;
+    &lt;xs:element name="fontstrikethrough"/&gt;
+    &lt;xs:element name="unpathedimg"/&gt;
+    &lt;xs:element name="pathedimg"/&gt;
+    &lt;xs:element name="top"/&gt;
+    &lt;xs:element name="bottom"/&gt;
+    &lt;xs:element name="norepeat"/&gt;
+    &lt;xs:element name="pagebreak"/&gt;
+    &lt;xs:element name="colbreak"/&gt;
+    &lt;xs:element name="resetpage"/&gt;
+    &lt;xs:element name="general"/&gt;
+    &lt;xs:element name="spacing"/&gt;
+    &lt;xs:element name="swapheader"/&gt;
+    &lt;xs:element name="swapfooter"/&gt;
+    &lt;xs:element name="ejectbefor"/&gt;
+    &lt;xs:element name="ejectafter"/&gt;
+    &lt;xs:element name="totaltype"/&gt;
+    &lt;xs:element name="resettotal"/&gt;
+    &lt;xs:element name="fontcharset"/&gt;
+    &lt;xs:element name="supalways"/&gt;
+    &lt;xs:element name="supovflow"/&gt;
+    &lt;xs:element name="suprpcol"/&gt;
+    &lt;xs:element name="supgroup"/&gt;
+    &lt;xs:element name="supvalchng"/&gt;
+    &lt;xs:element name="supexpr"/&gt;
+    &lt;xs:element name="user"/&gt;
+    &lt;xs:element name="bandid" minOccurs="0"/&gt;
+    &lt;xs:element name="bandtype" minOccurs="0"/&gt;
+    &lt;xs:element name="bandlabel" minOccurs="0"/&gt;
+    &lt;xs:element name="start" minOccurs="0"/&gt;
+    &lt;xs:element name="stop" minOccurs="0"/&gt;
+    &lt;xs:element name="band_seq" minOccurs="0"/&gt;
+    &lt;xs:element name="rel_band_id" minOccurs="0"/&gt;
+    &lt;xs:element name="objid" minOccurs="0"/&gt;
+    &lt;xs:element name="objname" minOccurs="0"/&gt;
+    &lt;xs:element name="locale_id" minOccurs="0"/&gt;
+    &lt;xs:element name="start_band_id" minOccurs="0"/&gt;
+    &lt;xs:element name="band_offset" minOccurs="0"/&gt;
+    &lt;xs:element name="end_band_id" minOccurs="0"/&gt;
+    &lt;xs:element name="bandstretch" minOccurs="0"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="VFPFRXPrintJob"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;
+Provides information specific to this report execution run as available 
+in the VFP environment.  These elements determine formatting 
+coordinates for instances of the layout objects as the Report Engine 
+calculates their placement during the report run.
+      &lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:attribute name="pagewidth" type="xs:short" use="required"/&gt;
+      &lt;xs:attribute name="pageheight" type="xs:short" use="required"/&gt;
+      &lt;xs:attribute name="name" type="xs:string" use="required"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:documentation&gt;
+Provided by XMLListener.PrintJobName.
+          &lt;/xs:documentation&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:attribute&gt;
+      &lt;xs:attribute name="pagedesign" type="xs:string" use="required"/&gt;
+      &lt;xs:attribute name="printresolution" type="xs:short" use="required"/&gt;
+    &lt;xs:anyAttribute processContents="lax"/&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="flds"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="the_alias"&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;
+            Repeated on the field level for use with SET FIELDS GLOBAL.
+            &lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name="the_field"/&gt;
+        &lt;xs:element ref="the_type"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="the_type"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;
+      Derived from AFIELDS(), matches VFP codes for various table-based 
+datatypes.
+      &lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:simpleType&gt;
+      &lt;xs:restriction base="xs:string"&gt;
+        &lt;xs:enumeration value="C"/&gt;
+        &lt;xs:enumeration value="Y"/&gt;
+        &lt;xs:enumeration value="D"/&gt;
+        &lt;xs:enumeration value="T"/&gt;
+        &lt;xs:enumeration value="B"/&gt;
+        &lt;xs:enumeration value="F"/&gt;
+        &lt;xs:enumeration value="G"/&gt;
+        &lt;xs:enumeration value="I"/&gt;
+        &lt;xs:enumeration value="L"/&gt;
+        &lt;xs:enumeration value="M"/&gt;
+        &lt;xs:enumeration value="N"/&gt;
+        &lt;xs:enumeration value="Q"/&gt;
+        &lt;xs:enumeration value="V"/&gt;
+        &lt;xs:enumeration value="W"/&gt;
+      &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+  &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span><br /><span class="linkTerms"><a href="/html/ad1bf074-a169-4fd4-b160-c39bdd8c8402.htm">ListenerType Property</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/46ce7cb2-a620-447d-9314-1ebba6e3e271.htm">ReportListener Foundation Classes</a></span><br /><span class="linkTerms"><a href="/html/e4d499d5-c520-42eb-ab32-d2531e784e84.htm">Extending Report Output Functionality</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Using VFP Report Output XML">
+</OBJECT>

@@ -1,0 +1,141 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Allow Users to Add Items to a List Box</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Allow Users to Add Items to a List Box</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can make it possible for users to add items to a list interactively.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <h3 class="procedureSubHeading">To make it possible for users to add items to a list interactively</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <a href="/html/4348ea2d-25ca-4306-a129-28bd0287ec3a.htm">AddItem</a> method.</p>
+            
+          </li></ul>
+          
+            <p>In the following example, when the user presses ENTER, the code in the KeyPress event of a text box adds the text in the text box to the list box and clears the text in the text box:</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LPARAMETERS nKeyCode, nShiftAltCtrl
+IF nKeyCode = 13   &amp;&amp; Enter Key
+   THISFORM.lstAdd.AddItem(This.Value)
+   THIS.Value = ""
+ENDIF</pre></td></tr></table></span></div>
+          
+        </div>
+      <p>You can make it possible for users to enter data in a table from a list. If the <span class="linkTerms"><a href="/html/76c0d810-a6e4-4076-aa91-0763a6dfe03b.htm">ControlSource Property</a></span> is set to a field, whatever the user selects in the list is written to the table. This is an easy way to help ensure the integrity of the data in your table. While the user can still enter the wrong data, an illegal value cannot be entered.</p>
+      <p>For example, if you have a list of states or counties for a user to choose from, the user cannot enter an invalid state or county abbreviation.</p>
+      <p>You can make it possible for users to navigate to a record by picking a value from a list. Often, you want to let users select the record they want to view or edit. For example, you could provide users with a list of customer names. When the user selects a customer from the list, you select that customer's record in the table and display customer information in text boxes on the form. You can do this several ways, depending on the source of data in your form.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              RowSourceType
+            </th>
+            <th>
+              Selecting the appropriate record
+            </th>
+          </tr><tr>
+          <td>
+            <p>2 - Alias 6 - Fields</p>
+          </td>
+          <td>
+            <p>When the user chooses a value in the list, the record pointer is set automatically to the desired record. Issue <code>THISFORM.Refresh</code> in the InteractiveChange event of the list to show the new values in other controls on the form.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>0 - None 1 - Value 3 - SQL Statement 4 - QPR 5 - Array</p>
+          </td>
+          <td>
+            <p>In the InteractiveChange event, select the table that has the record with the desired values, and then search for the desired value. For example, if the RowSource holds customer identification numbers from the customer table, use this code: </p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT customer
+LOCATE FOR THIS.Value = cust_id
+THISFORM.Refresh</pre></td></tr></table></span></div>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/ccc655cb-3b49-42a2-a87c-43ce0a462c95.htm">Controls for Displaying Lists</a></span><br /><span class="linkTerms"><a href="/html/119e15f3-d59f-4ebc-8b75-98d1d4fbbdad.htm">Controls and Objects Created in Earlier Versions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/b9032965-6941-41d2-8ff9-87c609673907.htm">Using Controls</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Allow Users to Add Items to a List Box">
+</OBJECT>

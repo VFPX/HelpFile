@@ -1,0 +1,235 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Coverage Profiler Add-Ins</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Coverage Profiler Add-Ins</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Add-Ins are code files (usually .prg or .scx) that provide an easy way for you to adjust the Coverage Profiler. The cov_standard subclass of the coverage engine, which comprises the User Interface of Coverage.app, shows only a small part of what you can do with the engine. The engine analyzes the coverage log; cov_standard just displays the results in one of many ways you could want to see them. </p>
+    <p>You could create a different subclass of cov_engine with a very different display. For example, your subclass might display a dialog that runs queries against the coverage statistics gathered by the engine. The display options might provide a view of the marked code for a filtered set of log entries, or only a graph of the profiling results.</p>
+    <p>You might not want to subclass cov_engine to create a new interface from scratch because the cov_engine class provides an easier process. You can add functionality to cov_standard, or any cov_engine subclass, using Add-Ins. Cov_standard exposes this feature through a button in the main dialog of Coverage Profiler. When you run an Add-In on an instance of cov_standard such as Coverage Profiler, the Add-In can manipulate the capabilities of cov_engine, the coverage tables, as well as cov_standard. Add-Ins might also add new dialogs and features to the cov_standard visual interface.</p>
+  <h1 class="heading">Writing Add-Ins</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You can write Add-Ins to enhance the standard interface or you can subclass cov_standard to create your own wholly new interface.</p>
+    </div><h1 class="heading">Enhancing the Standard Application</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The following list includes features you might want to provide through Add-Ins:
+</p>
+      <ul><li>
+          <p>Add a visible feature to the main dialog.</p>
+        </li><li>
+          <p>Add a dialog into the coverage engine formset (reference limitation below on how to make sure your dialog shows up in the right place).</p>
+        </li><li>
+          <p>Display a separate dialog that accesses a Coverage engine feature (reference limitation below on how to make sure your dialog shows up in the right place).</p>
+        </li><li>
+          <p>Provide a querying interface that uses the Source table and presents a list of all lines that meet your criteria, and filters or orders the results.
+</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You can use the Adjust... methods (AdjustCoverageFilenameCursor(), AdjustSourceCursor(), and AdjustTargetCursor()) of the Engine to add fields to the Source and Target tables when the engine creates them, and use these fields in your Add-Ins.</p>
+          </td></tr></table></div>
+        </li><li>
+          <p>Add file names to the IgnoredFiles cursor, to eliminate those files from analysis. This can save analysis time.</p>
+        </li><li>
+          <p>Use the special Init hook for Add-Ins.</p>
+        </li><li>
+          <p>Register Add-Ins for retrieval and easy access to a list of Add-Ins.
+</p>
+          <p>The modal dialog class cov_AddInDialog in the standard coverage engine subclass, presents previously registered dialogs in a drop-down list. When you set the coverage engine lRegisterAdd-In option ON, the full path name of successfully run Add-Ins are added to the Windows Registry so you can easily run these Add-Ins again. The Standard UI class also allows you to set this property in the <a href="/html/6eeb54e1-e5ee-465c-a1ca-6e45fedbbbcf.htm">Coverage Profiler Options dialog box</a>.
+</p>
+          <p>The Coverage Engine object maintains a list of all registered Add-Ins in the aAddIns property.
+</p>
+        </li><li>
+          <p>Use the final coverage.log field information, callstack, to design your own interface or your own view of the coverage log.</p>
+        </li></ul>
+      <p>When you write Add-Ins, consider the following information:
+</p>
+      <ul><li>
+          <p>You can use any of the supported file types as Add-Ins. The supported file types are .qpr, .qpx, .mpr, .mpx, .app, .exe, .scx, fxp, .prg and .procedures (if the procedures are already available in an open procedure library).</p>
+        </li><li>
+          <p>The Coverage Engine formset has an "invisible" toolbar. If your Add-In is nonvisual you can use this toolbar to contain it. If your Add-In is a visual control, the standard subclass main dialog .Cov_tools member container is probably the most convenient place to put it. This allows the position and size of the toolbar to be automatically synchronized with the rest of the dialog when it is resized.</p>
+        </li><li>
+          <p>All the engine methods that use the Source and Target tables take optional arguments that allow you to point these methods at the appropriate aliases while you're working with them. You can also change the current cSourceAlias and cTargetAlias property contents to match the pair of cursors in which you are interested. This allows you to compare multiple Coverage log runs to each other within the same interface. </p>
+        </li><li>
+          <p>Limitations:
+</p>
+          <ul><li>
+              <p>Add-Ins must accept one parameter (the Coverage engine passes a reference to itself).</p>
+            </li><li>
+              <p>An Add-In must be one of the permitted file types, listed above.</p>
+            </li><li>
+              <p>Procedures you use as Add-Ins should be available in a currently loaded procedure library (see <a href="/html/93f1eabe-abc5-4906-8894-75233b64c806.htm">SET PROCEDURE Command</a>) in Help. The Engine does not use the IN <i>FileName</i> syntax, and it does not call procedures or .prg files as functions and RETURN their values. It does not use the NAME or LINK keywords on the DO FORM command; you can either manage the reference yourself, or allow the Engine to scope a form for you by making your form a member of the Engine formset.</p>
+            </li><li>
+              <p>If you run an Add-In at startup, you must use a reference because the public _oCoverage variable is not yet available. At other times, you can use the public variable reference within your own code, if you prefer.</p>
+            </li><li>
+              <p>When you write an Add-In as a form, if you create the form as ShowWindow = 1 and run Coverage in its own frame, your Add-In forms should display in the Coverage frame. </p>
+            </li><li>
+              <p>If you use .RunAddIn from the Command window, make sure the coverage frame is the active MDI frame before you instantiate your forms.</p>
+            </li></ul>
+        </li></ul>
+    </div><h1 class="heading">Subclass Cov_Standard Class</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can subclass either the coverage engine or its standard subclass. The following list describes the structure of the COVERAGE project source file set.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              File
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>Coverage.prg</p>
+          </td>
+          <td>
+            <p>A "wrapper" for the coverage object, which instantiates the object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Coverage.vcx
+Coverage.vct</p>
+          </td>
+          <td>
+            <p>All classes for the engine and its standard subclass.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Cov_short.mnx
+Cov_short.mnt</p>
+          </td>
+          <td>
+            <p>Shortcut menu.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Cov_pjx.frx
+Cov_pjx.frt</p>
+          </td>
+          <td>
+            <p>Default mechanism to deliver project-level results.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Coverage.h</p>
+          </td>
+          <td>
+            <p>Header file for all Coverage code, incorporating the following elements:</p>
+            <p>*— Coverage character constants for log and parsing:</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>   #INCLUDE COV_CHAR.H
+</pre></td></tr></table></span></div>
+            <p>*— Coverage localized strings (can use some log and parsing constants):</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>   #INCLUDE COV_LOCS.H
+</pre></td></tr></table></span></div>
+            <p>*— Coverage common dialog component constants:</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>   #INCLUDE COV_DLGS.H
+</pre></td></tr></table></span></div>
+            <p>*— Coverage specs &amp; requirements:</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>   #INCLUDE COV_SPEC.H
+</pre></td></tr></table></span></div>
+            <p>*— Coverage registry object constants:</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>   #INCLUDE COV_REGS.H
+</pre></td></tr></table></span></div>
+            <p>*— Coverage tune-able options:</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>   #INCLUDE COV_TUNE.H</pre></td></tr></table></span></div>
+          </td>
+        </tr></table></div>
+      <p>The COVERAGE project source file set also includes various .ico .bmp, and .msk files.</p>
+      <p>Use the file COV_TUNE.H (containing appropriate comments and explanations) to become familiar with options available to you without rewriting code.</p>
+      <p>Because Add-In use is governed by the coverage engine base class, any other coverage subclass you create can use Add-Ins in the same manner as the standard subclass. </p>
+      <p>The coverage engine subclass instantiated by the default Coverage.app does not augment the coverage engine RunAddIn( ) method in any way. It does, however, invoke a modal dialog box to allow the user to pick an Add-In before it invokes the coverage engine RunAddIn( ) method. The modal dialog box receives a reference to the Coverage object and sets the coverage engine cAddIn property.</p>
+      <p>If you write your own coverage engine subclass, ensure that your subclass can use the same modal dialog class (cov_AddInDialog) to handle Add-Ins as the standard Coverage application; the dialog box does not rely on any features of the standard subclass. </p>
+      <p>You can call a different modal dialog box, set the cAddIn file name directly in the cAddIn property, or override the contents of the cAddIn property by passing the name of the Add-In file you wish to run to the RunAddIn( ) method.</p>
+      <p>However you access an Add-In to run in your subclass, you can investigate the list of Add-Ins registered to Coverage.app by checking the file names in the coverage engine aAddIns property.</p>
+      <p>For details on the Properties, Events, and Methods of the coverage engine, see <a href="/html/c49d2d9e-0831-41bb-9f48-75015bfb45d8.htm">Coverage Engine Object</a> in Help.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/63de0589-8a3a-4e3f-9488-e2468b834e44.htm">Coverage Profiler Modification</a></span><br /><span class="linkTerms"><a href="/html/785cd0a3-babd-438c-9260-dd4e8e13687c.htm">Project Manager Hooks</a></span><br /><span class="linkTerms"><a href="/html/4bd75946-b302-41be-ab6a-25f09ed083ae.htm">Project Object Hierarchy</a></span><br /><span class="linkTerms"><a href="/html/4dbd7912-7e50-4788-9e57-1087f9183d0a.htm">Coverage Profiler Application</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/f065a4a0-42b3-4c5a-95dc-659f91ad398b.htm">Development Productivity Tools</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Coverage Profiler Add-Ins">
+</OBJECT>

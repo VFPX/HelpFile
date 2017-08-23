@@ -1,0 +1,196 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Use the Report Output Application's Reference Collection</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Use the Report Output Application's Reference Collection</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>At run time, the default Report Output Application (ReportOutput.app) maintains a reference collection of ReportListener object references.  ReportOutput.app scopes the collection globally, by declaring the reference variable with the <b>PUBLIC</b> keyword.  The collection allows the Report Engine to use a single ReportListener-derived object on multiple <b>REPORT FORM</b> or <b>LABEL</b> commands.  For more information, see <span class="linkTerms"><a href="/html/09b4791d-3a43-4bfa-b63e-f36aeec6f544.htm">Understanding the Report Output Application</a></span>.</p>
+    <p>You can use this collection to set properties on ReportListener object instances before <b>REPORT FORM</b> and <b>LABEL</b> commands, or to check the results of a report run afterwards, without assigning a variable to hold the reference explicitly.</p>
+    <p>ReportOutput.app uses a consistent collection key-naming scheme so you can easily find the appropriate reference.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Some of the code in this topic uses the _REPORTOUTPUT System variable to invoke ReportOutput.app.  _REPORTOUTPUT may contain the name of a different Report Output Application in your environment. In this case, substitute <code>HOME() + ReportOutput.app</code>, or similar code, to invoke the default Report Output Application.  Where the instructions designate the name and position of a custom registry table, substitute your preferred name and location.</p>
+    </td></tr></table></div>
+  <h1 class="heading">Initializing the Reference Collection and Creating Reference Collection members</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <h3 class="procedureSubHeading">To create a Reference Collection member</h3><div class="subSection"><ol><li>
+            
+              <p>You can create a Reference Collection member while running a report, and without using an explicit variable reference. Issue the following command, where <span class="parameter">&lt;N&gt;</span> is the type of output you want from the <b>REPORT FORM</b> command.  For example, use the value <code>1</code> as <span class="parameter">&lt;N&gt;</span> to preview the report. </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>REPORT FORM ? OBJECT TYPE &lt;N&gt;</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>You can also create a Reference Collection member without running a report. Issue the following command, where <span class="parameter">&lt;N&gt;</span> is a type of output you want for subsequent REPORT FORM commands.  For example, use the value <code>0</code> as <span class="parameter">&lt;N&gt;</span> to print the report:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO (_REPORTOUTPUT) WITH &lt;N&gt;</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>You can also create a Reference Collection member representing the Report Output Application's current registry table, initializing the collection at the same time.  This method does not create any ReportListener object references immediately.  Initializing the collection in this manner, and specifying a configuration table as the collection's single member, is the default behavior of the Report Listener Application when you call the application with no parameters:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE OUTPUTAPP_CONFIG_READ -200
+DO (_REPORTOUTPUT) WITH OUTPUTAPP_CONFIG_READ
+* or pass a variable by reference in the second 
+* parameter, as you normally do for ReportListener 
+* references, to receive the name of the current
+* registry table:
+LOCAL lcFile
+DO (_REPORTOUTPUT) WITH OUTPUTAPP_CONFIG_READ, lcFile
+* or simply initialize the collection with no parameters: 
+DO (_REPORTOUTPUT) 
+? _oReportOutput[TRANSFORM(OUTPUTAPP_CONFIG_READ)]</pre></td></tr></table></span></div>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Examining Reference Collection members</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <h3 class="procedureSubHeading">To retrieve a ReportListener object reference from ReportOutput's collection</h3><div class="subSection"><ol><li>
+            
+              <p>Use the string value of the numeric value representing the type of output for a ReportListener reference as the collection key value.  In the command below, &lt;N&gt; represents the type of output provided by this ReportListener object reference.</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? _oReportOutput[TRANSFORM(&lt;N&gt;)].Class</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Use the Reference Collection member after running a report.  For example, check the total number of pages in the report run:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>REPORT FORM ? OBJECT TYPE 0
+? _oReportOutput["0"].PageTotal</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Use the Reference Collection member, before running a report to customize its behavior. For example, prevent user feedback before generating XML output:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DO (_REPORTOUTPUT) WITH 4
+_oReportOutput["4"].QuietMode = .T.</pre></td></tr></table></span></div>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+                <p>As shown above, special negative values used by ReportOutput.app for configuration purposes may also be used as keys in this collection, although they do not provide ReportListener-derived object references.  For additional examples, see "Verifying the Report Output Application's current Registry Table" in <span class="linkTerms"><a href="/html/f31384bf-c40d-4fec-a8f7-99ff038c05ad.htm">How to: Specify an Alternate Report Output Registry Table</a></span>.</p>
+              </td></tr></table></div>
+            
+          </li></ol></div>
+    </div><h1 class="heading">Changing the Default Reference Collection Variable Name</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>In the instructions above, you used the variable name <code>_oReportOutput</code> when addressing the reference collection.  To change this variable name in your applications, recompile ReportOutput.app with instructions to use the variable name that you prefer.</p>
+      <h3 class="procedureSubHeading">To recompile ReportOutput.app with a different reference collection variable name</h3><div class="subSection"><ol><li>
+            
+              <p>Expand the ReportOutput subfolder in the zip file located in Visual FoxPro's Tools\Xsource folder.  For more information about Xsource, see <span class="linkTerms"><a href="/html/9c12387d-6c8b-4fac-9da8-72d6ad2e0673.htm">XSource Folder</a></span>.</p>
+            
+          </li><li>
+            
+              <p>Navigate to the folder in which you expanded the ReportOutput component source files.  Modify the ReportOutput.H (header) file.</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CD &lt;your source folder&gt;
+MODIFY COMMAND ReportOutput.H</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Locate the following two lines of code in the header file:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE OUTPUTAPP_REFVAR        _oReportOutput
+#DEFINE OUTPUTAPP_REFVARCLASS  "Collection"</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Edit the value <code>_oReportOutput</code>, replacing it with the variable name you want your application to use.  You can also edit the value <code>"Collection"</code>, replacing it with the Collection-derived class name you want ReportOutput.app to use when creating an instance of the collection.</p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>If you change the value of <code>OUTPUTAPP_REFVARCLASS</code>, the class definition you designate in this constant must be in scope before you invoke ReportOutput.App.  For more information, see <span class="linkTerms"><a href="/html/11fd4c12-260a-4937-b389-ed0667429d6b.htm">SET CLASSLIB Command</a></span> and <span class="linkTerms"><a href="/html/93f1eabe-abc5-4906-8894-75233b64c806.htm">SET PROCEDURE Command</a></span>.</p>
+              </td></tr></table></div>
+            
+          </li><li>
+            
+              <p>Save your changes.</p>
+            
+          </li><li>
+            
+              <p>Rebuild the ReportOutput.App file, being sure to use the RECOMPILE switch:</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BUILD APPLICATION ReportOutput FROM ReportOutput RECOMPILE</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Store the name and location of your new ReportOutput.app to the _REPORTOUTPUT System variable, either in the CONFIG.FPW file for your application or in your setup code.  For more information, see <span class="linkTerms"><a href="/html/e4da0efc-19ca-4eb4-a1b7-c5f7d60a4d9c.htm">Setting Configuration Options at Startup</a></span>.</p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_ReportOutput = &lt;your ReportOutput.app filename and location&gt;</pre></td></tr></table></span></div>
+            
+          </li><li>
+            
+              <p>Distribute the new ReportOutput.App file with your applications.  </p>
+            
+          </li></ol></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/6ba9c187-675d-4262-b055-78a74c0922bc.htm">How to: Build Applications</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/684369d5-737d-4d42-b018-12f34634cbbc.htm">PUBLIC Command</a></span><br /><span class="linkTerms"><a href="/html/7109ff82-5f2e-4e0f-a1c5-94b91e3e6630.htm">Collection Class</a></span><br /><span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span><br /><span class="linkTerms"><a href="/html/36753dd4-25b1-412c-854b-256f84e49388.htm">_REPORTOUTPUT System Variable</a></span><br /><span class="linkTerms"><a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT FORM Command</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Use the Report Output Application's Reference Collection">
+</OBJECT>

@@ -1,0 +1,795 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>CURSORTOXML( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">CURSORTOXML( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Converts a Visual FoxPro cursor to XML.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+CURSORTOXML(<span class="parameter">nWorkArea</span> | <span class="parameter">cTableAlias</span>, <span class="parameter">cOutput</span> [, n<span class="parameter">OutputFormat</span> 
+[, <span class="parameter">nFlags </span>[,<span class="parameter"> nRecords </span>[, <span class="parameter">cSchemaName</span> [, <span class="parameter">cSchemaLocation</span> [, <span class="parameter">cNameSpace </span>]]]]]])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nWorkArea</span>
+        </span></dt><dd>
+          <p>Specifies the work area of the table from which to create the XML string. </p>
+          <p>If you specify 0 or no value, Visual FoxPro uses the current work area. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cTableAlias</span>
+        </span></dt><dd>
+          <p>Specifies the alias of the table from which to create the XML string.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cOutput</span>
+        </span></dt><dd>
+          <p>Specifies the path and file name or memory variable name to which results are sent. </p>
+          <p>If <span class="parameter">nFlags</span> is set to 0 (default) for memory variable output, XML is returned to the memory variable. If the memory variable does not exist, it is created.</p>
+          <p>If <span class="parameter">nFlags</span> is set to 512 for file output, and the file does not exist, it is created. If the file already exists, it is overwritten. The setting for <b>SET SAFETY</b> is observed. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nOutputFormat</span>
+        </span></dt><dd>
+          <p>Specifies the output format of the XML string. The following table lists the values for <span class="parameter">nOutputFormat</span>.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nOuputFormat</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>1 – ELEMENTS</p>
+              </td>
+              <td>
+                <p>(Default) Element-centric XML </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2 – ATTRIBUTES</p>
+              </td>
+              <td>
+                <p>Attribute-centric XML</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>3 – RAW</p>
+              </td>
+              <td>
+                <p>Generic, attribute-centric XML</p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nFlags</span>
+        </span></dt><dd>
+          <p>Specifies the formatting of the XML that is produced and its destination. The following table lists the values for <span class="parameter">nFlags</span>.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">nFlags</span>
+                  
+                </th>
+                <th>
+                  Bit
+                </th>
+                <th>
+                  Output description
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>0000</p>
+              </td>
+              <td>
+                <p>(Default) Produce XML in UTF-8 format. </p>
+                <p>This setting creates a memory variable if one does not exist when specified by <span class="parameter">cOutput</span> and returns XML to the memory variable.</p>
+                <p>The XML declaration does not contain an <span class="parameter">Encoding=</span> attribute; that is, no encoding attribute is set to UTF-8.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>0001</p>
+              </td>
+              <td>
+                <p>Produce unformatted XML as a continuous string.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>0010</p>
+              </td>
+              <td>
+                <p>Enclose empty elements with open and closing elements, for example, &lt;cc04&gt;&lt;cc04/&gt;.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>0100</p>
+              </td>
+              <td>
+                <p>Preserve white space in fields.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>8</p>
+              </td>
+              <td>
+                <p>1000</p>
+              </td>
+              <td>
+                <p>Wrap Memo fields in CDATA sections.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>16</p>
+              </td>
+              <td>
+                <p>10000</p>
+              </td>
+              <td>
+                <p>Output encoding. Output is set to the cursor code page. </p>
+                <p>To ensure accurate character translation, the Visual FoxPro default code page must match the code page of the cursor. You can accomplish this by setting character and memo fields in the cursor to <b>NOCPTRAN</b> (character binary/memo binary).</p>
+                <p>When setting this value with tables using any of the code pages, the encoding attribute in the XML is set to an empty string (""). To change to the correct encoding attribute, use the <a href="/html/2051bf1d-dacc-47d2-a248-7a0a0de88f5f.htm">STRTRAN( )</a> function. </p>
+                <p>For example, for code page 936, provide the following to the resulting XML string:</p>
+                <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>strxml=STRTRAN(strxml, 'encoding=""', 'encoding="gb2312"'</pre></td></tr></table></span></div>
+              </td>
+            </tr><tr>
+              <td>
+                <p>32</p>
+              </td>
+              <td>
+                <p>100000</p>
+              </td>
+              <td>
+                <p>Output encoding.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>512</p>
+              </td>
+              <td>
+                <p>1000000000</p>
+              </td>
+              <td>
+                <p>Output to the file specified by <span class="parameter">cOutput</span>.</p>
+                <p>If a file does not exist, it is created. If the file already exists, it is overwritten. The setting for <b>SET SAFETY</b> is observed.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4096</p>
+              </td>
+              <td>
+                <p>1000000000000</p>
+              </td>
+              <td>
+                <p>Disables base64 encoding. </p>
+                <p>
+                  <b>CURSORTOXML( )</b> exports Memo (Binary) fields as <span class="parameter">xsd:base64binary</span> unless you use <span class="parameter">nFlags</span> set to 4096. In Visual FoxPro, base64 encoding is meant for encoding only binary data.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>32768</p>
+              </td>
+              <td>
+                <p>none</p>
+              </td>
+              <td>
+                <p>Indicates that a code page should be used.</p>
+              </td>
+            </tr></table></div>
+          <p>The following table describes how the encoding attribute is written when output encoding defaults to the cursor or table code page.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Encoding flags are set by combining bits 4 and 5 (0010000).</p>
+          </td></tr></table></div>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Encoding flag
+                </th>
+                <th>
+                  Bits 4 and 5
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>+0</p>
+              </td>
+              <td>
+                <p>00</p>
+              </td>
+              <td>
+                <p>(Default) Windows-1252. </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>+16</p>
+              </td>
+              <td>
+                <p>01</p>
+              </td>
+              <td>
+                <p>Set output encoding attribute to the cursor code page.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>+32</p>
+              </td>
+              <td>
+                <p>10</p>
+              </td>
+              <td>
+                <p>Set output encoding attribute to UTF-8 with no character translation.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>+48</p>
+              </td>
+              <td>
+                <p>11</p>
+              </td>
+              <td>
+                <p>Set output encoding attribute to UTF-8 and translate character data to UTF-8.</p>
+              </td>
+            </tr></table></div>
+          <p>The following table lists common Windows-compatible code pages.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Code page
+                </th>
+                <th>
+                  Platform
+                </th>
+                <th>
+                  Encoding attribute in XML Declaration
+                </th>
+                <th>
+                  Comments
+                </th>
+              </tr><tr>
+              <td>
+                <p>437</p>
+              </td>
+              <td>
+                <p>MS-DOS, US</p>
+              </td>
+              <td>
+                <p>ibm437</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>850</p>
+              </td>
+              <td>
+                <p>MS-DOS, International</p>
+              </td>
+              <td>
+                <p>ibm850</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>865</p>
+              </td>
+              <td>
+                <p>MS-DOS, Nordic</p>
+              </td>
+              <td>
+                <p>Empty string ("")</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>866</p>
+              </td>
+              <td>
+                <p>MS-DOS, Russian</p>
+              </td>
+              <td>
+                <p>cp866</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>932</p>
+              </td>
+              <td>
+                <p>Windows, Japanese</p>
+              </td>
+              <td>
+                <p>shift-jis</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>936</p>
+              </td>
+              <td>
+                <p>Simplified Chinese</p>
+              </td>
+              <td>
+                <p>gb2312</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>949</p>
+              </td>
+              <td>
+                <p>Windows, Korean </p>
+              </td>
+              <td>
+                <p>iso-2022-kr</p>
+              </td>
+              <td>
+                <p>or:</p>
+                <p>ks_c_5601-1987</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>950</p>
+              </td>
+              <td>
+                <p>Windows, Traditional Chinese (Taiwan) </p>
+              </td>
+              <td>
+                <p>big5</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1250</p>
+              </td>
+              <td>
+                <p>Windows, East European</p>
+              </td>
+              <td>
+                <p>Windows-1250</p>
+              </td>
+              <td>
+                <p>Note case.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1251</p>
+              </td>
+              <td>
+                <p>Windows, Russian</p>
+              </td>
+              <td>
+                <p>Windows-1251</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1252</p>
+              </td>
+              <td>
+                <p>Windows, U.S., West European</p>
+              </td>
+              <td>
+                <p>Windows-1252</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1253</p>
+              </td>
+              <td>
+                <p>Windows, Greek</p>
+              </td>
+              <td>
+                <p>Windows-1253</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1254</p>
+              </td>
+              <td>
+                <p>Windows, Turkish</p>
+              </td>
+              <td>
+                <p>Windows-1254</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1255</p>
+              </td>
+              <td>
+                <p>Windows, Hebrew</p>
+              </td>
+              <td>
+                <p>Windows-1255</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1256</p>
+              </td>
+              <td>
+                <p>Windows, Arabic</p>
+              </td>
+              <td>
+                <p>Windows-1256</p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+            </tr></table></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Visual FoxPro uses Windows-1252 as the default encoding. You can specify that the encoding attribute be set to match the code page, such as Big5 (code page 950), when using double-byte character sets (DBCS) for DBCS languages for which Visual FoxPro supports code pages. </p>
+          </td></tr></table></div>
+          <p>When using Windows-1252 and DBCS, no additional character translation is required to display correctly in Internet Explorer. </p>
+          <p>However, to make XML more compliant for Web browsers that can interpret UTF-8, you can optionally set the encoding attribute to UTF-8 instead of Windows-1252. The result set undergoes translation to UTF-8 characters only when you set <span class="parameter">nFlags</span> to 48 (specify the encoding attribute as UTF-8 and translate character data to UTF-8 format). This is required only when the data actually contains double-byte characters. You do not have to use character translation, <b>STRCONV ( )</b>, for example, if you are outputting only Latin (single byte) characters.  </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nRecords</span>
+        </span></dt><dd>
+          <p>Specifies the number of records to output to XML and has a default value is 0. </p>
+          <p>If <span class="parameter">nRecords</span> is 0, all records are output. If <span class="parameter">nRecords</span> is greater than the number of records remaining in the table, all remaining records are output. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cSchemaName</span>
+        </span></dt><dd>
+          <p>Specifies the name and location to contain schema information for the data in <span class="parameter">cOutput</span>, for example "MySchema.xsd". If no extension is provided, the schema file is created with an .xsd extension.</p>
+          <p>The following table lists the values for <span class="parameter">cSchemaName</span>.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <span class="parameter">cSchemaName</span>
+                  
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>
+                  <span class="parameter">cSchemaName</span>
+                </p>
+              </td>
+              <td>
+                <p>Specifies the name and path of the external file for the schema (scoped to the root element of the XML). </p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                  <p>If <span class="parameter">cSchemaName</span> contains a file name and <span class="parameter">cSchemaLocation</span> is not provided or is blank, the contents of <span class="parameter">cSchemaName </span>are written to the <span class="parameter">xsi:schemaLocation</span> or <span class="parameter">xsi:noNamespaceSchemaLocation</span> attribute in the XML.</p>
+                </td></tr></table></div>
+                <p>In the following example, Visual FoxPro generates a generic XML file named MyXMLFile.xml from the Labels.dbf file in the "Labels" alias and the schema file named MySchema in the same folder. </p>
+                <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CURSORTOXML("LABELS", "myXMLFile.xml", 1, 512, 0, "mySchema.xsd")</pre></td></tr></table></span></div>
+                <p>If <span class="parameter">cSchemaName</span> includes a URI, the schema is written to the current directory and must be uploaded to the server to be accessed by the browser or parser. External schemas always are written to the same location as the XML file.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>"1"</p>
+              </td>
+              <td>
+                <p>Specifies an inline schema is produced. For example, the following code produces an inline schema: </p>
+                <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CURSORTOXML("LABELS", "myXMLFile.xml", 1, 512, 0, "1")</pre></td></tr></table></span></div>
+              </td>
+            </tr><tr>
+              <td>
+                <p>""</p>
+              </td>
+              <td>
+                <p>Specifies that no schema is produced. </p>
+              </td>
+            </tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cSchemaLocation</span>
+        </span></dt><dd>
+          <p>Specifies an optional location where the application reading the XML data should look for the schema file. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Use this parameter only when you are deploying your schema to a location other than the location of the XML data.</p>
+          </td></tr></table></div>
+          <p>The contents of <span class="parameter">cSchemaLocation </span>are written to the <span class="parameter">xsi:schemaLocation</span> or <span class="parameter">xsi:noNamespaceSchemaLocation</span> attribute of the XML data produced. The <span class="parameter">cschemaLocation</span> parameter can be an HTTP address or other URI. You need to copy the schema file to the location you have specified in <span class="parameter">cSchemaLocation</span>.   </p>
+          <p>The following example produces XML data:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>   CURSORTOXML("LABELS", "myXMLFile.xml", 1, 512, 0, ;
+       "mySchema.xsd", "http://www.microsoft.com/mySchema.xsd")</pre></td></tr></table></span></div>
+          <p>containing the following attribute:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>   xsi:noNamespaceSchemaLocation=" http://www.microsoft.com/mySchema.xsd"</pre></td></tr></table></span></div>
+          <p>Specifying <span class="parameter">cSchemaLocation</span> when <span class="parameter">cSchemaName</span> is blank causes the same attributes to be written to the XML data. This makes it possible for you to point to an existing schema without recreating the schema each time <b>CURSORTOXML( )</b> is called. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cNamespace</span>
+        </span></dt><dd>
+          <p>Specifies the namespace of the XML or schema to be produced and has an empty string ("") as the default value. </p>
+          <p>Specifying a value for <span class="parameter">cNameSpace</span> sets the<span class="parameter"> targetNamespace</span> attribute to the same value and adds the <span class="parameter">elementFormDefault="qualified"</span> attribute to the schema.   </p>
+          <p>If you do not specify a <span class="parameter">cNamespace</span> value, and the schema is external, no namespace declaration is written to the schema. If you do not specify a <span class="parameter">cNamespace</span> value and the schema is inline, the <span class="parameter">targetNamespace</span> in the schema is set to an empty string (""). </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Numeric data type. <b>CURSORTOXML( )</b> returns the number of bytes written to the file or a memory variable.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>You can use <b>CURSORTOXML( )</b> with the OLE DB Provider for Visual FoxPro. However, the <b>_VFP</b> <b>VFPXMLProgID</b> property is not supported because the <b>_VFP</b> system variable is not supported in the OLE DB Provider. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>To use the Visual FoxPro OLE DB Provider with <b>CURSORTOXML( )</b>, you must install MSXML 3.0 on the computer with the OLE DB Provider.</p>
+      </td></tr></table></div>
+      <p>
+        <b>CURSORTOXML( )</b> output adheres to the cursor index order, <b>SET FIELDS TO</b>, and current filter settings. However, it does not preserve the cursor location. After the calling <b>CURSORTOXML( )</b>, if all records are output, the cursor record pointer reports <b>EOF</b>. If not all records are output, it points to the last record output to XML.</p>
+      <p>The resulting XML from <b>CURSORTOXML( )</b> contains the same scale as the exported table if the table contains <b>Double</b> data type values. For example, if a <b>Double</b> column is created with a scale of 6 using the following codem the resulting XML contains six digits to the right of the decimal point:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CREATE TABLE test (col1 b(6))</pre></td></tr></table></span></div>
+      <p>When you use the <b>CURSORTOXML( )</b> function to export a table or cursor to XML, the root node is always called "VFPData", regardless of the output format.</p>
+      <p>For <b>Date</b> types only, you can export "EMPTY" <b>Date</b> and <b>DateTime</b> types using <b>CURSORTOXML( )</b>. However, the XML schema validation might fail because "EMPTY" is not valid for these types in an XML schema definition (XSD) schema. This is an issue only if a schema is required, and the resulting XML is validated against an XML parser that can interpret XSD schemas. To work around this issue, you might need to change the data to a nonempty representation by calling the appropriate <b>SELECT</b> statement and use <b>CURSORTOXML( )</b> on the created cursor. For example, you can change the empty <b>Date</b> or <b>DateTime</b> values to .<b>NULL.</b>:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT orderid, EVL(shippeddate,.NULL.) as ShippedDate FROM orders</pre></td></tr></table></span></div>
+      <p>You can also change the empty <b>Date</b> or <b>DateTime</b> to an appropriate representation for "empty":</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SELECT orderid, IIF(EMPTY(shippeddate),{^1899-12-30 00:00:00},tc11); 
+   as ShippedDate FROM orders</pre></td></tr></table></span></div>
+      <p>When using flag 32768, the flags 16 and 32 settings can affect which code page is applied depending on the type of data you are writing to XML. The following tables show the possible combinations of settings and the code page each combination applies.</p>
+      <p>For XML documents written with the 32768 flag set, the following code pages are applied.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <td>
+            <p>Flag 16</p>
+          </td>
+          <td>
+            <p>Flag 32</p>
+          </td>
+          <td>
+            <p>Flag 32768 is Set</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>XML documents: Window-1252.</p>
+            <p>Unicode data: code page 1252.</p>
+            <p>Character data: default code page, unless a field is marked as <b>NOCPTRANS</b>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>True (.T)</p>
+          </td>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>XML documents: Plus-<b>CodePage</b> property of the cursor. If XMLField <b>CodePage</b> property is greater than zero (0) and it doesn’t match the cursor’s code page, an error is reported.</p>
+            <p>Unicode data: the <b>Code page</b> property of the cursor object.</p>
+            <p>Character data: none. Raw data from the Visual FoxPro tables (.dbf) are used instead.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>Set</p>
+          </td>
+          <td>
+            <p>XML documents: UTF-8 code page.</p>
+            <p>Unicode data: UTF-8 code page.</p>
+            <p>Character data: Default code page unless field is marked as <b>NOCPTRANS</b>, in which case no additional character translation to UTF-8 occurs.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Set</p>
+          </td>
+          <td>
+            <p>Set</p>
+          </td>
+          <td>
+            <p>XML documents: UTF-8 code page.</p>
+            <p>Unicode data: UTF-8 code page.</p>
+            <p>Character data: default code page unless a field is marked as <b>NOCPTRANS</b>, in which case the data are translated to UTF-8 using the <b>SYS(3005)</b> setting.</p>
+          </td>
+        </tr></table></div>
+      <p>For XML documents written without setting the 32768 flag, the following code pages are applied.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <td>
+            <p>Flag 16</p>
+          </td>
+          <td>
+            <p>Flag 32</p>
+          </td>
+          <td>
+            <p>Without the 32768 flag</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>XML documents: Window-1252.</p>
+            <p>Unicode data: code page 1252.</p>
+            <p>Character data: default code page unless a field is marked as <b>NOCPTRANS</b>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>True (.T)</p>
+          </td>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>XML documents: <b>CodePage</b> property of the cursor.</p>
+            <p>Character data: none. Raw data from the Visual FoxPro tables (.dbf) are used instead.</p>
+            <p>Unicode data: code page property of the cursor object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Not set</p>
+          </td>
+          <td>
+            <p>Set</p>
+          </td>
+          <td>
+            <p>XML documents: UTF-8 code page.</p>
+            <p>Unicode data: UTF-8 code page.</p>
+            <p>Character data: default code page unless field is marked as <b>NOCPTRANS</b>, in which case no additional character translation to UTF-8 occurs. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Set</p>
+          </td>
+          <td>
+            <p>Set</p>
+          </td>
+          <td>
+            <p>XML documents: UTF-8 code page.</p>
+            <p>Unicode data: UTF-8 code page.</p>
+            <p>Character data: default code page unless field is marked as <b>NOCPTRANS</b>, in which case, they are translated to UTF-8 using code page for the current <b>SYS(3005)</b> setting.</p>
+          </td>
+        </tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/646e7dbb-d5e9-4017-b8a2-cb3625a818cb.htm">XMLUPDATEGRAM( ) Function</a></span><br /><span class="linkTerms"><a href="/html/887e0f56-7ff2-4877-89ff-9bbccde7f2d6.htm">XMLTOCURSOR( ) Function</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/1b079e17-218f-4fc1-8fea-c4098831c09d.htm">Converting Between XML and Visual FoxPro Data</a></span><br /><span class="linkTerms"><a href="/html/ded6a107-d264-4c03-bbe7-4e88d9675d79.htm">XML Data in Visual FoxPro</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="CURSORTOXML( ) Function">
+<param name="ALink Name" value="CURSORTOXML">
+</OBJECT>

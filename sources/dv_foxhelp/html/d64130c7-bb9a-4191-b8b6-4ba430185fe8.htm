@@ -1,0 +1,752 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Report XML MemberData Extensions</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Report XML MemberData Extensions</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro 9.0 provides extended metadata attributes for class members in the Class Designer using XML in a document format specified by the VFP MemberData Schema.  While the Visual FoxPro Report System does not share the Class Designer, it shares the MemberData schema for similar extensibility purposes.  Using MemberData extensions with reports, you can:</p>
+    <ul><li>
+        <p>Specify custom design-time instructions for individual report layout elements, for use by through event hooks exposed by the Report and Label Designers.</p>
+      </li><li>
+        <p>Provide dynamic instructions for individual report layout elements that can be carried out by a ReportListener-derived object at run time.</p>
+      </li></ul>
+    <p>This topic describes the MemberData schema components used for reporting, and provides examples using MemberData XML documents when you design and run reports.</p>
+  <h1 class="heading">Report XML MemberData Document Design</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Report MemberData, like Class Design MemberData, contains a sequence of elements under a <code>VFPData</code> root node. For a complete listing of the shared MemberData schema (.xsd), see <span class="linkTerms"><a href="/html/2591781b-25f2-4a9d-afa4-3a620116b1da.htm">MemberData Extensibility</a></span>.  The following table describes the attributes specified for reporting use.  </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The schema permits users to add attributes not explicitly specified.  Any tools you create to parse or create the XML should allow for the possibility that additional, unknown attributes are present for one or more elements in the sequence.  Tools should also handle the possibility that attributes not marked as required by the schema might be missing for one or more elements.  The run-time example in this topic provides a model for this behavior.</p>
+      </td></tr></table></div>
+      <p>The Style column of report and label definition files (.frx and .lbx tables) is reserved for storage of Report MemberData.  For more information on the structure of reports and labels, see <span class="linkTerms"><a href="/html/e62ce8ab-f156-45d2-a0b9-11562e5dbcef.htm">Understanding and Extending Report Structure</a></span>.</p>
+      <p>You can use the default Report Builder Application to insert XML documents of the required structure into report and label records for individual layout elements.  You can examine the results, to see Report XML MemberData example documents.  For more information, see <span class="linkTerms"><a href="/html/0148d8e4-c41b-43ef-b164-cc1936db1826.htm">How to: Assign Structured Metadata to Report Controls</a></span>.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              
+                <b>Node name</b>
+              
+            </th>
+            <th>
+              
+                <b>Node type</b>
+              
+            </th>
+            <th>
+              
+                <b>Parent node</b>
+              
+            </th>
+            <th>
+              
+                <b>Remarks and recommended usage</b>
+              
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>VFPData</code>
+            </p>
+          </td>
+          <td>
+            <p>Element</p>
+            <p>(required)</p>
+          </td>
+          <td>
+            <p>None</p>
+          </td>
+          <td>
+            <p>Root node for the MemberData document.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>reportdata</code>
+            </p>
+          </td>
+          <td>
+            <p>Element</p>
+            <p>(required)</p>
+          </td>
+          <td>
+            <p>
+              <code>VFPData</code>
+            </p>
+          </td>
+          <td>
+            <p>An element containing metadata for a specific report or label definition table record.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>name</code>
+            </p>
+          </td>
+          <td>
+            <p>Attribute</p>
+            <p>(required)</p>
+          </td>
+          <td>
+            <p>
+              <code>reportdata</code>
+            </p>
+          </td>
+          <td>
+            <p>Shared with Class Designer MemberData.  Can be used, with the type attribute, to filter and manage reporting MemberData Records in a common global store, such as FoxCode.dbf.  For more information, see <span class="linkTerms"><a href="/html/1e10b689-295c-48a4-b29c-1610512b23a7.htm">_FOXCODE System Variable</a></span>.</p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>Although this attribute is required, an empty value is permitted.</p>
+            </td></tr></table></div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>type</code>
+            </p>
+          </td>
+          <td>
+            <p>attribute</p>
+          </td>
+          <td>
+            <p>
+              <code>reportdata</code>
+            </p>
+          </td>
+          <td>
+            <p>Shared with Class Designer MemberData.  Can be used, with the name attribute, to filter and manage records in a global store.</p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>When the default Report Builder Application creates Report MemberData, it places the value "<code>R</code>" in the type attribute, to distinguish these records from other types of MemberData.</p>
+            </td></tr></table></div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>script</code>
+            </p>
+          </td>
+          <td>
+            <p>attribute</p>
+          </td>
+          <td>
+            <p>
+              <code>reportdata</code>
+            </p>
+          </td>
+          <td>
+            <p>Shared with Class Designer MemberData, and specified, similarly to its use in class design, for use in reporting design-time extensions.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>class</code>
+            </p>
+          </td>
+          <td>
+            <p>attribute</p>
+          </td>
+          <td>
+            <p>
+              <code>reportdata</code>
+            </p>
+          </td>
+          <td>
+            <p>Specified to hold the name of a class to be used for any and all of the following:</p>
+            <ul><li>
+                <p>A template at design time, from which Report Builder extensions may apply attributes.  Report Builder extensions which take this approach should document the attributes they transfer from the template class to the report or label element.</p>
+              </li><li>
+                <p>A helper class for designing the report or label element. Report Builder extensions taking this approach should specify a required interface for such classes and invoke the specified methods during design events. The helper class has access to the Report Builder's private data session and copy of the report or label table.</p>
+              </li><li>
+                <p>A helper class associated with the design-time script element.  Report Builder extensions taking this approach can send the script to the helper class for processing, or they can run the script directly, sending a reference to the helper object as a parameter to the script.</p>
+              </li><li>
+                <p>A template class instantiated at run time by a ReportListener.  The ReportListener can transfer attributes dynamically from the template class, documenting the set of attributes to be transferred.  This approach allows all layout elements, in all reports, to share in changes you make to the template class, emulating class inheritance.</p>
+              </li><li>
+                <p>A helper class instantiated by a ReportListener to aid run-time processing of a specific report layout element and associated with run-time script processing.  </p>
+              </li></ul>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>classlib</code>
+            </p>
+          </td>
+          <td>
+            <p>attribute</p>
+          </td>
+          <td>
+            <p>
+              <code>reportdata</code>
+            </p>
+          </td>
+          <td>
+            <p>Specified to hold the name of the class library or procedure file (.vcx or .prg) from which the helper or template class will be instantiated.  Reporting extensions should assume a file extension of <code>vcx</code> if none is included.  Note that the class library or procedure file must be accessible to the extension. For a summary of how Visual FoxPro finds class definition, refer to the Remarks section of <span class="linkTerms"><a href="/html/11fd4c12-260a-4937-b389-ed0667429d6b.htm">SET CLASSLIB Command</a></span>.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>declass</code>
+            </p>
+          </td>
+          <td>
+            <p>attribute</p>
+          </td>
+          <td>
+            <p>
+              <code>reportdata</code>
+            </p>
+          </td>
+          <td>
+            <p>Specified to hold the name of a DataEnvironment class in a visual class library (.vcx) to be used as a template for Cursor and Relation records in this report or label in the default Report Builder Application's implementation of the <b>Load DataEnvironment</b> event.  The Report Builder Application also writes code binding an instance of this class to the report's run-time DataEnvironment events.  For more information, see <span class="linkTerms"><a href="/html/a4cea158-cf16-4ad3-b713-ad77799364c0.htm">How to: Load Data Environments for Reports</a></span>.</p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>The Report Builder Application uses the header record (first record) in the report or label definition table to store DataEnvironment class information, because this information is global to the report.  It is good practice to follow this convention, storing global data in the first record's XML MemberData document.  In the run-time example included in this topic, a run-time reporting extension opts to check this record for script appropriate to the BeforeReport and AfterReport events.  These events are global in nature and not associated with any specific report or label layout element or record. </p>
+            </td></tr></table></div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>declasslib</code>
+            </p>
+          </td>
+          <td>
+            <p>attribute</p>
+          </td>
+          <td>
+            <p>
+              <code>reportdata</code>
+            </p>
+          </td>
+          <td>
+            <p>Specified to hold the filename of the visual class library or procedure file from which the DataEnvironment class should be instantiated, when the <code>declass</code> attribute holds the name of a DataEnvironment class, as described above.  As an alternative, the default Report Builder Application offers users the ability to associate DataEnvironment records from another report or label (.frx or .lbx file) with the report.  When users make this choice, the Report Builder Application stores the name of the report or label used as the DataEnvironment template in this attribute.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>execute</code>
+            </p>
+          </td>
+          <td>
+            <p>attribute</p>
+          </td>
+          <td>
+            <p>
+              <code>reportdata</code>
+            </p>
+          </td>
+          <td>
+            <p>Specified for script used in run-time reporting extensions.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>execwhen</code>
+            </p>
+          </td>
+          <td>
+            <p>attribute</p>
+          </td>
+          <td>
+            <p>
+              <code>reportdata</code>
+            </p>
+          </td>
+          <td>
+            <p>Specified for conditions to be evaluated by run-time reporting extensions to determine if, and when, the script contents of the <code>execute</code> attribute should run.  </p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+              <p>As shown in the example code in this topic, <code>execwhen</code> conditions can be evaluated flexibly; unlike the <b>Print When</b> conditions in a report they do not have to evaluate directly to a logical result.  </p>
+            </td></tr></table></div>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Report XML MemberData at Design Time</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>As described in the table above, the Report Builder Application uses the <code>declass</code> and <code>declasslib</code> attributes of the Report XML MemberData stored in the header record of the report or label definition file.  By default, it does not use any other MemberData you store in the report or label.  However, you can easily leverage the Report Builder Application's extension architecture to read and use the XML.  </p>
+      <p>The following class implements the Report Builder Application's <i>exit handler</i> mechanism.  When registered with the Report Builder Application, this class receives information about the Report Designer event that occurred and whether the Report Builder Application made any changes to the current report layout element.  If the layout element contains text, and if changes occurred, the handler object checks for a template class in the XML MemberData.  If one exists, and if it has a property with the name <code>Fontname</code>, the handler asks the user whether the template class's font should be applied to the report layout element. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>For more information on registering custom handlers and filters in the Report Builder Application's registry table and implementing the required API, see <span class="linkTerms"><a href="/html/91d5dbf6-5294-468e-8ed6-b195d62603e5.htm">Report Builder Event Handler Registry Table</a></span>.  Use of the exit handler mechanism is convenient, but illustrates only a fraction of the potential you have for design-time interactions using Report Designer event hooks and Report XML MemberData.</p>
+      </td></tr></table></div>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>
+DEFINE CLASS TemplateObjectHandler AS Custom
+* register this as an exit handler
+PROCEDURE Execute( oEvent )
+  IF BITTEST(oEvent.ReturnFlags,1) AND ;
+    INLIST(FRX.ObjType,5,8) AND NOT EMPTY(FRX.STYLE)
+    LOCAL lcAlias, loX
+    lcAlias = "T"+SYS(2015)
+    TRY  
+      XMLTOCURSOR(FRX.Style,lcAlias)
+      SELECT (lcAlias)
+      IF NOT EMPTY(Class) AND ;
+        MESSAGEBOX("(Re)apply Font from Template Object?",4) = 6
+        IF EMPTY(ClassLib)
+          loX = CREATEOBJECT(ALLTRIM(Class))
+        ELSE
+          loX = NEWOBJECT(ALLTRIM(Class),ALLTRIM(Classlib))
+        ENDIF   
+        IF VARTYPE(loX) = "O" AND ;
+          PEMSTATUS(loX,"Fontname",5)
+          REPLACE Fontface WITH loX.Fontname IN FRX
+        ELSE
+          MESSAGEBOX("Could not apply template.")    
+        ENDIF
+      ENDIF   
+    CATCH WHEN .T.
+      * not valid XML
+      * or other error occurred
+    FINALLY
+      IF USED(lcAlias)
+        USE IN (lcAlias)
+      ENDIF
+      SELECT FRX   
+    ENDTRY
+  ENDIF
+  RETURN .T.
+ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+    </div><h1 class="heading">Report XML MemberData at Run Time</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The following example leverages the run-time effects processing architecture suggested in <span class="linkTerms"><a href="/html/c26c975f-6e3d-40d9-aded-302214434df6.htm">Considerations for Creating New Report Output Types</a></span>.</p>
+      <p>The superclass in the example, FXMemberData is a custom-derived class implementing the simple FX API, and suitable for being called from an instance of the FXListener class, as described in that topic.  FXMemberData is an effect object with the ability to read and parse Report XML MemberData, placing the results in a cursor indexed on a column, <code>FRXRecno</code>, associating each record with the elements of the original report or label definition table.  </p>
+      <p>FXMemberData performs its service at the beginning of the report run.  For the rest of the report run, if the value of its <code>ApplyMemberData</code> member is set to True (<code>.T.</code>), FXMemberData positions the record pointer of its cursor appropriately for the current report event, but does not take any other action.  </p>
+      <p>Having this type of object avoids the necessity of having each ReportListener or effect object requiring access to the structured metadata parse the XML document separately.  With the metadata easily accessible to them in this common cursor, each object using the data can <b>SELECT</b> the columns of interest to it into a separate, private cursor, with additional columns for dynamic changes they might want to make at run time for their own purposes.  </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>To find the relevant cursor created by FXMemberData or a similar provider, other objects can investigate the FRXDataSession to find a cursor of the correct structure, parsing the XML themselves if they cannot find one.  Alternatively, they can observe a simple convention, shown here as <code>MemberDataAlias</code>, of a ReportListener property holding the appropriate alias.  Notice that FXMemberData uses the <span class="linkTerms"><a href="/html/b8866dd4-7bc9-4c77-a74b-cb65b32d8e79.htm">AddProperty Method</a></span> to attach this property to any ReportListener.</p>
+      </td></tr></table></div>
+      <p>A second class derived from FXMemberData, FXProcessMemberDataScript, shows you some strategies for using the <code>Execute</code> and <code>ExecWhen</code> attributes of Report XML MemberData.  This class evaluates <code>ExecWhen</code> to determine when to invoke the script in <code>Execute</code>.  If it determines that it should process the script, it checks to see if a <code>PARAMETERS</code> or <code>LPARAMETERS</code> line is the first line in the script.  If not, it prepends a <code>LPARAMETERS</code> statement to the script, to allow it to pass all the parameters received by the ApplyFX method of the effect class API, which effectively allow effect objects to handle and adjust all report events' parameters.  The <code>LPARAMETERS</code> statement it creates also includes a reference to the FX object as the first parameter, before all the parameters received in the ApplyFx method. Having made these adjustments, it uses the <span class="linkTerms"><a href="/html/e838fdae-d56c-437b-9e2c-80b6a6b10579.htm">EXECSCRIPT( ) Function</a></span> to process the script, passing these parameters to the script.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* to use this class, follow the pattern
+* illustrated for use of the FXListener class,
+* as follows :
+LOCAL loPrimaryRL
+* the following line assumes availability of
+* the class definition for FXListener listed in 
+* code example in the topic
+* Considerations for Creating New Report Output Types:
+loPrimaryRL = CREATEOBJECT("FXListener") 
+* add successor ReportListeners if desired
+loPrimaryRL.FXs.Add("FXProcessMemberDataScript")
+* or use its superclass if you don't 
+* need script processing but want to
+* parse the XML MemberData:
+* loPrimaryRL.FXs.Add("FXMemberData")
+* add other effect objects to the collection
+* as required
+* Effect class suitable for calling
+* by FXListener example class
+* Because it works with unknown attributes
+* and unknown memberdata requirements,
+* FXMemberData requires that the values you use
+* for all custom attributes be evaluated by 
+* XMLTOCURSOR() as a string.  Values
+* that do not evaluate as a string will error.
+* This behavior makes it possible
+* for you or other users to use multiple data types 
+* for the same custom attributes on different FRX
+* records.
+* When you use a non-string value, you should 
+* re-datatype it as appropriate for use in your code. 
+* (Use EVAL() or otherwise translate the data
+* type as needed.)
+DEFINE CLASS FXMemberData AS Custom
+   MemberDataAlias = ""
+   ApplyMemberData = .F.
+   PROCEDURE ApplyFX(toListener, tcProgram,;
+                     tP1, tP2, tP3, tP4, tP5, tP6, ;
+                     tP7, tP8, tP9, tP10, tP11, tP12)
+      LOCAL liSession, liSelect, llInBeforeReport
+      llInBeforeReport = (ATC("BeforeReport", tcProgram) &gt; 0)
+      IF (llInBeforeReport OR THIS.ApplyMemberData) AND ;
+         (TYPE("toListener.FRXDataSession") = "N" AND ;
+              toListener.FRXDataSession &gt; -1)
+         liSession = SET("DATASESSION")
+         SET DATASESSION TO (toListener.FRXDataSession)
+         liSelect = SELECT()
+         IF llInBeforeReport
+             * pull the memberdata out of the FRX for later use
+             THIS.PullMemberData(toListener)
+         ENDIF
+         IF THIS.ApplyMemberData
+            * this FX object
+            * might apply the results of
+            * the memberdata pull
+            * or it might just make them
+            * available to other FX objects
+            * after the initial read
+            SELECT (THIS.MemberDataAlias)
+            THIS.UseMemberData(;
+                 toListener, tcProgram,;
+                 @tP1, @tP2, @tP3, @tP4, @tP5, @tP6, ;
+                 @tP7, @tP8, @tP9, @tP10, @tP11, @tP12)
+         ENDIF            
+         SELECT (liSelect)
+         SET DATASESSION TO (liSession)
+      ENDIF                          
+   ENDPROC
+   PROTECTED PROCEDURE UseMemberData(toListener, tcProgram,;
+                        tP1, tP2, tP3, tP4, tP5, tP6, ;
+                        tP7, tP8, tP9, tP10, tP11, tP12)   
+       LOCAL lnFRXRecno
+       lnFRXRecno = -1
+       DO CASE
+       CASE ATC(".Before",tcProgram) &gt; 0 OR ATC(".After",tcProgram) &gt; 0
+          DO CASE
+          CASE RAT("REPORT",UPPER(tcProgram)) = (LEN(tcProgram)-5)
+             lnFRXRecNo = 1
+             * pull global data
+          CASE VARTYPE(tP2) = "N" &amp;&amp; Band events
+             lnFRXRecNo = tP2          
+          OTHERWISE
+             * called inappropriately
+          ENDCASE
+       CASE VARTYPE(tP1) = "N"  &amp;&amp; Render, other events
+          lnFRXRecno = tP1   
+       OTHERWISE
+          * called inappropriately
+       ENDCASE
+       IF NOT SEEK(lnFRXRecno,THIS.MemberDataAlias,"FRXRecno")
+          lnFRXRecno = -1
+       ENDIF
+       RETURN (lnFRXRecno # -1)
+   ENDPROC
+   PROTECTED PROCEDURE PullMemberData(toListener)
+      LOCAL lcAlias, lcTempAlias, lcAttributes, liIndex, loAttr
+      IF TYPE("toListener.MemberDataAlias") = "C" AND ;
+         NOT EMPTY(toListener.MemberDataAlias)
+         lcAlias = toListener.MemberDataAlias
+      ELSE
+         lcAlias = "M"+SYS(2015)
+         toListener.AddProperty("MemberDataAlias", lcAlias)
+         * "publish" this for others in case they want it
+      ENDIF
+      THIS.MemberDataAlias = lcAlias
+      lcTempAlias = "T" + SYS(2015)
+      CREATE CURSOR (lcAlias)  ;
+                    (FRXRecno I, Name M, Type M, ;
+                     ExecWhen M, Execute M, Class M, ;
+                     ClassLib M, DEClass M, DEClassLib M)
+      * we're going to take every attribute, whether 
+      * we understand the column or not, 
+      * but we'll start off with the 
+      * core set minus script since script attribute is 
+      * officially reserved for design-time use
+      lcAttributes = ;
+          "|FRXRecno|ExecWhen|Execute|Class|" + ;
+          "Classlib|Name|Type|DEClass|DEClassLib|"
+      SELECT FRX
+      SCAN FOR NOT EMPTY(Style)
+          TRY 
+             XMLTOCURSOR(Style,lcTempAlias)
+          CATCH WHEN .T.
+             * not valid XML
+          FINALLY
+             IF USED(lcTempAlias) 
+                IF RECCOUNT(lcTempAlias) &gt; 0 
+                   SELECT (lcTempAlias)
+                   FOR liIndex = 1 TO FCOUNT()
+                       IF ATC("|"+FIELD(liIndex)+"|",lcAttributes) = 0
+                          ALTER TABLE (lcAlias) ;
+                           ADD COLUMN (FIELD(liIndex)) M
+                          lcAttributes = lcAttributes + ;
+                           FIELD(liIndex) + "|"
+                       ENDIF
+                   ENDFOR
+                   SCATTER MEMO NAME loAttr
+                   INSERT INTO (lcAlias) FROM NAME loAttr
+                   REPLACE FRXRecno WITH RECNO("FRX") IN (lcAlias)
+                ENDIF
+                USE IN (lcTempAlias)
+             ENDIF
+          ENDTRY
+          loAttr = NULL
+       ENDSCAN
+       SELECT (lcAlias)
+       INDEX ON FRXRecno TAG FRXRecno
+   ENDPROC
+ENDDEFINE
+DEFINE CLASS FXProcessMemberDataScript AS FXMemberData
+   ApplyMemberData = .T.
+   PROTECTED PROCEDURE UseMemberData(toListener, tcProgram,;
+                        tP1, tP2, tP3, tP4, tP5, tP6, ;
+                        tP7, tP8, tP9, tP10, tP11, tP12)   
+       IF DODEFAULT(toListener, tcProgram,;
+                    @tP1, @tP2, @tP3, @tP4, @tP5, @tP6, ;
+                    @tP7, @tP8, @tP9, @tP10, @tP11, @tP12)
+                    
+          * We are now positioned on the correct
+          * record by the parent class,
+          * and can take action based on the memberdata contents.
+          * For example, if we're in BeforeReport,
+          * we could instantiate a collection of the appropriate
+          * template objects for each label or text record that has a 
+          * class and classlib available.
+          * For each EvaluateContents or Render
+          * event we can call methods of the class or
+          * apply font attributes to the runtime result.
+          LOCAL loMemberdata, llExecute 
+          SCATTER MEMO NAME loMemberdata
+          IF NOT EMPTY(loMemberdata.Execute)
+             IF EMPTY(loMemberdata.ExecWhen)
+                llExecute = .T.
+             ELSE
+                DO CASE
+                CASE ATC(loMemberData.ExecWhen,tcProgram) &gt; 0
+                   * simple event evaluation
+                   * ExecWhen contains an event name
+                   * Note that each event, via script,
+                   * could potentially change the contents of
+                   * ExecWhen to hold another value (the next
+                   * event during which this script 
+                   * should be evaluated)
+                   llExecute = .T.
+                CASE (TYPE(loMemberdata.ExecWhen) = "L") AND ;
+                   EVALUATE(loMemberdata.ExecWhen)
+                   * ExecWhen contains a logical expression 
+                   * to be evaluated
+                   llExecute = .T.
+                CASE ATC(SUBSTR(tcProgram,RAT(".",tcProgram) + 1),;
+                         loMemberData.ExecWhen) &gt; 0
+                   * ExecWhen contains a delimited string of events
+                   llExecute = .T.
+                ENDCASE
+             ENDIF
+             IF llExecute
+                IF NOT (BETWEEN(ATC("PARAM", ;
+                        ALLTRIM(CHRTRAN(loMemberData.Execute,;
+                        CHR(10)+CHR(13), ;
+                        SPACE(2)))),1,2))
+                   * add a parameters statement; this adjustment
+                   * should just happen the first time 
+                   * any FRX record is processed.
+                   loMemberData.Execute = ;
+                   "LPARAMETERS toFX, toListener, tcProgram,;"+ ;
+                    CHR(13) + CHR(10) + ;
+                   "tP1, tP2, tP3, tP4, tP5, tP6,"+;
+                   "tP7, tP8, tP9, tP10, tP11, tP12" + ;
+                    CHR(13) + CHR(10) + ;
+                   loMemberData.Execute
+                   REPLACE Execute WITH loMemberData.Execute 
+                ENDIF
+                ExecScript(loMemberData.Execute,;
+                    THIS, toListener, tcProgram,;
+                    @tP1, @tP2, @tP3, @tP4, @tP5, @tP6, ;
+                    @tP7, @tP8, @tP9, @tP10, @tP11, @tP12)
+             ENDIF   
+          ENDIF
+       ENDIF                 
+   ENDPROC                      
+   
+ENDDEFINE
+</pre></td></tr></table></span></div>
+      <p>To use a script-processing effect of this nature, you could add the following XML MemberData document to a Field or Expression control in the report layout holding a numeric value.  This example provides automatic color changes for numeric values below 0, using the EvaluateContents event, and formats the negative numbers with parentheses, using the Render method. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>Notice that the <code>ExecWhen</code> attribute indicates the script should be processed at these two points by specifying a delimited string ("<code>|EvaluateContents|Render|</code>").  This is one of several alternative means of evaluating <code>ExecWhen</code> provided by the FXProcessMemberDataScript class.</p>
+      </td></tr></table></div>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;VFPData&gt;
+&lt;reportdata name="" type="R" script="" 
+execwhen="|EvaluateContents|Render|"
+execute=
+"DO CASE 
+ CASE ATC(&amp;quot;Render&amp;quot;,tcProgram) &amp;gt; 0
+  * Render's 7th parameter is
+  * cContentstoBeRendered
+  * notice the conversion from Unicode to DBCS
+  tP7 = VAL(STRCONV(tp7,6))
+  IF tp7 &amp;lt; 0
+     tP7 =  &amp;quot;(&amp;quot;+TRANS(ABS(tp7)) + &amp;quot;)&amp;quot;
+  ELSE
+     tP7 = TRANS(tP7)
+  ENDIF
+  * convert back to Unicode for use by the native ReportListener:
+  tP7 = STRCONV(tp7,5)
+OTHERWISE
+  * EvaluateContents' second parameter
+  * is objProperties
+   IF VARTYPE(tP2.value) = "N" AND ;
+      tP2.value &amp;lt; 0
+      tP2.penred = 255
+      tP2.penblue = 0
+      tP2.pengreen = 0
+      tP2.reload = .T.
+   ENDIF
+ENDCASE"
+class="" classlib="" declass="" declasslib=""/&gt;
+&lt;/VFPData&gt;</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>The well-formed XML document above shows a number of <i>escaped</i> character references within the script; for example, a character such as <code>&lt;</code> must be stored as the entity reference <code>&amp;lt;</code> when it is part of the value of an attribute or element node in XML.  When you create the script using the Report Builder Application's <b>Run-time Extensions</b> text box interface, you can type these characters as you normally do, without using the entity references. The Report Builder Application stores the document properly, escaping the characters as necessary, when you save the XML.</p>
+      </td></tr></table></div>
+      <p>The following class is another class definition following the FX API.  Unlike FXMemberData and its derived classes, FXMemberDataAware does not understand XML and does not read the MemberData directly.  Instead, it reads the cursor produced by FXMemberData and understands its structure.  If it finds the cursor in its environment, it uses the cursor, adding columns if desired. If the cursor is not available, it provides a temporary instance of FXMemberData during the BeforeReport method, so this temporary object can create the cursor.  </p>
+      <p>FXMemberDataAware is an <i>abstract</i> class, performing no service during the report run.  However, you can derive many FX classes from FXMemberDataAware, each with a specialized purpose.  If you add instances of each FX to an FXListener's collection, they all share the same MemberData cursor during the report run.  They can also create private MemberData extension cursors related to the shared cursor, as needed.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>
+DEFINE CLASS FXMemberDataAware AS Custom
+   MemberDataAlias = ""
+   HasMemberData = .F.
+     
+   PROCEDURE ApplyFX(toListener, tcProgram,;
+                     tP1, tP2, tP3, tP4, tP5, tP6, ;
+                     tP7, tP8, tP9, tP10, tP11, tP12)
+                 
+      IF ATC("BeforeReport",tcProgram) &gt; 0             
+         THIS.VerifyMemberData(toListener)            
+      ENDIF
+      IF ATC("AfterReport",tcProgram) &gt; 0
+         THIS.DetachMemberData(toListener, .T.)
+      ENDIF
+         
+    ENDPROC
+   PROCEDURE VerifyMemberData(toListener)
+      IF toListener.FRXDataSession = -1
+         RETURN .F.
+      ENDIF
+      LOCAL loMemberData, liSelect, liSession
+      liSession = SET("DATASESSION")
+      SET DATASESSION TO (toListener.FRXDataSession)
+      liSelect = SELECT()
+      IF (EMPTY(THIS.MemberDataAlias) OR ;
+         (NOT USED(THIS.MemberDataAlias)))
+         * can be supplied by the Listener
+         * by leveraging a different FX object,
+         * but might not be, so in this case
+         * let's scarf it up with a temporary object
+         IF (NOT PEMSTATUS(toListener,"MemberDataAlias",5)) OR ;
+            EMPTY(toListener.MemberDataAlias)
+            THIS.MemberDataAlias = "M" + SYS(2015)
+            toListener.AddProperty("MemberDataAlias", ;
+                        THIS.MemberDataAlias)
+         ELSE
+            THIS.MemberDataAlias = toListener.MemberDataAlias
+         ENDIF   
+         IF NOT USED(THIS.MemberDataAlias)
+            * could be sharing 
+            loMemberData = NEWOBJECT("FXMemberData")
+            loMemberData.MemberDataAlias = THIS.MemberDataAlias
+            loMemberData.ApplyMemberData = .F.
+            loMemberData.ApplyFX(toListener, "BeforeReport")
+            SET DATASESSION TO (toListener.FRXDataSession) 
+            IF USED(THIS.MemberDataAlias)
+               * we can proceed...
+               THIS.AlterMemberDataInfo()
+            ENDIF
+          ENDIF
+       ENDIF          
+       THIS.HasMemberData = USED(THIS.MemberDataAlias)         
+       SELECT (liSelect)
+       loMemberData = NULL       
+       SET DATASESSION TO (liSession)    
+       RETURN THIS.HasMemberData
+    ENDPROC
+    
+    PROTECTED PROCEDURE AlterMemberDataInfo()
+      * Hook for derived classes
+      * to add their own columns,
+      * or even to create private cursors
+      * in the FRX Data session that
+      * function in relation to the MemberData 
+      * shared cursor.
+    ENDPROC
+      
+    PROCEDURE DetachMemberData(toListener, tlCloseMemberDataTable)
+       IF tlCloseMemberDataTable AND toListener.FRXDataSession &gt; -1
+          LOCAL liSession
+          liSession = SET("DATASESSION")
+          SET DATASESSION TO (toListener.FRXDataSession)
+          IF USED(THIS.MemberDataAlias)
+             USE IN (THIS.MemberDataAlias)
+             IF PEMSTATUS(toListener,"MemberDataAlias",5)
+                toListener.MemberDataAlias = ""
+             ENDIF
+          ENDIF
+          SET DATASESSION TO (liSession)
+       ENDIF    
+       THIS.MemberDataAlias = ""
+       THIS.HasMemberData = .F.
+       
+    ENDPROC
+       
+ENDDEFINE</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span><br /><span class="linkTerms"><a href="/html/cf2497e6-44ab-44ba-a319-7fefc8a2dc59.htm">BeforeReport Event</a></span><br /><span class="linkTerms"><a href="/html/a9548831-e80d-477c-bfde-e5253df5850d.htm">AfterReport Event</a></span><br /><span class="linkTerms"><a href="/html/d84ca220-1017-4d03-92d0-907fb6f61f21.htm">Render Method</a></span><br /><span class="linkTerms"><a href="/html/89a8e39e-b39f-483d-bcda-74dffe42667c.htm">EvaluateContents Event</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/dbc4b061-74ad-4780-89bf-0e5d461be849.htm">Extending Reports at Design Time</a></span><br /><span class="linkTerms"><a href="/html/4c11644c-e726-4a4c-b680-9615b61fb122.htm">Extending Reports at Run Time</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Report XML MemberData Extensions">
+</OBJECT>

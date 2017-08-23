@@ -1,0 +1,378 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Error Handler Priority</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Error Handler Priority</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro provides several error handlers you can use to detect and handle errors in code. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+      <p>The use of <b>TRY...CATCH</b> statements in a method whose class definition does not have <b>Error</b> event or method code might impact existing code and possibly break backward compatibility. Therefore, <b>TRY...CATCH</b> statements in methods should call only other object methods that contain <b>Error</b> event or method code.</p>
+    </td></tr></table></div>
+    <p>The following table summarizes the priority of error handlers.</p>
+    <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            When only the following error handler exists
+          </th>
+          <th>
+            Error handler priority
+          </th>
+        </tr><tr>
+        <td>
+          <p>None or no existing error handlers can handle the error</p>
+        </td>
+        <td>
+          <p>Visual FoxPro system error message</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>
+            <b>ON ERROR</b> command </p>
+        </td>
+        <td>
+          <p>
+            <b>ON ERROR</b> takes precedence until another <b>ON ERROR</b> is called or the Visual FoxPro error message system is restored. </p>
+          <p>Otherwise, Visual FoxPro displays a system error message.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>
+            <b>TRY...CATCH...FINALLY</b> command </p>
+        </td>
+        <td>
+          <p>
+            <b>TRY...CATCH...FINALLY</b> takes precedence when an error occurs in <b>TRY</b> block. </p>
+          <p>Otherwise, Visual FoxPro displays a system error message.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>
+            <b>Error</b> event or method</p>
+        </td>
+        <td>
+          <p>
+            <b>Error</b> takes precedence when an error occurs in an object's method code. </p>
+          <p>Otherwise, Visual FoxPro displays a system error message.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>
+            <b>TRY...CATCH...FINALLY</b> command <b>ON ERROR</b> command </p>
+        </td>
+        <td>
+          <p>
+            <b>TRY...CATCH...FINALLY</b> takes precedence when an error occurs in a <b>TRY</b> block. </p>
+          <p>
+            <b>ON ERROR</b> takes precedence when:
+</p>
+          <ul><li>
+              <p>An error occurs outside the <b>TRY</b> block.</p>
+            </li><li>
+              <p>An error occurs in the <b>CATCH</b> block.</p>
+            </li><li>
+              <p>An error occurs in the <b>FINALLY</b> block.</p>
+            </li></ul>
+          <p>Otherwise, Visual FoxPro displays a system error message.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>
+            <b>Error</b> event or method<b>ON ERROR</b> command</p>
+        </td>
+        <td>
+          <p>
+            <b>Error</b> takes precedence when an error occurs in object method code.</p>
+          <p>
+            <b>ON ERROR</b> takes precedence when:
+</p>
+          <ul><li>
+              <p>An error occurs outside a class definition.</p>
+            </li><li>
+              <p>An error occurs inside a class definition but outside method code. The error is detected at the point of instantiating the object. </p>
+            </li></ul>
+          <p>Otherwise, Visual FoxPro displays a system error message.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>
+            <b>TRY...CATCH...FINALLY</b> command<b>Error</b> event or method</p>
+        </td>
+        <td>
+          <p>
+            <b>TRY...CATCH...FINALLY</b> takes precedence when:</p>
+          <ul><li>
+              <p>An error occurs in a <b>TRY</b> block outside a class definition.</p>
+            </li><li>
+              <p>An error occurs inside an object's method code and is within a <b>TRY</b> block. </p>
+            </li><li>
+              <p>An error originates in a class definition outside method code but occurs in a <b>TRY</b> block outside the class definition.</p>
+            </li><li>
+              <p>An error occurs in a <b>TRY</b> block inside external procedure or object method code, and the method or procedure is called directly or from another method, regardless of whether the method call appears inside or outside a <b>TRY</b> block. </p>
+            </li></ul>
+          <p>
+            <b>Error</b> takes precedence when:
+</p>
+          <ul><li>
+              <p>An error occurs inside method code but outside a <b>TRY</b> block.</p>
+            </li><li>
+              <p>An error occurs in an object's method code, and the method is called directly or is called from another method, regardless of whether the method call appears inside or outside a <b>TRY</b> block. 
+</p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>If the method call is in a <b>TRY</b> block, and no immediate <b>Error</b> event or method code exists for the object, Visual FoxPro searches for <b>Error</b> code inherited from the parent class or another class up the class hierarchy. If no <b>Error</b> code exists in the class hierarchy, Visual FoxPro looks for a <b>CATCH</b> block corresponding to the <b>TRY</b> block from which the method was called. </p>
+              </td></tr></table></div>
+            </li></ul>
+          <p>Otherwise, Visual FoxPro displays a system error message.</p>
+        </td>
+      </tr></table></div>
+  <h1 class="heading">Summary of Error Handling in Object Method Code</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>For errors that occur in an object's method code, the order of priority for error handlers is summarized as follows:
+</p>
+      <ul><li>
+          <p>Immediate <b>TRY...CATCH</b>, if it exists, in the same method that the error occurs. This applies also to external procedures that a method calls.</p>
+        </li><li>
+          <p>
+            <b>Error</b> event, if it exists, for the object.</p>
+        </li><li>
+          <p>
+            <b>TRY...CATCH</b> at the next level up in the calling chain or in a higher-level method.</p>
+        </li><li>
+          <p>
+            <b>ON ERROR</b> routine, if it exists.</p>
+        </li><li>
+          <p>Visual FoxPro system error message.</p>
+        </li></ul>
+      <p>For more information error handling priority within <b>TRY...CATCH...FINALLY</b> structures, see <a href="#foconerrorhandlerpriorityanchor2">Error Handling Priority in TRY...CATCH...FINALLY Structures</a>. For more information about error handling priority in classes and objects, see <a href="#foconerrorhandlerpriorityanchor3">Error Handling Priority in Classes and Objects</a>. </p>
+    </div><a name="foconerrorhandlerpriorityanchor2"></a><h1 class="heading">Error Handling Priority in TRY...CATCH...FINALLY Structures</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The following table summarizes the sequence of actions when handling errors or <b>THROW</b> commands in the <b>TRY</b> block of a <b>TRY...CATCH...FINALLY</b> structure.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              When the following error handlers exist and an error occurs in the first code block as listed
+            </th>
+            <th>
+              Sequence of actions
+            </th>
+          </tr><tr>
+          <td>
+            <p>None</p>
+          </td>
+          <td>
+            <p>Display appropriate Visual FoxPro system error message.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>CATCH</b> code block</p>
+          </td>
+          <td>
+            <p>
+              <b>CATCH</b> code block handles the error.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>CATCH</b> code block<b>FINALLY</b> code block</p>
+          </td>
+          <td>
+            <p>
+              <b>CATCH</b> code block handles the error.<b>FINALLY</b> code block runs.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Inner <b>CATCH</b> code block
+Inner <b>FINALLY</b> code block
+Outer <b>TRY </b>structure</p>
+          </td>
+          <td>
+            <p>Inner <b>CATCH</b> code block handles the error. 
+Inner <b>FINALLY</b> code block runs.
+Outer <b>FINALLY</b> code block runs.</p>
+            <p>If no inner <b>CATCH</b> code block exists, inner <b>FINALLY</b> code block runs, outer <b>CATCH</b> code block handles the error, and outer <b>FINALLY</b> code block runs.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>CATCH</b> code block <b>FINALLY</b> code block <b>ON ERROR</b> command</p>
+          </td>
+          <td>
+            <p>
+              <b>CATCH</b> code block handles the error. <b>FINALLY</b> code block runs.<b>ON ERROR</b> command runs.</p>
+            <p>If no <b>CATCH</b> code block exists, <b>FINALLY</b> code block runs, and <b>ON ERROR</b> handles the error.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>CATCH</b> code block <b>FINALLY</b> code block <b>Error</b> code block </p>
+          </td>
+          <td>
+            <p>
+              <b>CATCH</b> code block handles the error. <b>FINALLY</b> code block runs.<b>Error</b> event runs.</p>
+            <p>If no <b>CATCH</b> code block exists, <b>FINALLY</b> code block runs, and <b>Error</b> event handles the error.</p>
+          </td>
+        </tr></table></div>
+      <p>For information about how <b>TRY...CATCH...FINALLY</b> structures handle errors, see <a href="/html/220ead6b-fd59-49d7-94e3-6270a91e6807.htm">Structured Error Handling</a>. </p>
+    </div><a name="foconerrorhandlerpriorityanchor3"></a><h1 class="heading">Error Handling Priority in Classes and Objects</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>When an error occurs in an object's method code, and the method is called directly or from the <b>TRY</b> block of a <b>TRY...CATCH...FINALLY</b> structure, Visual FoxPro follows the error handling procedure for that particular object. This protocol makes it possible for you to maintain encapsulation and control of your components. Typically, the object's <b>Error</b> event, if it exists, takes precedence over other error handlers unless the object's method code contains its own <b>TRY...CATCH...FINALLY</b> structure.</p>
+      <p>For more information about error handling for classes and objects, see <a href="/html/2904a3c2-10ce-41cb-b031-ee3600dacc96.htm">Class and Object Error Handling</a>.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Examples of Error Handling Priority for Object Method Code</h3><div class="subSection" xmlns="">
+          <p>In the following example where the class contains an <b>Error</b> event, the code instantiates an object from a custom class named MyObjectClass, which defines two methods that contain <b>TRY...CATCH</b> blocks, one method that contains an error, and an <b>Error</b> event. The object then calls two of the defined methods. </p>
+          <p>The <b>TRY</b> block in Method1 contains a call to the custom RaiseError method, which generates an error. However, the <b>CATCH</b> block in Method1 does not handle this error; instead, the code in the <b>Error</b> event for the class handles this error and displays the message specified. If the <b>Error</b> event did not exist, the <b>CATCH</b> block in Method1 would display the specified message. </p>
+          <p>In contrast, when an error occurs preceding the <b>TRY</b> block in Method2, the <b>Error</b> event handles this error by displaying the specified message. When a second error occurs in the <b>TRY</b> block in Method2, the <b>CATCH</b> block handles the second error and displays the specified message.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+oMyObject = CREATEOBJECT("MyClass")
+oMyObject.Method1()
+?
+oMyObject.Method2()
+DEFINE CLASS MyClass AS Custom
+   PROCEDURE Method1
+      ? "Method1"
+      TRY
+         ? "Calling RaiseError method in TRY block for Method1."
+         This.RaiseError()
+      CATCH
+         ? "Entered CATCH block for Method1. Caught error."
+      ENDTRY
+   ENDPROC
+   PROCEDURE Method2
+      ? "Method2"
+      ? "Generating an error before TRY block in Method2."
+      ERROR 1
+      TRY
+         ? "Generating an error in TRY block for Method2."
+         ERROR 1 
+      CATCH
+         ? "Entered CATCH block for Method2. Caught error."
+      ENDTRY
+   ENDPROC
+   PROCEDURE RaiseError
+      ? "Entered RaiseError method. Generating an error."
+      ERROR 1
+   ENDPROC
+   PROCEDURE Error(t1,t2,t3)
+      ? "Error event for MyObjectClass occurred."
+   ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+          <p>In the following example where the class does not contain an <b>Error</b> event, the code instantiates an object from a custom class named MyClass, which defines two methods: the first contains a <b>TRY...CATCH</b> block while the second does not. </p>
+          <p>The <b>TRY</b> block in myMethod1 contains a call to myMethod2, which generates an error. The <b>CATCH</b> block in Method1 handles this error and displays information for the Visual FoxPro error generated.</p>
+          <p>However, if the example called myMethod2 directly, for example, by following <code>oMyObject.myMethod1()</code> with <code>oMyObject.myMethod2()</code>, then the <code>ON ERROR</code> <code>DO errorHandler</code> statement would need to specify a functional routine named errorHandler to handle the error in myMethod2. After handling the error, the <b>ON ERROR</b> routine returns execution to the program so that the statement following the one containing the error can execute.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+ON ERROR DO errorHandler &amp;&amp; Create a functional error handler to test.
+oMyObject=CREATEOBJECT("myClass")
+oMyObject.myMethod1()
+* oMyObject.myMethod2()  &amp;&amp; Remove comment character to test this line.
+DEFINE CLASS myClass AS Custom
+   PROCEDURE myMethod1
+      ? "myMethod1"
+      TRY 
+         ? "Calling myMethod2 in TRY block for myMethod1."
+         THIS.myMethod2()
+      CATCH TO omyError
+         ? "Entered CATCH block for myMethod1. Caught: ", ;  
+            omyError.ErrorNo, " ", omyError.Message
+      ENDTRY
+   ENDPROC
+   PROCEDURE myMethod2
+      ?
+      ? "myMethod2"
+      ? "Generating an error in myMethod2."
+      x=y         &amp;&amp; Variable y does not exist. CATCH handles this error. 
+      ? "This line displays if CATCH does not handle the preceding error."
+   ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/9b4782b2-1bcc-4774-b66f-2bb15381d587.htm">Handling Run-Time Errors</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/44c896ae-cba9-4869-8a3f-908e5abde1b3.htm">Testing and Debugging Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Error Handler Priority">
+</OBJECT>

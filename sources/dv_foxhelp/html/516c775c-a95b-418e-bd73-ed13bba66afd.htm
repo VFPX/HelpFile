@@ -1,0 +1,146 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Access to Visual FoxPro Variables and Fields</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Access to Visual FoxPro Variables and Fields</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can access Visual FoxPro variables or field values in your ActiveX control or FLL function, either to read them or to set them. In addition, you can create new variables that can be accessed from within Visual FoxPro.</p>
+    <p>Variables and fields are made available in Visual FoxPro in a name table, which is an array containing the names of all currently defined variables and fields. You can access an individual element in the array using a name table index (NTI). A special API function, <a href="/html/2beb09c1-b796-4c91-a55b-016f93ca1ffe.htm">_NameTableIndex( )</a>, returns the index of an existing variable or field based on a name that you provide. After you've determined the NTI for a given variable, you can read it using the <a href="/html/d18c9394-321b-4a78-9b84-e0afb4ff2d02.htm">_Load( )</a> API function or set it using the <a href="/html/e88cbf93-5241-41e7-b467-a7014b002157.htm">_Store( )</a> API function. To create a new variable, you can call the API function <a href="/html/17c0fff0-23ae-45c7-8a67-be0448a50a7a.htm">_NewVar( )</a>.</p>
+    <p>To access Visual FoxPro variables or fields, you use the Value and Locator structures defined in Pro_ext.h. If you're creating an FLL library, you can use the same technique you used to access parameters passed to your functions. For details about the Value and Locator structures, see <a href="/html/ad9896fa-643e-48d3-a3b9-d738971e71a3.htm">Parameters in External Libraries</a>.</p>
+    <p>The following example illustrates how you can use the Value and Locator structures in an ActiveX control to access Visual FoxPro variables.</p>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>long CFoxtlibCtrl::TLGetTypeAttr(long pTypeInfo, LPCTSTR szArrName)
+{
+  int nResult = 1;
+  TYPEATTR *lpTypeAttr;
+  Locator loc;
+  Value val;
+  OLECHAR szGuid[128];
+  char *szBuff;
+__try {
+   if (_FindVar(_NameTableIndex(( char *)szArrName),-1,&amp;loc)) {
+      ((ITypeInfo *)pTypeInfo)-&gt;GetTypeAttr(&amp;lpTypeAttr);
+      if (_ALen(loc.l_NTI, AL_ELEMENTS) &lt; 16) {
+         _Error(631); //Array argument not of proper size.
+      }
+      //1 = Guid
+      StringFromGUID2(lpTypeAttr-&gt;guid, (LPOLESTR )&amp;szGuid,sizeof(szGuid));
+      OLEOleToAnsiString(szGuid,&amp;szBuff);
+      val.ev_type = 'C';
+      val.ev_length = strlen(szBuff);
+      val.ev_handle = _AllocHand(val.ev_length);
+      _HLock(val.ev_handle);
+      _MemMove((char *) _HandToPtr( val.ev_handle ), szBuff, val.ev_length);
+      OLEFreeString((void **)&amp;szBuff);
+      _HUnLock(val.ev_handle);
+      loc.l_sub1 = 1;
+      _Store(&amp;loc,&amp;val);
+      _FreeHand(val.ev_handle);
+      //2 = LCID
+      loc.l_sub1 = 2;
+      val.ev_type = 'I';
+      val.ev_long = lpTypeAttr-&gt;lcid;
+      _Store(&amp;loc,&amp;val);
+      // code for values 3 - 16 here
+      ((ITypeInfo *)pTypeInfo) -&gt; ReleaseTypeAttr(lpTypeAttr);
+      }
+   } __except  (EXCEPTION_EXECUTE_HANDLER) {
+      nResult = 0;
+   }
+return nResult;</pre></td></tr></table></span></div>
+  <h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/36fee911-c687-49d9-875c-4dfa97a7594e.htm">How to: Manage Memory</a></span><br /><span class="linkTerms"><a href="/html/a185d080-15c9-4187-a534-c105108dbd15.htm">How to: Build and Debug Libraries and ActiveX Controls</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/30d2a218-a9d2-42cf-8bd9-d1c05037dd7b.htm">Passing Parameters to Visual FoxPro API Functions</a></span><br /><span class="linkTerms"><a href="/html/2beb09c1-b796-4c91-a55b-016f93ca1ffe.htm">_NameTableIndex( ) API Library Routine</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/566a1828-db5f-432f-8940-c4dd53c08920.htm">Accessing the Visual FoxPro API</a></span><br /><span class="linkTerms"><a href="/html/941bd4e8-58e8-4353-890d-91a96b8344c0.htm">Extending Visual FoxPro with External Libraries</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Access to Visual FoxPro Variables and Fields">
+</OBJECT>

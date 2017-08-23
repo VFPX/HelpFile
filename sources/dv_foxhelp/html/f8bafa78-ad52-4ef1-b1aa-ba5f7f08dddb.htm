@@ -1,0 +1,168 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Set Data Access</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Set Data Access</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>In a shared environment, you can access data in two ways: from exclusive files or from shared files. If you open a table for shared access, other users also have access to the file. If you open a table for exclusive access, no other user can read or write to that file. Because exclusive use defeats many of the benefits of sharing data on a network, it should be used sparingly.</p>
+  <h1 class="heading">Using a Table with Exclusive Access</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The most restrictive way to open a file is to open it exclusively. When you open a table through the interface, it opens for exclusive use by default. You can also explicitly open a table for exclusive use by using Visual FoxPro commands.</p>
+      <h3 class="procedureSubHeading">To open a table for exclusive use</h3><div class="subSection"><ul><li>
+            
+              <p>Type the following commands in the <b>Command</b> window: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET EXCLUSIVE ON
+USE cMyTable</pre></td></tr></table></span></div>
+              <p>-or- </p>
+            
+          </li><li>
+            
+              <p>Type the following command in the <b>Command</b> window: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE cMyTable EXCLUSIVE</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>The following commands require you to open a table for exclusive use:  </p>
+      <ul><li>
+          <p>
+            <span class="linkTerms"><a href="/html/3c5a454a-67ec-48a8-8290-18dd0e8a97ea.htm">ALTER TABLE - SQL Command</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span> when creating, adding, or deleting a compound index tag.</p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/9f33867b-fcdd-49ec-b71f-962affad7f9e.htm">INSERT Command</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/871ce68a-2b9c-4f74-956d-9a0f163d966a.htm">MODIFY STRUCTURE Command</a></span> To use this command to change a table structure, you must open the table exclusively. You can, however, use this command in read-only mode when you open the table for shared use.</p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/acbd9f3d-a745-4914-bdd8-b613dcd94bee.htm">PACK Command</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/b515a6e4-392f-44e8-a48f-52054f2c8b72.htm">REINDEX Command</a></span>
+          </p>
+        </li><li>
+          <p>
+            <span class="linkTerms"><a href="/html/346ba072-32df-42b5-b730-a27c6284e550.htm">ZAP Command</a></span>
+          </p>
+        </li></ul>
+      <p>Visual FoxPro returns the error, "Exclusive open of file is required," if you try to execute one of these commands on a shared table.</p>
+      <p>You can restrict access to a table by using the <span class="linkTerms"><a href="/html/76c905e2-77c6-4c45-8f9b-bad3c021c590.htm">FLOCK( ) Function</a></span>. If you use FLOCK( ) to lock the table, other users cannot write to the table but they can read it.</p>
+    </div><h1 class="heading">Using a Table with Shared Access</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>When you open a table for shared use, more than one workstation can use the same table at the same time. When you open a table through the interface, you can override the default ON setting for the <span class="linkTerms"><a href="/html/9a2fc5a3-ffa7-4008-8348-9788cd75d5a2.htm">SET EXCLUSIVE Command</a></span>. You can explicitly open a table for shared use by using Visual FoxPro commands.</p>
+      <h3 class="procedureSubHeading">To open a table for shared use</h3><div class="subSection"><ul><li>
+            
+              <p>Type the following commands in the <b>Command</b> window: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>SET EXCLUSIVE OFF
+USE cMyTable</pre></td></tr></table></span></div>
+              <p>-or- </p>
+            
+          </li><li>
+            
+              <p>Type the following command in the <b>Command</b> window: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE cMyTable SHARED</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+      <p>When you add or change data in a shared table, you must first lock the affected record or the entire table. You can lock a record or a table opened for shared use in the following ways:  </p>
+      <ul><li>
+          <p>Use a command that performs an automatic record or table lock.</p>
+        </li><li>
+          <p>Manually lock one or more records or an entire table with the record and table locking functions.</p>
+        </li><li>
+          <p>Initiate buffering with the <span class="linkTerms"><a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a></span>.</p>
+        </li></ul>
+      <p>Associated memo and index files always open with the same share status as their table.</p>
+      <p>If your application uses a table for lookup purposes only and all users of the application access it, then you can improve performance by marking the table as read-only.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/aec29e01-39c1-4cce-983d-4c536f71626d.htm">How to: Use Data Sessions</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/9a2fc5a3-ffa7-4008-8348-9788cd75d5a2.htm">SET EXCLUSIVE Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/f3eff628-41b3-45cd-856d-2d97fd2fed05.htm">Controlling Access to Data</a></span><br /><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Set Data Access">
+</OBJECT>

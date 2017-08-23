@@ -1,0 +1,320 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Updating Remote Data with SQL Pass-Through</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Updating Remote Data with SQL Pass-Through</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When you use SQL pass-through functions to update data on a remote server, you control whether data is updated, as well as specific details about the updates, by setting properties on the result set cursor. Visual FoxPro checks these properties when an update is requested before committing the update.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+      <p>SQL pass-through view cursors aren't updatable until you specify update properties for the view cursor. If you want to store update property settings persistently, create a view definition. Visual FoxPro supplies default values that prepare the view to be updatable when you create a view using the View Designer or the language. You can use the CURSORSETPROP() function to add additional information to supplement or customize the default values.</p>
+    </td></tr></table></div>
+    <p>To update remote data you must set the following properties using the <b>CURSORSETPROP( )</b> function:  </p>
+    <ul><li>
+        <p>Tables</p>
+      </li><li>
+        <p>KeyFieldList</p>
+      </li><li>
+        <p>UpdateNameList</p>
+      </li><li>
+        <p>UpdatableFieldList</p>
+      </li><li>
+        <p>SendUpdates</p>
+      </li></ul>
+    <p>You can specify additional properties such as Buffering, UpdateType, and WhereType to best fit the requirements of your application.</p>
+    <p>The update properties you set on the active view cursor have slightly different names than their <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> counterparts. The following table lists the names used for both view definitions and active cursors.</p>
+    <div class="labelheading"><b>View and Cursor Update Properties</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <th>
+            Purpose
+          </th>
+          <th>
+            View definition properties1
+          </th>
+          <th>
+            Active cursor properties2
+          </th>
+        </tr><tr>
+        <td>
+          <p>Make remote table updatable.</p>
+        </td>
+        <td>
+          <p>Tables</p>
+        </td>
+        <td>
+          <p>Tables</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Specify the remote names for view fields.</p>
+        </td>
+        <td>
+          <p>UpdateName (field-level property)</p>
+        </td>
+        <td>
+          <p>UpdateNameList</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Specify view fields you want to use as keys.</p>
+        </td>
+        <td>
+          <p>KeyField (field-level property)</p>
+        </td>
+        <td>
+          <p>KeyFieldList</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Specify the view fields that are updatable.</p>
+        </td>
+        <td>
+          <p>Updatable (field-level property)</p>
+        </td>
+        <td>
+          <p>UpdatableFieldList</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Turn updates on.</p>
+        </td>
+        <td>
+          <p>SendUpdates</p>
+        </td>
+        <td>
+          <p>SendUpdates</p>
+        </td>
+      </tr></table></div>
+    <p>1 Set with DBSETPROP( ). 2 Set with CURSORSETPROP( ).</p>
+    <p>For more information on setting update properties, see <a href="/html/bb470e80-7893-4ca8-91bf-613c5f3eabb6.htm">How to: Update Data in a View</a>, or see <a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( )</a> or <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a>.</p>
+  <h1 class="heading">Controlling the Timing of Remote Updates</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>You control how updates to remote data are buffered by setting the cursor's Buffering property. Of the five possible buffering property settings, two are valid for remote views:  </p>
+      <ul><li>
+          <p>3, or DB_BUFOPTROW, the default, which optimistically locks the row.</p>
+        </li><li>
+          <p>5, or DB_BUFOPTTABLE, which optimistically locks the table.</p>
+        </li></ul>
+      <p>Visual FoxPro supports only optimistic locking on remote cursors.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>The pessimistic row and table buffering settings, 2 and 4, don't apply to remote views, because Visual FoxPro doesn't take locks on the server data. Buffering property setting 1 doesn't apply to remote views because views are always buffered.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Using Optimistic Row Buffering</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The default Buffering setting, DB_BUFOPTROW, optimistically locks remote data on a row-by-row basis. For example, if you want changes to the <code>titles</code> table to be committed on a row-by-row basis, such as when using the SKIP command, you could set the Buffering property to 3:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CURSORSETPROP('buffering', 3, 'titles')</pre></td></tr></table></span></div>
+      <p>When Buffering is set to row buffering, you have two methods of sending updates to the remote server. You can:  </p>
+      <ul><li>
+          <p>Call the <a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( )</a> function.</p>
+        </li><li>
+          <p>Use a command that moves the record pointer off the row, such as <a href="/html/1c473072-7070-489e-83b6-a35c8a4c4a42.htm">SKIP</a> or <a href="/html/21117980-58f1-47b0-9384-05e0172f7af7.htm">GO BOTTOM</a>.</p>
+        </li></ul>
+      <p>The TABLEUPDATE( ) function updates the server without moving the record pointer. Commands that move the record pointer send updates to the remote server as a by-product of moving off the updated record.</p>
+      <p>If you use row buffering and want to be able to revert changes to rows, you must wrap the changes in manual transactions using SQL pass-through transaction functions.</p>
+    </div><h1 class="heading">Using Optimistic Table Buffering</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>If you want changes to a table to be committed a batch at a time, such as when the user clicks a Save or OK button in a form, you can set the Buffering property to 5, or DB_BUFOPTTABLE. You must call the TABLEUPDATE( ) function to send the update to the server.</p>
+      <p>In the following example, you set the Buffering property in your form's initialization code and then commit the changes in the save code.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>CURSORSETPROP('buffering', 5, 'sqltitles')</code>
+            </p>
+          </td>
+          <td>
+            <p>Set in Init code</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>* Update batched changes;</code>
+            </p>
+            <p>
+              <code>* ignore changes made by others</code>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>TABLEUPDATE(.T., .T., 'titles')</code>
+            </p>
+          </td>
+          <td>
+            <p>Set in Save code</p>
+          </td>
+        </tr></table></div>
+      <p>To restore the original values to a table and prevent updates from being sent to the remote server, you call <a href="/html/0fdd3838-1de5-4e54-8e4e-acb3d3e8b3bf.htm">TABLEREVERT( )</a>. You can control whether a single row or all rows are reverted by combining the setting of the cursor's Buffering property with the TABLEREVERT( ) command. The following example reverts only the current row. You might want to invoke this code when the user clicks on a Cancel button in a form:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>= TABLEREVERT(.F., 'titles')      &amp;&amp; Revert current row</pre></td></tr></table></span></div>
+      <p>If you wanted to revert all rows, such as when the user presses ESC to leave a form, you could use the same example, this time changing the settings of the Buffering property and TABLEREVERT( ) command to revert all rows, with the entire table buffered:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>= TABLEREVERT(.T., 'titles')      &amp;&amp; Revert all rows</pre></td></tr></table></span></div>
+      <p>For more information about buffering, see <a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a>.</p>
+    </div><h1 class="heading">Detecting Changes By Other Users</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>In multiuser applications, conflicts with other users' updates are detected by the SQL Update query, which is generated when a write is attempted locally. The level of detection depends on the setting of the WhereType property. For more information on setting the WhereType property, see <a href="/html/3b456fd8-70f4-4a04-bc2d-18b17da0f414.htm">Managing Updates by Using Views</a>.</p>
+    </div><h1 class="heading">Forcing Updates</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>You can use the <a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( )</a> function to control whether changes made to a table or cursor by another user on a network are overwritten when you send your updates. If you set the Force parameter of TABLEUPDATE( ) to true (.T.), and the <a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( )</a> UpdateType property is set to the default value, 1, old data is updated with the new data you send, as long as the value in the record's key field on the remote table hasn't been changed. If the value in the remote table's key field has changed, or if the UpdateType property is set to 2, Visual FoxPro sends a DELETE and then an INSERT statement to the remote table.</p>
+    </div><h1 class="heading">Troubleshooting Update Error Messages</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>The following table lists the Visual FoxPro and ODBC error messages that apply specifically to remote updates. The Action column contains the action you take to resolve the error condition.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Error Message
+            </th>
+            <th>
+              Meaning
+            </th>
+            <th>
+              Action
+            </th>
+          </tr><tr>
+          <td>
+            <p>No update table(s) specified. Use the Tables cursor property.</p>
+          </td>
+          <td>
+            <p>The cursor property Tables contains no remote table names. At least one table is required to enable updates to the remote server.</p>
+          </td>
+          <td>
+            <p>Use the Tables property to specify at least one table for the cursor.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>No key column(s) specified for the update table <i>table_name</i>. Use the KeyFieldList cursor property.</p>
+          </td>
+          <td>
+            <p>The primary key for the remote table specified in the error message isn't included in the KeyFieldList property for the cursor; a primary key is required for each table being updated.</p>
+          </td>
+          <td>
+            <p>Use the KeyFieldList property to specify the primary key for the remote table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>No valid update table specified for column <i>column_name</i>. Use the UpdateNameList and Tables cursor properties.</p>
+          </td>
+          <td>
+            <p>The UpdateName property for column <i>column_name</i> has an invalid table qualifier.</p>
+          </td>
+          <td>
+            <p>Set the table qualifier with the UpdateNameList property, or add the table qualifier to the Tables property setting, or both.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>The KeyField List cursor property doesn't define a unique key.</p>
+          </td>
+          <td>
+            <p>More than one remote record has the same key.</p>
+          </td>
+          <td>
+            <p>Use the KeyField List property to define a unique key for the remote table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>From ODBC: ODBC invalid object.</p>
+          </td>
+          <td>
+            <p>ODBC cannot find the remote table or column because it doesn't exist as named. Visual FoxPro field names are validated by Visual FoxPro; remote table and column names are validated only by the remote server.</p>
+          </td>
+          <td>
+            <p>Check the object name.</p>
+          </td>
+        </tr></table></div>
+      <p>For more information on error handling, see <a href="/html/be371614-1c7f-4f8a-b113-3595a7d61bc7.htm">Handling SQL Pass-Through Errors</a>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/88be1b78-a093-4161-9c95-f00ff6dfd4db.htm">Working with Remote Data Using SQL Pass-Through</a></span><br /><span class="linkTerms"><a href="/html/6f289c65-6adc-4829-be74-dbf79e2667e7.htm">Selecting an Efficient SQL Pass-Through Processing Mode</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/7a4c60ae-5309-4014-87ec-08ce277eede4.htm">Planning Client/Server Applications</a></span><br /><span class="linkTerms"><a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a></span><br /><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Updating Remote Data with SQL Pass-Through">
+</OBJECT>

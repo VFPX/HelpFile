@@ -1,0 +1,219 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>DDEPoke( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">DDEPoke( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Sends data between client and server applications in a dynamic data exchange (DDE) conversation.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+DDEPoke(<span class="parameter">nChannelNumber</span>, <span class="parameter">cItemName</span>, <span class="parameter">cDataSent</span>
+   [, <span class="parameter">cDataFormat</span> [, <span class="parameter">cUDFName</span>]])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nChannelNumber</span>
+        </span></dt><dd>
+          <p>Specifies the channel number of the application data is sent to. If the channel number is a server channel, <b>DDEPoke( )</b> sends the data in response to a request or a previously established notify or automatic link.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cItemName</span>
+        </span></dt><dd>
+          <p>Specifies the item name to which data is sent. The item name is application-specific and must be understood by the application. For example, Microsoft Excel supports R1C1 as a valid item name that refers to the first cell in a worksheet.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cDataSent</span>
+        </span></dt><dd>
+          <p>Specifies the data sent to the item name specified with <span class="parameter">cItemName</span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cDataFormat</span>
+        </span></dt><dd>
+          <p>Specifies the format used to send the data. The default format is CF_TEXT. In this format, fields are delimited with tabs and records are delimited with a carriage return and a linefeed.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cUDFName</span>
+        </span></dt><dd>
+          <p>Allows asynchronous data transfer. If <span class="parameter">cUDFName</span> is omitted, a client waits for the period specified with <b>DDESetOption( )</b>. If you specify the name of a user-defined function with <span class="parameter">cUDFName</span>, client program execution continues immediately after the request is made.</p>
+          <p>When the data is available from the server application, the user-defined function specified with <span class="parameter">cUDFName</span> is executed. The user-defined function is passed six parameters in this order:   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Parameter
+                </th>
+                <th>
+                  Contents
+                </th>
+              </tr><tr>
+              <td>
+                <p>Channel Number</p>
+              </td>
+              <td>
+                <p>The channel number of the server application.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Action</p>
+              </td>
+              <td>
+                <p>XACTCOMPLETE (successful transaction).XACTFAIL (failed transaction).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Item</p>
+              </td>
+              <td>
+                <p>The item name; for example, R1C1 for a Microsoft Excel worksheet cell.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Data</p>
+              </td>
+              <td>
+                <p>The new data (REQUEST) or data passed (POKE or EXECUTED).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Format</p>
+              </td>
+              <td>
+                <p>The data format; for example, CF_TEXT.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Transaction Number</p>
+              </td>
+              <td>
+                <p>The transaction number returned by <b>DDEPoke( )</b>.</p>
+              </td>
+            </tr></table></div>
+          <p>Use DDEAbortTrans( ) to cancel an uncompleted transaction. If the transaction fails, you can use DDELastError( ) to determine why it failed.   </p>
+          <p>When you include <span class="parameter">cUDFName</span>, DDEPoke( ) returns a transaction number if successful or –1 if an error occurs. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Logical</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>
+        <b>DDEPoke( )</b> sends data as a character string to the item name in the application specified by the channel number.</p>
+      <p>If the data is successfully sent, <b>DDEPoke( )</b> returns true (.T.). If the data cannot be sent, <b>DDEPoke( )</b> returns false (.F.). If the asynchronous user-defined function <span class="parameter">cUDFName</span> is included, <b>DDEPoke( )</b> returns a transaction number; if an error occurs, <b>DDEPoke( )</b> returns –1.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/f005602e-0ee3-48e2-a74c-4c2800f49002.htm">DDEAbortTrans( ) Function</a></span><br /><span class="linkTerms"><a href="/html/b23bd723-df35-4aa1-8183-0de1c8c7109e.htm">DDEInitiate( ) Function</a></span><br /><span class="linkTerms"><a href="/html/54de6103-d68b-45fd-b02a-cc94656efffb.htm">DDELastError( ) Function</a></span><br /><span class="linkTerms"><a href="/html/5e5fa4d5-47af-49e7-bef3-b9ee9baec667.htm">DDESetOption( ) Function</a></span><br /><span class="linkTerms"><a href="/html/178110cb-f6f8-4ebc-aaf0-20936de6aa12.htm">DDETerminate( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="DDEPoke( ) Function">
+<param name="ALink Name" value="DDEPoke">
+</OBJECT>

@@ -1,0 +1,234 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Design-Time OLE Drag-and-Drop Support</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Design-Time OLE Drag-and-Drop Support</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Design-time support for OLE drag-and-drop in Visual FoxPro makes developing applications even faster than previous versions. OLE drag-and-drop makes it easy to drop files into the Project Manager and the Visual FoxPro designers from the Windows Explorer. Text can be easily moved or copied from other applications to the Command Window, the Visual FoxPro text editors, and the Properties Window.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The following table lists the Visual FoxPro design time features that support OLE drag-and-drop with a description of the support.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Interface item
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>Command Window</p>
+          </td>
+          <td>
+            <p>Drop target for files, drag source and drop target for text.</p>
+            <p>If a file created in Visual FoxPro is dropped on the Command window, the file is opened with the appropriate Visual FoxPro command. For example, if a database is dropped on the Command window, Visual FoxPro issues the OPEN DATABASE and MODIFY DATABASE commands to open the file for modification. If a table is dropped on the Command window, the table is opened with the USE ... AGAIN and BROWSE commands. If SET EXCLUSIVE is ON, the table is opened for exclusive use. If SET EXCLUSIVE is OFF, the table is opened for shared use.</p>
+            <p>Other Visual FoxPro files are opened with the appropriate MODIFY command — forms are opened with MODIFY FORM, queries are opened with MODIFY QUERY, text and header (.H) files are opened with MODIFY FILE, and so on.</p>
+            <p>If a file that has been created in another application is dropped on the Command window, the file is opened in the application with which it is associated. For example, dropping a Microsoft Excel spreadsheet on the Command window starts Excel and opens the spreadsheet.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Project Manager</p>
+          </td>
+          <td>
+            <p>Drop target for files.</p>
+            <p>Files are added to the appropriate Project Manager categories, based on their file extensions. If a file with an extension Visual FoxPro does not recognize is dropped on the Project Manager, the file is added to the Other category. </p>
+            <p>If a table contained in a database is dropped on the Project Manager, the database is added to the Databases category of the Data item and is marked as Excluded. If a free table is dropped on the Project Manager, the table is added to the Free Tables category of the Data item and is marked as Excluded. If a database is dropped on the Project Manager, the database is added to the Databases category of the Data item and is marked as Excluded.</p>
+            <p>While OLE drag-and-drop makes it easy to add files to the Project Manager, remember that the Project Manager automatically adds any referenced files to the project when you build the project. For example, if a program you add to the project executes a second program, the second program is automatically added to the project when the project is built. It isn't necessary to manually add the second program to the project.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Text Editors</p>
+          </td>
+          <td>
+            <p>Drag source and drop target for text.</p>
+            <p>Text editors include editing windows opened with MODIFY COMMAND, MODIFY FILE, and MODIFY MEMO, the Command window, code editing windows in the Form, Class, Menu, and Data Environment Designers, and the Stored Procedure editor in the Database Designer.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Debugger</p>
+          </td>
+          <td>
+            <p>Drag source and drop target for text.</p>
+            <p>The Watch window text box and Name list are drag sources and drop targets for text. The Trace window and the Debug Output window are drag sources for text.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Database Designer</p>
+          </td>
+          <td>
+            <p>Drop target for files.</p>
+            <p>Dropping a table onto the Database Designer adds the table to the current database.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Class Designer</p>
+          </td>
+          <td>
+            <p>Drop target for text and files.</p>
+            <p>By default, dropping text on a container object in the Class Designer creates a label with the text as the value of its Caption property. You can change the default control created when text is dropped on the Form Designer in the Field Mapping Tab of the Options Dialog Box.</p>
+            <p>If you drop text onto a non-container control (a CheckBox, CommandButton, Header, Label, or OptionButton control), the Caption property is set to the text.</p>
+            <p>Dropping a graphics file (.ani, .bmp, .cur, .gif, .ico, or .jpg) onto the Class Designer creates an Image control with the Picture property set to the name of the graphics file.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Data Environment Designer</p>
+          </td>
+          <td>
+            <p>Drop target for files.</p>
+            <p>Dropping a table onto the Data Environment Designer adds the table to the data environment. Dropping a database onto the Data Environment Designer displays the Add Table or View dialog, making it possible for you to add a table or view to the data environment.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Query Designer</p>
+          </td>
+          <td>
+            <p>Drop target for files.</p>
+            <p>Dropping a table onto the Query Designer adds the table to the query. Dropping a database onto the Query Designer displays the Add Table or View dialog, making it possible for you to add a table or view to the query.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>View Designer</p>
+          </td>
+          <td>
+            <p>Drop target for files.</p>
+            <p>Dropping a table onto the View Designer adds the table to the view. Dropping a database onto the View Designer displays the Add Table or View dialog, making it possible for you to add a table or view to the view.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Properties window</p>
+          </td>
+          <td>
+            <p>Drop target for text.</p>
+            <p>You can drop text onto the text box that appears at the top of the Properties window when a design time property is selected.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Component Gallery</p>
+          </td>
+          <td>
+            <p>Drag source and drop target for files.</p>
+            <p>You can drag objects out of the Component Gallery and drop them onto the Form Designer. You can also drag files out of the Component Gallery and drop them onto the Project Manager.</p>
+            <p>Files can be dropped on the Component Gallery.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/7752548b-993c-4d2b-bece-561bd479eaf5.htm">OLE Drag-and-Drop</a></span><br /><span class="linkTerms"><a href="/html/ccdc993c-0192-4d2d-a53e-427cd04705b4.htm">Run-Time OLE Drag-and-Drop Support</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/2d8cb3e1-df20-4304-8326-d3d469002652.htm">Interoperability and the Internet</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Design-Time OLE Drag-and-Drop Support">
+</OBJECT>

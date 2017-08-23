@@ -1,0 +1,212 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Add Method (Collection Class)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Add Method (Collection Class)</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Use to add a member to a collection. </p>
+    <p>The member object can have any valid type that can be assigned to a memory variable. This includes simple data types, such as strings, numbers, dates, logical, or more complex types such as Visual FoxPro and Component Object Model (COM) objects.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+<span class="parameter">Collection</span>.Add( <span class="parameter">eItem</span> [, <span class="parameter">cKey</span> [, [<span class="parameter">eBefore</span> |, <span class="parameter">eAfter </span>]]] )</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">eItem</span>
+        </span></dt><dd>
+          <p>Specifies an expression of any type that represents a member to add to the collection. Usually, this is an object, but it could be a number, string, or member that has a valid type.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cKey</span>
+        </span></dt><dd>
+          <p>Specifies an optional, unique, alphanumeric (character type) expression that represents a key string, instead of a positional index, that can be used to access a member of the collection.</p>
+          <p>For collections using keys, <span class="parameter">cKey</span> is a case-sensitive parameter and cannot be empty or have a null value (.NULL.).    </p>
+          <p>Either all items added to the collection must have the <span class="parameter">cKey</span> parameter specified for them or not specified because of performance reasons. The first item added determines the behavior for the collection. You can test for the presence of keys in a collection by using the following code:    </p>
+          <p>GetKey(1)   </p>
+          <p>If the key already exists for a member in the collection, an error occurs. However, because <span class="parameter">cKey</span> is case-sensitive, no duplication error occurs if the same keys with different case are added. A key includes any trailing spaces present in <span class="parameter">cKey</span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[, [ <span class="parameter">eBefore</span>|, <span class="parameter">eAfter</span>]] </span></dt><dd>
+          <p>Specifies an optional expression that represents a position where a new member is to be inserted before or after another item in the collection. </p>
+          <p>You can specify an <span class="parameter">eBefore</span> or an <span class="parameter">eAfter</span> expression but not both, which generates the appropriate message. This expression can be one of two types:   </p>
+          <ul><li>
+              <p>Numeric. The <span class="parameter">eBefore</span> and <span class="parameter">eAfter</span> expression must have a value from 1 to the value of the Count property for the collection.</p>
+            </li><li>
+              <p>String. The <span class="parameter">eBefore</span> and <span class="parameter">eAfter</span> expression must correspond to the <span class="parameter">cKey</span> that was specified for the referenced item when it was added to the collection.</p>
+            </li></ul>
+          <p>Inserting a new item into a collection before or after an existing one requires that the collection must be a keyed collection. When you specify a <span class="parameter">cKey</span> value with an <span class="parameter">eBefore</span> or <span class="parameter">eAfter</span> parameter, the new item is added before or after the index value of the specified key. In this case, the value of <b>Collection</b> <b>KeySort</b> has no effect. For example, suppose <span class="parameter">cKey</span> for a new item is "ZZZ", and for an existing item, <span class="parameter">cKey</span> is "YYY", and its index value is 15. The new item would receive an index value of 15, and the existing item would receive a new index value of 16.    </p>
+          <p>To insert a new item before an existing item, include the key of the item you want to insert the new item before as shown in the following example:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>loItems.Add("Roses", "flower1", "flower2")</pre></td></tr></table></span></div>
+          <p>To insert a new item after an existing item, include the key of the item you want to insert the new item after. In addition, you must pass an empty third parameter for <span class="parameter">eBefore</span> as shown in the following example:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>loItems.Add("Orchids", "flower3",, "flower2")</pre></td></tr></table></span></div>
+          <p>If <span class="parameter">eBefore</span> and <span class="parameter">eAfter</span> do not refer to an existing member of the collection, an error occurs. Visual FoxPro adds an item to the end of a collection when <span class="parameter">eBefore</span> or <span class="parameter">eAfter </span>are not specified. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>When adding objects to collections, Visual FoxPro increases the reference count for that object. According to usual Visual FoxPro object behavior, you can release an object only when its reference count is 0. Therefore, you should make sure that the reference to the object in the collection is released when releasing the object; otherwise, the Visual FoxPro does not remove the object entirely from memory.</p>
+      <p>You are not limited to the number of items you can add to a collection. However, the size of a collection can affect the performance of operations such as accessing, searching, and enumerating items in the collection. For example, creating a large collection based on records from a very large table (.dbf) is not recommended because you cannot use query optimization and other features associated with the Visual FoxPro native data engine.</p>
+      <p>You can have a collection of collections because collections are objects. However, avoid creating circular references, such as attempting to add an outer collection to an inner collection.</p>
+      <p>Adding arrays as items to a collection instantiated from the base class has limited use because there is no easy way to reference all the elements in the array. Consider the following example:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DIMENSION x[3]
+x[1] = 1
+x[2] = 22
+x[3] = 333
+y = CREATEOBJECT("collection")
+y.Add(@x)
+z = y.item(1)   &amp;&amp; Returns just the first element
+? z[2]         &amp;&amp; Error</pre></td></tr></table></span></div>
+      <p>Therefore, you should create a subclass with special handling for this scenario.</p>
+      <p>You can pass a value of NULL as an item type and use <b>TYPE( )</b> and <b>VARTYPE( )</b> functions to query the type of the item in the collection.</p>
+      <p>You can add items of mixed type. However, Visual FoxPro does not enforce type safety, so you should provide it for the class if needed. If an incorrect type is passed for a specific parameter, an error occurs.</p>
+      <p>Include the <b>NODEFAULT</b> command in the <b>Add</b> method for collection objects to prevent adding a particular item to the collection.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    
+      
+        <p>The following example illustrates the following tasks:   </p>
+        <ul><li>
+            <p>Adds four items to a collection using the <span class="parameter">cKey</span> parameter.</p>
+          </li><li>
+            <p>Adds a second item with a key that precedes the first item using the <span class="parameter">eBefore</span> parameter.</p>
+          </li><li>
+            <p>Adds a fourth item with a key that follows the first added item using the <span class="parameter">eAfter</span> parameter.</p>
+          </li><li>
+            <p>Iterates through all the items displaying to the screen.</p>
+          </li></ul>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+LOCAL loItems, lcFlower
+loItems = NEWOBJECT("Collection")
+loItems.<b>Add(</b>"Daffodils", "flower2"<b>)</b>
+* Add "Roses" with "flower1" key before "flower2".
+loItems.<b>Add(</b>"Roses", "flower1", "flower2"<b>)</b>
+loItems.<b>Add(</b>"Daisies", "flower4"<b>)</b>
+* Add "Orchids" with "flower4" key after "flower2".
+loItems.<b>Add(</b>"Orchids","flower3",,"flower2"<b>)</b>
+FOR EACH lcFlower IN loItems
+   ? lcFlower
+ENDFOR</pre></td></tr></table></span></div>
+        <p>The following example generates an error. You cannot specify both an <span class="parameter">eBefore</span> and an <span class="parameter">eAfter</span>.</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>* Generates an error. Cannot specify both eBefore and eAfter.
+loItems.Add("Violets","flower5","flower2","flower1")</pre></td></tr></table></span></div>
+      
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/811ae32c-6fd9-4513-9ad7-46644080e1e9.htm">Collection Object Properties, Methods, and Events</a></span><br /><span class="linkTerms"><a href="/html/7109ff82-5f2e-4e0f-a1c5-94b91e3e6630.htm">Collection Class</a></span><br /><span class="linkTerms"><a href="/html/0595af7e-0bac-4f6a-8d32-af302f6f7113.htm">KeySort Property</a></span><br /><span class="linkTerms"><a href="/html/7e83da43-86c1-4b0d-a00d-ea412382331f.htm">TYPE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/b05ef476-980c-492f-81f5-1be0eb7ef8d9.htm">VARTYPE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/906d0b2c-3c60-4c70-87b2-9e2cfc28d322.htm">NODEFAULT Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ca97d4ab-ef98-482f-aeb0-a3840f1d96d5.htm">Methods (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Add Method (Collection Class)">
+<param name="ALink Name" value="add">
+<param name="Alink Name" value="vfp.50001056">
+</OBJECT>

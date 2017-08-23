@@ -1,0 +1,311 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>INDEX Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">INDEX Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Creates an index file containing one or more indexes for displaying and accessing table records in a specified order. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>You cannot create primary indexes with the <b>INDEX</b> command. If you want to create a primary index using the Visual FoxPro language, use the SQL <b>CREATE TABLE</b> or <b>ALTER TABLE</b> commands. </p>
+    </td></tr></table></div>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+      <p>Replacing an index key field changes the relative position for the current record in the index. Therefore, use caution if you perform an operation such as <b>REPLACE ALL</b> or <b>SCAN ... ENDSCAN</b> while changing the index for the scope. This also applies to <b>REPLACE</b> operations on indexes created with a <b>FOR</b> clause.</p>
+    </td></tr></table></div>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+INDEX ON <span class="parameter">eExpression</span> TO <span class="parameter">IDXFileName</span> | TAG <span class="parameter">TagName</span> [BINARY]
+   [COLLATE <span class="parameter">cCollateSequence</span>] [OF <span class="parameter">CDXFileName</span>] [FOR <span class="parameter">lExpression</span>]
+   [COMPACT] [ASCENDING | DESCENDING] [UNIQUE | CANDIDATE] [ADDITIVE]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">eExpression</span>
+        </span></dt><dd>
+          <p>Specifies an index expression that determines the order in which Visual FoxPro displays and processes records. <span class="parameter">eExpression</span> can be a simple expression, such as the name of one or more fields from the current table, or a more complex expression containing Visual FoxPro functions, constants, and so on.</p>
+          <p>Visual FoxPro generates index keys based on <span class="parameter">eExpression</span> and stores them in an index file that you specify. The index file does not affect the physical order of how records are stored in the table.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>For a standalone index (.idx) file, the length of an index key must be between 1 and 100 characters. For a compound index (.cdx) file, the length of an index key must be between 1 and 240 characters. </p>
+          </td></tr></table></div>
+          <p>With some collating sequences, or when using double-byte character set (DBCS) characters, each character in the index expression uses two characters in the index key. In these cases, the length of the index expression is limited to 50 or 120 characters, respectively.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+            <p>Avoid using <b>RECNO( )</b> in the index expression for a table buffered cursor. Because <b>RECNO( )</b> changes for new records when they are committed by <b>TABLEUPDATE( )</b>, index corruption could occur.</p>
+          </td></tr></table></div>
+          <p>For more information about index expressions, see <span class="linkTerms"><a href="/html/210ac6a4-8d8c-409d-bc12-c02a332cfea9.htm">Index Creation Based on Expressions</a></span> and <span class="linkTerms"><a href="/html/576a2953-04ff-4a66-9e38-3a3d9c990b72.htm">Considerations for Creating Index Expressions</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TO <span class="parameter">IDXFileName</span></span></dt><dd>
+          <p>Specifies the name of a standalone index (.idx) file for storing a single index key as generated by <span class="parameter">eExpression</span>. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>You can override the default index file name extension by including a different extension or by changing the default index extension in the Visual FoxPro configuration file. When creating index files, observe standard Windows rules for naming files, which include long file names.</p>
+          </td></tr></table></div>
+          <p>For more information about index files, see <span class="linkTerms"><a href="/html/80cfd247-4e1a-40af-8f9f-3891bed94bbe.htm">Visual FoxPro Index Files</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TAG <span class="parameter">TagName</span></span></dt><dd>
+          <p>Specifies the name, or tag, for the index generated by <span class="parameter">eExpression</span> and stored in a compound index (.cdx) file. Tag names must begin with a letter or an underscore (_) and can consist of any combination of up to 10 letters, digits, or underscore characters. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The number of tags in a .cdx file is limited only by available memory and disk space. If a .cdx file for the table already exists and is open, issuing <b>INDEX</b> with <b>TAG</b> <span class="parameter">TagName</span> adds a tag to the open .cdx file. If you create an index tag without specifying the name of the index file, Visual FoxPro adds the tag automatically to the table's structural .cdx file. </p>
+          </td></tr></table></div>
+          <p>For more information about index files, see <span class="linkTerms"><a href="/html/80cfd247-4e1a-40af-8f9f-3891bed94bbe.htm">Visual FoxPro Index Files</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[COLLATE <span class="parameter">cCollateSequence</span>] </span></dt><dd>
+          <p>Specifies a collation sequence other than the default setting, MACHINE. <span class="parameter">cCollateSequence</span> must be a valid Visual FoxPro collation sequence. </p>
+          <p>For more information about setting collation sequences, see <span class="linkTerms"><a href="/html/e80b57ca-d622-49f6-bab9-bae40d8c764f.htm">Optimizing International Applications</a></span> and <span class="linkTerms"><a href="/html/77f8984a-1abf-4efc-b63f-bd1700a34c97.htm">SET COLLATE Command</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[OF <span class="parameter">CDXFileName</span>] </span></dt><dd>
+          <p>Specifies the name of a nonstructural compound index (.cdx) file for storing the index, or tag, as generated by <span class="parameter">eExpression</span>. Omitting this clause creates a structural .cdx file, while including this clause creates a nonstructural .cdx file. </p>
+          <p>For more information about index files, see <span class="linkTerms"><a href="/html/80cfd247-4e1a-40af-8f9f-3891bed94bbe.htm">Visual FoxPro Index Files</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[FOR <span class="parameter">lExpression</span>] </span></dt><dd>
+          <p>Specifies a filter expression that selects only those records that match the filter expression for display and access. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>If <span class="parameter">lExpression</span> can be optimized, Rushmore technology optimizes the <b>FOR</b> clause in the <b>INDEX </b>command. For best performance, use an expression that can be optimized in the <b>FOR</b> clause. For more information, see <span class="linkTerms"><a href="/html/aeb46b6a-783a-4194-ac8d-c46cfb8e9eee.htm">SET OPTIMIZE Command</a></span> and <span class="linkTerms"><a href="/html/e7c36f99-0993-40a7-be80-0717cbe85b8c.htm">Using Rushmore Query Optimization to Speed Data Access</a></span>.</p>
+          </td></tr></table></div>
+          <p>For more information about filter expressions, see <span class="linkTerms"><a href="/html/dbccc178-a2a7-43ae-9340-f87a654d3cfd.htm">How to: Filter Data</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[COMPACT] </span></dt><dd>
+          <p>Creates a compact index (.idx) file. Compact .idx files are small and more quickly accessible.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>When creating a compound index (.cdx) file, it is not necessary to include <b>COMPACT</b>. Compound index files are always compact.</p>
+          </td></tr></table></div>
+          <p>For more information, see <span class="linkTerms"><a href="/html/364cfc78-0c85-4ec3-86e4-cbe3961979e4.htm">How to: Create Less Frequently Used Indexes</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[ASCENDING | DESCENDING] </span></dt><dd>
+          <p>Specifies an order for displaying and accessing records indexed by a compound index (.cdx) file. </p>
+          <p>
+            <b>ASCENDING</b> specifies an ascending order for displaying and accessing records. By default, Visual FoxPro displays and accesses records in ascending order. However, you can include <b>ASCENDING</b> as a reminder of how records are displayed.    </p>
+          <p>
+            <b>DESCENDING</b> specifies a descending order for displaying and accessing records.    </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>You cannot use <b>DESCENDING</b> when creating standalone index (.idx) files; however, you can specify a descending order for an .idx file using the <b>SET INDEX</b> and <b>SET ORDER</b> commands. For more information, see <span class="linkTerms"><a href="/html/b0166019-d7d2-4322-8a7f-d3986987a71e.htm">SET INDEX Command</a></span> and <span class="linkTerms"><a href="/html/f88b697b-c89f-4343-b9f9-4ecda6fe95ac.htm">SET ORDER Command</a></span>.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[UNIQUE | CANDIDATE] </span></dt><dd>
+          <p>Creates a unique or candidate index.</p>
+          <p>
+            <b>UNIQUE</b> stores the matching index key only for the first record that matches the specified index expression.    </p>
+          <p>The index key is stored as the only key in a standalone (.idx) file or as an index tag in a compound index (.cdx) file. Any other index keys for records that match the index expression are excluded from the index file.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Using <b>UNIQUE</b> does not prevent duplicate records from being entered in the table. It only prevents duplicate index keys from being added to the index file. When a duplicate record is changed so that its index key is changed for an active <b>UNIQUE</b> index or index tag, the index or index tag is updated. However, Visual FoxPro cannot display or access the next duplicate record with the original index key until you use the <b>REINDEX</b> command to reindex the file. For more information, see <span class="linkTerms"><a href="/html/b515a6e4-392f-44e8-a48f-52054f2c8b72.htm">REINDEX Command</a></span>.</p>
+          </td></tr></table></div>
+          <p>Using <b>UNIQUE</b> is identical to executing <b>SET UNIQUE ON</b> before issuing <b>INDEX</b> or <b>REINDEX</b>. For more information, see <span class="linkTerms"><a href="/html/273b0267-1b48-4416-b453-129d524877ae.htm">SET UNIQUE Command</a></span>.   </p>
+          <p>
+            <b>CANDIDATE</b> stores an index tag to a structural compound index (.cdx) file only; otherwise, Visual FoxPro generates an error message.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Candidate indexes do not permit duplicate values in fields. If you create a candidate index for one or more fields that contain duplicate values, Visual FoxPro generates an error.</p>
+          </td></tr></table></div>
+          <p>For more information about candidate indexes, see <span class="linkTerms"><a href="/html/fe911859-3235-4349-82c7-fa16a16d5527.htm">Visual FoxPro Index Types</a></span>. For more information about index files, see <span class="linkTerms"><a href="/html/80cfd247-4e1a-40af-8f9f-3891bed94bbe.htm">Visual FoxPro Index Files</a></span>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[ADDITIVE] </span></dt><dd>
+          <p>Keeps open any previously opened index files. Omitting the <b>ADDITIVE</b> clause closes any previously opened index files except the structural compound index (.cdx) files. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The number of index files that you can keep open is limited only by memory and system resources. In Visual FoxPro, the <b>FILES</b> setting in the Windows Config.sys configuration file determines the total number of files you can open. </p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">[BINARY] </span></dt><dd>
+          <p>Creates a binary index. For more information about binary indexes, see <span class="linkTerms"><a href="/html/fe911859-3235-4349-82c7-fa16a16d5527.htm">Visual FoxPro Index Types</a></span>.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>When specifying an index expression for <span class="parameter">eExpression</span>, you must specify a valid logical expression that does not evaluate to a null value. If the index expression for a binary index is changed so that it evaluates to a null value, Visual FoxPro generates an error. </p>
+          </td></tr></table></div>
+          <p>When using binary indexes, you cannot use the <b>FOR</b> clause to specify a filter expression or the <b>ASCENDING</b>, <b>DESCENDING</b>, <b>UNIQUE</b>, or <b>CANDIDATE</b> keywords. Visual FoxPro does not support the <b>SET ORDER</b> command when setting to a binary index tag. If you attempt to set order to a binary tag, Visual FoxPro generates an error, and the current order remains at its prior setting. Visual FoxPro does not support <b>SEEK</b> operations or standalone single-key (.idx) indexes with binary indexes. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>A structural .cdx file can become dissociated from its table if the index file cannot be located, is deleted, or renamed. When you open a table that has a dissociated structural .cdx file, a dialog box appears. When you click Cancel in the dialog box, the table does not open. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+        <p>Clicking Ignore opens the table; however, it also removes the table header flag that indicates that an associated structural (.cdx) file exists. </p>
+      </td></tr></table></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>To reassaociate the structural .cdx file, issue the following command and specify the name of the table as <span class="parameter">TableName</span> and the name of the dissociated structural .cdx file as <span class="parameter">CDXFileName</span>. </p>
+      </td></tr></table></div>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE TableName INDEX CDXFileName</pre></td></tr></table></span></div>
+      <p>If the table has been modified, make sure to index the table again.</p>
+      <p>To report the number of records indexed during the indexing process, set the <b>SET TALK </b>command to <b>ON</b>. To specify the record interval displayed during indexing, use the <b>SET ODOMETER</b> command. For more information, see <span class="linkTerms"><a href="/html/9049d9e4-9174-4ea3-8980-3171c48f6f9f.htm">SET TALK Command</a></span> and <span class="linkTerms"><a href="/html/cfdcfdff-a26c-4b9c-a7f7-21415c824ed9.htm">SET ODOMETER Command</a></span>. </p>
+      <p>To obtain information about open index files, use the <span class="linkTerms"><a href="/html/4ee3835d-e700-4f57-aa04-701010bcc866.htm">DISPLAY STATUS Command</a></span>. <b>DISPLAY STATUS</b> lists the names of all open index files, their types, their index expressions, and the name of the master, or controlling, index file or tag. The number of index files that you can open is limited only by memory and system resources.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    
+      
+      
+      <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+        <h3 class="subHeading" xmlns="">Example 1</h3><div class="subSection" xmlns="">
+            <p>The following example closes all databases with the <b>CLOSE DATABASES</b> command and opens the Visual FoxPro sample database, TestData.dbc, with the <b>OPEN DATABASE</b> command and the Customer table with the <b>USE</b> command. </p>
+            <p>The <b>INDEX</b> command creates a standalone index (.idx) file named Complist based on the Company field. The <b>CLEAR</b> command clears the Visual FoxPro main window, and the <b>DISPLAY STATUS</b> command displays information about the index file, Complist.</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+USE Customer     
+INDEX ON Company TO Complist
+CLEAR
+DISPLAY STATUS</pre></td></tr></table></span></div>
+          </div>
+        <h3 class="subHeading" xmlns="">Example 2</h3><div class="subSection" xmlns="">
+            <p>The following example closes all databases with the <b>CLOSE DATABASES</b> command and opens the Visual FoxPro sample database, TestData.dbc, with the <b>OPEN DATABASE</b> command and the Customer table with the <b>USE</b> command. </p>
+            <p>The <b>INDEX</b> command creates a standalone index (.idx) file named CityComp from a substring of the first five characters of the City field and the first six characters of the Company field using the <b>SUBSTR( )</b> function. This index file orders records in the table primarily according to the City field and secondarily according to the Company field. Visual FoxPro clears the main Visual FoxPro window with the <b>CLEAR</b> command, and the <b>DISPLAY STATUS</b> command displays information about the index file, CityComp.</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+USE Customer
+INDEX ON SUBSTR(City,1,5) + SUBSTR(Company,1,6) TO CityComp
+CLEAR
+DISPLAY STATUS</pre></td></tr></table></span></div>
+          </div>
+        <h3 class="subHeading" xmlns="">Example 3</h3><div class="subSection" xmlns="">
+            <p>The following example closes all databases with the <b>CLOSE DATABASES</b> command, and opens the Visual FoxPro sample database, TestData.dbc, with the <b>OPEN DATABASE</b> command and the Customer table with the <b>USE</b> command. </p>
+            <p>The <b>INDEX</b> commands create a structural compound index (.cdx) file with two tags: one based on the Address field named Address and one based on the Company field named Company. If a structural compound index file was previously created for the table, the two tags are added to the existing file.</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+USE Customer     
+INDEX ON company TAG company 
+INDEX ON address TAG address
+CLEAR
+DISPLAY STATUS</pre></td></tr></table></span></div>
+          </div>
+      </sections>
+    
+  </div>
+  <h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1>
+	<div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;">
+	<h4 class="subHeading">Reference</h4>
+	<span class="linkTerms"><a href="/html/f7a80417-5051-40fc-9c72-cef2aa643048.htm">CANDIDATE( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/981eb9e6-fa1a-4b6b-88cb-5877d77feacc.htm">PRIMARY( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/a6d0dab2-db9a-47f2-bc81-14bfb11ee929.htm">UNIQUE( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/ab8904c2-9e34-449d-a623-4941c94a648d.htm">ATAGINFO( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/1d125780-6aa3-43c3-9dc0-6fc18c0cfeb1.htm">CDX( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/e10add95-2f2e-4258-9994-dc735c14ca6b.htm">COPY INDEXES Command</a></span><br />
+	<span class="linkTerms"><a href="/html/41a79da9-c452-4c62-a200-eb22c351f8ac.htm">COPY TAG Command</a></span><br />
+	<span class="linkTerms"><a href="/html/56a2a1e6-6e93-4690-bafb-6d782d14d7c5.htm">DELETE TAG Command</a></span><br />
+	<span class="linkTerms"><a href="/html/ece160fa-3278-4d22-8906-58b581689643.htm">DESCENDING( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/02242895-0cc5-49dc-9197-d5c2db283aa3.htm">FOR( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/9d21c391-bcb2-415a-9949-f9504f2021b1.htm">INDEXSEEK( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/f256f6d2-b03f-41cb-af88-4fb4dce1dc9d.htm">KEY( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/4dd1b20d-a1d2-4fac-baf8-409e9c50b475.htm">MDX( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/ff2c387a-af9c-4171-8769-8c81a1760992.htm">NDX( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/9559c6c6-5a55-4408-8a25-c1f4a0bc0616.htm">ORDER( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/b515a6e4-392f-44e8-a48f-52054f2c8b72.htm">REINDEX Command</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />
+	<span class="linkTerms"><a href="/html/b0166019-d7d2-4322-8a7f-d3986987a71e.htm">SET INDEX Command</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />
+	<span class="linkTerms"><a href="/html/f88b697b-c89f-4343-b9f9-4ecda6fe95ac.htm">SET ORDER Command</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />
+	<span class="linkTerms"><a href="/html/d8533965-e970-443b-adbd-405e40fc4c44.htm">SORT Command</a></span><br />
+	<span class="linkTerms"><a href="/html/ed8cdfe9-7e01-43ab-8f52-0cfaaff85c83.htm">SYS(14) - Index Expression</a></span><br />
+	<span class="linkTerms"><a href="/html/07afe928-e906-40ce-817e-b83897aaf9f1.htm">SYS(21) - Controlling Index Number</a></span><br />
+	<span class="linkTerms"><a href="/html/d832634c-e52f-4448-8348-f96be13ab683.htm">SYS(22) - Controlling Tag or Index Name</a></span><br />
+	<span class="linkTerms"><a href="/html/a91f4661-0f12-4f4a-bb53-63725672a299.htm">SYS(2021) - Filtered Index Expression</a></span><br />
+	<span class="linkTerms"><a href="/html/f61ef93d-6e45-4640-b34f-e44833340ca1.htm">TAG( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/300805ce-f78a-42d1-ac82-bd695650fbd3.htm">TAGCOUNT( ) Function</a></span><br />
+	<span class="linkTerms"><a href="/html/ef964c61-9adc-43d5-b10d-828a3068e490.htm">TAGNO( ) Function</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />
+	
+	
+	<h4 class="subHeading">Other Resources</h4>
+	<span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br />
+	<span class="linkTerms"><a href="/html/bd8c95ee-78bf-4d47-9c76-f51562e8f90a.htm">Index Manipulation Language</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />	
+	<span class="linkTerms"><a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a></span><br />
+	<br />
+	</div>
+</div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="INDEX Command">
+<param name="ALink Name" value="INDEX">
+</OBJECT>

@@ -1,0 +1,344 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>FoxWeb, a Simplified Visual FoxPro Internet Automation Server</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">FoxWeb, a Simplified Visual FoxPro Internet Automation Server</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>FoxWeb is a simplified ISAPI Automation server sample designed to quickly get a Web site up and running. FoxWeb provides a new version of Foxisapi.dll (also provided with the Visual FoxPro <a href="/html/4123c740-2583-44a8-8326-5a736de1cb4c.htm">FoxIs</a> server sample). Foxisapi.dll now can manage multiple instances of Visual FoxPro Automation servers, and provides additional debugging methods for Visual FoxPro applications designed for the Internet.</p>
+  <h1 class="heading">The FoxWeb Automation Server</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The FoxWeb sample uses a simple Visual FoxPro server class intended to demonstrate the basic usage of a server run under FoxISAPI. All the code is stored in a file called FoxWeb.prg. This file contains a class called Server, which is marked as OLEPUBLIC so that it gets registered as an Automation server COM component when it is built. This class is instantiated by FoxISAPI and contains a number of methods that can be invoked (such as the Hello and Delay methods) as shown below. These methods illustrate the structures required by FoxISAPI in order to function properly.</p>
+    </div><h1 class="heading">The FoxWeb Sample Files</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The files for the new Visual FoxPro FoxWeb Automation server sample are located in the Visual FoxPro ...\Samples\Servers\Foxisapi\FoxWeb directory.</p>
+    </div><h1 class="heading">Setting up the FoxWeb Automation Server</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>The following sections describe how to use Visual FoxPro to quickly get a Web site up and running with FoxWeb.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Registering the Visual FoxPro FoxWeb Automation Server</h3><div class="subSection" xmlns="">
+          <p>The Visual FoxPro Automation servers that return HTML must be registered. Registration is done automatically if your .exe or .dll was built with the Visual FoxPro Project Manager or with the BUILD EXE, BUILD DLL, or BUILD MTDLL commands. For example, if you open the FoxWeb project provided with the FoxWeb sample in the Project Manager, you can choose Build to create an Automation server as an in-process .dll or an out-of-process .exe file. Note that the registration occurs only on the machine on which the file was built. </p>
+          <p>A Visual FoxPro Automation server built as an out-of-process .exe can also be registered by specifying the Automation server name and including the /RegServer switch. For example, the following command registers the Visual FoxPro FoxWeb Automation server:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>FoxWeb.exe /RegServer</pre></td></tr></table></span></div>
+          <p>A Visual FoxPro Automation server built as an in-process .dll can also be registered with Regsvr32.exe. For example, the following command registers the Visual FoxPro FoxWeb Automation server:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Regsvr32 FoxWeb.dll</pre></td></tr></table></span></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If your Visual FoxPro ISAPI Automation server uses additional files such as .gif or .jpg files, be sure to place these files in directories that Microsoft Internet Information Services (IIS) or Microsoft Personal Web Server can access.</p>
+          </td></tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Using your Web Browser to access a Visual FoxPro ISAPI Automation Server</h3><div class="subSection" xmlns="">
+          <p>A Visual FoxPro ISAPI Automation server is accessed from your Web browser by providing the URL (Universal Resource Locator) of the Automation server. The Web browser makes an HTTP request that is passed to Microsoft IIS or the Microsoft Personal Web Server. The Automation server passes the request to Foxisapi.dll, which, in turn, passes the request to your Automation server.</p>
+          <p>For example, the URL below accesses the ISAPI Automation server named FoxWeb.Server:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>HTTP://MyServer/Scripts/Foxisapi.dll/FoxWeb.server.Delay?30</pre></td></tr></table></span></div>
+          <p>The following table describes each of the elements of the URL example above.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  URL Element
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>Myserver</p>
+              </td>
+              <td>
+                <p>The virtual folder of IIS or the Personal Web Server.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Scripts/Foxisapi.dll</p>
+              </td>
+              <td>
+                <p>The IIS or Microsoft Personal Web Server Scripts folder and Foxisapi.dll. </p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>FoxWeb.Server</p>
+              </td>
+              <td>
+                <p>The registered name (ProgID) of the Visual FoxPro ISAPI Automation server to call.</p>
+                <p>In this example, FoxWeb is the name of the .exe or .dll file for the Visual FoxPro Automation server. Server is the class name specified in the OLEPUBLIC clause of the DEFINE CLASS command that creates the Automation server.</p>
+                <p>FoxWeb.Server is also the ProgID for the Automation server as it is stored in the Windows Registry. You can use RegEdit to view or modify the Automation server's ProgID.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>Delay</p>
+              </td>
+              <td>
+                <p>The name of the method to execute on the Visual FoxPro ISAPI Automation server.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>?30</p>
+              </td>
+              <td>
+                <p>A parameter passed to the method. The question mark is a delimiter that specifies that a parameter follows. For this method, 30 specifies that execution is delayed for 30 seconds. The parameter is passed as a character string.</p>
+              </td>
+            </tr></table></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Passing Parameters to Methods</h3><div class="subSection" xmlns="">
+          <p>The following code is from the Delay method in FoxWeb.prg, and demonstrates the structure for methods executed on the Visual FoxPro ISAPI Automation servers.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>PROCEDURE Delay
+   LPARAMETERS <i>cParm1</i>, <i>cIniFile</i>, <i>nPersistInstance</i>
+   *** Your code here ***
+   RETURN AnHTMLString
+ENDPROC</pre></td></tr></table></span></div>
+          <dl><dt><span class="nonLinkTerms">
+              <i>cParm1</i>
+            </span></dt><dd>
+              <p>A character string passed to the method. In the Delay method, this parameter specifies the number of seconds that execution is delayed.</p>
+            </dd></dl><dl><dt><span class="nonLinkTerms">
+              <i>cIniFile</i>
+            </span></dt><dd>
+              <p>The name of the .ini file (passed to the method by Foxisapi.dll) created each time a Visual FoxPro ISAPI Automation server is accessed. Each .ini file is created in the Scripts folder and has a unique name that begins with "Fox." You can use the GetPrivateProfileString function in FoxWeb.prg, for example, to read information from the .ini file and return custom HTML based on a user's configuration.</p>
+            </dd></dl><dl><dt><span class="nonLinkTerms">
+              <i>nPersistInstance</i>
+            </span></dt><dd>
+              <p>Specifies if the instance of the Visual FoxPro ISAPI Automation server persists after it is finished executing your method. <i>nPersistInstance</i> is passed by reference to the method by Foxisapi.dll. If <i>nPersistInstance</i> is set to 0 in your Web application, the instance of the Automation server remains alive after execution is finished. If <i>nPersistInstance</i> is a value other than 0, the instance of the Automation server is released. For optimal performance, <i>nPersistInstance</i> should be set to 0, otherwise the Automation server must be launched again the next time it is called.</p>
+            </dd></dl>
+        </div>
+      <h3 class="subHeading" xmlns="">Using Foxisapi.dll to Pool Automation Servers</h3><div class="subSection" xmlns="">
+          <p>Because Foxisapi.dll is free-threaded, it can now pool multiple Visual FoxPro ISAPI Automation servers to provide better scalability for your Web applications. Pooled ISAPI Automation servers allow a free ISAPI Automation server to service a request when other ISAPI Automation servers are busy. To take advantage of ISAPI Automation server pooling, the instances of the ISAPI Automation servers should be made persistent by setting <i>nPersistInstance</i> to 0 in your Web application.</p>
+          <p>The number of ISAPI Automation servers available to service requests is determined by settings in your Foxisapi.ini initialization file. To create a pool of multiple ISAPI Automation servers, include an entry in square brackets with the name of the ISAPI Automation server for which a pool is created. This entry is followed with a list of ISAPI Automation servers that comprise the pool, with a numeric value that specifies the maximum number of instances of each ISAPI Automation server that can be created.</p>
+          <p>For example, placing the following lines in Foxisap.ini creates a pool of seven ISAPI Automation servers for service requests to FoxWeb.myserver. Foxisapi.dll creates up to four instances of the FoxWeb.server ISAPI Automation server and up to three instances of the FoxWeb2.server ISAPI Automation server to service requests.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>[FOXWEB.MYSERVER]
+FOXWEB.SERVER=4
+FOXWEB2.SERVER=3</pre></td></tr></table></span></div>
+          <p>The following URL executes the Delay method on either an instance of the FoxWeb.server or the FoxWeb2.server ISAPI Automation servers:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>HTTP://MyServer/Scripts/Foxisapi.dll/FoxWeb.Myserver.Delay?30</pre></td></tr></table></span></div>
+          <p>Foxisapi.ini can specify that the ISAPI Automation servers are instantiated up front before a service request is received. To do so, add a comma followed by an asterisk (*) after the number of instances, as shown in the following example.</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>[FOXWEB.MYSERVER]
+FOXWEB.SERVER=4,*
+FOXWEB2.SERVER=3,*</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Using the Pool Manager across Multiple Machines</h3><div class="subSection" xmlns="">
+          <p>Foxisapi.dll provides the ability to manage Visual FoxPro ISAPI Automation servers on multiple machines. You can use Remote Automation or DCOM (Distributed Component Object Model) to access the ISAPI Automation servers. Note that for optimal performance and scalability the instances of the ISAPI Automation servers should be made persistent by setting <i>nPersistInstance</i> to 0 in your Web application.</p>
+          <p>The following example describes a scenario where two Visual FoxPro ISAPI Automation servers, FoxWeb and FoxWeb2, are placed on two machines.</p>
+          <p>Machine_A is your local machine running Windows 98, DCOM, and Personal Web Server. Machine_B is your remote machine, accessible over your network, running Windows 2000 and DCOM.  </p>
+          <ol><li>
+              <p>Machine_A is your Visual FoxPro development machine on which you've installed the Visual FoxPro FoxISAPI Automation server samples. On this machine, open the FoxWeb project in the Visual FoxPro Project Manager, and choose Build to create an ISAPI Automation server as an out-of-process .exe file. Building the .exe automatically registers the ISAPI Automation server on the machine as FoxWeb.exe. Now open the FoxWeb2 project in the Visual FoxPro Project Manager, and choose Build to create and register another ISAPI Automation server as an .exe file.</p>
+            </li><li>
+              <p>To verify that the ISAPI Automation servers FoxWeb and FoxWeb2 are properly registered, you can use RegEdit and search for FoxWeb and FoxWeb2. Note that the ProgIDs for the servers are FoxWeb.Server and FoxWeb2.Server, respectively. Server is the class name specified in the OLEPUBLIC clause of the DEFINE CLASS command that creates the ISAPI Automation server. FoxWeb.prg is the Visual FoxPro Internet application included in both the FoxWeb and FoxWeb2 projects. </p>
+              <p>The ProgIDs for the ISAPI Automation servers both point to Machine_A, the local machine. The Registry settings for the FoxWeb2 ISAPI Automation server need to be changed to point to Machine_B, the remote machine.  </p>
+            </li><li>
+              <p>Now copy the FoxWeb2.exe, FoxWeb2.vbr, and FoxWeb2.tlb files from Machine_A, the local machine, to Machine_B, the remote machine.</p>
+            </li><li>
+              <p>Use the /RegServer option to register FoxWeb2.exe on Machine_B at the MS-DOS prompt: </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>C:\VFP\FOXWEB2.EXE /RegServer</pre></td></tr></table></span></div>
+            </li><li>
+              <p>Finally, stop and restart the Personal Web Server on Machine_A to ensure that it is aware of the changes to the Registry.</p>
+            </li></ol>
+          <p>You can execute the Status command on Foxisapi.dll to check the status of all the ISAPI Automation servers registered in Foxisapi.ini. The following URL executes the Status command:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>HTTP://Machine_A/Scripts/FoxISAPI.dll/Status</pre></td></tr></table></span></div>
+          <p>You can execute the Reset command on Foxisapi.dll to reset all the ISAPI Automation servers registered in Foxisapi.ini. The Reset command releases all ISAPI Automation server instances. The following URL executes the Reset command:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>HTTP://Machine_A/Scripts/FoxISAPI.dll/Reset</pre></td></tr></table></span></div>
+          <p>To test the installation, you can open up as many instances of your Web browser as there are ISAPI Automation servers in the pool. The Web browsers can be on multiple machines connected to your network. You can then call the Delay method in the URL from each Web browser so that Foxisapi.dll routes service requests to the other free ISAPI Automation servers. After the Delay method is executed from each Web browser, you can use the Status method to check to see if all ISAPI Automation servers in the pool received service requests.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Using FoxISAPI with DLL Servers</h3><div class="subSection" xmlns="">
+          <p>If you use FoxISAPI with multithreaded in-process servers in the previous version of Visual FoxPro, you need to disable Pool Manager support in FoxISAPI. You can do this by using the PoolMode setting in the FoxIsapi.ini file. The PoolMode setting is global to all servers, so we recommend that you do not let a single FoxIsapi.dll service both EXE and DLL servers. Instead, you should copy and rename the FoxIsapi.dll and FoxIsapi.ini files so that you have one set for EXE servers and one for DLL servers.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Debugging your ISAPI Automation Servers</h3><div class="subSection" xmlns="">
+          <p>FoxIsapi.dll also makes it possible for you to debug your ISAPI Automation servers on your local machine. Set the number of instances of the ISAPI Automation server you wish to debug to 0 as shown in the following example FoxIsapi.ini file:</p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>[FOXWEB.MYSERVER]
+FOXWEB.SERVER=0</pre></td></tr></table></span></div>
+          <p>The Odebug.prg program file must be present in your Visual FoxPro root folder and the ISAPI Automation server source files must be present. Be sure that the ISAPI Automation server you wish to debug is configured as a persistent ISAPI Automation server, and debugging information is turned on in the project containing the ISAPI Automation server source files. </p>
+          <p>When the ISAPI Automation server is instantiated, Foxisapi.dll starts Visual FoxPro for debugging, making it possible for you to set breakpoints, trace through code, and so on.</p>
+        </div>
+    </sections></div><h1 class="heading">Foxisapi.dll Commands</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Foxisapi.dll has commands you can call to determine the status of your ISAPI Automation servers and to reset the servers. The following table lists the Foxisapi.dll commands with a description of each.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Command
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>MultiMode</p>
+          </td>
+          <td>
+            <p>Executes the Reset command, then limits the number of ISAPI Automation server instances to the values specified in Foxisapi.ini.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>PoolMode</p>
+          </td>
+          <td>
+            <p>Enables or disables Pool Manager support in FoxISAPI. Use this command to turn off Pool Manager for in-process DLL servers.</p>
+            <p>      0 – disables      1 - enables (default)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Reset</p>
+          </td>
+          <td>
+            <p>Releases all instances of the ISAPI Automation servers. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SingleMode</p>
+          </td>
+          <td>
+            <p>Executes the Reset command, then limits the number of ISAPI Automation server instances to one instance. Execute this command to perform maintenance; for example, you can open tables exclusively in when SingleMode is in effect.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Status</p>
+          </td>
+          <td>
+            <p>Displays the current status of the ISAPI Automation servers, the Foxisapi.ini settings, and whether SingleMode or MultiMode is in effect.</p>
+          </td>
+        </tr></table></div>
+      <p>Each of the Foxisapi.dll commands is called by a URL that is specified in Foxisapi.ini. The following is the contents of the sample Foxisapi.ini file with the default URLs:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>[FOXISAPI]
+StatusURL = Status
+ResetURL = Reset
+SingleModeURL = SingleMode
+MultiModeURL = MultiMode</pre></td></tr></table></span></div>
+      <p>The following URL executes the Status command:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>HTTP://MyServer/Scripts/Foxisapi.dll/Status</pre></td></tr></table></span></div>
+      <p>In the following sample Foxisapi.ini file, the URL for the Status command is changed from Status to MyStatus:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>[FOXISAPI]
+StatusURL = MyStatus
+ResetURL = Reset
+SingleModeURL = MSingleMode
+MultiModeURL = MultiMode</pre></td></tr></table></span></div>
+      <p>After this change to Foxisapi.ini, the following URL executes the Status command:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>HTTP://MyServer/Scripts/FoxISAPI.dll/MyStatus</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>You must reset Foxisapi.dll with the Reset command after you make changes to Foxisapi.ini file in order for the changes to take effect.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Additional FoxISAPI.ini Settings</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>Foxisapi.dll reads Foxisapi.ini and configures its settings according to the items contained in Foxisapi.ini. The following table describes each of the additional items you can place in your Foxisapi.ini file.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Item
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>AutoRefreshStatus</p>
+          </td>
+          <td>
+            <p>Specifies the number of seconds between Status page refreshes. The default is 0 seconds (the Status page isn't refreshed) if this item is omitted or if Foxisapi.ini isn't present.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>BusyTimeout</p>
+          </td>
+          <td>
+            <p>Specifies the number of seconds Foxisapi.dll waits for the Visual FoxPro application servers to respond before a time-out message is generated. The default is 2 seconds if this item is omitted or if Foxisapi.ini isn't present.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ReleaseTimeout</p>
+          </td>
+          <td>
+            <p>Specifies the number of seconds Foxisapi.dll waits for a busy Visual FoxPro application server to respond before the Reset command is executed. The default is 2 seconds if this item is omitted or if Foxisapi.ini isn't present.</p>
+          </td>
+        </tr></table></div>
+      <p>The following is taken from the sample Foxisapi.ini file, and demonstrates the formats of the additional items you can place in the file:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>[FOXISAPI]
+BusyTimeout = 5
+ReleaseTimeout = 15</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>You must reset Foxisapi.dll with the Reset command after you make changes to Foxisapi.ini file in order for the changes to take effect.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Configuration Tips for Microsoft Internet Information Services (IIS)</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>Two Microsoft IIS registry entries, PoolThreadLimit and ThreadTimeout, can be added to your registry to improve performance with the Visual FoxPro FoxISAPI Automation servers. These registry entries determine the total number of threads that Internet Information Services can create, and the length of time the threads exist. For more information about these registry entries, see the Internet Information Services documentation.</p>
+      <p>A Microsoft Knowledge Base article titled "How to Launch Automation servers from ISAPI Extensions" (number Q156223) is available on www.microsoft.com. This article provides information about the access security permissions required to launch Automation servers such as the Visual FoxPro ISAPI Automation Servers.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/348fec52-e48a-489f-86fb-0b0ac888ba69.htm">Solution Samples</a></span><br /><span class="linkTerms"><a href="/html/ec045b1f-99ee-4553-a5b3-04b9fe0f865a.htm">FoxISAPI Automation Server Samples</a></span><br /><span class="linkTerms"><a href="/html/4123c740-2583-44a8-8326-5a736de1cb4c.htm">FoxIs, a Visual FoxPro Internet Server</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="FoxWeb, a Simplified Visual FoxPro Internet Automation Server">
+</OBJECT>

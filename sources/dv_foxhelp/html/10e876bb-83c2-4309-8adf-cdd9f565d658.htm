@@ -1,0 +1,553 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>OutputPage Method</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">OutputPage Method</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Provides access to the current page or the full range of pages for a report run, according to the value of the ListenerType property.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+oReportListener.OutputPage(;
+                  nPageNo, ;
+                  eDevice, ;
+                  nDeviceType ;
+                 [,nleft, nTop, nWidth, nHeight ;
+                 [,nClipLeft,nClipTop, nClipWidth, nClipHeight]])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nPageNo</span>
+        </span></dt><dd>
+          <p>In <span class="parameter">page-at-a-time</span> mode (ListenerType values 0 and 2), ReportListener uses this parameter to send you the current page number as it prepares each page for output.  You can request that this single page be rendered to an alternate device at this point.</p>
+          <p>In <span class="parameter">all pages-at-once mode</span> (ListenerType values 1 and 3), you use this parameter to send the ReportListener the page number you wish to render.</p>
+          <p>For more information about supported ListenerType values, see <span class="linkTerms"><a href="/html/ad1bf074-a169-4fd4-b160-c39bdd8c8402.htm">ListenerType Property</a></span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">eDevice</span>
+        </span></dt><dd>
+          <p>Provides a handle, reference, or filename for the device to which output is rendered.</p>
+          <p>When its ListenerType property value is 0, ReportListener uses this parameter to send you a GDI+ graphics handle to the current printer. When its ListenerType property value is 2, output is not actually going to a printer, so ReportListener sends you the value 0.</p>
+          <p>In <span class="parameter">all pages-at-once mode</span> (ListenerType values 1 and 3), you use this parameter to send the ReportListener one of the following:</p>
+          <ul><li>
+              <p>A GDI handle to a printer.</p>
+            </li><li>
+              <p>A GDI+ graphics handle to another output device.</p>
+            </li><li>
+              <p>A reference to an object derived from either the Visual FoxPro Shape or Container baseclass.</p>
+            </li><li>
+              <p>A filename.</p>
+            </li></ul>
+          <p>You tell the ReportListener what type of <span class="parameter">eDevice</span> value you send in this parameter by sending an appropriate value in <span class="parameter">nDeviceType</span>.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nDeviceType</span>
+        </span></dt><dd>
+          <p>Represents the type of Device to which output is rendered.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Value</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Device Type</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>-1</p>
+              </td>
+              <td>
+                <p>No device.</p>
+                <p>The ReportListener sends this value when it triggers OutputPage in ListenerType 2.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>hDC (GDI handle).</p>
+                <p>You can send a GDI handle to the ReportListener, to send output to an alternate printer.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>hGraphics (GDI+ graphics handle). </p>
+                <p>The ReportListener sends this value when it triggers OutputPage in ListenerType 0.  You can send it to the ReportListener, to send output to a different GDI+ context, such as a window.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>oFoxControl.  </p>
+                <p>Use this value to tell the Report Listener to create a preview display, using a Visual FoxPro Shape or Container control.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>100</p>
+              </td>
+              <td>
+                <p>This value specifies a filename, to be saved as image of EMF type.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>101</p>
+              </td>
+              <td>
+                <p>This value specifies a filename, to be saved as image of TIFF type.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>102</p>
+              </td>
+              <td>
+                <p>This value specifies a filename, to be saved as image of JPEG type.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>103</p>
+              </td>
+              <td>
+                <p>This value specifies a filename, to be saved as image of GIF type.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>104</p>
+              </td>
+              <td>
+                <p>This value specifies a filename, to be saved as image of PNG type.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>105</p>
+              </td>
+              <td>
+                <p>This value specifies a filename, to be saved as image of BMP type.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>201</p>
+              </td>
+              <td>
+                <p>This value specifies a page to be saved additively into a previously-created TIFF, generating a multi-page TIFF file.</p>
+                <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+                  <p>The ReportListener is able to perform some extra optimization of this file format when you use this value before a report run finishes.  For a ReportListener with ListenerType 0 or 2, the OutputPage event happens during this time.  An example of this usage is shown below.  For a ReportListener with ListenerType 1 or 3, you can call OutputPage during the <span class="linkTerms"><a href="/html/a9548831-e80d-477c-bfde-e5253df5850d.htm">AfterReport Event</a></span> to take advantage of the optimization.</p>
+                </td></tr></table></div>
+              </td>
+            </tr></table></div>
+          <p>
+          </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">[nleft, nTop, nWidth, nHeight,[nClipLeft,nClipTop, nClipWidth, nClipHeight]]</span>
+        </span></dt><dd>
+          <p>These optional parameters are not relevant when <span class="parameter">nDeviceType</span> is 2 (a Visual FoxPro control surface).</p>
+          <p>The first set of four coordinates (<span class="parameter">nleft, nTop, nWidth, nHeight</span>) specifies the coordinates, in units of 1/960 inch (960 dpi), of the rectangle on the current device in which this occurrence of the layout element will be rendered. The second set of four coordinates (<span class="parameter">nClipLeft,nClipTop, nClipWidth, nClipHeight</span>) allows a preview-type output device to indicate that only a portion of the page needs to be refreshed. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>None.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Applies To: <span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span>.</p>
+      <p>The OutputPage method is unusual because, depending on the current ListenerType value, a ReportListener either triggers this method to signal you that a page is ready or expects you to trigger the calls yourself, to request the pages you want. </p>
+    
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Understanding OutputPage's Two Processing Modes</h3><div class="subSection" xmlns="">
+          <p>In the first processing mode, the ReportListener acts in a style appropriate to printers and other output devices that handle output <i>one page at a time</i>. If necessary, these devices place incoming pages in a spool or queue until they are ready to handle more pages.  This type of page-processing is <i>forward-only</i>; you cannot ask for any specific page a single time, after the ReportListener has begun rendering subsequent pages.</p>
+          <p>In the second processing mode, the ReportListener prepares <i>all pages at once</i>, effectively providing a queue of all pages until the device is ready to request them. You cannot request any pages until all pages are prepared.  However, this type of page-processing results in a cached, or <i>scrollable</i>, collection of pages, as required by previewing devices; once the pages are prepared, you can request them in any order, and, you can request them multiple times.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Error-handling for OutputPage Parameters</h3><div class="subSection" xmlns="">
+          <p>The parameter list to OutputPage is complex and some parameters have multiple uses.  For this reason, it may be difficult to interpret the errors you receive when you use the parameters incorrectly.  </p>
+          <p>The following are the error messages you can expect if you send the ReportListener unexpected or inappropriate values when using this method.</p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  
+                    <b>Error message and number</b>
+                  
+                </th>
+                <th>
+                  
+                    <b>Conditions triggering this error</b>
+                  
+                </th>
+              </tr><tr>
+              <td>
+                <p>
+                  <b>Must specify additional parameters (Error 94)</b>
+                </p>
+              </td>
+              <td>
+                <p>Triggered if you do not include all three required parameters (<span class="parameter">nPageNo</span>, <span class="parameter">eDevice</span>, <span class="parameter">nDeviceType</span>).</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <b>Function argument value, type, or count is invalid (Error 11)</b>
+                </p>
+              </td>
+              <td>
+                <p>Triggered if <span class="parameter">nDeviceType</span> receives an unrecognized value.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <b>DataType property for field 'eDevice' is invalid (Error 1544)</b>
+                </p>
+              </td>
+              <td>
+                <p>Triggered if the <span class="parameter">eDevice</span> argument’s data type does not match the requirements for a valid value in <span class="parameter">nDeviceType</span>. </p>
+                <p>For example, you might receive this value if <span class="parameter">nDeviceType</span> is 0 or 1 and <span class="parameter">eDevice</span> is not a valid handle, or if <span class="parameter">nDeviceType</span> is one of the filename types but <span class="parameter">eDevice</span> is not a string representing a valid filename.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <b>Error writing to file 'filename' (Error 1105)</b>
+                </p>
+              </td>
+              <td>
+                <p>Triggered if <span class="parameter">nDeviceType</span> is one of the filename types and <span class="parameter">eDevice</span> appears valid but the file cannot be created.  For example, the user might not have permissions to create a file in the specified directory.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <b>Output page 'pageno' is not available (Error 2194)  </b>
+                </p>
+              </td>
+              <td>
+                <p>Triggered if <span class="parameter">nPageNo</span> is not appropriate to the current rendered pages, or if the ListenerType value is not properly set to one of the values (0, 1, 2, or 3) in which the ReportListener renders pages.</p>
+              </td>
+            </tr></table></div>
+          <p>For more information about Visual FoxPro error messages, see <span class="linkTerms"><a href="/html/30a2ab2a-d0f7-4840-aecb-fd6ca455aaf3.htm">Error Messages Listed Numerically</a></span>. For more information about what to do when errors occur when you process reports, see <span class="linkTerms"><a href="/html/5ba2f0f6-c515-4d48-83b6-5de8e13537ea.htm">Handling Errors During Report Runs</a></span>.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Caution note" src="../local/Caution.gif"></img>Caution </th></tr><tr><td>
+            <p>In addition to the error messages above, which you may see if you invoke OutputPage with incorrect parameters, be aware that OutputPage needs resources available to the report even when you call it after the report run concludes.  For example, if image file used in a report is built into your calling application, a call to OutputPage from a PreviewContainer needs access to that image file.  Although no error message is generated, your report output will not be complete if you unload the application from which the <b>REPORT FORM</b> or <b>LABEL</b> command was issued.</p>
+          </td></tr></table></div>
+        </div>
+    </sections>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Examples</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Example 1: OutputPage in page-at-a-time mode for image files from output pages</h3><div class="subSection" xmlns="">
+          <p>This sample code creates a multipage Tag Image File Format (TIFF) document from a report.  It uses the native ReportListener ability to specify the OutputPage <span class="parameter">nDeviceType</span> parameter as <code>101</code>, to create a TIFF file, followed by additional calls with an <span class="parameter">eDeviceType</span> value of <code>201</code>, to add into this TIFF document for subsequent pages.  This ReportListener derived class uses a ListenerType value of 2, so the native code invokes OutputPage as it prepares each page.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>The ReportListener class's native ability to provide images of pages as various file types is limited to some default settings for each image type it supports.  In the case of TIFFs, ReportListener provides compressed TIFFs for performance. However, you are not limited to the settings provided in the native implementation. You can give the ReportListener a GDI+ graphics handle and, in the OutputPage method, request that it render a page to this device.  You can then save the result to an image file with non-default specifications.  Visual FoxPro supplies a class library to help you perform this and other GDI+-related tasks.  For more information, see <span class="linkTerms"><a href="/html/a8a60a3e-43d2-4f80-bdd0-89f5f68578ae.htm">GDI Plus API Wrapper Foundation Classes</a></span>.</p>
+          </td></tr></table></div>
+        </div>
+      <div class="subSection" xmlns="">
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#define OutputNothing -1
+#define OutputTIFF 101
+#define OutputTIFFAdditive (OutputTIFF+100)
+LOCAL oReportListener
+oReportListener = NEWOBJECT("MPTiffListener")
+oReportListener.Filename = "Multi"
+WAIT WINDOW "Processing report to TIFF file...." NOWAIT
+REPORT FORM ? OBJECT oReportListener 
+WAIT CLEAR
+DEFINE CLASS MPTiffListener AS ReportListener
+   PROCEDURE Init
+      THIS.AddProperty("Filename", "temp")
+      THIS.ListenerType = 2
+   ENDPROC
+   
+   PROCEDURE BeforeReport
+      ERASE THIS.Filename
+   ENDPROC
+   PROCEDURE OutputPage(nPageNo, eDevice, nDeviceType)
+      IF (nDeviceType == OutputNothing)
+         IF (nPageNo == 1)
+             nDeviceType = OutputTIFF
+         ELSE 
+            nDeviceType = OutputTIFFAdditive
+         ENDIF
+         THIS.OutputPage(nPageNo, THIS.Filename, nDeviceType)
+         NODEFAULT
+     ENDIF
+   ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 2: OutputPage in page-at-a-time echoing output to the display</h3><div class="subSection" xmlns="">
+          <p>This example provides a replacement for backward-compatible reporting's echoed output to the display, when the keyword NOCONSOLE is not used on the REPORT FORM Command.  It uses the OutputPage method's ability to write to a GDI+ Graphics handle.  If the REPORT FORM specifies NOCONSOLE, the ReportListener object does not provide display output.  </p>
+          <p>By default, this ReportListener uses a ListenerType value of 2, so it invokes OutputPage as it prepares each output page but has no native output result. It evaluates CommandClauses Property values to check for the NOCONSOLE keyword, and also to evaluate the user's specified output target.  If the user chose to generate output to a printer, a file, or preview, this class adjusts its behavior to match previous versions of Visual FoxPro.</p>
+        </div>
+      <div class="subSection" xmlns="">
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE OUTPUTDEVICETYPE_GDIPLUS 1
+#DEFINE OUTPUTTO_PRINT           1
+#DEFINE OUTPUTTO_FILE            2
+#DEFINE LISTENER_TYPE_PRN        0
+#DEFINE LISTENER_TYPE_PRV        1
+#DEFINE LISTENER_TYPE_PAGED      2
+LOCAL loRL, loForm
+loRL = CREATEOBJECT("EchoListener")
+REPORT FORM ? OBJECT loRL &amp;&amp; output to the console
+REPORT FORM ? OBJECT loRL NEXT 1 TO PRINT &amp;&amp; output to console and print
+_SCREEN.Cls &amp;&amp; clear screen
+REPORT FORM ? OBJECT loRL PREVIEW &amp;&amp; to preview only, no console output
+loForm = CREATEOBJECT("form")
+loForm.Caption = "My Output Window"
+loForm.Show()
+REPORT FORM ? OBJECT loRL TO FILE c:\temp\x.txt &amp;&amp; to file and output window
+REPORT FORM ? OBJECT loRL TO FILE c:\temp\x.txt NOCONSOLE &amp;&amp; to file only
+DEFINE CLASS EchoListener as ReportListener
+  ListenerType = LISTENER_TYPE_PAGED 
+  GP = 0
+  RHeight = 0
+  RWidth = 0
+  
+  PROCEDURE LoadReport()
+    IF THIS.CommandClauses.Preview
+       THIS.ListenerType = LISTENER_TYPE_PRV 
+    ELSE
+       IF INLIST(THIS.CommandClauses.OutputTo,OUTPUTTO_PRINT,OUTPUTTO_FILE)
+          THIS.ListenerType = LISTENER_TYPE_PRN
+       ENDIF
+    ENDIF   
+  ENDPROC   
+  
+  PROCEDURE BeforeReport()
+     IF NOT (THIS.CommandClauses.NoConsole OR THIS.CommandClauses.Preview)
+        DECLARE integer GdipCreateFromHWND IN GDIPLUS.DLL ;  
+          integer hwnd, integer @ nGraphics
+        LOCAL lH, nG
+        nG = 0
+        IF TYPE("_SCREEN.ActiveForm") = "O"
+           m.lH = _SCREEN.ActiveForm.HWnd
+        ELSE   
+           m.lH = _SCREEN.HWnd 
+        ENDIF   
+       IF GdipCreateFromHWND( m.lH, @nG ) = 0
+          THIS.GP = m.nG
+          THIS.RHeight = THIS.GetPageHeight()/10 &amp;&amp; convert 960 DPI to 96 DPI
+          THIS.RWidth = THIS.GetPageWidth()/10
+       ENDIF   
+    ENDIF   
+  ENDPROC
+  PROCEDURE OutputPage(nPageNo, ;
+                  eDevice, ;
+                  nDeviceType, ;
+                  nleft, nTop, nWidth, nHeight, ;
+                  nClipLeft,nClipTop, nClipWidth, nClipHeight)
+      IF THIS.GP # 0 
+         DODEFAULT(nPageNo, THIS.GP,OUTPUTDEVICETYPE_GDIPLUS , ;
+                   0,0,THIS.RWidth, THIS.RHeight, ;
+                   0,0,THIS.RWidth, THIS.RHeight)            
+      ENDIF             
+                     
+  ENDPROC
+  
+  PROCEDURE UnloadReport()
+     * reset:
+     IF NOT THIS.GP = 0
+        DECLARE integer GdipDeleteGraphics IN GDIPLUS.DLL integer
+        GdipDeleteGraphics( THIS.GP )
+        THIS.GP = 0
+     ENDIF
+     THIS.ListenerType = LISTENER_TYPE_PAGED 
+  ENDPROC
+   
+ENDDEFINE   </pre></td></tr></table></span></div>
+        </div>
+      <h3 class="subHeading" xmlns="">Example 3: OutputPage in all-pages-at-once mode</h3><div class="subSection" xmlns="">
+          <p>This example uses a ListenerType value of <code>3</code>, so the native ReportListener class does not invoke OutputPage as it prepares pages.  Instead, this derived class invokes OutputPage after the report run concludes, and displays the output to a simple preview object contained by a form.  As this example shows, by varying the dimensions of the preview object, you can vary and control zoom level using any algorithm or restrictions you prefer.  By passing a reference to this object in the OutputPage method, you instruct the native code what size you want for the previewed page. The native OutputPage behavior takes care of scaling the preview output appropriately.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>Notice that this class's DoOutputPage wrapper code for the OutputPage method checks to see that the external call to the method has included a valid page number before invoking native OutputPage code, to avoid errors.</p>
+          </td></tr></table></div>
+        </div>
+      <div class="subSection" xmlns="">
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#DEFINE BASEPAGEHEIGHT  550
+#DEFINE BASEPAGEWIDTH 425
+CLEAR ALL  
+oListener = NEWOBJECT("zoomListener")
+oForm = CREATEOBJECT("form")
+WITH oForm
+   .ScaleMode = 3
+   .allowOutput = .F.
+   .top = 0
+   .left = 0
+   .height = BASEPAGEHEIGHT
+   .width = BASEPAGEWIDTH
+   .backcolor = RGB(255,255,255)
+   .Show()
+ENDWITH   
+oListener.PreviewContainer = oForm
+REPORT FORM ? OBJECT oListener
+oListener.DoOutputPage(1,1)
+WAIT window  ;
+   "Previewing at 100%... " + ;
+   "press any key for the next preview zoom level"
+oListener.DoOutputPage(2, .21123 ) 
+WAIT window ;
+   "Previewing at 21.123%... " + ;
+   "press any key for the next preview zoom level"
+oListener.DoOutputPage(3,2.367) 
+WAIT window ;
+   "Previewing at 236.7%... "
+DEFINE CLASS zoomListener AS ReportListener
+   ListenerType = 3 
+   PROCEDURE DoOutputPage(tPage, tMultiplier)
+      LOCAL liPage
+      IF VARTYPE(tPage) = "N" AND ;
+         BETWEEN(tPage,;
+                 THIS.CommandClauses.RangeFrom, ;
+                 IIF(THIS.CommandClauses.RangeTo=-1, ;
+                     THIS.PageTotal, ;
+                     THIS.CommandClauses.RangeTo))
+         liPage = INT(tPage)
+      ELSE
+         liPage = THIS.CommandClauses.RangeFrom    
+      ENDIF               
+      THIS.SetPreview(tMultiplier)   
+      THIS.OutputPage(liPage,THIS.PreviewContainer.MyPreview,2) 
+   ENDPROC
+   PROCEDURE SetPreview(tMultiplier)
+      LOCAL liHeight, liWidth
+      IF TYPE("THIS.PreviewContainer.MyPreview") # "O" 
+         THIS.PreviewContainer.AddObject("MyPreview","shape")       
+      ENDIF
+      IF VARTYPE(tMultiplier) = "N" AND ;
+         BETWEEN(tMultiplier,.01, 10)
+         liHeight = BASEPAGEHEIGHT * tMultiplier
+         liWidth  = BASEPAGEWIDTH * tMultiplier
+         WAIT WINDOW ;
+            "H:" + TRANSFORM(liHeight)+ ;
+          ", W:" + TRANSFORM(liWidth) TIMEOUT 1
+         * note that VFP will round the pixels 
+         WITH THIS.PreviewContainer
+            .LockScreen = .T.            
+            .MyPreview.Height = liHeight
+            .MyPreview.Width = liWidth
+            .Height = liHeight
+            .Width = liWidth 
+            .LockScreen = .F.
+            .Cls()                   
+         ENDWITH
+      ENDIF
+   ENDPROC
+   PROCEDURE Destroy
+      THIS.PreviewContainer = NULL
+   ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span><br /><span class="linkTerms"><a href="/html/f5f90b33-e6ae-4139-9d13-be1495a87cf6.htm">CommandClauses Property</a></span><br /><span class="linkTerms"><a href="/html/ad1bf074-a169-4fd4-b160-c39bdd8c8402.htm">ListenerType Property</a></span><br /><span class="linkTerms"><a href="/html/1ffb4915-3e38-4aab-bbd8-7567b7561a1c.htm">LoadReport Event</a></span><br /><span class="linkTerms"><a href="/html/03726feb-d818-4008-83b7-74f6662b1578.htm">OutputPageCount Property</a></span><br /><span class="linkTerms"><a href="/html/53827455-5731-467f-adff-e030037406b2.htm">PageNo Property</a></span><br /><span class="linkTerms"><a href="/html/a3626580-d9a5-4d73-a490-9128e812d340.htm">Shape Control</a></span><br /><span class="linkTerms"><a href="/html/31b59b85-d92f-4a32-bc93-da8d637e2c3f.htm">Container Object</a></span><br /><span class="linkTerms"><a href="/html/66975043-814c-4886-901c-53d3924ca1bb.htm">The Preview Container API</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/e11b3ffe-ee6b-4af3-94f8-7a5ed30ea83d.htm">Using GDI+ in Reports</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ca97d4ab-ef98-482f-aeb0-a3840f1d96d5.htm">Methods (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="OutputPage Method">
+<param name="ALink Name" value="OutputPage">
+<param name="Alink Name" value="vfp.50000911">
+</OBJECT>

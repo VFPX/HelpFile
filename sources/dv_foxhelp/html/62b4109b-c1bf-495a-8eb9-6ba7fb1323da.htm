@@ -1,0 +1,138 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Processing Multiple Result Sets</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Processing Multiple Result Sets</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Your application retrieves multiple result sets when you use the <a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( )</a> function to issue more than one SQL SELECT statement, or to execute a stored procedure that issues multiple SELECT statements. The results of each SQL SELECT statement are returned in a separate Visual FoxPro cursor.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The default name SQLRESULT is used for the first cursor; subsequent cursors are assigned unique names by indexing the default name. For example, the default names for the cursors returned by a SQLEXEC( ) statement requesting three result sets are Sqlresult, Sqlresult1, and Sqlresult2.</p>
+      <p>In batch mode, if a function returns multiple result sets, the respective cursor names in Visual FoxPro have unique suffixes and can have up to 255 characters. For example, the following example sets the BatchMode property to batch mode, and then issues a SQLEXEC( ) statement containing four SQL SELECT statements that build four result sets:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? SQLSETPROP(nConnectionHandle,'BatchMode', .T.) 
+? SQLEXEC(nConnectionHandle,'select * from authors ; 
+                     select * from titles ; 
+                     select * from roysched ; 
+                     select * from titleauthor','ITEM')</pre></td></tr></table></span></div>
+      <p>When the function above has completed processing, Visual FoxPro returns the four result sets as the Visual FoxPro cursors Item, Item1, Item2, and Item3.</p>
+      <p>You can change the default name by using the <i>cCursorname</i> parameter with the <a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( )</a> or <a href="/html/b21a0d31-b1db-44f5-b5e1-266356406903.htm">SQLMORERESULTS( )</a> functions. If the name you specify for a result set has already been used, the new result set overwrites the existing cursor.</p>
+      <p>When your application retrieves multiple result sets, you can choose between asynchronous or synchronous processing and batch or non-batch modes.</p>
+    </div><h1 class="heading">Using Batch Mode Processing</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>The BatchMode property, set with <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>, controls how <a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( )</a> returns multiple result sets. The default value is .T., for batch mode. Batch mode processing means that Visual FoxPro doesn't return any results from a still-executing SQLEXEC( ) call until all of the individual result sets have been retrieved.</p>
+    </div><h1 class="heading">Using Non-Batch Mode Processing</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>If you use <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a> to set the BatchMode property to .F., for non-batch mode, each result set is returned individually. The first result set is returned by the <a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( )</a> function call. Your application must then call <a href="/html/b21a0d31-b1db-44f5-b5e1-266356406903.htm">SQLMORERESULTS( )</a> repeatedly until a value of 2 is returned, indicating that no more results are available.</p>
+      <p>In non-batch mode, the cursor name can be changed in each subsequent SQLMORERESULTS( ) call. In the previous example, if the first cursor name in a SQLEXEC( ) sequence is Item, and the second SQLMORERESULTS( ) call changes the <i>cCursorName</i> parameter to Otheritem, the resulting cursors will be named Item, Item1, Otheritem, and Otheritem1.</p>
+      <p>The next section describes batch mode and non-batch mode processing with synchronous and asynchronous detail added. The following diagram provides a representation of the four possible processing combinations. The numbers 0, 1, and 2 represent the values returned when you call each function.</p>
+      <div class="labelheading"><b><caption xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:cs="urn:the-xml-files:xslt-cs"><caption xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Visual FoxPro synchronous and asynchronous processing modes</caption></caption></b><br></br></div><img src="../local/Local_-311866726_afd21006.gif" alt="FoxProSynchAsynchModes screenshot"></img>
+      <p>The behavior of each type of processing is explained below: the labels A, B, C, and D reference the preceding diagram. Each explanation assumes the execution of a statement that will return three result sets, represented in the diagram by three horizontal bands.</p>
+    </div><h1 class="heading">Using Synchronous Processing</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>In synchronous mode, control doesn't return to your application until the execution of a function is complete.</p>
+    </div><h1 class="heading">A: Synchronous Batch Mode</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>When you execute a SQL pass-through statement synchronously in batch mode, control isn't returned until all result sets have been retrieved. You specify the name of the first cursor by using the <i>cCursorname</i> parameter in the original function. If the cursor you specify already exists, the result set overwrites the existing cursor. When you request multiple result sets in synchronous batch mode, Visual FoxPro creates the names of additional cursors by uniquely indexing the name of the first cursor.</p>
+    </div><h1 class="heading">B: Synchronous Non-Batch Mode</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>When you execute a SQL pass-through statement synchronously in non-batch mode, the first statement retrieves the first result set and returns a 1. You must then call the <a href="/html/b21a0d31-b1db-44f5-b5e1-266356406903.htm">SQLMORERESULTS( )</a> function repeatedly, and optionally specify a new name for the cursor. If you don't specify a new name for the cursor, multiple names for multiple result sets are created by uniquely indexing the base name. When SQLMORERESULTS( ) returns a value of 2, there are no more results available.</p>
+    </div><h1 class="heading">Using Asynchronous Processing</h1><div id="sectionSection6" class="seeAlsoNoToggleSection">
+      <p>In asynchronous mode, your application must continue calling the same SQL pass-through function until it returns a value other than 0 (still executing). The default result set name, <code>Sqlresult</code>, can be explicitly changed with the <i>cCursorname</i> parameter the first time you call the function. If the name you specify for a result set has already been used, the new result set overwrites the information in the existing cursor.</p>
+    </div><h1 class="heading">C: Asynchronous Batch Mode</h1><div id="sectionSection7" class="seeAlsoNoToggleSection">
+      <p>When you execute asynchronously in batch mode, each repeat call of the original function returns a 0 (still executing) until all of the multiple result sets have been returned to the specified cursors. When all results have been retrieved, the return value is either the number of cursors, or a negative number indicating an error.</p>
+    </div><h1 class="heading">D: Asynchronous Non-Batch Mode</h1><div id="sectionSection8" class="seeAlsoNoToggleSection">
+      <p>When processing asynchronously in non-batch mode, <a href="/html/8dd6491b-da44-401f-b972-0d51f12f1a07.htm">SQLEXEC( )</a> returns a value of 1 when it completes the retrieval of each result set. Your application must then call <a href="/html/b21a0d31-b1db-44f5-b5e1-266356406903.htm">SQLMORERESULTS( )</a> repeatedly until a value of 2 is returned, indicating that no more results are available.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>Remote result sets are retrieved in two stages: first, the result set is prepared on the server; then the result set is fetched into a local Visual FoxPro cursor. In asynchronous mode, you can call the <a href="/html/63bc032f-edf9-45ba-a43f-d8bfbc75a80d.htm">USED( )</a> function to see whether Visual FoxPro has started fetching the cursor you requested.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/9b1981d4-aff3-4567-bacc-5fb00dacdd62.htm">How to: Use SQL Pass-Through Asynchronously</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/c101845f-d0a1-4f86-b1ba-225929032da6.htm">Data Type Conversion Control</a></span><br /><span class="linkTerms"><a href="/html/88be1b78-a093-4161-9c95-f00ff6dfd4db.htm">Working with Remote Data Using SQL Pass-Through</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/8473acb7-e995-4d5e-b1b9-5a1d86ad4f85.htm">Enhancing Applications Using SQL Pass-Through Technology</a></span><br /><span class="linkTerms"><a href="/html/7a4c60ae-5309-4014-87ec-08ce277eede4.htm">Planning Client/Server Applications</a></span><br /><span class="linkTerms"><a href="/html/dac2edfd-d7a9-4f83-8ab7-bd54afa0d0b9.htm">Upsizing Visual FoxPro Databases</a></span><br /><span class="linkTerms"><a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">Creating Views</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Processing Multiple Result Sets">
+</OBJECT>

@@ -1,0 +1,232 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Perform Updates Using Buffers</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Perform Updates Using Buffers</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>After choosing the buffering method and the type of locking, you can enable record or table buffering.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <h3 class="procedureSubHeading">To enable buffering</h3><div class="subSection"><ul><li>
+            
+              <p>Choose one of the following options: </p>
+              <ul><li>
+                  <p>In the <b>Form Designer</b>, set the BufferModeOverride property of the cursor in the data environment of the form.</p>
+                </li></ul>
+              <p>-OR-  </p>
+              <ul><li>
+                  <p>Use the <b>CURSORSETPROP( )</b> function to set the Buffering property.</p>
+                </li></ul>
+            
+          </li></ul>
+          
+            <p>For example, you can enable pessimistic row buffering by placing the following code in the Init procedure of a form:</p>
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CURSORSETPROP('Buffering', 2)</pre></td></tr></table></span></div>
+            <p>You then place code for the update operations in the appropriate method code for your controls.</p>
+          
+        </div>
+      <p>To write edits to the original table, use the <span class="linkTerms"><a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( ) Function</a></span>. To cancel edits after a failed update operation in a table constrained by rules, use <span class="linkTerms"><a href="/html/0fdd3838-1de5-4e54-8e4e-acb3d3e8b3bf.htm">TABLEREVERT( ) Function</a></span>, which is valid even if explicit table buffering is not enabled. To specify a level of table integrity checking lower than the default setting, you can use the <span class="linkTerms"><a href="/html/6fe92268-f8ce-4603-9e7a-6f4ca4cfdfc9.htm">SET TABLEVALIDATE Command</a></span>.</p>
+      <p>The following sample demonstrates how to update records when pessimistic record buffering is enabled.</p>
+      <div class="labelheading"><b>Example of Updating Using Record and Table Buffers</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comment
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>OPEN DATABASE testdata</code>
+            </p>
+            <p>
+              <code>USE customers</code>
+            </p>
+            <p>
+              <code>CURSORSETPROP('Buffering', 2)         </code>
+            </p>
+          </td>
+          <td>
+            <p>In the form Init code, open the table and enable pessimistic record buffering.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>lModified = .F.</code>
+            </p>
+            <p>
+              <code>FOR nFieldNum = 1 TO FCOUNT()         </code>
+            </p>
+            <p>
+              <code>   IF GETFLDSTATE(nFieldNum) = 2      </code>
+            </p>
+            <p>
+              <code>      lModified = .T.</code>
+            </p>
+            <p>
+              <code>      EXIT</code>
+            </p>
+            <p>
+              <code>   ENDIF</code>
+            </p>
+            <p>
+              <code>ENDFOR</code>
+            </p>
+          </td>
+          <td>
+            <p>Go through fields, checking for any field that's been modified.</p>
+            <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+              <p>This code might be in the Click event of a "Save" or "Update" command button.</p>
+            </td></tr></table></div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>IF lModified</code>
+            </p>
+            <p>
+              <code>   nResult = MESSAGEBOX;</code>
+            </p>
+            <p>
+              <code>      ("Record has been modified. Save?", ;</code>
+            </p>
+            <p>
+              <code>      4+32+256, "Data Change")</code>
+            </p>
+          </td>
+          <td>
+            <p>Locate the next modified record. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   IF nResult = 7                  </code>
+            </p>
+            <p>
+              <code>      TABLEREVERT (.F.)            </code>
+            </p>
+            <p>
+              <code>   ENDIF</code>
+            </p>
+            <p>
+              <code>ENDIF</code>
+            </p>
+          </td>
+          <td>
+            <p>Present the current value and give the user the option to revert the change to the current field.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>SKIP                           </code>
+            </p>
+            <p>
+              <code>IF EOF()</code>
+            </p>
+            <p>
+              <code>   MESSAGEBOX( "already at bottom")</code>
+            </p>
+            <p>
+              <code>   SKIP -1</code>
+            </p>
+            <p>
+              <code>ENDIF </code>
+            </p>
+            <p>
+              <code>THISFORM.Refresh</code>
+            </p>
+          </td>
+          <td>
+            <p>SKIP guarantees that the last change is written.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/6c9c3a56-c339-440d-b60b-43f0fb7da50b.htm">Update Criteria Tab, View Designer</a></span><br /><span class="linkTerms"><a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/c94d4b30-e6aa-408c-a29d-6b27eb93674d.htm">Buffering Data</a></span><br /><span class="linkTerms"><a href="/html/a8993d34-e40b-4411-9df3-48d58bd3f0f4.htm">Managing Conflicts When Updating Data</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c3ac4a1d-4c23-40ba-8715-e9ce9438cf62.htm">Updating Data</a></span><br /><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Perform Updates Using Buffers">
+</OBJECT>

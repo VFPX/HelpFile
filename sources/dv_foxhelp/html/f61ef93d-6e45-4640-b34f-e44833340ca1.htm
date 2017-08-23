@@ -1,0 +1,228 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>TAG( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">TAG( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Returns a tag name from an open compound index (.cdx) file or the name of an open single-entry (.idx) index file.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+TAG([<span class="parameter">CDXFileName</span>[, <span class="parameter">nTagNumber</span>[, <span class="parameter">nWorkArea</span> | <span class="parameter">cTableAlias</span>]]])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">CDXFileName</span>
+        </span></dt><dd>
+          <p>Specifies the name of the .cdx file to return a tag name from.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nTagNumber</span>
+        </span></dt><dd>
+          <p>Specifies a number corresponding to the order in which a tag was created in the compound index file. </p>
+          <p>For example, if <span class="parameter">nTagNumber</span> is 1, <b>TAG( )</b> returns the name of the first tag created in the compound index file. If <span class="parameter">nTagNumber</span> is 2, <b>TAG( )</b> returns the name of the second tag created, and so on. TAG( ) returns the empty string when <span class="parameter">nTagNumber</span> exceeds the number of tag names.   </p>
+          <p>If you omit <span class="parameter">CDXFileName</span>, <b>TAG( )</b> returns compound index file tag names and single-entry index file names in a specific order as follows:   </p>
+          <ul><li>
+              <p>Names of single-entry index files are returned based on their order in the <b>INDEX</b> clause of <b>USE</b> or <b>SET INDEX</b>. For more information, see <a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a> and <a href="/html/b0166019-d7d2-4322-8a7f-d3986987a71e.htm">SET INDEX Command</a>.</p>
+            </li><li>
+              <p>Tag names from the structural compound index file (if one exists for the table) are returned.</p>
+            </li><li>
+              <p>Tag names from other open compound index files are returned, again in the order in which the tags were created in the compound index files and in the order in which the compound index files are specified in the <b>INDEX</b> clause for <b>USE</b> or <b>SET INDEX</b>.</p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nWorkArea</span>| <span class="parameter">cTableAlias</span></span></dt><dd>
+          <p>Returns tag names and index file names from files open in another work area. <span class="parameter">nWorkArea</span> specifies a work area number and <span class="parameter">cTableAlias</span> specifies a table alias. By default, tag names and index file names are returned from files in the current work area.</p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Character. <b>TAG( )</b> returns an index tag name as an uppercase character string.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Tags are index entries in compound index (.cdx) files created with the <b>INDEX</b> command. Single-entry index (.idx) files contain only one entry; therefore, <b>TAG( )</b> returns the file name for .idx files.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>A structural compound index (.cdx) file opens with its table automatically. You can open non-structural .cdx files and .idx index files for a table using the <b>INDEX</b> clause in the <b>USE</b> command or using the <b>SET INDEX</b> command. </p>
+      </td></tr></table></div>
+    
+  </div>
+  <h1 class="heading">
+  <span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1>
+  <div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example closes all other open databases and opens the Customer table in the Visual FoxPro sample TestData database located in the directory, ..\Microsoft Visual FoxPro\Samples\Data. The <b>FOR ... ENDFOR</b> command uses the <b>TAGCOUNT( )</b> function to create a loop numbering from the first index tag to the total number of index tags in the open structural compound index (.cdx) file. The <b>TAG( )</b> and file <b>CDX( )</b> functions retrieve the index tags from the file and displays them using the <b>?</b> command.</p>
+      
+    </description>
+    <div class="code">
+	<span codeLanguage="other">
+	<table width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+	<th> </th>
+	<th>
+	<span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0">
+	<img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span>
+	</th>
+	</tr>
+	<tr>
+	<td colspan="2">
+	<pre>CLOSE DATABASES   
+OPEN DATABASE (HOME(2) + 'Data\TestData')
+USE Customer     
+CLEAR
+FOR nCount = 1 TO TAGCOUNT()
+   ? TAG(CDX(1),nCount)
+ENDFOR</pre>
+</td>
+</tr>
+</table>
+</span>
+</div>
+    <comments xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">For more information, see <a href="/html/a7f9db76-2eaf-479d-94e9-ce15b4dac39d.htm">FOR ... ENDFOR Command</a>, <a href="/html/300805ce-f78a-42d1-ac82-bd695650fbd3.htm">TAGCOUNT( ) Function</a>, <a href="/html/1d125780-6aa3-43c3-9dc0-6fc18c0cfeb1.htm">CDX( ) Function</a>, and <a href="/html/4718b6ad-af5e-4ced-8e93-7347259a92d5.htm">? | ?? Command</a>.</p>
+      
+    </comments>
+  </div>
+  <h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1>
+  <div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;">
+  <h4 class="subHeading">Reference</h4>
+  <span class="linkTerms"><a href="/html/f7a80417-5051-40fc-9c72-cef2aa643048.htm">CANDIDATE( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/981eb9e6-fa1a-4b6b-88cb-5877d77feacc.htm">PRIMARY( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/a6d0dab2-db9a-47f2-bc81-14bfb11ee929.htm">UNIQUE( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/1d125780-6aa3-43c3-9dc0-6fc18c0cfeb1.htm">CDX( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/ece160fa-3278-4d22-8906-58b581689643.htm">DESCENDING( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span><br />
+  <span class="linkTerms"><a href="/html/4dd1b20d-a1d2-4fac-baf8-409e9c50b475.htm">MDX( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/ff2c387a-af9c-4171-8769-8c81a1760992.htm">NDX( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/ed8cdfe9-7e01-43ab-8f52-0cfaaff85c83.htm">SYS(14) - Index Expression</a></span><br />
+  <span class="linkTerms"><a href="/html/300805ce-f78a-42d1-ac82-bd695650fbd3.htm">TAGCOUNT( ) Function</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />
+  <span class="linkTerms"><a href="/html/ef964c61-9adc-43d5-b10d-828a3068e490.htm">TAGNO( ) Function</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />
+  <span class="linkTerms"><a href="/html/ab8904c2-9e34-449d-a623-4941c94a648d.htm">ATAGINFO( ) Function</a></span><br />
+  
+  <h4 class="subHeading">Other Resources</h4>
+  <span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br />
+  <span class="linkTerms"><a href="/html/bd8c95ee-78bf-4d47-9c76-f51562e8f90a.htm">Index Manipulation Language</a><img class="vfpxmark" src="../local/vfpXmark.gif"/></span><br />
+  <span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br />
+  <br />
+  </div>
+</div>
+  
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="TAG( ) Function">
+<param name="ALink Name" value="TAG">
+</OBJECT>

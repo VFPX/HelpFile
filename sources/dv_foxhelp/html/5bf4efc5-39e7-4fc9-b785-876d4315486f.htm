@@ -1,0 +1,265 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Data Access Management Using CursorAdapters</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Data Access Management Using CursorAdapters</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>In Visual FoxPro, you can retrieve data from local and remote data sources that have the following data source types using cursor adapters:  </p>
+    <ul><li>
+        <p>Native </p>
+      </li><li>
+        <p>Open Database Connectivity (ODBC)</p>
+      </li><li>
+        <p>ActiveX Data Object (ADO)</p>
+      </li><li>
+        <p>Extensible Markup Language (XML)</p>
+      </li></ul>
+    <p>The CursorAdapter class expands support for working with different data source types as native Visual FoxPro cursors. CursorAdapter objects provide the following capabilities:  </p>
+    <ul><li>
+        <p>Use different data sources dynamically.</p>
+      </li><li>
+        <p>Use either the data source of the CursorAdapter object or the data environment.</p>
+      </li><li>
+        <p>Share data sources within the limits of the data source technology.</p>
+      </li><li>
+        <p>Optionally define the structure of the cursor associated with a CursorAdapter object.</p>
+      </li><li>
+        <p>Control the loading of data from the data source into a Visual FoxPro cursor associated with a CursorAdapter object.</p>
+      </li><li>
+        <p>Render data from different data sources into Visual FoxPro cursors based on the data source type.</p>
+      </li><li>
+        <p>Control how data is added, updated, and deleted with CursorAdapter properties and methods.</p>
+      </li><li>
+        <p>Add CursorAdapter objects to containers other than the data environment, such as forms, form sets, and other containers.</p>
+      </li><li>
+        <p>Use the CursorAdapter class as a standalone class without an associated data environment. </p>
+      </li></ul>
+    <p>With CursorAdapter objects, the data source is only a pipe to the translation layer, which renders data from the data source into a Visual FoxPro cursor. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Visual FoxPro does not support using relations with the CursorAdapter objects. However, you can use relations with cursors associated with cursor adapters.</p>
+    </td></tr></table></div>
+    <p>For more information about the CursorAdapter, DataEnvironment, and Cursor classes, see <a href="/html/3cd87ac7-582c-43b9-b1f7-006a9a5c7508.htm">CursorAdapter Class</a>, <a href="/html/19f2a679-bbf3-4343-9ad8-fd20824e8198.htm">DataEnvironment Object</a>, and <a href="/html/634a112c-47c6-4e85-a304-5b5085632eec.htm">Cursor Object</a>.</p>
+  <h1 class="heading">Interaction with the TABLEUPDATE( ) and TABLEREVERT( ) Functions</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The TABLEUPDATE( ) function recognizes and can work with CursorAdapter objects. TABLEUPDATE( ) delegates its operations to the cursor adapter associated with the cursor. TABLEREVERT( ) operates on CursorAdapter objects in the same way as other buffered cursors. </p>
+      <p>For more information about how CursorAdapter objects affect the way the TABLEUPDATE( ) and TABLEREVERT( ) functions behave, see <a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( ) Function</a> and <a href="/html/0fdd3838-1de5-4e54-8e4e-acb3d3e8b3bf.htm">TABLEREVERT( ) Function</a>.</p>
+    </div><h1 class="heading">Automatic Updating and CursorAdapters</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro automatically generates the SQL INSERT, UPDATE, and DELETE commands for local and remote views. When working with CursorAdapter objects, you can customize and control how Visual FoxPro generates these SQL INSERT, UPDATE, and DELETE commands. </p>
+      <p>When the CursorAdapter InsertCmd, UpdateCmd, and DeleteCmd properties are empty, Visual FoxPro generates the corresponding SQL commands automatically. You must determine whether automatic generation of these commands is appropriate for the data source you are using. To generate the SQL INSERT, UPDATE, and DELETE commands automatically, you must set the following CursorAdapter-specific properties:  </p>
+      <ul><li>
+          <p>
+            <a href="/html/77d9454f-c588-4657-8dff-28871cbca8e4.htm">Tables</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/53c0c83c-a272-4187-9b5b-f35520b56b0e.htm">KeyFieldList</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/e899f010-da67-4d90-9b93-22db7fe16e68.htm">UpdatableFieldList</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/7cde8188-bef1-4101-b087-d4118cb7e458.htm">UpdateNameList</a>
+          </p>
+        </li></ul>
+      <p>The following general rules apply for the Tables and UpdateNameList properties:  </p>
+      <ul><li>
+          <p>Tables</p>
+          <p>To enable automatic updating, you must provide a list of table names in the exact order you want them to appear in the SQL INSERT, UPDATE, and DELETE commands. </p>
+        </li><li>
+          <p>UpdateNameList</p>
+          <p>You must specify a comma-delimited list consisting of pairs of local and full remote field names. Each pair of names consists of the local field name followed by the full remote field name. The full remote field name appears as &lt;remote table name&gt;.&lt;remote field name&gt;, where &lt;remote table name&gt; matches the name from the Tables property. </p>
+        </li></ul>
+      <p>You must also set the appropriate key fields if you set the following CursorAdapter properties to True (.T.):  </p>
+      <ul><li>
+          <p>
+            <a href="/html/0b61cca1-c203-4eac-b35a-791a4efccdd7.htm">AllowInsert</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/8891e0be-3b4f-4bfd-b565-72f4b76953e8.htm">AllowUpdate</a>
+          </p>
+        </li><li>
+          <p>
+            <a href="/html/4da8c178-d133-4c11-9c9a-5191e4c76a29.htm">AllowDelete</a>
+          </p>
+        </li></ul>
+      <p>For more information about the SQL commands used for automatic updating, see <a href="/html/f9d15b20-eb9d-4c37-8d4a-d9d02c01eb56.htm">INSERT - SQL Command</a>, <a href="/html/56137e46-cad2-4473-8e8e-367d2ca63334.htm">UPDATE - SQL Command</a>, and <a href="/html/f31dbf64-3691-4ab0-a6b0-7ed1b3a42208.htm">DELETE - SQL Command</a>.</p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Batch Updates</h3><div class="subSection" xmlns="">
+          <p>CursorAdapter objects use batch updating if the value of CursorAdapter BatchUpdateCount property is greater than 1, and one of the following conditions are true:  </p>
+          <ul><li>
+              <p>The CursorAdapter object is set up to use the same ODBC statement handle for all permitted operations, namely, INSERT, UDPATE, and DELETE, as defined by the AllowInsert, AllowUpdate, and AllowDelete properties.</p>
+            </li><li>
+              <p>The CursorAdapter object is set up to use the same ADODB Command object for all operations permitted.</p>
+            </li><li>
+              <p>The CursorAdapter object uses "XML" as the data source type for all permitted operations.</p>
+            </li></ul>
+          <p>If batch updating is used, the following CursorAdapter events do not occur:  </p>
+          <ul><li>
+              <p>BeforeInsert</p>
+            </li><li>
+              <p>AfterInsert</p>
+            </li><li>
+              <p>BeforeUpdate</p>
+            </li><li>
+              <p>AfterUpdate</p>
+            </li><li>
+              <p>BeforeDelete</p>
+            </li><li>
+              <p>AfterDelete</p>
+            </li></ul>
+          <p>If an update fails for a batch, Visual FoxPro attempts to send a separate update for each row in the batch; however, the listed events still do not occur.</p>
+          <p>For more information, see <a href="/html/257e0f64-9759-42dc-8c70-284d3a722ec9.htm">BatchUpdateCount Property</a>.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Automatic Updating and ActiveX Data Objects (ADO)</h3><div class="subSection" xmlns="">
+          <p>When working with ADO, you can send updates using two different methods:  </p>
+          <ul><li>
+              <p>Use the CursorAdapter object to send updates with the ADO RecordSet object used by the CursorAdapter CursorFill method.  </p>
+              <p>When performing automatic updates using an ADO RecordSet, the following rules apply when setting the CursorAdapter <a href="/html/538a6277-73b8-44b8-bbf8-864bb3f6267d.htm">InsertCmdDataSource</a>, <a href="/html/744aef4c-fe14-4aad-a7bb-3fa8e9713eb1.htm">UpdateCmdDataSource</a>, and <a href="/html/96da9291-9223-42fe-9782-a13ff96443ec.htm">DeleteCmdDataSource</a> properties:  </p>
+              <ul><li>
+                  <p>The ADO RecordSet must be read/write and have bookmarks available. Bookmarks are always available when using a client-side RecordSet object. Bookmarks might be available when using Keyset or Static server-side cursors when supported by the OLE DB Provider.</p>
+                </li><li>
+                  <p>Updates are performed on a field-by-field basis. For every updated record, the CursorAdapter object locates the original record in the ADO RecordSet, changes the values for updatable fields, and calls the ADO RecordSet Update method. The CursorAdapter object does not call the ADO RecordSet UpdateBatch method; therefore, your application should explicitly call UpdateBatch when appropriate. </p>
+                </li></ul>
+              <p>When using this method, you should configure the CursorAdapter object as follows:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THIS.DataSourceType="ADO"
+THIS.UpdateCmdDataSourceType=""</pre></td></tr></table></span></div>
+              <p>You can also use the DataEnvironment and CursorAdapter builders to build an updatable form or DataEnvironment and CursorAdapter class library and use the AutoUpdate tab in the CursorAdapter Builder to specify key fields, update fields, and other required information. </p>
+            </li><li>
+              <p>Use the CursorAdapter object to send updates directly to the database using a custom or automatically generated update command. </p>
+              <p>When performing automatic updates directly, the CursorAdapter object needs an ADO Command object with its ActiveConnection property set to an open ADO Connection object.  </p>
+              <p>When using this method, you should configure the CursorAdapter object as follows:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>THIS.UpdateCmdDataSourceType="ADO"
+THIS.UpdateCmdDataSource=NewADODBCommandObject</pre></td></tr></table></span></div>
+              <p>Setting <code>THIS.DataSourceType="ADO"</code> does not apply when using this method. </p>
+            </li></ul>
+        </div>
+      <h3 class="subHeading" xmlns="">Automatic Updating and XML</h3><div class="subSection" xmlns="">
+          <p>CursorAdapter objects do not automatically generate SQL INSERT, UPDATE, or DELETE commands as they do for other data sources when the data source is XML because of the numerous ways that exist for generating XML. However, you can use the CursorAdapter object to generate an XML UpdateGram and assign it to the CursorAdapter UpdateGram property. </p>
+          <p>Though the CursorAdapter object can generate the XML UpdateGram, you must implement the actual update operation using the appropriate protocols, such as SQL XML using HTTP, SQL XML OLE DB, or XML Web service to .NET.</p>
+          <p>The following rules apply when working with XML data sources and generating XML UpdateGrams:  </p>
+          <ul><li>
+              <p>You must specify command text for the CursorAdapter <a href="/html/5b4e71a4-576e-421d-952f-d80cecd1bdb8.htm">InsertCmd</a>, <a href="/html/e6b20267-ed13-4bda-a96b-c236e1121ebb.htm">UpdateCmd</a>, and <a href="/html/8955944e-d039-4510-9578-3ac100556456.htm">DeleteCmd</a> properties that Visual FoxPro can execute for the appropriate insert, update, or delete operation. If using batch updating, that is CursorAdapter BatchUpdateCount property is greater than 1, UpdateCmd is executed only once per batch.</p>
+            </li><li>
+              <p>The following CursorAdapter properties must be set to "XML": </p>
+              <ul><li>
+                  <p>
+                    <a href="/html/956d3399-c861-4d42-9dfd-1aed3bbc0a8a.htm">InsertCmdDataSourceType</a>
+                  </p>
+                </li><li>
+                  <p>
+                    <a href="/html/9bb8bb8d-ce0e-461b-8a92-2ae42488d981.htm">UpdateCmdDataSourceType</a>
+                  </p>
+                </li><li>
+                  <p>
+                    <a href="/html/11bafbf2-2641-45aa-a255-2da4fff83a74.htm">DeleteCmdDataSourceType</a>
+                  </p>
+                </li></ul>
+              <p>If these properties are not set to "XML", Visual FoxPro executes the command text in the UpdateCmd, InsertCmd, or DeleteCmd properties but does not generate an XML UpdateGram. </p>
+            </li><li>
+              <p>To construct the XML UpdateGram correctly, CursorAdapter requires that the Tables, UpdatableFieldList, and UpdateNameList properties contain valid values. CursorAdapter can generate a multiple table UpdateGram by specifying the tables and fields in the Tables, UpdatableFieldList, and UpdateNameList properties as appropriate. Therefore, you can update a cursor that represents a multi-table join using the XMLUPDATEGRAM( ) function. For more information, see <a href="/html/646e7dbb-d5e9-4017-b8a2-cb3625a818cb.htm">XMLUPDATEGRAM( ) Function</a>.</p>
+            </li><li>
+              <p>CursorAdapter uses the WhereType property to generate the <span class="parameter">before</span> section for the XML UpdateGram. Therefore, when you perform an update or delete operation, the KeyFieldList and UpdatableFieldList properties must contain the appropriate key fields. For more information, see <a href="/html/b2218d7f-575d-4dae-b45c-52ad0e9f6124.htm">WhereType Property</a>.</p>
+            </li><li>
+              <p>If row buffering is enabled, or BatchUpdateCount is 1, Visual FoxPro creates an XML UpdateGram for each update, insert, or delete operation.  </p>
+              <p>If table buffering is enabled, and if using batch updating, that is, BatchUpdateCount is greater than 1, Visual FoxPro creates an XML UpdateGram for the entire batch of changes. In this mode, you must call the TABLEUPDATE( ) function as expected to initiate the update and generation of the XML UpdateGram. </p>
+            </li></ul>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/3cd87ac7-582c-43b9-b1f7-006a9a5c7508.htm">CursorAdapter Class</a></span><br /><span class="linkTerms"><a href="/html/204b3240-c2db-4450-84e3-48bd56ebd6d9.htm">CursorAdapter Object Properties, Methods, and Events</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/7e2c4e3b-06c8-4825-a30f-9be7b1e9e898.htm">Importing and Exporting Data</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Data Access Management Using CursorAdapters">
+</OBJECT>

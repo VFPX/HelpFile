@@ -1,0 +1,126 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Create Instances of Classes with the Class Browser</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Create Instances of Classes with the Class Browser</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can create instances of classes in the Class Browser so you can view instances of those classes. For example, if you create an instance of a form or form class, the form is created and displayed.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>When you create an instance of a class, the code in the <b>Init</b> event and possibly other events runs. Before you create an instance, know what code is associated with your classes. If the class requires a particular environment that has not been set up, Visual FoxPro generates errors. The Class Browser does not provide error handling for user-defined classes.</p>
+    </td></tr></table></div>
+  <h3 class="procedureSubHeading">To create an instance of a class</h3><div class="subSection"><ol><li>
+        
+          <p>Open the class library or form in the <b>Class Browser</b>.</p>
+        
+      </li><li>
+        
+          <p>In the class list of the <b>Class Browser</b>, select the class or form you want to create an instance of.</p>
+        
+      </li><li>
+        
+          <p>Drag the class icon that appears next to the type list in the <b>Class Browser</b> to the main Visual FoxPro window.  </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If you drag a form or form class to the main Visual FoxPro window, the form is created and displayed. If you drag a control to the main Visual FoxPro window, the control is added to the <b>_SCREEN</b> object. For more information, see <span class="linkTerms"><a href="/html/4dfb3855-616a-4ff5-b87e-4a1b8ba3eba4.htm">_SCREEN System Variable</a></span>.</p>
+          </td></tr></table></div>
+        
+      </li></ol></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>To create an instance of the class without displaying it, press and hold the SHIFT key during the drag operation. To suppress error messages when you create instances, press and hold the CTRL key during the drag operation.</p>
+      <p>To call the appropriate <b>NEWOBJECT( )</b> or <b>CREATEOBJECT( )</b> function to instantiate the class, you can drag the class icon to the Command window.</p>
+      <h3 class="procedureSubHeading">To remove an object from the _SCREEN object</h3><div class="subSection"><ul><li>
+            
+              <p>Use the <b>RemoveObject</b> method for <b>_SCREEN</b>.</p>
+            
+          </li></ul></div>
+      <p>For example, suppose you drag the VCR class from Buttons.vcx class in the Visual FoxPro ...\Samples\Classes directory to a form. You can remove the instance of the class from <b>_SCREEN</b> by typing the following line of code in the Command window:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>_SCREEN.RemoveObject("VCR1")</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/afc75739-4829-4b5d-ae1b-99e28c909b1a.htm">How to: Customize the Class Browser</a></span><br /><span class="linkTerms"><a href="/html/60a1f38d-aaee-439b-b57d-acec3c796030.htm">How to: View Class Hierarchies</a></span><br /><span class="linkTerms"><a href="/html/be797e96-7fe7-4ada-b422-3159dafb4e7b.htm">How to: View Type Library Information</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/50e1827a-77c5-4206-b8aa-ffe83ac7de1f.htm">Class Browser Buttons</a></span><br /><span class="linkTerms"><a href="/html/5bfd4f8d-0324-4a75-904c-330eea767a3d.htm">Class Browser Window</a></span><br /><span class="linkTerms"><a href="/html/34aa17df-5cfa-4a39-865f-0ccb7879391a.htm">SaveAs Method (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/787ef365-e82d-4a4c-b1aa-2f15b6d553c1.htm">SaveAsClass Method</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/122bfedb-7376-43f3-b16e-8696d9300ea6.htm">Operating the Class Browser</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Create Instances of Classes with the Class Browser">
+</OBJECT>

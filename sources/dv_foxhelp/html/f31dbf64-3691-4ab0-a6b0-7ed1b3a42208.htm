@@ -1,0 +1,252 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>DELETE - SQL Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">DELETE - SQL Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Marks records for deletion. </p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>Records marked for deletion are not physically removed from the table until the <b>PACK</b> command is issued. You can recall (unmark) records for deletion by using the <b>RECALL</b> command. For more information, see <span class="linkTerms"><a href="/html/acbd9f3d-a745-4914-bdd8-b613dcd94bee.htm">PACK Command</a></span> and <span class="linkTerms"><a href="/html/e4f80973-79dc-4fd7-b716-805050b9c752.htm">RECALL Command</a></span>.</p>
+    </td></tr></table></div>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+DELETE [<span class="parameter">Target</span>] FROM [FORCE] <span class="parameter">Table_List</span> [[, <span class="parameter">Table_List</span> ...] | [JOIN [ <span class="parameter">Table_List</span>]]]
+   [WHERE <span class="parameter">FilterCondition1</span> [AND | OR <span class="parameter">FilterCondition2</span> ...]]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">DELETE [<span class="parameter">Target</span>] </span></dt><dd>
+          <p>Specifies a target table, cursor, table or cursor alias, or file for the delete operation. If the <b>FROM</b> specifies more than one table, you must include the <span class="parameter">Target</span> parameter. <span class="parameter">Target</span> can have the following syntaxes:</p>
+          <ul><li>
+              <p>[<span class="parameter">DatabaseName</span>!]<span class="parameter">TableName</span></p>
+              <p>
+                <span class="parameter">DatabaseName</span>! specifies the name of a database containing the table if the table is in a noncurrent database. If the table is in a noncurrent database, you must include the name of the database. Use an exclamation point (!) as a delimiter immediately following the database name and preceding the table name.  </p>
+              <p>
+                <span class="parameter">TableName</span> specifies the name of a table for the delete operation. </p>
+            </li><li>
+              <p>
+                <span class="parameter">Alias</span>
+              </p>
+              <p>
+                <span class="parameter">Alias</span> specifies an alias that matches a table in the <b>FROM</b> clause or a cursor in the current data session for the delete operation. </p>
+            </li><li>
+              <p>
+                <span class="parameter">FileName</span>
+              </p>
+              <p>
+                <span class="parameter">FileName</span> specifies the name of a file for the delete operation.  </p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FROM [FORCE] <span class="parameter">Table_List</span>[[, <span class="parameter">Table_List</span>...] | [JOIN [<span class="parameter">Table_List</span>]]] </span></dt><dd>
+          <p>Specifies one or more tables containing the data for the delete operation. </p>
+          <p>The <b>FROM</b> clause has the same syntax as in the SQL <b>SELECT</b> command except for the following restrictions:   </p>
+          <ul><li>
+              <p>The target table or cursor cannot be included in an <b>OUTER</b> join as a secondary table or cursor. </p>
+            </li><li>
+              <p>It should be possible to evaluate all other <b>JOIN</b> operations before performing a <b>JOIN</b> operation on the target table. </p>
+            </li><li>
+              <p>The target cursor cannot be the result from a subquery. </p>
+            </li></ul>
+          <p>For more information, see <span class="linkTerms"><a href="/html/815f7265-4dfd-40b9-8f19-0673b5a48847.htm">SELECT - SQL Command</a></span>.   </p>
+          <p>
+            <b>FORCE</b> specifies that the tables in <span class="parameter">Table_List</span> are joined in the order they appear in the <b>FROM</b> clause.    </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>If <b>FORCE</b> is omitted, Visual FoxPro attempts to optimize the delete operation. However, the delete operation might be executed faster by including the <b>FORCE</b> keyword to disable Visual FoxPro delete optimization.</p>
+          </td></tr></table></div>
+          <p>
+            <span class="parameter">Table_List</span> can have the following syntaxes:   </p>
+          <ul><li>
+              <p>[<span class="parameter">DatabaseName</span>!]<span class="parameter">Table</span> [[AS] <span class="parameter">Local_Alias</span>]  </p>
+              <p>
+                <span class="parameter">DatabaseName</span>! specifies the name of a database containing the table if the table is in a noncurrent database. If the table is in a noncurrent database, you must include the name of database. Use an exclamation point (!) as a delimiter immediately following the database name and preceding the table name.   </p>
+              <p>
+                <span class="parameter">Table</span> specifies the name of the table or cursor you want to retrieve data from. If no table is open, Visual FoxPro displays the Open dialog box so you can specify the file location. After the table opens, it remains open when the query is complete.   </p>
+              <p>
+                <span class="parameter">Local_Alias</span> specifies a temporary name for the table specified in <span class="parameter">Table</span>. If you specify a local alias, you must use the local alias instead of the table name throughout the <b>DELETE</b> statement. The alias can represent a table or a cursor.   </p>
+              <p>JOIN provides the capability for specifying one or more secondary tables. There is no hard-coded limit on the number of tables, aliases, or <b>JOIN</b> clauses per <b>DELETE</b> statement. </p>
+            </li><li>
+              <p>(<span class="parameter">Subquery</span>) AS <span class="parameter">Subquery_Alias</span></p>
+              <p>
+                <span class="parameter">Subquery</span> specifies a <b>SELECT</b> statement within another <b>SELECT</b> statement. For more information about subqueries in <b>SELECT</b> statements, see <span class="linkTerms"><a href="/html/4c5507da-5215-4dbe-94d0-3a8e67e17a54.htm">SELECT - SQL Command - FROM Clause</a></span>. </p>
+            </li></ul>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WHERE <span class="parameter">FilterCondition1</span> [AND | OR <span class="parameter">FilterCondition2</span>...] </span></dt><dd>
+          <p>Specifies one or more filter conditions that records must meet to be deleted. There is no limit to the number of filter conditions in the <b>WHERE</b> clause. </p>
+          <p>To reverse the value of a logical expression, use the <b>NOT</b> operator. To check for an empty field, use the <b>EMPTY( )</b> function. For more information, see <span class="linkTerms"><a href="/html/714bd634-6f29-4024-856b-7b669f0a4350.htm">EMPTY( ) Function</a></span>. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>If the <b>SET DELETED</b> command is set to <b>ON</b>, records marked for deletion are ignored by all commands that include a scope. For more information, see <span class="linkTerms"><a href="/html/456fe115-d38a-4e98-b040-4a00308d9e5a.htm">SET DELETED Command</a></span>.</p>
+      <p>To determine the number of records updated, check the value of the <b>_TALLY</b> system variable immediately after executing the SQL <b>DELETE</b> command. For more information, see <span class="linkTerms"><a href="/html/81e37e7a-1e31-4e4e-9ec8-c77593f1499e.htm">_TALLY System Variable</a></span>.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>When marking multiple records for deletion in a table opened for shared access, SQL <b>DELETE</b> uses record locking, unlike the <b>DELETE</b> command. This reduces record contention in multiuser situations but might reduce performance. For maximum performance, open the table for exclusive use or use the <b>FLOCK( )</b> function to lock the table. For more information, see <span class="linkTerms"><a href="/html/9c5000b8-3c35-4690-b7b8-07299f84b794.htm">DELETE Command</a></span> and <span class="linkTerms"><a href="/html/76c905e2-77c6-4c45-8f9b-bad3c021c590.htm">FLOCK( ) Function</a></span>.</p>
+      </td></tr></table></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle0)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle0)" tabindex="0"><img id="sectionToggle0" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example 1</span></h1><div id="sectionSection0" class="section" name="collapseableSection" style="display: none;">
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <div class="subSection" xmlns="">
+          <p>The following example uses the <b>OPEN DATABASE</b> command to open the Visual FoxPro sample database, TestData.dbc. The <b>USE</b> command opens the Customer table in TestData.dbc. The SQL <b>DELETE</b> statement marks those records for deletion where the Country field contains "USA". The <b>CLEAR</b> command erases the main Visual FoxPro window. The <b>LIST</b> command lists all records marked for deletion. Following the <b>LIST</b> command, if the <b>PACK</b> command was called, the marked records would be deleted. </p>
+          <p>The <b>RECALL ALL</b> command unmarks all the records marked for deletion. The <b>COUNT</b> command verifies the number of records marked for deletion by counting them. <b>WAIT WINDOW</b> displays that number of records that were marked for deletion.</p>
+        </div>
+      <div class="subSection" xmlns="">
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES
+CLEAR
+OPEN DATABASE HOME(2)+"Data\TestData"
+USE Customer 
+DELETE FROM Customer WHERE country = "USA"  
+CLEAR
+LIST FIELDS company, country FOR DELETED( )  
+WAIT WINDOW "Records currently marked for deletion"+CHR(13) + ;
+   "Press any key to revert..."
+RECALL ALL
+CLEAR
+COUNT FOR DELETED( )=.T. TO nDeleted
+WAIT WINDOW ALLTRIM(STR(nDeleted)) + " records marked for deletion."</pre></td></tr></table></span></div>
+        </div>
+      <div class="subSection" xmlns="">
+          <p>For more information, see <span class="linkTerms"><a href="/html/167e24f6-0e6f-4cc1-a1a9-dffc9491d85a.htm">OPEN DATABASE Command</a></span>, <span class="linkTerms"><a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a></span>, <span class="linkTerms"><a href="/html/13d21965-8877-4f61-a6bd-ee17f3230d45.htm">LIST Commands</a></span>, <span class="linkTerms"><a href="/html/b89737d7-7dac-455e-9088-fa0ec6c93b98.htm">CLEAR Commands</a></span>, <span class="linkTerms"><a href="/html/f945ce5c-ffd1-4fc2-af1c-f45df2f501e7.htm">COUNT Command</a></span>, and <span class="linkTerms"><a href="/html/9eae98a4-b3da-4bfa-9fa6-962c1019857b.htm">WAIT Command</a></span>.</p>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1)" tabindex="0"><img id="sectionToggle1" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example 2</span></h1><div id="sectionSection1" class="section" name="collapseableSection" style="display: none;">
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <div class="subSection" xmlns="">
+          <p>The following code shows a correlated delete in which records in a MyProducts cursor are marked for deletion based on the value of the Discontinued Field in the MSRPList cursor. The WHERE clause specifies the criteria for matching records and the condition evaluated for marking the records.</p>
+        </div>
+      <div class="subSection" xmlns="">
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLOSE DATABASES ALL 
+CREATE CURSOR MyProducts (ProdID I , OurPrice Y NULL) 
+INSERT INTO MyProducts VALUES (1,1.10) &amp;&amp; matches but is not marked for deletion
+INSERT INTO MyProducts VALUES (2,2.20) &amp;&amp; matches and is marked
+INSERT INTO MyProducts VALUES (3,3.30) &amp;&amp; matches and is marked
+CREATE CURSOR MSRPList (ProdID I , ProdCategory I Null, MSRP Y, Discontinued L) 
+INSERT INTO MSRPList VALUES (1, 9, 1.00, .f.) 
+INSERT INTO MSRPList VALUES (2, 8, 2.00, .t.) 
+INSERT INTO MSRPList VALUES (3, 7, 3.00, .t.) 
+<b>DELETE  MyProducts FROM MSRPList ;</b>
+<b>   WHERE MSRPList.ProdID = MyProducts.ProdID;</b>
+<b>      AND MSRPList.discontinued = .t.</b>
+SELECT MyProducts 
+BROWSE</pre></td></tr></table></span></div>
+        </div>
+      <div class="subSection" xmlns="">
+          <p>For more information and another example, see <span class="linkTerms"><a href="/html/6c75fbec-8d4a-4809-a521-c54802e59ea5.htm">SQL Language Improvements</a></span>.</p>
+        </div>
+    </sections></div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/f9d15b20-eb9d-4c37-8d4a-d9d02c01eb56.htm">INSERT - SQL Command</a></span><br /><span class="linkTerms"><a href="/html/56137e46-cad2-4473-8e8e-367d2ca63334.htm">UPDATE - SQL Command</a></span><br /><span class="linkTerms"><a href="/html/17c2b362-8646-41fc-a66d-6c80cf201b0d.htm">SQL Commands and Functions</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="DELETE - SQL Command">
+<param name="ALink Name" value="DELETE - SQL">
+<param name="ALink Name" value="DELETE">
+</OBJECT>

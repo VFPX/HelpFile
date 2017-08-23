@@ -1,0 +1,131 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Design Considerations</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Design Considerations</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Some of the design decisions you make impact how you create parts of the application. Some of the considerations you need to take into account include:
+</p>
+    <ul><li>
+        <p>Central or common tasks users perform.</p>
+      </li><li>
+        <p>Size of the data set needed.</p>
+      </li><li>
+        <p>Single or multiple users.</p>
+      </li><li>
+        <p>People that the application users include.</p>
+      </li><li>
+        <p>Local or remote data.</p>
+      </li></ul>
+  <h1 class="heading">Common User Activities</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>Even if your end users are working with customers, orders, and parts, how they are working with this information will determine how your application should deal with the data. An order entry form might be necessary for some applications, but would not be a good tool for managing inventory or tracking sales, for example.</p>
+    </div><h1 class="heading">Database Size</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>If you are working with large sets of data, you need to consider performance issues. You might want to change the way users navigate data. For example, if you have a small number of records in a table, you can let users navigate records in the table one record at a time. However, if you have a large number of records, consider providing other ways for users to access the data, for example, using lists, dialog boxes, filters, custom queries, and so on. For more information, see <a href="/html/3f3c7751-db8b-43ad-9da6-7daa3f8eb8b5.htm">Optimizing Applications</a>, <a href="/html/b9032965-6941-41d2-8ff9-87c609673907.htm">Using Controls</a>, and <a href="/html/9d16b2e3-b104-4242-8a7a-dac3f02dfc13.htm">Displaying Data in Views</a>.</p>
+    </div><h1 class="heading">Single User vs. Multiple Users</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>It's a good idea to create your application with the assumption that multiple users will be accessing the database at the same time. Visual FoxPro makes it easy to program for shared access. <a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a> describes techniques for allowing multiple users to simultaneously access your database.</p>
+    </div><h1 class="heading">International Considerations</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>If you know your application will be used only in a single-language environment, you don't have to worry about internationalization. If, on the other hand, you want to expand your market, or if your users could be dealing with international data or environment settings, you'll want to take these factors into account as you create the application. <a href="/html/e3423e23-033c-40b4-971c-75640ab17ec7.htm">Developing International Applications</a> discusses the issues you'll need to deal with as you develop applications for international use.</p>
+    </div><h1 class="heading">Local vs. Remote Data</h1><div id="sectionSection4" class="seeAlsoNoToggleSection">
+      <p>If your application deals with remote data, you'll manage it differently than you would manage native Visual FoxPro data. <a href="/html/b50aba8f-aeef-42e3-b10a-3dff09aca6b7.htm">How to: Create Views</a> explains how to create views to local or remote data.</p>
+    </div><h1 class="heading">Backing up Your Source Code</h1><div id="sectionSection5" class="seeAlsoNoToggleSection">
+      <p>In all application development, it's a good practice to make complete backup copies of your original program files before you build an application. Store the backup copies separately from your compiled applications.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Be sure to maintain separate copies of your original source programs for future use. You cannot re-create your source programs from their compiled code.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/8a08ff03-6dd2-4ff6-b2fe-a76586fb81f5.htm">Application Planning</a></span><br /><span class="linkTerms"><a href="/html/e3423e23-033c-40b4-971c-75640ab17ec7.htm">Developing International Applications</a></span><br /><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><span class="linkTerms"><a href="/html/3f3c7751-db8b-43ad-9da6-7daa3f8eb8b5.htm">Optimizing Applications</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Design Considerations">
+</OBJECT>

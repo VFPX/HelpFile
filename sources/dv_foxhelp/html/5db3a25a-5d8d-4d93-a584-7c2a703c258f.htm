@@ -1,0 +1,138 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Specify the Configuration File</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Specify the Configuration File</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>When Visual FoxPro starts, you can specify a configuration file or bypass all configuration files, allowing Visual FoxPro to use its default settings.</p>
+    <p>When Visual FoxPro loads a configuration file, the settings in that file take precedence over corresponding default settings made in the Options dialog box.</p>
+  <h3 class="procedureSubHeading">To specify a configuration file</h3><div class="subSection"><ul><li>
+        
+          <p>In the command line that starts Visual FoxPro, specify the -C switch and the name of the configuration file that you want to use (including a path if necessary). Do not put a space between the switch and the file name. </p>
+          <p>-or- </p>
+        
+      </li><li>
+        
+          <p>In Windows, double-click the name of the configuration file to use. Visual FoxPro will start using the configuration file you have selected.</p>
+        
+      </li></ul></div><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>If you want to avoid using any configuration file, including the default file Config.fpw, you can suppress all configuration files. This causes Visual FoxPro to use only the default settings established in the Options dialog box.</p>
+      <h3 class="procedureSubHeading">To suppress a configuration file</h3><div class="subSection"><ul><li>
+            
+              <p>In the command line that starts Visual FoxPro, add the -C switch with nothing after it. </p>
+              <p>For example, to avoid any configuration file found in the startup directory or the system path, use this command line:  </p>
+              <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>VFP<i>VersionNumber</i>.exe -C</pre></td></tr></table></span></div>
+            
+          </li></ul></div>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Specifying an External Configuration File</h3><div class="subSection" xmlns="">
+          <p>You can use an external configuration file in addition to an internal configuration file in circumstances where you need to configure settings separately. For example, setting <code>SCREEN=OFF</code> should be performed in an internal configuration file.</p>
+          <p>You can set Visual FoxPro to read an external configuration file following an internal configuration file by using the new <b>ALLOWEXTERNAL</b> directive in the internal configuration file. When you include the setting <code>ALLOWEXTERNAL=ON</code> in the internal configuration file, Visual FoxPro searches for an external configuration file, usually Config.fpw, and reads its settings. You can also specify a different configuration file using the <code>-C</code> command-line switch when starting Visual FoxPro.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>For .exe and .dll file servers, Visual FoxPro supports only those configuration files bound inside the server. Therefore, Visual FoxPro disregards the <b>ALLOWEXTERNAL</b> setting.</p>
+          </td></tr></table></div>
+          <h3 class="procedureSubHeading">To read an external configuration file after an internal one</h3><div class="subSection"><ol><li>
+                
+                  <p>In the internal configuration file, set the special term ALLOWEXTERNAL to on. </p>
+                  <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>ALLOWEXTERNAL = ON</pre></td></tr></table></span></div>
+                
+              </li><li>
+                
+                  <p>When you start your program, either specify a second configuration file using the <code>-C</code> command-line switch or have a second configuration file in the default program path. </p>
+                
+              </li></ol></div>
+          <p>For more information about command-line switches, see <span class="linkTerms"><a href="/html/61e54e58-1044-4d73-ad0d-2f9e89814d67.htm">How to: Use Command-Line Options When Starting Visual FoxPro</a></span>.</p>
+          <p>The settings in an external configuration file take precedence over those in the internal configuration file, if duplicate settings exist, because the external configuration file is read after the internal file. Visual FoxPro does not begin initialization until it reads both files.</p>
+          <p>If you want to specify the configuration file as read-only, place the file in your project and mark it as Included. If you want to specify that the file can be modified, place the file in your project and mark it as Excluded. You can then distribute the file separately with your application or executable file. By convention, configuration files use the .fpw extension.</p>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/61e54e58-1044-4d73-ad0d-2f9e89814d67.htm">How to: Use Command-Line Options When Starting Visual FoxPro</a></span><br /><span class="linkTerms"><a href="/html/f500549c-df62-4297-9b54-8b5098ceba8b.htm">How to: Add Setup Code to a Menu System</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/2b188ebb-ac7c-4516-981e-4b3e844132c7.htm">_STARTUP System Variable</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/e4da0efc-19ca-4eb4-a1b7-c5f7d60a4d9c.htm">Setting Configuration Options at Startup</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/842d4132-cdb3-4c0f-a25f-405322751018.htm">Compiling an Application</a></span><br /><span class="linkTerms"><a href="/html/21eaee88-6fbe-452b-839d-aa519d16892c.htm">Designing Menus and Toolbars</a></span><br /><span class="linkTerms"><a href="/html/3c7d86e4-7ef2-471a-b53c-315f83186534.htm">Visual FoxPro Environment Settings</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Specify the Configuration File">
+</OBJECT>

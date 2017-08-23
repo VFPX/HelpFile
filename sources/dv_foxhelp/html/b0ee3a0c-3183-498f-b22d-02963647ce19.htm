@@ -1,0 +1,144 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Create Validation Rules for Views</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Create Validation Rules for Views</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can create local versions of field and record validation rules for views. Creating local validation rules provide the following benefits:  </p>
+    <ul><li>
+        <p>Reduce response time.</p>
+      </li><li>
+        <p>Reduce impact on network resources.</p>
+      </li><li>
+        <p>Test data before sending it to the remote data source.</p>
+      </li><li>
+        <p>Prevent sending faulty data to the remote data source.</p>
+      </li></ul>
+    <p>However, Visual FoxPro does not compare the validation rules that you create locally with the validation rules in the remote data source. Therefore, you must create rules that are appropriate and compliant with the remote data source. If remote data source rules change, the local validation rules must match.</p>
+    <p>For more information, see <span class="linkTerms"><a href="/html/df7e047b-24bc-4dd9-a327-6c2ee6640d9c.htm">Working with Validation Rules</a></span>.</p>
+  <h3 class="procedureSubHeading">To create a field or record validation rule for views</h3><div class="subSection"><ol><li>
+        
+          <p>Open the view in the <b>View Designer</b>, and click the <b>Fields</b> tab.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Selected Fields</b> list, click a field, and click <b>Properties</b>.</p>
+        
+      </li><li>
+        
+          <p>In the <b>Rule</b> box from the <b>Field validation</b> area, type the validation expression you want. To build an expression, click the <b>ellipsis</b> (...) button.</p>
+        
+      </li><li>
+        
+          <p>To display a custom error message, in the <b>Message</b> box, type the custom error message or expression you want to display for invalid values. To build an expression, click the <b>ellipsis</b> (...) button. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Make sure to enclose message text in quotation marks ("").</p>
+          </td></tr></table></div>
+        
+      </li></ol></div><h3 class="procedureSubHeading">To create a field or record validation rule for views programmatically</h3><div class="subSection"><ul><li>
+        
+          <p>Use the <b>DBSETPROP( )</b> function to set the RuleExpression and RuleText field or record properties for views.</p>
+        
+      </li></ul>
+      
+        <p>For more information, see <span class="linkTerms"><a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( ) Function</a></span>.</p>
+        <p>For example, the following code creates a field-level rule on <code>orditems_view</code> that prevents entering a quantity of less than 1:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE testdata
+USE VIEW orditems_view
+DBSETPROP('Orditems_view.quantity','Field', ;
+         'RuleExpression', 'quantity &gt;= 1')
+DBSETPROP('Orditems_view.quantity','Field', ;
+         'RuleText', ;
+'"Quantities must be greater than or equal to 1"')</pre></td></tr></table></span></div>
+      
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/785acda9-c0ec-4fea-800d-9b63d778fa2c.htm">How to: Edit Views</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/04008d6d-1ffd-4555-bf6a-1c50f39b418f.htm">Managing Views</a></span><br /><span class="linkTerms"><a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Create Validation Rules for Views">
+</OBJECT>

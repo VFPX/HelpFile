@@ -1,0 +1,133 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Update a Table in a View</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Update a Table in a View</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can use local or remote views to update the base tables in the remote data source. In the <span class="linkTerms"><a href="/html/6c9c3a56-c339-440d-b60b-43f0fb7da50b.htm">Update Criteria Tab, View Designer</a></span>, the Update Criteria tab allows you to control how the changes you make to remote data (updates, deletes, and inserts) are sent back to the remote data source. You can also enable and disable updating for specific fields in the tables and set the SQL update method appropriate to your server.</p>
+    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+      <p>The local base tables that open automatically when you use a view are not automatically closed when you close a view; you must explicitly close them. This is consistent with the SQL <b>SELECT</b> command. </p>
+    </td></tr></table></div>
+  <h1 class="heading">Making a Table Updatable</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>If you want to have the changes you make to the local version of a table sent back to the source table, you need to set the Send SQL Updates option. You must set at least one key field to use this option. If the table you select has a primary key field defined and you have selected it in the Fields tab, the View Designer automatically uses the primary key field for the table as a key field for the view.</p>
+      <h3 class="procedureSubHeading">To enable updating of source tables</h3><div class="subSection"><ul><li>
+            
+              <p>In the <b>Update Criteria</b> tab, set the <b>Send SQL updates</b> option.</p>
+            
+          </li></ul></div>
+    </div><h1 class="heading">Setting Key Fields</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>When you first open a table in the View Designer, the Update Criteria tab shows which fields in the table are defined as key fields. Visual FoxPro uses key fields to uniquely identify the update records in remote tables that you have modified locally.</p>
+      <h3 class="procedureSubHeading">To set a key field</h3><div class="subSection"><ul><li>
+            
+              <p>In the <b>Update Criteria</b> tab, click the key column next to the name of the field.</p>
+            
+          </li></ul></div>
+      <p>If you have changed the key fields and want to restore them to the original setting in the source table, choose Reset Key. Visual FoxPro will check the remote tables and use the key fields from those tables.</p>
+    </div><h1 class="heading">Updating Specific Fields</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>You can specify that only certain fields in any given table are updatable. You must have a key field defined for a table in order to make any fields in that table updatable. If fields are not marked as updatable, users can make changes to the field in a form or Browse window, but these changes are not sent to the remote table.</p>
+      <h3 class="procedureSubHeading">To make a field updatable</h3><div class="subSection"><ul><li>
+            
+              <p>In the <b>Update Criteria </b>tab, click the updatable ("pencil") column next to the name of the field.</p>
+            
+          </li></ul></div>
+    </div><h1 class="heading">Updating All Fields</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>If you want to be able to make changes to all the fields in a table, you can set all the fields in a table as updatable.</p>
+      <h3 class="procedureSubHeading">To make all fields updatable</h3><div class="subSection"><ul><li>
+            
+              <p>In the <b>Update Criteria</b> tab, choose <b>Update All</b>. </p>
+              <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+                <p>You must have a key field defined in a table in order to use Update All. Update All does not affect key fields.</p>
+              </td></tr></table></div>
+            
+          </li></ul></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/bb470e80-7893-4ca8-91bf-613c5f3eabb6.htm">How to: Update Data in a View</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/6c9c3a56-c339-440d-b60b-43f0fb7da50b.htm">Update Criteria Tab, View Designer</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/ec63ea6a-e6c9-48d9-b7a1-c76a7fcd1857.htm">Updating Data in Views</a></span><br /><span class="linkTerms"><a href="/html/04008d6d-1ffd-4555-bf6a-1c50f39b418f.htm">Managing Views</a></span><br /><span class="linkTerms"><a href="/html/d5335001-400d-4bd8-8e01-172b75f8f979.htm">Working with Views (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Update a Table in a View">
+</OBJECT>

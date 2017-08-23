@@ -1,0 +1,352 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Report Protection Flags</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Report Protection Flags</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Visual FoxPro 9.0 introduces a new keyword to the <b>MODIFY REPORT | LABEL</b> command: <b>PROTECTED</b>. When a report or label layout is opened in protected mode, various capabilities of the designer are disabled or restricted depending on the protection settings set by the developer.</p>
+    <p>There are two types of protection settings: Those that apply to the entire report layout; and those that apply to specific report elements (a control or band).</p>
+    <p>In Visual FoxPro 9.0, you adjust protection settings for a layout in the user interface provided by the default Report Builder application. The native dialog boxes of the Report Designer do not expose a way to edit protection flags.</p>
+  <h1 class="heading">Protection Flags</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Types of Protection flags</h3><div class="subSection" xmlns="">
+          <p>The following constants are defined in the file foxpro_reporting.h, located in the ..\FFC\ directory.</p>
+          <p>Note that these constant values represent the <i>bit position</i> of each flag, not the actual integer value of the flag.</p>
+        <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <h4 class="subHeading" xmlns="">Protection flags for report controls</h4><div class="subSection" xmlns="">
+              <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                    <th>
+                      
+                        <b>Constant in foxpro_reporting.h</b>
+                      
+                    </th>
+                    <th>
+                      
+                        <b>Value</b>
+                      
+                    </th>
+                    <th>
+                      
+                        <b>Description</b>
+                      
+                    </th>
+                  </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_OBJECT_LOCK</p>
+                  </td>
+                  <td>
+                    <p>0</p>
+                  </td>
+                  <td>
+                    <p>A report control with this flag set can not be moved (relative to its band) or resized using the mouse or keyboard. It can be selected, double-clicked, and edited through the native Report Designer dialog boxes. Resizing a band above the one in which the object is located will still result in the object being moved relative to the top of the report, as expected.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_OBJECT_HIDE</p>
+                  </td>
+                  <td>
+                    <p>1</p>
+                  </td>
+                  <td>
+                    <p>A report control with this flag set is not visible in the designer.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_OBJECT_NO_DELETE</p>
+                  </td>
+                  <td>
+                    <p>2</p>
+                  </td>
+                  <td>
+                    <p>A report control with this flag set may not be deleted or cut. You can select it, copy it to the edit clipboard with Ctrl-C, and paste a new control into the report layout. </p>
+                    <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Important </th></tr><tr><td>
+                      <p>With no report builder active, the protection flags will be retained along with the other report control attributes. This means that you will not be able to remove the newly pasted report control. For this reason, the default report builder, ReportBuilder.App, automatically removes protection flags from the newly created report control during the paste operation. This behavior is implemented in the PasteUnprotectFilter class, registered by default in the Report Builder's handler table. See <span class="linkTerms"><a href="/html/91d5dbf6-5294-468e-8ed6-b195d62603e5.htm">Report Builder Event Handler Registry Table</a></span> for more information.</p>
+                    </td></tr></table></div>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_OBJECT_NO_EDIT</p>
+                  </td>
+                  <td>
+                    <p>3</p>
+                  </td>
+                  <td>
+                    <p>For report controls with this flag set, double-clicking has no effect, and you can not display the object's context menu with a right-click. Basically there is no access to the object's Properties dialog.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_OBJECT_NO_SELECT</p>
+                  </td>
+                  <td>
+                    <p>6</p>
+                  </td>
+                  <td>
+                    <p>A report control with this flag set may not be selected with the mouse or TAB key. The resize handles do not appear. This flag implicitly has the same effect as OBJECT_NO_EDIT + OBJECT_LOCK.</p>
+                  </td>
+                </tr></table></div>
+              <p>Generally speaking, for most practical purposes:</p>
+              <ul><li>
+                  <p>NO_SELECT protection effectively includes the behavior of LOCK + NO_EDIT + NO_DELETE protection, even if those flags are not explicitly set.</p>
+                </li><li>
+                  <p>HIDDEN protection effectively includes the behavior of LOCK + NO_EDIT + NO_DELETE + NO_SELECT protection, even if those flags are not explicitly set.</p>
+                </li></ul>
+            </div>
+          <h4 class="subHeading" xmlns="">Protection flags for report bands</h4><div class="subSection" xmlns="">
+              <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                    <th>
+                      
+                        <b>Constant in foxpro_reporting.h</b>
+                      
+                    </th>
+                    <th>
+                      
+                        <b>Value</b>
+                      
+                    </th>
+                    <th>
+                      
+                        <b>Description</b>
+                      
+                    </th>
+                  </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_BAND_NO_EDIT</p>
+                  </td>
+                  <td>
+                    <p>4</p>
+                  </td>
+                  <td>
+                    <p>The <b>Band Properties</b> dialog box is not available. Double-clicking on the band has no effect.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_BAND_NO_RESIZE</p>
+                  </td>
+                  <td>
+                    <p>14</p>
+                  </td>
+                  <td>
+                    <p>The vertical size of the band is locked. The band cannot be resized in the designer.</p>
+                  </td>
+                </tr></table></div>
+            </div>
+          <h4 class="subHeading" xmlns="">Protection flags for report controls</h4><div class="subSection" xmlns="">
+              <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                    <th>
+                      
+                        <b>Constant in foxpro_reporting.h</b>
+                      
+                    </th>
+                    <th>
+                      
+                        <b>Value</b>
+                      
+                    </th>
+                    <th>
+                      
+                        <b>Description</b>
+                      
+                    </th>
+                  </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_REPORT_NO_PREVIEW</p>
+                  </td>
+                  <td>
+                    <p>7</p>
+                  </td>
+                  <td>
+                    <p>Report layout may not be previewed.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_REPORT_NO_OPTBAND</p>
+                  </td>
+                  <td>
+                    <p>8</p>
+                  </td>
+                  <td>
+                    <p>
+                      <b>Optional Bands</b> dialog box is not available.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_REPORT_NO_GROUP</p>
+                  </td>
+                  <td>
+                    <p>9</p>
+                  </td>
+                  <td>
+                    <p>
+                      <b>Data Grouping</b> dialog box is not available.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_REPORT_NO_VARIABLES</p>
+                  </td>
+                  <td>
+                    <p>10</p>
+                  </td>
+                  <td>
+                    <p>
+                      <b>Report Variables</b> dialog box is not available.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_REPORT_NO_PAGESETUP</p>
+                  </td>
+                  <td>
+                    <p>11</p>
+                  </td>
+                  <td>
+                    <p>
+                      <b>Page Setup</b> dialog box is not available.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_REPORT_NO_DATAENV</p>
+                  </td>
+                  <td>
+                    <p>13</p>
+                  </td>
+                  <td>
+                    <p>The Data Environment of the layout can not be modified.</p>
+                  </td>
+                </tr><tr>
+                  <td>
+                    <p>FRX_PROTECT_REPORT_NO_PRINT</p>
+                  </td>
+                  <td>
+                    <p>15</p>
+                  </td>
+                  <td>
+                    <p>The report can not be printed from within the designer. The <b>Run Report</b> and <b>Print…</b> options of the menu are disabled. </p>
+                  </td>
+                </tr></table></div>
+            </div>
+        </sections></div>
+      <h3 class="subHeading" xmlns="">How Protection Flags are stored with the layout</h3><div class="subSection" xmlns="">
+          <p>Protection flags are stored in the ORDER memo field of the FRX structure, in the header record and separately in each control and band record.</p>
+          <p>If you are not using the default report builder, you can adjust the flags by opening the .frx or .lbx file and replacing the value stored in the ORDER field with an alternative value determined by the following method:</p>
+          <p>Protection flag values are summed and stored as binary character data in the ORDER field. For example: FRX_PROTECT_OBJECT_LOCK + FRX_PROTECT_OBJECT_NO_DELETE + FRX_PROTECT_NO_EDIT = 2^0 + 2^2 + 2^3 = 1+4+8 = 13. Therefore, the ORDER field will contain CHR(13).</p>
+          <p>The FRX Cursor foundation class includes a couple of methods that are useful in extracting and replacing protection flags, as shown in the example below.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Example</h3><div class="subSection" xmlns="">
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#INCLUDE foxpro_reporting.h
+LOCAL oFrxHelper, cReport, iFlags
+* Create the helper object:
+oFrxHelper = NEWOBJECT( "frxCursor", HOME()+ "\FFC\_frxcursor.vcx")
+* Select a report file:
+cReport = GETFILE("FRX")
+* Open a report layout as a table:
+USE (m.cReport) ALIAS frx
+* Go to the report header record:
+LOCATE FOR frx.objtype = FRX_OBJTYP_REPORTHEADER and ;
+           frx.objcode = FRX_OBJCOD_REPORTHEADER and ;
+           frx.platform = FRX_PLATFORM_WINDOWS
+* Extract the current protection setting:
+iFlags = oFrxHelper.BinStringToInt( frx.ORDER )
+* Prevent access to the Report Variables dialog box:
+iFlags = BITSET( iFlags, FRX_PROTECT_REPORT_NO_VARIABLES )
+* Save back to the frx record:
+REPLACE frx.order WITH oFrxHelper.IntToBinString( iFlags )
+USE IN frx
+* Edit the report in protected mode:
+MODIFY REPORT FORM (cReport) PROTECTED</pre></td></tr></table></span></div>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5bd65ee4-c279-487d-8b31-03f081dd9844.htm">FRX Cursor Foundation Class</a></span><br /><span class="linkTerms"><a href="/html/71d2d098-c1b7-4768-9399-ad9266621262.htm">Protection Tab, Report Properties Dialog Box (Report Builder)</a></span><br /><span class="linkTerms"><a href="/html/49e7cbc4-7906-4c8f-84be-789791565cd6.htm">Protection Tab, Report Band Properties Dialog Box (Report Builder)</a></span><br /><span class="linkTerms"><a href="/html/4e957609-4394-4e64-9928-13b77ca18fed.htm">Protection Tab, Report Control Properties Dialog Box (Report Builder)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Report Protection Flags">
+</OBJECT>

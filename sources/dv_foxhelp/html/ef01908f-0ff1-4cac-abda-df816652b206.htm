@@ -1,0 +1,140 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Print in Catalog Format Sample</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Print in Catalog Format Sample</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>File:</b> ...\Samples\Solution\Reports\Wrapping.frx</p>
+    <p>The sample report, Wrapping.frx, prints an employee directory and shows how you can wrap text around graphics, alternate the print position of controls, and float controls below fields that stretch. The data environment for this report contains the EMPLOYEE table from the Testdata.dbc in the Solution project.</p>
+  <h1 class="heading">The Report Layout</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The Title band holds the name and description of the report. The Detail band holds the field and label controls that print for each record. For each record the report displays the following four categories of information:
+</p>
+      <ul><li>
+          <p>Employee name and title</p>
+        </li><li>
+          <p>Biography</p>
+        </li><li>
+          <p>Box of quick reference information such as phone and address</p>
+        </li><li>
+          <p>Photograph</p>
+        </li></ul>
+      <p>After printing the name and title, this report wraps the text of the biography around the photograph, alternates information from left to right, and floats the box down the page relative to the biography.</p>
+    </div><h1 class="heading">Wrap Text around Graphics</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>To wrap the memo field around the picture, the report uses two field controls to display the contents of the memo field. The first control is above the picture to display two lines of text. The second field is also sized to show two lines of text, but is narrower and positioned next to the picture.</p>
+      <p>The first field control prints all of the words in the memo field up to the position where a break should occur to continue the words in the second control. The expression is shown below.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LEFTC(employee.notes,nWrapCharPos)</pre></td></tr></table></span></div>
+      <p>The second field control prints the remaining words from the memo field. The expression for the second field control is shown below.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>LTRIM(RIGHTC(employee.notes,(nMemoLen-(nWrapCharPos))))</pre></td></tr></table></span></div>
+      <p>The expressions for the controls use report variables to determine the words the controls display from the memo field.
+</p>
+      <ul><li>
+          <p>nFirstMemoLen determines the number of characters that can be displayed in the first field without truncating. For this report, the variables value is always 185. If you use this in your own report, you will need to change this constant to match the maximum number of characters you want above the picture.</p>
+        </li><li>
+          <p>nMemoLen determines the length of the memo field for the current record. This variable's expression is LENC<code>(employee.notes)</code>.</p>
+        </li><li>
+          <p>nSpace determines the character position of the first space after the characters displayed in the first control. This variable's expression is <code>AT_C(CHR(32),RIGHTC(employee.notes,(nMemoLen - nFirstMemoLen))).</code></p>
+        </li><li>
+          <p>nWrapCharPos determines the character position within the memo field where the break should occur. This variable's expression is <code>nSpace + nFirstMemoLen</code>.</p>
+        </li></ul>
+    </div><h1 class="heading">Alternate the Position of Printed Objects</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>In this report, the positions of the employee biography, the quick reference group, and the photograph alternate from left to right with each record. To alternate the positions, the report has two sets of controls for the parts of the report that alternate. Because two controls are used to wrap the biography text, the first control does not alternate and, therefore, does not need to be included in the two sets. </p>
+      <p>One set of controls specifies printing with the photograph on the left side. A second set specifies the printing for the photograph on the right side. The controls in both sets use a report variable, nCounter, that calculates a count which determines when the set should print. One set prints when nCounter's value is 0; the other when the value is 1. The Print When expression for the first set of controls is <code>MOD(nCounter,2) = 0</code>. For the second set, the expression is <code>MOD(nCounter,2) = 1</code>.</p>
+    </div><h1 class="heading">Float Controls below Controls That Stretch</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>This report prints the box of information that prints below the biography. Since the length of the biography varies with each record, the control that displays the biography information next to the picture is set to stretch and uses only the space necessary to print the contents of the field. The box that prints below the biography floats down the page depending on the length of the biography. This box is a group of field, label, and rectangle controls. To prevent the biography from printing on top of the group, the field position for each of the controls in the group is set to float.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/c689dbf9-4d76-4b7f-9ccd-55357009bdc6.htm">Print Report Details in a Ledger Style Sample</a></span><br /><span class="linkTerms"><a href="/html/348fec52-e48a-489f-86fb-0b0ac888ba69.htm">Solution Samples</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/bc9c384e-280d-4c04-abe0-7f7c7c5fea4f.htm">Visual FoxPro Foundation Classes A-Z</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/57cfe57d-6094-4f6b-82c8-139a2f132449.htm">Reports Solution Samples</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Print in Catalog Format Sample">
+<param name="Alink Name" value="vfp.1231564">
+</OBJECT>

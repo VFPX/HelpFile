@@ -1,0 +1,241 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Return Values from ActiveX Controls and FLL Libraries</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Return Values from ActiveX Controls and FLL Libraries</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>You can return values from ActiveX controls or Visual FoxPro dynamic-link libraries (FLL) to Visual FoxPro.</p>
+  <h3 class="procedureSubHeading">To return values from ActiveX controls to Visual FoxPro</h3><div class="subSection"><ul><li>
+        
+          <p>Use the <b>RETURN</b> statement in the control and pass a single value. </p>
+        
+      </li></ul>
+      
+        <p>The following example returns uses a <b>RETURN</b> statement to return the version number stored in VERSION:</p>
+        <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#define VERSION 101
+// other code here
+long CPyCtrl::GetVersion()
+{
+   // set the version number here in variable fVersion
+   return VERSION;
+}</pre></td></tr></table></span></div>
+      
+    </div><h1 class="heading">Returning Values from FLL Libraries</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>When you want to return values from FLL libraries, use API functions, not native C or C++ commands.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>When return values from an ActiveX control (.ocx) file, do not use the API functions for returning values from FLL libraries. Instead, use the <b>RETURN</b> statement. </p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To return values from an FLL library</h3><div class="subSection"><ul><li>
+            
+              <p>Use the API functions listed in the following table.</p>
+            
+          </li></ul></div>
+      <p>The following API functions should be used only for FLL libraries.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Function
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f35afdd0-8445-4765-900e-b8f89e5856f5.htm">_RetChar(char *string)</a>
+            </p>
+          </td>
+          <td>
+            <p>Sets the function return value to a null-terminated string.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/1beab7ad-40e5-4280-a476-44f81b013204.htm">_RetCurrency(CCY cval, int width)</a>
+            </p>
+          </td>
+          <td>
+            <p>Sets the function return value to a currency value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/8d26556e-4235-46e8-b139-61c7acc9eb49.htm">_RetDateStr(char *string)</a>
+            </p>
+          </td>
+          <td>
+            <p>Sets the function return value to a date. The date is specified in mm/dd/yy[yy] format.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/9f04e881-1072-48ee-8987-41881f36ffc2.htm">_RetDateTimeStr(char *string)</a>
+            </p>
+          </td>
+          <td>
+            <p>Sets the function return value to a date and time specified in mm/dd/yy[yy] hh:mm:ss format.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/f89d1ac2-7de6-4d18-84d0-119d27359aa7.htm">_RetFloat(double flt, int width, int dec)</a>
+            </p>
+          </td>
+          <td>
+            <p>Sets the function return value to a float value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/54e2b029-eda7-4892-bb22-2046339e7ac9.htm">_RetInt(long ival, int width)</a>
+            </p>
+          </td>
+          <td>
+            <p>Sets the function return value to a numeric value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/b3eada9f-5d07-4ea4-953f-e9c78c902528.htm">_RetLogical(int flag)</a>
+            </p>
+          </td>
+          <td>
+            <p>Sets the function return value to a logical value. Zero is considered FALSE. Any non-zero value is considered TRUE.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="/html/92730e23-921b-4d73-96db-2776f3740902.htm">_RetVal(Value *val)</a>
+            </p>
+          </td>
+          <td>
+            <p>Passes a complete Visual FoxPro Value structure; any Visual FoxPro data type except for memo can be returned. You must call _RetVal( ) to return a string that contains embedded null characters or to return a .NULL. value.</p>
+          </td>
+        </tr></table></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>To return the value of an object data type, use the _RetVal() function, filling in the <code>ev_object</code> field in the Value structure.</p>
+      </td></tr></table></div>
+      <p>The following example, <code>Sum</code>, accepts a reference to a numeric field in a table and uses <code>_RetFloat</code> to return the sum of the values in the field:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>#include &lt;Pro_ext.h&gt;
+Sum(ParamBlk *parm)
+{
+// declare variables
+double tot = 0, rec_cnt;
+int i = 0, workarea = -1; // -1 is current workarea
+Value val;
+// GO TOP
+_DBRewind(workarea);
+// Get RECCOUNT( )
+rec_cnt = _DBRecCount(workarea);
+// Loop through table
+for(i = 0; i &lt; rec_cnt; i++)
+{ 
+   //Place value of the field into the Value structure
+   _Load(&amp;parm-&gt;p[0].loc, &amp;val);
+   // add the value to the cumulative total
+   tot += val.ev_real;
+   // SKIP 1 in the workarea
+   _DBSkip(workarea, 1);
+} 
+// Return the sum value to Visual FoxPro
+_RetFloat(tot, 10, 4); 
+}
+// The Sum function receives one Reference parameter
+FoxInfo myFoxInfo[] = {
+   {"SUM", Sum, 1,"R"} 
+};
+FoxTable _FoxTable = {
+   (FoxTable *) 0, sizeof(myFoxInfo)/sizeof(FoxInfo), myFoxInfo
+};</pre></td></tr></table></span></div>
+      <p>Assuming there's a numeric field named <code>amount</code> in the currently open table, the following line of code in a Visual FoxPro program calls the function:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>? SUM(@amount)</pre></td></tr></table></span></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/30d2a218-a9d2-42cf-8bd9-d1c05037dd7b.htm">Passing Parameters to Visual FoxPro API Functions</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/ad9896fa-643e-48d3-a3b9-d738971e71a3.htm">Parameters in External Libraries</a></span><br /><span class="linkTerms"><a href="/html/516c775c-a95b-418e-bd73-ed13bba66afd.htm">Access to Visual FoxPro Variables and Fields</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/566a1828-db5f-432f-8940-c4dd53c08920.htm">Accessing the Visual FoxPro API</a></span><br /><span class="linkTerms"><a href="/html/941bd4e8-58e8-4353-890d-91a96b8344c0.htm">Extending Visual FoxPro with External Libraries</a></span><br /><span class="linkTerms"><a href="/html/8c8b7a75-75ae-4a31-95ce-5b1ea7fc7a7d.htm">API Library Construction</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Return Values from ActiveX Controls and FLL Libraries">
+</OBJECT>

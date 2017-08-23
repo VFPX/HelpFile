@@ -1,0 +1,207 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SET TEXTMERGE Command</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">SET TEXTMERGE Command</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Enables or disables the evaluation of fields, variables, array elements, functions, or expressions that are surrounded by text-merge delimiters, and lets you specify text-merge output.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+SET TEXTMERGE [ON | OFF] [TO [<span class="parameter">FileName</span>] MEMVAR <span class="parameter">VarName</span> [ADDITIVE]]
+   [WINDOW <span class="parameter">WindowName</span>] [SHOW | NOSHOW]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">ON </span></dt><dd>
+          <p>Specifies that any fields, variables, array elements, functions, or expressions surrounded by the text-merge delimiters be evaluated and output when placed after \ or \\, or between TEXT and ENDTEXT.</p>
+          <p>The following short program example demonstrates how the contents of the variable <code>gcTodayDate</code> and the DATE( ) and TIME( ) functions are evaluated when SET TEXTMERGE is set to ON. The variable <code>gcTodayDate</code>, DATE( ), and TIME( ) are evaluated because they are enclosed by the text-merge delimiters and SET TEXTMERGE is set to ON.   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+SET TALK OFF
+STORE 'Today is: ' TO gcTodayDate
+SET TEXTMERGE ON
+\&lt;&lt;gcTodayDate&gt;&gt;
+\\&lt;&lt;DATE( )&gt;&gt;
+\The time is:
+\\ &lt;&lt;TIME( )&gt;&gt;</pre></td></tr></table></span></div>
+          <p>Here is the output from the program above when run on January 1:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>Today is: 01/01/98
+The time is: 10:55:19</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">OFF </span></dt><dd>
+          <p>(Default) Specifies that any fields, variables, array elements, functions, or expressions be literally output along with the text-merge delimiters surrounding them. Note the difference in output when SET TEXTMERGE is set to OFF in the previous example:  </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR
+SET TALK OFF
+STORE 'Today is: ' TO gcTodayDate
+SET TEXTMERGE OFF
+\&lt;&lt;gcTodayDate&gt;&gt;
+\\&lt;&lt;DATE( )&gt;&gt;
+\The time is:
+\\ &lt;&lt;TIME( )&gt;&gt;</pre></td></tr></table></span></div>
+          <p>Here is the output from this program:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>&lt;&lt;gcTodayDate&gt;&gt;&lt;&lt;DATE( )&gt;&gt;
+The time is: &lt;&lt;TIME( )&gt;&gt;</pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TO [ <span class="parameter">FileName</span>] </span></dt><dd>
+          <p>Specifies that output from \, \\, and TEXT ... ENDTEXT be directed to a text file in addition to the main Visual FoxPro window, which is the default. You can also direct the output to a text file by including <span class="parameter">FileName</span>. If a file with that name doesn't exist, a new file is created. If a file with the same name already exists and SET SAFETY is set to ON, you are given the option of overwriting the existing file.</p>
+          <p>The text file is opened as a low-level file, and its file handle is stored to the _TEXT system variable. You can close the file by issuing SET TEXTMERGE TO without additional arguments. If the file handle of another file was previously stored in _TEXT, that file is closed. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MEMVAR <span class="parameter">VarName</span></span></dt><dd>
+          <p>Specifies a variable to contain data from TEXTMERGE output. </p>
+          <p>Because SET TEXTMERGE is a global setting and can span several procedures or methods, it is possible for MEMVAR <span class="parameter">VarName</span> to lose scope. The command will function even when the variable is out of scope, but will return no content. You can control scooping of MEMVAR <span class="parameter">VarName</span> by declaring the variable PUBLIC or PRIVATE.   </p>
+          <p>This clause can also create recursive behavior, which you can control with the SET TEXTMERGE TO command, as in the following example:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>USE LABELS
+STORE "" to myVar, myVar2
+SET TEXT ON NOSHOW
+SET TEXTMERGE TO MEMVAR myVar &amp;&amp; TEXTMERGE begins on the next line.
+\Hey Now
+\&lt;&lt;date()&gt;&gt;
+SCAN
+   \  &lt;&lt;name&gt;&gt;
+ENDSCAN
+* Remove comments from SET TEXTMERGE TO line to eliminate recursive 
+* error with myVar and myVar2.
+* SET TEXTMERGE TO
+TEXT TO myVar2
+&lt;b&gt; Here's some HTML. &lt;/b&gt;
+This is HTML
+   &lt;&lt;date()&gt;&gt;
+ENDTEXT
+SET TEXTMERGE OFF
+USE
+CLEAR
+? myVar  &amp;&amp; But has also stored the TEXTMERGE contents to variables
+? myVar2 </pre></td></tr></table></span></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ADDITIVE </span></dt><dd>
+          <p>Specifies that output from \, \\, and TEXT ... ENDTEXT be appended to an existing file or memory variable.</p>
+          <p>For more information on directing text-merge output to a file, see <a href="/html/231cebe2-8608-4a2d-83dd-4b9103b1b8c8.htm">_TEXT System Variable</a>. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WINDOW <span class="parameter">WindowName</span></span></dt><dd>
+          <p>Specifies that output from \, \\, and TEXT ... ENDTEXT be directed to a user-defined window rather than the main Visual FoxPro window, which is the default. <span class="parameter">WindowName</span> specifies the name of the window to which you want to direct output. The window must be created with DEFINE WINDOW before output can be sent to it. The window doesn't have to be active or visible.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">SHOW | NOSHOW </span></dt><dd>
+          <p>(Default) SHOW displays text-merge output.</p>
+          <p>NOSHOW suppresses display of text-merge output.   </p>
+          <p>By default, output generated by \, \\, and TEXT ... ENDTEXT is sent to the main Visual FoxPro window or an active user-defined window. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The \, \\, and TEXT ... ENDTEXT commands are used to merge text with the contents of tables, variables, array elements, and the results of functions and expressions. If a field, variable, array element, function, or expression is surrounded by text-merge delimiters (by default, &lt;&lt; and &gt;&gt;), it can be evaluated and merged with text. This text-merge capability lets you produce letters, programs, and templates that create programs.</p>
+      <p>SET TEXTMERGE determines how fields, variables, array elements, functions, or expressions surrounded by text-merge delimiters are evaluated. It also lets you direct text-merge output to the main Visual FoxPro window, a user-defined window, or a file.</p>
+      <p>Memo fields can be used to nest merged text. If a memo field contains field names, variables, array elements, functions, or expressions surrounded by the current text-merge delimiters, these are evaluated and output with the contents of the memo field. The memo field name must also be enclosed in text-merge delimiters.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/b04be2e6-5973-4ce2-bc41-3b69439f19e2.htm">\ | \\ Command</a></span><br /><span class="linkTerms"><a href="/html/45afea55-e808-4623-aa6e-0ed6648ec029.htm">_PRETEXT System Variable</a></span><br /><span class="linkTerms"><a href="/html/e16e6233-51a4-4f82-b979-f7ef9f95e967.htm">SET TEXTMERGE DELIMITERS Command</a></span><br /><span class="linkTerms"><a href="/html/03b989ff-de9c-4682-a39e-dd84bd32c2d5.htm">TEXTMERGE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/40efc4ac-180a-4072-b6fa-591a154a98f1.htm">TEXT ... ENDTEXT Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="SET TEXTMERGE Command">
+<param name="ALink Name" value="SET TEXTMERGE">
+</OBJECT>

@@ -1,0 +1,186 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Create Less Frequently Used Indexes</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Create Less Frequently Used Indexes</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>If you want to create an index that you use infrequently, for example, for a special purpose, you can store it in nonstructural compound index (.cdx) files, which can contain multiple indexes. Included for backward compatibility, you can also store a single temporary or less frequently used index in a standalone index (.idx) file. For more information about index files for storing infrequently used indexes, see <span class="linkTerms"><a href="/html/80cfd247-4e1a-40af-8f9f-3891bed94bbe.htm">Visual FoxPro Index Files</a></span>.</p>
+    <p>You can create indexes in nonstructural .cdx files and standalone .idx files using the Visual FoxPro language.</p>
+  <h1 class="heading">Indexes in Nonstructural Compound Index Files</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>For an existing table, you can create an index in a nonstructural .cdx file using the <b>INDEX</b> command with the <b>TAG</b> and <b>OF</b> clauses or by copying from one or more standalone index (.idx) files using the <b>COPY INDEXES</b> command. </p>
+      <h3 class="procedureSubHeading">To create an index in a nonstructural .cdx index file</h3><div class="subSection"><ol><li>
+            
+              <p>Use the <b>INDEX</b> command to specify an index expression.</p>
+            
+          </li><li>
+            
+              <p>Include the <b>TAG</b> clause to specify the name, or tag, for the index.</p>
+            
+          </li><li>
+            
+              <p>Include the <b>OF</b> clause to specify the name of the nonstructural .cdx file.</p>
+            
+          </li></ol></div>
+      <p>For example, the following code opens the Employee table in the Visual FoxPro sample database, TestData, and creates an index based on the Title field. The <b>INDEX</b> command includes the <b>TAG</b> clause to specify a name, or tag, for the index and the <b>OF</b> clause to store the index in a nonstructural .cdx file named QRTLYRPT with the .cdx file name extension:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE (HOME(2) + 'Data\TestData')
+USE Employee
+INDEX ON Title TAG Title OF QRTLYRPT</pre></td></tr></table></span></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/167e24f6-0e6f-4cc1-a1a9-dffc9491d85a.htm">OPEN DATABASE Command</a></span>, <span class="linkTerms"><a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a></span>, and <span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span>.</p>
+      <h3 class="procedureSubHeading">To create an index in a nonstructural .cdx file from an .idx file</h3><div class="subSection"><ol><li>
+            
+              <p>Use the <b>COPY INDEXES</b> command to specify one or more names of .idx files. To include each index key from all open .idx files, use the <b>ALL</b> keyword.</p>
+            
+          </li><li>
+            
+              <p>Include the <b>TO</b> clause to specify the name of the nonstructural .cdx file. </p>
+            
+          </li></ol></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/e10add95-2f2e-4258-9994-dc735c14ca6b.htm">COPY INDEXES Command</a></span>.</p>
+    </div><h1 class="heading">Indexes in Standalone Index Files</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>For an existing table, you can create a single-key index in a standalone .idx file using the <b>INDEX</b> command with the <b>TO</b> clause or by copying an index from a compound index (.cdx) file using the <b>COPY TAG</b> command. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>To create a small and quickly accessible index file, include the <b>COMPACT</b> clause. However, to create an .idx file that is compatible with the FoxBASE+® and FoxPro® version 1.0 index formats, omit the <b>COMPACT</b> clause.</p>
+      </td></tr></table></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>By default, .cdx files are always compact.</p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To create a single-key index</h3><div class="subSection"><ol><li>
+            
+              <p>Use the <b>INDEX</b> command to specify the index expression.</p>
+            
+          </li><li>
+            
+              <p>Include the <b>TO</b> clause to specify the name of the .idx file.</p>
+            
+          </li><li>
+            
+              <p>Include the <b>COMPACT</b> clause. </p>
+            
+          </li></ol></div>
+      <p>For example, the following code opens the Orders table in the Visual FoxPro sample database, TestData, and creates an index based on the Order_Date field. The <b>TO</b> clause specifies OrdDate as the name of the .idx file. The <b>SET ORDER</b> command sets the order of the table to the OrdDate file, and the <b>BROWSE</b> command opens a browse window that displays the records organized by the Order_Date field: </p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE (HOME(2) + 'Data\TestData')
+USE Orders
+INDEX ON Order_Date TO OrdDate COMPACT
+SET ORDER TO OrdDate
+BROWSE</pre></td></tr></table></span></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/167e24f6-0e6f-4cc1-a1a9-dffc9491d85a.htm">OPEN DATABASE Command</a></span>, <span class="linkTerms"><a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a></span>, <span class="linkTerms"><a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX Command</a></span>, <span class="linkTerms"><a href="/html/f88b697b-c89f-4343-b9f9-4ecda6fe95ac.htm">SET ORDER Command</a></span>, and <span class="linkTerms"><a href="/html/25d92e4a-4a6b-4d9b-80a2-f00e2ae9f8f8.htm">Browse Window</a></span>.</p>
+      <p>You can also create a standalone index from an index in a .cdx file using the <b>COPY TAG</b> command. </p>
+      <h3 class="procedureSubHeading">To create a single-key index from a .cdx file</h3><div class="subSection"><ol><li>
+            
+              <p>Use the <b>COPY TAG</b> command to specify the name of the index in the .cdx file.</p>
+            
+          </li><li>
+            
+              <p>If needed, include the <b>FROM</b> clause to specify the name of the .cdx file.</p>
+            
+          </li><li>
+            
+              <p>Include the <b>TO</b> clause to specify the name of the .idx file.</p>
+            
+          </li><li>
+            
+              <p>Include the <b>COMPACT</b> clause. </p>
+            
+          </li></ol></div>
+      <p>For example, suppose that one of the indexes in a structural .cdx file is used only for quarterly or annual reports. You can transfer this index from the .cdx file to an .idx file. The following code opens the Employee table in the Visual FoxPro sample database, TestData, and creates a single-key index based on the index named Birth_Date in the structural .cdx file associated with the Employee table. The single-key index is stored in an .idx file named BirthDate.</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>OPEN DATABASE (HOME(2) + 'Data\TestData')
+USE Employee
+COPY TAG Birth_Date TO BirthDate COMPACT</pre></td></tr></table></span></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>When a table is open, any associated structural .cdx file is also open.</p>
+      </td></tr></table></div>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>After you create the .idx file from the .cdx file, you should delete the tag from the .cdx file. For more information about deleting indexes, see <span class="linkTerms"><a href="/html/e3dc3748-6cdf-4d82-85c8-c8a53404476d.htm">How to: Delete Indexes (Visual FoxPro)</a></span>.</p>
+      </td></tr></table></div>
+      <p>For more information, see <span class="linkTerms"><a href="/html/167e24f6-0e6f-4cc1-a1a9-dffc9491d85a.htm">OPEN DATABASE Command</a></span>, <span class="linkTerms"><a href="/html/10572691-e780-4704-b1aa-c6e64d1cc2e5.htm">USE Command</a></span>, and <span class="linkTerms"><a href="/html/41a79da9-c452-4c62-a200-eb22c351f8ac.htm">COPY TAG Command</a></span>.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/1225f38b-2ed5-499e-b2c7-71b741bbe758.htm">How to: Create Indexes (Visual FoxPro)</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/fe911859-3235-4349-82c7-fa16a16d5527.htm">Visual FoxPro Index Types</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/6c693848-3db7-4f60-b52c-11484cb097cc.htm">Working with Table Indexes</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Create Less Frequently Used Indexes">
+</OBJECT>

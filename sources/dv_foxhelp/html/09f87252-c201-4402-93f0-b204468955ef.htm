@@ -1,0 +1,380 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>MESSAGEBOX( ) Function</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">MESSAGEBOX( ) Function</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									<a href="#codeExampleToggle" onclick="OpenSection(codeExampleToggle)">Example</a></td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Displays a user-defined dialog box.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+MESSAGEBOX(<span class="parameter">eMessageText</span> [, <span class="parameter">nDialogBoxType</span> ][, <span class="parameter">cTitleBarText</span>][, <span class="parameter">nTimeout</span>])</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">
+          <span class="parameter">eMessageText</span>
+        </span></dt><dd>
+          <p>Specifies the text that appears in the dialog box. You can also specify any valid Visual FoxPro function, object, or data type instead of <span class="parameter">eMessageText</span>. The maximum amount of text you can specify is 1024 characters.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>Visual FoxPro converts object references to the string, "(Object)". If you specify a function that evaluates to a noncharacter value, Visual FoxPro automatically uses the <b>TRANSFORM( )</b> function to provide the character equivalent. In the following example, a character type date is returned and passed to <b>MESSAGEBOX( )</b>:</p>
+          </td></tr></table></div>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>MESSAGEBOX(DATE())</pre></td></tr></table></span></div>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+            <p>To move a portion of the message to the next line in the dialog box, use a carriage return, CHR(13), in <span class="parameter">eMessageText</span>. The height and width of the dialog box increases as needed to contain <span class="parameter">eMessageText</span>.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nDialogBoxType</span>
+        </span></dt><dd>
+          <p>Specifies the buttons and icons that appear in the dialog box, the default button when the dialog box is displayed, and the behavior of the dialog box.</p>
+          <p>In the following tables, the dialog box button values 0 to 5 specify the buttons that appear in the dialog box. The icon values 16, 32, 48, and 64 specify the icon that appears in the dialog box. The default values 0, 256, and 512 specify which button in the dialog box is the default button. The default button is selected when the dialog box is displayed. Omitting <span class="parameter">nDialogBoxType</span> is identical to specifying a value of 0 for <span class="parameter">nDialogBoxType</span>.   </p>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Dialog box buttons
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>OK button only</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>1</p>
+              </td>
+              <td>
+                <p>OK and Cancel buttons</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>2</p>
+              </td>
+              <td>
+                <p>Abort, Retry, and Ignore buttons</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>3</p>
+              </td>
+              <td>
+                <p>Yes, No, and Cancel buttons</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>4</p>
+              </td>
+              <td>
+                <p>Yes and No buttons</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>5</p>
+              </td>
+              <td>
+                <p>Retry and Cancel buttons</p>
+              </td>
+            </tr></table></div>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Icon
+                </th>
+              </tr><tr>
+              <td>
+                <p>16</p>
+              </td>
+              <td>
+                <p>Stop sign</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>32</p>
+              </td>
+              <td>
+                <p>Question mark</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>48</p>
+              </td>
+              <td>
+                <p>Exclamation point</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>64</p>
+              </td>
+              <td>
+                <p>Information (i) icon</p>
+              </td>
+            </tr></table></div>
+          <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Default button
+                </th>
+              </tr><tr>
+              <td>
+                <p>0</p>
+              </td>
+              <td>
+                <p>First button</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>256</p>
+              </td>
+              <td>
+                <p>Second button</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>512</p>
+              </td>
+              <td>
+                <p>Third button</p>
+              </td>
+            </tr></table></div>
+          <p>
+            <span class="parameter">nDialogBoxType</span> can be the sum of up to three values, one value from each of the preceding tables. For example, if <span class="parameter">nDialogBoxType</span> is 290 (2+32+256), the specified dialog box has the following characteristics:   </p>
+          <ul><li>
+              <p>Abort, Retry, and Ignore buttons.</p>
+            </li><li>
+              <p>The message box displays the question mark icon.</p>
+            </li><li>
+              <p>The second button, Retry, is the default.</p>
+            </li></ul>
+          <p>Additional information about the constants is available in the FoxPro.h file, located in the Visual FoxPro home directory. Using defined constants such as MB_ABORTRETRYIGNORE + MB_ICONQUESTION + MB_DEFBUTTON2 can be more readable than 2 + 32 + 256.   </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>The question mark icon is no longer recommended, because it does not clearly represent a specific type of message and because the phrasing of a message as a question could apply to any message type. In addition, users could confuse the message symbol question mark with Help Information. Therefore, it is not recommended to use the question mark symbol in your message boxes. The system continues to support inclusion only for backwards compatibility.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">cTitleBarText</span>
+        </span></dt><dd>
+          <p>Specifies the text that appears in the title bar of the dialog box. If you omit <span class="parameter">cTitleBarText</span>, the title "Microsoft Visual FoxPro" appears in the title bar.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">
+          <span class="parameter">nTimeout</span>
+        </span></dt><dd>
+          <p>Specifies the number of milliseconds Visual FoxPro displays <span class="parameter">eMessageText</span> without input from the keyboard or the mouse before clearing <span class="parameter">eMessageText</span>. You can specify any valid timeout value. A value of less than 1 never times out until user enters input and behaves the same as omitting the <span class="parameter">nTimeout</span> parameter. </p>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(returnValueToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(returnValueToggle)" tabindex="0"><img id="returnValueToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Return Value</span></h1><div id="returnValueSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>Numeric data type. <b>MESSAGEBOX( )</b> returns a value that indicates which button was chosen in the dialog box. The following table lists the values <b>MESSAGEBOX( )</b> returns for each button.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Return value
+            </th>
+            <th>
+              Button
+            </th>
+          </tr><tr>
+          <td>
+            <p>1</p>
+          </td>
+          <td>
+            <p>OK</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>2</p>
+          </td>
+          <td>
+            <p>Cancel</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>3</p>
+          </td>
+          <td>
+            <p>Abort</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>4</p>
+          </td>
+          <td>
+            <p>Retry</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>5</p>
+          </td>
+          <td>
+            <p>Ignore</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>6</p>
+          </td>
+          <td>
+            <p>Yes</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>7</p>
+          </td>
+          <td>
+            <p>No</p>
+          </td>
+        </tr></table></div>
+      <p>In dialog boxes with a Cancel button, pressing ESC to exit the dialog box returns the same value (2) as choosing Cancel.</p>
+      <p>
+        <b>MESSAGEBOX( )</b> returns a value of -1 when a timeout occurs.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>The shortest abbreviation for <b>MESSAGEBOX( )</b> is <b>MESSAGEB( )</b>.</p>
+      <p>The <b>MESSAGEBOX( )</b> function uses smart parameters in that the parameter type determines which parameter is used. The first parameter is required and is always <span class="parameter">eMessageText</span>. However, the optional second parameter can be <span class="parameter">nDialogBoxType</span> if the type is <b>Numeric</b> or <span class="parameter">cTitleBarText</span> if type is <b>Character</b>. The <span class="parameter">nTimeout</span> parameter is always assumed for the second optional numeric parameter passed. Valid examples include:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>MESSAGEBOX("HELLO","MyTitle",68,6000)
+MESSAGEBOX("HELLO",68,"MyTitle",6000)
+MESSAGEBOX("HELLO",68,6000)
+MESSAGEBOX("HELLO",68,6000,"MyTitle")</pre></td></tr></table></span></div>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      
+        <p xmlns="">The following example displays a user-defined dialog box. The message "Record not found. Would you like to search again?" is displayed as the caption in the user-defined dialog box, and "My Application" is displayed in the title bar.</p>
+        <p xmlns="">The user-defined dialog box contains Yes and No buttons and the question mark icon, and the second button (No) is the default button. When you choose one of the buttons, your choice is displayed.</p>
+      
+    </description>
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>eMessageTitle = 'My Application'
+eMessageText = 'Record not found. Would you like to search again?'
+nDialogType = 4 + 16 + 256
+*  4 = Yes and No buttons
+*  16 = Stop sign icon
+*  256 = Second button is default
+nAnswer = MESSAGEBOX(eMessageText, nDialogType, eMessageTitle)
+DO CASE
+   CASE nAnswer = 6
+      WAIT WINDOW 'You chose Yes'
+   CASE nAnswer = 7
+      WAIT WINDOW 'You chose No'
+ENDCASE</pre></td></tr></table></span></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/9eae98a4-b3da-4bfa-9fa6-962c1019857b.htm">WAIT Command</a></span><br /><span class="linkTerms"><a href="/html/85acf00a-9435-4308-96c5-a900f513eb20.htm">DO CASE ... ENDCASE Command</a></span><br /><span class="linkTerms"><a href="/html/94f45e5d-f96f-4ef3-a967-d20043a27165.htm">INPUTBOX( ) Function</a></span><br /><span class="linkTerms"><a href="/html/a13cde28-affa-4bec-96ab-a4370da9b3b6.htm">TRANSFORM( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="MESSAGEBOX( ) Function">
+<param name="ALink Name" value="MESSAGEBOX">
+</OBJECT>

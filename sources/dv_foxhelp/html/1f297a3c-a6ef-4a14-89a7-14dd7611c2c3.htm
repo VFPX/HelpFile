@@ -1,0 +1,154 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Extending Report Preview Functionality</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Extending Report Preview Functionality</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>In addition to the Report Designer's builder events, which are hooks into the report design process, Visual FoxPro also provides hooks into the process of running reports. These hooks are exposed through the <b>ReportListener</b>, an instance of which is used in <i>object-assisted</i> reporting.</p>
+    <p>There are two ways to enable object-assisted reporting:</p>
+    <ul><li>
+        <p>
+          <b>SET REPORTBEHAVIOR 90</b>
+        </p>
+      </li><li>
+        <p>Write code that explicitly uses the <b>OBJECT</b> clause on the <span class="linkTerms"><a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT FORM Command</a></span>.</p>
+      </li></ul>
+    <p>The topics in this section introduce the <i>preview container</i> component used by the ReportListener class when rendering previews in object-assisted reporting, and how to leverage it in your applications.</p>
+  <h1 class="heading">In This Section</h1><div id="inThisSectionSection" class="seeAlsoNoToggleSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <dl xmlns=""><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/66975043-814c-4886-901c-53d3924ca1bb.htm">The Preview Container API</a></span>
+        </span></dt><dd>
+          <p>Describes the properties and methods that a class must implement to be used as a Preview Container.</p>
+        </dd></dl><dl xmlns=""><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/68ca355c-7494-4a8a-9baf-e525437adc8d.htm">Creating a Custom Preview Container</a></span>
+        </span></dt><dd>
+          <p>Describes how to replace the default preview container with your own custom component that can provide report preview functionality thoughout your application automatically when you SET REPORTBEHAVIOR 90.</p>
+        </dd></dl><dl xmlns=""><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/9f96f0e9-9b5d-423d-be13-3c905e963681.htm">Leveraging the Default Preview Container</a></span>
+        </span></dt><dd>
+          <p>Describes the additional capabilities of the Preview Container component provided by the Preview Container Object Factory application shipped with Visual FoxPro and referenced by the _REPORTPREVIEW system variable, by default.</p>
+        </dd></dl><dl xmlns=""><dt><span class="nonLinkTerms">
+          <span class="linkTerms"><a href="/html/3c2c0407-c691-4183-9c2e-b96a00698b73.htm">How to: Specify and Distribute ReportPreview.App</a></span>
+        </span></dt><dd>
+          <p>Explains how to distribute ReportPreview.App, either as a separate App file with your application, or by integrating the source code into your application's project.</p>
+        </dd></dl>
+    </content>
+  </div><h1 class="heading">Related Sections</h1><div id="relatedSectionsSection" class="seeAlsoNoToggleSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">
+        <span class="linkTerms"><a href="/html/3c88c403-7559-4001-9cae-3e2ad5f39090.htm">Understanding Report Builder Events</a></span>
+      </p>
+      <p xmlns="">
+        <span class="linkTerms"><a href="/html/5709df40-166a-439b-8d9a-9504c1f631c1.htm">ReportListener Object</a></span>
+      </p>
+      <p xmlns="">
+        <span class="linkTerms"><a href="/html/5d6e4527-8b6f-4f39-a670-c3397eff3bfd.htm">SET REPORTBEHAVIOR Command</a></span>
+      </p>
+      <p xmlns="">
+        <span class="linkTerms"><a href="/html/fdcc3a57-94e0-40f8-aea1-47931c4b8449.htm">REPORT FORM Command</a></span>
+      </p>
+      <p xmlns="">
+        <span class="linkTerms"><a href="/html/7e0ce0ab-435d-480c-9729-534c0c5a7a4c.htm">_REPORTPREVIEW System Variable</a></span>
+      </p>
+      <p xmlns="">
+        <span class="linkTerms"><a href="/html/e4d499d5-c520-42eb-ab32-d2531e784e84.htm">Extending Report Output Functionality</a></span>
+      </p>
+      <p xmlns="">
+        <span class="linkTerms"><a href="/html/dbc4b061-74ad-4780-89bf-0e5d461be849.htm">Extending Reports at Design Time</a></span>
+      </p>
+    </content>
+  </div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Extending Report Preview Functionality">
+</OBJECT>

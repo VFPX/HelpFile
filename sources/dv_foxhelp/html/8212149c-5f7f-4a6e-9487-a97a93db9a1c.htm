@@ -1,0 +1,159 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Working with Related Tables using Multiple Detail Bands in Reports</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Working with Related Tables using Multiple Detail Bands in Reports</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>
+      <b>REPORT FORM</b> and <b>LABEL FORM</b> are scoped commands. When you use any command with a scope clause, you can specify a record range and/or filtering conditions for records on which the command should act. If you do not specify a scope explicitly, each scoped command has a default scope.  For reports and labels, the default scope is <code>ALL</code>.</p>
+    <p>Scope conditions and ranges are ordinarily evaluated with respect to, or <i>driven by</i>, the records in a single work area. In reports and labels, this means the Report Engine processes your report or label layout's detail band once for each record in your report scope. If your report includes group expressions, the <i>detail band scope</i> is the set of records belonging inside the innermost group break. When a group break occurs, the Report Engine pauses in its processing of the report scope, takes some other actions you specify, and then continues on through the scope. Otherwise, the detail band scope is equivalent to the report scope. </p>
+    <p>When you set up data for your report or label, you can relate other tables and cursors to the selected work area, or <i>driving alias</i> for the report.  Along with standard Visual FoxPro scoping behavior, the Report Engine also provides the ability to make multiple passes through each detail band scope based on these relationships.  </p>
+    <p>The Report Designer represents these multiple passes through the detail band scope by showing you multiple detail bands. You use different bands to display information for tables or cursors that are targets of different relationships. </p>
+    <p>Refer to the section on <span class="linkTerms"><a href="/html/0a5c0234-3fe7-40cb-84dd-d25c21e36ae1.htm">Working with Report Bands</a></span> for information on how to adjust your report layout to indicate what related work areas are significant to report scope processing.  This topic discusses how the Report Engine handles the multiple tables when you include these features in the report layout.</p>
+  <h1 class="heading">Using Target Aliases to represent Data Relationships</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The target alias of a detail band refers to an open table or view in the current data session. In the Report Designer, target alias information may look like group break expressions, but it is quite different. When a group breaks, the record pointer moves forward. When the Report Engine moves to another detail band and re-evaluates the target alias, the record pointer moves back to the beginning of the detail band scope. </p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">How the Report Engine validates Target Aliases at Run time</h3><div class="subSection" xmlns="">
+          <p>The Report Engine considers the driving alias of the report plus the <b>Target alias</b> attribute of each detail band to determine how to process each band.  Before beginning the report run, it validates any target alias expressions contained in the report.  To be valid, a target alias expression must evaluate to one of the following:</p>
+          <ul><li>
+              <p>An empty string.</p>
+            </li><li>
+              <p>The alias of a table or view in relation to the driving alias for the report.</p>
+            </li><li>
+              <p>The driving alias for the report.</p>
+            </li></ul>
+          <p>The Report Engine evaluates any expressions you have used as target aliases in your report layout, before it begins processing your report.  If these expressions do not evaluate to aliases currently in use, the error "<b>&lt;alias&gt; not found</b>" occurs.  If an alias is in use, it must either be the same as the driving alias or related to the report's driving alias.  Otherwise, the error <b>"&lt;alias&gt; is not related to the current work area"</b> occurs.  </p>
+        </div>
+      <h3 class="subHeading" xmlns="">Detail Bands with Target Aliases</h3><div class="subSection" xmlns="">
+          <p>The driving alias for a report with related tables is typically the parent in one or more data relationships.  For example, a Customer table is related to an Orders table and a Payments table.  </p>
+          <p>A report layout driven by this Customer table indicates these relationships by including one detail band with the target alias expression <code>"Orders"</code> and second detail band with the target alias expression <code>"Payments"</code>. </p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Important </th></tr><tr><td>
+            <p>Include the quotation marks in each target alias expression, unless <code>Orders</code> or <code>Payments</code> is a variable holding the name of the actual alias.</p>
+          </td></tr></table></div>
+          <p>For each detail band with a target alias, the Report Engine remains on the parent record and processes all the children in the appropriate target alias related to the current parent record.  Then it moves to the next band, and processes the set of children in the next related table.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Detail Bands without Target Aliases</h3><div class="subSection" xmlns="">
+          <p>In reports with multiple tables and target aliases, you can use an empty target alias when you want a band to be processed only once for each driving alias record. This technique gives you a handy way to provide some summary information, similar to group headers and footers, but positioned more flexibly in your report output. </p>
+          <p>For example, in your Customer report, you might provide a data group on Customer ID, which enables you to provide information about the Customer in the group header or footer. By using a detail band with no alias, placed between the detail bands for Orders and Payments, you can provide additional information about the Customer, such as a string displaying current account status. Because this band has no target alias, its contents will appear only once before the Report Engine goes on to display Payments details. </p>
+        </div>
+      <h3 class="subHeading" xmlns="">Detail Bands with Target Aliases matching the Driving Alias</h3><div class="subSection" xmlns="">
+          <p>In most cases, setting a target alias to an expression matching the driving alias for a report results in the same behavior as an empty Target alias (the band is processed once for each record in the scope). </p>
+          <p>However, the Report Engine makes an important exception if you use this technique in the first detail band of the report: if the first band has a target alias exactly equal to the driving alias, it processes all the records in the detail scope, resets the record pointer in the driving alias, and then moves to the next detail band.</p>
+          <p>Using the driving alias as the target alias for the first band provides a way to process all the records in a current group or report scope multiple times.  It also provides the ability to calculate some values for the current group before going on to display any content for the individual records. This technique is discussed further in the next section, Variables and Calculated Fields for Related Tables.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Automatic One-to-Many Behavior</h3><div class="subSection" xmlns="">
+          <p>Having validated any target alias expressions you have used for your detail bands, the Report Engine checks to see if you have explicitly set any <b>OneToMany</b> properties in your DataEnvironment or, if you are opening the tables yourself, whether the driving alias has any <b>SET SKIP</b> relationships set. If there are any already set, the Report Engine will not change your environment. However, if you have not set any one-to-many relationships explicitly, the Report Engine sets it up for your target aliases, and removes it at the conclusion of the report run.  This automatic one-to-many behavior occurs only when you use at least one target alias in the report.</p>
+        </div>
+    </sections></div><h1 class="heading">Variables and Calculated Fields for Related Tables</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>You can scope calculated fields and report variables to each of the various detail bands in a report layout, associating their dynamically-calculated results with the target aliases in each band. </p>
+      <p>Calculated fields in reports and report variables in Visual FoxPro versions previous to 9 could be <b>Reset at</b> the end of group(s), end of page, or end of report. The <b>Reset at</b> value indicated at what point in the report the Report Engine set these items back to their initial values, or on what basis their calculations were performed.</p>
+      <p>Another way of expressing this idea is to say that calculated fields and report variables are <i>data-scoped based on</i> their Reset values.  In Visual FoxPro 9, the <b>Reset at</b> labels in Report Designer dialog boxes have been changed to <b>Reset based on</b>, to clarify this behavior.</p>
+      <p>In a report with multiple detail bands, you can scope report variables and calculated fields based on detail bands and their associated target aliases.  For example, in your Customer report, you could scope a variable set to Count based on the detail band with the target alias Orders. This variable would provide a count of orders for each Customer. Because it is scoped to a band with correct target alias, this variable will provide a correct count.  Without target alias expressions, the count would not be correct in cases where the Customer had more Payments than Orders. </p>
+    <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Preprocessing report calculations</h3><div class="subSection" xmlns="">
+          <p>Because you can set up multiple detail bands with the same target alias, you can use one band to handle report calculations before displaying any content.  In the Customer report example, you could have two bands with the target alias Orders.  You could reset two report variables, OrderTotal and OrderCount, based on the first band but place all your report expressions displaying content from the Order table in the second band.  The resulting calculations would allow you to provide a count and total of all orders in the detail header of the second band.</p>
+        </div>
+      <h3 class="subHeading" xmlns="">Using preprocessed report variables</h3><div class="subSection" xmlns="">
+          <p>When report variables are reset based on a detail band, their values remain correct after the Report Engine stops processing that band.  Their values are not reset until the next time  the Report Engine begins processing the same detail band (or its associated detail band header, if there is one) again.  Any calculated results in these variables can be used in further calculations as you display information in additional report bands. </p>
+          <p>For example, you could use the OrderTotal variable to display a percent of total calculation, for each order in the second Orders band.  After the Orders bands, you could also use the OrderTotal to calculate a running balance in the Payments band.  </p>
+        </div>
+      <h3 class="subHeading" xmlns="">Preprocessing report variables based on the driving alias</h3><div class="subSection" xmlns="">
+          <p>Many people use a SQL-SELECT statement to produce a single driving cursor with fields sourced from multiple tables. Even with one cursor, you can still find it useful to set up multiple detail bands to process the same cursor multiple times. By using the driving alias as the target alias for the first detail band in a report, you have the opportunity to calculate values as if the values in the driving alias were repeated in a separate table.</p>
+        </div>
+    </sections></div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/89f23775-33c4-4649-83a1-e68dcb706514.htm">How to: Specify Target Aliases for Detail Bands</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/c8d51e13-0119-4fc5-a0df-b6a9ab7997bb.htm">Scope Clauses</a></span><br /><span class="linkTerms"><a href="/html/dd0c045b-9749-405d-9d60-0169bede1b3d.htm">SET RELATION Command</a></span><br /><span class="linkTerms"><a href="/html/c345c87a-8589-4854-89a4-68697c8d7cc7.htm">TARGET( ) Function</a></span><br /><span class="linkTerms"><a href="/html/7a6d0321-1bc1-4a4b-abb0-a9b346da80c6.htm">SET SKIP Command</a></span><br /><span class="linkTerms"><a href="/html/ace8eba6-da1f-4530-9c70-585599d6d184.htm">Relation Object</a></span><br /><span class="linkTerms"><a href="/html/a696509b-818b-4db9-95b9-fb11124be38a.htm">ChildAlias Property</a></span><br /><span class="linkTerms"><a href="/html/ee0cd52a-1e92-4de0-8a49-8d9106900590.htm">OneToMany Property</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Working with Related Tables using Multiple Detail Bands in Reports">
+</OBJECT>

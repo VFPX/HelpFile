@@ -1,0 +1,227 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>CLEAR Commands</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif">
+      
+      
+    </img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif">
+      
+      
+    </img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif">
+      
+      
+    </img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">CLEAR Commands</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif">
+                
+                
+              </img>
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">
+                Collapse All
+              </label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">
+                Expand All
+              </label> </span>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Releases the specified item or items from memory.</p>
+  <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
+CLEAR [ALL | CLASS <span class="parameter">ClassName</span> | CLASSLIB <span class="parameter">ClassLibraryName</span> | DEBUG | DLLS
+   [<span class="parameter">cAliasNameList</span>]| EVENTS | ERROR |FIELDS | GETS | MACROS | MEMORY 
+   | MENUS | POPUPS | PROGRAM | PROMPT | READ [ALL] | RESOURCES 
+   [<span class="parameter">FileName</span>] | TYPEAHEAD | WINDOWS]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+    
+      <dl><dt><span class="nonLinkTerms">ALL </span></dt><dd>
+          <p>Releases from memory all variables and arrays and the definitions of all user-defined menu bars, menus, and windows. CLEAR ALL also closes any tables, including all associated index, format and memo files, and selects work area 1. CLEAR ALL also releases from memory all external shared library functions registered with DECLARE - DLL.</p>
+          <p>CLEAR ALL does not release system variables, and does not clear the compiled program buffer. Use CLEAR PROGRAM to clear the compiled program buffer.   </p>
+          <p>Issuing CLEAR ALL within an event or method for an active control or object generates a Visual FoxPro error message. An object type variable cannot be released from memory when its associated control or object is active. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CLASS <span class="parameter">ClassName</span></span></dt><dd>
+          <p>Clears a class definition from memory. When an instance of a class is created, Visual FoxPro keeps the class definition in memory after the instance is released. Use CLEAR CLASS to clear a class definition from memory after its instance is released.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">CLASSLIB <span class="parameter">ClassLibraryName</span></span></dt><dd>
+          <p>Clears from memory all class definitions contained in a visual class library. If instances of classes in the class library exist, the class definitions are not cleared from memory. However, all class definitions that do not have instances are cleared from memory.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DEBUG </span></dt><dd>
+          <p>Clears all breakpoints in the Debugger and restores the Debugger windows (Call Stack, Trace, Watch, etc.) to their default positions.</p>
+          <p>If Clear Debug is issued when the Debugger is closed, the Debugger is opened with the Debugger windows in their default positions.   </p>
+          <p>Works in either fox or debugger frame mode. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">DLLS <span class="parameter">cAliasNameList</span></span></dt><dd>
+          <p>Clears from memory external shared libraries registered with DECLARE - DLL. <span class="parameter">cAliasNameList</span> is a comma separated list of function aliases to remove from memory as in the following example:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR DLLS  "RegCloseKey","RegOpenKey"</pre></td></tr></table></span></div>
+          <p>If you used no alias in the declaration, <span class="parameter">cAliasNameList</span> is the same as the function name. If you specify no <span class="parameter">cAliasNameList</span>, all DLLS are removed from memory. You can use the <span class="linkTerms"><a href="/html/ee58b3ef-853c-4f7b-bd49-777aa8e37746.htm">ADLLS( ) Function</a></span> to determine which DLLs are loaded.   </p>
+          <p>See <span class="linkTerms"><a href="/html/cf399321-e5e8-4b53-bc78-a30494d80204.htm">DECLARE - DLL Command</a></span> for more information about registering external shared library functions. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">ERROR</span></dt><dd>
+          <p>Resets the Visual FoxPro error structures as if no error had occurred. The following functions are reset to their default values:</p>
+          <p>
+            <span class="linkTerms"><a href="/html/cf8d9a30-f8dc-4181-bebd-1181c3554308.htm">AERROR( ) Function</a></span> (reset to zero).</p>
+          <p>
+            <span class="linkTerms"><a href="/html/58436e37-9eca-4abf-a640-203da985b963.htm">ERROR( ) Function</a></span> (reset to zero).</p>
+          <p>
+            <span class="linkTerms"><a href="/html/d7508b67-4d24-4ddd-ad92-6a1e17d19a98.htm">MESSAGE( ) Function</a></span> (reset to the empty string).</p>
+          <p>
+            <span class="linkTerms"><a href="/html/d7508b67-4d24-4ddd-ad92-6a1e17d19a98.htm">MESSAGE( ) Function</a></span> (reset to the empty string).</p>
+          <p>
+            <span class="linkTerms"><a href="/html/082a9c16-94d6-4ff3-ad0c-82fcf2f5d351.htm">SYS(2018) - Error Message Parameter</a></span> (reset to the empty string).</p>
+          <p>Avoid using CLEAR ERROR within a <span class="linkTerms"><a href="/html/2344b71b-14c0-4125-b001-b5fbb7bd1f05.htm">TRY...CATCH...FINALLY Command</a></span>, particularly if you are using <span class="linkTerms"><a href="/html/2344b71b-14c0-4125-b001-b5fbb7bd1f05.htm">TRY...CATCH...FINALLY Command</a></span> to rethrow an error. The Exception object may no longer be valid. </p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">EVENTS </span></dt><dd>
+          <p>Stops event processing started with READ EVENTS. When CLEAR EVENTS is executed, program execution continues on the program line immediately following READ EVENTS.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">FIELDS </span></dt><dd>
+          <p>Releases a list created with SET FIELDS and executes SET FIELDS OFF. CLEAR FIELDS differs from SET FIELDS TO in that it releases all field lists for all work areas, not just the field list for the current work area. Also, SET FIELDS TO does not implicitly issue a SET FIELDS OFF.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">GETS </span></dt><dd>
+          <p>Releases all pending @ ... GET controls. Issuing CLEAR also releases all pending @ ... GET controls.</p>
+          <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+            <p>GETS is included for backward compatibility.</p>
+          </td></tr></table></div>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MACROS </span></dt><dd>
+          <p>Releases from memory all keyboard macros, including any SET FUNCTION key assignments. Macros can be saved to a macro file or to a memo field with SAVE MACROS and restored later with RESTORE MACROS. You can also restore the default macros with RESTORE MACROS.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MEMORY </span></dt><dd>
+          <p>Releases from memory all public and private memory variables and arrays. System variables aren't released.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">MENUS </span></dt><dd>
+          <p>Releases all menu bar definitions from memory.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">POPUPS </span></dt><dd>
+          <p>Releases from memory all menu definitions created with DEFINE POPUP.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">PROGRAM </span></dt><dd>
+          <p>Clears the compiled program buffer. Visual FoxPro keeps a buffer of the most recently executed programs. In rare cases, Visual FoxPro might not recognize changes made to program files on disk. CLEAR PROGRAM forces Visual FoxPro to read the programs from disk, rather than from the program buffer. The most common reason Visual FoxPro might not recognize changes made to program files is your using an external or terminate-and-stay-resident (TSR) editor to modify a program file. With this exception, you should not have to use CLEAR PROGRAM.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">PROMPT </span></dt><dd>
+          <p>Releases menu items created with @ ... PROMPT.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">READ [ALL] </span></dt><dd>
+          <p>Included for backward compatibility. Use CLEAR EVENTS instead.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">RESOURCES [ <span class="parameter">FileName</span>] </span></dt><dd>
+          <p>Specifies the name of a cached bitmap, picture, font, cursor, or icon file to be cleared from memory. If no file name is specified, all bitmap, picture, font, cursor and icon files are removed from memory.</p>
+          <p>When Visual FoxPro displays a bitmap, picture, cursor, icon, or font resource, the resource is cached to optimized performance. If a resource of the same name is used (for example, a different bitmap with the same name as one already cached), Visual FoxPro does not reload the resource.   </p>
+          <p>Clearing a resource file is therefore particularly useful for removing a graphic image from memory and forcing Visual FoxPro to reload an image of the same name from disk. For example, a report might display graphic images from a database, all of which are named TEMP; however, because they all have the same name, Visual FoxPro will not reload each new graphic unless the existing one has been cleared from memory using the CLEAR RESOURCES command.</p>
+          <p>If a particular resource is still in use by Visual FoxPro, then it may not able to be cleared using the CLEAR RESOURCES command.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">TYPEAHEAD </span></dt><dd>
+          <p>Clears the keyboard type-ahead buffer. CLEAR TYPEAHEAD is useful when you want to prevent input into a field or prevent a response to a prompt before the field or prompt is displayed.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">WINDOWS </span></dt><dd>
+          <p>Releases from memory all user-defined window definitions and clears the windows from the main Visual FoxPro window or the active user-defined window. Use SAVE WINDOW to save window definitions in a file or memo field for later use.</p>
+          <p>Issuing CLEAR WINDOWS releases any system variable references to forms. For example, the following commands create a system variable reference for a form, and then display information about the variable:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>goMyForm = CREATEOBJECT('FORM')
+DISPLAY MEMORY LIKE goMyForm  &amp;&amp; Displays GOMYFORM  O  FORM</pre></td></tr></table></span></div>
+          <p>Issuing CLEAR WINDOWS releases the system variable reference and the variable now contains the null value:   </p>
+          <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>CLEAR WINDOWS
+DISPLAY MEMORY LIKE goMyForm  &amp;&amp; Displays GOMYFORM  O  .NULL.</pre></td></tr></table></span></div>
+        </dd></dl>
+    
+  <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
+    
+      <p>CLEAR erases the main Visual FoxPro window or the current user-defined window, and releases from memory all pending @ ... GET controls. You can include CLEAR in format files.</p>
+    
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/5b3cd337-09e8-4ed7-9ac5-553848f057c6.htm">@ ... CLEAR Command</a></span><br /><span class="linkTerms"><a href="/html/510d1838-e8cb-471b-8f92-e3409ba7a271.htm">CLOSE Commands</a></span><br /><span class="linkTerms"><a href="/html/cf399321-e5e8-4b53-bc78-a30494d80204.htm">DECLARE - DLL Command</a></span><br /><span class="linkTerms"><a href="/html/d22dec87-7592-4af2-a507-55b93338ad55.htm">READ Command</a></span><br /><span class="linkTerms"><a href="/html/2fdcf4ef-7183-4c3a-b7c4-aab2254b5127.htm">READ EVENTS Command</a></span><br /><span class="linkTerms"><a href="/html/536a4212-2453-4d71-826e-f136db3eaa44.htm">RELEASE Command</a></span><br /><span class="linkTerms"><a href="/html/6b7e3a6c-bf81-4c0b-be00-6eaada91e845.htm">RELEASE CLASSLIB Command</a></span><br /><span class="linkTerms"><a href="/html/f5b03042-d682-4710-b85d-aa5c73ef70de.htm">RELEASE WINDOWS Command</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/1b0b5237-6e5d-43cd-b3a6-6ebe7a470a0e.htm">Commands (Visual FoxPro)</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="CLEAR Commands">
+<param name="ALink Name" value="CLEAR ALL">
+<param name="ALink Name" value="CLEAR CLASS">
+<param name="ALink Name" value="CLEAR CLASSLIB">
+<param name="ALink Name" value="CLEAR DEBUG">
+<param name="ALink Name" value="CLEAR DLLS">
+<param name="ALink Name" value="CLEAR FIELDS">
+<param name="ALink Name" value="CLEAR GETS">
+<param name="ALink Name" value="CLEAR MACROS">
+<param name="ALink Name" value="CLEAR MEMORY">
+<param name="ALink Name" value="CLEAR MENUS">
+<param name="ALink Name" value="CLEAR POPUPS">
+<param name="ALink Name" value="CLEAR PROGRAM">
+<param name="ALink Name" value="CLEAR PROMPT">
+<param name="ALink Name" value="CLEAR READ">
+<param name="ALink Name" value="CLEAR RESOURCES">
+<param name="ALink Name" value="CLEAR TYPEAHEAD">
+<param name="ALink Name" value="CLEAR WINDOWS">
+<param name="ALink Name" value="CLEAR">
+</OBJECT>

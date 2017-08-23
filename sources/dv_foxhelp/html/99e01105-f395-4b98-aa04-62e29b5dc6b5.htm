@@ -1,0 +1,786 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Managing Updates Using Transactions</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Managing Updates Using Transactions</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>Even with buffering, things can go wrong. If you want to protect update operations and recover from an entire section of code as a unit, use transactions.</p>
+    <p>Adding transactions to your application provides protection beyond Visual FoxPro record and table buffering by placing an entire section of code in a protected, recoverable unit. You can nest transactions and use them to protect buffered updates. Visual FoxPro transactions are available only with tables and views contained in a database.</p>
+  <h1 class="heading">Wrapping Code Segments</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>A transaction acts as a wrapper that caches data update operations to memory or to disk, rather than applying those updates directly to the database. The actual database update is performed at the end of the transaction. If for any reason the system cannot perform the update operations on the database, you can roll back the entire transaction and no update operations are performed.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>Buffered update operations made outside a transaction are ignored within a transaction in the same data session.</p>
+      </td></tr></table></div>
+    </div><h1 class="heading">Commands that Control Transactions</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <p>Visual FoxPro provides three commands and one function to manage a transaction.</p>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              To
+            </th>
+            <th>
+              Use
+            </th>
+          </tr><tr>
+          <td>
+            <p>Initiate a transaction.</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/fcc6b075-43b2-45f0-9031-532710b4e8be.htm">BEGIN TRANSACTION</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Determine the current transaction level.</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/3014f8c5-93a2-4aa0-b2f1-e65843ccbd0c.htm">TXNLEVEL( )</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Reverse all changes made since the most recent BEGIN TRANSACTION statement.</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/a42e8f03-1f50-4173-82e7-160c65e6aecb.htm">ROLLBACK</a>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>Lock records, commit to disk all changes made to the tables in the database since the most recent BEGIN TRANSACTION, and then unlock the records.</p>
+          </td>
+          <td>
+            <p>
+              <a href="/html/73bf4877-61c4-4519-9759-4e0ad5cff7c7.htm">END TRANSACTION</a>
+            </p>
+          </td>
+        </tr></table></div>
+      <p>You can use transactions to wrap modifications to tables, structural .cdx files, and memo files associated with tables within a database. Operations involving variables and other objects don't respect transactions; therefore, you cannot roll back or commit such operations.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>When using data stored in remote tables, transaction commands control only updates to the data in the local copy of the view cursor; updates to remote base tables are not affected. To enable manual transactions on remote tables use <a href="/html/2b537f41-5c04-41a7-9e8c-eb3513e2c626.htm">SQLSETPROP( )</a>, and then control the transaction with <a href="/html/3e65e927-58a3-4e71-9e88-3f07de1dee0e.htm">SQLCOMMIT( )</a> and <a href="/html/f71640f4-d839-4545-be11-de5d1adf9c2c.htm">SQLROLLBACK( )</a>.</p>
+      </td></tr></table></div>
+      <p>In general, you should use transactions with record buffers rather than with table buffering, except to wrap TABLEUPDATE( ) calls. If you place a <a href="/html/3e524579-2348-4587-b7b2-d96ddccdd8f6.htm">TABLEUPDATE( )</a> command in a transaction, you can roll back a failed update, address the reason for the failure, and then retry the TABLEUPDATE( ) without losing data. This ensures the update happens as an "all-or-nothing" operation.</p>
+      <p>Though simple transaction processing provides safe data update operations in normal situations, it doesn't provide total protection against system failures. If power fails or some other system interruption occurs during processing of the <a href="/html/73bf4877-61c4-4519-9759-4e0ad5cff7c7.htm">END TRANSACTION</a> command, the data update can still fail.</p>
+      <p>Use the following code template for transactions:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BEGIN TRANSACTION   
+* Update records
+IF lSuccess = .F. &amp;&amp; an error occurs
+   ROLLBACK
+ELSE &amp;&amp; commit the changes
+   * Validate the data
+   IF &amp;&amp; error occurs
+      ROLLBACK
+   ELSE 
+      END TRANSACTION
+   ENDIF
+ENDIF</pre></td></tr></table></span></div>
+      <p>The following rules apply to transactions:  </p>
+      <ul><li>
+          <p>A transaction starts with the <a href="/html/fcc6b075-43b2-45f0-9031-532710b4e8be.htm">BEGIN TRANSACTION</a> command and ends with the <a href="/html/73bf4877-61c4-4519-9759-4e0ad5cff7c7.htm">END TRANSACTION</a> or <a href="/html/a42e8f03-1f50-4173-82e7-160c65e6aecb.htm">ROLLBACK</a> command. An END TRANSACTION statement without a preceding BEGIN TRANSACTION statement generates an error.</p>
+        </li><li>
+          <p>A ROLLBACK statement without a preceding BEGIN TRANSACTION statement generates an error.</p>
+        </li><li>
+          <p>A transaction, once begun, remains in effect until the corresponding END TRANSACTION begins (or until a ROLLBACK command is issued), even across programs and functions, unless the application terminates, which causes a rollback.</p>
+        </li><li>
+          <p>Visual FoxPro uses data cached in the transaction buffer before using disk data for queries on the data involved in transactions. This ensures that the most current data is used.</p>
+        </li><li>
+          <p>If the application terminates during a transaction, all operations roll back.</p>
+        </li><li>
+          <p>A transaction works only in a database container.</p>
+        </li><li>
+          <p>You cannot use the <a href="/html/242d1feb-d43e-4831-9e4b-d0bb0b5fe4ae.htm">INDEX</a> command if it overwrites an existing index file, or if any .cdx index file is open.</p>
+        </li><li>
+          <p>Transactions are scoped to data sessions.</p>
+        </li></ul>
+      <p>Transactions exhibit the following locking behaviors:  </p>
+      <ul><li>
+          <p>Within a transaction, Visual FoxPro imposes a lock at the time a command directly or indirectly calls for it. Any system or user direct or indirect unlock commands are cached until the completion of the transaction by ROLLBACK or END TRANSACTION commands.</p>
+        </li><li>
+          <p>If you use a locking command such as <a href="/html/76c905e2-77c6-4c45-8f9b-bad3c021c590.htm">FLOCK( )</a> or <a href="/html/5878c5e3-9e76-4445-8919-3b94f6e40765.htm">RLOCK( )</a> within a transaction, the END TRANSACTION statement will not release the lock. In that case, you must explicitly unlock any locks explicitly taken within a transaction. You should also keep transactions containing the FLOCK( ) or RLOCK( ) commands as brief as possible; otherwise, users could be locked out of records for a long time.</p>
+        </li></ul>
+    </div><h1 class="heading">Nesting Transactions</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>Nested transactions provide logical groups of table update operations that are insulated from concurrent processes. BEGIN TRANSACTION...END TRANSACTION pairs need not be in the same function or procedure. The following rules apply to nested transactions:  </p>
+      <ul><li>
+          <p>You can nest up to five <a href="/html/fcc6b075-43b2-45f0-9031-532710b4e8be.htm">BEGIN TRANSACTION</a>...<a href="/html/73bf4877-61c4-4519-9759-4e0ad5cff7c7.htm">END TRANSACTION</a> pairs.</p>
+        </li><li>
+          <p>Updates made in a nested transaction aren't committed until the outermost END TRANSACTION is called.</p>
+        </li><li>
+          <p>In nested transactions, an END TRANSACTION only operates on the transaction initiated by the last issued BEGIN TRANSACTION.</p>
+        </li><li>
+          <p>In nested transactions, a <a href="/html/a42e8f03-1f50-4173-82e7-160c65e6aecb.htm">ROLLBACK</a> statement only operates on the transaction initiated by the last issued BEGIN TRANSACTION.</p>
+        </li><li>
+          <p>The innermost update in a set of nested transactions on the same data has precedence over all others in the same block of nested transactions.</p>
+        </li></ul>
+      <p>Notice in the following example that because changes in a nested transaction aren't written to disk but to the transaction buffer, the inner transaction will overwrite the changes made to the same STATUS fields in the earlier transaction:</p>
+      <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>BEGIN TRANSACTION &amp;&amp;  transaction 1
+   UPDATE EMPLOYEE ; &amp;&amp;  first change
+      SET STATUS = "Contract" ;
+      WHERE EMPID BETWEEN 9001 AND 10000
+   BEGIN TRANSACTION &amp;&amp;  transaction 2
+      UPDATE EMPLOYEE ;
+         SET STATUS = "Exempt" ;
+         WHERE HIREDATE &gt; {^1998-01-01}  &amp;&amp;  overwrites
+   END TRANSACTION &amp;&amp;  transaction 2
+END TRANSACTION    &amp;&amp;  transaction 1</pre></td></tr></table></span></div>
+      <p>The following nested transaction example deletes a customer record and all its related invoices. The transaction will roll back if errors occur during a <a href="/html/9c5000b8-3c35-4690-b7b8-07299f84b794.htm">DELETE</a> command. This example demonstrates grouping table update operations to protect updates from partial completion and to avoid concurrency conflicts.</p>
+      <div class="labelheading"><b>Example of Modifying Records in Nested Transactions</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>DO WHILE TXNLEVEL( ) &gt; 0</code>
+            </p>
+            <p>
+              <code>   ROLLBACK</code>
+            </p>
+            <p>
+              <code>ENDDO</code>
+            </p>
+          </td>
+          <td>
+            <p>Cleanup from other transactions.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>CLOSE ALL</code>
+            </p>
+            <p>
+              <code>SET MULTILOCKS ON</code>
+            </p>
+            <p>
+              <code>SET EXCLUSIVE OFF</code>
+            </p>
+          </td>
+          <td>
+            <p>Establish environment for buffering.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>OPEN DATABASE test</code>
+            </p>
+            <p>
+              <code>USE mrgtest1</code>
+            </p>
+            <p>
+              <code>CURSORSETPROP('buffering',5)</code>
+            </p>
+            <p>
+              <code>GO TOP</code>
+            </p>
+          </td>
+          <td>
+            <p> Enable optimistic table buffering.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>REPLACE fld1 WITH "changed"</code>
+            </p>
+            <p>
+              <code>SKIP</code>
+            </p>
+            <p>
+              <code>REPLACE fld1 WITH "another change"</code>
+            </p>
+            <p>
+              <code>MESSAGEBOX("modify first field of both" + ;</code>
+            </p>
+            <p>
+              <code>   "records on another machine")</code>
+            </p>
+          </td>
+          <td>
+            <p>Change a record. Change another record.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>BEGIN TRANSACTION</code>
+            </p>
+            <p>
+              <code>lSuccess = TABLEUPDATE(.T.,.F.)</code>
+            </p>
+          </td>
+          <td>
+            <p>Start transaction 1 and try to update all modified records without force.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>IF lSuccess = .F.</code>
+            </p>
+            <p>
+              <code>   ROLLBACK</code>
+            </p>
+            <p>
+              <code>   AERROR(aErrors)</code>
+            </p>
+            <p>
+              <code>   DO CASE </code>
+            </p>
+            <p>
+              <code>   CASE aErrors[1,1] = 1539            </code>
+            </p>
+            <p>
+              <code>   ...</code>
+            </p>
+            <p>
+              <code>   CASE aErrors[1,1] = 1581            </code>
+            </p>
+            <p>
+              <code>   ...</code>
+            </p>
+            <p>
+              <code>   CASE aErrors[1,1] = 1582            </code>
+            </p>
+          </td>
+          <td>
+            <p>If the update failed, roll back the transaction. Get the error from AERROR( ). Determine the cause of the failure. If a trigger failed, handle it. If a field doesn't accept null values, handle it. If a field rule was violated, handle it.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   CASE aErrors[1,1] = 1585            </code>
+            </p>
+            <p>
+              <code>      nNextModified = getnextmodified(0)</code>
+            </p>
+            <p>
+              <code>      DO WHILE nNextModified &lt;&gt; 0</code>
+            </p>
+            <p>
+              <code>         GO nNextModified</code>
+            </p>
+            <p>
+              <code>         RLOCK()</code>
+            </p>
+            <p>
+              <code>         FOR nField = 1 to FCOUNT()</code>
+            </p>
+            <p>
+              <code>            cField = FIELD(nField)</code>
+            </p>
+            <p>
+            </p>
+            <p>
+            </p>
+            <p>
+              <code>            if OLDVAL(cField) &lt;&gt; CURVAL(cField)</code>
+            </p>
+          </td>
+          <td>
+            <p>If a record was changed by another user, locate the first modified record. Loop through all modified records, starting with the first record. Lock each record to guarantee that you can update. Check each field for any changes. Check the buffered value against the value on disk, and then present a dialog box to the user.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>               nResult = MESSAGEBOX;</code>
+            </p>
+            <p>
+              <code>               ("Data was changed " + ;</code>
+            </p>
+            <p>
+              <code>                "by another user — keep"+ ;</code>
+            </p>
+            <p>
+              <code>                "changes?", 4+48, ;</code>
+            </p>
+            <p>
+              <code>                "Modified Record")</code>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>               IF nResult = 7</code>
+            </p>
+            <p>
+              <code>                  TABLEREVERT(.F.)</code>
+            </p>
+            <p>
+              <code>                  UNLOCK record nNextModified</code>
+            </p>
+            <p>
+              <code>               ENDIF</code>
+            </p>
+          </td>
+          <td>
+            <p>If user responded "No," revert the one record and unlock it.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>               EXIT</code>
+            </p>
+            <p>
+              <code>            ENDIF</code>
+            </p>
+            <p>
+              <code>         ENDFOR</code>
+            </p>
+          </td>
+          <td>
+            <p>Break out of the "FOR nField..." loop.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>      ENDDO</code>
+            </p>
+          </td>
+          <td>
+            <p>Get the next modified record.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>      BEGIN TRANSACTION</code>
+            </p>
+            <p>
+              <code>      TABLEUPDATE(.T.,.T.)</code>
+            </p>
+            <p>
+              <code>      END TRANSACTION</code>
+            </p>
+            <p>
+              <code>      UNLOCK</code>
+            </p>
+          </td>
+          <td>
+            <p>Start transaction 2 and update all non-reverted records with force. End transaction 2. Release the lock.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   CASE aErrors[1,1] = 109   </code>
+            </p>
+            <p>
+              <code>   ...</code>
+            </p>
+            <p>
+              <code>   CASE aErrors[1,1] = 1583    </code>
+            </p>
+            <p>
+              <code>   ...</code>
+            </p>
+            <p>
+              <code>   CASE aErrors[1,1] = 1884    </code>
+            </p>
+            <p>
+              <code>   ...</code>
+            </p>
+            <p>
+              <code>   OTHERWISE</code>
+            </p>
+            <p>
+              <code>      MESSAGEBOX( "Unknown error "+;</code>
+            </p>
+            <p>
+              <code>      "message: " + STR(aErrors[1,1]))</code>
+            </p>
+            <p>
+              <code>   ENDCASE</code>
+            </p>
+          </td>
+          <td>
+            <p>If the record is in use by another user, handle it. If a row rule was violated, handle it. If there was a unique index violation, handle it. Otherwise, present a dialog box to the user.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>ELSE</code>
+            </p>
+            <p>
+              <code>   END TRANSACTION</code>
+            </p>
+            <p>
+              <code>ENDIF</code>
+            </p>
+          </td>
+          <td>
+            <p> End transaction 1.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading">Protecting Remote Updates</h1><div id="sectionSection3" class="seeAlsoNoToggleSection">
+      <p>Transactions can protect you from system-generated errors during data updates on remote tables. The following example uses a transaction to wrap data-writing operations to a remote table.</p>
+      <div class="labelheading"><b>Example of a Transaction on a Remote Table</b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+            <th>
+              Code
+            </th>
+            <th>
+              Comment
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <code>hConnect = CURSORGETPROP('connecthandle')</code>
+            </p>
+            <p>
+              <code>SQLSETPROP(hConnect, 'transmode',</code>
+            </p>
+            <p>
+              <code>DB_TRANSMANUAL)</code>
+            </p>
+          </td>
+          <td>
+            <p>Get the connect handle  and enable manual transactions.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>BEGIN TRANSACTION</code>
+            </p>
+          </td>
+          <td>
+            <p>Begin the manual transaction.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>lSuccess = TABLEUPDATE(.T.,.F.)</code>
+            </p>
+            <p>
+              <code>IF lSuccess = .F.</code>
+            </p>
+            <p>
+              <code>   SQLROLLBACK (hConnect)</code>
+            </p>
+            <p>
+              <code>   ROLLBACK</code>
+            </p>
+          </td>
+          <td>
+            <p>Try to update all records without force. If the update failed, roll back the transaction on  the connection for the cursor.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   AERROR(aErrors)</code>
+            </p>
+            <p>
+              <code>   DO CASE </code>
+            </p>
+          </td>
+          <td>
+            <p>Get the error from AERROR( ).</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   CASE aErrors[1,1] = 1539            </code>
+            </p>
+            <p>
+              <code>   ...</code>
+            </p>
+          </td>
+          <td>
+            <p>If a trigger failed, handle it.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   CASE aErrors[1,1] = 1581            </code>
+            </p>
+            <p>
+              <code>   ...</code>
+            </p>
+          </td>
+          <td>
+            <p>If a field doesn't accept null values, handle it.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   CASE aErrors[1,1] = 1582            </code>
+            </p>
+            <p>
+              <code>   ...</code>
+            </p>
+          </td>
+          <td>
+            <p>If a field rule was violated, handle it.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   CASE aErrors[1,1] = 1585            </code>
+            </p>
+            <p>
+              <code>      nNextModified = GETNEXTMODIFIED(0)</code>
+            </p>
+            <p>
+              <code>      DO WHILE nNextModified &lt;&gt; 0</code>
+            </p>
+            <p>
+              <code>         GO nNextModified</code>
+            </p>
+          </td>
+          <td>
+            <p>If a record was changed by another user, handle it. Loop through all modified records, starting with the first record.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>         FOR nField = 1 to FCOUNT()</code>
+            </p>
+            <p>
+              <code>            cField = FIELD(nField)</code>
+            </p>
+            <p>
+              <code>            IF OLDVAL(cField) &lt;&gt; CURVAL(cField)</code>
+            </p>
+            <p>
+              <code>               nResult = MESSAGEBOX;</code>
+            </p>
+            <p>
+              <code>               ("Data has been changed ;</code>
+            </p>
+            <p>
+              <code>               by another user. ;</code>
+            </p>
+            <p>
+              <code>               Keep changes?",4+48,;</code>
+            </p>
+            <p>
+              <code>               "Modified Record")</code>
+            </p>
+          </td>
+          <td>
+            <p>Check each field for any changes. Check the buffered value  against the value on disk, and then present a dialog box to the user.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>               IF nResult = 7</code>
+            </p>
+            <p>
+              <code>                  TABLEREVERT(.F.)</code>
+            </p>
+            <p>
+              <code>               ENDIF</code>
+            </p>
+            <p>
+              <code>               EXIT</code>
+            </p>
+            <p>
+              <code>            ENDIF</code>
+            </p>
+            <p>
+              <code>         ENDFOR</code>
+            </p>
+            <p>
+              <code>         nNextModified = ;</code>
+            </p>
+            <p>
+              <code>         GETNEXTMODIFIED(nNextModified)</code>
+            </p>
+            <p>
+              <code>      ENDDO</code>
+            </p>
+          </td>
+          <td>
+            <p>If user responded "No," revert the one record. Break out of the "FOR nField..." loop. Get the next modified record.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>      TABLEUPDATE(.T.,.T.)</code>
+            </p>
+            <p>
+              <code>      SQLCOMMIT(hConnect)</code>
+            </p>
+          </td>
+          <td>
+            <p>Update all non-reverted records with force and issue a commit.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   CASE aErrors[1,1] = 109</code>
+            </p>
+            <p>
+              <code>         * Handle the error</code>
+            </p>
+          </td>
+          <td>
+            <p>Error 109 indicates that the record is in use by another user.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   CASE aErrors[1,1] = 1583</code>
+            </p>
+            <p>
+              <code>         * Handle the error</code>
+            </p>
+          </td>
+          <td>
+            <p>Error 1583 indicates that a row rule was violated.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   CASE aErrors[1,1] = 1884</code>
+            </p>
+            <p>
+              <code>         * Handle the error</code>
+            </p>
+          </td>
+          <td>
+            <p>Error 1884 indicates that the uniqueness of the index was violated.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>   OTHERWISE</code>
+            </p>
+            <p>
+              <code>         * Handle generic errors.</code>
+            </p>
+          </td>
+          <td>
+            <p> </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>      MESSAGEBOX("Unknown error message:" ;</code>
+            </p>
+            <p>
+              <code>        + STR(aErrors[1,1]))</code>
+            </p>
+            <p>
+              <code>   ENDCASE</code>
+            </p>
+          </td>
+          <td>
+            <p>Present a dialog box to the user. End of error handling.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <code>ELSE</code>
+            </p>
+            <p>
+              <code>   SQLCOMMIT(hConnect)</code>
+            </p>
+            <p>
+              <code>   END TRANSACTION</code>
+            </p>
+            <p>
+              <code>ENDIF</code>
+            </p>
+          </td>
+          <td>
+            <p> If all errors were handled and the entire transaction was successful, issue a commit and end the transaction.</p>
+          </td>
+        </tr></table></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/6c9c3a56-c339-440d-b60b-43f0fb7da50b.htm">Update Criteria Tab, View Designer</a></span><br /><span class="linkTerms"><a href="/html/3e6aad6f-66be-4f09-a18a-03147d7a313f.htm">DBSETPROP( ) Function</a></span><br /><span class="linkTerms"><a href="/html/423cad42-42a8-4bb1-8d58-226cece91d4e.htm">CURSORSETPROP( ) Function</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/a8993d34-e40b-4411-9df3-48d58bd3f0f4.htm">Managing Conflicts When Updating Data</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/c3ac4a1d-4c23-40ba-8715-e9ce9438cf62.htm">Updating Data</a></span><br /><span class="linkTerms"><a href="/html/e190dd85-d680-4128-a323-fb74c485746c.htm">Programming for Shared Access</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Managing Updates Using Transactions">
+</OBJECT>

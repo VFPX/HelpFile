@@ -1,0 +1,332 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>How to: Add Your Own Handler to the Report Builder's Registry</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif">
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif">
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif">
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif">
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">How to: Add Your Own Handler to the Report Builder's Registry</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">See Also</a> 
+									</td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>The Report Builder uses an internal lookup table mapping event types in the Report or Label Designer to specific event handler classes. Because this table is built into reportbuilder.app, it is read-only and cannot be modified.</p>
+    <p>By default, the Report Builder will use an external table with the filename <b>reportbuilder.dbf</b> in preference to its internal handler table, if it meets one of the following requirements:</p>
+    <ul><li>
+        <p>It is in Visual FoxPro's <b>SET PATH</b></p>
+      </li><li>
+        <p>It is in the same folder as <b>reportbuilder.app</b>.</p>
+      </li></ul>
+    <p>The Report Builder has a mechanism to create an external copy of the lookup table, available from its <b>Options</b> dialog box.  </p>
+    <p>Once the file exists on disk, you can make changes to the table, either by browsing it in the Visual FoxPro directory, or by using the Report Builder's Handler Registry Table Explorer. </p>
+    <p>In this topic, you will learn how to:</p>
+    <ul><li>
+        <p>
+          <span class="linkTerms"><a href="#CopyTable">Copy the read-only event lookup table so that you can make changes</a></span>.</p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#BrowseTable">Explore the Report Builder's event lookup table</a></span>.</p>
+      </li><li>
+        <p>
+          <span class="linkTerms"><a href="#ModifyTable">Add and configure your own event handler class to the lookup table</a></span>.</p>
+      </li></ul>
+    <p>See <span class="linkTerms"><a href="/html/91d5dbf6-5294-468e-8ed6-b195d62603e5.htm">Report Builder Event Handler Registry Table</a></span> for more information on the lookup table.</p>
+  <a name="CopyTable"></a><h1 class="heading">Creating an editable copy of the internal lookup table</h1><div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <h3 class="procedureSubHeading">To copy the internal lookup table out to disk using the options dialog</h3><div class="subSection"><ol><li>
+            
+              <p>Open the Report Builder <b>Options</b> dialog box. For more information, see <span class="linkTerms"><a href="/html/96ae951e-8a2f-4ef6-979c-8e4f92664a3e.htm">How to: Display the Report Builder Options Dialog Box</a></span>.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Create copy…</b> to open the <b>Save as</b> dialog box. </p>
+            
+          </li><li>
+            
+              <p>Change the file name and location if you wish, and click <b>Save</b> to create the copy.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Close</b> to dismiss the <b>Options</b> dialog box.</p>
+            
+          </li></ol></div>
+      <p>The default location in the <b>Save as</b> dialog box will be the directory in which <b>reportbuilder.app</b> is located, and the default file name will be <b>reportbuilder.dbf</b>. This is the table that the Report Builder will use in preference to its internal one.</p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Tip </th></tr><tr><td>
+        <p>After you create and edit your event lookup table, you can add it to your applications and give it a different name.  To specify this table for the Report Builder's use in your applications, you invoke <b>reportbuilder.app</b> in a special configuration mode while performing setup tasks for your application.  For more information, see <span class="linkTerms"><a href="/html/3ae94a82-7396-4e6b-b6ff-57ec8541f366.htm">How to: Specify an Alternate Report Event Handler Table</a></span>.</p>
+      </td></tr></table></div>
+      <h3 class="procedureSubHeading">To copy the internal lookup table out to disk using command-line parameters</h3><div class="subSection"><ol><li>
+            
+              <p>Open the Command window.</p>
+            
+          </li><li>
+            
+              <p>Type one of the following commands: </p>
+              <ul><li>
+                  <p>
+                    <code>DO (HOME() + "reportbuilder.app") WITH 5, cFilename</code>
+                  </p>
+                </li><li>
+                  <p>
+                    <code>* OR:</code>
+                  </p>
+                </li><li>
+                  <p>
+                    <code>DO (_REPORTBUILDER) WITH 5</code>
+                  </p>
+                </li></ul>
+            
+          </li></ol></div>
+      <p>The <span class="parameter">cFilename</span> parameter must be a fully pathed file specification of a table (.dbf) file. If the file exists, it will be over-written. If you omit the <span class="parameter">cFilename</span> parameter, the <b>Save As</b> dialog box will appear.</p>
+    </div><a name="BrowseTable"></a><h1 class="heading">Browsing the Event Handler Registry table</h1><div id="sectionSection1" class="seeAlsoNoToggleSection">
+      <h3 class="procedureSubHeading">To explore the lookup table using the Builder's Event Handler Registry browser</h3><div class="subSection"><ol><li>
+            
+              <p>Open the Report Builder <b>Options</b> dialog box. For more information, see <span class="linkTerms"><a href="/html/96ae951e-8a2f-4ef6-979c-8e4f92664a3e.htm">How to: Display the Report Builder Options Dialog Box</a></span>.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Explore registry…</b> to open the <b>Event Handler Registry</b> dialog box.</p>
+            
+          </li></ol></div>
+      <p>For more information on adjusting the contents of the lookup table, see <span class="linkTerms"><a href="/html/fae228fe-3f63-4d54-b7b0-ab19279caad8.htm">Event Handler Registry Dialog Box (Report Builder)</a></span>.</p>
+    </div><a name="ModifyTable"></a><h1 class="heading">Adding a custom handler class to the Event Handler Registry table</h1><div id="sectionSection2" class="seeAlsoNoToggleSection">
+      <p>In this example, you will create a class that handles the event that occurs when you press <b>CTRL-E</b> on a label report control.</p>
+      <h3 class="procedureSubHeading">To create a CTRL-E label edit handler</h3><div class="subSection"><ol><li>
+            
+              <p>Create or edit a programmatic class library:</p>
+              <p>
+                <code>MODIFY COMMAND c:\temp\mylibrary.prg</code>
+              </p>
+            
+          </li><li>
+            
+              <p>Create your handler class by typing the following code, then save your changes:</p>
+            
+          </li></ol>
+          
+            <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>DEFINE CLASS MyLabelEditor AS Custom
+    PROCEDURE Execute( oEvent )
+        LOCAL cCaption
+        cCaption = INPUTBOX("Label caption:",;
+                        "Label Properties", TRIM(frx.expr))
+        IF NOT EMPTY( m.cCaption )
+            REPLACE frx.expr WITH m.cCaption
+            oEvent.SetHandledByBuilder(.T.)
+            oEvent.SetReloadChanges(.T.)
+        ENDIF
+    ENDPROC
+ENDDEFINE</pre></td></tr></table></span></div>
+          
+        </div>
+      <h3 class="procedureSubHeading">To register your handler for the Ctrl-E builder event</h3><div class="subSection"><ol><li>
+            
+              <p>Open the Report Builder <b>Options</b> dialog box. For more information, see <span class="linkTerms"><a href="/html/96ae951e-8a2f-4ef6-979c-8e4f92664a3e.htm">How to: Display the Report Builder Options Dialog Box</a></span>.</p>
+            
+          </li><li>
+            
+              <p>If the <b>Current registry table</b> text box contains "Internal lookup table," follow the steps above to <span class="linkTerms"><a href="#CopyTable">copy the read-only event lookup table so that you can make changes</a></span>.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Explore registry…</b> to open the <b>Event Handler Registry</b> dialog box.</p>
+            
+          </li><li>
+            
+              <p>Locate a record with Type="H", Event=14, ObjType=5, ObjCode=0.</p>
+            
+          </li><li>
+            
+              <p>If such a record does not exist in the table, add a new record to the table by clicking on <b>Add Record</b>.</p>
+            
+          </li><li>
+            
+              <p>Set the field values as shown in the table below.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Close</b> to dismiss the <b>Event Handler Registry</b> dialog box.</p>
+            
+          </li><li>
+            
+              <p>Click <b>Close</b> to dismiss the <b>Report Builder Options</b> dialog box.</p>
+            
+          </li></ol></div>
+      <div class="labelheading"><b></b></div><div class="tableSection"><table width="100%" cellspacing="2" cellpadding="5"><tr>
+          <td>
+            <p>
+              <b>Type</b>
+            </p>
+          </td>
+          <td>
+            <p>H</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Class</b>
+            </p>
+          </td>
+          <td>
+            <p>MyLabelEditor</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Library</b>
+            </p>
+          </td>
+          <td>
+            <p>c:\temp\mylibrary.prg</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Description</b>
+            </p>
+          </td>
+          <td>
+            <p>Sample Ctrl-E on Label handler</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Event</b>
+            </p>
+          </td>
+          <td>
+            <p>14</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>ObjType</b>
+            </p>
+          </td>
+          <td>
+            <p>5</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>ObjCode</b>
+            </p>
+          </td>
+          <td>
+            <p>0</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Native</b>
+            </p>
+          </td>
+          <td>
+            <p>False</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <b>Debug</b>
+            </p>
+          </td>
+          <td>
+            <p>False</p>
+          </td>
+        </tr></table></div>
+      <h3 class="procedureSubHeading">To test your event handler registry changes</h3><div class="subSection"><ol><li>
+            
+              <p>Open a report or label layout in the designer.</p>
+            
+          </li><li>
+            
+              <p>Select a label control</p>
+            
+          </li><li>
+            
+              <p>Press <b>CTRL-E</b>.</p>
+              <p>You should see an INPUTBOX() dialog as your class is invoked to handle the event.</p>
+            
+          </li></ol></div>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Tasks</h4><span class="linkTerms"><a href="/html/7161b49c-792d-4b6c-8219-cbe780af3dae.htm">How to: Configure the Report Builder's Event Handling</a></span><br /><span class="linkTerms"><a href="/html/3ae94a82-7396-4e6b-b6ff-57ec8541f366.htm">How to: Specify an Alternate Report Event Handler Table</a></span><br /><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/fae228fe-3f63-4d54-b7b0-ab19279caad8.htm">Event Handler Registry Dialog Box (Report Builder)</a></span><br /><span class="linkTerms"><a href="/html/4ba558b6-55fc-4af4-86c9-dbcd225ce6fa.htm">Report Builder Options Dialog Box (Report Builder)</a></span><br /><span class="linkTerms"><a href="/html/91d5dbf6-5294-468e-8ed6-b195d62603e5.htm">Report Builder Event Handler Registry Table</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/3c88c403-7559-4001-9cae-3e2ad5f39090.htm">Understanding Report Builder Events</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/dbc4b061-74ad-4780-89bf-0e5d461be849.htm">Extending Reports at Design Time</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="How to: Add Your Own Handler to the Report Builder's Registry">
+</OBJECT>

@@ -1,0 +1,114 @@
+﻿<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Conserving Disk Space During Coverage Runs</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/EventUtilities.js">
+      
+    </script>
+    <script src="../local/SplitScreen.js">
+      
+    </script>
+    <script src="../local/Dropdown.js">
+      
+    </script>
+    <script src="../local/script.js">
+      
+    </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="Filter choices image" src="../local/drpdown.gif">
+      
+      
+    </img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif">
+      
+      
+    </img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif">
+      
+      
+    </img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif">
+      
+      
+    </img>
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">
+              Visual FoxPro 9.0 SP2
+            </span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Conserving Disk Space During Coverage Runs</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td>
+            <a href="#seeAlsoNoToggle" onclick="OpenSection(seeAlsoNoToggle)">
+              See Also
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <!-- VFPX languageFilterToolTip removed -->
+          </td>
+        </tr>
+      </table>
+      <!-- VFPX languageSpan removed-->
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <font color="DarkGray"></font><p />
+    <p>If you experience "out of disk space" errors during coverage runs, you can change the size of some of the engine work table fields to make these tables somewhat smaller.</p>
+  <div id="sectionSection0" class="seeAlsoNoToggleSection">
+      <p>The default values of these fields are 115, because it allows for long path names and long object and method names. Values longer than 115 are not recommended, because two of these fields might be used in concatenated keys in which the sum of any two field lengths must not exceed the maximum key length (240).</p>
+      <p>Do not decrease the Hostfile field unless you are sure the lengths of your fully-qualified source files will not be exceeded. Otherwise, the engine might generate errors when it tries to find the uncompiled versions of these files.</p>
+      <p>If you know that you nest pageframes and grids several container-layers deep or that you tend to use very long class names, specify values greater than the maximum string length that ObjClass or Executing fields are likely to contain, plus a margin for error. You might want to examine the source and target files first to see how the engine uses these fields.</p>
+      <p>When you have decreased the size of the ObjClass or Executing fields, beware of suddenly-incorrect coverage and profiling statistics. Although the Profiler generates no obvious errors when the analyzing the log, statistical errors will occur if object and method names are being truncated in the fields.</p>
+      <p>Ordinarily, you use the iLenHostfile, iLenObjClass, and iLenExecuting property values to change the size of these fields. You can even change them dynamically while Coverage is open, before you open a coverage log that is unusually large. </p>
+      <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
+        <p>When you have opened a log, do not change these values until you are ready to evaluate a new log, or you might experience statistical errors when new target entries' code is marked.</p>
+      </td></tr></table></div>
+      <p>However, if you have set COV_TOPSPEED true (.T.) in the COV_TUNE.H header file, to increase speed by forcing the engine to make in-line calls, the engine uses constants also defined in COV_TUNE.H, rather than property values, to determine the size of these fields. (These values are used repeatedly, to ensure exact comparisons, as the engine parses lines of code.) If you set COV_TOPSPEED true (.T.), you must set the values in COV_TUNE.H directly.</p>
+    </div><h1 class="heading"><span id="seeAlsoNoToggle">See Also</span></h1><div id="seeAlsoSection" class="seeAlsoNoToggleSection"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/c49d2d9e-0831-41bb-9f48-75015bfb45d8.htm">Coverage Engine Object</a></span><br /><h4 class="subHeading">Concepts</h4><span class="linkTerms"><a href="/html/4dbd7912-7e50-4788-9e57-1087f9183d0a.htm">Coverage Profiler Application</a></span><br /><br /></div></div>
+      <div id="footer">
+        <div class="footerLine">
+          <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
+            
+            
+          </img>
+        </div>
+        <!-- VFPX Footer-->
+<div>
+<img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
+<a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
+2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+<noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
+</div>
+<!-- VFPX Footer-->
+      </div>
+    </div>
+  </body>
+</html>
+<OBJECT type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="ALink Name" value="Conserving Disk Space During Coverage Runs">
+</OBJECT>
