@@ -23,7 +23,8 @@ Project Manager: [Francis FAURE](https://github.com/FrancisFaure)
 
 ![](images/git2.png)
 
-* navigate in your local directory to **./sources/dv_foxhelp/**
+* navigate in your local directory to **.\sources\dv_foxhelp\**
+![](images/update_path.png)
 	- update **compile_dv_foxhelp.cmd**: change HTML_HELP_WORKSHOP_DIR variable with the path to HHC.EXE 
 		* by default : 
 			- C:\Program Files (x86)\HTML Help Workshop on 64bits computer
