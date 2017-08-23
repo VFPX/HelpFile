@@ -19,6 +19,10 @@ Project Manager: [Francis FAURE](https://github.com/FrancisFaure)
 
 * use GIT and "clone" on a local drive (~5000 files): https://github.com/VFPX/HelpFile/
 
+![](images/git1.png)
+
+![](images/git2.png)
+
 * navigate in your local directory to **./sources/dv_foxhelp/**
 	- update **compile_dv_foxhelp.cmd**: change HTML_HELP_WORKSHOP_DIR variable with the path to HHC.EXE 
 		* by default : 
