@@ -107,7 +107,7 @@
   <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
 MODIFY CLASS <span class="parameter">ClassName</span> [OF <span class="parameter">ClassLibraryName1</span>]
    [AS <span class="parameter">cBaseClassName</span> [FROM <span class="parameter">ClassLibraryName2</span>]]
-   [NOWAIT] [METHOD MethodName] [SAVE]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
+   [METHOD MethodName[,Line_No]] [NOWAIT] [SAVE]</pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
     
       <dl><dt><span class="nonLinkTerms">
           <span class="parameter">ClassName</span>
@@ -122,6 +122,7 @@ MODIFY CLASS <span class="parameter">ClassName</span> [OF <span class="parameter
           <p>If you omit AS <span class="parameter">cBaseClassName</span>, the class definition is based on the Visual FoxPro FormSet base class. </p>
         </dd></dl><dl><dt><span class="nonLinkTerms">FROM <span class="parameter">ClassLibraryName2</span></span></dt><dd>
           <p>Specifies the name of the .vcx visual class library containing the user-defined class specified with <span class="parameter">cBaseClassName</span>.</p>
+
         </dd></dl><dl><dt><span class="nonLinkTerms">METHOD <span class="parameter">MethodName</span></span></dt><dd>
           <p>Specifies an event or method for which the Code window is opened in the Class Designer. The METHOD clause makes it possible for you to immediately begin editing event or method code in the Class Designer.</p>
           <p>
@@ -129,6 +130,12 @@ MODIFY CLASS <span class="parameter">ClassName</span> [OF <span class="parameter
           <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>MODIFY CLASS MyClass OF MyClassLibrary METHOD txtFirstName.Click</pre></td></tr></table></span></div>
           <p>If you only include an event or method name in the METHOD clause, the Code window is opened for the class's event or method. For example, to immediately edit the Click event code for a class named MyClass in a visual class library named MyClassLibrary, use the following command:   </p>
           <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>MODIFY CLASS MyClass OF MyClassLibrary METHOD Click</pre></td></tr></table></span></div>
+
+        </dd></dl><dl><dt><span class="nonLinkTerms">METHOD MethodName, <span class="parameter">Line_No</span></span></dt><dd>
+          <p>Opens the method at line number <span class="parameter">Line_No</span>.</p>
+          <p>If no number is given, the last postion determined from ressource, or line 1.</p>
+          <p>A number greater then the last line goes to the last line of the method.</p>
+
         </dd></dl><dl><dt><span class="nonLinkTerms">NOWAIT </span></dt><dd>
           <p>Continues program execution after the Class Designer is opened. The program doesn't wait for the Class Designer to be closed, but continues execution on the program line immediately following the line that contains MODIFY CLASS NOWAIT. If you omit NOWAIT when MODIFY CLASS is issued in a program, the Class Designer is opened and program execution pauses until the Class Designer is closed.</p>
           <p>NOWAIT is effective only from within a program. It has no effect on MODIFY CLASS when issued from the Command window. If NOWAIT is included with the METHOD clause, be sure to place NOWAIT before the METHOD clause or NOWAIT will be ignored. </p>
@@ -152,7 +159,7 @@ MODIFY CLASS <span class="parameter">ClassName</span> [OF <span class="parameter
 <div>
 <img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
 <a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
-2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+2009-2022 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
 <noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
 </div>
 <!-- VFPX Footer-->
