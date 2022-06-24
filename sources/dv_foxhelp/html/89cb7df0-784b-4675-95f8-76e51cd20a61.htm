@@ -123,9 +123,33 @@ SYS(2014, <span class="parameter">cFileName</span> [, <span class="parameter">Pa
     
   </div><h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
     
-      <p>SYS(2014) can be used with FULLPATH( ) to make applications portable. That is, when given the location of the current program and the location of other files used by the program, FULLPATH( ) and SYS(2014) obtain the proper paths for these files. Once the files' paths are determined, the files can be accessed by the program.</p>
+    <p>SYS(2014) can be used with FULLPATH( ) to make applications portable. That is, when given the location of the current program and the location of other files used by the program, FULLPATH( ) and SYS(2014) obtain the proper paths for these files. Once the files' paths are determined, the files can be accessed by the program.</p>
     
-  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/a3944489-2eaa-4f99-8dd7-98d7a355426a.htm">FULLPATH( ) Function</a></span><br /><span class="linkTerms"><a href="/html/c9a8300d-bfbc-44b8-a596-2147f126b74d.htm">SET DEFAULT Command</a></span><br /><span class="linkTerms"><a href="/html/047f2e74-3552-43b7-a18d-ee2c7dd2db6e.htm">SET PATH Command</a></span><br /><span class="linkTerms"><a href="/html/634e3863-7f71-4868-b023-d0633240a541.htm">SYS( ) Functions Overview</a></span><br /><br /></div></div>
+    <p>SYS(2014) is in some cases respecting the internal search order of VFP.</p>
+
+    <p>The following example shows the how <b>SET PATH TO</b> works with SYS(2014)</p>
+      
+    <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>clear
+Mkdir  C:\MyDir1
+Mkdir  C:\MyDir2
+
+Set Path To C:\MyDir1
+Cd C:\MyDir2
+
+Strtofile('','C:\MyDir1\Text1.txt')
+
+Strtofile('','C:\MyDir2\A.txt')
+Strtofile('','C:\MyDir2\Text2.txt')
+
+*file does exist: 
+?Sys(2014,'Text2.txt','C:\MyDir2\A.txt')	&& Output: TEXT2.TXT
+*file does not exist: 
+?Sys(2014,'Text3.txt','C:\MyDir2\A.txt')	&& Output: TEXT3.TXT
+*will find Text1.txt along the path
+?Sys(2014,'Text1.txt','C:\MyDir2\A.txt')	&& Output: ..\MYDIR1\X\TEXT1.TXT</pre></td></tr></table></span></div>
+  </div>
+  
+  <h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/a3944489-2eaa-4f99-8dd7-98d7a355426a.htm">FULLPATH( ) Function</a></span><br /><span class="linkTerms"><a href="/html/c9a8300d-bfbc-44b8-a596-2147f126b74d.htm">SET DEFAULT Command</a></span><br /><span class="linkTerms"><a href="/html/047f2e74-3552-43b7-a18d-ee2c7dd2db6e.htm">SET PATH Command</a></span><br /><span class="linkTerms"><a href="/html/634e3863-7f71-4868-b023-d0633240a541.htm">SYS( ) Functions Overview</a></span><br /><br /></div></div>
       <div id="footer">
         <div class="footerLine">
           <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
@@ -137,7 +161,7 @@ SYS(2014, <span class="parameter">cFileName</span> [, <span class="parameter">Pa
 <div>
 <img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
 <a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
-2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+2009-2022 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
 <noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
 </div>
 <!-- VFPX Footer-->
