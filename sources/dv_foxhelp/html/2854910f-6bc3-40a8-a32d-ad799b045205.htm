@@ -112,15 +112,32 @@ TTOC(<span class="parameter">tExpression</span> [, 1 | 2 | 3])</pre></td></tr></
         </span></dt><dd>
           <p>Specifies a <b>DateTime</b> expression to convert into a character string. </p>
           <p>If <span class="parameter">tExpression</span> contains only a time, Visual FoxPro adds the default date of 12/30/1899 to <span class="parameter">tExpression</span>. If <span class="parameter">tExpression</span> contains only a date, Visual FoxPro adds a default time of 12:00:00 AM (if SET HOURS is 12) or 00:00:00 (if SET HOURS is 24) to <span class="parameter">tExpression</span> to produce a valid DateTime value.</p>
+        </dd></dl><dl><dt><span class="nonLinkTerms">No second parameter </span></dt><dd>
+          <p>Returns <span class="parameter">tExpression</span> as a character string in a (general) date format respecting the <b>SET</b> commands dealing with date and time, just like the output of <b>?DATETIME()</b>.</p>
+          <p>For more information, see 
+          	<a href="/html/d376a010-d478-439f-8aa7-517bcd617558.htm">SET CENTURY</a>,
+          	<a href="/html/96aefa03-0504-48c8-9fc0-013b3e1c43aa.htm">SET DATE</a>,
+          	<a href="/html/caab5d93-12b7-468d-88f4-4d2b2fc203fd.htm">SET HOURS</a>,
+          	<a href="/html/24be9a54-d919-4bd5-bb84-c71e4e842df4.htm">SET MARK TO</a>,
+          	<a href="/html/a757d365-37be-4306-bb8c-b95c10f6eb72.htm">SET SECONDS</a> and
+          	<a href="/html/45018e26-0fce-4f5e-9502-adbc53487a6b.htm">SET SYSFORMATS</a>.</p>
         </dd></dl><dl><dt><span class="nonLinkTerms">1 </span></dt><dd>
-          <p>Returns <span class="parameter">tExpression</span> as a character string in a format suitable for indexing. The character string returned has a 14-character format, yyyymmddhhmmss, that is not affected by the <b>SET CENTURY</b>, the <b>SET HOURS</b>, or <b>SET SECONDS</b> commands. For more information, see <a href="/html/d376a010-d478-439f-8aa7-517bcd617558.htm">SET CENTURY</a>, <a href="/html/caab5d93-12b7-468d-88f4-4d2b2fc203fd.htm">SET HOURS</a>, and <a href="/html/a757d365-37be-4306-bb8c-b95c10f6eb72.htm">SET SECONDS</a>.</p>
+          <p>Returns <span class="parameter">tExpression</span> as a character string in a format suitable for indexing. The character string returned has a 14-character format, yyyymmddhhmmss, that is not affected by the <b>SET CENTURY</b>, the <b>SET HOURS</b>, or <b>SET SECONDS</b> commands.</p>
+          <p>For more information, see
+          	<a href="/html/d376a010-d478-439f-8aa7-517bcd617558.htm">SET CENTURY</a>,
+          	<a href="/html/caab5d93-12b7-468d-88f4-4d2b2fc203fd.htm">SET HOURS</a>,and 
+          	<a href="/html/a757d365-37be-4306-bb8c-b95c10f6eb72.htm">SET SECONDS</a>.</p>
         </dd></dl><dl><dt><span class="nonLinkTerms">2 </span></dt><dd>
           <p>Returns <span class="parameter">tExpression</span> as a character string containing only the time portion of <span class="parameter">tExpression</span>. </p>
-          <p>To control whether to include the seconds of the time portion in the character string, set the <b>SET SECONDS</b> and <b>SET DATE</b> commands. The <b>SET HOURS</b> command determines if AM or PM is appended to the time portion returned.</p>
-          <p>For more information, see <a href="/html/96aefa03-0504-48c8-9fc0-013b3e1c43aa.htm">SET DATE</a> and <a href="/html/caab5d93-12b7-468d-88f4-4d2b2fc203fd.htm">SET HOURS</a>.   </p>
+          <p>To control whether to include the seconds of the time portion in the character string, set the <b>SET SECONDS</b> command.</p>
+          <p>The <b>SET HOURS</b> command determines if AM or PM is appended to the time portion </p>returned.</p>
+          <p>For more information, see
+          	<a href="/html/96aefa03-0504-48c8-9fc0-013b3e1c43aa.htm">SET DATE</a> and
+          	<a href="/html/caab5d93-12b7-468d-88f4-4d2b2fc203fd.htm">SET HOURS</a>.   </p>
           <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
             <p>If <b>SET DATE</b> is set to <b>LONG</b> or <b>SHORT</b>, the format of the time setting in the Windows Control Panel determines the format of the character string.</p>
           </td></tr></table></div>
+
         </dd></dl><dl><dt><span class="nonLinkTerms">3 </span></dt><dd>
           <p>Returns <span class="parameter">tExpression</span> as a character string with the XML DateTime format. The character string returned has a 19-character yyyy-mm-ddThh:mm:ss format that is not affected by the settings of the <b>SET CENTURY</b>, <b>SET HOURS</b>, or <b>SET SECONDS</b> commands.</p>
         </dd></dl>
@@ -139,14 +156,25 @@ TTOC(<span class="parameter">tExpression</span> [, 1 | 2 | 3])</pre></td></tr></
   </div><h1 class="heading"><span onclick="ExpandCollapse(codeExampleToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(codeExampleToggle)" tabindex="0"><img id="codeExampleToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Example</span></h1><div id="codeExampleSection" class="section" name="collapseableSection" style="display: none;">
     <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
       
-        <p xmlns="">The following example converts a <b>DateTime</b> value to a <b>Character</b> value. The <b>STORE</b> command stores the results of the <b>DATETIME( )</b> function, which returns the current date and time as a <b>DateTime</b> value, to a variable named gtDateTime. The <b>?</b> command displays text and the results of the <b>TYPE( )</b> function, which returns the letter T as the type of the gtDateTime variable. The <b>TTOC( )</b> function converts gtDateTime to a character string, and the <b>TYPE( )</b> functions returns the letter T as the current type of gtDateTime.</p>
+        <p xmlns="">The following example converts a <b>DateTime</b> value to a <b>Character</b> value. The <b>STORE</b> command stores the results of the <b>DATETIME( )</b> function, which returns the current date and time as a <b>DateTime</b> value, to a variable named gtDateTime. The <b>?</b> command displays text and the results of the <b>TYPE( )</b> function, which returns the letter T as the type of the gtDateTime variable. The <b>TTOC( )</b> function converts gtDateTime to a character string, and the <b>TYPE( )</b> functions returns the letter C as the current type of gtDateTime.</p>
       
     </description>
     <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th> </th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" alt="CopyCode image" src="../local/copycode.gif"></img>Copy Code</span></th></tr><tr><td colspan="2"><pre>STORE DATETIME( ) TO gtDateTime  
 ? "gtDateTime has type: "+TYPE('gtDateTime') 
 gtDateTime = TTOC(gtDateTime)     
 ? "gtDateTime is now type: "+TYPE('gtDateTime')</pre></td></tr></table></span></div>
-  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/6a5e9942-dcda-4705-b2d2-46b35dfa6526.htm">DateTime Data Type</a></span><br /><span class="linkTerms"><a href="/html/9d346afb-3b45-4178-85e2-68298ba4507f.htm">Character Data Type</a></span><br /><span class="linkTerms"><a href="/html/c5f29ec4-794b-4ad5-bf33-f806a334f365.htm">DATE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/45909bc7-f811-4d90-a45b-a52e4ad88a0d.htm">DATETIME( ) Function</a></span><br /><span class="linkTerms"><a href="/html/fff3fc81-3285-4656-8b4a-81c8b46f49a0.htm">HOUR( ) Function</a></span><br /><span class="linkTerms"><a href="/html/97a308d8-5e78-4a80-a3b7-be89e8b86e15.htm">MINUTE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/0ea1ec64-f660-4088-a379-1b73336cff15.htm">SEC( ) Function</a></span><br /><span class="linkTerms"><a href="/html/686d7228-0ba1-4a86-abe9-3832c0503777.htm">SECONDS( ) Function</a></span><br /><span class="linkTerms"><a href="/html/caab5d93-12b7-468d-88f4-4d2b2fc203fd.htm">SET HOURS Command</a></span><br /><span class="linkTerms"><a href="/html/96aefa03-0504-48c8-9fc0-013b3e1c43aa.htm">SET DATE Command</a></span><br /><span class="linkTerms"><a href="/html/fab6c412-3c8c-48ee-9284-99adad3405d6.htm">TIME( ) Function</a></span><br /><span class="linkTerms"><a href="/html/e60d2a4e-e460-4b33-8f9e-1acb184587c2.htm">TTOD( ) Function</a></span><br /><h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
+  </div><h1 class="heading"><span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0"><img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>See Also</span></h1><div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;"><h4 class="subHeading">Reference</h4><span class="linkTerms"><a href="/html/6a5e9942-dcda-4705-b2d2-46b35dfa6526.htm">DateTime Data Type</a></span><br /><span class="linkTerms"><a href="/html/9d346afb-3b45-4178-85e2-68298ba4507f.htm">Character Data Type</a></span><br /><span class="linkTerms"><a href="/html/c5f29ec4-794b-4ad5-bf33-f806a334f365.htm">DATE( ) Function</a></span><br /><span class="linkTerms"><a href="/html/45909bc7-f811-4d90-a45b-a52e4ad88a0d.htm">DATETIME( ) Function</a></span><br /><span class="linkTerms"><a href="/html/fff3fc81-3285-4656-8b4a-81c8b46f49a0.htm">HOUR( ) Function</a></span><br />  <span class="linkTerms"><a href="/html/97a308d8-5e78-4a80-a3b7-be89e8b86e15.htm">MINUTE( ) Function</a></span><br />  <span class="linkTerms"><a href="/html/0ea1ec64-f660-4088-a379-1b73336cff15.htm">SEC( ) Function</a></span><br /><span class="linkTerms"><a href="/html/686d7228-0ba1-4a86-abe9-3832c0503777.htm">SECONDS( ) Function</a></span><br />
+  <span class="linkTerms"><a href="/html/caab5d93-12b7-468d-88f4-4d2b2fc203fd.htm">SET HOURS Command</a></span><br />
+  <span class="linkTerms"><a href="/html/96aefa03-0504-48c8-9fc0-013b3e1c43aa.htm">SET DATE Command</a></span><br />
+  <span class="linkTerms"><a href="/html/d376a010-d478-439f-8aa7-517bcd617558.htm">SET CENTURY Command</a></span><br />
+  <span class="linkTerms"><a href="/html/96aefa03-0504-48c8-9fc0-013b3e1c43aa.htm">SET DATE Command</a></span><br />
+  <span class="linkTerms"><a href="/html/caab5d93-12b7-468d-88f4-4d2b2fc203fd.htm">SET HOURS Command</a></span><br />
+  <span class="linkTerms"><a href="/html/24be9a54-d919-4bd5-bb84-c71e4e842df4.htm">SET MARK TO Command</a></span><br />
+  <span class="linkTerms"><a href="/html/a757d365-37be-4306-bb8c-b95c10f6eb72.htm">SET SECONDS Command</a></span><br />
+  <span class="linkTerms"><a href="/html/45018e26-0fce-4f5e-9502-adbc53487a6b.htm">SET SYSFORMATS Command</a></span><br />
+  <span class="linkTerms"><a href="/html/fab6c412-3c8c-48ee-9284-99adad3405d6.htm">TIME( ) Function</a></span><br /><span class="linkTerms"><a href="/html/e60d2a4e-e460-4b33-8f9e-1acb184587c2.htm">TTOD( ) Function</a></span><br />
+  
+  <h4 class="subHeading">Other Resources</h4><span class="linkTerms"><a href="/html/da6b864f-f7c6-43a3-8218-20d56c7a4764.htm">Functions</a></span><br /><span class="linkTerms"><a href="/html/6dcddc3f-9944-4ad8-be2f-003610af616a.htm">Language Reference (Visual FoxPro)</a></span><br /><br /></div></div>
       <div id="footer">
         <div class="footerLine">
           <img width="100%" height="3px" alt="Footer image" src="../local/footer.gif">
@@ -158,7 +186,7 @@ gtDateTime = TTOC(gtDateTime)
 <div>
 <img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
 <a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
-2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+2009-2022 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
 <noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
 </div>
 <!-- VFPX Footer-->

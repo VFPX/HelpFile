@@ -105,7 +105,7 @@
         <font color="DarkGray"></font><p />
     <p>Instructs the Visual FoxPro preprocessor to treat the contents of a specified header file as if it appeared in a Visual FoxPro program.</p>
     <div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" alt="Note" src="../local/note.gif"></img>Note </th></tr><tr><td>
-      <p>The maximum number of compiler levels for #INCLUDE is 4.</p>
+      <p>The maximum number of compiler levels (iow header files stacked) for #INCLUDE is 4.</p>
     </td></tr></table></div>
   <div id="syntaxSection" class="section"><div id="syntaxCodeBlocks" class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"></th></tr><tr><td><pre>
 #INCLUDE <span class="parameter">FileName</span></pre></td></tr></table></span></div></div><p /><h4 class="subHeading">Parameters</h4>
@@ -114,8 +114,11 @@
           <span class="parameter">FileName</span>
         </span></dt><dd>
           <p>Specifies the name of the header file that is merged into the program during compilation.</p>
-          <p>You can include a path with the header file name. When you include a path with the header file name, Visual FoxPro searches for the header file only in the specified location.   </p>
-          <p>If you do not include a path with the header file name, Visual FoxPro searches for the header file in the default Visual FoxPro directory, and then along the Visual FoxPro path. The Visual FoxPro path is specified with SET PATH. </p>
+          <p>You can include a path with the header file name.
+          	<ul><li>
+          	When you include a path with the header file name, Visual FoxPro searches for the header file first in the specified location.
+          	If it is not found, Visual FoxPro searches for the header file in the same directory where the program is located, but not allong the path specified with SET PATH TO.
+          	</li><li>If you do not include a path with the header file name, Visual FoxPro searches for the header file in the default Visual FoxPro directory, and then along the Visual FoxPro path. The Visual FoxPro path is specified with SET PATH TO.</li></p>
         </dd></dl>
     
   <h1 class="heading"><span onclick="ExpandCollapse(remarksToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(remarksToggle)" tabindex="0"><img id="remarksToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="../local/expand_all.gif"></img>Remarks</span></h1><div id="remarksSection" class="section" name="collapseableSection" style="display: none;">
@@ -160,7 +163,7 @@ RETURN</pre></td></tr></table></span></div>
 <div>
 <img src="../local/vfpXnote.gif" style="float: left; border:0; margin-right:8px;">Microsoft Visual FoxPro 9 SP2 Help file, VFPX Edition v1.08<br />
 <a href="https://github.com/VFPX/HelpFile/issues" target="_blank">Send feedback</a> on this topic to the <a href="https://github.com/VFPX/HelpFile/" target="_blank">VFPX Help file project team</a>.<br />
-2009-2017 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
+2009-2022 Placed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons licensing</a> by Microsoft Corporation. 
 <noscript><p class="vfpx" style="color:#FF0000">&nbsp;&nbsp;<b>Not all help features are available because JavaScript is disabled on this computer!</b></p></noscript>
 </div>
 <!-- VFPX Footer-->
